@@ -1,0 +1,10 @@
+package com.tmmmi.service.user;
+
+public interface UserDao {
+	public void addUser();
+	public void getUser();
+	public void updateUser();
+	public void deleteUser();
+	public void getUserList();
+	public void emailCheckDuplication();
+}

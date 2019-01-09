@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!DOCTYPE mapper
+		PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+		"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="FAQMapper">
+ 	
+ 	
+	<resultMap id="FAQSelectMap"  type="FAQ">
+		<result property="FAQNo" 				column="faq_no" 						jdbcType="NUMBER"/>
+		<result property="FAQCategory"		column="user_center_category" 	jdbcType="NUMBER" />
+		<result property="FAQTitle" 				column="faq_title" 					jdbcType="VARCHAR2" />
+		<result property="FAQDetail" 			column="faq_detail" 					jdbcType="VARCHAR2" />
+		<result property="FAQDate" 			column="faq_date" 					jdbcType="DATE" />
+		<result property="FAQDeleteCheck" 	column="faq_delete_check" 			jdbcType="NUMBER" />
+	</resultMap>
+	
+	<!-- SQL : INSERT -->
+	<insert 	id="addFAQ"	parameterType="user" >
+	 
+	 
+	 </insert>
+	 
+	 <!-- SQL : SELECT ONE -->
+	 <select 	id="getFAQList"  parameterType="string"	 resultMap="userSelectMap">
+		
+	 </select>
+	 
+	 <!-- SQL : UPDATE -->
+	 <update	id="updateFAQ"	parameterType="user" >
+	   	UPDATE FAQ
+	   	<set>
+	   	</set>
+	 </update>
+		 
+	
+</mapper>

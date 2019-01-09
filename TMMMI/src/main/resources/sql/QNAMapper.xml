@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!DOCTYPE mapper
+		PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+		"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="QNAMapper">
+ 	
+ 	
+	<resultMap id="QNASelectMap"  type=" ">
+		<result property="QNANo" 					column="qna_no" 						jdbcType="NUMBER"/>
+		<result property="userNo" 					column="user_no" 						jdbcType="NUMBER"/>
+		<result property="QNACategory"			column="user_center_category" 	jdbcType="NUMBER" />
+		<result property="QNATitle" 				column="qna_title" 					jdbcType="VARCHAR2" />
+		<result property="QNADetail" 				column="qna_detail" 					jdbcType="VARCHAR2" />
+		<result property="QNADate" 				column="qna_date" 					jdbcType="DATE" />
+		<result property="QNAAnswerCheck" 		column="qna_answer_check" 		jdbcType="NUMBER" />
+		<result property="QNAAnswereDetail" 	column="qna_answer_detail" 		jdbcType="VARCHAR2" />
+		<result property="QNAAnswerDate" 		column="qna_answer_date" 			jdbcType="DATE" />
+	</resultMap>
+	
+	<!-- SQL : INSERT -->
+	<insert 	id="addQNA"	parameterType="user" >
+	 
+	 
+	 </insert>
+	 
+	 <!-- SQL : SELECT ONE -->
+	 <select 	id="getQNAList"  parameterType="string"	 resultMap="userSelectMap">
+		
+	 </select>
+	 
+	 <!-- SQL : UPDATE -->
+	 <update	id="updateQNA"	parameterType="user" >
+	   	UPDATE qna
+	   	<set>
+	   	</set>
+	 </update>
+		 
+	
+</mapper>
