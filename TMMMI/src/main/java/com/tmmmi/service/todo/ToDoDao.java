@@ -1,9 +1,11 @@
 package com.tmmmi.service.todo;
 
+import com.tmmmi.service.domain.ToDo;
+
 public interface ToDoDao {
 
 	public void getToDoList();
-	public void addToDo();
+	public void addToDo(ToDo toDo) throws Exception;
 	public void deleteToDo();
 	public void updateToDo();
 	public void updateToDoCheck();

@@ -1,14 +1,26 @@
 package com.tmmmi.service.todo.impl;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.stereotype.Service;
+
+import com.tmmmi.service.domain.ToDo;
 import com.tmmmi.service.todo.ToDoDao;
 import com.tmmmi.service.todo.ToDoService;
 
+@Service("ToDoServiceImpl")
 public class ToDoServiceImpl implements ToDoService {
 	
+	///Field
+	@Autowired
+	@Qualifier("ToDoDaoImpl")
 	private ToDoDao toDoDao;
+	 public void setToDoDao(ToDoDao toDoDao) {
+		 this.toDoDao = toDoDao;
+	 }
 	
 	public ToDoServiceImpl() {
-		// TODO Auto-generated constructor stub
+		System.out.println(this.getClass());
 	}
 
 	@Override
@@ -18,9 +30,8 @@ public class ToDoServiceImpl implements ToDoService {
 	}
 
 	@Override
-	public void addToDo() {
-		// TODO Auto-generated method stub
-		
+	public void addToDo(ToDo toDo) throws Exception {
+		toDoDao.addToDo(toDo);
 	}
 
 	@Override

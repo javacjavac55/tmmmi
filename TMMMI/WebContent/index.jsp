@@ -27,6 +27,7 @@
 <body>
 	<p>각자 필요한 링크 밑에 달기</p>
 	<a href="/common/color-picker.jsp">컬러픽커</a>
+	<a href="/todo/listToDo.jsp">할 일 리스트</a>
 </body>
 
 </html>
