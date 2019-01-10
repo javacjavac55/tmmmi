@@ -63,4 +63,10 @@ public class Diary {
 		this.diaryDate = diaryDate;
 	}
 
+	@Override
+	public String toString() {
+		return "Diary [diaryNo=" + diaryNo + ", userNo=" + userNo + ", userCategoryNo=" + userCategoryNo
+				+ ", diaryTitle=" + diaryTitle + ", diaryDetail=" + diaryDetail + ", diaryDate=" + diaryDate + "]";
+	}
+
 }
