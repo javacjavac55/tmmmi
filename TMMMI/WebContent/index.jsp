@@ -27,6 +27,8 @@
 <body>
 	<p>각자 필요한 링크 밑에 달기</p>
 	<a href="/common/color-picker.jsp">컬러픽커</a>
+	<br/>
+	<a href="/calendar/getCalendarMonth.jsp">월 달력</a>
 </body>
 
 </html>
