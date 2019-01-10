@@ -5,8 +5,8 @@
 <html lang="ko">
 	<head>
 		<script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
-		<script type="text/javascript" src="../javascript/farbtastic.js"></script>
-		<link rel="stylesheet" href="../css/farbtastic.css" type="text/css" />
+		<script type="text/javascript" src="/javascript/farbtastic.js"></script>
+		<link rel="stylesheet" href="/css/farbtastic.css" type="text/css" />
 		<script type="text/javascript" charset="utf-8">
 		$(document).ready(function() {
 		    var f = $.farbtastic('#picker');

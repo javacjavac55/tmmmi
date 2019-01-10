@@ -13,7 +13,8 @@
 	</settings>	
 	
 	<mappers>
-	<mapper resource="sql/DiaryMapper.xml"/>
+		<mapper resource="sql/DiaryMapper.xml"/>
+		<mapper resource="sql/TodoMapper.xml"/>
 	</mappers>
 
 </configuration>

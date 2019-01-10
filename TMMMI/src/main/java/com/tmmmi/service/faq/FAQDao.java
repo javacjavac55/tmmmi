@@ -4,4 +4,5 @@ public interface FAQDao {
 	public void addFAQ();
 	public void getFAQList();
 	public void updateFAQ();
+	public void deleteFAQ();
 }
