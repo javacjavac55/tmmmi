@@ -26,4 +26,10 @@ public class FAQDaoImpl implements FAQDao {
 		
 	}
 
+	@Override
+	public void deleteFAQ() {
+		// TODO Auto-generated method stub
+		
+	}
+
 }

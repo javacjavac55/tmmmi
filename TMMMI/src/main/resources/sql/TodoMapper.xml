@@ -1,1 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+		PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+		"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="TodoMapper">
+
+		<resultMap id="TodoSelectMap" type="com.tmmmi.service.domain.ToDo">
+		<result property="toDoNo" column="todo_no" jdbcType="NUMERIC"/>
+		<result property="userNo" column="user_no" jdbcType="NUMERIC"/>
+		<result property="toDoDetail" column="todo_detail" jdbcType="VARCHAR"/>
+		<result property="toDoStartDate" column="todo_start_date" jdbcType="DATE"/>
+		<result property="toDoEndDate" column="todo_end_date" jdbcType="DATE"/>
+		<result property="toDoDeleteCheck" column="todo_delete_check" jdbcType="NUMERIC"/>
+		</resultMap>	
+		
+		<insert id="addToDo" parameterType="com.tmmmi.service.domain.ToDo">
+		INSERT INTO todo (todo_no, user_no, todo_detail, todo_start_date, todo_end_date, todo_delete_check)
+		VALUES (seq_todo_todo_no.nextval, 7, #{toDoDetail}, #{toDoStartDate}, #{toDoEndDate}, 0)
+		</insert>
+</mapper>
