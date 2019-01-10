@@ -1,1 +1,54 @@
 <?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper
+		PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+		"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+		
+<mapper namespace="DiaryMapper">
+	<resultMap id="DiarySelectMap" type="com.tmmmi.service.domain.Diary">
+		<result property="diaryNo" column="diary_no" jdbcType="NUMERIC" />
+		<result property="userNo" column="user_no" jdbcType="NUMERIC" />
+		<result property="userCategoryNo" column="user_category_no" jdbcType="NUMERIC" />
+		<result property="diaryTitle" column="diary_title" jdbcType="VARCHAR" />
+		<result property="diaryDetail" column="diary_detail" jdbcType="VARCHAR" />
+		<result property="diaryDate" column="diary_date" jdbcType="DATE" />				
+	</resultMap>
+	
+	<!-- SQL: INSERT -->
+	<insert id="addDiary" parameterType="com.tmmmi.service.domain.Diary">
+		INSERT
+		INTO
+		diary(diary_no, user_no, user_category_no, diary_title, diary_detail, diary_deate)
+		VALUES (diary_no.nextval, #{userNo}, #{userCategoryNo},
+				 #{diaryTitle}, #{diaryDetail}, SYSDATE)
+	</insert>
+	
+	<!-- SQL: SELECT -->
+	<select id="getDiary" parameterType="string" resultMap="productSelectMap">
+		SELECT
+		diary_no, user_Category_no, diary_title, diary_detail, diary_date
+		FROM
+		diary
+		WHERE
+		diary_no= #{value}
+	</select>
+	
+	<!-- SQL: UPDATE -->
+	<update id="updateDiary" parameterType="com.tmmmi.service.domain.Diary">
+		UPDATE diary
+		<set>
+			user_category_no = #{userCategoryNo},
+			diary_title = #{diaryTitle},
+			diary_detail = #{diaryDetail}	
+		</set>
+		WHERE diary_no = #{diaryNo}
+	</update>
+	
+	<!-- SQL: DELETE -->
+	<delete id="deleteDiary" parameterType="com.tmmmi.service.domain.Diary">
+		DELETE
+		FROM diary
+		WHERE
+		diary_no=#{diaryNo}
+	</delete>
+</mapper>

@@ -8,20 +8,7 @@
 	
 <head>
 	<meta charset="EUC-KR">
-	
-	<!-- 참조 : http://getbootstrap.com/css/   -->
-	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-	
-	<!--  ///////////////////////// Bootstrap, jQuery CDN ////////////////////////// -->
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" >
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" >
-	<script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
-	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" ></script>
-	<style></style>
-   	
-	<script type="text/javascript">
-	</script>	
-	
+
 </head>
 
 <body>
@@ -32,6 +19,17 @@
 	<!-- 지영 -->
 	<a href="/user/addUser.jsp">회원가입</a><br/>
 	<a href="/user/getUser.jsp">회원정보보기</a><br/>
+	
+	<!-- 중열 -->
+	<a href="/common/test.jsp">에디터</a><br/>
+	<a href="/diary/addDiary.jsp">다이어리 등록</a><br/>
+	
+	<!-- 명훈 -->
+	<a href="/todo/listToDo.jsp">할 일 리스트</a><br/>
+	
+	<!-- 지슬 -->
+	<a href="/QNA/listQNA.jsp">조까튼 컨텐츠박스</a> 
+
 </body>
 
 </html>
