@@ -1,2 +1,86 @@
 ﻿<?xml version="1.0" encoding="UTF-8" ?>
 
+<!DOCTYPE mapper
+		PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+		"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="UserMapper">
+	
+	<resultMap type="com.tmmmi.service.domain.User" id="userSelectMap">
+		<result property="userNo"						column="user_no"						jdbcType="NUMERIC"/>
+		<result property="userId"						column="user_id"						jdbcType="VARCHAR"/>
+		<result property="password"						column="password"						jdbcType="VARCHAR"/>
+		<result property="email"						column="email"							jdbcType="VARCHAR"/>
+		<result property="emailCheck"					column="email_check"					jdbcType="NUMERIC"/>
+		<result property="userName"						column="user_name"						jdbcType="VARCHAR"/>
+		<result property="birthday"						column="birthday"						jdbcType="DATE"/>
+		<result property="refreshToken"					column="refresh_token"					jdbcType="VARCHAR"/>
+		<result property="refreshTokenExpireTime"		column="refresh_token_expire_time"		jdbcType="VARCHAR"/>	
+		<result property="snsName"						column="sns_name"						jdbcType="NUMERIC"/>
+		<result property="role"							column="role"							jdbcType="NUMERIC"/>
+		<result property="withdrawCheck"				column="withdraw_check"					jdbcType="NUMERIC"/>
+		<result property="withdrawDate"					column="withdrqs_date"					jdbcType="DATE"/>
+	</resultMap>		
+	
+	<!-- SQL : INSERT -->
+	<insert id="addUser" parameterType="com.tmmmi.service.domain.User">
+		INSERT	
+		INTO users(user_no, user_id, password, email, email_check, user_name, birthday, refresh_token, refresh_token_expire_time, sns_name, role, withdraw_check, withdraw_date)
+		VALUES(
+			user_no.nextval, 
+			#{userId}, 
+			#{password:VARCHAR}, 
+			#{email}, 
+			#{emailCheck}, 
+			#{userName}, 
+			#{birthday},
+			#{refreshToken:VARCHAR},
+			#{refreshTokenExpireTime:VARCHAR},
+			#{snsName:INTEGER},
+			1,
+			#{withdrawCheck:INTEGER},
+			#{withdrawDate:DATE}
+		)
+	</insert>
+	<!-- SQL : SELECT ONE -->
+	<select id="getUser" parameterType="int" resultMap="userSelectMap">
+		SELECT
+		user_no, user_id, password, email, user_name, birthday 		
+		FROM users 
+		WHERE user_no = #{value}
+	</select>
+	
+	<!-- SQL : SELECT ONE -->
+	<select id="getUserId" parameterType="string" resultMap="userSelectMap">
+		SELECT
+		user_id	
+		FROM users 
+		WHERE user_id = #{value}
+	</select>
+	
+	<!-- SQL : UPDATE -->
+	<update id="updateUser" parameterType="com.tmmmi.service.domain.User">
+		UPDATE users
+		<set>
+			user_name=#{userName},
+			password=#{password},
+			birthday=#{birthday),
+			email=#{email}
+		</set>
+		WHERE user_no=#{userNo}
+	</update>
+	
+	<!-- SQL : UPDATE(WITHDRAW)-->
+	<update id="updateWithdraw" parameterType="com.tmmmi.service.domain.User">
+		UPDATE users
+		<set>
+			WITHDRAW_CHECK=#{withdrawCheck},
+			WITHDRAW_DATE=#{withdrawDate}
+		</set>
+		WHERE user_no=#{userNo}
+	</update>
+	
+	<!-- SQL : SELECT LIST -->
+	
+	<!-- SQL : SELECT ROW COUNT -->
+</mapper>

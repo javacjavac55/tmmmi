@@ -26,7 +26,12 @@
 
 <body>
 	<p>각자 필요한 링크 밑에 달기</p>
-	<a href="/common/color-picker.jsp">컬러픽커</a>
+	<!-- 도형 -->
+	<a href="/common/color-picker.jsp">컬러픽커</a><br/>
+	
+	<!-- 지영 -->
+	<a href="/user/addUser.jsp">회원가입</a><br/>
+	<a href="/user/getUser.jsp">회원정보보기</a><br/>
 </body>
 
 </html>

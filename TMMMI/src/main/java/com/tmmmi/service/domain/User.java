@@ -8,10 +8,13 @@ public class User {
 	private String userId;
 	private String password;
 	private String email;
+	private int emailCheck;
 	private String userName;
 	private Date birthday;
 	private String accessToken;
 	private String refreshToken;
+	private String refreshTokenExpireTime;
+	private int snsName;
 	private String role;
 	private boolean withdrawCheck;
 	private Date withdrawDate;
@@ -52,6 +55,14 @@ public class User {
 		this.email = email;
 	}
 
+	public int getEmailCheck() {
+		return emailCheck;
+	}
+
+	public void setEmailCheck(int emailCheck) {
+		this.emailCheck = emailCheck;
+	}
+
 	public String getUserName() {
 		return userName;
 	}
@@ -82,6 +93,22 @@ public class User {
 
 	public void setRefreshToken(String refreshToken) {
 		this.refreshToken = refreshToken;
+	}
+
+	public String getRefreshTokenExpireTime() {
+		return refreshTokenExpireTime;
+	}
+
+	public void setRefreshTokenExpireTime(String refreshTokenExpireTime) {
+		this.refreshTokenExpireTime = refreshTokenExpireTime;
+	}
+
+	public int getSnsName() {
+		return snsName;
+	}
+
+	public void setSnsName(int snsName) {
+		this.snsName = snsName;
 	}
 
 	public String getRole() {
