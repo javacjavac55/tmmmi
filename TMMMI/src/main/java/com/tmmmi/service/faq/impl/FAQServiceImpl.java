@@ -29,4 +29,10 @@ public class FAQServiceImpl implements FAQService {
 		
 	}
 
+	@Override
+	public void deleteFAQ() {
+		// TODO Auto-generated method stub
+		
+	}
+
 }
