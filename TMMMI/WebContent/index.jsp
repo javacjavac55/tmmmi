@@ -30,7 +30,8 @@
 	<a href="/todo/listToDo.jsp">할 일 리스트</a><br/>
 	
 	<!-- 지슬 -->
-	<a href="/QNA/listQNA.jsp">조까튼 컨텐츠박스</a> 
+	<a href="/QNA/listQNA.jsp">조까튼 컨텐츠박스</a><br/>
+	<a href="/FAQ/addFAQ.jsp">FAQ 작성</a><br/>
 </body>
 
 </html>
