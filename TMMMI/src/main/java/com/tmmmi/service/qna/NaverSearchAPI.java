@@ -10,10 +10,11 @@ public class NaverSearchAPI {
     public static void main(String[] args) {
         String clientId = "rHBsMd5Tu_WOFtXexEQz";
         String clientSecret = "95lxTYNVRV";
+        int display =  5;
         
         try {
             String text = URLEncoder.encode("다이어리", "UTF-8");
-            String apiURL = "https://openapi.naver.com/v1/search/shop?query="+ text;// json 
+            String apiURL = "https://openapi.naver.com/v1/search/shop?query="+ text+"&display="+display;// json 
             //String apiURL = "https://openapi.naver.com/v1/search/blog.xml?query="+ text; // xml 
             URL url = new URL(apiURL);
             HttpURLConnection con = (HttpURLConnection)url.openConnection();
