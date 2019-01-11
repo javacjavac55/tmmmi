@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!DOCTYPE mapper
+		PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+		"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="UserCategoryMapper">
+	<insert id="addUserCategory" parameterType="com.tmmmi.service.domain.UserCategory">
+	 	INSERT
+		INTO user_category ( user_category_no , user_no , user_category_color , user_category_name ) 
+		VALUES ( user_category_no.nextval , 
+				#{userNo} , 
+				#{userCategoryColor} ,
+				#{userCategoryName}
+				)
+	 </insert>
+</mapper>

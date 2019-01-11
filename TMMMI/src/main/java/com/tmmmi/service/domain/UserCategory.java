@@ -4,7 +4,7 @@ public class UserCategory {
 
 	private int userNo;
 	private int userCategoryNo;
-	private String userCategoryTitle;
+	private String userCategoryName;
 	private String userCategoryColor;
 	
 	public UserCategory() {
@@ -26,12 +26,12 @@ public class UserCategory {
 		this.userCategoryNo = userCategoryNo;
 	}
 
-	public String getUserCategoryTitle() {
-		return userCategoryTitle;
+	public String getUserCategoryName() {
+		return userCategoryName;
 	}
 
-	public void setUserCategoryTitle(String userCategoryTitle) {
-		this.userCategoryTitle = userCategoryTitle;
+	public void setUserCategoryName(String userCategoryName) {
+		this.userCategoryName = userCategoryName;
 	}
 
 	public String getUserCategoryColor() {
@@ -41,4 +41,20 @@ public class UserCategory {
 	public void setUserCategoryColor(String userCategoryColor) {
 		this.userCategoryColor = userCategoryColor;
 	}
+
+	@Override
+	public String toString() {
+		StringBuilder builder = new StringBuilder();
+		builder.append("UserCategory [userNo=");
+		builder.append(userNo);
+		builder.append(", userCategoryNo=");
+		builder.append(userCategoryNo);
+		builder.append(", userCategoryTitle=");
+		builder.append(userCategoryName);
+		builder.append(", userCategoryColor=");
+		builder.append(userCategoryColor);
+		builder.append("]");
+		return builder.toString();
+	}
+
 }
