@@ -38,7 +38,7 @@ public class UserRestController {
 	public boolean checkDuplication(@RequestBody String userId ) throws Exception{
 		
 		userId = userId.replaceAll("\"", "");
-		System.out.println(userId);
+		System.out.println("userID : "+userId);
 		System.out.println("/userRest/checkDuplication : POST");
 		boolean result=userService.checkDuplication(userId);
 		System.out.println(result);

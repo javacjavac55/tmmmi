@@ -32,20 +32,18 @@ public class UserServiceImpl implements UserService {
 	}
 
 	@Override
-	public User getUser(int user_no) throws Exception {
-		return userDao.getUser(user_no);
+	public User getUser(int userNo) throws Exception {
+		return userDao.getUser(userNo);
 	}
 
 	@Override
 	public void updateUser(User user) throws Exception {
-		// TODO Auto-generated method stub
-		
+		userDao.updateUser(user);
 	}
 
 	@Override
-	public void deleteUser(int user_no) {
-		// TODO Auto-generated method stub
-		
+	public void deleteUser(int userNo) throws Exception{
+		userDao.deleteUser(userNo);
 	}
 
 	@Override
@@ -62,9 +60,9 @@ public class UserServiceImpl implements UserService {
 
 	@Override
 	public boolean checkDuplication(String userId) throws Exception {
+		System.out.println("checkDuplication Ω√¿€");
 		boolean result=true;
-		User user=userDao.getUser(userId);
-		System.out.println("userServiceImpl");
+		User user=userDao.getUserId(userId);
 		if(user != null) {
 			result=false;
 		}
@@ -72,8 +70,8 @@ public class UserServiceImpl implements UserService {
 	}
 
 	@Override
-	public User getUser(String userId) throws Exception {
-		return userDao.getUser(userId);
+	public User getUserId(String userId) throws Exception {
+		return userDao.getUserId(userId);
 	}
 
 }
