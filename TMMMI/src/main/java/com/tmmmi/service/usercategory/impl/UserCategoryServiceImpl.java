@@ -1,38 +1,46 @@
 package com.tmmmi.service.usercategory.impl;
 
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.stereotype.Service;
+
+import com.tmmmi.service.domain.UserCategory;
 import com.tmmmi.service.usercategory.UserCategoryDao;
 import com.tmmmi.service.usercategory.UserCategoryService;
 
+@Service("userCategoryServiceImpl")
 public class UserCategoryServiceImpl implements UserCategoryService {
-
-	private UserCategoryDao userCateogoryDao;
+	
+	@Autowired
+	@Qualifier("userCategoryDaoImpl")
+	private UserCategoryDao userCategoryDao;
+	public void setUserCategoryDao(UserCategoryDao userCategoryDao) {
+		this.userCategoryDao = userCategoryDao;
+	}
 	
 	public UserCategoryServiceImpl() {
-		// TODO Auto-generated constructor stub
-	}
-
-	@Override
-	public void addUserCategory() {
-		// TODO Auto-generated method stub
 		
 	}
 
 	@Override
-	public void getUserCategoryList() {
-		// TODO Auto-generated method stub
-		
+	public int addUserCategory(UserCategory userCategory) {
+		return userCategoryDao.addUserCategory(userCategory);
 	}
 
 	@Override
-	public void updateUserCategory() {
-		// TODO Auto-generated method stub
-		
+	public List<UserCategory> getUserCategoryList(int userNo) {
+		return userCategoryDao.getUserCategoryList(userNo);
 	}
 
 	@Override
-	public void deleteUserCategory() {
-		// TODO Auto-generated method stub
-		
+	public int updateUserCategory(UserCategory userCategory) {
+		return userCategoryDao.updateUserCategory(userCategory);
 	}
 
+	@Override
+	public int deleteUserCategory(UserCategory userCategory) {
+		return userCategoryDao.deleteUserCategory(userCategory);
+	}
 }

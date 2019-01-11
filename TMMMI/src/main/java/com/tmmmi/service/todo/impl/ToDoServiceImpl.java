@@ -41,8 +41,8 @@ public class ToDoServiceImpl implements ToDoService {
 	}
 
 	@Override
-	public void updateToDo() {
-		// TODO Auto-generated method stub
+	public void updateToDo(ToDo toDo) throws Exception {
+		toDoDao.updateToDo(toDo);
 		
 	}
 
