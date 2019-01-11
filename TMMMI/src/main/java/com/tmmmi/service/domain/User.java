@@ -135,4 +135,39 @@ public class User {
 		this.withdrawDate = withdrawDate;
 	}
 
+	@Override
+	public String toString() {
+		StringBuilder builder = new StringBuilder();
+		builder.append("User [userNo=");
+		builder.append(userNo);
+		builder.append(", userId=");
+		builder.append(userId);
+		builder.append(", password=");
+		builder.append(password);
+		builder.append(", email=");
+		builder.append(email);
+		builder.append(", emailCheck=");
+		builder.append(emailCheck);
+		builder.append(", userName=");
+		builder.append(userName);
+		builder.append(", birthday=");
+		builder.append(birthday);
+		builder.append(", accessToken=");
+		builder.append(accessToken);
+		builder.append(", refreshToken=");
+		builder.append(refreshToken);
+		builder.append(", refreshTokenExpireTime=");
+		builder.append(refreshTokenExpireTime);
+		builder.append(", snsName=");
+		builder.append(snsName);
+		builder.append(", role=");
+		builder.append(role);
+		builder.append(", withdrawCheck=");
+		builder.append(withdrawCheck);
+		builder.append(", withdrawDate=");
+		builder.append(withdrawDate);
+		builder.append("]");
+		return builder.toString();
+	}
+
 }

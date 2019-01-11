@@ -19,7 +19,8 @@
 	
 	<!-- 지영 -->
 	<a href="/user/addUser.jsp">회원가입</a><br/>
-	<a href="/user/getUser.jsp">회원정보보기</a><br/>
+	<a href="/user/getUser?userNo=1">회원정보보기</a><br/>
+	<a href="/user/login.jsp">로그인</a><br/>
 	
 	<!-- 중열 -->
 	<a href="/common/test.jsp">에디터</a><br/>
@@ -29,7 +30,8 @@
 	<a href="/todo/listToDo.jsp">할 일 리스트</a><br/>
 	
 	<!-- 지슬 -->
-	<a href="/QNA/listQNA.jsp">조까튼 컨텐츠박스</a> 
+	<a href="/QNA/listQNA.jsp">조까튼 컨텐츠박스</a><br/>
+	<a href="/FAQ/addFAQ.jsp">FAQ 작성</a><br/>
 </body>
 
 </html>

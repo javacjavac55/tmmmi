@@ -54,4 +54,10 @@ public class FAQ {
 		FAQDate = fAQDate;
 	}
 
+	@Override
+	public String toString() {
+		return "FAQ [FAQNo=" + FAQNo + ", FAQCategory=" + FAQCategory + ", FAQTitle=" + FAQTitle + ", FAQDetail="
+				+ FAQDetail + ", FAQDate=" + FAQDate + "]";
+	}
+
 }

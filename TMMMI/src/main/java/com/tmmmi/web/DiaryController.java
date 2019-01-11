@@ -3,6 +3,7 @@ package com.tmmmi.web;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -34,15 +35,16 @@ public class DiaryController {
 		return modelAndView;
 	}
 	
-	@RequestMapping(value="/addDiary", method=RequestMethod.POST)
-	public ModelAndView addDiary(@RequestParam("diaryNo") int diaryNo) throws Exception{
+	@RequestMapping(value="addDiary", method=RequestMethod.POST)
+	public ModelAndView addDiary(@ModelAttribute("diary") Diary diary) throws Exception{
 		System.out.println("/diary/addDiary : POST");
 		
-		Diary diary = diaryService.getDiary(diaryNo);
+		diaryService.addDiary(diary);
 		
 		ModelAndView modelAndView = new ModelAndView();
-		modelAndView.addObject("Diary", diaryNo);
+		modelAndView.addObject("Diary", diary);
 		modelAndView.setViewName("/diary/getDiary.jsp");
+		
 		
 		return modelAndView;
 	}

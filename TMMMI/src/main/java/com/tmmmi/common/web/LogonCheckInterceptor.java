@@ -6,6 +6,8 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
 
+import com.tmmmi.service.domain.User;
+
 
 /*
  * FileName : LogonCheckInterceptor.java
@@ -27,7 +29,7 @@ public class LogonCheckInterceptor extends HandlerInterceptorAdapter {
 		System.out.println("\nCommon :: "+this.getClass()+"\n");		
 	}
 	
-	/*///Method
+	///Method
 	public boolean preHandle(	HttpServletRequest request,
 														HttpServletResponse response, 
 														Object handler) throws Exception {
@@ -70,5 +72,5 @@ public class LogonCheckInterceptor extends HandlerInterceptorAdapter {
 			System.out.println("[ LogonCheckInterceptor end........]\n");
 			return false;
 		}
-	}*/
+	}
 }//end of class
