@@ -39,13 +39,13 @@
   </script>
   	
 	<script type="text/javascript">
-	function postForm() {
-        $('textarea[name="diaryDetaiil"]').val($('#summernote').summernote('code'));
-    }
+	/* function postForm() {
+        $('textarea[name="diaryDetail"]').val($('#summernote').summernote('code'));
+    } */
 	
 	function fncAddDiary() {
 		document.addDiary.submit();
-		$('form[name="addDiary"]').attr("method" , "POST").attr("action" , "/diary/addDiary").submit("postForm()");
+		$('form[name="addDiary"]').attr("method" , "POST").attr("enctype","multipart/form-data").attr("action" , "/diary/addDiary").submit();
 	}
 	
 	
@@ -104,11 +104,10 @@
 		<div class="form-group">
 			<label for="diaryDetail" class="col-sm-offset-1 col-sm-3 control-label text-center">³»¿ë</label>
 			<div class="col-sm-4">
-			<textarea name="diaryDetail" style="display:none;"></textarea>
-			<div id="summernote">
+			<textarea id="summernote" name="diaryDetail" style="display:none;"></textarea>			
 		    </div>		      
-			</div>				    	
-    	</div>
+		</div>				    	
+    	
 		<hr/>
 		  
 		  

@@ -22,21 +22,19 @@
 	<script src="http://code.jquery.com/jquery-2.1.4.min.js"></script>
 	
 	<script type="text/javascript">
-
-
 	
 		$(document).ready(function(){
 			//Å¬¸¯ÇÏ¸é ´ÝÇû´Ù ¿­·È´Ù
 			$(".clickk").on("click",function(){
-				$(".faq-content").toggleClass("hide");
+				$("#asd").toggleClass("bline");
 	        });
-	 	}); 
+	 	});
 
 	</script>
 	
 	<style>
    		.table .clickk{cursor:pointer;}
-  		.faq-content{display:none;} 
+  		.hide{display:none;} 
 
 	</style>
 
@@ -64,18 +62,15 @@
 				<c:set var="i" value="0" />
 				<c:forEach var="faq" items="${list}">
 					<c:set var="i" value="${i+1}" />
-					<tr class="controlreply">
+					<tr>
 						<td class="text-center">${i}</td>
 						<td class="clickk">${faq.FAQTitle}</td>
 						<td class="text-center">${faq.FAQDate}</td>
 					</tr>
-					<tr class="reply">
-						<td colspan="3" class="viewreply">
-						<div class="faq-content blo hide">
-							${faq.FAQDetail}
-						<br/><br/>
-						</div>
-						</td>
+					<tr>
+						<td></td>
+						<td class="hide" id="asd">${faq.FAQDetail}</td>
+						<td></td>
 					</tr>
 				</c:forEach>
 			</tbody>			

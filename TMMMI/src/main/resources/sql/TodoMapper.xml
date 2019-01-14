@@ -6,14 +6,14 @@
 <mapper namespace="TodoMapper">
 
 		<resultMap id="TodoSelectMap" type="com.tmmmi.service.domain.ToDo">
-		<result property="toDoNo" column="todo_no" jdbcType="NUMERIC"/>
+		<result property="toDoNo" column="todo_no" jdbcType="INTEGER"/>
 		<result property="userNo" column="user_no" jdbcType="NUMERIC"/>
 		<result property="toDoDetail" column="todo_detail" jdbcType="VARCHAR"/>
 		<result property="toDoStartDate" column="todo_start_date" jdbcType="DATE"/>
 		<result property="toDoEndDate" column="todo_end_date" jdbcType="DATE"/>
-		<result property="toDoCompleteNo" column="todo" jdbcType="NUMERIC"/>
-		<result property="toDoDeleteCheckDateList" column="todo_delete_check" jdbcType="DATE"/>
-		</resultMap>	
+		<result property="toDoCompleteNo" column="todo_complete_no" jdbcType="NUMERIC"/>
+		<result property="toDoCompleteDate" column="todo_complete_date" jdbcType="DATE"/>
+		</resultMap>
 		
 		<insert id="addTodo" parameterType="com.tmmmi.service.domain.ToDo">
 			INSERT INTO todo (todo_no, user_no, todo_detail, todo_start_date, todo_end_date, todo_delete_check)
@@ -24,15 +24,26 @@
 			UPDATE todo
 		<set>
 			todo_detail = #{toDoDetail},
+			todo_start_date = #{toDoStartDate},
 			todo_end_date = #{toDoEndDate}
 		</set>
-		WHERE todo_no = #{toDoNo}
+		WHERE user_no = 7
+		AND todo_no = #{toDoNo}
 		</update>
 		
-		<select id="getTodoList" parameterType="map" resultMap="TodoSelectMap">
-			SELECT *
+		<delete id="deleteTodo" parameterType="com.tmmmi.service.domain.ToDo" >
+  			DELETE FROM todo WHERE todo_no = (SELECT t.todo_no
 			FROM todo t, todo_complete tc
 			WHERE t.todo_no = tc.todo_no(+)
-			AND user_no = #{user_no}
+            AND t.todo_no = #{toDoNo}
+            AND t.user_no = #{userNo})
+		</delete>
+		
+		<select id="getTodoList" parameterType="int" resultMap="TodoSelectMap">
+			SELECT t.todo_no, t.user_no, t.todo_Detail, t.todo_start_date, t.todo_end_date,
+							 tc.todo_complete_no, tc.todo_complete_date
+			FROM todo t, todo_complete tc
+			WHERE t.todo_no = tc.todo_no(+)
+			AND user_no = #{value}
 		</select>
 </mapper>

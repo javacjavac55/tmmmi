@@ -19,11 +19,11 @@
 //==> DOM Object GET 3가지 방법 ==> 1. $(tagName) : 2.(#id) : 3.$(.className)
 
 	// 할 일 등록 체크
-	function fncAddTodo() {
-		console.log(1)
-		var toDoDetail=$("input[name='toDoDetail']").val();
-		var toDoStartDate=$("input[name='toDoStartDate']").val();
-		var toDoEndDate=$("input[name='toDoEndDate']").val();
+	function fncAddTodoCheck() {
+		console.log(2)
+		var toDoDetail = $(".form-control").val();
+		var toDoStartDate = $(".form-control").val();
+		var toDoEndDate = $(".form-control").val();
 	
 		if(toDoDetail == null || toDoDetail.length <1){
 			alert("할 일의 내용은 반드시 입력하셔야 합니다.");
@@ -37,27 +37,83 @@
 			alert("할 일의 종료 날짜는  반드시 입력하셔야 합니다.");
 			return;
 		}
+		$("form").attr("method", "POST").attr("action","/todo/addToDo").submit();
 	}
+	
 	//할 일 등록
 	$(function() {	
-		$( "button.btn.btn-default" ).on("click" , function() {
-			 fncAddTodo();
+		$( "#addToDobtn:contains('등록')" ).on("click" , function() {
+			fncAddTodoCheck();
+		})
+	});
+	
+	//할 일 수정
+	 $(function() {
+		
+		$( ".btn.btn-primary.updateToDobtn" ).on("click" , function() {
+			 var todoNo = $(this).data("param");
+			 console.log(todoNo);
 			$.ajax(
 				{
-				url:"/todoRest/addToDo", 
+				url:"/todoRest/updateToDo", 
 				method: 'POST',
+				headers : {
+					"Accept" : "application/json",
+					"Content-Type" : "application/json"
+				},
 				data: JSON.stringify({
-					toDoDetail: $('#toDoDetail').val(),
-	           		toDoStartDate: $('#toDoStartDate').val(),
-	           		toDoEndDate: $('#toDoEndDate').val()}),
-				contentType: 'application/json',
-		        dataType : 'json'
+					toDoNo : todoNo,
+					toDoDetail : $("#toDoDetail"+todoNo).val(),
+	           		toDoStartDate: $("#toDoStartDate"+todoNo).val(),
+	           		toDoEndDate: $("#toDoEndDate"+todoNo).val()
+	           	}),
+		        dataType : 'json',
+		        success : $(function() {
+		        					$("#todolist"+todoNo).toggleClass("hide");
+									$("#retodolist"+todoNo).toggleClass("show");
+									history.go(0)
+		        })
 			})
 		})
-	})
-	//할 일 수정
+	}) ;
 	
-	
+	// 할 일 삭제
+	$(function() {
+		
+		$( ".btn.btn-primary.updateToDobtn" ).on("click" , function() {
+			 var todoNo = $(this).data("param");
+			 console.log(todoNo);
+			$.ajax(
+				{
+				url:"/todoRest/updateToDo", 
+				method: 'POST',
+				headers : {
+					"Accept" : "application/json",
+					"Content-Type" : "application/json"
+				},
+				data: JSON.stringify({
+					toDoNo : todoNo,
+					toDoDetail : $("#toDoDetail"+todoNo).val(),
+	           		toDoStartDate: $("#toDoStartDate"+todoNo).val(),
+	           		toDoEndDate: $("#toDoEndDate"+todoNo).val()
+	           	}),
+		        dataType : 'json',
+		        success : $(function() {
+		        					$("#todolist"+todoNo).toggleClass("hide");
+									$("#retodolist"+todoNo).toggleClass("show");
+									history.go(0)
+		        })
+			})
+		})
+	}) ;
+	// 할 일 수정 변환버튼
+	 $(function() {
+			$(".btn.btn-primary.updateViewbtn").on("click", function() {
+				var todoNo = $(this).data("param");
+				$("#todolist"+todoNo).toggleClass("hide");
+				$("#retodolist"+todoNo).toggleClass("show");
+			})
+	 });
 	//할 일 체크
 /* 	var ToDay = new Date()
 
@@ -68,79 +124,89 @@
 	(y.getDate() < 10? "0" +  y.getDate(): y.getDate())
 	 */
 	 
-// datepicker function
+// datepicker 기능
 $(function(){
-        $("#toDoStartDate").datepicker({ dateFormat: 'yy-mm-dd' });
-        $("#toDoEndDate").datepicker({ dateFormat: 'yy-mm-dd' }).bind("change",function(){
+	
+        $(".toDoStartDate, .updateToDo").datepicker({ dateFormat: 'yy-mm-dd' });
+        $(".toDoEndDate, .updateToDo").datepicker({ dateFormat: 'yy-mm-dd' }).bind("change",function(){
             var minValue = $(this).val();
             minValue = $.datepicker.parseDate("yy-mm-dd", minValue);
-            minValue.setDate(minValue.getDate()+1);
-            $("#to").datepicker( "option", "minDate", minValue );
-        })
-    });
-
+            /* minValue.setDate(minValue.getDate()+1); */
+            $("#toDoEndDate").datepicker( "option", "minDate", minValue );
+        });
+       
+});
 </script>
 </head>
 
 <body>
+<!-- 모달 -->
+<div class="modal fade" id="todomodal">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">할 일 등록</div>
+      <div class="modal-body">
+       <form class="form-inline" id="addToDo">
+		  <div class="form-group">
+		    <label for="toDoDetail">할 일 내용</label>
+		    <input type="text" class="form-control" id="addToDoDetail" name="toDoDetail" placeholder="할 일을 입력해주세요" >
+		  </div>
+		  <div class="form-group">
+		    <label for="toDoStartDate">시작 날짜</label>
+		    <input type="text" class="form-control toDoStartDate" id="addToDoStartDate" name="toDoStartDate" placeholder="시작 날짜" autocomplete=off>
+		  </div>
+		  <div class="form-group">
+		    <label for="toDoEndDate">종료 날짜</label>
+		    <input type="text" class="form-control toDoEndDate" id="addToDoEndDate" name="toDoEndDate" placeholder="종료 날짜" autocomplete=off>
+		  </div>
+		</form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-danger" data-dismiss="modal">취소</button>
+        <button type="submit" class="btn btn-default" id="addToDobtn">등록</button>
+      </div>
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+<!-- 모달 끝 -->	
+<!-- 할 일 리스트 -->
+<div class="container">
 <h2 style="margin:5px">나의 할 일 관리</h2>
-<form class="form-inline" name="todoform">
-  <div class="form-group">
-    <label for="toDoDetail">할 일 내용</label>
-    <input type="text" class="form-control" id="toDoDetail" name="toDoDetail" placeholder="할 일을 입력하세요...." >
-  </div>
-  <div class="form-group">
-    <label for="toDoStartDate">시작 날짜</label>
-    <input type="text" class="form-control" id="toDoStartDate" name="toDoStartDate" placeholder="시작 날짜" autocomplete=off>
-  </div>
-  <div class="form-group">
-    <label for="toDoEndDate">종료 날짜</label>
-    <input type="text" class="form-control" id="toDoEndDate" name="toDoEndDate" placeholder="종료 날짜" autocomplete=off>
-  </div>
-  <button type="submit" class="btn btn-default">추가</button>
-</form>
-<div class="bs-example" data-example-id="hoverable-table">
-    <table class="table table-hover">
-      <thead>
-        <tr>
-          <th>번호</th>
-          <th>할 일</th>
-          <th>시작 날짜</th>
-          <th>종료 날짜</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr id="toDo">
-          <th scope="row">1</th>
-          <td>아침 밥 먹기</td>
-          <td>2019년 01월 01일</td>
-          <td>2019년 01월 03일 </td>
-          <td><button type="button" class="btn btn-primary" aria-label="Left Align">
-  						<span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
-  					</button>
-					<button type="button" class="btn btn-danger" aria-label="Left Align">
-  						<span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
-  					</button>	  
-		  </td>
-        </tr>
-      </tbody>
-    </table>
-  </div> 
-<!-- <div id="myDIV" class="header">
-  <h2 style="margin:5px">나의 할 일 관리</h2>
-  <input type="text" id="toDoInput" placeholder="할 일을 입력하세요....">
-  <span onclick="newElement()" class="addBtn">할 일 추가</span>
-   <input id="start_tododate" type="text" value="">
-   <hr>
-  <input id="end_tododate" type="text" value="">
+<button class="btn btn-primary btn-lg" data-toggle="modal" data-target="#todomodal">할 일 등록</button>
+    <div class="row">
+        <div class="col-md-3"><strong>오늘의 할 일</strong></div>
+        <div class="col-md-3"><strong>시작 날짜</strong></div>
+        <div class="col-md-3"><strong>종료 날짜</strong></div>
+        <div class="col-md-3"><strong>수정/삭제</strong></div>
+    </div>
+    <c:forEach var="todo" items="${todolist}">
+    <div class="row" id= "todolist${todo.toDoNo}">
+    	<input type="hidden" class="todo col-md-3" value="${todo.toDoNo}">
+        <div class="col-md-3">${todo.toDoDetail}</div>
+        <div class="col-md-3">${todo.toDoStartDate}</div>
+       <div class="col-md-3">${todo.toDoEndDate}</div>
+        <div class="col-md-3"><button type="button" class="btn btn-primary updateViewbtn" aria-label="Left Align" data-param ="${todo.toDoNo}">
+  													<span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
+  													</button>
+													<button type="button" class="btn btn-danger" aria-label="Left Align">
+  													<span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+  													</button> 
+  		</div>
+    </div>
+    <div class="row hide" id= "retodolist${todo.toDoNo}">
+    <div class="col-md-3"><input type="text" class="updateToDoDetail" name="toDoDetail"  id="toDoDetail${todo.toDoNo}" value="${todo.toDoDetail}"> </div>
+    <div class="col-md-3"><input type="text" class="updateToDo" name="toDoStartDate"  id="toDoStartDate${todo.toDoNo}" value="${todo.toDoStartDate}" autocomplete=off ></div>
+    <div class="col-md-3"><input type="text" class="updateToDo" name="toDoEndDate" id="toDoEndDate${todo.toDoNo}" value="${todo.toDoEndDate}" autocomplete=off ></div>
+    <div class="col-md-3"><button type="button" class="btn btn-primary updateToDobtn" aria-label="Left Align" data-param ="${todo.toDoNo}">
+  													<span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
+  													</button>
+													<button type="button" class="btn btn-danger" aria-label="Left Align">
+  													<span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+  													</button> 
+  		</div>
+  	</div>
+    </c:forEach>
 </div>
-<ul id="myUL">
-  <li>Hit the gym</li>
-  <li class="checked">Pay bills</li>
-  
-</ul> -->
-
-
-
+<!-- 할 일 리스트 끝  -->
 </body>
 </html>

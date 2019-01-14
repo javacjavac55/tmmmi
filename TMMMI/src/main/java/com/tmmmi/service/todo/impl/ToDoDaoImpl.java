@@ -1,5 +1,7 @@
 package com.tmmmi.service.todo.impl;
 
+import java.util.List;
+
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -25,7 +27,11 @@ public class ToDoDaoImpl implements ToDoDao {
 	}
 
 	@Override
-	public void getToDoList() {
+	public List<ToDo> getToDoList(int userNo) throws Exception {
+		System.out.println("getToDoList Dao접근");
+		List<ToDo> list = sqlSession.selectList("TodoMapper.getTodoList", userNo);
+		System.out.println("list입빔다::"+list);
+		return list;
 	}
 
 	@Override
@@ -36,9 +42,10 @@ public class ToDoDaoImpl implements ToDoDao {
 	}
 
 	@Override
-	public void deleteToDo() {
-		// TODO Auto-generated method stub
-		
+	public void deleteToDo(ToDo toDo) throws Exception{
+		System.out.println("deleteToDoDao 접근");
+		System.out.println(toDo);
+		sqlSession.delete("TodoMapper.deleteTodo", toDo);
 	}
 
 	@Override
