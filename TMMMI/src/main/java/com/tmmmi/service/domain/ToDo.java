@@ -1,7 +1,6 @@
 package com.tmmmi.service.domain;
 
 import java.sql.Date;
-import java.util.List;
 
 public class ToDo {
 	
@@ -12,7 +11,7 @@ public class ToDo {
 	private Date toDoStartDate;
 	private Date toDoEndDate;
 	private int toDoCompleteNo;
-	private List<Date> toDoCompleteDateList;
+	private Date toDoCompleteDate;
 	
 	
 	///Constructor
@@ -68,12 +67,19 @@ public class ToDo {
 		this.toDoCompleteNo = toDoCompleteNo;
 	}
 
-	public List<Date> getToDoCompleteDateList() {
-		return toDoCompleteDateList;
+	public Date getToDoCompleteDate() {
+		return toDoCompleteDate;
 	}
 
-	public void setToDoCompleteDateList(List<Date> toDoCompleteDateList) {
-		this.toDoCompleteDateList = toDoCompleteDateList;
+	public void setToDoCompleteDate(Date toDoCompleteDateList) {
+		this.toDoCompleteDate = toDoCompleteDateList;
+	}
+
+	@Override
+	public String toString() {
+		return "ToDo [toDoNo=" + toDoNo + ", userNo=" + userNo + ", toDoDetail=" + toDoDetail + ", toDoStartDate="
+				+ toDoStartDate + ", toDoEndDate=" + toDoEndDate + ", toDoCompleteNo=" + toDoCompleteNo
+				+ ", toDoCompleteDate=" + toDoCompleteDate + "]";
 	}
 	
 }

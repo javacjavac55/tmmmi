@@ -31,18 +31,16 @@ public class ContentSetting {
 	private int dessert;
 	private String tastyKeyword;
 	
-	private int shoppingKeyword;
-	private String shoppingKeyword1;
-	private String shoppingKeyword2;
-	private String shoppingKeyword3;
-	private String reviewKeyword;
+	private String shoppingSearch1;
+	private String shoppingSearch2;
+	private String shoppingSearch3;
+	private String shoppingReview;
 	
-	private int userKeyword;
-	private String userKeyword1;
-	private String userKeyword2;
-	private String userKeyword3;
-	private String videoKeyword1;
-	private String videoKeyword2;
+	private String userSearch1;
+	private String userSearch2;
+	private String userSearch3;
+	private String userVideo1;
+	private String userVideo2;
 
 	public ContentSetting() {
 		// TODO Auto-generated constructor stub
@@ -248,92 +246,76 @@ public class ContentSetting {
 		this.tastyKeyword = tastyKeyword;
 	}
 
-	public int getShoppingKeyword() {
-		return shoppingKeyword;
+	public String getShoppingSearch1() {
+		return shoppingSearch1;
 	}
 
-	public void setShoppingKeyword(int shoppingKeyword) {
-		this.shoppingKeyword = shoppingKeyword;
+	public void setShoppingSearch1(String shoppingSearch1) {
+		this.shoppingSearch1 = shoppingSearch1;
 	}
 
-	public String getShoppingKeyword1() {
-		return shoppingKeyword1;
+	public String getShoppingSearch2() {
+		return shoppingSearch2;
 	}
 
-	public void setShoppingKeyword1(String shoppingKeyword1) {
-		this.shoppingKeyword1 = shoppingKeyword1;
+	public void setShoppingSearch2(String shoppingSearch2) {
+		this.shoppingSearch2 = shoppingSearch2;
 	}
 
-	public String getShoppingKeyword2() {
-		return shoppingKeyword2;
+	public String getShoppingSearch3() {
+		return shoppingSearch3;
 	}
 
-	public void setShoppingKeyword2(String shoppingKeyword2) {
-		this.shoppingKeyword2 = shoppingKeyword2;
+	public void setShoppingSearch3(String shoppingSearch3) {
+		this.shoppingSearch3 = shoppingSearch3;
 	}
 
-	public String getShoppingKeyword3() {
-		return shoppingKeyword3;
+	public String getShoppingReview() {
+		return shoppingReview;
 	}
 
-	public void setShoppingKeyword3(String shoppingKeyword3) {
-		this.shoppingKeyword3 = shoppingKeyword3;
+	public void setShoppingReview(String shoppingReview) {
+		this.shoppingReview = shoppingReview;
 	}
 
-	public String getReviewKeyword() {
-		return reviewKeyword;
+	public String getUserSearch1() {
+		return userSearch1;
 	}
 
-	public void setReviewKeyword(String reviewKeyword) {
-		this.reviewKeyword = reviewKeyword;
+	public void setUserSearch1(String userSearch1) {
+		this.userSearch1 = userSearch1;
 	}
 
-	public int getUserKeyword() {
-		return userKeyword;
+	public String getUserSearch2() {
+		return userSearch2;
 	}
 
-	public void setUserKeyword(int userKeyword) {
-		this.userKeyword = userKeyword;
+	public void setUserSearch2(String userSearch2) {
+		this.userSearch2 = userSearch2;
 	}
 
-	public String getUserKeyword1() {
-		return userKeyword1;
+	public String getUserSearch3() {
+		return userSearch3;
 	}
 
-	public void setUserKeyword1(String userKeyword1) {
-		this.userKeyword1 = userKeyword1;
+	public void setUserSearch3(String userSearch3) {
+		this.userSearch3 = userSearch3;
 	}
 
-	public String getUserKeyword2() {
-		return userKeyword2;
+	public String getUserVideo1() {
+		return userVideo1;
 	}
 
-	public void setUserKeyword2(String userKeyword2) {
-		this.userKeyword2 = userKeyword2;
+	public void setUserVideo1(String userVideo1) {
+		this.userVideo1 = userVideo1;
 	}
 
-	public String getUserKeyword3() {
-		return userKeyword3;
+	public String getUserVideo2() {
+		return userVideo2;
 	}
 
-	public void setUserKeyword3(String userKeyword3) {
-		this.userKeyword3 = userKeyword3;
-	}
-
-	public String getVideoKeyword1() {
-		return videoKeyword1;
-	}
-
-	public void setVideoKeyword1(String videoKeyword1) {
-		this.videoKeyword1 = videoKeyword1;
-	}
-
-	public String getVideoKeyword2() {
-		return videoKeyword2;
-	}
-
-	public void setVideoKeyword2(String videoKeyword2) {
-		this.videoKeyword2 = videoKeyword2;
+	public void setUserVideo2(String userVideo2) {
+		this.userVideo2 = userVideo2;
 	}
 
 }

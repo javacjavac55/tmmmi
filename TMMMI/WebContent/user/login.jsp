@@ -18,34 +18,18 @@
     
     <!-- 로그인  -->
 	<script type="text/javascript">
-		$( function () {
-			
-			$("#userId").focus();
-			$("button").on("click" , function() {
-				var id=$("input:text").val();
-				var pw=$("input:password").val();
-				
-				if(id == null || id.length <1) {
-					alert('ID 를 입력하지 않으셨습니다.');
-					$("#userId").focus();
-					return;
-				}
-				
-				if(pw == null || pw.length <1) {
-					alert('패스워드를 입력하지 않으셨습니다.');
-					$("#password").focus();
-					return;
-				}
-				
-				$("form").attr("method","POST").attr("action","/user/login").attr("target","_parent").submit();
+		$(function() {
+			$( "button.btn.btn-primary" ).on("click" , function() {
+				fncLogin();
 			});
-		});
+		});	
 		
-		function fncLogin(){
+		function fncLogin() {
+			
 			var id=$("input:text").val();
 			var pw=$("input:password").val();
 			
-			if(id == null || id.length <5) {
+			if(id == null || id.length <1) {
 				alert('ID 를 입력하지 않으셨습니다.');
 				$("#userId").focus();
 				return;
@@ -58,8 +42,7 @@
 			}
 			
 			$("form").attr("method","POST").attr("action","/user/login").attr("target","_parent").submit();
-		}
-		
+		};
 		
 		//============= 회원원가입화면이동 =============
 		$( function() {
@@ -98,7 +81,7 @@
 					<div class="form-group">
 						<div class="col-sm-offset-4 col-sm-6 text-center">
 							<button type="button" class="btn btn-primary"  >로 &nbsp;그 &nbsp;인</button>
-							<a class="btn btn-primary btn" href="#" role="button">회 &nbsp;원 &nbsp;가 &nbsp;입</a>
+							<a class="btn btn-default btn" href="#" role="button">회 &nbsp;원 &nbsp;가 &nbsp;입</a>
 						</div>
 					</div>
 					</form>

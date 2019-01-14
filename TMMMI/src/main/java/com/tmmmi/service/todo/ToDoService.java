@@ -1,12 +1,14 @@
 package com.tmmmi.service.todo;
 
+import java.util.Map;
+
 import com.tmmmi.service.domain.ToDo;
 
 public interface ToDoService {
 
-	public void getToDoList();
+	public Map<String, Object> getToDoList(int userNo) throws Exception;
 	public void addToDo(ToDo toDo) throws Exception;
-	public void deleteToDo();
+	public void deleteToDo(ToDo toDo) throws Exception;
 	public void updateToDo(ToDo toDo) throws Exception;
 	public void updateToDoCheck();
 	public void getToDoDayGraph();

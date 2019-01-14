@@ -7,9 +7,8 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<c:if test="${ ! empty user }">
- 		<jsp:forward page="getUser.jsp"/>
+	<c:if test="${ empty user }">
+ 		<jsp:forward page="login.jsp"/>
  	</c:if>
- 	¾ßÈ£
 </body>
 </html>

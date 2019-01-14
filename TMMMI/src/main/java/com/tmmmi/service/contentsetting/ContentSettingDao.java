@@ -1,12 +1,9 @@
 package com.tmmmi.service.contentsetting;
 
+import com.tmmmi.service.domain.ContentSetting;
+
 public interface ContentSettingDao {
-	public void addContentSetting();
-	public void getContentSetting();
-	public void updateContentSetting();
-	public void updateUserKeyword();
-	public void deleteUserKeyword();
-	public void updateShoppingKeyword();
-	public void deleteShoppingKeyword();
-	public void updateSortSection();
+	public void addContentSetting(ContentSetting contentSetting);
+	public ContentSetting getContentSetting(int userNo);
+	public void updateContentSetting(ContentSetting contentSetting);
 }

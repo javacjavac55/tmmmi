@@ -1,9 +1,14 @@
 package com.tmmmi.service.diary.impl;
 
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
+import com.tmmmi.common.Search;
 import com.tmmmi.service.diary.DiaryDao;
 import com.tmmmi.service.diary.DiaryService;
 import com.tmmmi.service.domain.Diary;
@@ -34,9 +39,16 @@ public class DiaryServiceImpl implements DiaryService {
 	}
 
 	@Override
-	public void getDiaryList() {
+	public Map<String, Object> getDiaryList(Search search, int userNo)throws Exception {
 		// TODO Auto-generated method stub
+		List<Diary> list=diaryDao.getDiaryList(search, userNo);
+		int totalCount = diaryDao.getTotalCount(userNo);
+		System.out.println("totalcount:"+totalCount);
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("list", list);
+		map.put("totalCount", new Integer(totalCount));
 		
+		return map;
 	}
 
 	

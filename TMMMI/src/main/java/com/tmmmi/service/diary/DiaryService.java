@@ -1,5 +1,8 @@
 package com.tmmmi.service.diary;
 
+import java.util.Map;
+
+import com.tmmmi.common.Search;
 import com.tmmmi.service.domain.Diary;
 
 public interface DiaryService {
@@ -8,7 +11,7 @@ public interface DiaryService {
 	
 	public Diary getDiary(int diaryNo) throws Exception;
 	
-	public void getDiaryList();
+	public Map<String, Object> getDiaryList(Search search, int userNo) throws Exception;
 	
 	public void updateDiary(Diary diary) throws Exception;
 	

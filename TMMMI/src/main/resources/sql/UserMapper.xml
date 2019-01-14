@@ -33,7 +33,7 @@
 			#{email}, 
 			#{emailCheck}, 
 			#{userName}, 
-			#{birthday},
+			#{birthday:DATE},
 			#{refreshToken:VARCHAR},
 			#{refreshTokenExpireTime:VARCHAR},
 			#{snsName:INTEGER},
@@ -45,7 +45,7 @@
 	<!-- SQL : SELECT ONE -->
 	<select id="getUser" parameterType="int" resultMap="userSelectMap">
 		SELECT
-		user_no, user_id, password, email, user_name, birthday 		
+		user_no, user_id, password, email, user_name, birthday, role
 		FROM users 
 		WHERE user_no = #{value}
 	</select>
@@ -64,7 +64,8 @@
 		<set>
 			user_name=#{userName},
 			password=#{password},
-			birthday=#{birthday),
+			birthday=#{birthday:DATE},
+			role=#{role},
 			email=#{email}
 		</set>
 		WHERE user_no=#{userNo}

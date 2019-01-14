@@ -48,6 +48,7 @@ public class UserController {
 		
 		return modelAndView;
 	}
+	
 	@RequestMapping(value="addUser", method=RequestMethod.POST)
 	public ModelAndView addUser(@ModelAttribute("user") User user) throws Exception {
 		

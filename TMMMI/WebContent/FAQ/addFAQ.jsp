@@ -26,10 +26,36 @@
  		}
 
 	</style>
-	<link rel="stylesheet" href="/css/admin.css" type="text/css">
 	
 	<script src="http://code.jquery.com/jquery-2.1.4.min.js"></script>
 	<script type="text/javascript">
+	
+	function fncAddFAQ() {
+		
+		var name=$("input[name='FAQTitle']").val();
+		var detail = $("input[name='FAQDetail']").val();
+		
+		if(name == null || name.length<1){
+			alert("제목은 반드시 입력하여야 합니다.");
+			return;
+		}
+		/* if(detail == null || detail.length<1){
+			alert("내용은 반드시 입력하여야 합니다.");
+			return;
+		} */
+		
+		$("form").attr("method" , "POST").attr("action", "/faq/addFAQ").submit();
+	}
+	
+	$(function() {
+		$( ".text-center:contains('작성하기')" ).on("click" , function() {
+			fncAddFAQ();
+		});
+		
+		$( ".text-center:contains('취소')" ).on("click" , function() {
+			$("form")[0].history.go(-1);
+		});
+	});
 	</script>
 	
 </head>
@@ -58,12 +84,12 @@
 			  		</ul>
 				</div>
 			</div>
-		<div class="col-md-1">
-			<button type="button" class="btn btn-default;">작성날짜</button>
-		</div>
-		<div class="col-md-5" >
-			<button type="button" class="btn btn-default;" style="background-color:rgb(0,0,0,0);">2019-01-11</button>
-		</div>
+			<div class="col-md-1">
+				<button type="button" class="btn btn-default;">작성날짜</button>
+			</div>
+			<div class="col-md-5" >
+				<button type="button" class="btn btn-default;" style="background-color:rgb(0,0,0,0);">2019-01-11</button>
+			</div>
 		</div>
 		
 		<div class="row">
@@ -71,7 +97,7 @@
 				<button type="button" class="btn btn-default;">글 제목</button>
 			</div>
 			<div class="col-md-8">
-				 <input type="text" class="form-control" id="FAQTitle" name="FAQTitle" placeholder=" ">
+				 <input type="text" class="form-control" name="FAQTitle" placeholder=" ">
 			</div>
 		</div>
 	
@@ -80,7 +106,7 @@
 				<button type="button"  class="btn btn-default;">내용</button>
 			</div>
 			<div class="col-md-8">
-				 <textarea class="form-control" rows="13" name="content" id="content" style="resize: none;"></textarea> 
+				 <textarea class="form-control" rows="13" name="FAQDetail" style="resize: none"></textarea> 
 			</div>
 			<div class="col-md-3"></div>
 		</div>

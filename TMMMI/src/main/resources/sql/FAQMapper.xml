@@ -6,28 +6,46 @@
 
 <mapper namespace="FAQMapper">
  	
-	<resultMap id="FAQSelectMap"  type="FAQ">
-		<result property="FAQNo" 				column="faq_no" 						jdbcType="NUMBER"/>
-		<result property="FAQCategory"		column="user_center_category" 	jdbcType="NUMBER" />
-		<result property="FAQTitle" 				column="faq_title" 					jdbcType="VARCHAR2" />
-		<result property="FAQDetail" 			column="faq_detail" 					jdbcType="VARCHAR2" />
+	<resultMap id="FAQSelectMap"  type="com.tmmmi.service.domain.FAQ">
+		<result property="FAQNo" 				column="faq_no" 						jdbcType="NUMERIC"/>
+		<result property="FAQCategory"		column="user_center_category" 	jdbcType="NUMERIC" />
+		<result property="FAQTitle" 				column="faq_title" 					jdbcType="VARCHAR" />
+		<result property="FAQDetail" 			column="faq_detail" 					jdbcType="VARCHAR" />
 		<result property="FAQDate" 			column="faq_date" 					jdbcType="DATE" />
-		<result property="FAQDeleteCheck" 	column="faq_delete_check" 			jdbcType="NUMBER" />
+		<result property="FAQDeleteCheck" 	column="faq_delete_check" 			jdbcType="NUMERIC" />
 	</resultMap>
 	
 	<!-- SQL : INSERT -->
-	<insert 	id="addFAQ"	parameterType="user" >
-	 
-	 
+	<insert 	id="addFAQ"	parameterType="com.tmmmi.service.domain.FAQ" >
+		INSERT
+		INTO faq( faq_no , user_center_category , faq_title , faq_detail , faq_date) 
+		VALUES	 (	faq_no.nextval , 
+						#{FAQCategory} , 
+						#{FAQTitle} ,
+						#{FAQDetail} , 
+						SYSDATE)
 	 </insert>
 	 
 	 <!-- SQL : SELECT ONE -->
-	 <select 	id="getFAQList"  parameterType="string"	 resultMap="userSelectMap">
-		
+	 <select 	id="getFAQList"  parameterType="com.tmmmi.common.Search"	resultMap="FAQSelectMap">
+		SELECT *
+		FROM (	SELECT inner_table.* , ROWNUM AS row_seq
+			FROM		(	SELECT faq_no, user_center_category, faq_title, faq_detail, faq_date
+								FROM faq
+								) inner_table
+						WHERE ROWNUM &lt;= #{endRowNum} )
+		WHERE row_seq BETWEEN #{startRowNum} AND #{endRowNum} 
+	 </select>
+	 
+	 <select  id="getTotalCount"  parameterType="com.tmmmi.common.Search"	 resultType="int">
+	  	SELECT COUNT(*)
+	  	FROM(	SELECT  faq_no, user_center_category, faq_title, faq_detail, faq_date
+								FROM faq
+								) countTable						
 	 </select>
 	 
 	 <!-- SQL : UPDATE -->
-	 <update	id="updateFAQ"	parameterType="user" >
+	 <update	id="updateFAQ"	parameterType="com.tmmmi.service.domain.FAQ" >
 	   	UPDATE FAQ
 	   	<set>
 	   	</set>

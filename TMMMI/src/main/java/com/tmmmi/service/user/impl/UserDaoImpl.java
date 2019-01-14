@@ -38,16 +38,12 @@ public class UserDaoImpl implements UserDao {
 	
 	@Override
 	public User getUserId(String userId) throws Exception {
-		System.out.println("getUserId Ω√¿€");
-		User user = sqlSession.selectOne("UserMapper.getUser", 1);
-		System.out.println(user);
 		return sqlSession.selectOne("UserMapper.getUserId", userId);
 	}
 
 	@Override
 	public void updateUser(User user) throws Exception {
-		// TODO Auto-generated method stub
-		
+		sqlSession.update("UserMapper.updateUser", user);
 	}
 
 	@Override

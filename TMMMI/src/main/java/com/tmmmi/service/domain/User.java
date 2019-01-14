@@ -4,6 +4,7 @@ import java.sql.Date;
 
 public class User {
 	
+	private String authNum;
 	private int userNo;
 	private String userId;
 	private String password;
@@ -15,9 +16,10 @@ public class User {
 	private String refreshToken;
 	private String refreshTokenExpireTime;
 	private int snsName;
-	private String role;
+	private int role;
 	private boolean withdrawCheck;
 	private Date withdrawDate;
+	
 
 	public User() {
 		// TODO Auto-generated constructor stub
@@ -111,11 +113,11 @@ public class User {
 		this.snsName = snsName;
 	}
 
-	public String getRole() {
+	public int getRole() {
 		return role;
 	}
 
-	public void setRole(String role) {
+	public void setRole(int role) {
 		this.role = role;
 	}
 
@@ -134,40 +136,22 @@ public class User {
 	public void setWithdrawDate(Date withdrawDate) {
 		this.withdrawDate = withdrawDate;
 	}
+	
+	public String getAuthNum() {
+		return authNum;
+	}
+	
+	public void setAuthNum(String authNum) {
+		this.authNum = authNum;
+	}
 
 	@Override
 	public String toString() {
-		StringBuilder builder = new StringBuilder();
-		builder.append("User [userNo=");
-		builder.append(userNo);
-		builder.append(", userId=");
-		builder.append(userId);
-		builder.append(", password=");
-		builder.append(password);
-		builder.append(", email=");
-		builder.append(email);
-		builder.append(", emailCheck=");
-		builder.append(emailCheck);
-		builder.append(", userName=");
-		builder.append(userName);
-		builder.append(", birthday=");
-		builder.append(birthday);
-		builder.append(", accessToken=");
-		builder.append(accessToken);
-		builder.append(", refreshToken=");
-		builder.append(refreshToken);
-		builder.append(", refreshTokenExpireTime=");
-		builder.append(refreshTokenExpireTime);
-		builder.append(", snsName=");
-		builder.append(snsName);
-		builder.append(", role=");
-		builder.append(role);
-		builder.append(", withdrawCheck=");
-		builder.append(withdrawCheck);
-		builder.append(", withdrawDate=");
-		builder.append(withdrawDate);
-		builder.append("]");
-		return builder.toString();
+		return "User [authNum=" + authNum + ", userNo=" + userNo + ", userId=" + userId + ", password=" + password
+				+ ", email=" + email + ", emailCheck=" + emailCheck + ", userName=" + userName + ", birthday="
+				+ birthday + ", accessToken=" + accessToken + ", refreshToken=" + refreshToken
+				+ ", refreshTokenExpireTime=" + refreshTokenExpireTime + ", snsName=" + snsName + ", role=" + role
+				+ ", withdrawCheck=" + withdrawCheck + ", withdrawDate=" + withdrawDate + "]";
 	}
 
 }

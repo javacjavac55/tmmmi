@@ -1,5 +1,9 @@
 package com.tmmmi.service.todo.impl;
 
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
@@ -24,9 +28,13 @@ public class ToDoServiceImpl implements ToDoService {
 	}
 
 	@Override
-	public void getToDoList() {
-		// TODO Auto-generated method stub
+	public Map<String,Object> getToDoList(int userNo) throws Exception{
 		
+		List<ToDo> list = toDoDao.getToDoList(userNo);
+		
+		Map<String,Object> map = new HashMap<String, Object>();
+		map.put("todolist", list);
+		return map;
 	}
 
 	@Override
@@ -35,8 +43,8 @@ public class ToDoServiceImpl implements ToDoService {
 	}
 
 	@Override
-	public void deleteToDo() {
-		// TODO Auto-generated method stub
+	public void deleteToDo(ToDo toDo)throws Exception {
+		toDoDao.deleteToDo(toDo);
 		
 	}
 
