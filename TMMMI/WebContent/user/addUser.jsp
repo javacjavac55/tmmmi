@@ -22,20 +22,20 @@
 	<!-- 버튼 이벤트 -->
 	<script type="text/javascript">
 		//============= "가입"  Event 연결 =============
-		 $(function() {
+		$(function() {
 			$( "button.btn.btn-primary" ).on("click" , function() {
 				fncAddUser();
 			});
 		});	
-		
 		
 		//============= "취소"  Event 처리 및  연결 =============
 		$(function() {
 			$("a[href='#' ]").on("click" , function() {
 				$("form")[0].reset();
 			});
-		});	
+		});
 		
+		//회원 입력 정보 값 체크
 		function fncAddUser() {
 			
 			var id=$("input[name='userId']").val();
@@ -79,12 +79,40 @@
 			
 			$("form").attr("method" , "POST").attr("action" , "/user/addUser").submit();
 		}
-		
-		$(function(){
-			$(document).on('click', 'button.btn.btn-primary', function(){
-				fncAddUser();
+	</script>
+	
+	<!-- 이메일 인증 -->
+	<script type="text/javascript">
+		function fncEmailAuth(){
+			var email=$("input[name=email]").val();
+			$.ajax({
+				url : "/userRest/emailAuth",
+				method : "POST",
+				data : JSON.stringify(email),
+				dataType : "json",
+				headers : {
+	            	"Accept" : "application/json",
+					"Content-Type" : "application/json"
+	            },
+	            success : function(JSONData, status){
+	            	console.log("aaa");
+	            	var result = JSONData;
+	            	if(result){
+	            		console.log("ok");
+	            		alert("해당 이메일로 코드를 보냈습니다. 코드를 입력해 주세요!");
+	            	}
+	            }
 			});
-		})
+		}
+	</script>
+	
+	<script type="text/javascript">
+	//============= "이메일 인증"  Event 연결 =============
+	 $(function() {
+		$( "button.btn.btn-default" ).on("click" , function() {
+			fncEmailAuth();
+		});
+	});
 	</script>
 	
 	<!-- 아이디 AJax 체크 -->
@@ -134,6 +162,7 @@
 		});
 	</script>
 </head>
+
 <body>
 	<!-- sideMenu.jsp 추가 -->
 	<!-- 화면구성 -->
@@ -182,6 +211,7 @@
 			    <div class="col-sm-4">
 			      <input type="email" class="form-control" id="email" name="email" placeholder="이메일">
 			    </div>
+			    <button type="button" class="btn btn-default" id="authEmail">인증하기</button>
 			</div>
 			
 			<div class="form-group">

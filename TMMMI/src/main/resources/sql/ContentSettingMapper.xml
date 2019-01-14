@@ -1,1 +1,51 @@
 <?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper
+		PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+		"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+		
+<mapper namespace="ContentSettingMapper">
+	<resultMap type="com.tmmmi.service.domain.ContentSetting" id="contentSettingSelectMap">
+		<result property="userNo" 	 			column="user_no" jdbcType=""/>
+		<result property="contentSettingNo" 	column="content_setting_no" jdbcType=""/>
+		<result property="userKeywordNo" 		column="user_keyword_no" jdbcType=""/>
+		<result property="shoppingKeywordNo" 	column="shopping_keyword_no" jdbcType=""/>
+		<result property="sortSectionNo" 		column="sort_section_no" jdbcType=""/>
+		
+		<result property="boxOfficeTop10" 		column="" jdbcType=""/>
+		<result property="romanceComedy" 		column="" jdbcType=""/>
+		<result property="action" 				column="" jdbcType=""/>
+		<result property="horrorThriller" 		column="" jdbcType=""/>
+		<result property="animation" 			column="" jdbcType=""/>
+		<result property="fantasySF" 			column="" jdbcType=""/>
+		
+		<result property="soccer" 				column="" jdbcType=""/>
+		<result property="overseaSoccer" 		column="" jdbcType=""/>
+		<result property="baseball"				column="" jdbcType=""/>
+		<result property="overseaBaseball" 		column="" jdbcType=""/>
+		<result property="basketball" 			column="" jdbcType=""/>
+		<result property="overseaBasketball" 	column="" jdbcType=""/>
+		<result property="generalSport" 		column="" jdbcType=""/>
+		<result property="highlight" 			column="" jdbcType=""/>
+		
+		<result property="koreanFood" 			column="" jdbcType=""/>
+		<result property="chineseFood" 			column="" jdbcType=""/>
+		<result property="japaneseFood" 		column="" jdbcType=""/>
+		<result property="foreignFood" 			column="" jdbcType=""/>
+		<result property="dessert" 				column="" jdbcType=""/>
+		<result property="tastyKeyword" 		column="" jdbcType=""/>
+		
+		<result property="shoppingKeyword1" 	column="shopping_search_1" jdbcType=""/>
+		<result property="shoppingKeyword2" 	column="shopping_search_2" jdbcType=""/>
+		<result property="shoppingKeyword3" 	column="shopping_search_3" jdbcType=""/>
+		<result property="shoppingReview" 		column="shopping_review" jdbcType=""/>
+
+		<result property="userKeyword1" 		column="" jdbcType=""/>
+		<result property="userKeyword2" 		column="" jdbcType=""/>
+		<result property="userKeyword3" 		column="" jdbcType=""/>
+		<result property="userVideo1" 		column="" jdbcType=""/>
+		<result property="userVideo2" 		column="" jdbcType=""/>
+		
+		
+	</resultMap>
+</mapper>

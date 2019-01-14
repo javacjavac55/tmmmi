@@ -1,1 +1,58 @@
 <?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper
+		PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+		"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+		
+<mapper	namespace="UserSettingMapper">
+
+	<resultMap type="com.tmmmi.service.domain.UserSetting" id="userSettingSelectMap">
+		<result property="userNo"				column="user_no"				jdbcType="NUMERIC"/>
+		<result property="userSettingNo"		column="user_setting_no"		jdbcType="NUMERIC"/>
+		<result property="mainColorModeNo"		column="main_color_mode_no"		jdbcType="NUMERIC"/>
+		<result property="menuBackgroundColor"	column="menu_background_color"	jdbcType="VARCHAR"/>
+		<result property="menuFontColor"		column="menu_font_color"		jdbcType="VARCHAR"/>
+		<result property="showScrapAlarm"		column="show_scrap_alarm"		jdbcType="NUMERIC"/>
+		<result property="scrapAlarmTime"		column="scrap_alarm_time"		jdbcType="VARCHAR"/>
+	</resultMap>
+	
+	<!-- SQL : INSERT -->
+	<insert id="addUserSetting" parameterType="com.tmmmi.service.domain.UserSetting">
+		INSERT
+		INTO user_setting(user_setting_no, user_no, main_color_mode_no, menu_background_color, menu_font_color, 
+		show_scrap_alarm, scrap_alarm_time)
+		VALUES(
+			user_setting_no.nextval,
+			#{userNo},
+			#{mainColorModeNo:NUMERIC},
+			<if test="menuBackgroundColor == null">'#E8F5FF',</if>
+			<if test="menuBackgroundColor != null">#{menuBackgroundColor},</if>
+			<if test="menuFontColor == null">'#000000',</if>
+			<if test="menuFontColor != null">#{menuFontColor},</if>
+			#{showScrapAlarm:NUMERIC},
+			#{scrapAlarmTime:VARCHAR}
+		)
+	</insert>
+	
+	<!-- SQL : SELECT ONE -->
+	<select id="getUserSetting" parameterType="int" resultMap="userSettingSelectMap">
+		SELECT
+		user_no, main_color_mode_no, menu_background_color, menu_font_color, show_scrap_alarm, scrap_alarm_time
+		FROM user_setting
+		WHERE user_no = #{value}
+	</select>
+	
+	<!-- SQL : UPDATE -->
+	<update id="updateUserSetting" parameterType="com.tmmmi.service.domain.UserSetting">
+		UPDATE user_setting
+		<set>
+			main_color_mode_no = #{mainColorModeNo},
+			menu_background_color = #{menuBackgroundColor},
+			menu_font_color = #{menuFontColor},
+			show_scrap_alarm = #{showScrapAlarm},
+			scrap_alarm_time = #{showScrapAlarm:VARCHAR}
+		</set>
+		WHERE user_no = #{userNo}
+	</update>
+
+</mapper>

@@ -12,5 +12,6 @@ public interface UserService {
 	public void deleteUser(int userNo) throws Exception;
 	public Map<String, Object> getUserList() throws Exception;
 	public void emailCheckDuplication();
+	public boolean sendMail(String email, String authNum) throws Exception;
 	public boolean checkDuplication(String userId) throws Exception;
 }
