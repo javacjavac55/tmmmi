@@ -25,6 +25,8 @@
 	<!-- 중열 -->
 	<a href="/common/test.jsp">에디터</a><br/>
 	<a href="/diary/addDiary.jsp">다이어리 등록</a><br/>
+	<a href="/diary/getDiary?diaryNo=4">다이어리 상세보기</a><br/>
+	<a href="/diary/listDiary">다이어리 리스트</a><br/>
 	
 	<!-- 명훈 -->
 	<a href="/todo/listToDo.jsp">할 일 리스트</a><br/>
