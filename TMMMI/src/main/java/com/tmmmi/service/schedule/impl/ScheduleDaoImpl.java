@@ -1,17 +1,30 @@
 package com.tmmmi.service.schedule.impl;
 
+import org.apache.ibatis.session.SqlSession;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.stereotype.Repository;
+
+import com.tmmmi.service.domain.Schedule;
 import com.tmmmi.service.schedule.ScheduleDao;
 
+@Repository("scheduleDaoImpl")
 public class ScheduleDaoImpl implements ScheduleDao {
+	
+	@Autowired
+	@Qualifier("sqlSessionTemplate")
+	private SqlSession sqlSession;
+	public void setSqlSession(SqlSession sqlSession) {
+		this.sqlSession = sqlSession;
+	}
 
 	public ScheduleDaoImpl() {
-		// TODO Auto-generated constructor stub
+		
 	}
 
 	@Override
-	public void addSchedule() {
-		// TODO Auto-generated method stub
-		
+	public int addSchedule(Schedule schedule) {
+		return sqlSession.insert("ScheduleMapper.addSchedule", schedule);
 	}
 
 	@Override
@@ -21,14 +34,14 @@ public class ScheduleDaoImpl implements ScheduleDao {
 	}
 
 	@Override
-	public void updateSchedule() {
-		// TODO Auto-generated method stub
+	public int updateSchedule(Schedule schedule) {
+		return sqlSession.update("ScheduleMapper.updateSchedule", schedule);
 		
 	}
 
 	@Override
-	public void deleteSchedule() {
-		// TODO Auto-generated method stub
+	public int deleteSchedule(Schedule schedule) {
+		return sqlSession.delete("ScheduleMapper.deleteSchedule", schedule);
 		
 	}
 

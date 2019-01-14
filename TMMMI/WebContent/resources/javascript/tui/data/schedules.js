@@ -2,8 +2,6 @@
 
 /*eslint-disable*/
 
-var ScheduleList = [];
-
 var SCHEDULE_CATEGORY = [
     'milestone',
     'task'

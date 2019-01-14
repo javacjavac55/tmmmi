@@ -12,13 +12,14 @@
     var datePicker, selectedCalendar;
 
     cal = new Calendar('#calendar', {
-        defaultView: 'month',
+        defaultView: 'week',
         useCreationPopup: useCreationPopup,
         useDetailPopup: useDetailPopup,
         calendars: CalendarList,
+        taskView: ['milestone'],
         template: {
             milestone: function(model) {
-                return '<span style="background-color: ' + model.bgColor + '">' + model.title + '</span>';
+                return '<span class="calendar-font-icon ic-milestone-b"></span> <span style="background-color: ' + model.bgColor + '">' + model.title + '</span>';
             },
             allday: function(schedule) {
                 return getTimeTemplate(schedule, true);
@@ -26,7 +27,7 @@
             time: function(schedule) {
                 return getTimeTemplate(schedule, false);
             }
-        }
+        },
     });
 
     // event handlers
@@ -42,9 +43,11 @@
         },
         'beforeCreateSchedule': function(e) {
             console.log('beforeCreateSchedule', e);
+            addSchedule(e);
             saveNewSchedule(e);
         },
         'beforeUpdateSchedule': function(e) {
+        	alert("updateSchedule")
             console.log('beforeUpdateSchedule', e);
             e.schedule.start = e.start;
             e.schedule.end = e.end;
@@ -94,7 +97,7 @@
         if (!isAllDay) {
             html.push('<strong>' + start.format('HH:mm') + '</strong> ');
         }
-        /*if (schedule.isPrivate) {
+        if (schedule.isPrivate) {
             html.push('<span class="calendar-font-icon ic-lock-b"></span>');
             html.push(' Private');
         } else {
@@ -108,8 +111,7 @@
                 html.push('<span class="calendar-font-icon ic-location-b"></span>');
             }
             html.push(' ' + schedule.title);
-        }*/
-        html.push(' ' + schedule.title);
+        }
 
         return html.join('');
     }
@@ -268,6 +270,7 @@
         var schedule = {
             id: String(chance.guid()),
             title: scheduleData.title,
+            body: scheduleData.body,
             isAllDay: scheduleData.isAllDay,
             start: scheduleData.start,
             end: scheduleData.end,
@@ -277,11 +280,7 @@
             bgColor: calendar.bgColor,
             dragBgColor: calendar.bgColor,
             borderColor: calendar.borderColor,
-            location: scheduleData.location,
-            raw: {
-                class: scheduleData.raw['class']
-            },
-            state: scheduleData.state
+            location: scheduleData.location
         };
         if (calendar) {
             schedule.calendarId = calendar.id;
@@ -370,8 +369,22 @@
             iconClassName = 'calendar-icon ic_view_month';
         }
 
-        calendarTypeName.innerHTML = type;
+        calendarTypeName.innerHTML = getCalendarTypeKorean(type,options);
         calendarTypeIcon.className = iconClassName;
+    }
+    
+    function getCalendarTypeKorean(type,options){
+    	if (type === 'Daily') {
+            return '일';
+        } else if (type === 'Weekly') {
+        	return '주';
+        } else if (options.month.visibleWeeksCount === 2) {
+        	return '2주';
+        } else if (options.month.visibleWeeksCount === 3) {
+        	return '3주';
+        } else {
+        	return '월';
+        }
     }
 
     function setRenderRangeText() {

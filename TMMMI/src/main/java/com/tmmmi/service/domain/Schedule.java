@@ -11,10 +11,9 @@ public class Schedule {
 	private String scheduleDetail;
 	private Date scheduleStartDate;
 	private Date scheduleEndDate;
-	private String scheduleLocationX;
-	private String scheduleLocationY;
-	private boolean scheduleFrequent;
-	private boolean scheduleImportant;
+	private String scheduleLocation;
+	private int scheduleDDay;
+	private int scheduleImportant;
 	private Date scheduleAlarmTime;
 	
 	public Schedule() {
@@ -76,35 +75,27 @@ public class Schedule {
 		this.scheduleEndDate = scheduleEndDate;
 	}
 
-	public String getScheduleLocationX() {
-		return scheduleLocationX;
+	public String getScheduleLocation() {
+		return scheduleLocation;
 	}
 
-	public void setScheduleLocationX(String scheduleLocationX) {
-		this.scheduleLocationX = scheduleLocationX;
+	public void setScheduleLocation(String scheduleLocation) {
+		this.scheduleLocation = scheduleLocation;
 	}
 
-	public String getScheduleLocationY() {
-		return scheduleLocationY;
+	public int isScheduleDDay() {
+		return scheduleDDay;
 	}
 
-	public void setScheduleLocationY(String scheduleLocationY) {
-		this.scheduleLocationY = scheduleLocationY;
+	public void setScheduleDDay(int scheduleDDay) {
+		this.scheduleDDay = scheduleDDay;
 	}
 
-	public boolean isScheduleFrequent() {
-		return scheduleFrequent;
-	}
-
-	public void setScheduleFrequent(boolean scheduleFrequent) {
-		this.scheduleFrequent = scheduleFrequent;
-	}
-
-	public boolean isScheduleImportant() {
+	public int isScheduleImportant() {
 		return scheduleImportant;
 	}
 
-	public void setScheduleImportant(boolean scheduleImportant) {
+	public void setScheduleImportant(int scheduleImportant) {
 		this.scheduleImportant = scheduleImportant;
 	}
 
@@ -114,6 +105,35 @@ public class Schedule {
 
 	public void setScheduleAlarmTime(Date scheduleAlarmTime) {
 		this.scheduleAlarmTime = scheduleAlarmTime;
+	}
+
+	@Override
+	public String toString() {
+		StringBuilder builder = new StringBuilder();
+		builder.append("Schedule [userNo=");
+		builder.append(userNo);
+		builder.append(", scheduleNo=");
+		builder.append(scheduleNo);
+		builder.append(", userCategoryNo=");
+		builder.append(userCategoryNo);
+		builder.append(", scheduleTitle=");
+		builder.append(scheduleTitle);
+		builder.append(", scheduleDetail=");
+		builder.append(scheduleDetail);
+		builder.append(", scheduleStartDate=");
+		builder.append(scheduleStartDate);
+		builder.append(", scheduleEndDate=");
+		builder.append(scheduleEndDate);
+		builder.append(", scheduleLocation=");
+		builder.append(scheduleLocation);
+		builder.append(", scheduleDDay=");
+		builder.append(scheduleDDay);
+		builder.append(", scheduleImportant=");
+		builder.append(scheduleImportant);
+		builder.append(", scheduleAlarmTime=");
+		builder.append(scheduleAlarmTime);
+		builder.append("]");
+		return builder.toString();
 	}
 	
 }

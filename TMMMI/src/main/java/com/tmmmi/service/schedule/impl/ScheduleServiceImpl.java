@@ -1,20 +1,31 @@
 package com.tmmmi.service.schedule.impl;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.stereotype.Service;
+
+import com.tmmmi.service.domain.Schedule;
 import com.tmmmi.service.schedule.ScheduleDao;
 import com.tmmmi.service.schedule.ScheduleService;
+import com.tmmmi.service.usercategory.UserCategoryDao;
 
+@Service("scheduleServiceImpl")
 public class ScheduleServiceImpl implements ScheduleService {
 	
+	@Autowired
+	@Qualifier("scheduleDaoImpl")
 	ScheduleDao scheduleDao;
+	public void setScheduleDao(ScheduleDao scheduleDao) {
+		this.scheduleDao = scheduleDao;
+	}
 	
 	public ScheduleServiceImpl() {
-		// TODO Auto-generated constructor stub
+		
 	}
 
 	@Override
-	public void addSchedule() {
-		// TODO Auto-generated method stub
-		
+	public int addSchedule(Schedule schedule) {
+		return scheduleDao.addSchedule(schedule);
 	}
 
 	@Override
@@ -24,15 +35,13 @@ public class ScheduleServiceImpl implements ScheduleService {
 	}
 
 	@Override
-	public void updateSchedule() {
-		// TODO Auto-generated method stub
-		
+	public int updateSchedule(Schedule schedule) {
+		return scheduleDao.updateSchedule(schedule);
 	}
 
 	@Override
-	public void deleteSchedule() {
-		// TODO Auto-generated method stub
-		
+	public int deleteSchedule(Schedule schedule) {
+		return scheduleDao.deleteSchedule(schedule);
 	}
 
 	@Override

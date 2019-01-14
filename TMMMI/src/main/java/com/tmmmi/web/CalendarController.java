@@ -10,12 +10,12 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.servlet.ModelAndView;
 
 import com.tmmmi.service.calendarmovie.CalendarMovieService;
 import com.tmmmi.service.calendarsetting.CalendarSettingService;
 import com.tmmmi.service.calendarsport.CalendarSportService;
 import com.tmmmi.service.dday.DDayService;
-import com.tmmmi.service.domain.User;
 import com.tmmmi.service.domain.UserCategory;
 import com.tmmmi.service.schedule.ScheduleService;
 import com.tmmmi.service.usercategory.UserCategoryService;
@@ -63,9 +63,18 @@ public class CalendarController {
 	public void getUserSetting() {}
 	
 	@RequestMapping(value="/getUserCategoryList", method=RequestMethod.GET)
-	public List<UserCategory> getUserCategoryList(HttpSession session) {
-		int userNo = ((User)session.getAttribute("user")).getUserNo();
-		return userCategoryService.getUserCategoryList(userNo);
+	public ModelAndView getUserCategoryList(HttpSession session) {
+		System.out.println("/getUserCategoryList : GET");
+		/*int userNo = ((User)session.getAttribute("user")).getUserNo();*/
+		int userNo = 12345;
+		
+		List<UserCategory> userCategoryList = userCategoryService.getUserCategoryList(userNo);
+		System.out.println("getUserCategoryList userCategoryList:"+userCategoryList);
+		ModelAndView modelAndView = new ModelAndView();
+		modelAndView.addObject("userCategoryList", userCategoryList);
+		modelAndView.setViewName("/calendar/listUserCategory.jsp");
+		
+		return modelAndView;
 	}
 	public void getScheduleList() {}
 	public void getFrequentScheduleList() {}
@@ -73,7 +82,17 @@ public class CalendarController {
 	public void DDayList() {}
 	public void getCalendarMovieList() {}
 	public void getCalendarSportList() {}
-	public void getCalendarMonth() {}
+	
+	@RequestMapping(value="getCalendarMonth", method=RequestMethod.GET)
+	public ModelAndView getCalendarMonth() {
+		int userNo = 12345;
+		List<UserCategory> userCategoryList = userCategoryService.getUserCategoryList(userNo);
+		ModelAndView modelAndView = new ModelAndView();
+		modelAndView.addObject("userCategoryList", userCategoryList);
+		modelAndView.setViewName("/calendar/getCalendarMonth.jsp");
+		
+		return modelAndView;
+	}
 	public void getCalendarWeek() {}
 	public void getCalendarDay() {}
 

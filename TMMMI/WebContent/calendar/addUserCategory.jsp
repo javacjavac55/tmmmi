@@ -38,6 +38,10 @@
 		    $('#submitBtn').on("click", function(){
 		    	addUserCategory();
 		    });
+		    
+		    $('#listBtn').on("click", function(){
+		    	$(self.location).attr("href","/calendar/getUserCategoryList");
+		    });
 		});
 	</script>
 	<style>
@@ -58,6 +62,8 @@
 		<br/>
 		<div id="result"></div>
 		<button id="submitBtn" type="button">추가</button>
+		<br/>
+		<button id="listBtn" type="button">리스트</button>
 	</div>
 </body>
 </html>

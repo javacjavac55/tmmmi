@@ -41,6 +41,6 @@ public class UserCategoryDaoImpl implements UserCategoryDao {
 
 	@Override
 	public int deleteUserCategory(UserCategory userCategory) {
-		return sqlSession.update("UserCategoryMapper.deleteUser", userCategory);
+		return sqlSession.delete("UserCategoryMapper.deleteUserCategory", userCategory);
 	}
 }

@@ -1,6 +1,6 @@
 /*!
  * TOAST UI Calendar
- * @version 1.9.0 | Tue Dec 18 2018
+ * @version 1.9.1 | Fri Jan 11 2019
  * @author NHNEnt FE Development Lab <dl_javascript@nhnent.com>
  * @license MIT
  */
@@ -675,12 +675,24 @@
   visibility: hidden;
 }
 .tui-full-calendar-section-title {
-  width: calc(100% - 36px);
+  /* width: calc(100% - 36px); */
+  width: 100%;
   padding-right: 4px;
 }
 .tui-full-calendar-section-title input {
-  width: 365px;
+  width: 400px; 
 }
+
+.tui-full-calendar-section-body {
+  /* width: calc(100% - 36px); */
+  width: 100%;
+  padding-right: 4px;
+}
+.tui-full-calendar-section-body input {
+  width: 400px; 
+}
+
+
 .tui-full-calendar-button.tui-full-calendar-section-private {
   height: 32px;
   padding: 8px;
