@@ -8,7 +8,10 @@
 	
 <head>
 	<meta charset="EUC-KR">
+	
+	<script src="https://code.jquery.com/jquery-3.1.1.min.js">
 
+	</script>
 </head>
 
 <body>
@@ -27,7 +30,7 @@
 	<a href="/diary/addDiary.jsp">다이어리 등록</a><br/>
 	
 	<!-- 명훈 -->
-	<a href="/todo/listToDo.jsp">할 일 리스트</a><br/>
+	<a href="/todo/getToDoListGET?userNo=7" >할 일 리스트</a><br/>
 	
 	<!-- 지슬 -->
 	<a href="/QNA/listQNA.jsp">조까튼 컨텐츠박스</a><br/>
