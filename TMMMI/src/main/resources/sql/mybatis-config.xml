@@ -17,6 +17,7 @@
 		<!-- <mapper resource="sql/DiaryMapper.xml"/> -->
 		<mapper resource="sql/TodoMapper.xml"/> 
 		<!-- <mapper resource="sql/UserCategoryMapper.xml"/> -->
+		<mapper resource="sql/FAQMapper.xml"/> 
 	</mappers>
 
 </configuration>
