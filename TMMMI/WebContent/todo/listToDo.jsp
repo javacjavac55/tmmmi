@@ -193,7 +193,7 @@ $(function(){
   													</button> 
   		</div>
     </div>
-    <div class="row hide" id= "retodolist${todo.toDoNo}">
+    <div class="row hide" id= "retodolist ${todo.toDoNo}">
     <div class="col-md-3"><input type="text" class="updateToDoDetail" name="toDoDetail"  id="toDoDetail${todo.toDoNo}" value="${todo.toDoDetail}"> </div>
     <div class="col-md-3"><input type="text" class="updateToDo" name="toDoStartDate"  id="toDoStartDate${todo.toDoNo}" value="${todo.toDoStartDate}" autocomplete=off ></div>
     <div class="col-md-3"><input type="text" class="updateToDo" name="toDoEndDate" id="toDoEndDate${todo.toDoNo}" value="${todo.toDoEndDate}" autocomplete=off ></div>

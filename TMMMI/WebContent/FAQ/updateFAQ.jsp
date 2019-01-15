@@ -26,10 +26,18 @@
  		}
 
 	</style>
-	<link rel="stylesheet" href="/css/admin.css" type="text/css">
-	
-	<script src="http://code.jquery.com/jquery-2.1.4.min.js"></script>
 	<script type="text/javascript">
+		$(function() {	
+			
+			$("button:contains('수정하기')" ).on("click" , function() {
+				var faqNo = $(this).data("param1");
+				$("form").attr("method" , "POST").attr("action" ,"/faq/updateFAQ?faqNo="+faqNo).submit();
+			});
+			
+			 $( ".btn-default" ).on("click" , function() {
+					history.go(-1);
+			});
+		});
 	</script>
 	
 </head>
@@ -62,7 +70,7 @@
 			<button type="button" class="btn btn-default;">작성날짜</button>
 		</div>
 		<div class="col-md-5" >
-			<button type="button" class="btn btn-default;" style="background-color:rgb(0,0,0,0);">2019-01-11</button>
+			<button type="button" class="btn btn-default;" style="background-color:rgb(0,0,0,0);" name="FAQDate" >${faq.FAQDate}</button>
 		</div>
 		</div>
 		
@@ -71,7 +79,7 @@
 				<button type="button" class="btn btn-default;">글 제목</button>
 			</div>
 			<div class="col-md-8">
-				 <input type="text" class="form-control" id="FAQTitle" name="FAQTitle" placeholder=" ">
+				 <input type="text" class="form-control" name="FAQTitle" value="${faq.FAQTitle}">
 			</div>
 		</div>
 	
@@ -80,7 +88,7 @@
 				<button type="button"  class="btn btn-default;">내용</button>
 			</div>
 			<div class="col-md-8">
-				 <textarea class="form-control" rows="13" name="content" id="content" style="resize: none;"></textarea> 
+				 <textarea class="form-control" rows="13" name="FAQDetail"  style="resize: none; " >${faq.FAQDetail}</textarea> 
 			</div>
 			<div class="col-md-3"></div>
 		</div>
@@ -88,7 +96,7 @@
 		<div class="row text-center ">
 	  		<div class="col-md-1"></div>
 	  		<div class="col-md-8">
-	  		<button type="button" class="btn btn-pink">수정하기</button>
+	  		<button type="button" class="btn btn-pink"  data-param1="${faq.FAQNo}">수정하기</button>
 	  		<button type="button" class="btn btn-default">취소</button>
 	  		</div>
 	  		<div class="col-md-1"></div>

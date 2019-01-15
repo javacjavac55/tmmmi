@@ -36,8 +36,8 @@
 	
 	<!-- 지슬 -->
 	<!-- <a href="/QNA/contentBox.jsp">컨텐츠박스ㅎ_ㅎ나중에하시면수정해드려여</a><br/> -->
-	<a href="/faq/getFAQList">listFAQ</a><br/>
-	<a href="/FAQ/addFAQ.jsp">addFAQ</a><br/>
+	<a href="/faq/getFAQList">FAQ 리스트</a><br/>
+	<!-- <a href="/FAQ/addFAQ.jsp">FAQ 작성</a><br/> -->
 	
 </body>
 

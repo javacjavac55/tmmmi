@@ -48,15 +48,21 @@ public class FAQServiceImpl implements FAQService {
 	}
 
 	@Override
-	public void updateFAQ() {
+	public void updateFAQ(FAQ faq) throws Exception {
+		// TODO Auto-generated method stub
+		faqDao.updateFAQ(faq);
+	}
+
+	@Override
+	public void deleteFAQ( )throws Exception {
 		// TODO Auto-generated method stub
 		
 	}
 
 	@Override
-	public void deleteFAQ() {
+	public FAQ getFAQ(int FAQNo) throws Exception {
 		// TODO Auto-generated method stub
-		
+		return faqDao.getFAQ(FAQNo);
 	}
 
 }
