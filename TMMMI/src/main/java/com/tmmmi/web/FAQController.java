@@ -2,8 +2,6 @@ package com.tmmmi.web;
 
 import java.util.Map;
 
-import javax.servlet.http.HttpServletRequest;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.factory.annotation.Value;
@@ -11,6 +9,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.tmmmi.common.Page;
@@ -37,6 +36,7 @@ public class FAQController {
 	@Value("#{commonProperties['pageSize']}")
 	int pageSize;
 
+	
 	@RequestMapping(value="addFAQ", method=RequestMethod.GET )
 	public ModelAndView addFAQ() throws Exception {
 		System.out.println("/FAQ/addFAQ : GET");
@@ -56,6 +56,7 @@ public class FAQController {
 		return modelAndView;
 	}
 	
+	
 	@RequestMapping(value="getFAQList" )
 	public ModelAndView getFAQList(@ModelAttribute("search") Search search) throws Exception{
 		
@@ -72,15 +73,11 @@ public class FAQController {
 		}
 		
 		Map<String, Object> map = faqService.getFAQList(search);
-		System.out.println("map :: " +map);
-		
 		Page resultPage = new Page(search.getCurrentPage(),  ((Integer)map.get("totalCount")).intValue(), pageUnit, pageSize);
-		System.out.println(resultPage);
 		
 		ModelAndView modelAndView = new ModelAndView();
 		modelAndView.addObject("list", map.get("list"));
-		System.out.println(map.get("list"));
-	
+		System.out.println("map.get::::" +map.get("list"));
 		modelAndView.addObject("resultPage", resultPage);
 		modelAndView.addObject("search", search);
 		
@@ -88,7 +85,30 @@ public class FAQController {
 		return modelAndView;
 	}
 	
-	public void updateFAQ() {}
+	@RequestMapping(value="updateFAQ", method=RequestMethod.GET )
+	public ModelAndView updateFAQ(@RequestParam("faqNo") int faqNo) throws Exception {
+		System.out.println("/FAQ/updateFAQ : GET");
+		
+		FAQ faq = faqService.getFAQ(faqNo);
+		System.out.println(faq);
+		ModelAndView modelAndView = new ModelAndView();
+		modelAndView.addObject("faq", faq);
+		modelAndView.setViewName("/FAQ/updateFAQ.jsp");
+		return modelAndView;
+	}
+	
+	@RequestMapping(value="updateFAQ", method=RequestMethod.POST )
+	public ModelAndView updateFAQ(@ModelAttribute("faq") FAQ faq, @RequestParam("faqNo") int faqNo) throws Exception {
+		System.out.println("/FAQ/updateFAQ : POST");
+		
+		faq.setFAQNo(faqNo);
+		faqService.updateFAQ(faq);
+		
+		ModelAndView modelAndView = new ModelAndView();
+		modelAndView.setViewName("/faq/getFAQList");
+		return modelAndView;
+	}
+	
 	public void deleteFAQ() {}
 	
 }

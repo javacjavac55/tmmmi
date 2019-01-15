@@ -21,8 +21,8 @@ public class ContentSetting {
 	private int overseaBaseball;
 	private int basketball;
 	private int overseaBasketball;
-	private int generalSport;
-	private int highlight;
+	private int sportGeneral;
+	private int sportHighlight;
 	
 	private int koreanFood;
 	private int chineseFood;
@@ -41,6 +41,17 @@ public class ContentSetting {
 	private String userSearch3;
 	private String userVideo1;
 	private String userVideo2;
+	
+	private int showShoppingSearch1;
+	private int showShoppingSearch2;
+	private int showShoppingSearch3;
+	private int showShoppingReview;
+	
+	private int showUserSearch1;
+	private int showUserSearch2;
+	private int showUserSearch3;
+	private int showUserVideo1;
+	private int showUserVideo2;
 
 	public ContentSetting() {
 		// TODO Auto-generated constructor stub
@@ -182,20 +193,20 @@ public class ContentSetting {
 		this.overseaBasketball = overseaBasketball;
 	}
 
-	public int getGeneralSport() {
-		return generalSport;
+	public int getSportGeneral() {
+		return sportGeneral;
 	}
 
-	public void setGeneralSport(int generalSport) {
-		this.generalSport = generalSport;
+	public void setSportGeneral(int sportGeneral) {
+		this.sportGeneral = sportGeneral;
 	}
 
-	public int getHighlight() {
-		return highlight;
+	public int getSportHighlight() {
+		return sportHighlight;
 	}
 
-	public void setHighlight(int highlight) {
-		this.highlight = highlight;
+	public void setSportHighlight(int sportHighlight) {
+		this.sportHighlight = sportHighlight;
 	}
 
 	public int getKoreanFood() {
@@ -316,6 +327,99 @@ public class ContentSetting {
 
 	public void setUserVideo2(String userVideo2) {
 		this.userVideo2 = userVideo2;
+	}
+
+	public int getShowShoppingSearch1() {
+		return showShoppingSearch1;
+	}
+
+	public void setShowShoppingSearch1(int showShoppingSearch1) {
+		this.showShoppingSearch1 = showShoppingSearch1;
+	}
+
+	public int getShowShoppingSearch2() {
+		return showShoppingSearch2;
+	}
+
+	public void setShowShoppingSearch2(int showShoppingSearch2) {
+		this.showShoppingSearch2 = showShoppingSearch2;
+	}
+
+	public int getShowShoppingSearch3() {
+		return showShoppingSearch3;
+	}
+
+	public void setShowShoppingSearch3(int showShoppingSearch3) {
+		this.showShoppingSearch3 = showShoppingSearch3;
+	}
+
+	public int getShowShoppingReview() {
+		return showShoppingReview;
+	}
+
+	public void setShowShoppingReview(int showShoppingReview) {
+		this.showShoppingReview = showShoppingReview;
+	}
+
+	public int getShowUserSearch1() {
+		return showUserSearch1;
+	}
+
+	public void setShowUserSearch1(int showUserSearch1) {
+		this.showUserSearch1 = showUserSearch1;
+	}
+
+	public int getShowUserSearch2() {
+		return showUserSearch2;
+	}
+
+	public void setShowUserSearch2(int showUserSearch2) {
+		this.showUserSearch2 = showUserSearch2;
+	}
+
+	public int getShowUserSearch3() {
+		return showUserSearch3;
+	}
+
+	public void setShowUserSearch3(int showUserSearch3) {
+		this.showUserSearch3 = showUserSearch3;
+	}
+
+	public int getShowUserVideo1() {
+		return showUserVideo1;
+	}
+
+	public void setShowUserVideo1(int showUserVideo1) {
+		this.showUserVideo1 = showUserVideo1;
+	}
+
+	public int getShowUserVideo2() {
+		return showUserVideo2;
+	}
+
+	public void setShowUserVideo2(int showUserVideo2) {
+		this.showUserVideo2 = showUserVideo2;
+	}
+
+	@Override
+	public String toString() {
+		return "ContentSetting [userNo=" + userNo + ", contentSettingNo=" + contentSettingNo + ", userKeywordNo="
+				+ userKeywordNo + ", shoppingKeywordNo=" + shoppingKeywordNo + ", sortSectionNo=" + sortSectionNo
+				+ ", boxOfficeTop10=" + boxOfficeTop10 + ", romanceComedy=" + romanceComedy + ", action=" + action
+				+ ", horrorThriller=" + horrorThriller + ", animation=" + animation + ", fantasySF=" + fantasySF
+				+ ", soccer=" + soccer + ", overseaSoccer=" + overseaSoccer + ", baseball=" + baseball
+				+ ", overseaBaseball=" + overseaBaseball + ", basketball=" + basketball + ", overseaBasketball="
+				+ overseaBasketball + ", sportGeneral=" + sportGeneral + ", sportHighlight=" + sportHighlight
+				+ ", koreanFood=" + koreanFood + ", chineseFood=" + chineseFood + ", japaneseFood=" + japaneseFood
+				+ ", foreignFood=" + foreignFood + ", dessert=" + dessert + ", tastyKeyword=" + tastyKeyword
+				+ ", shoppingSearch1=" + shoppingSearch1 + ", shoppingSearch2=" + shoppingSearch2 + ", shoppingSearch3="
+				+ shoppingSearch3 + ", shoppingReview=" + shoppingReview + ", userSearch1=" + userSearch1
+				+ ", userSearch2=" + userSearch2 + ", userSearch3=" + userSearch3 + ", userVideo1=" + userVideo1
+				+ ", userVideo2=" + userVideo2 + ", showShoppingSearch1=" + showShoppingSearch1
+				+ ", showShoppingSearch2=" + showShoppingSearch2 + ", showShoppingSearch3=" + showShoppingSearch3
+				+ ", showShoppingReview=" + showShoppingReview + ", showUserSearch1=" + showUserSearch1
+				+ ", showUserSearch2=" + showUserSearch2 + ", showUserSearch3=" + showUserSearch3 + ", showUserVideo1="
+				+ showUserVideo1 + ", showUserVideo2=" + showUserVideo2 + "]";
 	}
 
 }

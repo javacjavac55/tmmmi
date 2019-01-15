@@ -17,7 +17,7 @@ public class User {
 	private String refreshTokenExpireTime;
 	private int snsName;
 	private int role;
-	private boolean withdrawCheck;
+	private int withdrawCheck;
 	private Date withdrawDate;
 	
 
@@ -25,125 +25,186 @@ public class User {
 		// TODO Auto-generated constructor stub
 	}
 
+
+	public String getAuthNum() {
+		return authNum;
+	}
+
+
+
+	public void setAuthNum(String authNum) {
+		this.authNum = authNum;
+	}
+
+
+
 	public int getUserNo() {
 		return userNo;
 	}
+
+
 
 	public void setUserNo(int userNo) {
 		this.userNo = userNo;
 	}
 
+
+
 	public String getUserId() {
 		return userId;
 	}
+
+
 
 	public void setUserId(String userId) {
 		this.userId = userId;
 	}
 
+
+
 	public String getPassword() {
 		return password;
 	}
+
+
 
 	public void setPassword(String password) {
 		this.password = password;
 	}
 
+
+
 	public String getEmail() {
 		return email;
 	}
+
+
 
 	public void setEmail(String email) {
 		this.email = email;
 	}
 
+
+
 	public int getEmailCheck() {
 		return emailCheck;
 	}
+
+
 
 	public void setEmailCheck(int emailCheck) {
 		this.emailCheck = emailCheck;
 	}
 
+
+
 	public String getUserName() {
 		return userName;
 	}
+
+
 
 	public void setUserName(String userName) {
 		this.userName = userName;
 	}
 
+
+
 	public Date getBirthday() {
 		return birthday;
 	}
+
+
 
 	public void setBirthday(Date birthday) {
 		this.birthday = birthday;
 	}
 
+
+
 	public String getAccessToken() {
 		return accessToken;
 	}
+
+
 
 	public void setAccessToken(String accessToken) {
 		this.accessToken = accessToken;
 	}
 
+
+
 	public String getRefreshToken() {
 		return refreshToken;
 	}
+
+
 
 	public void setRefreshToken(String refreshToken) {
 		this.refreshToken = refreshToken;
 	}
 
+
+
 	public String getRefreshTokenExpireTime() {
 		return refreshTokenExpireTime;
 	}
+
+
 
 	public void setRefreshTokenExpireTime(String refreshTokenExpireTime) {
 		this.refreshTokenExpireTime = refreshTokenExpireTime;
 	}
 
+
+
 	public int getSnsName() {
 		return snsName;
 	}
+
+
 
 	public void setSnsName(int snsName) {
 		this.snsName = snsName;
 	}
 
+
+
 	public int getRole() {
 		return role;
 	}
+
+
 
 	public void setRole(int role) {
 		this.role = role;
 	}
 
-	public boolean isWithdrawCheck() {
+
+
+	public int getWithdrawCheck() {
 		return withdrawCheck;
 	}
 
-	public void setWithdrawCheck(boolean withdrawCheck) {
+
+
+	public void setWithdrawCheck(int withdrawCheck) {
 		this.withdrawCheck = withdrawCheck;
 	}
+
+
 
 	public Date getWithdrawDate() {
 		return withdrawDate;
 	}
 
+
+
 	public void setWithdrawDate(Date withdrawDate) {
 		this.withdrawDate = withdrawDate;
 	}
-	
-	public String getAuthNum() {
-		return authNum;
-	}
-	
-	public void setAuthNum(String authNum) {
-		this.authNum = authNum;
-	}
+
+
 
 	@Override
 	public String toString() {

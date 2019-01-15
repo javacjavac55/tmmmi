@@ -44,8 +44,8 @@ public class ToDoServiceImpl implements ToDoService {
 
 	@Override
 	public void deleteToDo(ToDo toDo)throws Exception {
+		System.out.println("deleteToDoService Á¢±Ù");
 		toDoDao.deleteToDo(toDo);
-		
 	}
 
 	@Override
