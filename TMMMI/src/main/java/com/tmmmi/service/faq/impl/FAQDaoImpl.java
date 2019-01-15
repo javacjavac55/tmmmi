@@ -42,19 +42,25 @@ public class FAQDaoImpl implements FAQDao {
 	}
 
 	@Override
-	public void updateFAQ() {
+	public void updateFAQ(FAQ faq)throws Exception {
 		// TODO Auto-generated method stub
-		
+		sqlSession.update("FAQMapper.updateFAQ", faq);
 	}
 
 	@Override
-	public void deleteFAQ() {
+	public void deleteFAQ() throws Exception {
 		// TODO Auto-generated method stub
 		
 	}
 	
 	public int getTotalCount(Search search) throws Exception{
 		return sqlSession.selectOne("FAQMapper.getTotalCount", search);
+	}
+
+	@Override
+	public FAQ getFAQ(int FAQNo) throws Exception {
+		// TODO Auto-generated method stub
+		return sqlSession.selectOne("FAQMapper.getFAQ", FAQNo);
 	}
 
 }

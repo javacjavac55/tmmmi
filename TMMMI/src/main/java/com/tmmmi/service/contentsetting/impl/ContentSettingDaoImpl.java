@@ -27,6 +27,9 @@ public class ContentSettingDaoImpl implements ContentSettingDao {
 	@Override
 	public void addContentSetting(ContentSetting contentSetting) {
 		sqlSession.insert("ContentSettingMapper.addContentSetting", contentSetting);
+		sqlSession.insert("ContentSettingMapper.addShoppingKeyword", contentSetting);
+		sqlSession.insert("ContentSettingMapper.addUserKeyword", contentSetting);
+		sqlSession.insert("ContentSettingMapper.addSortSection", contentSetting);
 	}
 	
 	@Override
@@ -37,6 +40,9 @@ public class ContentSettingDaoImpl implements ContentSettingDao {
 	@Override
 	public void updateContentSetting(ContentSetting contentSetting) {
 		sqlSession.update("ContentSettingMapper.updateContentSetting", contentSetting);
+		sqlSession.update("ContentSettingMapper.updateShoppingKeyword", contentSetting);
+		sqlSession.update("ContentSettingMapper.updateUserKeyword", contentSetting);
+		sqlSession.update("ContentSettingMapper.updateSortSection", contentSetting);
 	}
 
 

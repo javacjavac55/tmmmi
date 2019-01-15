@@ -10,10 +10,9 @@
 
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" >
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" >
-	<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
-	<script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
-	<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+	<script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.js"></script>
 	
+  	
 <script type="text/javascript">
 
 function fncGetList(currentPage){
@@ -22,6 +21,7 @@ function fncGetList(currentPage){
 	/* document.detailForm.submit(); */
 	$("form").attr("method" , "POST").attr("action" , "/diary/listDiary").submit();
 } 
+
 
 </script>
 </head>

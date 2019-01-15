@@ -42,15 +42,15 @@
 			#{withdrawDate:DATE}
 		)
 	</insert>
-	<!-- SQL : SELECT ONE -->
+	<!-- SQL : SELECT ONE(getUser) -->
 	<select id="getUser" parameterType="int" resultMap="userSelectMap">
 		SELECT
-		user_no, user_id, password, email, user_name, birthday, role
+		user_no, user_id, password, email, user_name, birthday, role, withdraw_check
 		FROM users 
 		WHERE user_no = #{value}
 	</select>
 	
-	<!-- SQL : SELECT ONE -->
+	<!-- SQL : SELECT ONE(getUserId) -->
 	<select id="getUserId" parameterType="string" resultMap="userSelectMap">
 		SELECT
 		user_no, user_id, password, role 
@@ -72,16 +72,50 @@
 	</update>
 	
 	<!-- SQL : UPDATE(WITHDRAW)-->
-	<update id="updateWithdraw" parameterType="com.tmmmi.service.domain.User">
+	<update id="withdrawUser" parameterType="com.tmmmi.service.domain.User">
 		UPDATE users
 		<set>
 			WITHDRAW_CHECK=#{withdrawCheck},
-			WITHDRAW_DATE=#{withdrawDate}
+			WITHDRAW_DATE=SYSDATE
 		</set>
 		WHERE user_no=#{userNo}
 	</update>
 	
 	<!-- SQL : SELECT LIST -->
+	<select  id="getUserList"  parameterType="map"	resultMap="userSelectMap">
+	  	SELECT *
+	  	FROM ( SELECT inner_table.* , ROWNUM AS row_seq
+	  		   FROM ( SELECT user_no, user_id , user_name , email, withdraw_check, withdraw_date
+				      FROM users
+						<if test="searchCondition != null">
+							<where>
+								<if test="searchCondition == 0 and searchKeyword !='' ">
+										user_id = #{searchKeyword}
+								</if>
+								<if test="searchCondition == 1 and searchKeyword !='' ">
+										user_name = #{searchKeyword}
+								</if>
+							</where>
+						</if>
+				      ORDER BY user_no ) inner_table
+			   WHERE ROWNUM &lt;= #{endRowNum} )
+		WHERE row_seq BETWEEN #{startRowNum} AND #{endRowNum} 
+	 </select>
 	
-	<!-- SQL : SELECT ROW COUNT -->
+	<!-- SQL : SELECT ROW Count -->	 
+	<select  id="getTotalCount"  parameterType="com.tmmmi.common.Search"	 resultType="int">
+	  SELECT COUNT(*)
+	  FROM(	SELECT user_no, user_id , user_name , email, withdraw_check, withdraw_date
+			FROM users
+			<if test="searchCondition != null">
+				<where>
+					<if test="searchCondition == 0 and searchKeyword !='' ">
+			 			user_id = #{searchKeyword}
+					</if>
+					<if test="searchCondition == 1 and searchKeyword !='' ">
+			 		user_name = #{searchKeyword}
+					</if>
+				</where>
+			</if> ) countTable						
+	 </select>
 </mapper>

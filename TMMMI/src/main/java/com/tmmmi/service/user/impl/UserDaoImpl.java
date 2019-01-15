@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Repository;
 
+import com.tmmmi.common.Search;
 import com.tmmmi.service.domain.User;
 import com.tmmmi.service.user.UserDao;
 
@@ -46,16 +47,19 @@ public class UserDaoImpl implements UserDao {
 		sqlSession.update("UserMapper.updateUser", user);
 	}
 
-	@Override
-	public void deleteUser(int user_no) throws Exception {
-		// TODO Auto-generated method stub
-		
-	}
 
 	@Override
-	public List<User> getUserList() throws Exception {
-		// TODO Auto-generated method stub
-		return null;
+	public List<User> getUserList(Search search) throws Exception {
+		return sqlSession.selectList("UserMapper.getUserList", search);
+	}
+	
+	public int getTotalCount(Search search) throws Exception {
+		return sqlSession.selectOne("UserMapper.getTotalCount", search);
+	}
+	
+	@Override
+	public void withdrawUser(User user) throws Exception {
+		sqlSession.update("UserMapper.withdrawUser", user);
 	}
 
 	@Override
@@ -63,6 +67,7 @@ public class UserDaoImpl implements UserDao {
 		// TODO Auto-generated method stub
 		
 	}
+	
 
 
 }

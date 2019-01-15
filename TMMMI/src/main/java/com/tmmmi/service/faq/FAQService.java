@@ -11,7 +11,9 @@ public interface FAQService {
 	
 	public Map<String,Object> getFAQList(Search search) throws Exception;
 	
-	public void updateFAQ() throws Exception;
+	public void updateFAQ(FAQ faq) throws Exception;
+	
+	public FAQ getFAQ(int FAQNo) throws Exception;
 	
 	public void deleteFAQ() throws Exception;
 }

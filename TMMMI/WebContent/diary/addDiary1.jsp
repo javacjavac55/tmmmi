@@ -12,75 +12,37 @@
 <head>
 
 	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-	<!-- 부트스트랩, 제이쿼리 -->
+	
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" >
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" >
-	<script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.js"></script> 
+	<script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
 	
-	<!-- summernote -->
-	<script src="http://netdna.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.js"></script>		
+	<script src="http://netdna.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.js"></script>
 	<link href="/css/summernote.css" rel="stylesheet">
   	<script src="/javascript/summernote.js"></script>
+  <script>
   	
-  	<!-- 로딩 -->
-  	<!-- <link rel="stylesheet" href="/css/loading.css">  	
-  	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
-    <script src="/javascript/loading.js"></script> -->
+  				
+  
+  		$(document).ready(function() {
+  			$('#summernote').summernote({  	        
+  	        height:"200px",
+  	        width: "500px",
+  	      	minHeight: null,
+  	      	maxHeight: null,
+  	      	focus: true
+  	      
+  	    	});
+  	      /* $('textarea[name="Contents"]').html($('.summernote').code()); */
+ 	 	}); 
+  		
+  </script>
   	
 	<script type="text/javascript">
 	/* function postForm() {
         $('textarea[name="diaryDetail"]').val($('#summernote').summernote('code'));
     } */
-    function fncLoading(){
-		  $(".loading").fakeLoader({
-		    timeToHide:3000, // 로딩중에 걸리는 시간, 1000은 1초
-		    bgColor:"#2ecc71", // 배경색
-		    spinner:"spinner2" // 로딩중으로 원하는 로딩이미지타입
-	})}; 
-		  
-    $(document).ready(function() {    	   		
-			$('#summernote').summernote({  	        
-	        height:"200px",
-	        width: "500px",
-	      	minHeight: null,
-	      	maxHeight: null,
-	      	focus: true,
-	      	callbacks: {
-	      		onImageUpload: function(files, editor, welEditable){
-	      			console.log(files);
-	      			console.log(files[0]);	      			
-	      			var form_data = new FormData();
-	      			form_data.append("file", files[0]);
-	      			
-	      			var $note = $(this);
-	      			console.log("abcd");
-	      			$.ajax({
-	      	    		data: form_data,
-	      	    		type: "POST",
-	      	    		url: '/diaryRest/imageDiary',
-	      	    		cache: false,
-	      	    		contentType: false,	      	    		
-	      	    		enctype: 'multipart/form-data',
-	      	    		processData: false,
-	      	    		success: function(url){
-	      	    			alert("here");
-	      	    			/* fncLoading(); */
-	      	    			$note.summernote('insertImage',url);	      	    			
-	      	    		}
-	      	    	});
-	      		}
-	      	}
-	      
-	    	});
-	      /* $('textarea[name="Contents"]').html($('.summernote').code()); */
-	 });
-    
-    /* function senFIle(file, el){
-    	var form_data = new FormData();
-    	form_data.append('file', file)
-    	
-    } */
-    
+	
 	function fncAddDiary() {
 		document.addDiary.submit();
 		$('form[name="addDiary"]').attr("method" , "POST").attr("enctype","multipart/form-data").attr("action" , "/diary/addDiary").submit();
@@ -142,7 +104,7 @@
 		<div class="form-group">
 			<label for="diaryDetail" class="col-sm-offset-1 col-sm-3 control-label text-center">내용</label>
 			<div class="col-sm-4">
-			<textarea id="summernote" name="diaryDetail" class="fakeloader" style="display:none;"></textarea>					
+			<textarea id="summernote" name="diaryDetail" style="display:none;"></textarea>			
 		    </div>		      
 		</div>				    	
     	

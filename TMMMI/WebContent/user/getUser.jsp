@@ -18,6 +18,15 @@
 	
 	<!-- styleSheet -->
 	<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+	
+	<!-- 회원 정보 수정 이벤트 -->
+	<script type="text/javascript">
+	$(function() {
+		$( "button.btn.btn-primary" ).on("click" , function() {
+			self.location = "/user/updateUser?userNo=${userNo}"
+		});
+	});
+	</script>
 </head>
 <body>
 	<!-- sideMenu.jsp 추가 -->
@@ -52,8 +61,6 @@
 	  		<div class="col-xs-4 col-md-2 "><strong>생년월일</strong></div>
 			<div class="col-xs-8 col-md-4">${user.birthday}	</div>
 		</div>
-		
-		<hr/>
 		
 		<hr/>
 		

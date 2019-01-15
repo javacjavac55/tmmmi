@@ -24,38 +24,37 @@
  		.row {
  			margin-bottom:10px
  		}
-
 	</style>
-	
-	<script src="http://code.jquery.com/jquery-2.1.4.min.js"></script>
+
 	<script type="text/javascript">
+	
+	$(function() {
+		$( ".btn-pink:contains('작성하기')" ).on("click" , function() {
+			fncAddFAQ();
+		});
+		
+		$( ".btn-default:contains('취소')" ).on("click" , function() {
+			history.go(-1);
+		});
+	});
 	
 	function fncAddFAQ() {
 		
 		var name=$("input[name='FAQTitle']").val();
-		var detail = $("input[name='FAQDetail']").val();
+		var detail = $("textarea[name='FAQDetail']").val();
 		
 		if(name == null || name.length<1){
 			alert("제목은 반드시 입력하여야 합니다.");
 			return;
 		}
-		/* if(detail == null || detail.length<1){
+		 if(detail == null || detail.length<1){
 			alert("내용은 반드시 입력하여야 합니다.");
 			return;
-		} */
+		}
 		
 		$("form").attr("method" , "POST").attr("action", "/faq/addFAQ").submit();
 	}
-	
-	$(function() {
-		$( ".text-center:contains('작성하기')" ).on("click" , function() {
-			fncAddFAQ();
-		});
-		
-		$( ".text-center:contains('취소')" ).on("click" , function() {
-			$("form")[0].history.go(-1);
-		});
-	});
+
 	</script>
 	
 </head>

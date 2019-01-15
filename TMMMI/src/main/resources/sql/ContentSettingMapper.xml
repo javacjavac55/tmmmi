@@ -5,47 +5,221 @@
 		"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 		
 <mapper namespace="ContentSettingMapper">
+	
 	<resultMap type="com.tmmmi.service.domain.ContentSetting" id="contentSettingSelectMap">
-		<result property="userNo" 	 			column="user_no" jdbcType=""/>
-		<result property="contentSettingNo" 	column="content_setting_no" jdbcType=""/>
-		<result property="userKeywordNo" 		column="user_keyword_no" jdbcType=""/>
-		<result property="shoppingKeywordNo" 	column="shopping_keyword_no" jdbcType=""/>
-		<result property="sortSectionNo" 		column="sort_section_no" jdbcType=""/>
+		<result property="userNo" 	 			column="user_no" 					jdbcType="NUMERIC"/>
+		<result property="contentSettingNo" 	column="content_setting_no" 		jdbcType="NUMERIC"/>
+		<result property="tastyKeyword" 		column="tasty_keyword" 				jdbcType="VARCHAR"/>
+		<result property="userKeywordNo" 		column="user_keyword_no" 			jdbcType="NUMERIC"/>
+		<result property="shoppingKeywordNo" 	column="shopping_keyword_no"		jdbcType="NUMERIC"/>
+		<result property="sortSectionNo" 		column="sort_section_no" 			jdbcType="NUMERIC"/>
 		
-		<result property="boxOfficeTop10" 		column="" jdbcType=""/>
-		<result property="romanceComedy" 		column="" jdbcType=""/>
-		<result property="action" 				column="" jdbcType=""/>
-		<result property="horrorThriller" 		column="" jdbcType=""/>
-		<result property="animation" 			column="" jdbcType=""/>
-		<result property="fantasySF" 			column="" jdbcType=""/>
+		<result property="boxOfficeTop10" 		column="show_boxoffice_top_10" 		jdbcType="NUMERIC"/>
+		<result property="romanceComedy" 		column="show_romance_comedy" 		jdbcType="NUMERIC"/>
+		<result property="action" 				column="show_action" 				jdbcType="NUMERIC"/>
+		<result property="horrorThriller" 		column="show_horror_thriller" 		jdbcType="NUMERIC"/>
+		<result property="animation" 			column="show_animation" 				jdbcType="NUMERIC"/>
+		<result property="fantasySF" 			column="show_fantasy_sf" 			jdbcType="NUMERIC"/>
 		
-		<result property="soccer" 				column="" jdbcType=""/>
-		<result property="overseaSoccer" 		column="" jdbcType=""/>
-		<result property="baseball"				column="" jdbcType=""/>
-		<result property="overseaBaseball" 		column="" jdbcType=""/>
-		<result property="basketball" 			column="" jdbcType=""/>
-		<result property="overseaBasketball" 	column="" jdbcType=""/>
-		<result property="generalSport" 		column="" jdbcType=""/>
-		<result property="highlight" 			column="" jdbcType=""/>
+		<result property="soccer" 				column="show_soccer" 				jdbcType="NUMERIC"/>
+		<result property="overseaSoccer" 		column="show_oversea_soccer" 		jdbcType="NUMERIC"/>
+		<result property="baseball"				column="show_baseball" 				jdbcType="NUMERIC"/>
+		<result property="overseaBaseball" 		column="show_oversea_baseball" 		jdbcType="NUMERIC"/>
+		<result property="basketball" 			column="show_basketball" 			jdbcType="NUMERIC"/>
+		<result property="overseaBasketball" 	column="show_oversea_basketball" 	jdbcType="NUMERIC"/>
+		<result property="sportGeneral" 		column="show_sport_general" 		jdbcType="NUMERIC"/>
+		<result property="sportHighlight" 		column="show_sport_highlight" 		jdbcType="NUMERIC"/>
 		
-		<result property="koreanFood" 			column="" jdbcType=""/>
-		<result property="chineseFood" 			column="" jdbcType=""/>
-		<result property="japaneseFood" 		column="" jdbcType=""/>
-		<result property="foreignFood" 			column="" jdbcType=""/>
-		<result property="dessert" 				column="" jdbcType=""/>
-		<result property="tastyKeyword" 		column="" jdbcType=""/>
+		<result property="koreanFood" 			column="show_korean_food" 			jdbcType="NUMERIC"/>
+		<result property="chineseFood" 			column="show_chinese_food" 			jdbcType="NUMERIC"/>
+		<result property="japaneseFood" 		column="show_japanese_food" 		jdbcType="NUMERIC"/>
+		<result property="foreignFood" 			column="show_foreign_food" 			jdbcType="NUMERIC"/>
+		<result property="dessert" 				column="show_dessert" 				jdbcType="NUMERIC"/>
 		
-		<result property="shoppingKeyword1" 	column="shopping_search_1" jdbcType=""/>
-		<result property="shoppingKeyword2" 	column="shopping_search_2" jdbcType=""/>
-		<result property="shoppingKeyword3" 	column="shopping_search_3" jdbcType=""/>
-		<result property="shoppingReview" 		column="shopping_review" jdbcType=""/>
+		<result property="shoppingKeyword1" 	column="shopping_search_1"			jdbcType="VARCHAR"/>
+		<result property="shoppingKeyword2" 	column="shopping_search_2" 			jdbcType="VARCHAR"/>
+		<result property="shoppingKeyword3" 	column="shopping_search_3" 			jdbcType="VARCHAR"/>
+		<result property="shoppingReview" 		column="shopping_review" 			jdbcType="VARCHAR"/>
 
-		<result property="userKeyword1" 		column="" jdbcType=""/>
-		<result property="userKeyword2" 		column="" jdbcType=""/>
-		<result property="userKeyword3" 		column="" jdbcType=""/>
-		<result property="userVideo1" 		column="" jdbcType=""/>
-		<result property="userVideo2" 		column="" jdbcType=""/>
+		<result property="userSearch1" 			column="user_search_1" 				jdbcType="VARCHAR"/>
+		<result property="userSearch2" 			column="user_search_2" 				jdbcType="VARCHAR"/>
+		<result property="userSearch3" 			column="user_search_3" 				jdbcType="VARCHAR"/>
+		<result property="userVideo1" 			column="user_video_1" 				jdbcType="VARCHAR"/>
+		<result property="userVideo2" 			column="user_video_2" 				jdbcType="VARCHAR"/>
 		
-		
+		<result property="showShoppingSearch1" 	column="shopping_search_1" 			jdbcType="NUMERIC"/>
+		<result property="showShoppingSearch2" 	column="shopping_search_2" 			jdbcType="NUMERIC"/>
+		<result property="showShoppingSearch3" 	column="shopping_search_3" 			jdbcType="NUMERIC"/>
+		<result property="showShoppingReview" 	column="shopping_review" 			jdbcType="NUMERIC"/>
+
+		<result property="showUserSearch1" 		column="show_user_search_1" 		jdbcType="NUMERIC"/>
+		<result property="showUserSearch2" 		column="show_user_search_2" 		jdbcType="NUMERIC"/>
+		<result property="showUserSearch3" 		column="show_user_search_3" 		jdbcType="NUMERIC"/>
+		<result property="showUserVideo1" 		column="show_user_video_1" 			jdbcType="NUMERIC"/>
+		<result property="showUserVideo2" 	column="show_user_video_2" 			jdbcType="NUMERIC"/>
 	</resultMap>
+	
+	<!-- SQL : INSERT(content_setting) -->
+	<insert id="addContentSetting" parameterType="com.tmmmi.service.domain.ContentSetting">
+		INSERT
+		INTO content_setting(content_setting_no, user_no, tasty_keyword, shopping_keyword_no, user_keyword_no, sort_section_no)
+		VALUES(
+			content_setting_no.nextval,
+			#{userNo},
+			#{tastyKeyword:VARCHAR},
+			shopping_keyword_no.nextval,
+			user_keyword_no.nextval,
+			sort_section_no.nextval
+		)
+	</insert>
+	
+	<!-- SQL : INSERT(shopping_keyword) -->
+	<insert id="addShoppingKeyword" parameterType="com.tmmmi.service.domain.ContentSetting">
+		INSERT
+		INTO shopping_keyword(shopping_keyword_no, shopping_search_1, shopping_search_2, shopping_search_3, shopping_review)
+		VALUES(
+			(SELECT shopping_keyword_no FROM content_setting WHERE user_no = #{userNo}),
+			#{shoppingSearch1:VARCHAR},
+			#{shoppingSearch2:VARCHAR},
+			#{shoppingSearch3:VARCHAR},
+			#{shoppingReview:VARCHAR}
+		)
+	</insert>
+	
+	<!-- SQL : INSERT(user_keyword) -->
+	<insert id="addUserKeyword" parameterType="com.tmmmi.service.domain.ContentSetting">
+		INSERT
+		INTO user_keyword(user_keyword_no, user_search_1, user_search_2, user_search_3, user_video_1, user_video_2)
+		VALUES(
+			(SELECT user_keyword_no FROM content_setting WHERE user_no = #{userNo}),
+			#{userSearch1:VARCHAR},
+			#{userSearch2:VARCHAR},
+			#{userSearch3:VARCHAR},
+			#{userVideo1:VARCHAR},
+			#{userVideo2:VARCHAR}
+		)
+	</insert>
+	
+	<!-- SQL : INSERT(sort_section) -->
+	<insert id="addSortSection" parameterType="com.tmmmi.service.domain.ContentSetting">
+		INSERT
+		INTO sort_section(sort_section_no, show_boxoffice_top_10, show_romance_comedy, show_horror_thriller, 
+							show_fantasy_sf, show_action, show_animation, show_soccer, show_oversea_soccer,
+							show_baseball, show_oversea_baseball, show_basketball, show_oversea_basketball,
+							show_sport_general, show_sport_highlight, show_korean_food, 
+							show_japanese_food, show_chinese_food, show_foreign_food, show_dessert,
+							show_shopping_search_1, show_shopping_search_2, show_shopping_search_3,
+							show_shopping_review,  show_user_search_1, show_user_search_2, show_user_search_3,
+							show_user_video_1, show_user_video_2)
+		VALUES(
+			(SELECT sort_section_no FROM content_setting WHERE user_no = #{userNo}),
+			#{boxOfficeTop10:NUMERIC},
+			#{romanceComedy:NUMERIC},
+			#{horrorThriller:NUMERIC},
+			#{fantasySF:NUMERIC},
+			#{action:NUMERIC},
+			#{animation:NUMERIC},
+			#{soccer:NUMERIC},
+			#{overseaSoccer:NUMERIC},
+			#{baseball:NUMERIC},
+			#{overseaBaseball:NUMERIC},
+			#{basketball:NUMERIC},
+			#{overseaBasketball:NUMERIC},
+			#{sportGeneral:NUMERIC},
+			#{sportHighlight:NUMERIC},
+			#{koreanFood:NUMERIC},
+			#{japaneseFood:NUMERIC},
+			#{chineseFood:NUMERIC},
+			#{foreignFood:NUMERIC},
+			#{dessert:NUMERIC},
+			#{showShoppingSearch1:NUMERIC},
+			#{showShoppingSearch2:NUMERIC},
+			#{showShoppingSearch3:NUMERIC},
+			#{showShoppingReview:NUMERIC},
+			#{showUserSearch1:NUMERIC},
+			#{showUserSearch2:NUMERIC},
+			#{showUserSearch3:NUMERIC},
+			#{showUserVideo1:NUMERIC},
+			#{showUserVideo2:NUMERIC}
+		)
+	</insert>
+	
+	<!-- SQL : SELECT ONE -->
+	<select id="getContentSetting" parameterType="int" resultMap="contentSettingSelectMap">
+		SELECT DISTINCT *
+		FROM content_setting cs, user_keyword uk, shopping_keyword sk, sort_section ss
+		WHERE cs.shopping_keyword_no = sk.shopping_keyword_no
+    	  AND cs.user_keyword_no = uk.user_keyword_no
+     	  AND cs.sort_section_no = ss.sort_section_no
+     	  AND cs.user_no = #{userNo}
+	</select>
+	
+	<!-- SQL : UPDATE(content_setting) -->
+	<update id="updateContentSetting" parameterType="com.tmmmi.service.domain.ContentSetting">
+		UPDATE content_setting
+		<set>
+			tasty_keyword = #{tastyKeyword:VARCHAR}
+		</set>
+		WHERE user_no = #{userNo}
+	</update>
+	
+	<!-- SQL : UPDATE(shopping_keyword) -->
+	<update id="updateShoppingKeyword" parameterType="com.tmmmi.service.domain.ContentSetting">
+		UPDATE shopping_keyword
+		<set>
+			shopping_search_1 = #{shoppingSearch1},
+			shopping_search_2 = #{shoppingSearch2},
+			shopping_search_3 = #{shoppingSearch3}
+		</set>
+		WHERE shopping_keyword_no = (SELECT shopping_keyword_no FROM content_setting WHERE user_no = #{userNo})
+	</update>
+	
+	<!-- SQL : UPDATE(user_keyword) -->
+	<update id="updateUserKeyword" parameterType="com.tmmmi.service.domain.ContentSetting">
+		UPDATE user_keyword
+		<set>
+			user_search_1 = #{userSearch1},
+			user_search_2 = #{userSearch2}
+			user_search_3 = #{userSearch3},
+			user_video_1 = #{userVideo1},
+			user_video_2 = #{userVideo2}
+		</set>
+		WHERE user_keyword_no = (SELECT user_keyword_no FROM content_setting WHERE user_no = #{userNo})
+	</update>
+	
+	<!-- SQL : UPDATE(sort_section -->
+	<update id="updateSortSection" parameterType="com.tmmmi.service.domain.ContentSetting">
+		UPDATE sort_section
+		<set>
+			show_boxoffice_top_10 = #{boxOfficeTop10:NUMERIC},
+			show_romance_comedy = #{romanceComedy:NUMERIC},
+			show_horror_thriller = #{horrorThriller:NUMERIC},
+			show_fantasy_sf = #{fantasySF:NUMERIC},
+			show_action = #{action:NUMERIC},
+			show_animation  = #{animation:NUMERIC},
+			show_soccer = #{soccer:NUMERIC},
+			show_oversea_soccer = #{overseaSoccer:NUMERIC},
+			show_baseball = #{baseball:NUMERIC},
+			show_oversea_baseball = #{overseaBaseball:NUMERIC},
+			show_basketball = #{basketball:NUMERIC},
+			show_oversea_basketball = #{overseaBasketball:NUMERIC},
+			show_sport_general = #{sportGeneral:NUMERIC},
+			show_sport_highlight = #{sportHighlight:NUMERIC},
+			show_korean_food = #{koreanFood:NUMERIC},
+			show_japanese_food = #{japaneseFood:NUMERIC},
+			show_chinese_food = #{chineseFood:NUMERIC},
+			show_foreign_food = #{foreignFood:NUMERIC},
+			show_dessert = #{dessert:NUMERIC},
+			show_shopping_search_1 = #{showShoppingSearch1:NUMERIC},
+			show_shopping_search_2 =  #{showShoppingSearch2:NUMERIC},
+			show_shopping_search_3 = #{showShoppingSearch3:NUMERIC},
+			show_shopping_review = #{showShoppingReview:NUMERIC},
+			show_user_search_1 = #{showUserSearch1:NUMERIC},
+			show_user_search_2 = #{showUserSearch2:NUMERIC},
+			show_user_search_3 = #{showUserSearch3:NUMERIC},
+			show_user_video_1 = #{showUserVideo1:NUMERIC},
+			show_user_video_2 = #{showUserVideo2:NUMERIC}
+		</set>
+		WHERE sort_section_no = (SELECT sort_section_no FROM content_setting WHERE user_no = #{userNo})
+	</update>
 </mapper>

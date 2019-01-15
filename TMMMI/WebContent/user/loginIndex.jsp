@@ -7,8 +7,10 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<c:if test="${ empty user }">
- 		<jsp:forward page="login.jsp"/>
+	<c:if test="${ !empty userNo }">
+ 		<a href="/user/getUser?userNo=${userNo }">회원정보보기</a><br/>
+ 		<a href="/user/updateUser?userNo=${userNo }">유저업데이트</a><br/>
+		<a href="/user/getUserList.jsp">회원 리스트</a><br/>
  	</c:if>
 </body>
 </html>
