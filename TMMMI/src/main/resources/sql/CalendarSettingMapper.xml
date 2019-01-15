@@ -49,7 +49,7 @@
 	</select>
 	
 	<!-- SQL : UPDATE -->
-	<select id="updateCalendarSetting" parameterType="com.tmmmi.service.domain.CalendarSetting">
+	<update id="updateCalendarSetting" parameterType="com.tmmmi.service.domain.CalendarSetting">
 		UPDATE calendar_setting
 		<set>
 			main_calendar_type=#{mainCalendarType},
@@ -63,5 +63,5 @@
 			show_sport_basketball=#{showSportBasketball}
 		</set>
 		WHERE user_no=#{userNo}
-	</select>
+	</update>
 </mapper>

@@ -1,6 +1,8 @@
 package com.tmmmi.service.user.impl;
 
 import java.util.Date;
+import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.Properties;
 
@@ -17,6 +19,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
+import com.tmmmi.common.Search;
 import com.tmmmi.service.domain.User;
 import com.tmmmi.service.user.UserDao;
 import com.tmmmi.service.user.UserService;
@@ -53,14 +56,20 @@ public class UserServiceImpl implements UserService {
 	}
 
 	@Override
-	public void deleteUser(int userNo) throws Exception{
-		userDao.deleteUser(userNo);
+	public void withdrawUser(User user) throws Exception{
+		userDao.withdrawUser(user);
 	}
 
 	@Override
-	public Map<String, Object> getUserList() throws Exception {
-		// TODO Auto-generated method stub
-		return null;
+	public Map<String, Object> getUserList(Search search) throws Exception {
+		List<User> list= userDao.getUserList(search);
+		int totalCount = userDao.getTotalCount(search);
+		
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("list", list );
+		map.put("totalCount", new Integer(totalCount));
+		
+		return map;
 	}
 
 	@Override
