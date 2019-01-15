@@ -12,10 +12,6 @@
     <link rel="stylesheet" type="text/css" href="/css/tui/tui-calendar.css" />
     <link rel="stylesheet" type="text/css" href="/css/tui/default.css"></link>
     <link rel="stylesheet" type="text/css" href="/css/tui/icons.css"></link>
-    <script>
-    	var CalendarList = [];
-    	var ScheduleList = [];
-    </script>
 </head>
 <body>
     <div id="top">
@@ -109,7 +105,10 @@
         </div>
         <div id="calendar"></div>
     </div>
-
+	<script>
+    	var CalendarList = [];
+    	var ScheduleList = [];
+    </script>
     <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
     <script type="text/javascript" src="https://uicdn.toast.com/tui.code-snippet/latest/tui-code-snippet.min.js"></script>

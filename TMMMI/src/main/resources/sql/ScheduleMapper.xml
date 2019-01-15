@@ -22,10 +22,10 @@
 	
 	<insert id="addSchedule" parameterType="com.tmmmi.service.domain.Schedule">
 	 	INSERT
-		INTO schedule ( user_category_no , user_no , user_category_color , user_category_name ) 
-		VALUES ( user_category_no.nextval , 
+		INTO schedule ( schedule_no , user_no , user_category_no , schedule_title, schedule_detail, schedule_start_date, schedule_end_date, schedule_location, schedule_dday, schedule_important, schedule_alarm_time ) 
+		VALUES ( schedule_no.nextval ,
 				#{userNo} , 
-				#{userCategoryColor} ,
+				#{userCategoryNo} ,
 				#{userCategoryName}
 				)
 	 </insert>

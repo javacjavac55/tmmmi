@@ -703,12 +703,18 @@
   background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA4AAAAOCAYAAAAfSC3RAAAAAXNSR0IArs4c6QAAAKdJREFUKBVjYCATMKLri46Olvn9+3fX////HUByjIyMB1hZWcuWLl36BFktikaQpl+/fl0EKhBCVgRkv2NjY9NH1syErABkE1TTdqBCWRAG8reDxKBycOUoGmHOA2pIA5kOwiA2SDVMDq4TmREaGvofhJHFcLHhfgwLC9sKNNULl0KQODCgtq1atcobxIY7lZAmkGJkNXCNIAlSwIjSCApqIgJnK0wNALoOPwSpOcq0AAAAAElFTkSuQmCC) no-repeat;
 }
 .tui-full-calendar-section-start-date,
-.tui-full-calendar-section-end-date {
-  width: 176px;
+.tui-full-calendar-section-end-date,
+.tui-full-calendar-section-going-duration,
+.tui-full-calendar-section-coming-duration,
+.tui-full-calendar-section-recurrence-rule {
+  width: 186px;
 }
 .tui-full-calendar-section-start-date input,
-.tui-full-calendar-section-end-date input {
-  width: 139px;
+.tui-full-calendar-section-end-date input,
+.tui-full-calendar-section-going-duration input,
+.tui-full-calendar-section-coming-duration input,
+.tui-full-calendar-section-recurrence-rule input {
+  width: 149px;
 }
 .tui-full-calendar-section-start-date:hover .tui-full-calendar-popup-section-item,
 .tui-full-calendar-section-end-date:hover .tui-full-calendar-popup-section-item,
@@ -735,6 +741,13 @@
   padding: 0 0 0 8px;
   cursor: pointer;
 }
+
+.tui-full-calendar-popup-section-item.tui-full-calendar-section-milestone {
+  border: none;
+  padding: 0 0 0 8px;
+  cursor: pointer;
+  margin-left: 100px;
+}
 .tui-full-calendar-popup-section-item.tui-full-calendar-section-location {
   display: block;
 }
@@ -747,8 +760,15 @@
 .tui-full-calendar-popup-section-item.tui-full-calendar-section-allday .tui-full-calendar-content {
   padding-left: 4px;
 }
+
+.tui-full-calendar-popup-section-item.tui-full-calendar-section-milestone .tui-full-calendar-content {
+  padding-left: 4px;
+}
+
 .tui-full-calendar-section-state {
   width: 109px;
+  display: inline-block;
+  margin-left: 15px;
 }
 .tui-full-calendar-section-state .tui-full-calendar-content {
   width: 58px;

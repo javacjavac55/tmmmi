@@ -13,40 +13,25 @@ function ScheduleInfo() {
 
     this.title = null;
     this.body = null;
-    this.isAllday = false;
+    this.location = '';
     this.start = null;
     this.end = null;
-    this.category = '';
-    this.dueDateClass = '';
-
-    this.color = null;
-    this.bgColor = null;
-    this.dragBgColor = null;
-    this.borderColor = null;
-    this.customStyle = '';
-
-    this.isFocused = false;
-    this.isPending = false;
-    this.isVisible = true;
-    this.isReadOnly = false;
     this.goingDuration = 0;
     this.comingDuration = 0;
-    this.recurrenceRule = '';
+    
+    //기념일
+    this.isAllday = false;
+    //기념일 -+ 표시 
+    //busy=- 
+    //free=+
+    this.state = '';
+    
+    //milestone = 중요한 일정
+    this.category = '';
 
-    this.raw = {
-        memo: '',
-        hasToOrCc: false,
-        hasRecurrenceRule: false,
-        location: null,
-        class: 'public', // or 'private'
-        creator: {
-            name: '',
-            avatar: '',
-            company: '',
-            email: '',
-            phone: ''
-        }
-    };
+    //일정 알람 시간
+    this.recurrenceRule = '';
+    
 }
 
 function generateTime(schedule, renderStart, renderEnd) {
@@ -62,7 +47,7 @@ function generateTime(schedule, renderStart, renderEnd) {
     } else if (chance.bool({likelihood: 30})) {
         schedule.category = SCHEDULE_CATEGORY[chance.integer({min: 0, max: 1})];
         if (schedule.category === SCHEDULE_CATEGORY[1]) {
-            schedule.dueDateClass = 'morning';
+        	schedule.category='';
         }
     } else {
         schedule.category = 'time';
@@ -83,8 +68,8 @@ function generateTime(schedule, renderStart, renderEnd) {
         .toDate();
 
     if (!schedule.isAllday && chance.bool({likelihood: 20})) {
-        schedule.goingDuration = chance.integer({min: 30, max: 120});
-        schedule.comingDuration = chance.integer({min: 30, max: 120});;
+        schedule.goingDuration = 30/*chance.integer({min: 30, max: 120})*/;
+        schedule.comingDuration = 60/*chance.integer({min: 30, max: 120})*/;
 
         if (chance.bool({likelihood: 50})) {
             schedule.end = schedule.start;
@@ -100,18 +85,12 @@ function generateRandomSchedule(calendar, renderStart, renderEnd) {
 
     schedule.title = chance.sentence({words: 3});
     schedule.body = chance.bool({likelihood: 20}) ? chance.sentence({words: 10}) : '';
-    schedule.isReadOnly = chance.bool({likelihood: 20});
-    generateTime(schedule, renderStart, renderEnd);
-
-    schedule.isPrivate = chance.bool({likelihood: 10});
     schedule.location = chance.address();
-    schedule.attendees = chance.bool({likelihood: 70}) ? ['anyone']: [];
-    schedule.recurrenceRule = chance.bool({likelihood: 20}) ? 'repeated events' : '';
-
-    schedule.color = calendar.color;
-    schedule.bgColor = calendar.bgColor;
-    schedule.dragBgColor = calendar.dragBgColor;
-    schedule.borderColor = calendar.borderColor;
+    
+    generateTime(schedule, renderStart, renderEnd);
+    schedule.state = chance.bool({likelihood: 50}) ? 'Busy' : 'Free';
+    
+    schedule.recurrenceRule = chance.bool({likelihood: 20}) ? '12:30' : '08:20';
 
     if (schedule.category === 'milestone') {
         schedule.color = schedule.bgColor;
@@ -119,14 +98,7 @@ function generateRandomSchedule(calendar, renderStart, renderEnd) {
         schedule.dragBgColor = 'transparent';
         schedule.borderColor = 'transparent';
     }
-
-    schedule.raw.memo = chance.sentence();
-    schedule.raw.creator.name = chance.name();
-    schedule.raw.creator.avatar = chance.avatar();
-    schedule.raw.creator.company = chance.company();
-    schedule.raw.creator.email = chance.email();
-    schedule.raw.creator.phone = chance.phone();
-
+    
     ScheduleList.push(schedule);
 }
 

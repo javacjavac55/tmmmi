@@ -41,14 +41,14 @@
         'clickDayname': function(date) {
             console.log('clickDayname', date);
         },
-        'beforeCreateSchedule': function(e) {
+        'beforeCreateSchedule': function(e) {        	
             console.log('beforeCreateSchedule', e);
             addSchedule(e);
             saveNewSchedule(e);
         },
         'beforeUpdateSchedule': function(e) {
         	alert("updateSchedule")
-            console.log('beforeUpdateSchedule', e);
+            console.log('beforeUpdateSchedule', e.schedule.raw.memo);
             e.schedule.start = e.start;
             e.schedule.end = e.end;
             cal.updateSchedule(e.schedule.id, e.schedule.calendarId, e.schedule);
@@ -203,6 +203,7 @@
 
     function onNewSchedule() {
         var title = $('#new-schedule-title').val();
+        alert("onNewSchedule: " +title);
         var location = $('#new-schedule-location').val();
         var isAllDay = document.getElementById('new-schedule-allday').checked;
         var start = datePicker.getStartDate();
@@ -280,7 +281,12 @@
             bgColor: calendar.bgColor,
             dragBgColor: calendar.bgColor,
             borderColor: calendar.borderColor,
-            location: scheduleData.location
+            location: scheduleData.location,
+            goingDuration: scheduleData.goingDuration,
+            comingDuration: scheduleData.comingDuration,
+            state: scheduleData.state,
+            category: scheduleData.category,
+            recurrenceRule: scheduleData.recurrenceRule
         };
         if (calendar) {
             schedule.calendarId = calendar.id;

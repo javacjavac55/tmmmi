@@ -8395,9 +8395,8 @@ Calendar.prototype.createSchedules = function(schedules, silent) {
 
     util.forEach(schedules, function(obj) {
         var color = calColor[obj.calendarId];
-
         if (color) {
-            obj.color = color.color;
+        	obj.color = color.color;
             obj.bgColor = color.bgColor;
             obj.borderColor = color.borderColor;
         }
@@ -16904,23 +16903,14 @@ Schedule.prototype.init = function(options) {
     this.title = options.title || '';
     this.body = options.body || '';
     this.isAllDay = util.isExisty(options.isAllDay) ? options.isAllDay : false;
-    this.isVisible = util.isExisty(options.isVisible) ? options.isVisible : true;
-
-    this.color = options.color || this.color;
-    this.bgColor = options.bgColor || this.bgColor;
-    this.dragBgColor = options.dragBgColor || this.dragBgColor;
-    this.borderColor = options.borderColor || this.borderColor;
+    
+    
     this.calendarId = options.calendarId || '';
     this.category = options.category || '';
-    this.dueDateClass = options.dueDateClass || '';
-    this.customStyle = options.customStyle || '';
+    
     this.location = options.location || '';
-    this.attendees = options.attendees || [];
     this.recurrenceRule = options.recurrenceRule || '';
-    this.isPrivate = options.isPrivate || false;
-    this.isPending = options.isPending || false;
-    this.isFocused = options.isFocused || false;
-    this.isReadOnly = options.isReadOnly || false;
+    
     this.goingDuration = options.goingDuration || 0;
     this.comingDuration = options.comingDuration || 0;
     this.state = options.state || '';
@@ -16931,11 +16921,24 @@ Schedule.prototype.init = function(options) {
         this.setTimePeriod(options.start, options.end);
     }
 
-    if (options.category === SCHEDULE_CATEGORY.MILESTONE ||
+    /*if (options.category === SCHEDULE_CATEGORY.MILESTONE ||
         options.category === SCHEDULE_CATEGORY.TASK) {
         this.start = new TZDate(this.end);
-    }
+    }*/
 
+    //사용 안 함
+    this.isVisible = util.isExisty(options.isVisible) ? options.isVisible : true;
+    this.color = options.color || this.color;
+    this.bgColor = options.bgColor || this.bgColor;
+    this.dragBgColor = options.dragBgColor || this.dragBgColor;
+    this.borderColor = options.borderColor || this.borderColor;
+    this.dueDateClass = options.dueDateClass || '';
+    this.customStyle = options.customStyle || '';
+    this.attendees = options.attendees || [];
+    this.isPrivate = options.isPrivate || false;
+    this.isPending = options.isPending || false;
+    this.isFocused = options.isFocused || false;
+    this.isReadOnly = options.isReadOnly || false;
     this.raw = options.raw || null;
 };
 
@@ -18801,6 +18804,7 @@ function ScheduleCreationPopup(container, calendars) {
         this._closePopup.bind(this),
         this._toggleDropdownMenuView.bind(this),
         this._toggleIsAllday.bind(this),
+        this._toggleIsMilestone.bind(this),
         this._toggleIsPrivate.bind(this),
         this._onClickSaveSchedule.bind(this)
     ];
@@ -18966,6 +18970,26 @@ ScheduleCreationPopup.prototype._toggleIsAllday = function(target) {
 };
 
 /**
+ * Toggle milestone checkbox state
+ * @param {HTMLElement} target click event target
+ * @returns {boolean} whether event target is milestone section or not
+ */
+ScheduleCreationPopup.prototype._toggleIsMilestone = function(target) {
+    var className = config.classname('section-milestone');
+    var milestoneSection = domutil.hasClass(target, className) ? target : domutil.closest(target, '.' + className);
+    var checkbox;
+
+    if (milestoneSection) {
+        checkbox = domutil.find(config.classname('.checkbox-square'), milestoneSection);
+        checkbox.checked = !checkbox.checked;
+
+        return true;
+    }
+
+    return false;
+};
+
+/**
  * Toggle private button
  * @param {HTMLElement} target click event target
  * @returns {boolean} whether event target is private section or not
@@ -18999,6 +19023,9 @@ ScheduleCreationPopup.prototype._onClickSaveSchedule = function(target) {
     var cssPrefix = config.cssPrefix;
     var title, body, location, isAllDay, startDate, endDate;
     var start, end, calendarId;
+    var goingDuration, comingDuration;
+    var state, category, recurrenceRule;
+    
 
     if (!domutil.hasClass(target, className) && !domutil.closest(target, '.' + className)) {
         return false;
@@ -19021,6 +19048,14 @@ ScheduleCreationPopup.prototype._onClickSaveSchedule = function(target) {
 
     location = domutil.get(cssPrefix + 'schedule-location');
     isAllDay = !!domutil.get(cssPrefix + 'schedule-allday').checked;
+    var categoryCheck = domutil.get(cssPrefix + 'schedule-milestone').checked;
+    if(categoryCheck) {
+    	category = ['milestone'];
+    } else if (isAllDay) {
+    	category = ['allday'];
+    } else {
+    	category = ['time'];
+    }
 
     if (isAllDay) {
         startDate.setHours(0);
@@ -19033,6 +19068,15 @@ ScheduleCreationPopup.prototype._onClickSaveSchedule = function(target) {
 
     start = new TZDate(startDate);
     end = new TZDate(endDate);
+
+    goingDuration = domutil.get(cssPrefix + 'schedule-going-duration');
+    comingDuration = domutil.get(cssPrefix + 'schedule-coming-duration');
+    
+    state = domutil.get(cssPrefix + 'schedule-state');
+    
+    
+    
+    recurrenceRule = domutil.get(cssPrefix + 'schedule-recurrence-rule');
 
     if (this._selectedCal) {
         calendarId = this._selectedCal.id;
@@ -19049,7 +19093,12 @@ ScheduleCreationPopup.prototype._onClickSaveSchedule = function(target) {
                 end: end,
                 isAllDay: isAllDay,
                 triggerEventName: 'click',
-                id: this._schedule.id
+                id: this._schedule.id,
+                goingDuration: goingDuration.value,
+                comingDuration: comingDuration.value,
+                state: state.innerText, 
+                category: category, 
+                recurrenceRule: recurrenceRule.value
             },
             start: start,
             end: end,
@@ -19069,7 +19118,12 @@ ScheduleCreationPopup.prototype._onClickSaveSchedule = function(target) {
             location: location.value,
             start: new TZDate(startDate),
             end: new TZDate(endDate),
-            isAllDay: isAllDay
+            isAllDay: isAllDay,
+            goingDuration: goingDuration.value,
+            comingDuration: comingDuration.value,
+            state: state.innerText, 
+            category: category, 
+            recurrenceRule: recurrenceRule.value
         });
     }
 
@@ -19946,15 +20000,15 @@ Handlebars.registerHelper({
         var hour = parseInt(goingDuration / SIXTY_MINUTES, 10);
         var minutes = goingDuration % SIXTY_MINUTES;
 
-        return 'GoingTime ' + datetime.leadingZero(hour, 2) + ':' + datetime.leadingZero(minutes, 2);
+        return '가는 시간 ' + datetime.leadingZero(hour, 2) + ':' + datetime.leadingZero(minutes, 2);
     },
 
     'comingDuration-tmpl': function(model) {
-        var goingDuration = model.goingDuration;
-        var hour = parseInt(goingDuration / SIXTY_MINUTES, 10);
-        var minutes = goingDuration % SIXTY_MINUTES;
+        var comingDuration = model.comingDuration;
+        var hour = parseInt(comingDuration / SIXTY_MINUTES, 10);
+        var minutes = comingDuration % SIXTY_MINUTES;
 
-        return 'ComingTime ' + datetime.leadingZero(hour, 2) + ':' + datetime.leadingZero(minutes, 2);
+        return '오는 시간 ' + datetime.leadingZero(hour, 2) + ':' + datetime.leadingZero(minutes, 2);
     },
 
     'monthMoreTitleDate-tmpl': function(date, dayname) {
@@ -20039,13 +20093,17 @@ Handlebars.registerHelper({
     'popupIsAllDay-tmpl': function() {
         return '기념일';
     },
+    
+    'popupMilestone-tmpl': function() {
+        return '중요한 일정';
+    },
 
     'popupStateFree-tmpl': function() {
-        return 'Free';
+        return 'D+Day';
     },
 
     'popupStateBusy-tmpl': function() {
-        return 'Busy';
+        return 'D-Day';
     },
 
     'titlePlaceholder-tmpl': function() {
@@ -20067,6 +20125,19 @@ Handlebars.registerHelper({
     'endDatePlaceholder-tmpl': function() {
         return '끝 시간';
     },
+    
+    'goingDurationPlaceholder-tmpl': function() {
+        return '가는 시간 (분)';
+    },
+    
+    'comingDurationPlaceholder-tmpl': function() {
+        return '오는 시간 (분)';
+    },
+    
+    'recurrenceRulePlaceholder-tmpl': function() {
+        return '일정 알람 시간 (분 전)';
+    },
+    
     'popupSave-tmpl': function() {
         return '등록';
     },
@@ -20092,7 +20163,7 @@ Handlebars.registerHelper({
         return creator;
     },
     'popupDetailState-tmpl': function(schedule) {
-        return schedule.state || 'Busy';
+        return schedule.state || '';
     },
     'popupDetailRepeat-tmpl': function(schedule) {
         return schedule.recurrenceRule;
@@ -20849,7 +20920,8 @@ module.exports = (Handlebars['default'] || Handlebars).template({"1":function(co
   return container.escapeExpression(((helper = (helper = helpers["popupSave-tmpl"] || (depth0 != null ? depth0["popupSave-tmpl"] : depth0)) != null ? helper : helpers.helperMissing),(typeof helper === "function" ? helper.call(depth0 != null ? depth0 : (container.nullContext || {}),{"name":"popupSave-tmpl","hash":{},"data":data}) : helper)));
 },"compiler":[7,">= 4.0.0"],"main":function(container,depth0,helpers,partials,data) {
     var stack1, helper, alias1=depth0 != null ? depth0 : (container.nullContext || {}), alias2=helpers.helperMissing, alias3="function", alias4=container.escapeExpression, alias5=container.lambda;
-
+    
+  
   return "<div class=\""
     + alias4(((helper = (helper = helpers.CSS_PREFIX || (depth0 != null ? depth0.CSS_PREFIX : depth0)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"CSS_PREFIX","hash":{},"data":data}) : helper)))
     + "popup\">\n    <div class=\""
@@ -20913,19 +20985,6 @@ module.exports = (Handlebars['default'] || Handlebars).template({"1":function(co
     + "\" value=\""
     + alias4(((helper = (helper = helpers.title || (depth0 != null ? depth0.title : depth0)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"title","hash":{},"data":data}) : helper)))
     + "\"></span>\n            </div>\n"
-    /*+ "\"></span>\n            </div>\n            <button id=\""
-    + alias4(((helper = (helper = helpers.CSS_PREFIX || (depth0 != null ? depth0.CSS_PREFIX : depth0)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"CSS_PREFIX","hash":{},"data":data}) : helper)))
-    + "schedule-private\" class=\""
-    + alias4(((helper = (helper = helpers.CSS_PREFIX || (depth0 != null ? depth0.CSS_PREFIX : depth0)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"CSS_PREFIX","hash":{},"data":data}) : helper)))
-    + "button "
-    + alias4(((helper = (helper = helpers.CSS_PREFIX || (depth0 != null ? depth0.CSS_PREFIX : depth0)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"CSS_PREFIX","hash":{},"data":data}) : helper)))
-    + "section-private"
-    + ((stack1 = helpers.unless.call(alias1,(depth0 != null ? depth0.isPrivate : depth0),{"name":"unless","hash":{},"fn":container.program(5, data, 0),"inverse":container.noop,"data":data})) != null ? stack1 : "")
-    + "\">\n            <span class=\""
-    + alias4(((helper = (helper = helpers.CSS_PREFIX || (depth0 != null ? depth0.CSS_PREFIX : depth0)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"CSS_PREFIX","hash":{},"data":data}) : helper)))
-    + "icon "
-    + alias4(((helper = (helper = helpers.CSS_PREFIX || (depth0 != null ? depth0.CSS_PREFIX : depth0)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"CSS_PREFIX","hash":{},"data":data}) : helper)))
-    + "ic-private\"></span>\n            </button>\n        </div>\n        <div class=\""*/
     
     //내용
     + "</div>\n        <div class=\""
@@ -20966,9 +21025,10 @@ module.exports = (Handlebars['default'] || Handlebars).template({"1":function(co
     + alias4(((helper = (helper = helpers["locationPlaceholder-tmpl"] || (depth0 != null ? depth0["locationPlaceholder-tmpl"] : depth0)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"locationPlaceholder-tmpl","hash":{},"data":data}) : helper)))
     + "\" value=\""
     + alias4(((helper = (helper = helpers.location || (depth0 != null ? depth0.location : depth0)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"location","hash":{},"data":data}) : helper)))
-    + "\"></span>\n            </div>\n        </div>\n        <div class=\""
+    + "\"></span>\n            </div>\n        </div>\n      "
     
-    //시작, 끝, 기념일
+    //시작, 끝
+    +"  <div class=\""
     + alias4(((helper = (helper = helpers.CSS_PREFIX || (depth0 != null ? depth0.CSS_PREFIX : depth0)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"CSS_PREFIX","hash":{},"data":data}) : helper)))
     + "popup-section\">\n            <div class=\""
     + alias4(((helper = (helper = helpers.CSS_PREFIX || (depth0 != null ? depth0.CSS_PREFIX : depth0)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"CSS_PREFIX","hash":{},"data":data}) : helper)))
@@ -21004,7 +21064,47 @@ module.exports = (Handlebars['default'] || Handlebars).template({"1":function(co
     + alias4(((helper = (helper = helpers["endDatePlaceholder-tmpl"] || (depth0 != null ? depth0["endDatePlaceholder-tmpl"] : depth0)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"endDatePlaceholder-tmpl","hash":{},"data":data}) : helper)))
     + "\"></span>\n                <div id=\""
     + alias4(((helper = (helper = helpers.CSS_PREFIX || (depth0 != null ? depth0.CSS_PREFIX : depth0)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"CSS_PREFIX","hash":{},"data":data}) : helper)))
-    + "endpicker-container\" style=\"margin-left: -1px; position: relative\"></div>\n            </div>\n            <div class=\""
+    + "endpicker-container\" style=\"margin-left: -1px; position: relative\"></div>\n            </div>\n           </div>\n  "
+    
+    //가는 시간, 오는 시간
+    +"<div class=\""
+    + alias4(((helper = (helper = helpers.CSS_PREFIX || (depth0 != null ? depth0.CSS_PREFIX : depth0)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"CSS_PREFIX","hash":{},"data":data}) : helper)))
+    + "popup-section\">\n     <div class=\""
+    + alias4(((helper = (helper = helpers.CSS_PREFIX || (depth0 != null ? depth0.CSS_PREFIX : depth0)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"CSS_PREFIX","hash":{},"data":data}) : helper)))
+    + "popup-section-item "
+    + alias4(((helper = (helper = helpers.CSS_PREFIX || (depth0 != null ? depth0.CSS_PREFIX : depth0)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"CSS_PREFIX","hash":{},"data":data}) : helper)))
+    + "section-going-duration\">\n                <span class=\""
+    + alias4(((helper = (helper = helpers.CSS_PREFIX || (depth0 != null ? depth0.CSS_PREFIX : depth0)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"CSS_PREFIX","hash":{},"data":data}) : helper)))
+    + "icon "
+    + alias4(((helper = (helper = helpers.CSS_PREFIX || (depth0 != null ? depth0.CSS_PREFIX : depth0)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"CSS_PREFIX","hash":{},"data":data}) : helper)))
+    + "ic-date\"></span>\n                <input id=\""
+    + alias4(((helper = (helper = helpers.CSS_PREFIX || (depth0 != null ? depth0.CSS_PREFIX : depth0)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"CSS_PREFIX","hash":{},"data":data}) : helper)))
+    + "schedule-going-duration\" class=\""
+    + alias4(((helper = (helper = helpers.CSS_PREFIX || (depth0 != null ? depth0.CSS_PREFIX : depth0)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"CSS_PREFIX","hash":{},"data":data}) : helper)))
+    + "content\" placeholder=\""
+    + alias4(((helper = (helper = helpers["goingDurationPlaceholder-tmpl"] || (depth0 != null ? depth0["goingDurationPlaceholder-tmpl"] : depth0)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"goingDurationPlaceholder-tmpl","hash":{},"data":data}) : helper)))
+    + "\"></span>\n     </div>\n            <span class=\""
+    + alias4(((helper = (helper = helpers.CSS_PREFIX || (depth0 != null ? depth0.CSS_PREFIX : depth0)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"CSS_PREFIX","hash":{},"data":data}) : helper)))
+    + "section-date-dash\">&nbsp;</span>\n            <div class=\""
+    + alias4(((helper = (helper = helpers.CSS_PREFIX || (depth0 != null ? depth0.CSS_PREFIX : depth0)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"CSS_PREFIX","hash":{},"data":data}) : helper)))
+    + "popup-section-item "
+    + alias4(((helper = (helper = helpers.CSS_PREFIX || (depth0 != null ? depth0.CSS_PREFIX : depth0)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"CSS_PREFIX","hash":{},"data":data}) : helper)))
+    + "section-coming-duration\">\n                <span class=\""
+    + alias4(((helper = (helper = helpers.CSS_PREFIX || (depth0 != null ? depth0.CSS_PREFIX : depth0)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"CSS_PREFIX","hash":{},"data":data}) : helper)))
+    + "icon "
+    + alias4(((helper = (helper = helpers.CSS_PREFIX || (depth0 != null ? depth0.CSS_PREFIX : depth0)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"CSS_PREFIX","hash":{},"data":data}) : helper)))
+    + "ic-date\"></span>\n                <input id=\""
+    + alias4(((helper = (helper = helpers.CSS_PREFIX || (depth0 != null ? depth0.CSS_PREFIX : depth0)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"CSS_PREFIX","hash":{},"data":data}) : helper)))
+    + "schedule-coming-duration\" class=\""
+    + alias4(((helper = (helper = helpers.CSS_PREFIX || (depth0 != null ? depth0.CSS_PREFIX : depth0)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"CSS_PREFIX","hash":{},"data":data}) : helper)))
+    + "content\" placeholder=\""
+    + alias4(((helper = (helper = helpers["comingDurationPlaceholder-tmpl"] || (depth0 != null ? depth0["comingDurationPlaceholder-tmpl"] : depth0)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"comingDurationPlaceholder-tmpl","hash":{},"data":data}) : helper)))
+    + "\"></span>\n        </div>\n           </div>\n "
+    
+    //기념일
+    +"<div class=\""
+    + alias4(((helper = (helper = helpers.CSS_PREFIX || (depth0 != null ? depth0.CSS_PREFIX : depth0)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"CSS_PREFIX","hash":{},"data":data}) : helper)))
+    + "popup-section\">\n            <div class=\""
     + alias4(((helper = (helper = helpers.CSS_PREFIX || (depth0 != null ? depth0.CSS_PREFIX : depth0)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"CSS_PREFIX","hash":{},"data":data}) : helper)))
     + "popup-section-item "
     + alias4(((helper = (helper = helpers.CSS_PREFIX || (depth0 != null ? depth0.CSS_PREFIX : depth0)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"CSS_PREFIX","hash":{},"data":data}) : helper)))
@@ -21022,62 +21122,10 @@ module.exports = (Handlebars['default'] || Handlebars).template({"1":function(co
     + alias4(((helper = (helper = helpers.CSS_PREFIX || (depth0 != null ? depth0.CSS_PREFIX : depth0)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"CSS_PREFIX","hash":{},"data":data}) : helper)))
     + "content\">"
     + alias4(((helper = (helper = helpers["popupIsAllDay-tmpl"] || (depth0 != null ? depth0["popupIsAllDay-tmpl"] : depth0)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"popupIsAllDay-tmpl","hash":{},"data":data}) : helper)))
-    + "</span>\n            </div>\n        </div>\n  "
-   /* + "</span>\n            </div>\n        </div>\n  <div class=\""
+    + "</span>\n            </div>\n         "
     
-    //가는 시간, 오는 시간, 중요한 일정
-    + alias4(((helper = (helper = helpers.CSS_PREFIX || (depth0 != null ? depth0.CSS_PREFIX : depth0)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"CSS_PREFIX","hash":{},"data":data}) : helper)))
-    + "popup-section\">\n     <div class=\""
-    + alias4(((helper = (helper = helpers.CSS_PREFIX || (depth0 != null ? depth0.CSS_PREFIX : depth0)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"CSS_PREFIX","hash":{},"data":data}) : helper)))
-    + "popup-section-item "
-    + alias4(((helper = (helper = helpers.CSS_PREFIX || (depth0 != null ? depth0.CSS_PREFIX : depth0)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"CSS_PREFIX","hash":{},"data":data}) : helper)))
-    + "section-going-time\">\n                <span class=\""
-    + alias4(((helper = (helper = helpers.CSS_PREFIX || (depth0 != null ? depth0.CSS_PREFIX : depth0)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"CSS_PREFIX","hash":{},"data":data}) : helper)))
-    + "icon "
-    + alias4(((helper = (helper = helpers.CSS_PREFIX || (depth0 != null ? depth0.CSS_PREFIX : depth0)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"CSS_PREFIX","hash":{},"data":data}) : helper)))
-    + "ic-date\"></span>\n                <input id=\""
-    + alias4(((helper = (helper = helpers.CSS_PREFIX || (depth0 != null ? depth0.CSS_PREFIX : depth0)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"CSS_PREFIX","hash":{},"data":data}) : helper)))
-    + "schedule-going-time\" class=\""
-    + alias4(((helper = (helper = helpers.CSS_PREFIX || (depth0 != null ? depth0.CSS_PREFIX : depth0)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"CSS_PREFIX","hash":{},"data":data}) : helper)))
-    + "content\" placeholder=\""
-    + alias4(((helper = (helper = helpers["goingTimePlaceholder-tmpl"] || (depth0 != null ? depth0["goingTimePlaceholder-tmpl"] : depth0)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"goingTimePlaceholder-tmpl","hash":{},"data":data}) : helper)))
-    + "\"></span>\n     </div>\n            <span class=\""
-    + alias4(((helper = (helper = helpers.CSS_PREFIX || (depth0 != null ? depth0.CSS_PREFIX : depth0)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"CSS_PREFIX","hash":{},"data":data}) : helper)))
-    + "section-date-dash\">&nbsp;</span>\n            <div class=\""
-    + alias4(((helper = (helper = helpers.CSS_PREFIX || (depth0 != null ? depth0.CSS_PREFIX : depth0)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"CSS_PREFIX","hash":{},"data":data}) : helper)))
-    + "popup-section-item "
-    + alias4(((helper = (helper = helpers.CSS_PREFIX || (depth0 != null ? depth0.CSS_PREFIX : depth0)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"CSS_PREFIX","hash":{},"data":data}) : helper)))
-    + "section-coming-time\">\n                <span class=\""
-    + alias4(((helper = (helper = helpers.CSS_PREFIX || (depth0 != null ? depth0.CSS_PREFIX : depth0)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"CSS_PREFIX","hash":{},"data":data}) : helper)))
-    + "icon "
-    + alias4(((helper = (helper = helpers.CSS_PREFIX || (depth0 != null ? depth0.CSS_PREFIX : depth0)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"CSS_PREFIX","hash":{},"data":data}) : helper)))
-    + "ic-date\"></span>\n                <input id=\""
-    + alias4(((helper = (helper = helpers.CSS_PREFIX || (depth0 != null ? depth0.CSS_PREFIX : depth0)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"CSS_PREFIX","hash":{},"data":data}) : helper)))
-    + "schedule-coming-time\" class=\""
-    + alias4(((helper = (helper = helpers.CSS_PREFIX || (depth0 != null ? depth0.CSS_PREFIX : depth0)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"CSS_PREFIX","hash":{},"data":data}) : helper)))
-    + "content\" placeholder=\""
-    + alias4(((helper = (helper = helpers["comingTimePlaceholder-tmpl"] || (depth0 != null ? depth0["comingTimePlaceholder-tmpl"] : depth0)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"comingTimePlaceholder-tmpl","hash":{},"data":data}) : helper)))
-    + "\"></span>\n        </div>\n            <div class=\""
-    + alias4(((helper = (helper = helpers.CSS_PREFIX || (depth0 != null ? depth0.CSS_PREFIX : depth0)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"CSS_PREFIX","hash":{},"data":data}) : helper)))
-    + "popup-section-item "
-    + alias4(((helper = (helper = helpers.CSS_PREFIX || (depth0 != null ? depth0.CSS_PREFIX : depth0)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"CSS_PREFIX","hash":{},"data":data}) : helper)))
-    + "section-milestone\">\n                <input id=\""
-    + alias4(((helper = (helper = helpers.CSS_PREFIX || (depth0 != null ? depth0.CSS_PREFIX : depth0)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"CSS_PREFIX","hash":{},"data":data}) : helper)))
-    + "schedule-milestone\" type=\"checkbox\" class=\""
-    + alias4(((helper = (helper = helpers.CSS_PREFIX || (depth0 != null ? depth0.CSS_PREFIX : depth0)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"CSS_PREFIX","hash":{},"data":data}) : helper)))
-    + "checkbox-square\""
-    + ((stack1 = helpers["if"].call(alias1,(depth0 != null ? depth0.category : depth0),{"name":"if","hash":{},"fn":container.program(7, data, 0),"inverse":container.noop,"data":data})) != null ? stack1 : "")
-    + "></input>\n                <span class=\""
-    + alias4(((helper = (helper = helpers.CSS_PREFIX || (depth0 != null ? depth0.CSS_PREFIX : depth0)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"CSS_PREFIX","hash":{},"data":data}) : helper)))
-    + "icon "
-    + alias4(((helper = (helper = helpers.CSS_PREFIX || (depth0 != null ? depth0.CSS_PREFIX : depth0)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"CSS_PREFIX","hash":{},"data":data}) : helper)))
-    + "ic-checkbox\"></span>\n                <span class=\""
-    + alias4(((helper = (helper = helpers.CSS_PREFIX || (depth0 != null ? depth0.CSS_PREFIX : depth0)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"CSS_PREFIX","hash":{},"data":data}) : helper)))
-    + "content\">"
-    + alias4(((helper = (helper = helpers["popupMilestone-tmpl"] || (depth0 != null ? depth0["popupMilestone-tmpl"] : depth0)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"popupMilestone-tmpl","hash":{},"data":data}) : helper)))
-    + "</span>\n            </div>\n        </div>\n"    */
-    
-    /*+ "</span>\n            </div>\n        </div>\n        <div class=\""
+    //d+-day 표시
+    + "<div class=\""
     + alias4(((helper = (helper = helpers.CSS_PREFIX || (depth0 != null ? depth0.CSS_PREFIX : depth0)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"CSS_PREFIX","hash":{},"data":data}) : helper)))
     + "popup-section "
     + alias4(((helper = (helper = helpers.CSS_PREFIX || (depth0 != null ? depth0.CSS_PREFIX : depth0)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"CSS_PREFIX","hash":{},"data":data}) : helper)))
@@ -21100,7 +21148,8 @@ module.exports = (Handlebars['default'] || Handlebars).template({"1":function(co
     + "schedule-state\" class=\""
     + alias4(((helper = (helper = helpers.CSS_PREFIX || (depth0 != null ? depth0.CSS_PREFIX : depth0)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"CSS_PREFIX","hash":{},"data":data}) : helper)))
     + "content\">"
-    + ((stack1 = helpers["if"].call(alias1,(depth0 != null ? depth0.state : depth0),{"name":"if","hash":{},"fn":container.program(9, data, 0),"inverse":container.program(11, data, 0),"data":data})) != null ? stack1 : "")
+    /*+ ((stack1 = helpers["if"].call(alias1,(depth0 != null ? depth0.state : depth0),{"name":"if","hash":{},"fn":container.program(9, data, 0),"inverse":container.program(11, data, 0),"data":data})) != null ? stack1 : "")*/
+    +"표시"
     + "</span>\n                <span class=\""
     + alias4(((helper = (helper = helpers.CSS_PREFIX || (depth0 != null ? depth0.CSS_PREFIX : depth0)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"CSS_PREFIX","hash":{},"data":data}) : helper)))
     + "icon "
@@ -21133,9 +21182,52 @@ module.exports = (Handlebars['default'] || Handlebars).template({"1":function(co
     + alias4(((helper = (helper = helpers.CSS_PREFIX || (depth0 != null ? depth0.CSS_PREFIX : depth0)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"CSS_PREFIX","hash":{},"data":data}) : helper)))
     + "content\">"
     + alias4(((helper = (helper = helpers["popupStateFree-tmpl"] || (depth0 != null ? depth0["popupStateFree-tmpl"] : depth0)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"popupStateFree-tmpl","hash":{},"data":data}) : helper)))
-    + "</span>\n                </li>\n            </ul>\n        </div>\n        <button class=\""*/
+    + "</span>\n                </li>\n            </ul>\n        </div>\n        "
     
-    + "<button class=\""
+    //중요한 일정
+    +"<div class=\""
+    + alias4(((helper = (helper = helpers.CSS_PREFIX || (depth0 != null ? depth0.CSS_PREFIX : depth0)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"CSS_PREFIX","hash":{},"data":data}) : helper)))
+    + "popup-section-item "
+    + alias4(((helper = (helper = helpers.CSS_PREFIX || (depth0 != null ? depth0.CSS_PREFIX : depth0)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"CSS_PREFIX","hash":{},"data":data}) : helper)))
+    + "section-milestone\">\n                <input id=\""
+    + alias4(((helper = (helper = helpers.CSS_PREFIX || (depth0 != null ? depth0.CSS_PREFIX : depth0)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"CSS_PREFIX","hash":{},"data":data}) : helper)))
+    + "schedule-milestone\" type=\"checkbox\" class=\""
+    + alias4(((helper = (helper = helpers.CSS_PREFIX || (depth0 != null ? depth0.CSS_PREFIX : depth0)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"CSS_PREFIX","hash":{},"data":data}) : helper)))
+    + "checkbox-square\""
+    + ((stack1 = helpers["if"].call(alias1,(depth0 != null ? depth0.category : depth0),{"name":"if","hash":{},"fn":container.program(7, data, 0),"inverse":container.noop,"data":data})) != null ? stack1 : "")
+    + "></input>\n                <span class=\""
+    + alias4(((helper = (helper = helpers.CSS_PREFIX || (depth0 != null ? depth0.CSS_PREFIX : depth0)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"CSS_PREFIX","hash":{},"data":data}) : helper)))
+    + "icon "
+    + alias4(((helper = (helper = helpers.CSS_PREFIX || (depth0 != null ? depth0.CSS_PREFIX : depth0)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"CSS_PREFIX","hash":{},"data":data}) : helper)))
+    + "ic-checkbox\"></span>\n                <span class=\""
+    + alias4(((helper = (helper = helpers.CSS_PREFIX || (depth0 != null ? depth0.CSS_PREFIX : depth0)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"CSS_PREFIX","hash":{},"data":data}) : helper)))
+    + "content\">"
+    + alias4(((helper = (helper = helpers["popupMilestone-tmpl"] || (depth0 != null ? depth0["popupMilestone-tmpl"] : depth0)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"popupMilestone-tmpl","hash":{},"data":data}) : helper)))
+    + "</span>\n            </div>\n       </div>\n "
+   
+    //알람 시간
+    +"<div class=\""
+    + alias4(((helper = (helper = helpers.CSS_PREFIX || (depth0 != null ? depth0.CSS_PREFIX : depth0)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"CSS_PREFIX","hash":{},"data":data}) : helper)))
+    + "popup-section\">\n            <div class=\""
+    + alias4(((helper = (helper = helpers.CSS_PREFIX || (depth0 != null ? depth0.CSS_PREFIX : depth0)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"CSS_PREFIX","hash":{},"data":data}) : helper)))
+    + "popup-section-item "
+    + alias4(((helper = (helper = helpers.CSS_PREFIX || (depth0 != null ? depth0.CSS_PREFIX : depth0)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"CSS_PREFIX","hash":{},"data":data}) : helper)))
+    + "section-recurrence-rule\">\n            <span class=\""
+    + alias4(((helper = (helper = helpers.CSS_PREFIX || (depth0 != null ? depth0.CSS_PREFIX : depth0)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"CSS_PREFIX","hash":{},"data":data}) : helper)))
+    + "icon "
+    + alias4(((helper = (helper = helpers.CSS_PREFIX || (depth0 != null ? depth0.CSS_PREFIX : depth0)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"CSS_PREFIX","hash":{},"data":data}) : helper)))
+    + "ic-state\"></span>\n                <input id=\""
+    + alias4(((helper = (helper = helpers.CSS_PREFIX || (depth0 != null ? depth0.CSS_PREFIX : depth0)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"CSS_PREFIX","hash":{},"data":data}) : helper)))
+    + "schedule-recurrence-rule\" class=\""
+    + alias4(((helper = (helper = helpers.CSS_PREFIX || (depth0 != null ? depth0.CSS_PREFIX : depth0)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"CSS_PREFIX","hash":{},"data":data}) : helper)))
+    + "content\" placeholder=\""
+    + alias4(((helper = (helper = helpers["recurrenceRulePlaceholder-tmpl"] || (depth0 != null ? depth0["recurrenceRulePlaceholder-tmpl"] : depth0)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"recurrenceRulePlaceholder-tmpl","hash":{},"data":data}) : helper)))
+    + "\" value=\""
+    + alias4(((helper = (helper = helpers.recurrenceRule || (depth0 != null ? depth0.recurrenceRule : depth0)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"recurrenceRule","hash":{},"data":data}) : helper)))
+    + "\"></span>\n            </div>\n        </div>\n      "
+    
+    //버튼
+    +" <button class=\""
     + alias4(((helper = (helper = helpers.CSS_PREFIX || (depth0 != null ? depth0.CSS_PREFIX : depth0)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"CSS_PREFIX","hash":{},"data":data}) : helper)))
     + "button "
     + alias4(((helper = (helper = helpers.CSS_PREFIX || (depth0 != null ? depth0.CSS_PREFIX : depth0)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"CSS_PREFIX","hash":{},"data":data}) : helper)))
