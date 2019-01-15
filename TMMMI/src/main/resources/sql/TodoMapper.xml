@@ -16,20 +16,14 @@
 		</resultMap>
 		
 		<insert id="addTodo" parameterType="com.tmmmi.service.domain.ToDo">
-			INSERT INTO todo (todo_no, user_no, todo_detail, todo_start_date, todo_end_date, todo_delete_check)
-			VALUES (todo_no.nextval, 7, #{toDoDetail}, #{toDoStartDate}, #{toDoEndDate}, 0)
+			INSERT INTO todo (todo_no, user_no, todo_detail, todo_start_date, todo_end_date)
+			VALUES (todo_no.nextval, 7, #{toDoDetail}, #{toDoStartDate}, #{toDoEndDate})
 		</insert>
 		
-		<update id="updateTodo" parameterType="com.tmmmi.service.domain.ToDo">
-			UPDATE todo
-		<set>
-			todo_detail = #{toDoDetail},
-			todo_start_date = #{toDoStartDate},
-			todo_end_date = #{toDoEndDate}
-		</set>
-		WHERE user_no = 7
-		AND todo_no = #{toDoNo}
-		</update>
+		<insert id="addTodoComplete" parameterType="com.tmmmi.service.domain.ToDo">
+			INSERT INTO todo_complete (todo_no, user_no, todo_complete_no, todo_complete_date)
+			VALUES (#{toDoNo}, #{userNo}, todo_complete_no.nextval, #{toDoCompleteDate})
+		</insert>
 		
 		<delete id="deleteTodo" parameterType="com.tmmmi.service.domain.ToDo" >
   			DELETE FROM todo WHERE todo_no = (SELECT t.todo_no

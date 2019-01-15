@@ -39,6 +39,13 @@ public class ToDoRestController {
 		toDoService.updateToDo(toDo);
 		System.out.println("/updateToDo 완료");	
 	}
-	public void updateToDoCheck() {}
-	public void deleteToDo() {}
+	public void updateToDoComplete() {}
+	@RequestMapping(value="/updateToDoComplete", method=RequestMethod.POST)
+	public void deleteToDo(@RequestBody ToDo toDo)throws Exception {
+		System.out.println("/deleteToDo 접근");
+		System.out.println(toDo);
+		toDo.setUserNo(7);
+		toDoService.deleteToDo(toDo);
+		System.out.println("/deleteToDo 완료");
+	}
 }

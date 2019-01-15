@@ -32,7 +32,17 @@
 		FROM (	SELECT inner_table.* , ROWNUM AS row_seq
 			FROM		(	SELECT faq_no, user_center_category, faq_title, faq_detail, faq_date
 								FROM faq
-								) inner_table
+								<if test="searchCondition != null">
+									<where>
+									<if test="searchCondition == 0 and searchKeyword !='' ">
+										faq_title=#{searchKeyword}
+									</if>
+									<if test="searchCondition == 1 and searchKeyword != '' ">
+										faq_detail=#{searchKeyword} 
+									</if>
+									</where>
+								</if>
+								ORDER BY faq_no ) inner_table
 						WHERE ROWNUM &lt;= #{endRowNum} )
 		WHERE row_seq BETWEEN #{startRowNum} AND #{endRowNum} 
 	 </select>
@@ -46,10 +56,19 @@
 	 
 	 <!-- SQL : UPDATE -->
 	 <update	id="updateFAQ"	parameterType="com.tmmmi.service.domain.FAQ" >
-	   	UPDATE FAQ
-	   	<set>
+	   	UPDATE faq
+	   	<set>	
+	   		user_center_category = #{FAQCategory},
+	   		faq_title = #{FAQTitle},
+	   		faq_detail = #{FAQDetail}
 	   	</set>
+	   	WHERE faq_no = #{FAQNo}
 	 </update>
-		 
+		
+	 <select	id="getFAQ"	 parameterType="com.tmmmi.service.domain.FAQ" resultMap="FAQSelectMap">
+	   	SELECT faq_no, user_center_category, faq_title, faq_detail, faq_date
+	   	FROM faq
+		WHERE faq_no= #{value}
+	 </select>
 	
 </mapper>
