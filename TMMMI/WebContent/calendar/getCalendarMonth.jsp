@@ -131,7 +131,7 @@
 			addCalendar(calendar);
 		</c:forEach>
     </script>
-    <script src="/javascript/tui/data/schedules.js"></script>
+    <script src="/javascript/tui/data/schedules.js" charset="utf-8"></script>
     <script src="/javascript/tui/theme/dooray.js"></script>
     <script src="/javascript/tui/default.js" charset="utf-8"></script>
     

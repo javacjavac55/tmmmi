@@ -88,9 +88,9 @@ function generateRandomSchedule(calendar, renderStart, renderEnd) {
     schedule.location = chance.address();
     
     generateTime(schedule, renderStart, renderEnd);
-    schedule.state = chance.bool({likelihood: 50}) ? 'Busy' : 'Free';
+    schedule.state = chance.bool({likelihood: 50}) ? 'D-Day' : 'D+Day';
     
-    schedule.recurrenceRule = chance.bool({likelihood: 20}) ? '12:30' : '08:20';
+    schedule.recurrenceRule = chance.bool({likelihood: 20}) ? '50분 전' : '30분 전';
 
     if (schedule.category === 'milestone') {
         schedule.color = schedule.bgColor;
