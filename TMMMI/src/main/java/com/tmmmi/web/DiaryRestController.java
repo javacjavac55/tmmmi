@@ -29,7 +29,7 @@ public class DiaryRestController {
 		System.out.println(this.getClass());
 	}
 	
-	@RequestMapping(value="imageDiary", method=RequestMethod.POST)
+	@RequestMapping(value="imageDiary", method=RequestMethod.POST, produces="text/plain;charset=UTF-8")
 	public void profileUpload(MultipartFile file, HttpServletRequest request, HttpServletResponse response) throws Exception{
 		System.out.println("실행");
 		response.setContentType("text/html;charset=utf-8");
@@ -38,10 +38,9 @@ public class DiaryRestController {
 		/*String realFolder = request.getSession().getServletContext().getRealPath("C:\\Users\\Bit\\git\\tmmmi\\TMMMI\\WebContent\\resources\\images\\diaryImage");*/
 		String realFolder = "C:\\Users\\Bit\\git\\tmmmi\\TMMMI\\WebContent\\resources\\images\\diaryImage";
 		
-		UUID uuid = UUID.randomUUID();
 		
 		String orgFilename = file.getOriginalFilename();
-		String strFilename = uuid.toString() + orgFilename;
+		String strFilename = System.currentTimeMillis()+"."+file.getOriginalFilename().split("\\.")[1];
 		
 		System.out.println("원본 파일명 : "+ orgFilename);
 		System.out.println("저장할 파일명: "+ strFilename);
