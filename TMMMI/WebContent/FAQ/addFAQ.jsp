@@ -96,7 +96,7 @@
 				<button type="button" class="btn btn-default;">±Û Á¦¸ñ</button>
 			</div>
 			<div class="col-md-8">
-				 <input type="text" class="form-control" name="FAQTitle" placeholder=" ">
+				 <input type="text" class="form-control" name="FAQTitle">
 			</div>
 		</div>
 	
