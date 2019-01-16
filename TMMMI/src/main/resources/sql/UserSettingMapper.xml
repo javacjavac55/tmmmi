@@ -17,20 +17,17 @@
 	</resultMap>
 	
 	<!-- SQL : INSERT -->
-	<insert id="addUserSetting" parameterType="com.tmmmi.service.domain.UserSetting">
+	<insert id="addUserSetting" parameterType="int">
 		INSERT
 		INTO user_setting(user_setting_no, user_no, main_color_mode_no, menu_background_color, menu_font_color, 
-		show_scrap_alarm, scrap_alarm_time)
+		show_scrap_alarm)
 		VALUES(
 			user_setting_no.nextval,
-			#{userNo},
-			#{mainColorModeNo:NUMERIC},
-			<if test="menuBackgroundColor == null">'#E8F5FF',</if>
-			<if test="menuBackgroundColor != null">#{menuBackgroundColor},</if>
-			<if test="menuFontColor == null">'#000000',</if>
-			<if test="menuFontColor != null">#{menuFontColor},</if>
-			#{showScrapAlarm:NUMERIC},
-			#{scrapAlarmTime:VARCHAR}
+			#{value},
+			0,
+			'#E8F5FF',
+			'#000000',
+			0
 		)
 	</insert>
 	

@@ -5,7 +5,6 @@
 <head>
 <title>회원 가입</title>
 	<meta http-equiv="Content-Type" content="text/html; charset=EUC-KR">
-	<meta charset="EUC-KR">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 	
 	<!-- bootstrap -->
@@ -19,6 +18,7 @@
 	<!-- styleSheet -->
 	<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
 	<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+	
 	<!-- 버튼 이벤트 -->
 	<script type="text/javascript">
 		//============= "가입"  Event 연결 =============
@@ -26,14 +26,13 @@
 			$( "button.btn.btn-primary" ).on("click" , function() {
 				fncAddUser();
 			});
-		});	
-		
+		});
 		//============= "취소"  Event 처리 및  연결 =============
 		$(function() {
 			$("a[href='#' ]").on("click" , function() {
 				$("form")[0].reset();
 			});
-		});
+		});	
 		
 		//회원 입력 정보 값 체크
 		function fncAddUser() {
@@ -136,11 +135,11 @@
 	            	
 	            	if(result){
 	            		console.log(result)
-	            		if($('#join').length==0 && inputed.length>5){
+	            		if($('#join').length==0 && inputed.length>4){
 	            			$('#help').remove()
 	            			$($("#joinhelpBlock").last().after('<strong class="text-success" id="help">가입 가능한 아이디입니다.</strong>'))
 	            			$($(".col-sm-4").last()).after('<div class="col-sm-offset-4  col-sm-4 text-center" id="join">'
-	            					+'<button type="button" class="btn btn-primary"  >가&nbsp;입</button>'
+	            					+'<button type="button" class="btn btn-primary"  >가 &nbsp;입</button>'
 		            				+'<a class="btn btn-danger btn" href="#" role="button">취&nbsp;&nbsp;소</a></div>')
 	            		}
 	            	}else{

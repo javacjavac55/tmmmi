@@ -22,9 +22,7 @@
 	
 	<!-- 지영 -->
 	<a href="/user/addUser.jsp">회원가입</a><br/>
-	<a href="/user/getUser?userNo=${userNo }">회원정보보기</a><br/>
 	<a href="/user/login.jsp">로그인</a><br/>
-	<a href="/user/updateUser?userNo=${userNo }">유저업데이트</a><br/>
 	<a href="/user/getUserList">회원 리스트</a><br/>
 	
 	<!-- 중열 -->
@@ -41,7 +39,8 @@
 	<!-- 지슬 -->
 	<!-- <a href="/QNA/contentBox.jsp">컨텐츠박스ㅎ_ㅎ나중에하시면수정해드려여</a><br/> -->
 	<a href="/faq/getFAQList">FAQ 리스트</a><br/>
-	<!-- <a href="/FAQ/addFAQ.jsp">FAQ 작성</a><br/> -->
+	<a href="/QNA/listQNA.jsp">QNA 리스트</a><br/>
+	<a href="/qna/getQNAList">QNA 리스트(!!)</a><br/>
 	
 </body>
 

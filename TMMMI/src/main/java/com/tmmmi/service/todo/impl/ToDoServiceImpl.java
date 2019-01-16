@@ -44,7 +44,6 @@ public class ToDoServiceImpl implements ToDoService {
 
 	@Override
 	public void deleteToDo(ToDo toDo)throws Exception {
-		System.out.println("deleteToDoService Á¢±Ù");
 		toDoDao.deleteToDo(toDo);
 	}
 
@@ -55,9 +54,8 @@ public class ToDoServiceImpl implements ToDoService {
 	}
 
 	@Override
-	public void updateToDoCheck() {
-		// TODO Auto-generated method stub
-		
+	public void updateToDoComplete(ToDo toDo) throws Exception{
+		toDoDao.updateToDoComplete(toDo);
 	}
 
 	@Override

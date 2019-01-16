@@ -20,22 +20,22 @@
 	</resultMap>
 	
 	<!-- SQL : INSERT -->
-	<insert id="addCalendarSetting" parameterType="com.tmmmi.service.domain.CalendarSetting">
+	<insert id="addCalendarSetting" parameterType="int">
 		INSERT
 		INTO calendar_setting (calendar_setting_no, user_no, main_calendar_type, calendar_start_day, show_movie, show_sport_oversea_soccer, 
 		show_sport_soccer, show_sport_oversea_baseball, show_sport_baseball, show_sport_oversea_basketball, show_sport_basketball)
 		VALUES(
 			calendar_setting_no.nextval,
-			#{userNo},
-			#{mainCalendarType},
-			#{calendarStartDay},
-			#{showMovie},
-			#{showSportOverseaSoccer},
-			#{showSportSoccer},
-			#{showSportOverseaBaseball},
-			#{showSportBaseball},
-			#{showSportOverseaBasketball},
-			#{showSportBasketball}
+			#{value},
+			0,
+			0,
+			0,
+			0,
+			0,
+			0,
+			0,
+			0,
+			0
 		)
 	</insert>
 	
