@@ -24,12 +24,12 @@
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" >
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" >
 	<script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
-	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" ></script>
-	<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
 	
-	<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-	<script type="text/javascript" src="../javascript/calendar.js"></script>
 	
+	<!-- summernote -->
+	<script src="http://netdna.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.js"></script>		
+	<link href="/css/summernote.css" rel="stylesheet">
+  	<script src="/javascript/summernote.js"></script>
        
    <style>
 		body {
@@ -40,9 +40,47 @@
 
 <script type="text/javascript">
 
-	function fncAddProduct(){
+
+$(document).ready(function() {    	   		
+	$('#summernote').summernote({  	        
+    height:"400px",
+    width: "700px",
+  	minHeight: null,
+  	maxHeight: null,
+  	focus: true,
+  	callbacks: {
+  		onImageUpload: function(files, editor, welEditable){
+  			console.log(files);
+  			console.log(files[0]);	      			
+  			var form_data = new FormData();
+  			form_data.append("file", files[0]);
+  			
+  			var $note = $(this);
+  			console.log("abcd");
+  			$.ajax({
+  	    		data: form_data,
+  	    		type: "POST",
+  	    		url: '/diaryRest/imageDiary',
+  	    		cache: false,
+  	    		contentType: false,	      	    		
+  	    		enctype: 'multipart/form-data',
+  	    		processData: false,
+  	    		success: function(url){
+  	    			alert("here");
+  	    			/* fncLoading(); */
+  	    			$note.summernote('insertImage',url);	      	    			
+  	    		}
+  	    	});
+  		}
+  	}
+  
+	});
+  /* $('textarea[name="Contents"]').html($('.summernote').code()); */
+});
+	
+	function fncUpdateDiary(){
 	//Form 유효성 검증
-		var prodName=$("input[name='prodName']").val();
+		/* var prodName=$("input[name='prodName']").val();
 		var prodDetail=$("input[name='prodDetail']").val();
 		var manuDate =$("input[name='manuDate']").val();
 		var price =$("input[name='price']").val();
@@ -62,33 +100,29 @@
 		if(price == null || price.length<1){
 			alert("가격은 반드시 입력하셔야 합니다.");
 			return;
-		}
+		} */
 			
 		/* document.detailForm.action='/product/updateProduct?menu=manage';
 		document.detailForm.submit(); */
-		$('form[name="detailForm"]').attr("method" , "POST").attr("enctype","multipart/form-data").attr("action" , "/product/updateProduct").submit();
+		$('form[name="updateDiary"]').attr("method" , "POST").attr("enctype","multipart/form-data").attr("action" , "/diary/updateDiary").submit();
 	}
 	
 	
-	$(function() {
 		//==> DOM Object GET 3가지 방법 ==> 1. $(tagName) : 2.(#id) : 3.$(.className)
 		//==> 1 과 3 방법 조합 : $("tagName.className:filter함수") 사용함.	
-		 $( "button.btn.btn-primary" ).on("click" , function() {
+		 $( "#update" ).on("click" , function() {
 			//Debug..
 			//alert(  $( "td.ct_btn01:contains('가입')" ).html() );
 			 fncUpdateDiary();
 		});
-	});	
-	
-	$(function() {
 		//==> DOM Object GET 3가지 방법 ==> 1. $(tagName) : 2.(#id) : 3.$(.className)
 		//==> 1 과 3 방법 조합 : $("tagName.className:filter함수") 사용함.	
-		 $( "button.btn.btn-primary.btn" ).on("click" , function() {
+		 $("#cancel").on("click" , function() {
 				//Debug..
 				//alert(  $( "td.ct_btn01:contains('취소')" ).html() );
 			 history.go(-1);
 		});
-	});	
+	
 </script>
 </head>
 
@@ -96,45 +130,56 @@
 	<div class="container">
 	
 		
-<form name="detailForm" class="form-horizontal">
+<form name="updateDiary" class="form-horizontal">
 
 <%--<input type="hidden" name="prodNo" value="<%= product.getProdNo()%>"/> --%> 
 	<input type="hidden" name="diaryNo" value="${diary.diaryNo}"/>
 	
 	<div class="page-header text-center">
-	       <h3 class=" text-info">상품정보수정</h3>
-	       <h5 class="text-muted">상품 정보를 <strong class="text-danger">최신정보로 관리</strong>해 주세요.</h5>
+	       <h3 class=" text-info">다이어리 수정</h3>	       
     </div>
 	    
 		<div class="form-group">
-		    <label for="diaryNo" class="col-sm-offset-1 col-sm-3 control-label">상 품 명</label>
+		    <label for="diaryNo" class="col-sm-offset-1 col-sm-3 control-label">다이어리 번호</label>
 		    <div class="col-sm-4">
-		      <input type="text" class="form-control" id="prodName" name="prodName" value="${product.prodName}">
+		      <input type="text" class="form-control" id="diaryNo" name="diaryNo" value="${diary.diaryNo}">
 		    </div>
 		</div>
 		 <div class="form-group">
-		   <label for="userCategory" class="col-sm-offset-1 col-sm-3 control-label">상품상세정보</label>
+		   <label for="userCategory" class="col-sm-offset-1 col-sm-3 control-label">유저카테고리</label>
 		   <div class="col-sm-4">
-		     <input type="text" class="form-control" id="prodDetail" name="prodDetail" value="${product.prodDetail}">
+		     <input type="text" class="form-control" id="userCategory" name="userCategoryNo" value="${diary.userCategoryNo}">
 		   </div>
 		 </div>
 		  <div class="form-group">
-		    <label for="diaryTitle" class="col-sm-offset-1 col-sm-3 control-label">제조일자</label>
+		    <label for="diaryTitle" class="col-sm-offset-1 col-sm-3 control-label">제목</label>
 		    <div class="col-sm-4">
-		      <input type="text" class="form-control" id="manuDate" name="manuDate" value="${product.manuDate}">
+		      <input type="text" class="form-control" id="diaryTitle" name="diaryTitle" value="${diary.diaryTitle}">
 		    </div>
 		  </div>
 		  <div class="form-group">
-		    <label for="diaryDetail" class="col-sm-offset-1 col-sm-3 control-label">가격</label>
+		    <label for="diaryDetail" class="col-sm-offset-1 col-sm-3 control-label">내용</label>
 		    <div class="col-sm-4">
-		      <input type="text" class="form-control" id="price" name="price" value="${product.price}">
+		      <textarea id="summernote" class="form-control" name="diaryDetail">
+		      ${diary.diaryDetail }
+		      </textarea>
 		    </div>
 		  </div>
 		  <div class="form-group">
-		    <label for="uploadFile" class="col-sm-offset-1 col-sm-3 control-label">상품이미지</label>
+		    <label for="uploadFile" class="col-sm-offset-1 col-sm-3 control-label">작성날짜</label>
 		    <div class="col-sm-4">
-		      <input type="file" class="form-control" id="uploadFile" name="uploadFile" value="${product.fileName}">		      
+		     <div class="col-xs-8 col-md-4">${diary.diaryDate}</div>		      
 		    </div>
 		  </div>
+		  
+		  <div class="form-group">
+		    <div class="col-sm-offset-4  col-sm-4 text-center">
+		      <button type="button" id="update" class="btn btn-primary" data-param2=${diary.diaryNo } >수정</button>
+			  <a class="btn btn-primary btn" id="cancel" href="#" role="button">취소</a>
+		    </div>
+		</div>
+		<hr/>
+	</form>
+</div>
 </body>
 </html>

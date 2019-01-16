@@ -52,4 +52,16 @@ public class UserSetting {
 		this.scrapAlarmTime = scrapAlarmTime;
 	}
 	
+	@Override
+	public String toString() {
+		return "UserSetting [userNo=" + userNo + ", userSettingNo=" + userSettingNo + ", mainColorModeNo="
+				+ mainColorModeNo + ", menuBackgroundColor=" + menuBackgroundColor + ", menuFontColor=" + menuFontColor
+				+ ", showScrapAlarm=" + showScrapAlarm + ", scrapAlarmTime=" + scrapAlarmTime + ", getUserNo()="
+				+ getUserNo() + ", getUserSettingNo()=" + getUserSettingNo() + ", getMainColorModeNo()="
+				+ getMainColorModeNo() + ", getMenuBackgroundColor()=" + getMenuBackgroundColor()
+				+ ", getMenuFontColor()=" + getMenuFontColor() + ", getShowScrapAlarm()=" + getShowScrapAlarm()
+				+ ", getScrapAlarmTime()=" + getScrapAlarmTime() + ", getClass()=" + getClass() + ", hashCode()="
+				+ hashCode() + ", toString()=" + super.toString() + "]";
+	}
+	
 }

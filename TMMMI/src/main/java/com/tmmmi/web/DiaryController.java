@@ -108,7 +108,43 @@ public class DiaryController {
 		
 		return modelAndView;
 	}
-	public void updateDiary() {}
-	public void deleteDiary() {}
+	
+	@RequestMapping(value="updateDiary", method=RequestMethod.GET)
+	public ModelAndView updateDiary(@RequestParam("diaryNo")int diaryNo)throws Exception {
+		System.out.println("/diary/updateDiary : GET");
+		Diary diary = diaryService.getDiary(diaryNo);
+		
+		ModelAndView modelAndView = new ModelAndView();
+		modelAndView.addObject("diary",diary);
+		modelAndView.setViewName("/diary/updateDiary.jsp");
+		
+		return modelAndView;
+	}
+	@RequestMapping(value="updateDiary", method=RequestMethod.POST)
+	public ModelAndView updateDiary(@ModelAttribute("diary") Diary diary) throws Exception{
+		System.out.println("/diary/updateDiary : POST");
+		
+		diaryService.updateDiary(diary);
+		
+		ModelAndView modelAndView = new ModelAndView();
+		modelAndView.addObject("diary", diary);
+		modelAndView.setViewName("redirect:/diary/getDiary");
+		
+		return modelAndView;
+	}
+	@RequestMapping(value="deleteDiary", method=RequestMethod.GET)	
+	public void deleteDiary(@RequestParam("diaryNo")int diaryNo)  throws Exception{
+		System.out.println("/diary/deleteDiary");
+		
+		Diary diary = diaryService.getDiary(diaryNo);
+		
+		diaryService.deleteDiary(diaryNo);
+		
+		
+		
+		ModelAndView modelAndView = new ModelAndView();
+		modelAndView.addObject("diary", diary);
+		
+	}
 
 }

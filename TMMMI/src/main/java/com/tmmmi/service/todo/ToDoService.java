@@ -10,7 +10,7 @@ public interface ToDoService {
 	public void addToDo(ToDo toDo) throws Exception;
 	public void deleteToDo(ToDo toDo) throws Exception;
 	public void updateToDo(ToDo toDo) throws Exception;
-	public void updateToDoCheck();
+	public void updateToDoComplete(ToDo toDo) throws Exception;
 	public void getToDoDayGraph();
 	public void getToDoMonthGraph();
 	public void getToDoWordCloud();

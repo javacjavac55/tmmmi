@@ -20,12 +20,10 @@ public class ContentSettingServiceTest {
 	@Qualifier("contentSettingServiceImpl")
 	private ContentSettingService contentSettingService;
 	
-	//@Test
+	@Test
 	public void testAddContentSetting() throws Exception{
-		ContentSetting contentSetting = new ContentSetting();
-		contentSetting.setUserNo(1);
 		
-		contentSettingService.addContentSetting(contentSetting);
+		contentSettingService.addContentSetting(21);
 		
 	}
 	
@@ -36,7 +34,7 @@ public class ContentSettingServiceTest {
 		Assert.assertEquals(1, contentSetting.getUserNo());
 	}
 	
-	@Test
+	//@Test
 	public void testUpdateContentSetting() throws Exception{
 		ContentSetting contentSetting = new ContentSetting();
 		contentSetting.setUserNo(1);
