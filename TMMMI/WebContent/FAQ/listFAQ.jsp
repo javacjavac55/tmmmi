@@ -17,9 +17,6 @@
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" >
 	<script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" ></script>
-
-	
-	<script src="http://code.jquery.com/jquery-2.1.4.min.js"></script>
 	
 	<script type="text/javascript">
 	
@@ -55,14 +52,10 @@
 		 });
  	});
 	
-	
-
 </script>
 
 <style>
 		.title{cursor:pointer;}
-
-
 </style>
 
 </head>
@@ -83,18 +76,15 @@
 						value="${! empty search.searchKeyword ? search.searchKeyword : ""}"  
 						class="ct_input_g" style="width:200px; height:25px" > 
 			<button type="button" class="btn btn-default" style="height:27px;">검색</button>
-		</div>
-			
+		</div>		
 	</div>
-	
-	
 	
 	<table class="table table-striped table-hover">
 		<thead>
 			<tr>
-			<th class="col-md-1 text-center">No.</th>
-			<th class="col-md-6">제목</th>
-			<th class="col-md-1 text-center">작성날짜</th>
+				<th class="col-md-1 text-center">No.</th>
+				<th class="col-md-6">제목</th>
+				<th class="col-md-1 text-center">작성날짜</th>
 			</tr>
 		</thead>
 
@@ -108,10 +98,8 @@
 					<td class="text-center">${faq.FAQDate}</td>
 				</tr>
 				<tr class="hide${faq.FAQNo} hide" >
-					<td> </td>
 					<td class="detail" >${faq.FAQDetail}
 					<a class= "btn btn-default pull-right" data-param2="${faq.FAQNo}">수정하기</a></td>
-					<td> </td>
 				</tr>
 			</c:forEach>
 		</tbody>			
