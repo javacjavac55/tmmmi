@@ -56,9 +56,10 @@ public class ToDoDaoImpl implements ToDoDao {
 	}
 
 	@Override
-	public void updateToDoCheck() {
-		// TODO Auto-generated method stub
-		
+	public void updateToDoComplete(ToDo toDo) throws Exception {
+		System.out.println("updateToDoCompleteDao Á¢±Ù");
+		System.out.println(toDo);
+		sqlSession.insert("TodoMapper.addTodoComplete", toDo);
 	}
 
 	@Override

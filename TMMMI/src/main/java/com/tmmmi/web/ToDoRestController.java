@@ -24,14 +24,6 @@ public class ToDoRestController {
 	}
 	
 	///Method
-	/*@RequestMapping(value="/addToDo", method=RequestMethod.POST)
-	public String addToDo(@RequestBody ToDo toDo) throws Exception{
-		System.out.println("/addToDo 접근");
-		System.out.println(toDo);
-		toDoService.addToDo(toDo);
-		System.out.println("/addToDo 완료");
-		return null;
-	}*/
 	@RequestMapping(value="/updateToDo", method=RequestMethod.POST)
 	public void updateToDo(@RequestBody ToDo toDo) throws Exception{
 		System.out.println("/updateToDo 접근");
@@ -39,13 +31,18 @@ public class ToDoRestController {
 		toDoService.updateToDo(toDo);
 		System.out.println("/updateToDo 완료");	
 	}
-	public void updateToDoComplete() {}
-	@RequestMapping(value="/updateToDoComplete", method=RequestMethod.POST)
+	@RequestMapping(value="/deleteToDo", method=RequestMethod.POST)
 	public void deleteToDo(@RequestBody ToDo toDo)throws Exception {
 		System.out.println("/deleteToDo 접근");
 		System.out.println(toDo);
-		toDo.setUserNo(7);
-		toDoService.deleteToDo(toDo);
+		toDoService.updateToDoComplete(toDo);
 		System.out.println("/deleteToDo 완료");
+	}
+	@RequestMapping(value="/updateToDoComplete", method=RequestMethod.POST)
+	public void updateToDoComplete(@RequestBody ToDo toDo) throws Exception{
+		System.out.println("/updateToDoComplete 접근");
+		System.out.println(toDo);
+		toDoService.addToDo(toDo);
+		System.out.println("/updateToDoComplete 완료");
 	}
 }

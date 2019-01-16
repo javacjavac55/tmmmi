@@ -46,10 +46,31 @@
                 })
             });
             
+/////////////////////////////////////// 할 일 수정 변환버튼////////////////////////////////
+            $(function () {
+                $(".btn.btn-primary.updateViewbtn").on("click", function () {
+                    var todoNo = $(this).data("utodonov");
+                    var today = new Date();
+                    var picker2 = tui.DatePicker.createRangePicker({
+                        startpicker: {
+                            input: '#addToDoStartDate'+todoNo,
+                            container: '#startpicker-container'+todoNo
+                        },
+                        endpicker: {
+                            date: today,
+                            input: '#addToDoEndDate'+todoNo,
+                            container: '#endpicker-container'+todoNo
+                        }
+                    });
+                    $("#todolist" + todoNo).toggleClass("hide");
+                    $("#retodolist" + todoNo).toggleClass("show");
+                })
+            });
+            
             ///////////////////////////////// 할 일 수정/////////////////////////////////////
             $(function () {
                 $(".btn.btn-primary.updateToDobtn").on("click", function () {
-                    var todoNo = $(this).data("param");
+                    var todoNo = $(this).data("utodono");
                     console.log(todoNo);
                     $.ajax({
                         url: "/todoRest/updateToDo",
@@ -62,19 +83,18 @@
                             {
                                 toDoNo: todoNo,
                                 toDoDetail: $("#toDoDetail" + todoNo).val(),
-                                toDoStartDate: $("#toDoStartDate" + todoNo).val(),
-                                toDoEndDate: $("#toDoEndDate" + todoNo).val()
+                                toDoStartDate: $("#addToDoStartDate" + todoNo).val(),
+                                toDoEndDate: $("#addToDoEndDate" + todoNo).val()
                             }
                         ),
                         dataType: 'json',
                         success: $(function () {
-                            $("#todolist" + todoNo).toggleClass("hide");
-                            $("#retodolist" + todoNo).toggleClass("show");
-                            history.go(0);
+                        	history.go(0);
                         })
                     })
                 })
             });
+            
             /////////////////////////////////////할 일 삭제/////////////////////////////////////////
             $(function () {
                 $(".btn.btn-danger.deletebtn").on("click", function () {
@@ -99,19 +119,16 @@
                     })
                 })
             });
-            /////////////////////////////////////// 할 일 수정 변환버튼////////////////////////////////
-            $(function () {
-                $(".btn.btn-primary.updateViewbtn").on("click", function () {
-                    var todoNo = $(this).data("param");
-                    $("#todolist" + todoNo).toggleClass("hide");
-                    $("#retodolist" + todoNo).toggleClass("show");
-                })
-            });
+            
             /////////////////////////////////////// 할 일 완료////////////////////////////////////////
 			$(function () {
-                $("input .checkbox").on("click", function () {
-                    var toDoCompleteDate = $(this).data("dtodono");
-                    console.log(deleteToDoNo);
+				var ctodono = $(this).data("ctodono");
+                $("checkbox"+ctodono).on("click", function () {
+                    var ToDay = new Date()
+                	var y = new Date(ToDay.getFullYear(),ToDay.getMonth(),ToDay.getDate() - 34)
+                	y.getFullYear() + "-" + (y.getMonth() +1 < 10? "0" +  (y.getMonth() +1): y.getMonth() +1 ) + "-" +(y.getDate() < 10? "0" +  y.getDate(): y.getDate())
+                    console.log(ctodono);
+                    console.log(y);
                     $.ajax({
                         url: "/todoRest/updateToDoComplete",
                         method: 'POST',
@@ -121,7 +138,8 @@
                         },
                         data: JSON.stringify(
                             {
-                            	toDoNo: deleteToDoNo
+                            	toDoNo: ctodono,
+                            	toDoCompleteDate : y
                             }
                         ),
                         dataType: 'json',
@@ -136,17 +154,14 @@
             var today = new Date();
             var picker = tui.DatePicker.createRangePicker({
                 startpicker: {
-                    input: '#startpicker-input, .updateToDo',
+                    input: '#startpicker-input',
                     container: '#startpicker-container'
                 },
                 endpicker: {
                     date: today,
-                    input: '#endpicker-input, .updateToDo',
+                    input: '#endpicker-input',
                     container: '#endpicker-container'
-                },
-                selectableRanges: [
-                    [today, new Date(today.getFullYear() + 1, today.getMonth(), today.getDate())]
-                ]
+                }
             });
             });
             // 할 일 체크
@@ -158,16 +173,6 @@
 	
 	(y.getDate() < 10? "0" +  y.getDate(): y.getDate())
 	 */
-            // datepicker 기능
-           /*  $(function () {
-                $(".toDoStartDate, .updateToDo").datepicker({dateFormat: 'yy-mm-dd'});
-                $(".toDoEndDate, .updateToDo").datepicker({dateFormat: 'yy-mm-dd'}).bind("change", function () {
-                    var minValue = $(this).val();
-                    minValue = $.datepicker.parseDate("yy-mm-dd", minValue);
-                    minValue.setDate(minValue.getDate()+1);
-                    $("#toDoEndDate").datepicker("option", "minDate", minValue);
-                });
-            }); */
         </script>
     </head>
     <body>
@@ -183,13 +188,13 @@
                                 <input class="form-control" id="addToDoDetail" name="toDoDetail" placeholder="할 일을 입력해주세요" type="text">
                             </div>
                              <div class="tui-datepicker-input tui-datetime-input tui-has-focus">
-						        <input id="startpicker-input" type="text" aria-label="Date"  id="addToDoStartDate" name="toDoStartDate" placeholder="시작 날짜">
+						        <input id="startpicker-input" type="text" aria-label="Date" name="toDoStartDate" placeholder="시작 날짜" autocomplete="off">
 						        <span class="tui-ico-date"></span>
 						        <div id="startpicker-container" style="margin-left: -1px;"></div>
 						    </div>
 						    <span>to</span>
 						    <div class="tui-datepicker-input tui-datetime-input tui-has-focus">
-						        <input id="endpicker-input" type="text" aria-label="Date" id="addToDoEndDate" name="toDoEndDate" placeholder="종료 날짜">
+						        <input id="endpicker-input" type="text" aria-label="Date" id="addToDoEndDate" name="toDoEndDate" placeholder="종료 날짜" autocomplete="off">
 						        <span class="tui-ico-date"></span>
 						        <div id="endpicker-container" style="margin-left: -1px;"></div>
 						    </div>
@@ -231,9 +236,9 @@
                     <div class="col-md-3">${todo.toDoEndDate}</div>
                     <div class="col-md-3">
                     	<label>
-            			<input class="checkbox" type="checkbox" value="" data-param="${todo.toDoNo}">
+            			<input class="checkbox${todo.toDoNo}" type="checkbox" data-ctodono="${todo.toDoNo}">
             			</label>
-                        <button aria-label="Left Align" class="btn btn-primary updateViewbtn" data-param="${todo.toDoNo}" type="button">
+                        <button aria-label="Left Align" class="btn btn-primary updateViewbtn" data-utodonov="${todo.toDoNo}" type="button">
                             <span aria-hidden="true" class="glyphicon glyphicon-pencil"></span>
                         </button>
                         <button aria-label="Left Align" class="btn btn-danger deletebtn" data-dtodono="${todo.toDoNo}" type="button">
@@ -245,19 +250,19 @@
                     <div class="col-md-3"><input class="updateToDoDetail" id="toDoDetail${todo.toDoNo}" name="toDoDetail" type="text" value="${todo.toDoDetail}">
                     </div>
                     <div class="tui-datepicker-input tui-datetime-input tui-has-focus col-md-3">
-						        <input id="startpicker-input" type="text" aria-label="Date" class="updateToDo"  id="addToDoStartDate${todo.toDoNo}" name="toDoStartDate" value="${todo.toDoStartDate}" autocomplete="off">
+						        <input type="text" aria-label="Date" class="updateToDo"  id="addToDoStartDate${todo.toDoNo}" name="toDoStartDate" value="${todo.toDoStartDate}" autocomplete="off">
 						        <span class="tui-ico-date"></span>
-						        <div id="startpicker-container" style="margin-left: -1px;"></div>
+						        <div id="startpicker-container${todo.toDoNo}" style="margin-left: -1px;"></div>
 						    </div>
 						    <div class="tui-datepicker-input tui-datetime-input tui-has-focus col-md-3">
-						        <input id="endpicker-input" type="text" aria-label="Date" class="updateToDo" id="addToDoEndDate${todo.toDoNo}" name="toDoEndDate" value="${todo.toDoEndDate}" autocomplete="off">
+						        <input type="text" aria-label="Date" class="updateToDoEnd" id="addToDoEndDate${todo.toDoNo}" name="toDoEndDate" value="${todo.toDoEndDate}" autocomplete="off">
 						        <span class="tui-ico-date"></span>
-						        <div id="endpicker-container" style="margin-left: -1px;"></div>
+						        <div id="endpicker-container${todo.toDoNo}" style="margin-left: -1px;"></div>
 						    </div>
                     <%-- <div class="col-md-3"><input autocomplete="off" class="updateToDo" id="toDoStartDate${todo.toDoNo}" name="toDoStartDate" type="text" value="${todo.toDoStartDate}"></div>
                     <div class="col-md-3"><input autocomplete="off" class="updateToDo" id="toDoEndDate${todo.toDoNo}" name="toDoEndDate" type="text" value="${todo.toDoEndDate}"></div> --%>
                     <div class="col-md-3">
-                        <button aria-label="Left Align" class="btn btn-primary updateToDobtn" data-param="${todo.toDoNo}" type="button">
+                        <button aria-label="Left Align" class="btn btn-primary updateToDobtn" data-utodono="${todo.toDoNo}" type="button">
                             <span aria-hidden="true" class="glyphicon glyphicon-pencil"></span>
                         </button>
                     </div>
