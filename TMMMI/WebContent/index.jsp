@@ -22,9 +22,7 @@
 	
 	<!-- 지영 -->
 	<a href="/user/addUser.jsp">회원가입</a><br/>
-	<a href="/user/getUser?userNo=${userNo }">회원정보보기</a><br/>
 	<a href="/user/login.jsp">로그인</a><br/>
-	<a href="/user/updateUser?userNo=${userNo }">유저업데이트</a><br/>
 	<a href="/user/getUserList">회원 리스트</a><br/>
 	
 	<!-- 중열 -->

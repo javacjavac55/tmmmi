@@ -24,8 +24,8 @@ public class ContentSettingServiceImpl implements ContentSettingService {
 	}
 
 	@Override
-	public void addContentSetting(ContentSetting contentSetting){
-		contentSettingDao.addContentSetting(contentSetting);
+	public void addContentSetting(int userNo){
+		contentSettingDao.addContentSetting(userNo);
 	}
 
 	@Override

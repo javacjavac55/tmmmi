@@ -74,34 +74,25 @@
 	</insert>
 	
 	<!-- SQL : INSERT(shopping_keyword) -->
-	<insert id="addShoppingKeyword" parameterType="com.tmmmi.service.domain.ContentSetting">
+	<insert id="addShoppingKeyword" parameterType="int">
 		INSERT
-		INTO shopping_keyword(shopping_keyword_no, shopping_search_1, shopping_search_2, shopping_search_3, shopping_review)
+		INTO shopping_keyword(shopping_keyword_no)
 		VALUES(
-			(SELECT shopping_keyword_no FROM content_setting WHERE user_no = #{userNo}),
-			#{shoppingSearch1:VARCHAR},
-			#{shoppingSearch2:VARCHAR},
-			#{shoppingSearch3:VARCHAR},
-			#{shoppingReview:VARCHAR}
+			(SELECT shopping_keyword_no FROM content_setting WHERE user_no = #{value})
 		)
 	</insert>
 	
 	<!-- SQL : INSERT(user_keyword) -->
-	<insert id="addUserKeyword" parameterType="com.tmmmi.service.domain.ContentSetting">
+	<insert id="addUserKeyword" parameterType="int">
 		INSERT
-		INTO user_keyword(user_keyword_no, user_search_1, user_search_2, user_search_3, user_video_1, user_video_2)
+		INTO user_keyword(user_keyword_no)
 		VALUES(
-			(SELECT user_keyword_no FROM content_setting WHERE user_no = #{userNo}),
-			#{userSearch1:VARCHAR},
-			#{userSearch2:VARCHAR},
-			#{userSearch3:VARCHAR},
-			#{userVideo1:VARCHAR},
-			#{userVideo2:VARCHAR}
+			(SELECT user_keyword_no FROM content_setting WHERE user_no = #{value})
 		)
 	</insert>
 	
 	<!-- SQL : INSERT(sort_section) -->
-	<insert id="addSortSection" parameterType="com.tmmmi.service.domain.ContentSetting">
+	<insert id="addSortSection" parameterType="int">
 		INSERT
 		INTO sort_section(sort_section_no, show_boxoffice_top_10, show_romance_comedy, show_horror_thriller, 
 							show_fantasy_sf, show_action, show_animation, show_soccer, show_oversea_soccer,
@@ -113,34 +104,7 @@
 							show_user_video_1, show_user_video_2)
 		VALUES(
 			(SELECT sort_section_no FROM content_setting WHERE user_no = #{userNo}),
-			#{boxOfficeTop10:NUMERIC},
-			#{romanceComedy:NUMERIC},
-			#{horrorThriller:NUMERIC},
-			#{fantasySF:NUMERIC},
-			#{action:NUMERIC},
-			#{animation:NUMERIC},
-			#{soccer:NUMERIC},
-			#{overseaSoccer:NUMERIC},
-			#{baseball:NUMERIC},
-			#{overseaBaseball:NUMERIC},
-			#{basketball:NUMERIC},
-			#{overseaBasketball:NUMERIC},
-			#{sportGeneral:NUMERIC},
-			#{sportHighlight:NUMERIC},
-			#{koreanFood:NUMERIC},
-			#{japaneseFood:NUMERIC},
-			#{chineseFood:NUMERIC},
-			#{foreignFood:NUMERIC},
-			#{dessert:NUMERIC},
-			#{showShoppingSearch1:NUMERIC},
-			#{showShoppingSearch2:NUMERIC},
-			#{showShoppingSearch3:NUMERIC},
-			#{showShoppingReview:NUMERIC},
-			#{showUserSearch1:NUMERIC},
-			#{showUserSearch2:NUMERIC},
-			#{showUserSearch3:NUMERIC},
-			#{showUserVideo1:NUMERIC},
-			#{showUserVideo2:NUMERIC}
+			1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28
 		)
 	</insert>
 	
