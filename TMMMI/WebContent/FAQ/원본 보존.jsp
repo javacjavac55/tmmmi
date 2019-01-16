@@ -17,6 +17,9 @@
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" >
 	<script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" ></script>
+
+	
+	<script src="http://code.jquery.com/jquery-2.1.4.min.js"></script>
 	
 	<script type="text/javascript">
 	
@@ -30,7 +33,13 @@
 	
 	$(function() {	
 		
-		
+		var faqNo=$(this).data("param1");
+		$(".title").on("click",function(){
+			/* alert("클릭됨?") */
+			
+			var faqNo=$(this).data("param1");
+			$(".hide"+faqNo).toggleClass("show");
+        });
 		
 		$("a:contains('글쓰기')" ).on("click" , function() {
 			 self.location = "/faq/addFAQ";
@@ -76,7 +85,8 @@
 			<button type="button" class="btn btn-default" style="height:27px;">검색</button>
 		</div>
 			
-
+	</div>
+	
 	
 	
 	<table class="table table-striped table-hover">
@@ -92,12 +102,12 @@
 			<c:set var="i" value="0" />
 			<c:forEach var="faq" items="${list}">
 				<c:set var="i" value="${i+1}" />
-				<tr  data-toggle="collapse" href="#collapseExample">
+				<tr class="title${faq.FAQNo} title" data-param1="${faq.FAQNo}">
 					<td class="text-center">${i}</td>
 					<td>${faq.FAQTitle}</td>
 					<td class="text-center">${faq.FAQDate}</td>
 				</tr>
-				<tr class="collapse" id="collapseExample">
+				<tr class="hide${faq.FAQNo} hide" >
 					<td> </td>
 					<td class="detail" >${faq.FAQDetail}
 					<a class= "btn btn-default pull-right" data-param2="${faq.FAQNo}">수정하기</a></td>
