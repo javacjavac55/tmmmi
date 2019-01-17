@@ -32,7 +32,6 @@ public class UserSettingController {
 		System.out.println("/userSetting/getUserSetting : GET");
 		
 		int userNo = ((int)session.getAttribute("userNo"));
-		System.out.println("야호호호" + userNo);
 		UserSetting userSetting = userSettingService.getUserSetting(userNo);
 		System.out.println(userSetting);
 		ModelAndView modelAndView = new ModelAndView();

@@ -62,21 +62,28 @@ public class UserController {
 	}
 	
 	@RequestMapping(value="addUser", method=RequestMethod.POST)
-	public ModelAndView addUser(@ModelAttribute("user") User user) throws Exception {
+	public ModelAndView addUser(@ModelAttribute("user") User user, HttpSession session) throws Exception {
 		
 		System.out.println("user/addUser : POST");
 		
-		userService.addUser(user);
 		ModelAndView modelAndView = new ModelAndView();
-		modelAndView.setViewName("/user/login.jsp");
-		System.out.println(modelAndView);
+		
+		if(user.getAuthNum().equals(((String)session.getAttribute("authNum")))){
+			user.setEmailCheck(1);
+			userService.addUser(user);
+			modelAndView.setViewName("/user/login.jsp");
+		}else {
+			modelAndView.setViewName("/user/addUser.jsp");
+		}
+
 		return modelAndView;
 	}
 	
 	@RequestMapping(value="getUser", method=RequestMethod.GET)
-	public ModelAndView getUser(@RequestParam("userNo") int userNo) throws Exception{
+	public ModelAndView getUser(HttpSession session) throws Exception{
 		
 		System.out.println("/user/getUser : GET");
+		int userNo = ((int)session.getAttribute("userNo"));
 		User user = userService.getUser(userNo);
 		ModelAndView modelAndView = new ModelAndView();
 		modelAndView.addObject("user", user);
@@ -113,8 +120,9 @@ public class UserController {
 	}
 	
 	@RequestMapping(value="updateUser", method=RequestMethod.GET)
-	public ModelAndView updateUser(@RequestParam("userNo") int userNo) throws Exception {
+	public ModelAndView updateUser(HttpSession session) throws Exception {
 		System.out.println("/user/updateUser : GET");
+		int userNo = ((int)session.getAttribute("userNo"));
 		User user = userService.getUser(userNo);
 		ModelAndView modelAndView = new ModelAndView();
 		modelAndView.addObject("user", user);
@@ -136,7 +144,6 @@ public class UserController {
 		modelAndView.setViewName("redirect:/user/getUser?userNo="+user.getUserNo());
 		return modelAndView;
 	}
-	public void deleteUser() {}
 	
 	@RequestMapping(value="login", method=RequestMethod.GET)
 	public ModelAndView login() throws Exception{

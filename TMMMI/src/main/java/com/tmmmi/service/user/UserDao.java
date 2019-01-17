@@ -12,6 +12,8 @@ public interface UserDao {
 	public void updateUser(User user) throws Exception;
 	public void withdrawUser(User user) throws Exception;
 	public List<User> getUserList(Search search) throws Exception;
-	public void emailCheckDuplication();
-	public int getTotalCount(Search search) throws Exception ;
+	public User emailCheckDuplication(String email);
+	public int getTotalCount(Search search) throws Exception;
+	public User searchUserId(User user);
+	public User searchUserPw(User user);
 }

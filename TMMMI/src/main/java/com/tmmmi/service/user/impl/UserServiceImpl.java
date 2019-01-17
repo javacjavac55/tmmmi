@@ -71,11 +71,6 @@ public class UserServiceImpl implements UserService {
 		
 		return map;
 	}
-
-	@Override
-	public void emailCheckDuplication() {
-		userDao.emailCheckDuplication();
-	}
 	
 	public boolean sendMail(String email, String authNum)throws Exception {
 		
@@ -131,11 +126,20 @@ public class UserServiceImpl implements UserService {
 
 	@Override
 	public boolean checkDuplication(String userId) throws Exception {
-		System.out.println("checkDuplication Ω√¿€");
-		boolean result=true;
-		User user=userDao.getUserId(userId);
+		boolean result = true;
+		User user = userDao.getUserId(userId);
 		if(user != null) {
-			result=false;
+			result = false;
+		}
+		return result;
+	}
+	
+	@Override
+	public boolean emailCheckDuplication(String email) {
+		boolean result = true;
+		User user = userDao.emailCheckDuplication(email);
+		if(user != null) {
+			result = false;
 		}
 		return result;
 	}
@@ -143,6 +147,16 @@ public class UserServiceImpl implements UserService {
 	@Override
 	public User getUserId(String userId) throws Exception {
 		return userDao.getUserId(userId);
+	}
+	
+	@Override
+	public User searchUserId(User user) {
+		return userDao.searchUserId(user);
+	}
+	
+	@Override
+	public User searchUserPw(User user) {
+		return userDao.searchUserPw(user);
 	}
 
 }
