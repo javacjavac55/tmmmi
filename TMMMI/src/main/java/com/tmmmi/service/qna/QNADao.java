@@ -9,9 +9,9 @@ public interface QNADao {
 	
 	public void addQNA(QNA qna) throws Exception ;
 		
-	public List<QNA> getQNAList(Search search) throws Exception ;
+	public List<QNA> getQNAList(Search search, int userNo) throws Exception ;
 	
-	public int getTotalCount(Search search) throws Exception;
+	public int getTotalCount(int userNo) throws Exception;
 	
 	public void updateQNA(QNA qna) throws Exception ;
 	

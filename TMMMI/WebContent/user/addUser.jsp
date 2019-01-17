@@ -141,6 +141,10 @@
 	            			$($(".col-sm-4").last()).after('<div class="col-sm-offset-4  col-sm-4 text-center" id="join">'
 	            					+'<button type="button" class="btn btn-primary"  >가 &nbsp;입</button>'
 		            				+'<a class="btn btn-danger btn" href="#" role="button">취&nbsp;&nbsp;소</a></div>')
+		            		
+            				$( "button.btn.btn-primary" ).on("click" , function() {
+            					fncAddUser();
+            				});
 	            		}
 	            	}else{
 	            		if($('#join').length>0){

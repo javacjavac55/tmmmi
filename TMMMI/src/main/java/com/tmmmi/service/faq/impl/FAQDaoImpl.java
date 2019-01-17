@@ -48,9 +48,9 @@ public class FAQDaoImpl implements FAQDao {
 	}
 
 	@Override
-	public void deleteFAQ() throws Exception {
+	public void deleteFAQ(FAQ faq) throws Exception {
 		// TODO Auto-generated method stub
-		
+		sqlSession.update("FAQMapper.deleteFAQ", faq);
 	}
 	
 	public int getTotalCount(Search search) throws Exception{
