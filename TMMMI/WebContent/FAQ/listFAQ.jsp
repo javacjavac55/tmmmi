@@ -47,6 +47,12 @@
 			 self.location = "/faq/updateFAQ?faqNo="+faqNo;
 		 });
 		
+		$("a:contains('삭제하기')" ).on("click" , function() {
+			var faqNo =$(this).data("param2");
+			alert("asd");
+			 self.location = "/faq/deleteFAQ?faqNo="+faqNo;
+		 });
+		
 		$("button:contains('검색')" ).on("click" , function() {
 			fncGetList(1);
 		 });
@@ -91,16 +97,19 @@
 		<tbody>
 			<c:set var="i" value="0" />
 			<c:forEach var="faq" items="${list}">
-				<c:set var="i" value="${i+1}" />
-				<tr class="title${faq.FAQNo} title" data-param1="${faq.FAQNo}">
-					<td class="text-center">${i}</td>
-					<td>${faq.FAQTitle}</td>
-					<td class="text-center">${faq.FAQDate}</td>
-				</tr>
-				<tr class="hide${faq.FAQNo} hide" >
-					<td class="detail" >${faq.FAQDetail}
-					<a class= "btn btn-default pull-right" data-param2="${faq.FAQNo}">수정하기</a></td>
-				</tr>
+				<c:if test="${faq.FAQDeleteCheck == 1}">
+					<c:set var="i" value="${i+1}" />
+						<tr class="title${faq.FAQNo} title" data-param1="${faq.FAQNo}">
+							<td class="text-center">${i}</td>
+							<td>${faq.FAQTitle}</td>
+							<td class="text-center">${faq.FAQDate}</td>
+						</tr>
+						<tr class="hide${faq.FAQNo} hide" >
+							<td class="detail" >${faq.FAQDetail}
+							<a class= "btn btn-default pull-right" data-param2="${faq.FAQNo}">수정하기</a>
+							<a class= "btn btn-default pull-right" data-param2="${faq.FAQNo}">삭제하기</a></td>
+						</tr>
+				</c:if>
 			</c:forEach>
 		</tbody>			
 		</table>

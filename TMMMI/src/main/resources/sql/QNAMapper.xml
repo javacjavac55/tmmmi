@@ -9,37 +9,23 @@
 	<resultMap id="QNASelectMap"  type="com.tmmmi.service.domain.QNA">
 	
 		<result property="QNANo" 					column="qna_no" 						jdbcType="NUMERIC"/>
+		<result property="userNo"					column="user_no"						jdbcType="NUMERIC"/>
 		<result property="QNACategory"			column="user_center_category" 	jdbcType="NUMERIC" />
 		<result property="QNATitle" 				column="qna_title" 					jdbcType="VARCHAR" />
 		<result property="QNADetail" 				column="qna_detail" 					jdbcType="VARCHAR" />
 		<result property="QNADate" 				column="qna_date" 					jdbcType="DATE" />
 		<result property="QNAAnswerCheck" 		column="qna_answer_check" 		jdbcType="NUMERIC" />
-		<result property="QNAAnswereDetail" 	column="qna_answer_detail" 		jdbcType="VARCHAR" />
+		<result property="QNAAnswerDetail" 		column="qna_answer_detail" 		jdbcType="VARCHAR" />
 		<result property="QNAAnswerDate" 		column="qna_answer_date" 			jdbcType="DATE" />
 	
-		<association property="userNo"  javaType="com.tmmmi.service.domain.User" column="user_no"	 >
-			<id property="userNo"							column="user_no"							jdbcType="NUMERIC"/>
-			<result property="userId"							column="user_id"							jdbcType="VARCHAR"/>
-			<result property="password"						column="password"						jdbcType="VARCHAR"/>
-			<result property="email"							column="email"							jdbcType="VARCHAR"/>
-			<result property="emailCheck"					column="email_check"					jdbcType="NUMERIC"/>
-			<result property="userName"					column="user_name"						jdbcType="VARCHAR"/>
-			<result property="birthday"						column="birthday"							jdbcType="DATE"/>
-			<result property="refreshToken"				column="refresh_token"					jdbcType="VARCHAR"/>
-			<result property="refreshTokenExpireTime"	column="refresh_token_expire_time"	jdbcType="VARCHAR"/>	
-			<result property="snsName"						column="sns_name"						jdbcType="NUMERIC"/>
-			<result property="role"							column="role"								jdbcType="NUMERIC"/>
-			<result property="withdrawCheck"				column="withdraw_check"				jdbcType="NUMERIC"/>
-			<result property="withdrawDate"				column="withdrqs_date"					jdbcType="DATE"/>
-		</association>
 	</resultMap>
 	
 	<!-- SQL : INSERT -->
 	<insert 	id="addQNA"	parameterType="com.tmmmi.service.domain.QNA" >
 	 	INSERT
-		INTO qna( qna_no  , user_center_category , qna_title , qna_detail, qna_date) 
-		VALUES	 (	qna_no.nextval , 
-						#{userNo} , 
+		INTO qna( qna_no, user_no, user_center_category , qna_title , qna_detail, qna_date) 
+		VALUES	 (	qna_no.nextval ,
+						#{userNo},
 						#{QNACategory} ,
 						#{QNATitle} , 
 						#{QNADetail} , 
@@ -47,24 +33,35 @@
 	 </insert>
 	 
 	 <!-- SQL : SELECT ONE -->
-	 <select 	id="getQNAList"  parameterType="com.tmmmi.service.domain.QNA"	 resultMap="QNASelectMap">
+	 <select 	id="getQNAList"  parameterType="map"	 resultMap="QNASelectMap">
 		SELECT *
 		FROM (	SELECT inner_table.* , ROWNUM AS row_seq
-			FROM		(	SELECT qna_no, user_center_category, qna_title, qna_detail, qna_date
+			FROM		(	SELECT user_no, qna_no, user_center_category, qna_title, qna_detail, qna_date, qna_answer_check
 							FROM qna
-									<if test="searchCondition != null">
-										<where>
-										<if test="searchCondition == 0 and searchKeyword !='' ">
-											qna_title=#{searchKeyword}
-										</if>
-										<if test="searchCondition == 1 and searchKeyword != '' ">
-											qna_detail=#{searchKeyword} 
-										</if>
-										</where>
+							<where>
+							user_no = #{userNo}
+								<if test="searchCondition != null">
+									<if test="searchCondition == 0 and searchKeyword !='' ">
+										AND qna_title=#{search.searchKeyword}
 									</if>
-									ORDER BY qna_no ) inner_table
-							WHERE ROWNUM &lt;= #{endRowNum} )
-		WHERE row_seq BETWEEN #{startRowNum} AND #{endRowNum} 
+									<if test="searchCondition == 1 and searchKeyword != '' ">
+										AND qna_detail=#{search.searchKeyword} 
+									</if>
+								</if>
+							 </where>
+							 ORDER BY qna_no ) inner_table
+							WHERE ROWNUM &lt;= #{search.endRowNum} )
+		WHERE row_seq BETWEEN #{search.startRowNum} AND #{search.endRowNum} 
+	 </select>
+	 
+	 <select  id="getTotalCount"  parameterType="int"	 resultType="int">
+	  	SELECT COUNT(*)
+	  	FROM(	SELECT  qna_no, user_center_category, qna_title, qna_detail, qna_date
+								FROM qna
+								<where>
+									user_no=#{userNo}
+								</where>
+								) countTable						
 	 </select>
 	 
 	 <!-- SQL : UPDATE -->
@@ -75,12 +72,33 @@
 	   		qna_title = #{QNATitle},
 	   		qna_detail = #{QNADetail}
 	   	</set>
+	   	WHERE qna_no=#{QNANo}
 	 </update>
 		 
-	<select	id="getFAQ"	 parameterType="com.tmmmi.service.domain.QNA" resultMap="QNASelectMap">
-	   	SELECT qna_no , user_center_category , qna_title , qna_detail, qna_date
+	<select	id="getQNA"	 parameterType="com.tmmmi.service.domain.QNA" resultMap="QNASelectMap">
+	   	SELECT qna_no, user_center_category , qna_title , qna_detail, qna_date, qna_answer_check, qna_answer_detail, qna_answer_date
 	   	FROM qna
 		WHERE qna_no= #{value}
 	 </select>
+	 
+	 <update id="addQNAAnswer"	parameterType="com.tmmmi.service.domain.QNA" >
+	 	UPDATE qna
+	   	<set>
+	   		qna_answer_check = 1,
+	   		qna_answer_detail = #{QNAAnswerDetail},
+	   		qna_answer_date = SYSDATE
+	   	</set>
+	   	WHERE qna_no=#{QNANo}
+	 </update>
+	 
+	 <update id="updateQNAAnswer"	parameterType="com.tmmmi.service.domain.QNA" >
+	 	UPDATE qna
+	   	<set>
+	   		qna_answer_check = 1,
+	   		qna_answer_detail = #{QNAAnswerDetail},
+	   		qna_answer_date = SYSDATE
+	   	</set>
+	   	WHERE qna_no=#{QNANo}
+	 </update>
 	
 </mapper>

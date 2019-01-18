@@ -15,5 +15,5 @@ public interface FAQService {
 	
 	public FAQ getFAQ(int FAQNo) throws Exception;
 	
-	public void deleteFAQ() throws Exception;
+	public void deleteFAQ(FAQ faq) throws Exception;
 }

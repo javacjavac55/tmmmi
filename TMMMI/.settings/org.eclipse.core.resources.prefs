@@ -2,4 +2,5 @@ eclipse.preferences.version=1
 encoding//WebContent/common/loading.jsp=UTF-8
 encoding//src/main/java/com/tmmmi/service/qna/NaverSearchAPI.java=UTF-8
 encoding//src/main/java/com/tmmmi/service/qna/NaverSearchAPI2.java=UTF-8
+encoding//src/main/java/com/tmmmi/web/QNAController.java=UTF-8
 encoding//src/main/java/com/tmmmi/web/UserRestController.java=UTF-8

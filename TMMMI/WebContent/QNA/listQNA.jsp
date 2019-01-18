@@ -21,43 +21,46 @@
 	<script type="text/javascript">
 	
 	function fncGetList(currentPage) {
-		
 		//document.getElementById("currentPage").value = currentPage;
 		$("#currentPage").val(currentPage)
 	   	//document.detailForm.submit();
-		$("form").attr("method" , "POST").attr("action" , "/faq/getFAQList").submit();
+		$("form").attr("method" , "POST").attr("action" , "/qna/getQNAList").submit();
 	}
 	
 	$(function() {	
 		
-		var faqNo=$(this).data("param1");
-		$(".title").on("click",function(){
-			/* alert("클릭됨?") */
-			
-			var faqNo=$(this).data("param1");
-			$(".hide"+faqNo).toggleClass("show");
-        });
-		
 		$("a:contains('문의하기')" ).on("click" , function() {
-			var userNo=$(this).data("param1");
 			 self.location = "/qna/addQNA";
 		 });
 		
 		$("button:contains('검색')" ).on("click" , function() {
 			fncGetList(1);
 		 });
+		
+		//제목 클릭시 getQNA 페이지로 이동
+		$(".title" ).on("click" , function() {
+			alert("sdf");
+			var qnaNo =$(this).data("param1");
+			self.location = "/qna/getQNA?qnaNo="+qnaNo;
+		 });
+		
+		var answerCheck =$(this).data("param1");
+		
+		console.log(answerCheck)
+	
  	});
 	
 </script>
 
 <style>
 		.title{cursor:pointer;}
+		/* .finish{background-color: whitesmoke} */
 </style>
 
 </head>
 
 <body>
-<form name="listFAQ">
+<form name="listQNA">
 
 <div class="container">
 	
@@ -79,12 +82,13 @@
 		전체  ${resultPage.totalCount} 건수, 현재 ${resultPage.currentPage} 페이지
 	</div>
 	
-	<table class="table table-striped table-hover">
+	
+	<table class="table table-hover">
 		<thead>
 			<tr>
 				<th class="col-md-2 text-center">No.</th>
-				<th class="col-md-2 text-center">구분</th>
-				<th class="col-md-4">제목</th>
+				<th class="col-md-2 ">분류유형</th>
+				<th class="col-md-4 text-center">질문</th>
 				<th class="col-md-2 text-center">작성날짜</th>
 				<th class="col-md-2 text-center">답변현황</th>
 			</tr>
@@ -92,25 +96,40 @@
 
 		<tbody>
 			<c:set var="i" value="0" />
-			<c:forEach var="faq" items="${list}">
-				<c:set var="i" value="${i+1}" />
-				<tr class="title${qna.QNANo} title" data-param1="${qna.QNANo}">
+			<c:forEach var="qna" items="${list}">
+			<c:set var="i" value="${i+1}" />
+				<tr class="finish">
 					<td class="text-center">${i}</td>
-					<td class="text-center">${qna.QNACategory}</td>
-					<td>${qna.QNATitle}</td>
+					<td >
+						<c:if test="${qna.QNACategory == 0}">
+							회원정보
+						</c:if><c:if test="${qna.QNACategory == 1}">
+							일정
+						</c:if><c:if test="${qna.QNACategory == 2}">
+							컨텐츠 설정
+						</c:if><c:if test="${qna.QNACategory == 3}">
+							다이어리/스크랩
+						</c:if><c:if test="${qna.QNACategory == 4}">
+							기타
+						</c:if>
+					</td>
+					<td class="title" data-param1="${qna.QNANo}">${qna.QNATitle}</td>
 					<td class="text-center">${qna.QNADate}</td>
-					<td class="text-center">없당</td>
-				</tr>
-				<tr class="hide${qna.QNANo} hide" >
-					<td class="detail" >${qna.QNADetail}
-					<a class= "btn btn-default pull-right" data-param2="${qna.QNANo}">수정하기</a></td>
+					<td class="text-center" data-param2="${qna.QNAAnswerCheck}">
+						<c:if test="${qna.QNAAnswerCheck == 0}">
+						 	대기
+						</c:if>
+						<c:if test="${qna.QNAAnswerCheck == 1}">
+							완료
+						</c:if>
+					</td>
 				</tr>
 			</c:forEach>
 		</tbody>			
 		</table>
 		<hr/>
 		
-		<a class= "btn btn-default pull-right" data-param1="16" >문의하기</a>
+		<a class= "btn btn-default pull-right" >1:1 문의하기</a>
 		
 		
 		<div>

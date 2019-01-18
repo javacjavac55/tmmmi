@@ -54,9 +54,9 @@ public class FAQServiceImpl implements FAQService {
 	}
 
 	@Override
-	public void deleteFAQ( )throws Exception {
+	public void deleteFAQ(FAQ faq )throws Exception {
 		// TODO Auto-generated method stub
-		
+		faqDao.deleteFAQ(faq);
 	}
 
 	@Override
