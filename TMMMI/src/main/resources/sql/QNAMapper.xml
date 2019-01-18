@@ -36,20 +36,20 @@
 	 <select 	id="getQNAList"  parameterType="map"	 resultMap="QNASelectMap">
 		SELECT *
 		FROM (	SELECT inner_table.* , ROWNUM AS row_seq
-			FROM		(	SELECT user_no, qna_no, user_center_category, qna_title, qna_detail, qna_date, qna_answer_check
+			FROM		(	SELECT qna_no, user_center_category, qna_title, qna_detail, qna_date, qna_answer_check
 							FROM qna
 							<where>
-							user_no = #{userNo}
-								<if test="searchCondition != null">
-									<if test="searchCondition == 0 and searchKeyword !='' ">
-										AND qna_title=#{search.searchKeyword}
+								user_no = #{userNo}
+									<if test="searchCondition != null">
+										<if test="searchCondition == 0 and searchKeyword !='' ">
+											qna_title=#{search.searchKeyword}
+										</if>
+										<if test="searchCondition == 1 and searchKeyword != '' ">
+											qna_detail=#{search.searchKeyword} 
+										</if>
 									</if>
-									<if test="searchCondition == 1 and searchKeyword != '' ">
-										AND qna_detail=#{search.searchKeyword} 
-									</if>
-								</if>
-							 </where>
-							 ORDER BY qna_no ) inner_table
+								</where>
+									ORDER BY qna_no ) inner_table
 							WHERE ROWNUM &lt;= #{search.endRowNum} )
 		WHERE row_seq BETWEEN #{search.startRowNum} AND #{search.endRowNum} 
 	 </select>
@@ -61,6 +61,34 @@
 								<where>
 									user_no=#{userNo}
 								</where>
+								) countTable						
+	 </select>
+	 
+	 <!-- SQL : SELECT ONE -->
+	 <select 	id="getAdminQNAList"  parameterType="map"	 resultMap="QNASelectMap">
+		SELECT *
+		FROM (	SELECT inner_table.* , ROWNUM AS row_seq
+			FROM		(	SELECT qna_no, user_center_category, qna_title, qna_detail, qna_date, qna_answer_check
+							FROM qna
+									<if test="searchCondition != null">
+										<where>
+										<if test="searchCondition == 0 and searchKeyword !='' ">
+											qna_title=#{search.searchKeyword}
+										</if>
+										<if test="searchCondition == 1 and searchKeyword != '' ">
+											qna_detail=#{search.searchKeyword} 
+										</if>
+										</where>
+									</if>
+									ORDER BY qna_no ) inner_table
+							WHERE ROWNUM &lt;= #{search.endRowNum} )
+		WHERE row_seq BETWEEN #{search.startRowNum} AND #{search.endRowNum} 
+	 </select>
+	 
+	 <select  id="getAdminTotalCount"  parameterType="com.tmmmi.common.Search"	 resultType="int">
+	  	SELECT COUNT(*)
+	  	FROM(	SELECT  qna_no, user_center_category, qna_title, qna_detail, qna_date
+								FROM qna
 								) countTable						
 	 </select>
 	 
@@ -76,9 +104,8 @@
 	 </update>
 		 
 	<select	id="getQNA"	 parameterType="com.tmmmi.service.domain.QNA" resultMap="QNASelectMap">
-	   	SELECT qna_no, user_center_category , qna_title , qna_detail, qna_date, qna_answer_check, qna_answer_detail, qna_answer_date
-	   	FROM qna
-		WHERE qna_no= #{value}
+	   	SELECT * 	FROM qna
+		WHERE qna_no= #{QNANo}
 	 </select>
 	 
 	 <update id="addQNAAnswer"	parameterType="com.tmmmi.service.domain.QNA" >

@@ -13,6 +13,8 @@ public interface QNAService {
 	
 	public Map<String,Object> getQNAList(Search search, int userNo) throws Exception;
 	
+	public Map<String,Object> getAdminQNAList(Search search) throws Exception;
+	
 	public void updateQNA(QNA qna) throws Exception;
 	
 	public void addQNAAnswer(QNA qna) throws Exception;
