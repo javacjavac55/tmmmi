@@ -69,26 +69,42 @@
 			</div>
 		    <div class="col-md-2">
 				<div class=" dropdown" style="background-color:rgb(0,0,0,0);">
-			 		<button class="btn dropdown-toggle;" type="button" data-toggle="dropdown" style="background-color:rgb(0,0,0,0);">회원 정보
-			 		<span class="caret"></span></button>
-		  			<ul class="dropdown-menu">
-				    <li>회원 정보</li>
-				    <li>일정 관리</li>
-				    <li>컨텐츠 설정</li>
-				    <li>다이어리/스크랩</li>
-				    <li>기타</li>
-			  		</ul>
+					<c:if test="${qna.QNACategory ==0}">
+			 			<button type="button" class="btn btn-default;" style="background-color:rgb(0,0,0,0);" >회원정보</button>
+			 		</c:if>
+			 		<c:if test="${qna.QNACategory ==1}">
+			 			<button type="button" class="btn btn-default;" style="background-color:rgb(0,0,0,0);" >일정</button>
+			 		</c:if>
+			 		<c:if test="${qna.QNACategory ==2}">
+			 			<button type="button" class="btn btn-default;" style="background-color:rgb(0,0,0,0);" >컨텐츠 설정</button>
+			 		</c:if>
+			 		<c:if test="${qna.QNACategory ==3}">
+			 			<button type="button" class="btn btn-default;" style="background-color:rgb(0,0,0,0);" >다이어리</button>
+			 		</c:if>
+			 		<c:if test="${qna.QNACategory ==4}">
+			 			<button type="button" class="btn btn-default;" style="background-color:rgb(0,0,0,0);" >스크랩</button>
+			 		</c:if>
 				</div>
 			</div>
+			<c:if test="${role == 1}">
+				<div class="col-md-1">
+					<button type="button" class="btn btn-default;">회원아이디</button>
+				</div>
+				<div class="col-md-2" >
+					<button type="button" class="btn btn-default;" style="background-color:rgb(0,0,0,0);" >${writerUserId}</button>
+				</div>
+			</c:if>
+			<c:if test="${role == 0}">
+				<div class="col-md-1">
+					<button type="button" class="btn btn-default;">회원 아이디</button>
+				</div>
+				<div class="col-md-2" >
+					<button type="button" class="btn btn-default;" style="background-color:rgb(0,0,0,0);" >${writerUserId}</button>
+				</div>
+			</c:if>
 			<div class="col-md-1">
-				<button type="button" class="btn btn-default;">회원아이디</button>
-			</div>
-			<div class="col-md-2" >
-				<button type="button" class="btn btn-default;" style="background-color:rgb(0,0,0,0);" >${userId}</button>
-			</div>
-			<div class="col-md-1">
-				<button type="button" class="btn btn-default;">작성날짜</button>
-			</div>
+					<button type="button" class="btn btn-default;">작성날짜</button>
+				</div>
 			<div class="col-md-2" >
 				<button type="button" class="btn btn-default;" style="background-color:rgb(0,0,0,0);">${qna.QNADate}</button>
 			</div>
@@ -133,10 +149,6 @@
 	  				<button type="button" class="btn btn-pink"  data-param1="${qna.QNANo}">수정하기</button>
 	  				<button type="button" class="btn btn-default">목록보기</button>
 	  			</c:if>
-	  			<c:if test="${qna.QNAAnswerCheck == 1}">
-	  				<jsp:include  page="/QNA/QNAAnswer.jsp"  />
-	  				<button type="button" class="btn btn-default">목록보기</button>
-	  			</c:if>
 	  		</c:if>
 	  		<c:if test="${role == 0}">
 	  			<c:if test="${qna.QNAAnswerCheck == 0}">
@@ -152,28 +164,33 @@
 	  	</div>
 		</div>
 		
-		<%-- <c:if test="${qna.QNAAnswerCheck == 1}">
-			<div class="container">
-			<div class="row" >
-				<div class="col-md-1">
-					<button type="button"  class="btn btn-default;">내용</button>
+		<div class="row text-center ">
+			<c:if test="${qna.QNAAnswerCheck == 1}">
+				<div class="container">
+				<div class="row" >
+					<div class="col-md-1">
+						<button type="button"  class="btn btn-default;">내용</button>
+					</div>
+					<div class="col-md-8">
+						 <textarea class="form-control" rows="13" name="QNAAnswerDetail" style="resize: none"  readonly="readonly">${qna.QNAAnswerDetail}</textarea> 
+					</div>
+					<div class="col-md-3"></div>
 				</div>
-				<div class="col-md-8">
-					 <textarea class="form-control" rows="13" name="QNAAnswerDetail" style="resize: none"  readonly="readonly">${qna.QNAAnswerDetail}</textarea> 
+				
+				<br/>
+				
+				<div class="row text-center ">
+			  		<button type="button" class="btn btn-pink col-md-10" >답변에 대한 재문의가 필요하신 경우 다시 문의 해주세요 
+			  		</button>
+			  	</div>
+				 <c:if test="${role == 1}">
+					 <div class="col-md-5"></div>
+					<button type="button" class="btn btn-default ">목록보기</button>
+				</c:if>
 				</div>
-				<div class="col-md-3"></div>
-			</div>
-			
-			<br/>
-			
-			<div class="row text-center ">
-				<div class="col-md-1"></div>
-		  		<button type="button" class="btn btn-pink col-md-8" >답변에 대한 재문의가 필요하신 경우 다시 문의 해주세요 
-		  		</button>
-		  	</div>
-		 	</div>
-		</c:if> --%>
-	</div>
+			</c:if>
+		</div>
+		</div>
 	</form>
 </body>
 </html>

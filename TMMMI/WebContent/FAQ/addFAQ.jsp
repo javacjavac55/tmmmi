@@ -1,4 +1,3 @@
-
 <%@ page contentType="text/html; charset=EUC-KR" %>
 <%@ page pageEncoding="EUC-KR"%>
 
@@ -19,6 +18,15 @@
 	<script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" ></script>
 	
+	<!-- summernote -->
+	<link href="/css/summernote.css" rel="stylesheet">
+  	<script src="/javascript/summernote.js"></script>
+  	<!-- 로딩 -->
+  	<link rel="stylesheet" href="/css/loading.css">  	
+  	<!-- <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script> -->
+    <script src="/javascript/loading.js"></script>
+    
+  	
 	<!--  ///////////////////////// CSS ////////////////////////// -->
 	<style>
  		.row {
@@ -27,6 +35,47 @@
 	</style>
 
 	<script type="text/javascript">
+	
+	var $note = null;
+    $(document).ready(function() {
+    		
+			$('#summernote').summernote({  	        
+	        height:"300px",
+	      	minHeight: null,
+	      	maxHeight: null,
+	      	focus: true,
+	      	callbacks: {
+	      		onImageUpload: function(files, editor, welEditable){
+	      			console.log(files);
+	      			console.log(files[0]);	      			
+	      			var form_data = new FormData();
+	      			form_data.append("file", files[0]);
+	      			
+	      			$note = $(this);
+	      			console.log("abcd");
+	      			$.ajax({
+	      	    		data: form_data,
+	      	    		type: "POST",
+	      	    		url: '/faqRest/imageFAQ',
+	      	    		cache: false,
+	      	    		contentType: false,	      	    		
+	      	    		enctype: 'multipart/form-data',
+	      	    		processData: false,
+	      	    		success: function(url){
+	      	    			console.log("hi");
+	      	    			isloading.start();
+	      	    			setTimeout(function() {
+	      	    				$note.summernote('insertImage',url);
+	      	    				isloading.stop();
+	      	    			},1500);	
+	      	    			
+	      	    		}
+	      	    	});
+	      		}
+	      	}
+	      
+		});
+    });
 	
 	$(function() {
 		$( ".btn-pink:contains('작성하기')" ).on("click" , function() {
@@ -52,7 +101,8 @@
 			return;
 		}
 		
-		$("form").attr("method" , "POST").attr("action", "/faq/addFAQ").submit();
+		$("form").attr("method" , "POST").attr("enctype","multipart/form-data").attr("action" , "/faq/addFAQ").submit();
+
 	}
 
 	</script>
@@ -101,7 +151,8 @@
 				<button type="button"  class="btn btn-default;">내용</button>
 			</div>
 			<div class="col-md-8">
-				 <textarea class="form-control" rows="13" name="FAQDetail" style="resize: none"></textarea> 
+				<textarea id="summernote" name="FAQDetail"></textarea>	
+				<!--  <textarea class="form-control" rows="13" name="FAQDetail" style="resize: none"></textarea>  -->
 			</div>
 			<div class="col-md-3"></div>
 		</div>
