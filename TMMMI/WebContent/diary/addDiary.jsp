@@ -72,7 +72,7 @@
 	      	    			setTimeout(function() {
 	      	    				$note.summernote('insertImage',url);
 	      	    				isloading.stop();
-	      	    			},1500);	
+	      	    			},4000);	
 	      	    			
 	      	    		}
 	      	    	});
