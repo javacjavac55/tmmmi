@@ -1,6 +1,8 @@
 package com.tmmmi.service.content.impl;
 
 import com.tmmmi.service.content.ContentDao;
+import com.tmmmi.service.domain.ContentSetting;
+
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
@@ -20,11 +22,11 @@ public class ContentTastyDaoNaverImpl implements ContentDao {
 	}
 
 	@Override
-	public void getContentList() {
-        String clientId = "d9ROlDLvnXulcE2hxtAm";//애플리케이션 클라이언트 아이디값";
+	public void getContentList(ContentSetting contentSetting) {
+		String clientId = "d9ROlDLvnXulcE2hxtAm";//애플리케이션 클라이언트 아이디값";
         String clientSecret = "O4TGEmLBA4";//애플리케이션 클라이언트 시크릿값";
         try {
-            String text = URLEncoder.encode("그린팩토리", "UTF-8");
+        	String text = URLEncoder.encode(contentSetting.getTastyKeyword(), "UTF-8");
             String apiURL = "https://openapi.naver.com/v1/search/local?query="+ text; // json 결과
             URL url = new URL(apiURL);
             HttpURLConnection con = (HttpURLConnection)url.openConnection();

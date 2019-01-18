@@ -12,12 +12,12 @@ import com.tmmmi.service.domain.ToDo;
 import com.tmmmi.service.todo.ToDoDao;
 import com.tmmmi.service.todo.ToDoService;
 
-@Service("ToDoServiceImpl")
+@Service("toDoServiceImpl")
 public class ToDoServiceImpl implements ToDoService {
 	
 	///Field
 	@Autowired
-	@Qualifier("ToDoDaoImpl")
+	@Qualifier("toDoDaoImpl")
 	private ToDoDao toDoDao;
 	 public void setToDoDao(ToDoDao toDoDao) {
 		 this.toDoDao = toDoDao;

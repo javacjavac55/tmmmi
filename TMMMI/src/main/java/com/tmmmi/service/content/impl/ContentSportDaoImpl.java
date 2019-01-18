@@ -1,6 +1,7 @@
 package com.tmmmi.service.content.impl;
 
 import com.tmmmi.service.content.ContentDao;
+import com.tmmmi.service.domain.ContentSetting;
 
 public class ContentSportDaoImpl implements ContentDao {
 
@@ -15,7 +16,7 @@ public class ContentSportDaoImpl implements ContentDao {
 	}
 
 	@Override
-	public void getContentList() {
+	public void getContentList(ContentSetting contentSetting) {
 		// TODO Auto-generated method stub
 
 	}

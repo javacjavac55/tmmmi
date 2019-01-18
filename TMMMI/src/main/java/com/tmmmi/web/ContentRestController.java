@@ -15,7 +15,7 @@ public class ContentRestController {
 	
 	///Field
 	@Autowired
-	@Qualifier("ContentServiceImpl")
+	@Qualifier("contentServiceImpl")
 	private ContentService contentService;
 	private ContentSettingService contentSettingService;
 	

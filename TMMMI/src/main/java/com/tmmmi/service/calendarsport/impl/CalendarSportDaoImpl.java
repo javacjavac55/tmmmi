@@ -13,7 +13,7 @@ import com.tmmmi.common.Search;
 import com.tmmmi.service.calendarsport.CalendarSportDao;
 import com.tmmmi.service.domain.CalendarSport;
 
-@Repository("CalendarSportDaoImpl")
+@Repository("calendarSportDaoImpl")
 public class CalendarSportDaoImpl implements CalendarSportDao {
 
 	@Autowired

@@ -1,8 +1,12 @@
 package com.tmmmi.service.content.impl;
 
+import org.springframework.stereotype.Service;
+
 import com.tmmmi.service.content.ContentDao;
 import com.tmmmi.service.content.ContentService;
+import com.tmmmi.service.domain.ContentSetting;
 
+@Service("contentServiceImpl")
 public class ContentServiceImpl implements ContentService {
 	
 	private ContentDao contentDao;
@@ -22,9 +26,9 @@ public class ContentServiceImpl implements ContentService {
 	}
 
 	@Override
-	public void getContentList() {
-		// TODO Auto-generated method stub
-		
+	public void getContentList(ContentSetting contentSetting) {
+		System.out.println("getContentList Á¢±Ù");
+		contentDao.getContentList(contentSetting);
 	}
 
 }

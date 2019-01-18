@@ -13,7 +13,7 @@ import org.springframework.stereotype.Repository;
 import com.tmmmi.service.domain.ToDo;
 import com.tmmmi.service.todo.ToDoDao;
 
-@Repository("ToDoDaoImpl")
+@Repository("toDoDaoImpl")
 public class ToDoDaoImpl implements ToDoDao {
 	
 	///Field
