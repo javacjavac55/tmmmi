@@ -34,7 +34,8 @@
 	<a href="/common/loading.jsp">로딩</a><br/>
 	
 	<!-- 명훈 -->
-	<a href="/todo/getToDoListGET?userNo=7" >할 일 리스트</a><br/>
+	
+	<a href="/todo/getToDoList">할 일 리스트</a><br/>
 	
 	<!-- 지슬 -->
 	<!-- <a href="/QNA/contentBox.jsp">컨텐츠박스ㅎ_ㅎ나중에하시면수정해드려여</a><br/> -->
