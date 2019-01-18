@@ -97,19 +97,17 @@
 		<tbody>
 			<c:set var="i" value="0" />
 			<c:forEach var="faq" items="${list}">
-				<c:if test="${faq.FAQDeleteCheck == 1}">
-					<c:set var="i" value="${i+1}" />
-						<tr class="title${faq.FAQNo} title" data-param1="${faq.FAQNo}">
-							<td class="text-center">${i}</td>
-							<td>${faq.FAQTitle}</td>
-							<td class="text-center">${faq.FAQDate}</td>
-						</tr>
-						<tr class="hide${faq.FAQNo} hide" >
-							<td class="detail" >${faq.FAQDetail}
-							<a class= "btn btn-default pull-right" data-param2="${faq.FAQNo}">수정하기</a>
-							<a class= "btn btn-default pull-right" data-param2="${faq.FAQNo}">삭제하기</a></td>
-						</tr>
-				</c:if>
+				<c:set var="i" value="${i+1}" />
+					<tr class="title${faq.FAQNo} title" data-param1="${faq.FAQNo}">
+						<td class="text-center">${i}</td>
+						<td>${faq.FAQTitle}</td>
+						<td class="text-center">${faq.FAQDate}</td>
+					</tr>
+					<tr class="hide${faq.FAQNo} hide" >
+						<td class="detail" >${faq.FAQDetail}
+						<a class= "btn btn-default pull-right" data-param2="${faq.FAQNo}">수정하기</a>
+						<a class= "btn btn-default pull-right" data-param2="${faq.FAQNo}">삭제하기</a></td>
+					</tr>
 			</c:forEach>
 		</tbody>			
 		</table>

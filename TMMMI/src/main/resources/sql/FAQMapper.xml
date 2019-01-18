@@ -32,16 +32,17 @@
 		FROM (	SELECT inner_table.* , ROWNUM AS row_seq
 			FROM		(	SELECT faq_no, user_center_category, faq_title, faq_detail, faq_date, faq_delete_check
 								FROM faq
+								<where>
+								faq_delete_check = 1
 								<if test="searchCondition != null">
-									<where>
 									<if test="searchCondition == 0 and searchKeyword !='' ">
 										faq_title=#{searchKeyword}
 									</if>
 									<if test="searchCondition == 1 and searchKeyword != '' ">
 										faq_detail=#{searchKeyword} 
 									</if>
-									</where>
 								</if>
+								</where>
 								ORDER BY faq_no ) inner_table
 						WHERE ROWNUM &lt;= #{endRowNum} )
 		WHERE row_seq BETWEEN #{startRowNum} AND #{endRowNum} 
@@ -51,6 +52,9 @@
 	  	SELECT COUNT(*)
 	  	FROM(	SELECT  faq_no, user_center_category, faq_title, faq_detail, faq_date
 								FROM faq
+								<where>
+								faq_delete_check = 1
+								</where>
 								) countTable						
 	 </select>
 	 

@@ -74,10 +74,18 @@ public class QNAController {
 		System.out.println("/QNA/getQNA : GET/POST");
 		
 		ModelAndView modelAndView = new ModelAndView();
-		//문의글 작성페이지에서 userId 필요 
+	
+		//클릭한 사람의 userNo
+		//userRoll 받아오기위해 필요
 		int userNo = (int)session.getAttribute("userNo");
-		modelAndView.addObject("userId", userService.getUser(userNo).getUserId() );
 		modelAndView.addObject("role", userService.getUser(userNo).getRole());
+		
+		//작성자의 정보들
+		int writerUserNo = qnaService.getQNA(qnaNo).getUserNo();
+		modelAndView.addObject("writerUserNo", qnaService.getQNA(qnaNo).getUserNo());
+		modelAndView.addObject("writerUserId", userService.getUser(writerUserNo).getUserId());
+		modelAndView.addObject("writerUserName", userService.getUser(writerUserNo).getUserName());
+		
 		
 		QNA qna = qnaService.getQNA(qnaNo);
 		modelAndView.addObject("qna", qna);
@@ -96,11 +104,19 @@ public class QNAController {
 			search.setCurrentPage(1);
 		}
 		search.setPageSize(pageSize);
-				
-		Map<String, Object> map = qnaService.getQNAList(search, userNo);
+		
+		Map<String, Object> map;
+		ModelAndView modelAndView = new ModelAndView();
+		
+		//admin은 userNo 0으로 고정해놓음
+		if(userNo == 0) {
+			map = qnaService.getAdminQNAList(search);
+		}else {
+			map = qnaService.getQNAList(search, userNo);
+		}
+		
 		Page resultPage = new Page(search.getCurrentPage(),  ((Integer)map.get("totalCount")).intValue(), pageUnit, pageSize);
 		
-		ModelAndView modelAndView = new ModelAndView();
 		modelAndView.addObject("list", map.get("list"));
 		modelAndView.addObject("resultPage", resultPage);
 		modelAndView.addObject("search", search);

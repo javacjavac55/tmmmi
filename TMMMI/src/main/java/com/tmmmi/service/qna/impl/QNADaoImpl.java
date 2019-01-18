@@ -50,6 +50,14 @@ public class QNADaoImpl implements QNADao {
 		map.put("userNo",userNo);
 		return sqlSession.selectList("QNAMapper.getQNAList", map);
 	}
+	
+	@Override
+	public List<QNA> getAdminQNAList(Search search) throws Exception {
+		// TODO Auto-generated method stub
+		Map<String , Object>  map = new HashMap<String, Object>();
+		map.put("search", search);
+		return sqlSession.selectList("QNAMapper.getAdminQNAList", map);
+	}
 
 	@Override
 	public void updateQNA(QNA qna) throws Exception {
@@ -73,6 +81,12 @@ public class QNADaoImpl implements QNADao {
 	public int getTotalCount(int userNo) throws Exception {
 		// TODO Auto-generated method stub
 		return sqlSession.selectOne("QNAMapper.getTotalCount", userNo);
+	}
+	
+	@Override
+	public int getAdminTotalCount(Search search) throws Exception {
+		// TODO Auto-generated method stub
+		return sqlSession.selectOne("QNAMapper.getAdminTotalCount", search);
 	}
 
 }
