@@ -10,7 +10,7 @@ public class Scrap {
 	private String scrapTitle;
 	private String scrapDetail;
 	private Date scrapDate;
-	private boolean scrapCheck;
+	private int scrapCheck;
 
 	public Scrap() {
 		// TODO Auto-generated constructor stub
@@ -64,11 +64,11 @@ public class Scrap {
 		this.scrapDate = scrapDate;
 	}
 
-	public boolean isScrapCheck() {
+	public int getScrapCheck() {
 		return scrapCheck;
 	}
 
-	public void setScrapCheck(boolean scrapCheck) {
+	public void setScrapCheck(int scrapCheck) {
 		this.scrapCheck = scrapCheck;
 	}
 	
