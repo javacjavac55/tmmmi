@@ -50,10 +50,14 @@
 		</delete>
 		
 		<select id="getTodoList" parameterType="map" resultMap="TodoSelectMap">
-			SELECT todo_no, user_no, todo_Detail, todo_start_date, todo_end_date
-			FROM todo
-			WHERE user_no = #{userNo}
-			AND #{targetDate} BETWEEN todo_start_date AND todo_end_date
+			SELECT td.*, tc.todo_complete_no, tc.todo_complete_date
+			FROM todo_complete tc, 
+				(SELECT t.todo_no, t.user_no, t.todo_detail, t.todo_start_date, t.todo_end_date
+					FROM todo t
+					WHERE t.user_no = #{userNo}
+					AND #{targetDate} BETWEEN t.todo_start_date AND t.todo_end_date) td
+			WHERE td.todo_no = tc.todo_no(+)
+			AND tc.todo_complete_date(+) = #{targetDate}
 		</select>
 		
 		<select id="getCompleteTodoList" parameterType="map" resultMap="TodoSelectMap">

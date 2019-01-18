@@ -3,6 +3,7 @@ package com.tmmmi.web;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpSession;
@@ -66,12 +67,13 @@ public class ToDoController {
 		System.out.println(todomap);
 		
 		//Business Logic
-		Map<String, Object> todolist = toDoService.getToDoList(todomap);
+		List<ToDo> todolist = toDoService.getToDoList(todomap);
 		ModelAndView modelAndView = new ModelAndView();
 		System.out.println("todolist"+todolist);
 		modelAndView.setViewName("/todo/listToDo.jsp");
-		modelAndView.addObject("todolist", todolist.get("todoListMap"));
-		modelAndView.addObject("completetodolist", todolist.get("todoListMap"));
+		modelAndView.addObject("todolist",todolist);
+		/*modelAndView.addObject("todolist", todolist.get("todoListMap"));
+		modelAndView.addObject("completetodolist", todolist.get("todoListMap"));*/
 		return modelAndView;
 		}
 	
@@ -91,11 +93,12 @@ public class ToDoController {
 		todomap.put("targetDate", targetDate1);
 		System.out.println(todomap);
 		//Business Logic
-		Map<String, Object> todolist = toDoService.getToDoList(todomap);
+		List<ToDo> todolist = toDoService.getToDoList(todomap);
 		ModelAndView modelAndView = new ModelAndView();
 		modelAndView.setViewName("/todo/listToDo.jsp");
-		modelAndView.addObject("todolist", todolist.get("todoListMap.todolist"));
-		modelAndView.addObject("completetodolist", todolist.get("todoListMap.completetodolist"));
+		modelAndView.addObject("todolist",todolist);
+		/*modelAndView.addObject("todolist", todolist.get("todoListMap.todolist"));
+		modelAndView.addObject("completetodolist", todolist.get("todoListMap.completetodolist"));*/
 		return modelAndView;
 		}
 	public void getToDoDayGraph() {}

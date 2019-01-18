@@ -11,7 +11,11 @@ public interface QNADao {
 		
 	public List<QNA> getQNAList(Search search, int userNo) throws Exception ;
 	
+	public List<QNA> getAdminQNAList(Search search) throws Exception ;
+	
 	public int getTotalCount(int userNo) throws Exception;
+	
+	public int getAdminTotalCount(Search search) throws Exception;
 	
 	public void updateQNA(QNA qna) throws Exception ;
 	
