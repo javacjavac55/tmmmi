@@ -1,6 +1,7 @@
 'use strict';
 
 /* eslint-disable require-jsdoc, no-unused-vars */
+var CalendarList = [];
 
 function CalendarInfo() {
     this.id = null;

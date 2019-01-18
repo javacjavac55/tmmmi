@@ -1,5 +1,10 @@
 package com.tmmmi.service.schedule.impl;
 
+import java.sql.Date;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
@@ -29,9 +34,12 @@ public class ScheduleServiceImpl implements ScheduleService {
 	}
 
 	@Override
-	public void getScheduleList() {
-		// TODO Auto-generated method stub
-		
+	public List<Schedule> getScheduleList(int userNo, long startDate, long endDate) {
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("userNo", userNo);
+		map.put("startDate", startDate);
+		map.put("endDate", endDate);
+		return scheduleDao.getScheduleList(map);
 	}
 
 	@Override

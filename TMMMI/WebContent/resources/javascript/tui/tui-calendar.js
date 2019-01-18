@@ -6013,7 +6013,6 @@ function VLayout(options, container, theme) {
 
         this.addPanels(opt.panels, this.container);
     }
-
     this.refresh();
 }
 
@@ -6681,6 +6680,7 @@ function Base(options) {
      * schedules collection.
      * @type {Collection}
      */
+    //체크
     this.schedules = common.createScheduleCollection();
 
     /**
@@ -6731,6 +6731,8 @@ Base.prototype._getContainDatesInSchedule = function(schedule) {
  * @returns {Schedule} The instance of Schedule that created.
  */
 Base.prototype.createSchedule = function(options, silent) {
+	//console.log("options",options);
+	//console.log("silent",silent);
     var schedule,
         scheduleData = {
             data: options
@@ -6743,7 +6745,7 @@ Base.prototype.createSchedule = function(options, silent) {
     if (!this.invoke('beforeCreateSchedule', scheduleData)) {
         return null;
     }
-
+    //체크
     schedule = this.addSchedule(Schedule.create(options));
 
     if (!silent) {
@@ -6782,6 +6784,8 @@ Base.prototype.createSchedules = function(dataList, silent) {
 
 //업데이트
 Base.prototype.updateSchedule = function(schedule, options) {
+	console.log(schedule);
+	console.log(options);
     var start = options.start || schedule.start;
     var end = options.end || schedule.end;
 
@@ -6845,6 +6849,10 @@ Base.prototype.updateSchedule = function(schedule, options) {
     
     if (options.comingDuration) {
         schedule.set('comingDuration', options.comingDuration);
+    }
+    
+    if (options.category) {
+    	schedule.set('category', options.category);
     }
 
     this._removeFromMatrix(schedule);
@@ -6910,7 +6918,9 @@ Base.prototype._removeFromMatrix = function(schedule) {
  * @returns {Schedule} The instance of Schedule that added.
  */
 Base.prototype.addSchedule = function(schedule, silent) {
+	//console.log("더하기: ",schedule);
     this.schedules.add(schedule);
+    //console.log("더하기 결과: ",this.schedules);
     this._addToMatrix(schedule);
 
     if (!silent) {
@@ -8336,7 +8346,7 @@ Calendar.prototype._initialize = function(options) {
         startDayOfWeek: 0,
         workweek: false
     }, util.pick(this._options, 'week') || {});
-
+    
     this._options.month = util.extend({
         startDayOfWeek: 0,
         workweek: false,
@@ -8401,6 +8411,7 @@ Calendar.prototype._initialize = function(options) {
  * ]);
  */
 Calendar.prototype.createSchedules = function(schedules, silent) {
+	
     var calColor = this._calendarColor;
 
     util.forEach(schedules, function(obj) {
@@ -8413,7 +8424,7 @@ Calendar.prototype.createSchedules = function(schedules, silent) {
     });
 
     this._controller.createSchedules(schedules, silent);
-
+    console.log("schedules",this);
     if (!silent) {
         this.render();
     }
@@ -8584,6 +8595,7 @@ Calendar.prototype.toggleSchedules = function(calendarId, toHide, render) {
  * });
  */
 Calendar.prototype.render = function(immediately) {
+	//console.log("render: ",this);
     if (this._requestRender) {
         reqAnimFrame.cancelAnimFrame(this._requestRender);
     }
@@ -8599,7 +8611,9 @@ Calendar.prototype.render = function(immediately) {
  * Render and refresh all layout and process requests.
  * @private
  */
+//체크
 Calendar.prototype._renderFunc = function() {
+	//console.log("_renderFunc: ",this);
     if (this._refreshMethod) {
         this._refreshMethod();
     }
@@ -9798,7 +9812,6 @@ function createMonthView(baseController, layoutContainer, dragHandler, options) 
 
     // add controller
     monthView.controller = baseController.Month;
-
     return {
         view: monthView,
         refresh: function() {
@@ -18140,6 +18153,7 @@ Month.prototype._renderChildren = function(container, calendar, theme) {
  * @override
  */
 Month.prototype.render = function() {
+	//console.log(this);
     var self = this,
         opt = this.options,
         vLayout = this.vLayout,
@@ -19058,8 +19072,9 @@ ScheduleCreationPopup.prototype._onClickSaveSchedule = function(target) {
 
     location = domutil.get(cssPrefix + 'schedule-location');
     isAllDay = !!domutil.get(cssPrefix + 'schedule-allday').checked;
-    var categoryCheck = domutil.get(cssPrefix + 'schedule-milestone').checked;
-    if(categoryCheck) {
+    var isMilestone = domutil.get(cssPrefix + 'schedule-milestone').checked;
+    console.log("isMilestone: "+isMilestone);
+    if(isMilestone) {
     	category = ['milestone'];
     } else if (isAllDay) {
     	category = ['allday'];
@@ -19207,8 +19222,10 @@ ScheduleCreationPopup.prototype._makeEditModeData = function(viewModel) {
         return cal.id === viewModel.schedule.calendarId;
     });
     
-    var categoryCheck = schedule.category;
-    if(categoryCheck) {
+    //console.log("schedule.category: "+schedule.category);
+    var isMilestone = (schedule.category == 'milestone');
+    //console.log("isMilestone: "+isMilestone);
+    if(isMilestone) {
         category = ['milestone'];
     } else if (isAllDay) {
         category = ['allday'];
@@ -20951,7 +20968,15 @@ module.exports = (Handlebars['default'] || Handlebars).template({"1":function(co
   return container.escapeExpression(((helper = (helper = helpers["popupSave-tmpl"] || (depth0 != null ? depth0["popupSave-tmpl"] : depth0)) != null ? helper : helpers.helperMissing),(typeof helper === "function" ? helper.call(depth0 != null ? depth0 : (container.nullContext || {}),{"name":"popupSave-tmpl","hash":{},"data":data}) : helper)));
 },"compiler":[7,">= 4.0.0"],"main":function(container,depth0,helpers,partials,data) {
     var stack1, helper, alias1=depth0 != null ? depth0 : (container.nullContext || {}), alias2=helpers.helperMissing, alias3="function", alias4=container.escapeExpression, alias5=container.lambda;
+    var milestoneCheck = false;
     console.log(depth0.category);
+    
+    if (typeof depth0.category!=='undefined' && depth0.category[0] === 'milestone') {
+    	console.log(typeof depth0.category!=='undefined');
+        console.log(depth0.category[0] === 'milestone');
+    	milestoneCheck = true;
+    } 
+    console.log(milestoneCheck);
   
   return "<div class=\""
     + alias4(((helper = (helper = helpers.CSS_PREFIX || (depth0 != null ? depth0.CSS_PREFIX : depth0)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"CSS_PREFIX","hash":{},"data":data}) : helper)))
@@ -21227,8 +21252,9 @@ module.exports = (Handlebars['default'] || Handlebars).template({"1":function(co
     + alias4(((helper = (helper = helpers.CSS_PREFIX || (depth0 != null ? depth0.CSS_PREFIX : depth0)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"CSS_PREFIX","hash":{},"data":data}) : helper)))
     + "schedule-milestone\" type=\"checkbox\" class=\""
     + alias4(((helper = (helper = helpers.CSS_PREFIX || (depth0 != null ? depth0.CSS_PREFIX : depth0)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"CSS_PREFIX","hash":{},"data":data}) : helper)))
-    + "checkbox-square\""
-    + ((stack1 = helpers["if"].call(alias1,(depth0 != null ? depth0.category : depth0),{"name":"if","hash":{},"fn":container.program(7, data, 0),"inverse":container.noop,"data":data})) != null ? stack1 : "")
+    /*+ "checkbox-square "+(milestoneCheck)? 'checked':''+"\""*/
+    + "checkbox-square \""
+    + ((stack1 = helpers["if"].call(alias1,(depth0 != null ? milestoneCheck : depth0),{"name":"if","hash":{},"fn":container.program(7, data, 0),"inverse":container.noop,"data":data})) != null ? stack1 : "")
     + "></input>\n                <span class=\""
     + alias4(((helper = (helper = helpers.CSS_PREFIX || (depth0 != null ? depth0.CSS_PREFIX : depth0)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"CSS_PREFIX","hash":{},"data":data}) : helper)))
     + "icon "
@@ -21302,7 +21328,7 @@ module.exports = (Handlebars['default'] || Handlebars).template({"1":function(co
 /***/ (function(module, exports, __webpack_require__) {
 
 var Handlebars = __webpack_require__(/*! ./node_modules/handlebars/runtime.js */ "./node_modules/handlebars/runtime.js");
-module.exports = (Handlebars['default'] || Handlebars).template({"3":function(container,depth0,helpers,partials,data) {
+module.exports = (Handlebars['default'] || Handlebars).template({"1":function(container,depth0,helpers,partials,data) {
     var helper, alias1=depth0 != null ? depth0 : (container.nullContext || {}), alias2=helpers.helperMissing, alias3="function", alias4=container.escapeExpression;
 
   return "<div class=\""
@@ -21316,7 +21342,7 @@ module.exports = (Handlebars['default'] || Handlebars).template({"3":function(co
     + "content\">"
     + alias4((helpers["popupDetailLocation-tmpl"] || (depth0 && depth0["popupDetailLocation-tmpl"]) || alias2).call(alias1,(depth0 != null ? depth0.schedule : depth0),{"name":"popupDetailLocation-tmpl","hash":{},"data":data}))
     + "</span></div>";
-},"9":function(container,depth0,helpers,partials,data) {
+},"3":function(container,depth0,helpers,partials,data) {
     var helper, alias1=depth0 != null ? depth0 : (container.nullContext || {}), alias2=helpers.helperMissing, alias3="function", alias4=container.escapeExpression;
 
   return "<div class=\""
@@ -21358,7 +21384,7 @@ module.exports = (Handlebars['default'] || Handlebars).template({"3":function(co
     + "content\">"
     + alias4((helpers["popupDetailState-tmpl"] || (depth0 && depth0["popupDetailState-tmpl"]) || alias2).call(alias1,(depth0 != null ? depth0.schedule : depth0),{"name":"popupDetailState-tmpl","hash":{},"data":data}))
     + "</span></div>";
-},"1":function(container,depth0,helpers,partials,data) {
+},"9":function(container,depth0,helpers,partials,data) {
     var stack1, helper, alias1=depth0 != null ? depth0 : (container.nullContext || {}), alias2=helpers.helperMissing, alias3="function", alias4=container.escapeExpression, alias5=container.lambda;
 
   return "        <div class=\""

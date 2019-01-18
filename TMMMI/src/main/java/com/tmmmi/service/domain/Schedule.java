@@ -4,27 +4,23 @@ import java.sql.Date;
 
 public class Schedule {
 
-	private int userNo;
 	private int scheduleNo;
+	private int userNo;
 	private int userCategoryNo;
 	private String scheduleTitle;
 	private String scheduleDetail;
-	private Date scheduleStartDate;
-	private Date scheduleEndDate;
 	private String scheduleLocation;
-	private int scheduleDDay;
-	private int scheduleImportant;
-	private Date scheduleAlarmTime;
+	private long scheduleStartDate;
+	private long scheduleEndDate;
+	private int goingDuration;
+	private int comingDuration;
+	private int isScheduleDDay;
+	private int markDDay; //0='D-Day', 1='D+Day';
+	private int isScheduleImportant;
+	private int scheduleAlarmTime; //Ка Рќ
 	
 	public Schedule() {
-	}
-
-	public int getUserNo() {
-		return userNo;
-	}
-
-	public void setUserNo(int userNo) {
-		this.userNo = userNo;
+		
 	}
 
 	public int getScheduleNo() {
@@ -33,6 +29,14 @@ public class Schedule {
 
 	public void setScheduleNo(int scheduleNo) {
 		this.scheduleNo = scheduleNo;
+	}
+
+	public int getUserNo() {
+		return userNo;
+	}
+
+	public void setUserNo(int userNo) {
+		this.userNo = userNo;
 	}
 
 	public int getUserCategoryNo() {
@@ -59,22 +63,6 @@ public class Schedule {
 		this.scheduleDetail = scheduleDetail;
 	}
 
-	public Date getScheduleStartDate() {
-		return scheduleStartDate;
-	}
-
-	public void setScheduleStartDate(Date scheduleStartDate) {
-		this.scheduleStartDate = scheduleStartDate;
-	}
-
-	public Date getScheduleEndDate() {
-		return scheduleEndDate;
-	}
-
-	public void setScheduleEndDate(Date scheduleEndDate) {
-		this.scheduleEndDate = scheduleEndDate;
-	}
-
 	public String getScheduleLocation() {
 		return scheduleLocation;
 	}
@@ -83,57 +71,103 @@ public class Schedule {
 		this.scheduleLocation = scheduleLocation;
 	}
 
-	public int isScheduleDDay() {
-		return scheduleDDay;
+	public long getScheduleStartDate() {
+		return scheduleStartDate;
 	}
 
-	public void setScheduleDDay(int scheduleDDay) {
-		this.scheduleDDay = scheduleDDay;
+	public void setScheduleStartDate(long scheduleStartDate) {
+		this.scheduleStartDate = scheduleStartDate;
 	}
 
-	public int isScheduleImportant() {
-		return scheduleImportant;
+	public long getScheduleEndDate() {
+		return scheduleEndDate;
 	}
 
-	public void setScheduleImportant(int scheduleImportant) {
-		this.scheduleImportant = scheduleImportant;
+	public void setScheduleEndDate(long scheduleEndDate) {
+		this.scheduleEndDate = scheduleEndDate;
 	}
 
-	public Date getScheduleAlarmTime() {
+	public int getGoingDuration() {
+		return goingDuration;
+	}
+
+	public void setGoingDuration(int goingDuration) {
+		this.goingDuration = goingDuration;
+	}
+
+	public int getComingDuration() {
+		return comingDuration;
+	}
+
+	public void setComingDuration(int comingDuration) {
+		this.comingDuration = comingDuration;
+	}
+
+	public int getIsScheduleDDay() {
+		return isScheduleDDay;
+	}
+
+	public void setIsScheduleDDay(int isScheduleDDay) {
+		this.isScheduleDDay = isScheduleDDay;
+	}
+
+	public int getMarkDDay() {
+		return markDDay;
+	}
+
+	public void setMarkDDay(int markDDay) {
+		this.markDDay = markDDay;
+	}
+
+	public int getIsScheduleImportant() {
+		return isScheduleImportant;
+	}
+
+	public void setIsScheduleImportant(int isScheduleImportant) {
+		this.isScheduleImportant = isScheduleImportant;
+	}
+
+	public int getScheduleAlarmTime() {
 		return scheduleAlarmTime;
 	}
 
-	public void setScheduleAlarmTime(Date scheduleAlarmTime) {
+	public void setScheduleAlarmTime(int scheduleAlarmTime) {
 		this.scheduleAlarmTime = scheduleAlarmTime;
 	}
 
 	@Override
 	public String toString() {
 		StringBuilder builder = new StringBuilder();
-		builder.append("Schedule [userNo=");
-		builder.append(userNo);
-		builder.append(", scheduleNo=");
+		builder.append("Schedule [scheduleNo=");
 		builder.append(scheduleNo);
+		builder.append(", userNo=");
+		builder.append(userNo);
 		builder.append(", userCategoryNo=");
 		builder.append(userCategoryNo);
 		builder.append(", scheduleTitle=");
 		builder.append(scheduleTitle);
 		builder.append(", scheduleDetail=");
 		builder.append(scheduleDetail);
+		builder.append(", scheduleLocation=");
+		builder.append(scheduleLocation);
 		builder.append(", scheduleStartDate=");
 		builder.append(scheduleStartDate);
 		builder.append(", scheduleEndDate=");
 		builder.append(scheduleEndDate);
-		builder.append(", scheduleLocation=");
-		builder.append(scheduleLocation);
-		builder.append(", scheduleDDay=");
-		builder.append(scheduleDDay);
-		builder.append(", scheduleImportant=");
-		builder.append(scheduleImportant);
+		builder.append(", goingDuration=");
+		builder.append(goingDuration);
+		builder.append(", comingDuration=");
+		builder.append(comingDuration);
+		builder.append(", isScheduleDDay=");
+		builder.append(isScheduleDDay);
+		builder.append(", markDDay=");
+		builder.append(markDDay);
+		builder.append(", isScheduleImportant=");
+		builder.append(isScheduleImportant);
 		builder.append(", scheduleAlarmTime=");
 		builder.append(scheduleAlarmTime);
 		builder.append("]");
 		return builder.toString();
 	}
-	
+		
 }

@@ -2,6 +2,8 @@
 
 /*eslint-disable*/
 
+var ScheduleList = [];
+
 var SCHEDULE_CATEGORY = [
     'milestone',
     'task'
@@ -35,9 +37,10 @@ function ScheduleInfo() {
 }
 
 function generateTime(schedule, renderStart, renderEnd) {
-    var baseDate = new Date(renderStart);
+	var baseDate = new Date(renderStart);
     var singleday = chance.bool({likelihood: 70});
-    var startDate = moment(renderStart.getTime())
+    var startDate = moment(renderStart.getTime());
+    
     var endDate = moment(renderEnd.getTime());
     var diffDate = endDate.diff(startDate, 'days');
 
@@ -66,6 +69,8 @@ function generateTime(schedule, renderStart, renderEnd) {
     schedule.end = endDate
         .add(chance.integer({min: 1, max: 4}), 'hour')
         .toDate();
+    
+    console.log(schedule.end);
 
     if (!schedule.isAllday && chance.bool({likelihood: 20})) {
         schedule.goingDuration = 30/*chance.integer({min: 30, max: 120})*/;

@@ -12,14 +12,14 @@
     var datePicker, selectedCalendar;
 
     cal = new Calendar('#calendar', {
-        defaultView: 'week',
+        defaultView: 'month',
         useCreationPopup: useCreationPopup,
         useDetailPopup: useDetailPopup,
         calendars: CalendarList,
         taskView: ['milestone'],
         template: {
             milestone: function(model) {
-                return '<span class="calendar-font-icon ic-milestone-b"></span> <span style="background-color: ' + model.bgColor + '">' + model.title + '</span>';
+                return '<span style="background-color: ' + model.bgColor + '">' + model.title + '</span>';
             },
             allday: function(schedule) {
                 return getTimeTemplate(schedule, true);
@@ -43,12 +43,11 @@
         },
         'beforeCreateSchedule': function(e) {        	
             console.log('beforeCreateSchedule', e);
-            addSchedule(e);
+            fncAddSchedule(e);
             saveNewSchedule(e);
         },
         'beforeUpdateSchedule': function(e) {
         	alert("updateSchedule")
-            console.log('beforeUpdateSchedule', e.schedule.raw.memo);
             e.schedule.start = e.start;
             e.schedule.end = e.end;
             cal.updateSchedule(e.schedule.id, e.schedule.calendarId, e.schedule);
@@ -60,7 +59,7 @@
         'afterRenderSchedule': function(e) {
             var schedule = e.schedule;
             // var element = cal.getElement(schedule.id, schedule.calendarId);
-            // console.log('afterRenderSchedule', element);
+            //console.log('afterRenderSchedule', schedule);
         },
         'clickTimezonesCollapseBtn': function(timezonesCollapsed) {
             console.log('timezonesCollapsed', timezonesCollapsed);
@@ -97,22 +96,7 @@
         if (!isAllDay) {
             html.push('<strong>' + start.format('HH:mm') + '</strong> ');
         }
-        if (schedule.isPrivate) {
-            html.push('<span class="calendar-font-icon ic-lock-b"></span>');
-            html.push(' Private');
-        } else {
-            if (schedule.isReadOnly) {
-                html.push('<span class="calendar-font-icon ic-readonly-b"></span>');
-            } else if (schedule.recurrenceRule) {
-                html.push('<span class="calendar-font-icon ic-repeat-b"></span>');
-            } else if (schedule.attendees.length) {
-                html.push('<span class="calendar-font-icon ic-user-b"></span>');
-            } else if (schedule.location) {
-                html.push('<span class="calendar-font-icon ic-location-b"></span>');
-            }
-            html.push(' ' + schedule.title);
-        }
-
+        html.push(schedule.title);
         return html.join('');
     }
 
@@ -177,7 +161,8 @@
 
         setDropdownCalendarType();
         setRenderRangeText();
-        setSchedules();
+    	fncGetNewScheduleList();
+        
     }
 
     function onClickNavi(e) {
@@ -198,6 +183,7 @@
         }
 
         setRenderRangeText();
+        fncGetNewScheduleList();
         setSchedules();
     }
 
@@ -413,7 +399,7 @@
 
     function setSchedules() {
         cal.clear();
-        generateSchedule(cal.getViewName(), cal.getDateRangeStart(), cal.getDateRangeEnd());
+        //generateSchedule(cal.getViewName(), cal.getDateRangeStart(), cal.getDateRangeEnd());
         cal.createSchedules(ScheduleList);
         // var schedules = [
         //     {id: 489273, title: 'Workout for 2018-08-17', isAllDay: false, start: '2018-09-06T10:00+09:00', end: '2018-09-06T14:00:00+09:00', goingDuration: 30, comingDuration: 30, color: '#ffffff', isVisible: true, bgColor: '#69BB2D', dragBgColor: '#69BB2D', borderColor: '#69BB2D', calendarId: 'logged-workout', category: 'time', dueDateClass: '', customStyle: 'cursor: default;', isPending: false, isFocused: false, isReadOnly: true, isPrivate: false, location: '', attendees: '', recurrenceRule: '', state: ''},

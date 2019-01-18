@@ -105,10 +105,6 @@
         </div>
         <div id="calendar"></div>
     </div>
-	<script>
-    	var CalendarList = [];
-    	var ScheduleList = [];
-    </script>
     <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
     <script type="text/javascript" src="https://uicdn.toast.com/tui.code-snippet/latest/tui-code-snippet.min.js"></script>
@@ -118,6 +114,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/chance/1.0.13/chance.min.js"></script>
     <script src="/javascript/tui/tui-calendar.js" charset="utf-8"></script>
     <script src="/javascript/tui/data/calendars.js"></script>
+    <script src="/javascript/tui/data/schedules.js" charset="utf-8"></script>
     <script>
 		var calendar;
 		<c:forEach var="userCategory" items="${userCategoryList}">
@@ -130,14 +127,56 @@
 			calendar.borderColor = "${userCategory.userCategoryColor}";
 			addCalendar(calendar);
 		</c:forEach>
+		
+		function fncAdjustScheduleValues(schedule){
+			
+			
+			schedule.isAllday = (schedule.isAllday!=0)?true:false;
+			schedule.state = (schedule.state!=0)?'D+Day':'D-Day';
+			if (schedule.category!=0) {
+				schedule.category = ['milestone'];
+			} else if (schedule.isAllday) {
+				schedule.category = ['allday'];
+				
+			} else {
+				schedule.category = ['time'];
+			} 
+			
+			schedule.start = new Date(schedule.start*=1);
+			schedule.end = new Date(schedule.end*=1); 
+			return schedule;
+		}
+		
+		var schedule;
+		<c:forEach var="schedule" items="${scheduleList}">
+			schedule = new ScheduleInfo();
+			schedule.id = "${schedule.scheduleNo}";
+			schedule.calendarId = "${schedule.userCategoryNo}";
+			schedule.title = "${schedule.scheduleTitle}";
+			schedule.body = "${schedule.scheduleDetail}";
+			schedule.location = "${schedule.scheduleLocation}";
+			schedule.start = "${schedule.scheduleStartDate}";
+			schedule.end = "${schedule.scheduleEndDate}";
+			schedule.goingDuration = "${schedule.goingDuration}";
+			schedule.comingDuration = "${schedule.comingDuration}";
+			schedule.isAllday = "${schedule.isScheduleDDay}";
+			schedule.state = "${schedule.markDDay}";
+			schedule.category = "${schedule.isScheduleImportant}";
+			schedule.recurrenceRule = "${schedule.scheduleAlarmTime}";
+			console.log("before",schedule);
+			schedule = fncAdjustScheduleValues(schedule);
+			console.log("after",schedule);
+			ScheduleList.push(schedule);
+		</c:forEach>
     </script>
-    <script src="/javascript/tui/data/schedules.js" charset="utf-8"></script>
+    
     <script src="/javascript/tui/theme/dooray.js"></script>
     <script src="/javascript/tui/default.js" charset="utf-8"></script>
     
     <script>
-		function addSchedule(schedule){
-			console.log("start: "+schedule.start.toDate());
+		function fncAddSchedule(schedule){
+			console.log("fncAddSchedule");
+			console.log(schedule);
 			
 			$.ajax({
 				url : "/calendarRest/addSchedule",
@@ -146,10 +185,15 @@
 					userCategoryNo : schedule.calendarId,
 					scheduleTitle : schedule.title,
 					scheduleDetail : schedule.body,
-					scheduleStartDate : schedule.start.toDate(),
-					scheduleEndDate :schedule.end.toDate(),
 					scheduleLocation : schedule.location,
-					scheduleDDay : (schedule.isAllDay?0:1)						
+					scheduleStartDate : schedule.start.getTime(),
+					scheduleEndDate : schedule.end.getTime(),
+					goingDuration : schedule.goingDuration,
+					comingDuration : schedule.comingDuration,
+					isScheduleDDay : (schedule.isAllDay?1:0),
+					markDDay : (schedule.state=='D-Day'?0:1),
+					isScheduleImportant : (schedule.category[0]=='milestone'?1:0),
+					scheduleAlarmTime : schedule.recurrenceRule
 				}),
 				dataType: "json",
 				headers : {
@@ -160,8 +204,27 @@
 					console.log(JSONData);
 					alert("등록 완료");
 				}
-			});		
-		}		
+			});
+		}
+			
+		function fncGetNewScheduleList(){
+			$.ajax({
+				url : "/calendarRest/getScheduleList",
+				method : "POST",
+				data: JSON.stringify({
+					targetDate: $('#renderRange').html()
+				}),
+				dataType: "json",
+				headers : {
+					"Accept" : "application/json",
+					"Content-Type" : "application/json"
+				},
+				success : function(JSONData, status) {
+					console.log(JSONData);
+					alert("등록 완료");
+				}
+			});
+		}
     </script>
 </body>
 </html>

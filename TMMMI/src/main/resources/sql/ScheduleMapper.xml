@@ -12,28 +12,46 @@
 		<result property="userCategoryNo"		column="user_category_no"		jdbcType="NUMERIC" />
 		<result property="scheduleTitle"		column="schedule_title"			jdbcType="VARCHAR" />
 		<result property="scheduleDetail"		column="schedule_detail" 		jdbcType="VARCHAR" />
+		<result property="scheduleLocation"		column="schedule_location" 		jdbcType="VARCHAR" />
 		<result property="scheduleStartDate"	column="schedule_start_date" 	jdbcType="DATE" />
 		<result property="scheduleEndDate"		column="schedule_end_date" 		jdbcType="DATE" />
-		<result property="scheduleLocation"		column="schedule_location" 		jdbcType="VARCHAR" />
-		<result property="scheduleDDay"			column="schedule_dday" 			jdbcType="NUMERIC" />
-		<result property="scheduleImportant"	column="schedule_important" 	jdbcType="NUMERIC" />
-		<result property="scheduleAlarmTime"	column="schedule_alarm_time" 	jdbcType="DATE" />
+		<result property="goingDuration"		column="going_duration"			jdbcType="NUMERIC" />
+		<result property="comingDuration"		column="coming_duration"		jdbcType="NUMERIC" />
+		<result property="isScheduleDDay"		column="schedule_dday" 			jdbcType="NUMERIC" />
+		<result property="markDDay"				column="mark_dday"				jdbcType="NUMERIC" />
+		<result property="isScheduleImportant"	column="schedule_important" 	jdbcType="NUMERIC" />
+		<result property="scheduleAlarmTime"	column="schedule_alarm_time" 	jdbcType="NUMERIC" />
 	</resultMap>
 	
 	<insert id="addSchedule" parameterType="com.tmmmi.service.domain.Schedule">
 	 	INSERT
-		INTO schedule ( schedule_no , user_no , user_category_no , schedule_title, schedule_detail, schedule_start_date, schedule_end_date, schedule_location, schedule_dday, schedule_important, schedule_alarm_time ) 
+		INTO schedule ( schedule_no , user_no , user_category_no , schedule_title, schedule_detail, schedule_location, 
+						schedule_start_date, schedule_end_date, going_duration, coming_duration, 
+						schedule_dday, mark_dday, schedule_important, schedule_alarm_time, schedule_delete_check ) 
 		VALUES ( schedule_no.nextval ,
 				#{userNo} , 
 				#{userCategoryNo} ,
-				#{userCategoryName}
+				#{scheduleTitle} ,
+				#{scheduleDetail} ,
+				#{scheduleLocation} ,
+				#{scheduleStartDate} ,
+				#{scheduleEndDate} ,
+				#{goingDuration} ,
+				#{comingDuration} ,
+				#{isScheduleDDay} ,
+				#{markDDay} ,
+				#{isScheduleImportant} ,
+				#{scheduleAlarmTime},
+				0
 				)
 	 </insert>
 	 
-	 <select  id="getScheduleList"  parameterType="java.lang.Integer"	resultMap="scheduleSelectMap">
+	 <select  id="getScheduleList"  parameterType="map"	resultMap="scheduleSelectMap">
 	 	SELECT *
-	 	FROM user_category
+	 	FROM schedule
 	 	WHERE user_no = #{userNo}
+	 	AND schedule_start_date BETWEEN #{startDate} AND #{endDate}
+	 	OR schedule_end_date BETWEEN #{startDate} AND #{endDate}
 	 </select>
 	 
 	 <update id="updateSchedule" parameterType="com.tmmmi.service.domain.Schedule" >

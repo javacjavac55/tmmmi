@@ -1,5 +1,8 @@
 package com.tmmmi.service.schedule.impl;
 
+import java.util.List;
+import java.util.Map;
+
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -28,9 +31,8 @@ public class ScheduleDaoImpl implements ScheduleDao {
 	}
 
 	@Override
-	public void getScheduleList() {
-		// TODO Auto-generated method stub
-		
+	public List<Schedule> getScheduleList(Map<String,Object> map) {
+		return sqlSession.selectList("ScheduleMapper.getScheduleList", map);
 	}
 
 	@Override

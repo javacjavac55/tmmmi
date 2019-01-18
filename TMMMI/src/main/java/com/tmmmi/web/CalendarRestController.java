@@ -1,5 +1,9 @@
 package com.tmmmi.web;
 
+import java.sql.Timestamp;
+
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -24,16 +28,15 @@ public class CalendarRestController {
 	@Autowired
 	@Qualifier("userCategoryServiceImpl")
 	private UserCategoryService userCategoryService;
-	private DDayService dDayService;
 
 	public CalendarRestController() {
 		System.out.println(this.getClass());
 	}
 	
 	@RequestMapping( value="addSchedule", method=RequestMethod.POST )
-	public int addSchedule(@RequestBody Schedule schedule) {
+	public int addSchedule(@RequestBody Schedule schedule, HttpSession session) {
 		System.out.println("/addSchedule.do");
-		
+		schedule.setUserNo((int)session.getAttribute("userNo"));
 		System.out.println("schedule: "+schedule);
 		int result = scheduleService.addSchedule(schedule);
 		System.out.println("addSchedule result: "+result);
@@ -41,6 +44,20 @@ public class CalendarRestController {
 		
 		return result;
 	}
+	
+	@RequestMapping( value="getScheduleList", method=RequestMethod.POST )
+	public int addSchedule(@RequestBody String targetDate, HttpSession session) {
+		System.out.println("/getScheduleList.do");
+		/*schedule.setUserNo((int)session.getAttribute("userNo"));
+		System.out.println("schedule: "+schedule);
+		int result = scheduleService.addSchedule(schedule);
+		System.out.println("addSchedule result: "+result);*/
+	
+		System.out.println("targetDate: "+targetDate);
+		
+		return 0;
+	}
+	
 	public void updateSchedule() {}
 	public void deleteSchedule() {}
 	
