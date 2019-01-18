@@ -43,17 +43,20 @@
         },
         'beforeCreateSchedule': function(e) {        	
             console.log('beforeCreateSchedule', e);
-            fncAddSchedule(e);
+            //fncAddSchedule(e);
             saveNewSchedule(e);
         },
         'beforeUpdateSchedule': function(e) {
-        	alert("updateSchedule")
+        	console.log("updateSchedule");
+        	console.log(e);
             e.schedule.start = e.start;
             e.schedule.end = e.end;
+            //fncUpdateSchedule(e.schedule);
             cal.updateSchedule(e.schedule.id, e.schedule.calendarId, e.schedule);
         },
         'beforeDeleteSchedule': function(e) {
             console.log('beforeDeleteSchedule', e);
+            //fncDeleteSchedule(e.schedule);
             cal.deleteSchedule(e.schedule.id, e.schedule.calendarId);
         },
         'afterRenderSchedule': function(e) {
@@ -162,7 +165,7 @@
         setDropdownCalendarType();
         setRenderRangeText();
     	fncGetNewScheduleList();
-        
+    	setSchedules();
     }
 
     function onClickNavi(e) {
@@ -395,6 +398,9 @@
             html.push(moment(cal.getDateRangeEnd().getTime()).format(' MM.DD'));
         }
         renderRange.innerHTML = html.join('');
+        //updateRenderRange
+        renderRangeStart = cal.getDateRangeStart().getTime();
+        renderRangeEnd = cal.getDateRangeEnd().getTime();
     }
 
     function setSchedules() {

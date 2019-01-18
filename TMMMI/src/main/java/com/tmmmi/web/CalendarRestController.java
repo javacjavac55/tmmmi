@@ -58,8 +58,27 @@ public class CalendarRestController {
 		return 0;
 	}
 	
-	public void updateSchedule() {}
-	public void deleteSchedule() {}
+	@RequestMapping( value="updateSchedule", method=RequestMethod.POST )
+	public int updateSchedule(@RequestBody Schedule schedule, HttpSession session) {
+		System.out.println("/updateSchedule.do");
+		schedule.setUserNo((int)session.getAttribute("userNo"));
+		System.out.println("schedule: "+schedule);
+		int result = scheduleService.updateSchedule(schedule);
+		System.out.println("updateSchedule result: "+result);
+	
+		return result;
+	}
+	
+	@RequestMapping( value="deleteSchedule", method=RequestMethod.POST )
+	public int deleteSchedule(@RequestBody Schedule schedule, HttpSession session) {
+		System.out.println("/deleteSchedule.do");
+		schedule.setUserNo((int)session.getAttribute("userNo"));
+		System.out.println("schedule: "+schedule);
+		int result = scheduleService.deleteSchedule(schedule);
+		System.out.println("deleteSchedule result: "+result);
+	
+		return result;
+	}
 	
 	@RequestMapping( value="addUserCategory", method=RequestMethod.POST )
 	public int addUserCategory(@RequestBody UserCategory userCategory) {

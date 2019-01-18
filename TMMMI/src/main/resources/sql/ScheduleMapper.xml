@@ -55,18 +55,30 @@
 	 </select>
 	 
 	 <update id="updateSchedule" parameterType="com.tmmmi.service.domain.Schedule" >
-	   	UPDATE user_category
-	   	<set>
-	   		user_category_color = #{userCategoryColor} ,
-			user_category_name	= #{userCategoryName}
+	   	UPDATE schedule
+	   	<set>				
+	   		user_category_no = #{userCategoryNo},
+			schedule_title = #{scheduleTitle},
+			schedule_detail = #{scheduleDetail},
+			schedule_location = #{scheduleLocation},
+			schedule_start_date = #{scheduleStartDate},
+			schedule_end_date = #{scheduleEndDate},
+			going_duration = #{goingDuration},
+			coming_duration = #{comingDuration},
+			schedule_dday = #{isScheduleDDay},
+			mark_dday = #{markDDay},
+			schedule_important = #{isScheduleImportant},
+			schedule_alarm_time = #{scheduleAlarmTime}
 	   	</set>
-	   	WHERE user_category_no = #{userCategoryNo}
+	   	WHERE schedule_no = #{scheduleNo}
 	 </update>
 	 
-	 <delete id="deleteSchedule" parameterType="com.tmmmi.service.domain.Schedule">
-	 	DELETE
-	 	FROM user_category
-	 	WHERE user_category_no = #{userCategoryNo}
-	 </delete>
+	 <update id="deleteSchedule" parameterType="com.tmmmi.service.domain.Schedule">
+	 	UPDATE schedule
+	 	<set>
+	 		schedule_delete_check = 1
+	 	</set>
+	 	WHERE schedule_no = #{scheduleNo}
+	 </update>
 	 
 </mapper>

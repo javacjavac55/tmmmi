@@ -4154,7 +4154,7 @@ domutil = {
 
         el = document.createElement(tagName);
         el.className = className;
-
+        
         if (container) {
             container.appendChild(el);
         } else {
@@ -6747,7 +6747,6 @@ Base.prototype.createSchedule = function(options, silent) {
     }
     //체크
     schedule = this.addSchedule(Schedule.create(options));
-
     if (!silent) {
         /**
          * @event Base#createdSchedule
@@ -8424,7 +8423,6 @@ Calendar.prototype.createSchedules = function(schedules, silent) {
     });
 
     this._controller.createSchedules(schedules, silent);
-    console.log("schedules",this);
     if (!silent) {
         this.render();
     }
@@ -8466,9 +8464,13 @@ Calendar.prototype.updateSchedule = function(scheduleId, calendarId, scheduleDat
     var ctrl = this._controller,
         ownSchedules = ctrl.schedules,
         schedule = ownSchedules.single(function(model) {
+        	console.log("model.id: "+model.id);
+        	console.log("scheduleId: "+scheduleId);
+        	console.log("model.calendarId: "+model.calendarId);
+        	console.log("calendarId: "+calendarId);
             return model.id === scheduleId && model.calendarId === calendarId;
         });
-
+    console.log("update: ",schedule);
     if (schedule) {
         ctrl.updateSchedule(schedule, scheduleData);
 
@@ -9564,7 +9566,6 @@ module.exports = function(options) {
     controller.Core.theme = controller.theme;
     controller.Week.theme = controller.theme;
     controller.Month.theme = controller.theme;
-
     return controller;
 };
 
@@ -9635,10 +9636,10 @@ function createMonthView(baseController, layoutContainer, dragHandler, options) 
     var clickHandler, creationHandler, resizeHandler, moveHandler, clearSchedulesHandler, onUpdateSchedule;
     var onShowCreationPopup, onSaveNewSchedule, onShowEditPopup;
     var detailView, onShowDetailPopup, onDeleteSchedule, onEditSchedule;
-
+    
     monthViewContainer = domutil.appendHTMLElement(
         'div', layoutContainer, config.classname('month'));
-
+    //레몬
     monthView = new Month(options, monthViewContainer, baseController.Month);
     moreView = new More(options.month, layoutContainer, baseController.theme);
 
@@ -17996,7 +17997,7 @@ var mmin = Math.min;
 function Month(options, container, controller) {
     var theme = controller ? controller.theme : null;
     var monthOption;
-
+    //레몬
     options = options || {};
     monthOption = options ? options.month : {};
 
@@ -19075,11 +19076,11 @@ ScheduleCreationPopup.prototype._onClickSaveSchedule = function(target) {
     var isMilestone = domutil.get(cssPrefix + 'schedule-milestone').checked;
     console.log("isMilestone: "+isMilestone);
     if(isMilestone) {
-    	category = ['milestone'];
+    	category = 'milestone';
     } else if (isAllDay) {
-    	category = ['allday'];
+    	category = 'allday';
     } else {
-    	category = ['time'];
+    	category = 'time';
     }
 
     if (isAllDay) {
@@ -19222,15 +19223,13 @@ ScheduleCreationPopup.prototype._makeEditModeData = function(viewModel) {
         return cal.id === viewModel.schedule.calendarId;
     });
     
-    //console.log("schedule.category: "+schedule.category);
     var isMilestone = (schedule.category == 'milestone');
-    //console.log("isMilestone: "+isMilestone);
     if(isMilestone) {
-        category = ['milestone'];
+        category = 'milestone';
     } else if (isAllDay) {
-        category = ['allday'];
+        category = 'allday';
     } else {
-        category = ['time'];
+        category = 'time';
     }
 
     this._schedule = schedule;

@@ -116,6 +116,8 @@
     <script src="/javascript/tui/data/calendars.js"></script>
     <script src="/javascript/tui/data/schedules.js" charset="utf-8"></script>
     <script>
+    	var renderRangeStart;
+    	var renderRangeEnd;
 		var calendar;
 		<c:forEach var="userCategory" items="${userCategoryList}">
 			calendar = new CalendarInfo();
@@ -129,17 +131,15 @@
 		</c:forEach>
 		
 		function fncAdjustScheduleValues(schedule){
-			
-			
 			schedule.isAllday = (schedule.isAllday!=0)?true:false;
 			schedule.state = (schedule.state!=0)?'D+Day':'D-Day';
 			if (schedule.category!=0) {
-				schedule.category = ['milestone'];
+				schedule.category = 'milestone';
 			} else if (schedule.isAllday) {
-				schedule.category = ['allday'];
+				schedule.category = 'allday';
 				
 			} else {
-				schedule.category = ['time'];
+				schedule.category = 'time';
 			} 
 			
 			schedule.start = new Date(schedule.start*=1);
@@ -163,9 +163,7 @@
 			schedule.state = "${schedule.markDDay}";
 			schedule.category = "${schedule.isScheduleImportant}";
 			schedule.recurrenceRule = "${schedule.scheduleAlarmTime}";
-			console.log("before",schedule);
 			schedule = fncAdjustScheduleValues(schedule);
-			console.log("after",schedule);
 			ScheduleList.push(schedule);
 		</c:forEach>
     </script>
@@ -206,13 +204,28 @@
 				}
 			});
 		}
+		
+		function fncUpdateSchedule(schedule){
+			console.log("fncUpdateSchedule");
+			console.log(schedule);
 			
-		function fncGetNewScheduleList(){
 			$.ajax({
-				url : "/calendarRest/getScheduleList",
+				url : "/calendarRest/updateSchedule",
 				method : "POST",
 				data: JSON.stringify({
-					targetDate: $('#renderRange').html()
+					scheduleNo : schedule.id,
+					userCategoryNo : schedule.calendarId,
+					scheduleTitle : schedule.title,
+					scheduleDetail : schedule.body,
+					scheduleLocation : schedule.location,
+					scheduleStartDate : schedule.start.getTime(),
+					scheduleEndDate : schedule.end.getTime(),
+					goingDuration : schedule.goingDuration,
+					comingDuration : schedule.comingDuration,
+					isScheduleDDay : (schedule.isAllDay?1:0),
+					markDDay : (schedule.state=='D-Day'?0:1),
+					isScheduleImportant : (schedule.category && schedule.category[0]=='milestone'?1:0),
+					scheduleAlarmTime : schedule.recurrenceRule
 				}),
 				dataType: "json",
 				headers : {
@@ -221,7 +234,48 @@
 				},
 				success : function(JSONData, status) {
 					console.log(JSONData);
-					alert("등록 완료");
+					alert("수정 완료");
+				}
+			});
+		}
+		
+		function fncDeleteSchedule(schedule){
+			console.log("fncDeleteSchedule");
+			console.log(schedule);
+			
+			$.ajax({
+				url : "/calendarRest/deleteSchedule",
+				method : "POST",
+				data: JSON.stringify({
+					scheduleNo : schedule.id
+				}),
+				dataType: "json",
+				headers : {
+					"Accept" : "application/json",
+					"Content-Type" : "application/json"
+				},
+				success : function(JSONData, status) {
+					console.log(JSONData);
+					alert("삭제 완료");
+				}
+			});
+		}
+		
+		function fncGetNewScheduleList(){
+			$.ajax({
+				url : "/calendarRest/getScheduleList",
+				method : "POST",
+				data: JSON.stringify({
+					renderRangeStart: renderRangeStart,
+					renderRangeEnd: renderRangeEnd
+				}),
+				dataType: "json",
+				headers : {
+					"Accept" : "application/json",
+					"Content-Type" : "application/json"
+				},
+				success : function(JSONData, status) {
+					console.log(JSONData);
 				}
 			});
 		}
