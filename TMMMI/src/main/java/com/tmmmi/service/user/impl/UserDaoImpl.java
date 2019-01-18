@@ -52,12 +52,12 @@ public class UserDaoImpl implements UserDao {
 		sqlSession.update("UserMapper.updateUser", user);
 	}
 
-
 	@Override
 	public List<User> getUserList(Search search) throws Exception {
 		return sqlSession.selectList("UserMapper.getUserList", search);
 	}
 	
+	@Override
 	public int getTotalCount(Search search) throws Exception {
 		return sqlSession.selectOne("UserMapper.getTotalCount", search);
 	}
@@ -66,11 +66,19 @@ public class UserDaoImpl implements UserDao {
 	public void withdrawUser(User user) throws Exception {
 		sqlSession.update("UserMapper.withdrawUser", user);
 	}
-
+	
 	@Override
-	public void emailCheckDuplication() {
-		// TODO Auto-generated method stub
-		
+	public User searchUserId(User user) {
+		return sqlSession.selectOne("UserMapper.searchUserId", user);
+	}
+	@Override
+	public User searchUserPw(User user) {
+		return sqlSession.selectOne("UserMapper.searchUserPw", user);
+	}
+	
+	@Override
+	public User emailCheckDuplication(String email) {
+		return sqlSession.selectOne("UserMapper.getUserEmail", email);
 	}
 	
 

@@ -11,7 +11,7 @@ public interface QNAService {
 	
 	public QNA getQNA(int userNo) throws Exception;
 	
-	public Map<String,Object> getQNAList(Search search) throws Exception;
+	public Map<String,Object> getQNAList(Search search, int userNo) throws Exception;
 	
 	public void updateQNA(QNA qna) throws Exception;
 	

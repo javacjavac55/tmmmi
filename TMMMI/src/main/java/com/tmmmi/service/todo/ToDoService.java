@@ -6,11 +6,12 @@ import com.tmmmi.service.domain.ToDo;
 
 public interface ToDoService {
 
-	public Map<String, Object> getToDoList(int userNo) throws Exception;
+	public Map<String, Object> getToDoList(Map<String, Object> todomap) throws Exception;
 	public void addToDo(ToDo toDo) throws Exception;
 	public void deleteToDo(ToDo toDo) throws Exception;
 	public void updateToDo(ToDo toDo) throws Exception;
 	public void updateToDoComplete(ToDo toDo) throws Exception;
+	public void deleteToDoComplete(ToDo toDo) throws Exception;
 	public void getToDoDayGraph();
 	public void getToDoMonthGraph();
 	public void getToDoWordCloud();

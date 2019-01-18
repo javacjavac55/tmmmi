@@ -29,7 +29,7 @@
 	$(function() {
 		$( ".btn-pink:contains('문의하기')" ).on("click" , function() {
 			alert("왜오애애애애")
-			var userNo=16;
+			/* var userNo=16; */
 			fncAddQNA();
 		});
 		
@@ -63,31 +63,27 @@
 		<div class="container">
 		
 		<div class="page-header">
-			<h2>FAQ 작성하기</h2>
+			<h2>1:1 문의하기</h2>
 		</div>
 		
 		<div class="row">
 			<div class="col-md-1">
 				<button type="button" class="btn btn-default;">카테고리</button>
 			</div>
-		    <div class="col-md-2">
-				<div class=" dropdown" style="background-color:rgb(0,0,0,0);">
-			 		<button class="btn dropdown-toggle;" type="button" data-toggle="dropdown" style="background-color:rgb(0,0,0,0);">회원 정보
-			 		<span class="caret"></span></button>
-		  			<ul class="dropdown-menu">
-				    <li>회원 정보</li>
-				    <li>일정 관리</li>
-				    <li>컨텐츠 설정</li>
-				    <li>다이어리/스크랩</li>
-				    <li>기타</li>
-			  		</ul>
-				</div>
+		    <div class="col-md-3">
+				<select name ="QNACategory" class="form-control">
+				  <option value="0" >회원 정보</option>
+				  <option value="1" >일정 관리</option>
+				  <option value="2" >컨텐츠 설정</option>
+				  <option value="3" >다이어리/스크랩</option>
+				  <option value="4" >기타</option>
+				</select>
 			</div>
 			<div class="col-md-1">
 				<button type="button" class="btn btn-default;">회원아이디</button>
 			</div>
 			<div class="col-md-2" >
-				<button type="button" class="btn btn-default;" style="background-color:rgb(0,0,0,0);" value="user16" >user16</button>
+				<button type="button" class="btn btn-default;" style="background-color:rgb(0,0,0,0);" >${userId}</button>
 			</div>
 			<div class="col-md-1">
 				<button type="button" class="btn btn-default;">작성날짜</button>

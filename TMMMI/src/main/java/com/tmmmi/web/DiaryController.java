@@ -85,6 +85,7 @@ public class DiaryController {
 	@RequestMapping(value="listDiary")
 	public ModelAndView getDiaryList(@ModelAttribute("search") Search search, @ModelAttribute("Diary") Diary diary, HttpServletRequest request, HttpSession session)throws Exception{
 		
+
 		int userNo = 111;
 		
 		
