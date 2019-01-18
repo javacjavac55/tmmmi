@@ -86,7 +86,7 @@ public class DiaryController {
 	public ModelAndView getDiaryList(@ModelAttribute("search") Search search, @ModelAttribute("Diary") Diary diary, HttpServletRequest request, HttpSession session)throws Exception{
 		System.out.println("/listDiary: GET/POST");
 		
-		int userNo = 4213;
+		int userNo = 1;
 		
 		
 		if(search.getCurrentPage() ==0 ){
@@ -128,7 +128,7 @@ public class DiaryController {
 		
 		ModelAndView modelAndView = new ModelAndView();
 		modelAndView.addObject("diary", diary);
-		modelAndView.setViewName("redirect:/diary/getDiary");
+		modelAndView.setViewName("redirect:/diary/getDiary?diaryNo="+diary.getDiaryNo());
 		
 		return modelAndView;
 	}

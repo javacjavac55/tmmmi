@@ -110,11 +110,17 @@ $(document).ready(function() {
 	
 		//==> DOM Object GET 3가지 방법 ==> 1. $(tagName) : 2.(#id) : 3.$(.className)
 		//==> 1 과 3 방법 조합 : $("tagName.className:filter함수") 사용함.	
-		 $( "#update" ).on("click" , function() {
+		/*  $( "#update" ).on("click" , function() {
 			//Debug..
 			//alert(  $( "td.ct_btn01:contains('가입')" ).html() );
 			 fncUpdateDiary();
-		});
+		}); */
+		
+		 $(function() {
+				$( "button.btn.btn-primary" ).on("click" , function() {
+					fncUpdateDiary();
+				});
+			});
 		//==> DOM Object GET 3가지 방법 ==> 1. $(tagName) : 2.(#id) : 3.$(.className)
 		//==> 1 과 3 방법 조합 : $("tagName.className:filter함수") 사용함.	
 		 $("#cancel").on("click" , function() {

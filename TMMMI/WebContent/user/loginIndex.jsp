@@ -9,11 +9,12 @@
 </head>
 <body>
 	<c:if test="${ !empty userNo }">
- 		<a href="/user/getUser?userNo=${userNo }">회원정보보기</a><br/>
- 		<a href="/user/updateUser?userNo=${userNo }">유저업데이트</a><br/>
-		<a href="/user/getUserList.jsp">회원 리스트</a><br/>
+ 		<a href="/user/getUser">회원정보보기</a><br/>
+ 		<a href="/user/updateUser">유저업데이트</a><br/>
+		<a href="/user/getUserList">회원 리스트</a><br/>
 		<a href="/user/logout">로그아웃</a><br/>
 		<a href="/userSetting/getUserSetting">사용자 설정</a>
+		<a href="../index.jsp">인덱스로 갑시당!</a>
  	</c:if>
  	<c:if test="${ empty userNo }">
  		다시 로그인을 시도하세요.<br/>

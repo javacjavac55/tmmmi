@@ -13,6 +13,7 @@
 	</settings>	
 	<mappers>
  		<mapper resource="sql/UserMapper.xml"/>
+ 		<mapper resource="sql/UserSettingMapper.xml"/>
 		<mapper resource="sql/CalendarSettingMapper.xml"/>
 		<mapper resource="sql/UserSettingMapper.xml"/>
 		<mapper resource="sql/ContentSettingMapper.xml"/>		

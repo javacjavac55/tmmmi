@@ -12,7 +12,9 @@ public interface UserService {
 	public void updateUser(User user) throws Exception;
 	public void withdrawUser(User user) throws Exception;
 	public Map<String, Object> getUserList(Search search) throws Exception;
-	public void emailCheckDuplication();
 	public boolean sendMail(String email, String authNum) throws Exception;
 	public boolean checkDuplication(String userId) throws Exception;
+	public boolean emailCheckDuplication(String email);
+	public User searchUserId(User user);
+	public User searchUserPw(User user);
 }

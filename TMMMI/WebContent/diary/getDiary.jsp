@@ -82,7 +82,7 @@
 		
 		<hr/>
 		
-		
+		<a href="../index.jsp">Home</a>
 		
 		<hr/>
 	</div>
