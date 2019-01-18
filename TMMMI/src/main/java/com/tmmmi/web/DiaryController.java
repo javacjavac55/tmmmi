@@ -61,7 +61,7 @@ public class DiaryController {
 		
 		ModelAndView modelAndView = new ModelAndView();
 		modelAndView.addObject("Diary", diary);
-		modelAndView.setViewName("/diary/getDiary.jsp");
+		modelAndView.setViewName("redirect:/diary/listDiary");
 		
 		
 		return modelAndView;
@@ -84,9 +84,9 @@ public class DiaryController {
 	}
 	@RequestMapping(value="listDiary")
 	public ModelAndView getDiaryList(@ModelAttribute("search") Search search, @ModelAttribute("Diary") Diary diary, HttpServletRequest request, HttpSession session)throws Exception{
-		System.out.println("/listDiary: GET/POST");
 		
-		int userNo = 4213;
+
+		int userNo = 111;
 		
 		
 		if(search.getCurrentPage() ==0 ){
@@ -128,23 +128,27 @@ public class DiaryController {
 		
 		ModelAndView modelAndView = new ModelAndView();
 		modelAndView.addObject("diary", diary);
-		modelAndView.setViewName("redirect:/diary/getDiary");
+		modelAndView.setViewName("redirect:/diary/getDiary?diaryNo="+diary.getDiaryNo());
 		
 		return modelAndView;
 	}
-	@RequestMapping(value="deleteDiary", method=RequestMethod.GET)	
-	public void deleteDiary(@RequestParam("diaryNo")int diaryNo)  throws Exception{
+	@RequestMapping(value="deleteDiary", method=RequestMethod.POST)
+	public ModelAndView deleteDiary(@RequestParam("deleteDiary") String diaryNo)  throws Exception{
+		
 		System.out.println("/diary/deleteDiary");
+		System.out.println("다이어리 번호:"+diaryNo);
 		
-		Diary diary = diaryService.getDiary(diaryNo);
+		String[] arrIdx =  diaryNo.split(",");
+		for (int i=0; i<arrIdx.length; i++) {
+			diaryService.deleteDiary(Integer.parseInt(arrIdx[i]));
+		}	
 		
-		diaryService.deleteDiary(diaryNo);
-		
-		
-		
+				
 		ModelAndView modelAndView = new ModelAndView();
-		modelAndView.addObject("diary", diary);
+		modelAndView.setViewName("/diary/listDiary");
 		
+		return modelAndView;
 	}
 
+	
 }

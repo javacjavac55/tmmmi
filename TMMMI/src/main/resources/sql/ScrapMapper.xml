@@ -1,1 +1,80 @@
 <?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper
+		PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+		"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+		
+<mapper namespace="ScrapMapper">
+	<resultMap id="ScrapSelectMap" type="com.tmmmi.service.domain.Scrap">
+		<result property="scrapNo" column="scrap_no" jdbcType="NUMERIC" />
+		<result property="userNo" column="user_no" jdbcType="NUMERIC" />
+		<result property="sectionNo" column="scrap_category" jdbcType="NUMERIC" />
+		<result property="scrapTitle" column="scrap_title" jdbcType="VARCHAR" />
+		<result property="scrapDetail" column="scrap_detail" jdbcType="VARCHAR" />
+		<result property="scrapDate" column="scrap_date" jdbcType="DATE" />
+		<result property="scrapCheck" column="scrap_check" jdbcType="NUMERIC" />
+	</resultMap>
+
+	<!-- SQL: INSERT -->
+	<insert id="addScrap" parameterType="com.tmmmi.service.domain.Scrap">
+		INSERT
+		INTO	
+		diary(scrap_no, user_no, user_category_no, diary_title, diary_detail, diary_date)	
+		
+		VALUES (scrap_no.nextval, #{userNo}, #{sectionNo},
+				 #{scrapTitle}, #{scrapDetail}, SYSDATE)
+	</insert>
+	
+	<!-- SQL: SELECT -->
+	<select id="getScrap" parameterType="string" resultMap="ScrapSelectMap">
+		SELECT
+		scrap_no, scrap_category, scrap_title, scrap_detail, scrap_date
+		FROM
+		scrap
+		WHERE
+		scrap_no= #{value}
+	</select>
+	
+	<!-- SQL: UPDATE -->
+	<update id="updateScrap" parameterType="com.tmmmi.service.domain.Scrap">
+		UPDATE scrap
+		<set>
+			scrap_category = #{sectionNo},
+			scrap_title = #{scrapTitle},
+			scrap_detail = #{scrapDetail}	
+		</set>
+		WHERE scrap_no = #{scrapNo}
+	</update>
+	
+	<!-- SQL: DELETE -->
+	<delete id="deleteScrap" parameterType="com.tmmmi.service.domain.Scrap">
+		DELETE
+		FROM scrap
+		WHERE
+		scrap_no=#{scrapNo}
+	</delete>
+	
+	<select  id="getScrapList"  parameterType="map"	resultMap="ScrapSelectMap">
+	  	SELECT *
+	  	FROM (	SELECT inner_table.* , ROWNUM AS row_seq
+	  					FROM		(	SELECT scrap_no , scrap_category, scrap_title, scrap_date
+											FROM scrap
+											<where>
+												user_no=#{userNo}
+											</where>											
+											ORDER BY scrap_no) inner_table
+						WHERE ROWNUM &lt;= #{search.endRowNum} )
+		WHERE row_seq BETWEEN #{search.startRowNum} AND #{search.endRowNum} 
+	 </select>
+	
+	<select  id="getTotalCount"  parameterType="int"	 resultType="int">
+	  	SELECT COUNT(*)
+	  	FROM(	SELECT scrap_no , scrap_category, scrap_title, scrap_date
+											FROM scrap
+											<where>
+												user_no=#{userNo}
+											</where>
+						) countTable						
+	 </select>
+	
+</mapper>

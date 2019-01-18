@@ -9,7 +9,16 @@ public class FAQ {
 	private String FAQTitle;
 	private String FAQDetail;
 	private Date FAQDate;
+	private int FAQDeleteCheck;
 	
+	public int getFAQDeleteCheck() {
+		return FAQDeleteCheck;
+	}
+
+	public void setFAQDeleteCheck(int fAQDeleteCheck) {
+		FAQDeleteCheck = fAQDeleteCheck;
+	}
+
 	public FAQ() {
 		// TODO Auto-generated constructor stub
 	}
@@ -57,7 +66,7 @@ public class FAQ {
 	@Override
 	public String toString() {
 		return "FAQ [FAQNo=" + FAQNo + ", FAQCategory=" + FAQCategory + ", FAQTitle=" + FAQTitle + ", FAQDetail="
-				+ FAQDetail + ", FAQDate=" + FAQDate + "]";
+				+ FAQDetail + ", FAQDate=" + FAQDate + ", FAQDeleteCheck=" + FAQDeleteCheck + "]";
 	}
 
 }

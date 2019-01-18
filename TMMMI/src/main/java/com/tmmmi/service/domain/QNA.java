@@ -11,8 +11,9 @@ public class QNA {
 	private String QNADetail;
 	private String QNAImage;
 	private Date QNADate;
-	private boolean QNAAnswer;
-	private String QNAAnswerDetil;
+	private int QNAAnswerCheck;
+	private String QNAAnswerDetail;
+	private Date QNAAnswerDate;
 
 	public QNA() {
 		// TODO Auto-generated constructor stub
@@ -74,20 +75,36 @@ public class QNA {
 		QNADate = qNADate;
 	}
 
-	public boolean isQNAAnswer() {
-		return QNAAnswer;
+	public int getQNAAnswerCheck() {
+		return QNAAnswerCheck;
 	}
 
-	public void setQNAAnswer(boolean qNAAnswer) {
-		QNAAnswer = qNAAnswer;
+	public void setQNAAnswerCheck(int qNAAnswerCheck) {
+		QNAAnswerCheck = qNAAnswerCheck;
 	}
 
-	public String getQNAAnswerDetil() {
-		return QNAAnswerDetil;
+	public String getQNAAnswerDetail() {
+		return QNAAnswerDetail;
 	}
 
-	public void setQNAAnswerDetil(String qNAAnswerDetil) {
-		QNAAnswerDetil = qNAAnswerDetil;
+	public void setQNAAnswerDetail(String qNAAnswerDetail) {
+		QNAAnswerDetail = qNAAnswerDetail;
 	}
 
+	public Date getQNAAnswerDate() {
+		return QNAAnswerDate;
+	}
+
+	public void setQNAAnswerDate(Date qNAAnswerDate) {
+		QNAAnswerDate = qNAAnswerDate;
+	}
+
+	@Override
+	public String toString() {
+		return "QNA [userNo=" + userNo + ", QNANo=" + QNANo + ", QNACategory=" + QNACategory + ", QNATitle=" + QNATitle
+				+ ", QNADetail=" + QNADetail + ", QNAImage=" + QNAImage + ", QNADate=" + QNADate + ", QNAAnswerCheck="
+				+ QNAAnswerCheck + ", QNAAnswerDetail=" + QNAAnswerDetail + ", QNAAnswerDate=" + QNAAnswerDate + "]";
+	}
+
+	
 }

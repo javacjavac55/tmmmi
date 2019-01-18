@@ -1,7 +1,6 @@
 package com.tmmmi.service.todo.impl;
 
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,12 +27,12 @@ public class ToDoServiceImpl implements ToDoService {
 	}
 
 	@Override
-	public Map<String,Object> getToDoList(int userNo) throws Exception{
+	public Map<String,Object> getToDoList(Map<String, Object> todomap) throws Exception{
 		
-		List<ToDo> list = toDoDao.getToDoList(userNo);
+		Map<String,Object> todoListMap = toDoDao.getToDoList(todomap);
 		
 		Map<String,Object> map = new HashMap<String, Object>();
-		map.put("todolist", list);
+		map.put("todoListMap", todoListMap);
 		return map;
 	}
 
@@ -57,7 +56,11 @@ public class ToDoServiceImpl implements ToDoService {
 	public void updateToDoComplete(ToDo toDo) throws Exception{
 		toDoDao.updateToDoComplete(toDo);
 	}
-
+	
+	@Override
+	public void deleteToDoComplete(ToDo toDo) throws Exception {
+		toDoDao.deleteToDoComplete(toDo);
+	}
 	@Override
 	public void getToDoDayGraph() {
 		// TODO Auto-generated method stub
@@ -75,5 +78,7 @@ public class ToDoServiceImpl implements ToDoService {
 		// TODO Auto-generated method stub
 		
 	}
+
+
 
 }

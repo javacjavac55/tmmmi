@@ -9,7 +9,6 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
 import com.tmmmi.common.Search;
-import com.tmmmi.service.domain.FAQ;
 import com.tmmmi.service.domain.QNA;
 import com.tmmmi.service.qna.QNADao;
 import com.tmmmi.service.qna.QNAService;
@@ -43,10 +42,11 @@ public class QNAServiceImpl implements QNAService {
 	}
 
 	@Override
-	public Map<String, Object>  getQNAList(Search search) throws Exception {
+	public Map<String, Object>  getQNAList(Search search, int userNo) throws Exception {
+		System.out.println("::::::::::::::::::::"+userNo);
 		// TODO Auto-generated method stub
-		List<QNA> list = qnaDao.getQNAList(search);
-		int totalCount = qnaDao.getTotalCount(search);
+		List<QNA> list = qnaDao.getQNAList(search, userNo);
+		int totalCount = qnaDao.getTotalCount(userNo);
 		
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("list", list);

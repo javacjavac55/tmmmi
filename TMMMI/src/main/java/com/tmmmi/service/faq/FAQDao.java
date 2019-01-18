@@ -15,7 +15,7 @@ public interface FAQDao {
 
 	public FAQ getFAQ(int FAQNo) throws Exception;
 	
-	public void deleteFAQ() throws Exception ;
+	public void deleteFAQ(FAQ faq) throws Exception ;
 	
 	public int getTotalCount(Search search) throws Exception;
 }

@@ -1,6 +1,7 @@
 package com.tmmmi.service.todo.impl;
 
-import java.util.List;
+import java.util.HashMap;
+import java.util.Map;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,11 +28,12 @@ public class ToDoDaoImpl implements ToDoDao {
 	}
 
 	@Override
-	public List<ToDo> getToDoList(int userNo) throws Exception {
+	public Map<String, Object> getToDoList(Map<String, Object> todomap) throws Exception {
 		System.out.println("getToDoList Dao접근");
-		List<ToDo> list = sqlSession.selectList("TodoMapper.getTodoList", userNo);
-		System.out.println("list입빔다::"+list);
-		return list;
+		Map<String, Object> todoListMap = new HashMap<String, Object>();
+		todoListMap.put("todolist", sqlSession.selectList("TodoMapper.getTodoList", todomap));
+		todoListMap.put("completetodolist", sqlSession.selectList("TodoMapper.getCompleteTodoList", todomap));
+		return todoListMap;
 	}
 
 	@Override
@@ -61,7 +63,14 @@ public class ToDoDaoImpl implements ToDoDao {
 		System.out.println(toDo);
 		sqlSession.insert("TodoMapper.addTodoComplete", toDo);
 	}
-
+	
+	@Override
+	public void deleteToDoComplete(ToDo toDo) throws Exception {
+		System.out.println("deleteToDoComplete 접근");
+		System.out.println(toDo);
+		sqlSession.delete("TodoMapper.deleteTodoComplete", toDo);
+	}
+	
 	@Override
 	public void getDayGraph() {
 		// TODO Auto-generated method stub
@@ -79,5 +88,7 @@ public class ToDoDaoImpl implements ToDoDao {
 		// TODO Auto-generated method stub
 		
 	}
+
+
 
 }

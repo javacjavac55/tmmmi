@@ -6,7 +6,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=EUC-KR">
-<title>Insert title here</title>
+<title>다이어리</title>
 
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" >
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" >
@@ -14,7 +14,7 @@
 	
   	
 <script type="text/javascript">
-
+/* 리스트 */
 function fncGetList(currentPage){
 	/* document.getElementById("currentPage").value = currentPage; */
 	$("#currentPage").val(currentPage)
@@ -23,16 +23,74 @@ function fncGetList(currentPage){
 } 
 
 
+
+/* 전체 선택 */
+function fncAllchk(){
+	if( $("#allCheck").is(':checked') ){
+		$("input[name=deleteDiary]").prop("checked", true);		
+	}else{
+		$("input[name=deleteDiary]").prop("checked", false);
+	}
+}
+
+/* 삭제 */
+function fncDeleteDiary(){ 
+  /* var userid = "";
+  var diaryChk = document.getElementsByName("diaryNo");
+  var chked = false;
+  var indexid = false;
+  for(i=0; i < memberChk.length; i++){
+   if(diaryChk[i].checked){
+    if(indexid){
+      userid = userid + '-';
+    }
+    userid = userid + diaryChk[i].value;
+    indexid = true;
+   }
+  }
+  if(!indexid){
+   alert("삭제할 다이어리 체크해 주세요");
+   return; 
+  document.userForm.delUserid.value = userid;       
+  // 체크된 사용자 아이디를 '-'로 묶은 userid 를  document.userForm.delUserid 의 value로 저장
+  var agree=confirm("삭제 하시겠습니까?");
+     if (agree){
+   document.userForm.execute.value = "userDel";
+     document.userForm.submit();
+     } 
+  } */
+	var agree=confirm("삭제 하시겠습니까?");
+	   if(agree==true){
+	   $('[name="deleteForm"]').attr("method","POST").attr("action","/diary/deleteDiary").submit();
+	   }
+	   if(agree==false){
+		   return false;
+	   }
+}
+
+$(function(){
+	$( "#addDiary" ).on("click" , function() {			
+		location.replace('/diary/addDiary');
+	});
+});
+
 </script>
 </head>
 <body>
+<div class="navbar  navbar-default">
+        <div class="container">
+        	<a class="navbar-brand" href="/index.jsp">Tmmmi</a>
+   		</div>
+   	</div>
+	
 <div style="width: 98%; margin-left: 10px;">
+<div class="container">
 	<form name="detailForm">
    	<input type="hidden" value="search"/>
-	<div class="container">
+	
 	
 		<div class="page-header text-info">
-	       <h3>회원목록조회</h3>
+	       <h3>다이어리 목록</h3>
 	    </div>
 	    
 	    <!-- table 위쪽 검색 Start /////////////////////////////////////-->
@@ -49,13 +107,16 @@ function fncGetList(currentPage){
 		</div>
 		<!-- table 위쪽 검색 Start /////////////////////////////////////-->
 		
+		</form> <!-- 디테일폼 끝 -->
 		
       <!--  table Start /////////////////////////////////////-->
+      <form name="deleteForm">
       <table class="table table-hover table-striped" >
       
         <thead>
           <tr>
-            <th align="center">No</th>
+          	<th align="center"><input id="allCheck" name="allCheck" type="checkbox" onclick="fncAllchk();"/>전체선택</th>
+            <th align="left">No</th>
             <th align="left" >카테고리번호</th>
             <th align="left">다이어리 제목</th>            
             <th align="left">작성 날짜</th>
@@ -68,7 +129,8 @@ function fncGetList(currentPage){
 		  <c:forEach var="diary" items="${list}">
 			<c:set var="i" value="${ i+1 }" />
 			<tr>
-			  <td align="center">${ i }</td>
+			  <td align="left"><input name="deleteDiary" type="checkbox" value="${diary.diaryNo}"/></td>
+			  <td align="left">${ i }</td>
 			  <td align="left">${diary.userCategoryNo}</td>
 			  <td align="left">${diary.diaryTitle}</td>			  
 			  <td align="left">${diary.diaryDate }</td>
@@ -77,17 +139,23 @@ function fncGetList(currentPage){
         
         </tbody>
       
+      <tbody>
+      	<tr>
+      		<td align="left"><button type="button" name="delete" onclick= "fncDeleteDiary();">삭제</button></td>
+      		<td></td>
+      		<td></td>
+      		<td></td>
+      		<td align="left"><button type="button" name="add" id="addDiary" onclick="fncAddDiary();">글쓰기</button></td>
+      	</tr>
+      </tbody>
       </table>
+      
 	  <!--  table End /////////////////////////////////////-->
-	  
+	  </form>
  	</div>
- 	<!--  화면구성 div End /////////////////////////////////////-->
- 	
- 	
+ 	<!--  화면구성 div End /////////////////////////////////////--> 	 	
  	<!-- PageNavigation Start... -->
 	<jsp:include page="../common/pageNavigator.jsp"/>
-	<!-- PageNavigation End... -->
-	</form>
 	</div>
 </body>
 </html>

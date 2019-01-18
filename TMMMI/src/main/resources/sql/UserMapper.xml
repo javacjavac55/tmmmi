@@ -42,22 +42,42 @@
 			#{withdrawDate:DATE}
 		)
 	</insert>
+	
 	<!-- SQL : SELECT ONE(getUser) -->
 	<select id="getUser" parameterType="int" resultMap="userSelectMap">
-		SELECT
-		user_no, user_id, password, email, user_name, birthday, role, withdraw_check
+		SELECT user_no, user_id, password, email, user_name, birthday, role, withdraw_check
 		FROM users 
 		WHERE user_no = #{value}
 	</select>
 	
 	<!-- SQL : SELECT ONE(getUserId) -->
 	<select id="getUserId" parameterType="string" resultMap="userSelectMap">
-		SELECT
-		user_no, user_id, password, role 
+		SELECT user_no, user_id, password, role 
 		FROM users 
 		WHERE user_id = #{value}
 	</select>
 	
+	<!-- SQL : SELECT ONE(getEmail) -->
+	<select id="getUserEmail" parameterType="String" resultMap="userSelectMap">
+		SELECT email
+		FROM users
+		WHERE email = #{value}
+	</select>
+	
+	<!-- SQL : SELECT ONE(searchUserId) -->
+	<select id="searchUserId" parameterType="com.tmmmi.service.domain.User" resultMap="userSelectMap">
+		SELECT user_id
+		FROM users
+		WHERE user_name = #{userName} AND email = #{email}
+	</select>
+	
+	<!-- SQL : SELECT ONE(searchUserPw) -->
+	<select id="searchUserPw" parameterType="com.tmmmi.service.domain.User">
+		SELECT password
+		FROM users
+		WHERE user_id = #{userId} AND email = #{email}
+	</select>
+		
 	<!-- SQL : UPDATE -->
 	<update id="updateUser" parameterType="com.tmmmi.service.domain.User">
 		UPDATE users

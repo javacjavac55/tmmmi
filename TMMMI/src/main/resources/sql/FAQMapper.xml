@@ -30,7 +30,7 @@
 	 <select 	id="getFAQList"  parameterType="com.tmmmi.common.Search"	resultMap="FAQSelectMap">
 		SELECT *
 		FROM (	SELECT inner_table.* , ROWNUM AS row_seq
-			FROM		(	SELECT faq_no, user_center_category, faq_title, faq_detail, faq_date
+			FROM		(	SELECT faq_no, user_center_category, faq_title, faq_detail, faq_date, faq_delete_check
 								FROM faq
 								<if test="searchCondition != null">
 									<where>
@@ -69,6 +69,14 @@
 	   	SELECT faq_no, user_center_category, faq_title, faq_detail, faq_date
 	   	FROM faq
 		WHERE faq_no= #{value}
+	 </select>
+	 
+	 <select	id="deleteFAQ"	 parameterType="com.tmmmi.service.domain.FAQ">
+	   	UPDATE faq
+	   	<set>
+	   		faq_delete_check = 0
+	   	</set>
+		WHERE faq_no=#{FAQNo}
 	 </select>
 	
 </mapper>

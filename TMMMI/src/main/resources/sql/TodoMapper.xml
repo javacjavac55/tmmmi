@@ -17,7 +17,7 @@
 		
 		<insert id="addTodo" parameterType="com.tmmmi.service.domain.ToDo">
 			INSERT INTO todo (todo_no, user_no, todo_detail, todo_start_date, todo_end_date)
-			VALUES (todo_no.nextval, 7, #{toDoDetail}, #{toDoStartDate}, #{toDoEndDate})
+			VALUES (todo_no.nextval, #{userNo}, #{toDoDetail}, #{toDoStartDate}, #{toDoEndDate})
 		</insert>
 		
 		<update id="updateTodo"  parameterType="com.tmmmi.service.domain.ToDo">
@@ -31,23 +31,36 @@
 		</update>
 		
 		<insert id="addTodoComplete" parameterType="com.tmmmi.service.domain.ToDo">
-			INSERT INTO todo_complete (todo_no, user_no, todo_complete_no, todo_complete_date)
-			VALUES (#{toDoNo}, #{userNo}, todo_complete_no.nextval, #{toDoCompleteDate})
+			INSERT INTO todo_complete (todo_no, todo_complete_no, todo_complete_date)
+			VALUES (#{toDoNo}, todo_complete_no.nextval, #{toDoCompleteDate})
 		</insert>
 		
-		<delete id="deleteTodo" parameterType="com.tmmmi.service.domain.ToDo" >
-  			DELETE FROM todo WHERE todo_no = (SELECT t.todo_no
-			FROM todo t, todo_complete tc
-			WHERE t.todo_no = tc.todo_no(+)
-            AND t.todo_no = #{toDoNo}
-            AND t.user_no = #{userNo})
+		<delete id="deleteTodoComplete" parameterType="com.tmmmi.service.domain.ToDo" >
+  			DELETE FROM todo_complete 
+  			WHERE todo_complete_no = #{toDoCompleteNo}
 		</delete>
 		
-		<select id="getTodoList" parameterType="int" resultMap="TodoSelectMap">
-			SELECT t.todo_no, t.user_no, t.todo_Detail, t.todo_start_date, t.todo_end_date,
-							 tc.todo_complete_no, tc.todo_complete_date
+		<delete id="deleteTodo" parameterType="com.tmmmi.service.domain.ToDo" >
+  			DELETE FROM todo 
+  			WHERE todo_no = (SELECT t.todo_no
+												FROM todo t, todo_complete tc
+												WHERE t.todo_no = tc.todo_no(+)
+									            AND t.todo_no = #{toDoNo}
+									            AND t.user_no = #{userNo})
+		</delete>
+		
+		<select id="getTodoList" parameterType="map" resultMap="TodoSelectMap">
+			SELECT todo_no, user_no, todo_Detail, todo_start_date, todo_end_date
+			FROM todo
+			WHERE user_no = #{userNo}
+			AND #{targetDate} BETWEEN todo_start_date AND todo_end_date
+		</select>
+		
+		<select id="getCompleteTodoList" parameterType="map" resultMap="TodoSelectMap">
+			SELECT DISTINCT t.todo_no, tc.todo_complete_no, todo_complete_date, t.todo_Detail
 			FROM todo t, todo_complete tc
-			WHERE t.todo_no = tc.todo_no(+)
-			AND user_no = #{value}
+			WHERE user_no = #{userNo}
+                        AND t.todo_no = tc.todo_no(+)
+						AND #{targetDate} BETWEEN todo_start_date AND todo_end_date
 		</select>
 </mapper>

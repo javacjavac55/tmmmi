@@ -23,22 +23,26 @@
   	<script src="/javascript/summernote.js"></script>
   	
   	<!-- 로딩 -->
-  	<!-- <link rel="stylesheet" href="/css/loading.css">  	
-  	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
-    <script src="/javascript/loading.js"></script> -->
+  	<link rel="stylesheet" href="/css/loading.css">  	
+  	<!-- <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script> -->
+    <script src="/javascript/loading.js"></script>
   	
 	<script type="text/javascript">
 	/* function postForm() {
         $('textarea[name="diaryDetail"]').val($('#summernote').summernote('code'));
     } */
-    function fncLoading(){
+    /* function fncLoading(){
 		  $(".loading").fakeLoader({
 		    timeToHide:3000, // 로딩중에 걸리는 시간, 1000은 1초
 		    bgColor:"#2ecc71", // 배경색
 		    spinner:"spinner2" // 로딩중으로 원하는 로딩이미지타입
-	})}; 
-		  
-    $(document).ready(function() {    	   		
+	})};  */
+	
+	
+	var $note = null;
+    $(document).ready(function() {
+    		
+	    	
 			$('#summernote').summernote({  	        
 	        height:"200px",
 	        width: "500px",
@@ -52,7 +56,7 @@
 	      			var form_data = new FormData();
 	      			form_data.append("file", files[0]);
 	      			
-	      			var $note = $(this);
+	      			$note = $(this);
 	      			console.log("abcd");
 	      			$.ajax({
 	      	    		data: form_data,
@@ -63,9 +67,13 @@
 	      	    		enctype: 'multipart/form-data',
 	      	    		processData: false,
 	      	    		success: function(url){
-	      	    			alert("here");
-	      	    			/* fncLoading(); */
-	      	    			$note.summernote('insertImage',url);	      	    			
+	      	    			console.log("hi");
+	      	    			isloading.start();
+	      	    			setTimeout(function() {
+	      	    				$note.summernote('insertImage',url);
+	      	    				isloading.stop();
+	      	    			},1500);	
+	      	    			
 	      	    		}
 	      	    	});
 	      		}
@@ -142,7 +150,7 @@
 		<div class="form-group">
 			<label for="diaryDetail" class="col-sm-offset-1 col-sm-3 control-label text-center">내용</label>
 			<div class="col-sm-4">
-			<textarea id="summernote" name="diaryDetail" class="fakeloader" style="display:none;"></textarea>					
+			<textarea id="summernote" name="diaryDetail" style="display:none;"></textarea>					
 		    </div>		      
 		</div>				    	
     	

@@ -1,6 +1,8 @@
 package com.tmmmi.service.qna.impl;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -41,9 +43,12 @@ public class QNADaoImpl implements QNADao {
 	}
 
 	@Override
-	public List<QNA> getQNAList(Search search) throws Exception {
+	public List<QNA> getQNAList(Search search, int userNo) throws Exception {
 		// TODO Auto-generated method stub
-		return sqlSession.selectList("QNAMapper.getQNAList", search);
+		Map<String , Object>  map = new HashMap<String, Object>();
+		map.put("search", search);
+		map.put("userNo",userNo);
+		return sqlSession.selectList("QNAMapper.getQNAList", map);
 	}
 
 	@Override
@@ -65,9 +70,9 @@ public class QNADaoImpl implements QNADao {
 	}
 
 	@Override
-	public int getTotalCount(Search search) throws Exception {
+	public int getTotalCount(int userNo) throws Exception {
 		// TODO Auto-generated method stub
-		return sqlSession.selectOne("FAQMapper.getTotalCount", search);
+		return sqlSession.selectOne("QNAMapper.getTotalCount", userNo);
 	}
 
 }

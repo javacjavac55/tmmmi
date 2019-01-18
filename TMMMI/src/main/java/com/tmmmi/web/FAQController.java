@@ -50,9 +50,9 @@ public class FAQController {
 	public ModelAndView addFAQ(@ModelAttribute("faq") FAQ faq) throws Exception {
 		System.out.println("/FAQ/addFAQ : POST");
 		
-		ModelAndView modelAndView = new ModelAndView();
 		faqService.addFAQ(faq);
-		modelAndView.setViewName("/faq/getFAQList");
+		ModelAndView modelAndView = new ModelAndView();
+		modelAndView.setViewName("redirect:/faq/getFAQList");
 		return modelAndView;
 	}
 	
@@ -105,10 +105,23 @@ public class FAQController {
 		faqService.updateFAQ(faq);
 		
 		ModelAndView modelAndView = new ModelAndView();
-		modelAndView.setViewName("/faq/getFAQList");
+		modelAndView.setViewName("redirect:/faq/getFAQList");
 		return modelAndView;
 	}
 	
-	public void deleteFAQ() {}
+	@RequestMapping(value="deleteFAQ")
+	public ModelAndView deleteFAQ(@ModelAttribute("faq") FAQ faq, @RequestParam("faqNo") int faqNo) throws Exception {
+		System.out.println("/FAQ/deleteFAQ : GET/POST");
+		
+		System.out.println(faqNo);
+		
+		
+		ModelAndView modelAndView = new ModelAndView();
+		faq.setFAQNo(faqNo);
+		faqService.deleteFAQ(faq);
+		
+		modelAndView.setViewName("redirect:/faq/getFAQList");
+		return modelAndView;
+	}
 	
 }
