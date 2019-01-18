@@ -1,6 +1,7 @@
 package com.tmmmi.service.todo.impl;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,13 +28,11 @@ public class ToDoServiceImpl implements ToDoService {
 	}
 
 	@Override
-	public Map<String,Object> getToDoList(Map<String, Object> todomap) throws Exception{
+	public List<ToDo> getToDoList(Map<String, Object> todomap) throws Exception{
 		
-		Map<String,Object> todoListMap = toDoDao.getToDoList(todomap);
+		List<ToDo> toDoList = toDoDao.getToDoList(todomap);
 		
-		Map<String,Object> map = new HashMap<String, Object>();
-		map.put("todoListMap", todoListMap);
-		return map;
+		return toDoList;
 	}
 
 	@Override

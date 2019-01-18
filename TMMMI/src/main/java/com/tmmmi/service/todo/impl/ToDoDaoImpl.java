@@ -1,6 +1,8 @@
 package com.tmmmi.service.todo.impl;
 
+import java.sql.Date;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import org.apache.ibatis.session.SqlSession;
@@ -28,12 +30,9 @@ public class ToDoDaoImpl implements ToDoDao {
 	}
 
 	@Override
-	public Map<String, Object> getToDoList(Map<String, Object> todomap) throws Exception {
+	public List<ToDo> getToDoList(Map<String, Object> todomap) throws Exception {
 		System.out.println("getToDoList Dao¡¢±Ÿ");
-		Map<String, Object> todoListMap = new HashMap<String, Object>();
-		todoListMap.put("todolist", sqlSession.selectList("TodoMapper.getTodoList", todomap));
-		todoListMap.put("completetodolist", sqlSession.selectList("TodoMapper.getCompleteTodoList", todomap));
-		return todoListMap;
+		return sqlSession.selectList("TodoMapper.getTodoList", todomap);
 	}
 
 	@Override

@@ -1,12 +1,14 @@
 package com.tmmmi.service.todo;
 
+import java.sql.Date;
+import java.util.List;
 import java.util.Map;
 
 import com.tmmmi.service.domain.ToDo;
 
 public interface ToDoDao {
 
-	public Map<String, Object> getToDoList(Map<String, Object> todomap) throws Exception;
+	public List<ToDo> getToDoList(Map<String, Object> todomap) throws Exception;
 	public void addToDo(ToDo toDo) throws Exception;
 	public void deleteToDo(ToDo toDo) throws Exception;
 	public void updateToDo(ToDo toDo) throws Exception;

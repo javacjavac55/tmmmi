@@ -139,6 +139,9 @@
                             {toDoNo: ctodono, toDoCompleteDate: NowTime}
                         ),
                         dataType: 'json',
+                        success: $(function () {
+                            history.go(0);
+                        })
                         })
                     })
                 });
@@ -243,7 +246,8 @@
                     <h3><strong>완료/수정/삭제</strong></h3>
                 </div>
             </div>
-            <c:forEach items="${todolist.todolist}" var="todo">
+            <c:forEach items="${todolist}" var="todo">
+            	<c:if test="${todo.toDoCompleteNo  eq 0}">
                 <div class="row" id="todolist${todo.toDoNo}">
                     <input class="todo col-md-3" type="hidden" value="${todo.toDoNo}">
                     <div class="col-md-3">${todo.toDoDetail}</div>
@@ -280,6 +284,7 @@
                         </button>
                     </div>
                 </div>
+                </c:if>
             </c:forEach>
             <div class="row">
                 <div class="col-md-3">
@@ -292,7 +297,8 @@
                     <h3><strong>삭제</strong></h3>
                 </div>
             </div>
-            <c:forEach items="${completetodolist.completetodolist}" var="todo">
+            <c:forEach items="${todolist}" var="todo">
+            <c:if test="${todo.toDoCompleteNo ne 0}">
                 <div class="row" id="completetodolist">
                     <input class="todo col-md-3" type="hidden" value="${todo.toDoCompleteNo}">
                     <div class="col-md-3">${todo.toDoDetail}</div>
@@ -303,6 +309,7 @@
                        </button>
                     </div>
                 </div>
+                </c:if>
             </c:forEach>
         </div>
         <!-- 할 일 리스트 끝  -->
