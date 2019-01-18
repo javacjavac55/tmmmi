@@ -43,10 +43,21 @@ public class QNAServiceImpl implements QNAService {
 
 	@Override
 	public Map<String, Object>  getQNAList(Search search, int userNo) throws Exception {
-		System.out.println("::::::::::::::::::::"+userNo);
 		// TODO Auto-generated method stub
 		List<QNA> list = qnaDao.getQNAList(search, userNo);
 		int totalCount = qnaDao.getTotalCount(userNo);
+		
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("list", list);
+		map.put("totalCount", new Integer(totalCount));
+		return map;
+	}
+	
+	@Override
+	public Map<String, Object>  getAdminQNAList(Search search) throws Exception {
+		// TODO Auto-generated method stub
+		List<QNA> list = qnaDao.getAdminQNAList(search);
+		int totalCount = qnaDao.getAdminTotalCount(search);
 		
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("list", list);
