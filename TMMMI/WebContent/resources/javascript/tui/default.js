@@ -43,7 +43,7 @@
         },
         'beforeCreateSchedule': function(e) {        	
             console.log('beforeCreateSchedule', e);
-            //fncAddSchedule(e);
+            fncAddSchedule(e);
             saveNewSchedule(e);
         },
         'beforeUpdateSchedule': function(e) {
@@ -51,12 +51,13 @@
         	console.log(e);
             e.schedule.start = e.start;
             e.schedule.end = e.end;
-            //fncUpdateSchedule(e.schedule);
+            fncUpdateSchedule(e.schedule);
+            console.log("123: ",cal);
             cal.updateSchedule(e.schedule.id, e.schedule.calendarId, e.schedule);
         },
         'beforeDeleteSchedule': function(e) {
             console.log('beforeDeleteSchedule', e);
-            //fncDeleteSchedule(e.schedule);
+            fncDeleteSchedule(e.schedule);
             cal.deleteSchedule(e.schedule.id, e.schedule.calendarId);
         },
         'afterRenderSchedule': function(e) {
