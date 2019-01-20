@@ -37,6 +37,7 @@ public class UserDaoImpl implements UserDao {
 		sqlSession.insert("ContentSettingMapper.addShoppingKeyword", userNo);
 		sqlSession.insert("ContentSettingMapper.addUserKeyword", userNo);
 		sqlSession.insert("ContentSettingMapper.addSortSection", userNo);
+
 	}
 
 	@Override
