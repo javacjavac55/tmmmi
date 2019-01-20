@@ -8461,6 +8461,7 @@ Calendar.prototype.getSchedule = function(scheduleId, calendarId) {
  * });
  */
 Calendar.prototype.updateSchedule = function(scheduleId, calendarId, scheduleData, silent) {
+	console.log(scheduleId, calendarId, scheduleData, silent);
     var ctrl = this._controller,
         ownSchedules = ctrl.schedules,
         schedule = ownSchedules.single(function(model) {
