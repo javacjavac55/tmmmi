@@ -30,11 +30,13 @@ public class UserDaoImpl implements UserDao {
 	@Override
 	public void addUser(User user) throws Exception {
 		sqlSession.insert("UserMapper.addUser", user);
-		sqlSession.insert("UserSetting.addUserSetting", user.getUserNo());
-		sqlSession.insert("ContentSettingMapper.addContentSetting", user.getUserNo());
-		sqlSession.insert("ContentSettingMapper.addShoppingKeyword", user.getUserNo());
-		sqlSession.insert("ContentSettingMapper.addUserKeyword", user.getUserNo());
-		sqlSession.insert("ContentSettingMapper.addSortSection", user.getUserNo());
+		User getUser = sqlSession.selectOne("UserMapper.getUserId", user.getUserId());
+		int userNo = getUser.getUserNo();
+		sqlSession.insert("UserSettingMapper.addUserSetting", userNo);
+		sqlSession.insert("ContentSettingMapper.addContentSetting", userNo);
+		sqlSession.insert("ContentSettingMapper.addShoppingKeyword", userNo);
+		sqlSession.insert("ContentSettingMapper.addUserKeyword", userNo);
+		sqlSession.insert("ContentSettingMapper.addSortSection", userNo);
 	}
 
 	@Override

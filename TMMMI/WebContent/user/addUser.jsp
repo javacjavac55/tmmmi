@@ -55,7 +55,7 @@
 			var email=$("input[name=email]").val();
 			var authNum=$("input[name=authNum]").val();
 			
-			if(id == null || id.length <6){
+			if(id == null || id.length <5){
 				alert("아이디는 반드시 입력하셔야 합니다.");
 				return;
 			}
