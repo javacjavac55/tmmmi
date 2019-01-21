@@ -1,5 +1,7 @@
 package com.tmmmi.service.content.impl;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
 import com.tmmmi.service.content.ContentDao;
@@ -8,9 +10,12 @@ import com.tmmmi.service.domain.ContentSetting;
 
 @Service("contentServiceImpl")
 public class ContentServiceImpl implements ContentService {
-	
-	private ContentDao contentDao;
-
+	@Autowired
+	@Qualifier("contentKeywordDaoNaverImpl")
+	private ContentDao contentKeywordDaoNaverImpl;
+	public void setContentKeywordDaoNaverImpl(ContentDao contentKeywordDaoNaverImpl) {
+		this.contentKeywordDaoNaverImpl = contentKeywordDaoNaverImpl;
+	}
 	
 	//Constructor
 	public ContentServiceImpl() {
@@ -28,7 +33,8 @@ public class ContentServiceImpl implements ContentService {
 	@Override
 	public void getContentList(ContentSetting contentSetting) {
 		System.out.println("getContentList Á¢±Ù");
-		contentDao.getContentList(contentSetting);
+		//contentDao.getContentList(contentSetting);
+		contentKeywordDaoNaverImpl.getContentList(contentSetting);
 	}
 
 }

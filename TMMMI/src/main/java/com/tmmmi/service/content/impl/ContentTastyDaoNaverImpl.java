@@ -9,6 +9,7 @@ import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.net.URLEncoder;
+import java.util.ArrayList;
 import java.util.List;
 
 import org.codehaus.jackson.map.ObjectMapper;
@@ -28,7 +29,7 @@ public class ContentTastyDaoNaverImpl implements ContentDao {
 	}
 
 	@Override
-	public void getContentList(ContentSetting contentSetting) {
+	public List<Object> getContentList(ContentSetting contentSetting) {
 		String clientId = "d9ROlDLvnXulcE2hxtAm";//애플리케이션 클라이언트 아이디값";
         String clientSecret = "O4TGEmLBA4";//애플리케이션 클라이언트 시크릿값";
         contentSetting.setTastyKeyword("강남역 맛집");
@@ -60,5 +61,9 @@ public class ContentTastyDaoNaverImpl implements ContentDao {
         } catch (Exception e) {
             System.out.println(e);
         }
+        
+        ArrayList list = new ArrayList<>();
+		
+        return null;
 	}
 }

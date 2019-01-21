@@ -1,5 +1,8 @@
 package com.tmmmi.service.content.impl;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import com.tmmmi.service.content.ContentDao;
 import com.tmmmi.service.domain.ContentSetting;
 
@@ -16,9 +19,9 @@ public class ContentMovieDaoKoficImpl implements ContentDao {
 	}
 
 	@Override
-	public void getContentList(ContentSetting contentSetting) {
-		// TODO Auto-generated method stub
+	public List<Object> getContentList(ContentSetting contentSetting) {
 		
+		return null;
 	}
 
 }

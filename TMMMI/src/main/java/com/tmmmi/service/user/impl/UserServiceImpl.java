@@ -137,6 +137,7 @@ public class UserServiceImpl implements UserService {
 	@Override
 	public boolean emailCheckDuplication(String email) {
 		boolean result = true;
+		email = email.replaceAll("\"", "");
 		User user = userDao.emailCheckDuplication(email);
 		if(user != null) {
 			result = false;
