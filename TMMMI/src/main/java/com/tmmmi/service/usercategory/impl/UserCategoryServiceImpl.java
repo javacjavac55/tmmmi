@@ -33,6 +33,11 @@ public class UserCategoryServiceImpl implements UserCategoryService {
 	public List<UserCategory> getUserCategoryList(int userNo) {
 		return userCategoryDao.getUserCategoryList(userNo);
 	}
+	
+	@Override
+	public List<UserCategory> getInterestCategoryList() {
+		return userCategoryDao.getUserCategoryList(5);
+	}
 
 	@Override
 	public int updateUserCategory(UserCategory userCategory) {

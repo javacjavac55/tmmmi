@@ -1,29 +1,47 @@
 package com.tmmmi.service.domain;
 
-import java.sql.Date;
+import org.codehaus.jackson.annotate.JsonIgnoreProperties;
 
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class CalendarMovie {
-	
-	private String movieTitle;
-	private Date movieOpenDate;
+	private String movieCd;
+	private String movieNm;
+	private String movieNmEn;
+	private long openDt;
 
 	public CalendarMovie() {
+		// TODO Auto-generated constructor stub
 	}
 
-	public String getMovieTitle() {
-		return movieTitle;
+	public String getMovieCd() {
+		return movieCd;
 	}
 
-	public void setMovieTitle(String movieTitle) {
-		this.movieTitle = movieTitle;
+	public void setMovieCd(String movieCd) {
+		this.movieCd = movieCd;
 	}
 
-	public Date getMovieOpenDate() {
-		return movieOpenDate;
+	public String getMovieNm() {
+		return movieNm;
 	}
 
-	public void setMovieOpenDate(Date movieOpenDate) {
-		this.movieOpenDate = movieOpenDate;
+	public void setMovieNm(String movieNm) {
+		this.movieNm = movieNm;
 	}
-	
+
+	public String getMovieNmEn() {
+		return movieNmEn;
+	}
+
+	public void setMovieNmEn(String movieNmEn) {
+		this.movieNmEn = movieNmEn;
+	}
+
+	public long getOpenDt() {
+		return openDt;
+	}
+
+	public void setOpenDt(long openDt) {
+		this.openDt = openDt;
+	}
 }

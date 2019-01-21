@@ -81,8 +81,9 @@ public class CalendarRestController {
 	}
 	
 	@RequestMapping( value="addUserCategory", method=RequestMethod.POST )
-	public int addUserCategory(@RequestBody UserCategory userCategory) {
+	public int addUserCategory(@RequestBody UserCategory userCategory, HttpSession session) {
 		System.out.println("/addUserCategory.do");
+		userCategory.setUserNo((int)session.getAttribute("userNo"));
 		
 		System.out.println("userCategory: "+userCategory);
 		int result = userCategoryService.addUserCategory(userCategory);

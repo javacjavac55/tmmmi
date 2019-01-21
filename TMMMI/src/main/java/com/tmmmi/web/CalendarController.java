@@ -25,12 +25,9 @@ import com.tmmmi.service.usersetting.UserSettingService;
 
 @Controller
 @RequestMapping("/calendar/*")
-public class CalendarController {
-	
-	private Date targetDate;
-	
-	/*@Autowired
-	@Qualifier("calendarSettingServiceImpl")*/
+public class CalendarController {	
+	@Autowired
+	@Qualifier("calendarSettingServiceImpl")
 	private CalendarSettingService calendarSettingService;
 	
 	/*@Autowired
@@ -49,8 +46,8 @@ public class CalendarController {
 	@Qualifier("dDayServiceImpl")*/
 	private DDayService dDayService;
 	
-	/*@Autowired
-	@Qualifier("calendarMovieServiceImpl")*/
+	@Autowired
+	@Qualifier("calendarMovieServiceImpl")
 	private CalendarMovieService calendarMovieService;
 	
 	/*@Autowired
@@ -86,19 +83,15 @@ public class CalendarController {
 	
 	@RequestMapping(value="getCalendarMonth", method=RequestMethod.GET)
 	public ModelAndView getCalendarMonth(HttpSession session) {
-		int calendarType = 0;
+		//set startDate, endDate with current month
 		long startDate = 0;
 		long endDate = 0;
-		Calendar c = Calendar.getInstance();
-		
-		
-		if (calendarType == 0) {
-			c.set(Calendar.DATE, 1);
-			startDate = c.getTime().getTime();
-			c.set(Calendar.DATE, c.getActualMaximum(Calendar.DAY_OF_MONTH));
-			endDate = c.getTime().getTime();
-			
-		}
+		Calendar calendar = Calendar.getInstance();
+		calendar.set(Calendar.MONTH, -1);
+		calendar.set(Calendar.DATE, 1);
+		startDate = calendar.getTime().getTime();
+		calendar.set(Calendar.DATE, calendar.getActualMaximum(Calendar.DAY_OF_MONTH));
+		endDate = calendar.getTime().getTime();
 		
 		System.out.println("startDate: "+startDate);
 		System.out.println("endDate: "+endDate);
@@ -117,5 +110,25 @@ public class CalendarController {
 	}
 	public void getCalendarWeek() {}
 	public void getCalendarDay() {}
-
+	
+	@RequestMapping(value="getCalendarInterest", method=RequestMethod.GET)
+	public ModelAndView getCalendarInterest(){
+		long startDate = 0;
+		long endDate = 0;
+		Calendar calendar = Calendar.getInstance();
+		calendar.set(Calendar.DATE, 1);
+		startDate = calendar.getTime().getTime();
+		calendar.set(Calendar.DATE, calendar.getActualMaximum(Calendar.DAY_OF_MONTH));
+		endDate = calendar.getTime().getTime();
+		
+		List<UserCategory> interestCategoryList = userCategoryService.getInterestCategoryList();
+		List<Schedule> calendarMovieList = calendarMovieService.getCalendarMovieList(startDate,endDate);
+		
+		ModelAndView modelAndView = new ModelAndView();
+		modelAndView.addObject("interestCategoryList", interestCategoryList);
+		modelAndView.addObject("calendarMovieList", calendarMovieList);
+		modelAndView.setViewName("/calendar/getCalendarInterest.jsp");
+		return modelAndView;
+	}
+	
 }

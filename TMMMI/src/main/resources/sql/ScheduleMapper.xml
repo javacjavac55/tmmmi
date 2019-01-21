@@ -50,8 +50,8 @@
 	 	SELECT *
 	 	FROM schedule
 	 	WHERE user_no = #{userNo}
-	 	AND schedule_start_date BETWEEN #{startDate} AND #{endDate}
-	 	OR schedule_end_date BETWEEN #{startDate} AND #{endDate}
+	 	AND (schedule_start_date BETWEEN #{startDate} AND #{endDate}
+	 	OR schedule_end_date BETWEEN #{startDate} AND #{endDate})
 	 </select>
 	 
 	 <update id="updateSchedule" parameterType="com.tmmmi.service.domain.Schedule" >

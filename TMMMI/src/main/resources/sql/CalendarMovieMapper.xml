@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!DOCTYPE mapper
+		PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+		"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="CalendarMovieMapper">
+	
+	<resultMap id="scheduleSelectMap" type="com.tmmmi.service.domain.Schedule">
+		<result property="userCategoryNo"		column="user_category_no"			jdbcType="NUMERIC" />
+		<result property="scheduleTitle"		column="calendar_movie_title"		jdbcType="VARCHAR" />
+		<result property="scheduleStartDate"	column="calendar_movie_open_date" 	jdbcType="DATE" />
+	</resultMap>
+	
+	<insert id="addCalendarMovie" parameterType="com.tmmmi.service.domain.CalendarMovie">
+	 	INSERT
+		INTO calendar_movie ( calendar_movie_no , user_category_no, calendar_movie_code , calendar_movie_title , 	calendar_movie_title_eng , 	calendar_movie_open_date ) 
+		VALUES ( calendar_movie_no.nextval ,
+				5 ,
+				#{movieCd} , 
+				#{movieNm} ,
+				#{movieNmEn:VARCHAR} ,
+				#{openDt}  
+				)
+	 </insert>
+	 
+	 <select  id="getCalendarMovieList"  parameterType="map"	resultMap="scheduleSelectMap">
+	 	SELECT *
+	 	FROM calendar_movie
+	 	WHERE calendar_movie_open_date BETWEEN #{startDate} AND #{endDate}
+	 </select>
+	 
+	 <update id="updateSchedule" parameterType="com.tmmmi.service.domain.CalendarMovie" >
+	   	UPDATE calendar_movie
+	   	<set>			
+			calendar_movie_title = #{movieNm},
+			calendar_movie_title_eng = #{movieNmEn},
+			calendar_movie_open_date = #{openDt}
+	   	</set>
+	   	WHERE calendar_movie_code = #{movieCd}
+	 </update>	 
+</mapper>

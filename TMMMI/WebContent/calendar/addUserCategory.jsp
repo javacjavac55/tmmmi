@@ -15,7 +15,6 @@
 				url : "/calendarRest/addUserCategory",
 				method : "POST",
 				data: JSON.stringify({
-					userNo:12345,
 					userCategoryName:$("#userCategoryName").val(),
 					userCategoryColor:$("#userCategoryColor").val()
 				}),
