@@ -1,5 +1,7 @@
 package com.tmmmi.service.content.impl;
 
+import java.util.List;
+
 import org.springframework.stereotype.Service;
 
 import com.tmmmi.service.content.ContentDao;
@@ -26,9 +28,10 @@ public class ContentServiceImpl implements ContentService {
 	}
 
 	@Override
-	public void getContentList(ContentSetting contentSetting) {
+	public List<String> getContentList(ContentSetting contentSetting) {
 		System.out.println("getContentList Á¢±Ù");
 		contentDao.getContentList(contentSetting);
+		return null;
 	}
 
 }

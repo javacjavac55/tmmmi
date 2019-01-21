@@ -36,10 +36,10 @@
 								faq_delete_check = 1
 								<if test="searchCondition != null">
 									<if test="searchCondition == 0 and searchKeyword !='' ">
-										faq_title=#{searchKeyword}
+									 	AND faq_title=#{searchKeyword}
 									</if>
 									<if test="searchCondition == 1 and searchKeyword != '' ">
-										faq_detail=#{searchKeyword} 
+										AND faq_detail=#{searchKeyword} 
 									</if>
 								</if>
 								</where>
