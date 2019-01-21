@@ -35,5 +35,4 @@ public class ContentServiceImpl implements ContentService {
 		System.out.println("getContentList Á¢±Ù");
 		return contentDao.getContentList(contentSetting);
 	}
-
 }
