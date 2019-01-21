@@ -5,6 +5,7 @@ import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.net.URLEncoder;
+import java.util.List;
 
 import com.tmmmi.service.content.ContentDao;
 import com.tmmmi.service.domain.ContentSetting;
@@ -12,6 +13,17 @@ import com.tmmmi.service.domain.ContentSetting;
 public class ContentKeywordDaoNaverImpl implements ContentDao {
 
 	public ContentKeywordDaoNaverImpl() {
+    }
+	
+
+	@Override
+	public void getContent() {
+		// TODO Auto-generated method stub
+
+	}
+
+	@Override
+	public List<Object> getContentList(ContentSetting contentSetting) {
 		StringBuilder sb;
 	    String clientId = "8UnBF2q3kdzG36xN7kVj";//애플리케이션 클라이언트 아이디값";
 	    String clientSecret = "LJxxFFhxEN";//애플리케이션 클라이언트 시크릿값";
@@ -43,19 +55,6 @@ public class ContentKeywordDaoNaverImpl implements ContentDao {
 	    } catch (Exception e) {
 	        System.out.println(e);
 	    }
-    }
-	
-
-	@Override
-	public void getContent() {
-		// TODO Auto-generated method stub
-
+		return null;
 	}
-
-	@Override
-	public void getContentList(ContentSetting contentSetting) {
-		// TODO Auto-generated method stub
-
-	}
-
 }
