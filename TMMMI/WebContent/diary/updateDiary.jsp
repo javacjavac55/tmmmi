@@ -17,7 +17,7 @@
 
 <html>
 <head>
-<title>회원정보수정</title>
+<title>다이어리 정보 수정</title>
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 	
@@ -28,9 +28,15 @@
 	
 	<!-- summernote -->
 	<script src="http://netdna.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.js"></script>		
-	<link href="/css/summernote.css" rel="stylesheet">
-  	<script src="/javascript/summernote.js"></script>
-       
+	<link href="/css/summernote/summernote.css" rel="stylesheet">
+  	<script src="/javascript/summernote/summernote.js"></script>     
+    
+    
+  	<!-- 로딩 -->
+  	<link rel="stylesheet" href="/css/summernote/loading.css">  	
+  	<!-- <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script> -->
+    <script src="/javascript/summernote/loading.js"></script>
+    
    <style>
 		body {
             padding-top : 50px;
@@ -43,38 +49,42 @@
 
 $(document).ready(function() {    	   		
 	$('#summernote').summernote({  	        
-    height:"400px",
-    width: "700px",
-  	minHeight: null,
-  	maxHeight: null,
-  	focus: true,
-  	callbacks: {
-  		onImageUpload: function(files, editor, welEditable){
-  			console.log(files);
-  			console.log(files[0]);	      			
-  			var form_data = new FormData();
-  			form_data.append("file", files[0]);
-  			
-  			var $note = $(this);
-  			console.log("abcd");
-  			$.ajax({
-  	    		data: form_data,
-  	    		type: "POST",
-  	    		url: '/diaryRest/imageDiary',
-  	    		cache: false,
-  	    		contentType: false,	      	    		
-  	    		enctype: 'multipart/form-data',
-  	    		processData: false,
-  	    		success: function(url){
-  	    			alert("here");
-  	    			/* fncLoading(); */
-  	    			$note.summernote('insertImage',url);	      	    			
-  	    		}
-  	    	});
-  		}
-  	}
-  
-	});
+        height:"400px",
+        width: "700px",
+      	minHeight: null,
+      	maxHeight: null,
+      	focus: true,
+      	callbacks: {
+      		onImageUpload: function(files, editor, welEditable){
+      			console.log(files);
+      			console.log(files[0]);	      			
+      			var form_data = new FormData();
+      			form_data.append("file", files[0]);
+      			
+      			$note = $(this);
+      			console.log("abcd");
+      			$.ajax({
+      	    		data: form_data,
+      	    		type: "POST",
+      	    		url: '/diaryRest/imageDiary',
+      	    		cache: false,
+      	    		contentType: false,	      	    		
+      	    		enctype: 'multipart/form-data',
+      	    		processData: false,
+      	    		success: function(url){
+      	    			console.log("hi");
+      	    			isloading.start();
+      	    			setTimeout(function() {
+      	    				$note.summernote('insertImage',url);
+      	    				isloading.stop();
+      	    			},4000);	
+      	    			
+      	    		}
+      	    	});
+      		}
+      	}
+      
+    	});
   /* $('textarea[name="Contents"]').html($('.summernote').code()); */
 });
 	
@@ -119,7 +129,7 @@ $(document).ready(function() {
 		 
 		$(function(){
 			$("#cancel").on("click" , function() {				
-				 history.go(-1);
+				self.location="/diary/listDiary";
 			});
 		});	
 		 
@@ -147,18 +157,12 @@ $(document).ready(function() {
 	<div class="page-header text-center">
 	       <h3 class=" text-info">다이어리 수정</h3>	       
     </div>
-	    
-		<div class="form-group">
-		    <label for="diaryNo" class="col-sm-offset-1 col-sm-3 control-label">다이어리 번호</label>
-		    <div class="col-sm-4">
-		      <input type="text" class="form-control" id="diaryNo" name="diaryNo" value="${diary.diaryNo}">
-		    </div>
-		</div>
 		 <div class="form-group">
 		   <label for="userCategory" class="col-sm-offset-1 col-sm-3 control-label">유저카테고리</label>
 		   <div class="col-sm-4">
 		     <input type="text" class="form-control" id="userCategory" name="userCategoryNo" value="${diary.userCategoryNo}">
 		   </div>
+		   <label for="diaryDate" class="col-sm-offset-1 col-sm-3 control-label">작성날짜 ${diary.diaryDate}</label>		    
 		 </div>
 		  <div class="form-group">
 		    <label for="diaryTitle" class="col-sm-offset-1 col-sm-3 control-label">제목</label>
@@ -172,12 +176,6 @@ $(document).ready(function() {
 		      <textarea id="summernote" class="form-control" name="diaryDetail">
 		      ${diary.diaryDetail }
 		      </textarea>
-		    </div>
-		  </div>
-		  <div class="form-group">
-		    <label for="uploadFile" class="col-sm-offset-1 col-sm-3 control-label">작성날짜</label>
-		    <div class="col-sm-4">
-		     <div class="col-xs-8 col-md-4">${diary.diaryDate}</div>		      
 		    </div>
 		  </div>
 		  

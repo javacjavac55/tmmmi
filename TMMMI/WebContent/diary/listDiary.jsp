@@ -72,6 +72,12 @@ $(function(){
 	$( "#addDiary" ).on("click" , function() {			
 		location.replace('/diary/addDiary');
 	});
+	
+	$(".getDetail td:nth-child(4)").on("click", function(){
+		var diaryNo = $(this).data('param1');
+		console.log("¾Æ¾Æ¾Æ");
+		self.location = "/diary/getDiary?diaryNo="+diaryNo;
+	});
 });
 
 </script>
@@ -128,11 +134,11 @@ $(function(){
 		  <c:set var="i" value="0" />
 		  <c:forEach var="diary" items="${list}">
 			<c:set var="i" value="${ i+1 }" />
-			<tr>
+			<tr class="getDetail">
 			  <td align="left"><input name="deleteDiary" type="checkbox" value="${diary.diaryNo}"/></td>
 			  <td align="left">${ i }</td>
 			  <td align="left">${diary.userCategoryNo}</td>
-			  <td align="left">${diary.diaryTitle}</td>			  
+			  <td align="left" data-param1="${diary.diaryNo}">${diary.diaryTitle}</td>			  
 			  <td align="left">${diary.diaryDate }</td>
 			</tr>
           </c:forEach>
