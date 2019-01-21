@@ -19,6 +19,8 @@ import com.tmmmi.common.Page;
 import com.tmmmi.common.Search;
 import com.tmmmi.service.diary.DiaryService;
 import com.tmmmi.service.domain.Diary;
+import com.tmmmi.service.domain.User;
+import com.tmmmi.service.user.UserService;
 
 @Controller
 @RequestMapping("/diary/*")
@@ -27,7 +29,9 @@ public class DiaryController {
 	@Autowired
 	@Qualifier("diaryServiceImpl")
 	private DiaryService diaryService;
-
+	@Qualifier("userServiceImpl")
+	private UserService userService;
+	
 	public DiaryController() {
 		// TODO Auto-generated constructor stub
 		System.out.println(this.getClass());
@@ -54,13 +58,14 @@ public class DiaryController {
 	}
 	
 	@RequestMapping(value="addDiary", method=RequestMethod.POST)
-	public ModelAndView addDiary(@ModelAttribute("diary") Diary diary) throws Exception{
+	public ModelAndView addDiary(@ModelAttribute("diary") Diary diary, HttpSession session) throws Exception{
 		System.out.println("/diary/addDiary : POST");
 		
+		int userNo = ((int)session.getAttribute("userNo"));		
+		diary.setUserNo(userNo);
 		diaryService.addDiary(diary);
-		
 		ModelAndView modelAndView = new ModelAndView();
-		modelAndView.addObject("Diary", diary);
+		modelAndView.addObject("diary", diary);
 		modelAndView.setViewName("redirect:/diary/listDiary");
 		
 		
@@ -83,10 +88,10 @@ public class DiaryController {
 		
 	}
 	@RequestMapping(value="listDiary")
-	public ModelAndView getDiaryList(@ModelAttribute("search") Search search, @ModelAttribute("Diary") Diary diary, HttpServletRequest request, HttpSession session)throws Exception{
+	public ModelAndView getDiaryList(@ModelAttribute("search") Search search , @ModelAttribute("Diary") Diary diary, HttpServletRequest request, HttpSession session)throws Exception{
 		
-
-		int userNo = 111;
+		
+		int userNo = ((int)session.getAttribute("userNo"));
 		
 		
 		if(search.getCurrentPage() ==0 ){

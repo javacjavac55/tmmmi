@@ -19,12 +19,11 @@
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" ></script>
 	
 	<!-- summernote -->
-	<link href="/css/summernote.css" rel="stylesheet">
-  	<script src="/javascript/summernote.js"></script>
+	<link href="/css/summernote/summernote.css" rel="stylesheet">
+  	<script src="/javascript/summernote/summernote.js"></script>
   	<!-- ·Îµù -->
-  	<link rel="stylesheet" href="/css/loading.css">  	
-  	<!-- <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script> -->
-    <script src="/javascript/loading.js"></script>
+  	<link rel="stylesheet" href="/css/summernote/loading.css">  	
+    <script src="/javascript/summernote/loading.js"></script>
     
   	
 	<!--  ///////////////////////// CSS ////////////////////////// -->
@@ -62,7 +61,7 @@
 	      	    		enctype: 'multipart/form-data',
 	      	    		processData: false,
 	      	    		success: function(url){
-	      	    			console.log("hi");
+	      	    			/* console.log("hi"); */
 	      	    			isloading.start();
 	      	    			setTimeout(function() {
 	      	    				$note.summernote('insertImage',url);

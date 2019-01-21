@@ -5,7 +5,6 @@
 <head>
 <title>내 정보 보기</title>
 	<meta http-equiv="Content-Type" content="text/html; charset=EUC-KR">
-	<meta charset="EUC-KR">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 	
 	<!-- bootstrap -->

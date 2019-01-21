@@ -19,13 +19,13 @@
 	
 	<!-- summernote -->
 	<script src="http://netdna.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.js"></script>		
-	<link href="/css/summernote.css" rel="stylesheet">
-  	<script src="/javascript/summernote.js"></script>
+	<link href="/css/summernote/summernote.css" rel="stylesheet">
+  	<script src="/javascript/summernote/summernote.js"></script>
   	
   	<!-- 로딩 -->
-  	<link rel="stylesheet" href="/css/loading.css">  	
+  	<link rel="stylesheet" href="/css/summernote/loading.css">  	
   	<!-- <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script> -->
-    <script src="/javascript/loading.js"></script>
+    <script src="/javascript/summernote/loading.js"></script>
   	
 	<script type="text/javascript">
 	/* function postForm() {
@@ -156,18 +156,6 @@
     	
 		<hr/>
 		  
-		  
-		  		  	  
-		  <div class="form-group">
-		    <label for="userNo" class="col-sm-offset-1 col-sm-3 control-label text-center">유저번호</label>
-		    <div class="col-sm-4">
-		      <input type="text" name="userNo" 	class="form-control" placeholder="유저넘버">
-		      <span id="helpBlock" class="help-block">		      	 
-		      </span>
-		    </div>
-		 </div>
-		<hr/>
-	
 
 		<div class="form-group">
 		    <div class="col-sm-offset-4  col-sm-4 text-center">
