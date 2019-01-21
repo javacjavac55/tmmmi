@@ -5,7 +5,7 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 import java.net.URLEncoder;
 
-public class NaverSearchAPI {
+public class naverSearchAPI {
 	public static StringBuilder sb;
     public static void main(String[] args) {
         String clientId = "rHBsMd5Tu_WOFtXexEQz";

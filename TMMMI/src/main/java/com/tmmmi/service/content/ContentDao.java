@@ -7,7 +7,7 @@ import com.tmmmi.service.domain.ContentSetting;
 public interface ContentDao {
 	
 	public void getContent();
-	
-	public List getContentList(ContentSetting contentSetting);
+
+	public List<Object> getContentList(ContentSetting contentSetting);
 
 }

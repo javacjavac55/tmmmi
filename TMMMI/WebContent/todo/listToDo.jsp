@@ -92,7 +92,7 @@
                             }
                         ),
                         dataType: 'json',
-                        success: $(function () {
+                        success: function () {
                             history.go(0);
                         })
                     })

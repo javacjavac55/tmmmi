@@ -5,7 +5,6 @@ import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.net.URLEncoder;
-import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.stereotype.Repository;
@@ -19,8 +18,6 @@ public class ContentKeywordDaoNaverImpl implements ContentDao {
 	public ContentKeywordDaoNaverImpl() {
 		System.out.println(this.getClass());
     }
-	
-	///Method
 	@Override
 	public void getContent() {
 		// TODO Auto-generated method stub
@@ -32,7 +29,6 @@ public class ContentKeywordDaoNaverImpl implements ContentDao {
 		StringBuilder sb;
 	    String clientId = "8UnBF2q3kdzG36xN7kVj";//애플리케이션 클라이언트 아이디값";
 	    String clientSecret = "LJxxFFhxEN";//애플리케이션 클라이언트 시크릿값";
-	    ArrayList<Object> userKeyword = new ArrayList<>();
 	    
 	    try {
 	        String text = URLEncoder.encode("\""+contentSetting.getUserSearch1()+"|"+contentSetting.getUserSearch2()+"|"+contentSetting.getUserSearch3()+"\"", "UTF-8");
@@ -47,7 +43,7 @@ public class ContentKeywordDaoNaverImpl implements ContentDao {
 	        BufferedReader br;
 	        if(responseCode==200) { // 정상 호출
 	            br = new BufferedReader(new InputStreamReader(con.getInputStream()));
-	            userKeyword.add(br);
+	            //userKeyword.add(br);
 	        } else {  // 에러 발생
 	                br = new BufferedReader(new InputStreamReader(con.getErrorStream()));
 	            }
@@ -64,7 +60,6 @@ public class ContentKeywordDaoNaverImpl implements ContentDao {
 	        System.out.println(e);
 	    }
 	    
-	    return userKeyword;
+	    return null;
 	}
-
 }
