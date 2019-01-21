@@ -89,6 +89,7 @@
 		<thead>
 			<tr>
 				<th class="col-md-1 text-center">No.</th>
+				<th class="col-md-1 text-center">분류유형</th>
 				<th class="col-md-6">제목</th>
 				<th class="col-md-1 text-center">작성날짜</th>
 			</tr>
@@ -100,6 +101,19 @@
 				<c:set var="i" value="${i+1}" />
 					<tr class="title${faq.FAQNo} title" data-param1="${faq.FAQNo}">
 						<td class="text-center">${i}</td>
+						<td class="text-center">
+						<c:if test="${faq.FAQCategory == 0}">
+							회원정보
+						</c:if><c:if test="${faq.FAQCategory == 1}">
+							일정
+						</c:if><c:if test="${faq.FAQCategory == 2}">
+							컨텐츠 설정
+						</c:if><c:if test="${faq.FAQCategory == 3}">
+							다이어리/스크랩
+						</c:if><c:if test="${faq.FAQCategory == 4}">
+							기타
+						</c:if>
+					</td>
 						<td>${faq.FAQTitle}</td>
 						<td class="text-center">${faq.FAQDate}</td>
 					</tr>

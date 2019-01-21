@@ -18,12 +18,34 @@
   	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
   	<script>
   	$(function () {
-  		var tastyKeyword = $("#tastyKeyword").val;
+  		 $("#keywordbtn").on("click", function () {
+  			var tastyKeyword1 = $("#tastyKeyword").val();
+  			console.log(tastyKeyword);
   		$.ajax({
-  			url:"/"
-  		})
-  	});
-		var map = new naver.maps.Map("map", {
+  			url:"/contentRest/getContentTastyList",
+  			method: 'POST',
+  			headers:{
+                "Accept": "application/json",
+                "Content-Type": "application/json"  				
+  			},
+  			data: JSON.stringify({
+  				tastyKeyword : tastyKeyword1
+  			}),
+  				dateType: 'json',
+  				success: function(JSONData , status) {
+  					console.log(JSONData);
+  					var list = JSON.parse(JSONData);
+  					list.forEach(function(item, index, array){
+  					$(" body").append('<div class="col-md-3">'+item['tastyTitle']+'</div>'
+  							+'<div class="col-md-3">'+item['tastyLocationX']+'</div>'
+  							+'<div class="col-md-3">'+item['tastyLocationY']+'</div>'
+  							+'<div class="col-md-3">'+item['tastyMenu']+'</div>');
+  					})
+				}
+  			})
+  		});
+  	})
+		/*var map = new naver.maps.Map("map", {
 		    center: new naver.maps.LatLng(37.5666103, 126.9783882),
 		    zoom: 11
 		}),
@@ -63,11 +85,20 @@
 		});
 		}
 		
-		naver.maps.onJSContentLoaded = initGeocoder;
+		naver.maps.onJSContentLoaded = initGeocoder; */
 </script>
 </head>
 <body>
+<c:forEach items="${contentList}">
+<div class="col-md-3">${contentList.tastyTitle}</div>
+<div class="col-md-3">${contentList.tastyLocationX}</div>
+<div class="col-md-3">${contentList.tastyLocationY}</div>
+<div class="col-md-3">${contentList.tastyMenu}</div>
+</c:forEach>
+<form class="form-inline" name="detailForm">
 <input type=text id="tastyKeyword">
+<button id="keywordbtn">º¸³»±â</button>
+</form>
 <div id="map" style="width:100%;height:400px;"></div>
 </body>
 </html>

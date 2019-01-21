@@ -19,8 +19,34 @@
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" ></script>
 	
 	<script type="text/javascript">
-	$(document).ready(function () { // 페이지 document 로딩 완료 후 스크립트 실행 $("#viewhidden").click(function () { status = $("#hidden").css("display"); if (status == "none") { $("#hidden").css("display", ""); } else { $("#hidden").css("display", "none"); } }); });
+	$(function() {	
+	
+		var apiURI = "http://api.openweathermap.org/data/2.5/weather?q=Seoul&units=metric&APPID=9375e1f400fff57aed0637c39dced0cb";
+		
+		$.ajax({
+	        url: apiURI,
+	        dataType: "json",
+	        type: "GET",
+	        async: "false",
+	        success: function(resp) {
+	            console.log(resp);
+	            console.log("현재온도 : "+ (resp.main.temp) );
+	            console.log("현재습도 : "+ resp.main.humidity);
+	            console.log("날씨 : "+ resp.weather[0].main );
+	            console.log("상세날씨설명 : "+ resp.weather[0].description );
+	            console.log("날씨 이미지 : "+ resp.weather[0].icon );
+	            console.log("바람   : "+ resp.wind.speed );
+	            console.log("나라   : "+ resp.sys.country );
+	            console.log("도시이름  : "+ resp.name );
+	            console.log("구름  : "+ (resp.clouds.all) +"%" );                 
+	        }
+	    });
+		
+		var imgURL = "https://erikflowers.github.io/weather-icons/" + resp.weather[0].icon + ".png";
+		 $("html컴포넌트").attr("src", imgURL);
+ 	});
 
+	
 </script>
 
 <style>
@@ -32,10 +58,11 @@
 </head>
 
 <body>
-<form name="listFAQ">
-<table> <tr> <th scope="row">tr 메뉴 숨김 처리</th> <td><a href="#" id="viewhidden" onclick="return false;" class="button">클릭</a></td> </tr> <tr id="hidden" style="display:none;"> <th>숨김메뉴</th> <td><input type="text"/></td> </tr> <tr> <th>하단</th> <td>하단</td> </tr> </table>
 
-</form>
+
+
+
+
 </body>
 
 </html>

@@ -59,7 +59,7 @@
 	
 	<!-- SQL : SELECT ONE(getEmail) -->
 	<select id="getUserEmail" parameterType="String" resultMap="userSelectMap">
-		SELECT email
+		SELECT user_no, user_id, password, role, email
 		FROM users
 		WHERE email = #{value}
 	</select>
