@@ -1,5 +1,6 @@
 @import url(font-awesome.min.css);
 @import url("https://fonts.googleapis.com/css?family=Open+Sans:400,600,400italic,600italic|Roboto+Slab:400,700");
+@import url("https://fonts.googleapis.com/css?family=Nanum+Gothic:400,700,800&amp;subset=korean");
 
 /*
 	Editorial by HTML5 UP
@@ -23,6 +24,7 @@ section, summary, time, mark, audio, video {
 	border: 0;
 	font-size: 100%;
 	font: inherit;
+	font-family: "Nanum Gothic", sans-serif;
 	vertical-align: baseline;}
 
 article, aside, details, figcaption, figure,
@@ -181,7 +183,7 @@ input, select, textarea {
 
 	h1, h2, h3, h4, h5, h6 {
 		color: #3d4449;
-		font-family: "Roboto Slab", serif;
+		font-family: "Nanum Gothic", serif;
 		font-weight: 700;
 		line-height: 1.5;
 		margin: 0 0 1em 0;
@@ -1788,7 +1790,7 @@ input, select, textarea {
 	}
 
 	header p {
-		font-family: "Roboto Slab", serif;
+		font-family: "Nanum Gothic", serif;
 		font-size: 1em;
 		font-weight: 400;
 		letter-spacing: 0.075em;
@@ -2467,7 +2469,7 @@ input, select, textarea {
 		color: #f56a6a !important;
 		cursor: pointer;
 		display: inline-block;
-		font-family: "Roboto Slab", serif;
+		font-family: "Nanum Gothic, serif;
 		font-size: 0.8em;
 		font-weight: 700;
 		height: 3.5em;
@@ -3313,7 +3315,7 @@ input, select, textarea {
 		#header .logo {
 			border-bottom: 0;
 			color: inherit;
-			font-family: "Roboto Slab", serif;
+			font-family: "Nanum Gothic", serif;
 			font-size: 1.125em;
 		}
 
@@ -3473,7 +3475,7 @@ input, select, textarea {
 		-ms-user-select: none;
 		user-select: none;
 		color: #3d4449;
-		font-family: "Roboto Slab", serif;
+		font-family: "Nanum Gothic", serif;
 		font-family: 400;
 		letter-spacing: 0.075em;
 		list-style: none;
