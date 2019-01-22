@@ -30,6 +30,7 @@ public class ContentRestController {
 	public List<Object> getContentList(@RequestBody ContentSetting contentSetting)throws Exception {
 		List<Object> contentList = contentService.getContentTastyList(contentSetting);
 		System.out.println(contentList);
+		System.out.println(contentList.size());
 		return contentList;
 	}
 }
