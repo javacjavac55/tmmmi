@@ -18,29 +18,36 @@
 	<script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" ></script>
 	
-	<!-- 날씨 아이콘 링크 -->
+	<!-- 날씨 아이콘 적용 -->
 	<link rel="stylesheet" type="text/css" href="/css/weather/weather-icons-master/css/weather-icons-wind.min.css">
 	
 	<script type="text/javascript">
-	
 	$(function() {	
-	
+
 		$.ajax({
-	        url:  "/weather/getWeather",
-	        dataType: "json",
+	        url: "/weather/getWeather",
+	       dataType: "json",
 	        type: "GET",
-	        async: "false",
-	        success: function(resp) {
-	            console.log(resp);
-	            console.log("현재온도 : "+ (resp.main.temp) );
-	            console.log("현재습도 : "+ resp.main.humidity);
-	            console.log("날씨 : "+ resp.weather[0].main );
-	            console.log("상세날씨설명 : "+ resp.weather[0].description );
-	            console.log("날씨 이미지 : "+ resp.weather[0].icon );
-	            console.log("바람   : "+ resp.wind.speed );
-	            console.log("나라   : "+ resp.sys.country );
-	            console.log("도시이름  : "+ resp.name );
-	            console.log("구름  : "+ (resp.clouds.all) +"%" );                 
+	        headers : {
+				"Accept" : "application/json",
+				"Content-Type" : "application/json"
+			}, 
+	        success: function(Data) {
+	        	
+	        	console.log("123");
+	      		console.log(Data);
+	      		/* console.log("현재온도 : "+ Data.temp); */
+	           /*  console.log("현재온도 : "+ Data.main.temp );
+	            console.log("현재습도 : "+ Data.main.humidity);
+	            console.log("날씨 : "+ Data.weather[0].main );
+	            console.log("상세날씨설명 : "+ Data.weather[0].description );
+	            console.log("날씨 이미지 : "+ Data.weather[0].icon );
+	            console.log("바람   : "+ Data.wind.speed );
+	            console.log("나라   : "+ Data.sys.country );
+	            console.log("도시이름  : "+ Data.name );
+	            console.log("구름  : "+ (Data.clouds.all) +"%" );  */
+	            
+	           /*  $(".asd").append(resp.main.temp); */
 	        }
 	    });
 		
@@ -59,7 +66,12 @@
 </head>
 
 <body>
+	<i class="wi wi-day-sunny"></i>
 	
+	<div class="asd" ></div>
+
+
+
 
 </body>
 
