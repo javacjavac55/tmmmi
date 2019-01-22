@@ -6,8 +6,8 @@ import com.tmmmi.service.domain.ContentSetting;
 
 public interface ContentDao {
 	
-	public void getContent();
+	public void getContent() throws Exception;
 
-	public List<Object> getContentList(ContentSetting contentSetting);
+	public List<Object> getContentList(ContentSetting contentSetting, int index) throws Exception;
 
 }

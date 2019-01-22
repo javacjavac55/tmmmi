@@ -16,7 +16,8 @@
 		<a href="/user/logout">로그아웃</a><br/>
 		<a href="/userSetting/getUserSetting">사용자 설정</a><br/>
 		<a href="/contentSetting/getContentSetting">컨텐츠 설정</a><br/>
-		<a href="/content/userKeywordContent.jsp">유저 컨텐츠 키워드</a>
+		<a href="/content/userKeywordContent.jsp">유저 컨텐츠 키워드</a><br/>
+		<a href="/content/sportContent">스포츠 컨텐츠</a>
  	</c:if>
  	<c:if test="${ empty userNo }">
  		다시 로그인을 시도하세요.<br/>

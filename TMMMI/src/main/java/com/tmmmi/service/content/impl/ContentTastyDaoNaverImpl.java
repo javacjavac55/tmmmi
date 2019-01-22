@@ -28,7 +28,7 @@ public class ContentTastyDaoNaverImpl implements ContentDao {
 	}
 
 	@Override
-	public List<Object> getContentList(ContentSetting contentSetting) {
+	public List<Object> getContentList(ContentSetting contentSetting, int index) {
 		String clientId = "d9ROlDLvnXulcE2hxtAm";
         String clientSecret = "O4TGEmLBA4";
         List<Object> tastyList = null;

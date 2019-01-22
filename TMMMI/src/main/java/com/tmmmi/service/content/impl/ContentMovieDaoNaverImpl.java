@@ -18,7 +18,7 @@ public class ContentMovieDaoNaverImpl implements ContentDao {
 	}
 
 	@Override
-	public List<Object> getContentList(ContentSetting contentSetting) {
+	public List<Object> getContentList(ContentSetting contentSetting, int index) {
 		
 		return null;
 	}
