@@ -7,8 +7,7 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.BufferedReader;
 import java.io.IOException;
-import org.json.simple.JSONObject;
-import org.json.simple.parser.JSONParser;
+
 
 public class weather {
 
@@ -54,11 +53,11 @@ public class weather {
              name/ 도시 이름
              */
             
-            JSONParser parser=new JSONParser();
+           /* JSONParser parser=new JSONParser();
             JSONObject temp1=(JSONObject)parser.parse(json);
             // 키가 “main”인 값이 다시 JSON 오브젝트이고 해당 오브젝트의 “temp” 키 출력
             JSONObject temp2=(JSONObject)temp1.get("main");
-            System.out.println("온도관련쪽 파싱됐을까? : " +temp2);
+            System.out.println("온도관련쪽 파싱됐을까? : " +temp2);*/
             
         }catch(MalformedURLException mue){
             System.err.println("잘못된 URL!! 두둥");

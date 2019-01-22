@@ -5,17 +5,37 @@
 <html lang="ko">
     <head>
         <meta content="width=device-width, initial-scale=1" name="viewport">
+        <!-- jQuery CSS  -->
         <link href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css" rel="stylesheet">
+        <!-- ToastUI CSS -->
+        <link href="https://uicdn.toast.com/tui.date-picker/latest/tui-date-picker.css" rel="stylesheet" type="text/css">
+        <!-- Bootstrap CSS -->
         <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
         <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" rel="stylesheet">
-        <link href="https://uicdn.toast.com/tui.date-picker/latest/tui-date-picker.css" rel="stylesheet" type="text/css">
-        <script src="https://uicdn.toast.com/tui.code-snippet/latest/tui-code-snippet.min.js" type="text/javascript"></script>
+        <!-- template CSS -->
+        <link rel="stylesheet" href="/css/template/main.css" />
+        <!-- font CSS-->
+   		<link href="https://fonts.googleapis.com/css?family=Nanum+Gothic:400,700,800&amp;subset=korean" rel="stylesheet">
+       
+		<!-- jQuery script  -->
         <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
         <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+        <!-- ToastUI script -->
+        <script src="https://uicdn.toast.com/tui.code-snippet/latest/tui-code-snippet.min.js" type="text/javascript"></script>
         <script src="https://uicdn.toast.com/tui.date-picker/latest/tui-date-picker.min.js" type="text/javascript"></script>
+        
+        <!-- Bootstrap script -->
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+        <!-- sweetalert2 script -->
         <script src="https://cdn.jsdelivr.net/npm/sweetalert2@8/dist/sweetalert2.min.js"></script>
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@8/dist/sweetalert2.min.css">
+        <!-- Style CSS-->
+   		<style type="text/css">
+   		body, h3, h2, button{
+           font-family: "Nanum Gothic", sans-serif;
+        }
+        .
+   		</style>
         <script>
             // ==> DOM Object GET 3가지 방법 ==> 1. $(tagName) : 2.(#id) : 3.$(.className)
             // ///////////////////////////////// 할 일 등록 체크///////////////////////////////////////
@@ -36,10 +56,12 @@
                     alert("할 일의 종료 날짜는  반드시 입력하셔야 합니다.");
                     return;
                 }
-                $("form")
+                $(function(){
+                	$("form")
                     .attr("method", "POST")
                     .attr("action", "/todo/addToDo")
                     .submit();
+        		   })
             }
             // ////////////////////////////// 할 일 등록//////////////////////////////////////
             $(function () {
@@ -92,7 +114,8 @@
                             }
                         ),
                         dataType: 'json',
-                        success: function () {
+                        success: 
+                        	$(function () {
                             history.go(0);
                         })
                     })
@@ -174,10 +197,12 @@
                 var today = new Date();
                 var picker = tui.DatePicker.createRangePicker({
                     startpicker: {
+                    	language: 'ko',
                         input: '#startpicker-input',
                         container: '#startpicker-container'
                     },
                     endpicker: {
+                    	language: 'ko',
                         date: today,
                         input: '#endpicker-input',
                         container: '#endpicker-container'
@@ -205,24 +230,24 @@
                         <form class="form-inline" id="addToDo">
                             <div class="form-group">
                                 <label for="toDoDetail">할 일 내용</label>
+                                <div class="tui-datetime-input col-md-3">
                                 <input class="form-control" id="addToDoDetail" name="toDoDetail" placeholder="할 일을 입력해주세요" type="text">
+                            	</div>
                             </div>
-                            <div class="tui-datepicker-input tui-datetime-input tui-has-focus">
+                            	<label for="datelocation">할 일 기간</label>
+                            <div class="tui-datetime-input tui-has-focus col-md-3">
                                 <input aria-label="Date" autocomplete="off" id="startpicker-input" name="toDoStartDate" placeholder="시작 날짜" type="text" readonly>
-                                <span class="tui-ico-date"></span>
                                 <div id="startpicker-container" style="margin-left: -1px;"></div>
                             </div>
-                            <span>to</span>
-                            <div class="tui-datepicker-input tui-datetime-input tui-has-focus">
+                            <div class="tui-datetime-input tui-has-focus col-md-3">
                                 <input aria-label="Date" autocomplete="off" id="endpicker-input" name="toDoEndDate" placeholder="종료 날짜" type="text" readonly>
-                                <span class="tui-ico-date"></span>
                                 <div id="endpicker-container" style="margin-left: -1px;"></div>
                             </div>
                         </form>
                     </div>
                     <div class="modal-footer">
-                        <button class="btn btn-danger" data-dismiss="modal" type="button">취소</button>
-                        <button class="btn btn-default" id="addToDobtn" type="submit">등록</button>
+                        <button class="btn danger" data-dismiss="modal" type="button">취소</button>
+                        <button class="btn default" id="addToDobtn" type="submit">등록</button>
                     </div>
                 </div>
                 <!-- /.modal-content -->
@@ -233,7 +258,7 @@
         <!-- 모달 끝 -->
         <!-- 할 일 리스트 -->
             <div class="container"> <h2 style="margin:5px">나의 할 일 관리</h2>
-            <button class="btn btn-primary btn-lg" data-target="#todomodal" data-toggle="modal">할 일 등록</button>
+            <button class="button primary large" data-target="#todomodal" data-toggle="modal"><h2>할 일 등록</h2></button>
             <div class="row">
                 <div class="col-md-3">
                     <h3><strong>오늘의 할 일</strong></h3>
@@ -270,14 +295,14 @@
                 <div class="row hide" id="retodolist${todo.toDoNo}">
                     <div class="col-md-3"><input class="updateToDoDetail" id="toDoDetail${todo.toDoNo}" name="toDoDetail" type="text" value="${todo.toDoDetail}">
                     </div>
-                    <div class="col-md-3 tui-datepicker-input tui-datetime-input tui-has-focus">
+                    <div class="col-md-3 tui-datetime-input tui-has-focus">
                         <input aria-label="Date" autocomplete="off" class="updateToDo" id="addToDoStartDate${todo.toDoNo}" name="toDoStartDate" type="text" value="${todo.toDoStartDate}" readonly>
-                        <span class="tui-ico-date"></span>
+                        
                         <div id="startpicker-container${todo.toDoNo}" style="margin-left: -1px;"></div>
                     </div>
-                    <div class="col-md-3 tui-datepicker-input tui-datetime-input tui-has-focus">
+                    <div class="col-md-3 tui-datetime-input tui-has-focus">
                         <input aria-label="Date" autocomplete="off" class="updateToDoEnd" id="addToDoEndDate${todo.toDoNo}" name="toDoEndDate" type="text" value="${todo.toDoEndDate}" readonly>
-                        <span class="tui-ico-date"></span>
+                        
                         <div id="endpicker-container${todo.toDoNo}" style="margin-left: -1px;"></div>
                     </div>
                     <div class="col-md-3">

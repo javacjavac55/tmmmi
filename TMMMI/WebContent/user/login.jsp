@@ -15,11 +15,24 @@
 	<!-- jQuery -->
 	<script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" ></script>
+	
+	<!-- template -->
+	<link rel="stylesheet" href="/css/template/main.css">
     
+    <!-- font -->
+	<link href="https://fonts.googleapis.com/css?family=Nanum+Gothic:400,700,800&amp;subset=korean" rel="stylesheet">
+	
+	<!-- style -->
+    <style>
+  		body, h2, h4{
+  			font-family: "Nanum Gothic", sans-serif;
+  		}
+  	</style>
+  	
     <!-- 로그인  -->
 	<script type="text/javascript">
 		$(function() {
-			$( "button.btn.btn-primary" ).on("click" , function() {
+			$( "button.button.primary" ).on("click" , function() {
 				fncLogin();
 			});
 		});	
@@ -60,28 +73,26 @@
 	<!-- sideMenu.jsp 추가 -->
 	<!-- 화면구성 -->
 	<div class="container">
-		<div class="row">
-			<div class="col-md-6">
+		<div class="row" style="padding-top: 15%;">
+			<div style="margin: auto;">
 			<br/><br/>
-				<div class="jumbotron">	 	 	
-				<h1 class="text-center">로 &nbsp;&nbsp;그 &nbsp;&nbsp;인</h1>
+				<div align="center">	 	 	
+				<h1 class="text-center">Login</h1>
 					<form class="form-horizontal">
-					<div class="form-group">
-						<label for="userId" class="col-sm-4 control-label">아 이 디</label>
-						<div class="col-sm-6">
+					<div class="form-group" align="center">
+						<div class="col-sm-12">
 							<input type="text" class="form-control" name="userId" id="userId"  placeholder="아이디" >
 						</div>
 					</div>  
-					<div class="form-group">
-						<label for="password" class="col-sm-4 control-label">패 스 워 드</label>
-						<div class="col-sm-6">
+					<div class="form-group" >
+						<div class="col-sm-12">
 							<input type="password" class="form-control" name="password" id="password" placeholder="패스워드" onKeyPress="if(event.keyCode=='13'){fncLogin() }" />
 						</div>
 					</div>
 					<div class="form-group">
-						<div class="col-sm-offset-4 col-sm-6 text-center">
-							<button type="button" class="btn btn-primary"  >로 &nbsp;그 &nbsp;인</button>
-							<a class="btn btn-default btn" href="#" role="button">회 &nbsp;원 &nbsp;가 &nbsp;입</a>
+						<div class="col-sm-12 text-center">
+							<button type="button" class="button primary" >&nbsp;&nbsp;Login&nbsp;&nbsp;</button>
+							<a class="button" href="#" role="button">&nbsp;Sign in&nbsp;</a>
 						</div>
 					</div>
 					</form>

@@ -62,11 +62,10 @@
 	<!-- SQL : INSERT(content_setting) -->
 	<insert id="addContentSetting" parameterType="int">
 		INSERT
-		INTO content_setting(content_setting_no, user_no, tasty_keyword, shopping_keyword_no, user_keyword_no, sort_section_no)
+		INTO content_setting(content_setting_no, user_no, shopping_keyword_no, user_keyword_no, sort_section_no)
 		VALUES(
 			content_setting_no.nextval,
 			#{value},
-			#{tastyKeyword:VARCHAR},
 			shopping_keyword_no.nextval,
 			user_keyword_no.nextval,
 			sort_section_no.nextval

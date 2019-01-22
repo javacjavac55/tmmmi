@@ -25,7 +25,7 @@ public class ContentKeywordDaoNaverImpl implements ContentDao {
 	}
 
 	@Override
-	public List<Object> getContentList(ContentSetting contentSetting) {
+	public List<Object> getContentList(ContentSetting contentSetting, int index) {
 		StringBuilder sb;
 	    String clientId = "8UnBF2q3kdzG36xN7kVj";//애플리케이션 클라이언트 아이디값";
 	    String clientSecret = "LJxxFFhxEN";//애플리케이션 클라이언트 시크릿값";

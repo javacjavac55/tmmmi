@@ -26,22 +26,22 @@
 	<a href="/user/addUser.jsp">회원가입</a><br/>
 	<a href="/user/login.jsp">로그인</a><br/>
 	<a href="/user/getUserList">회원 리스트</a><br/>
-	<a href="/user/searchUserId.jsp">아이디 찾기</a><br/><br/>
+	<a href="/user/searchUserId.jsp">아이디 찾기</a><br/>
 	
 	<!-- 중열 -->
 	<a href="/diary/addDiary.jsp">다이어리 등록</a><br/>
-	<a href="/diary/listDiary">다이어리 리스트</a><br/><br/>
+	<a href="/diary/listDiary">다이어리 리스트</a><br/>
+	<a href="/content/sportContent">스포츠 리스트</a><br/><br/>
 	
 	<!-- 명훈 -->
 	
 	<a href="/todo/getToDoList">할 일 리스트</a><br/>
 	<a href="/content/tastyContent.jsp">맛집컨텐츠박스</a><br/>
 	
-	
 	<!-- 지슬 -->
-	<!-- <a href="/QNA/contentBox.jsp">컨텐츠박스ㅎ_ㅎ나중에하시면수정해드려여</a><br/> -->
 	<a href="/faq/getFAQList">FAQ 리스트</a><br/>
 	<a href="/qna/getQNAList">QNA 리스트</a><br/>
+	<a href="/weather/getWeather.jsp">날씨 </a><br/>
 
 
 </body>

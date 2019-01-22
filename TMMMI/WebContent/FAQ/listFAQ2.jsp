@@ -8,7 +8,7 @@
 
 <head>
 	<meta charset="EUC-KR">
-	<title> listFAQ </title>
+	<title> getWeather </title>
 	
 	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 	
@@ -18,13 +18,15 @@
 	<script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" ></script>
 	
+	<!-- 날씨 아이콘 링크 -->
+	<link rel="stylesheet" type="text/css" href="/css/weather/weather-icons-master/css/weather-icons-wind.min.css">
+	
 	<script type="text/javascript">
+	
 	$(function() {	
 	
-		var apiURI = "http://api.openweathermap.org/data/2.5/weather?q=Seoul&units=metric&APPID=9375e1f400fff57aed0637c39dced0cb";
-		
 		$.ajax({
-	        url: apiURI,
+	        url:  "/weather/getWeather",
 	        dataType: "json",
 	        type: "GET",
 	        async: "false",
@@ -42,8 +44,7 @@
 	        }
 	    });
 		
-		var imgURL = "https://erikflowers.github.io/weather-icons/" + resp.weather[0].icon + ".png";
-		 $("html컴포넌트").attr("src", imgURL);
+		
  	});
 
 	
@@ -58,10 +59,7 @@
 </head>
 
 <body>
-
-
-
-
+	
 
 </body>
 

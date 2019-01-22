@@ -9,7 +9,6 @@ import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.net.URLEncoder;
-import java.util.ArrayList;
 import java.util.List;
 
 import org.codehaus.jackson.map.ObjectMapper;
@@ -28,7 +27,7 @@ public class ContentTastyDaoNaverImpl implements ContentDao {
 	}
 
 	@Override
-	public List<Object> getContentList(ContentSetting contentSetting) {
+	public List<Object> getContentList(ContentSetting contentSetting, int index) {
 		String clientId = "d9ROlDLvnXulcE2hxtAm";
         String clientSecret = "O4TGEmLBA4";
         List<Object> tastyList = null;
