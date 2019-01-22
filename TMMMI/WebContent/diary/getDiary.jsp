@@ -18,7 +18,7 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
-<title>상품상세조회</title>
+<title>다이어리 조회</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 	
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" >

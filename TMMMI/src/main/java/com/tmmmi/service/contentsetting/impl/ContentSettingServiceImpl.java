@@ -14,6 +14,7 @@ public class ContentSettingServiceImpl implements ContentSettingService {
 	@Autowired
 	@Qualifier("contentSettingDaoImpl")
 	private ContentSettingDao contentSettingDao;
+	
 	public void setContentSettingDao(ContentSettingDao contentSettingDao) {
 		this.contentSettingDao = contentSettingDao;
 	}

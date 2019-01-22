@@ -20,6 +20,10 @@ public class DiaryServiceImpl implements DiaryService {
 	@Qualifier("diaryDaoImpl")
 	private DiaryDao diaryDao;
 	
+	public void setDiaryServiceDao(DiaryDao diaryDao) {
+		this.diaryDao= diaryDao;
+	}
+	
 	public DiaryServiceImpl() {
 		// TODO Auto-generated constructor stub
 		System.out.println(this.getClass());

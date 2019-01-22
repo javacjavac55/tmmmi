@@ -29,7 +29,7 @@ public class ContentShoppingDaoNaverImpl implements ContentDao {
 
 	}
 	@Override
-	public List<Object> getContentList(ContentSetting contentSetting) {
+	public List<Object> getContentList(ContentSetting contentSetting, int index) {
 			StringBuilder sb;
 			String clientId = "rHBsMd5Tu_WOFtXexEQz";
 	        String clientSecret = "95lxTYNVRV";

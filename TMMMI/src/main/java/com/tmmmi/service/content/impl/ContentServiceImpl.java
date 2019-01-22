@@ -15,9 +15,12 @@ import com.tmmmi.service.domain.ContentSetting;
 public class ContentServiceImpl implements ContentService {	
 	///Field
 	@Autowired
-	@Qualifier("contentTastyDaoNaverImpl")
+	@Qualifier("contentSportDaoImpl")
 	private ContentDao contentDao;
 	
+	public void setContentServiceDao(ContentDao contentDao) {
+		this.contentDao = contentDao;
+	}
 	//Constructor
 	public ContentServiceImpl() {
 		System.out.println(this.getClass());
@@ -30,8 +33,14 @@ public class ContentServiceImpl implements ContentService {
 	}
 
 	@Override
-	public List<Object> getContentTastyList(ContentSetting contentSetting) {
+	public List<Object> getContentTastyList(ContentSetting contentSetting, int index) throws Exception{
 		System.out.println("getContentList Á¢±Ù");
-		return contentDao.getContentList(contentSetting);
+		return contentDao.getContentList(contentSetting, index);
+	}
+
+	@Override
+	public List<Object> getContentSportList(ContentSetting contentSetting, int index) throws Exception {
+		// TODO Auto-generated method stub
+		return contentDao.getContentList(contentSetting, index);
 	}
 }

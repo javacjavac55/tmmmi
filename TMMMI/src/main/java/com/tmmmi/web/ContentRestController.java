@@ -2,6 +2,8 @@ package com.tmmmi.web;
 
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -23,13 +25,26 @@ public class ContentRestController {
 	
 	///Constructor
 	public ContentRestController() {
+		System.out.println(this.getClass());
 	}
 	
 	///Method
 	@RequestMapping(value="/getContentTastyList")
-	public List<Object> getContentList(@RequestBody ContentSetting contentSetting)throws Exception {
-		List<Object> contentList = contentService.getContentTastyList(contentSetting);
+	public List<Object> getContentList(@RequestBody ContentSetting contentSetting, int index)throws Exception {
+		List<Object> contentList = contentService.getContentTastyList(contentSetting, index);
 		System.out.println(contentList);
+		System.out.println(contentList.size());
 		return contentList;
 	}
+	/*
+	///Method
+		@RequestMapping(value="/getContentSportList")
+		public List<Object> getContentSportList(@RequestBody ContentSetting contentSetting, HttpSession session)throws Exception {
+			int userNo = ((int)session.getAttribute("userNo"));		
+			contentSetting = contentSettingService.getContentSetting(userNo);
+			
+			List<Object> sportList = contentService.getContentSportList(contentSettingn);
+			System.out.println(sportList);
+			return sportList;
+		}*/
 }

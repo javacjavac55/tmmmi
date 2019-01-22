@@ -5,7 +5,7 @@ public class ContentSport {
 	private int sectionNo;
 	private int sportNo;
 	private String sportTitle;
-	private String sportDetail;
+	private String sportLink;
 	private String sportThumbnail;
 	private String sportVideo;
 
@@ -37,12 +37,12 @@ public class ContentSport {
 		this.sportTitle = sportTitle;
 	}
 
-	public String getSportDetail() {
-		return sportDetail;
+	public String getSportLink() {
+		return sportLink;
 	}
 
-	public void setSportDetail(String sportDetail) {
-		this.sportDetail = sportDetail;
+	public void setSportLink(String sportLink) {
+		this.sportLink = sportLink;
 	}
 
 	public String getSportThumbnail() {
@@ -59,6 +59,13 @@ public class ContentSport {
 
 	public void setSportVideo(String sportVideo) {
 		this.sportVideo = sportVideo;
+	}
+
+	@Override
+	public String toString() {
+		return "ContentSport [sectionNo=" + sectionNo + ", sportNo=" + sportNo + ", sportTitle=" + sportTitle
+				+ ", sportLink=" + sportLink + ", sportThumbnail=" + sportThumbnail + ", sportVideo=" + sportVideo
+				+ "]";
 	}
 	
 }
