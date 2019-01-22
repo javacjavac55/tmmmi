@@ -260,25 +260,6 @@
 				}
 			});
 		}
-		
-		function fncGetNewScheduleList(){
-			$.ajax({
-				url : "/calendarRest/getScheduleList",
-				method : "POST",
-				data: JSON.stringify({
-					renderRangeStart: renderRangeStart,
-					renderRangeEnd: renderRangeEnd
-				}),
-				dataType: "json",
-				headers : {
-					"Accept" : "application/json",
-					"Content-Type" : "application/json"
-				},
-				success : function(JSONData, status) {
-					console.log(JSONData);
-				}
-			});
-		}
     </script>
 </body>
 </html>

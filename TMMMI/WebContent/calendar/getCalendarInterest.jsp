@@ -131,11 +131,14 @@
 		</c:forEach>
 		
 		function fncAdjustScheduleValues(schedule){
+			console.log(schedule);
 			schedule.isAllday = true;
 			schedule.category = 'allday';
+			
+			var quotient = Math.floor((schedule.start*=1)/86400000);
 						
-			schedule.start = new Date(schedule.start*=1);
-			schedule.end = new Date(schedule.end*=1); 
+			schedule.start = new Date((quotient+1)*86400000);
+			schedule.end = new Date((quotient+1)*86400000-1); 
 			return schedule;
 		}
 		
@@ -161,116 +164,6 @@
     </script>
     
     <script src="/javascript/tui/theme/dooray.js"></script>
-    <script src="/javascript/tui/default.js" charset="utf-8"></script>
-    
-    <script>
-		function fncAddSchedule(schedule){
-			console.log("fncAddSchedule");
-			console.log(schedule);
-			
-			$.ajax({
-				url : "/calendarRest/addSchedule",
-				method : "POST",
-				data: JSON.stringify({
-					userCategoryNo : schedule.calendarId,
-					scheduleTitle : schedule.title,
-					scheduleDetail : schedule.body,
-					scheduleLocation : schedule.location,
-					scheduleStartDate : schedule.start.getTime(),
-					scheduleEndDate : schedule.end.getTime(),
-					goingDuration : schedule.goingDuration,
-					comingDuration : schedule.comingDuration,
-					isScheduleDDay : (schedule.isAllDay?1:0),
-					markDDay : (schedule.state=='D-Day'?0:1),
-					isScheduleImportant : (schedule.category[0]=='milestone'?1:0),
-					scheduleAlarmTime : schedule.recurrenceRule
-				}),
-				dataType: "json",
-				headers : {
-					"Accept" : "application/json",
-					"Content-Type" : "application/json"
-				},
-				success : function(JSONData, status) {
-					console.log(JSONData);
-					alert("등록 완료");
-				}
-			});
-		}
-		
-		function fncUpdateSchedule(schedule){
-			console.log("fncUpdateSchedule");
-			console.log(schedule);
-			
-			$.ajax({
-				url : "/calendarRest/updateSchedule",
-				method : "POST",
-				data: JSON.stringify({
-					scheduleNo : schedule.id,
-					userCategoryNo : schedule.calendarId,
-					scheduleTitle : schedule.title,
-					scheduleDetail : schedule.body,
-					scheduleLocation : schedule.location,
-					scheduleStartDate : schedule.start.getTime(),
-					scheduleEndDate : schedule.end.getTime(),
-					goingDuration : schedule.goingDuration,
-					comingDuration : schedule.comingDuration,
-					isScheduleDDay : (schedule.isAllDay?1:0),
-					markDDay : (schedule.state=='D-Day'?0:1),
-					isScheduleImportant : (schedule.category && schedule.category[0]=='milestone'?1:0),
-					scheduleAlarmTime : schedule.recurrenceRule
-				}),
-				dataType: "json",
-				headers : {
-					"Accept" : "application/json",
-					"Content-Type" : "application/json"
-				},
-				success : function(JSONData, status) {
-					console.log(JSONData);
-					alert("수정 완료");
-				}
-			});
-		}
-		
-		function fncDeleteSchedule(schedule){
-			console.log("fncDeleteSchedule");
-			console.log(schedule);
-			
-			$.ajax({
-				url : "/calendarRest/deleteSchedule",
-				method : "POST",
-				data: JSON.stringify({
-					scheduleNo : schedule.id
-				}),
-				dataType: "json",
-				headers : {
-					"Accept" : "application/json",
-					"Content-Type" : "application/json"
-				},
-				success : function(JSONData, status) {
-					console.log(JSONData);
-					alert("삭제 완료");
-				}
-			});
-		}
-		
-		function fncGetNewScheduleList(){
-			$.ajax({
-				url : "/calendarRest/getScheduleList",
-				method : "POST",
-				data: JSON.stringify({
-					renderRangeStart: renderRangeStart,
-					renderRangeEnd: renderRangeEnd
-				}),
-				dataType: "json",
-				headers : {
-					"Accept" : "application/json",
-					"Content-Type" : "application/json"
-				},
-				success : function(JSONData, status) {
-					console.log(JSONData);
-				}
-			});
-		}
-    </script>
+    <script src="/javascript/tui/calendar-interest-setting.js" charset="utf-8"></script>
 </body>
 </html>

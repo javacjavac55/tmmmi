@@ -87,7 +87,6 @@ public class CalendarController {
 		long startDate = 0;
 		long endDate = 0;
 		Calendar calendar = Calendar.getInstance();
-		calendar.set(Calendar.MONTH, -1);
 		calendar.set(Calendar.DATE, 1);
 		startDate = calendar.getTime().getTime();
 		calendar.set(Calendar.DATE, calendar.getActualMaximum(Calendar.DAY_OF_MONTH));

@@ -28,6 +28,7 @@
                 return getTimeTemplate(schedule, false);
             }
         },
+        isReadOnly: true,
     });
 
     // event handlers
@@ -166,7 +167,7 @@
         setDropdownCalendarType();
         setRenderRangeText();
     	fncGetNewScheduleList();
-    	//setSchedules();
+    	setSchedules();
     }
 
     function onClickNavi(e) {
@@ -190,44 +191,6 @@
         fncGetNewScheduleList();
         //setSchedules();
     }
-    
-    function fncGetNewScheduleList(){
-		$.ajax({
-			url : "/calendarRest/getScheduleList",
-			method : "POST",
-			data: JSON.stringify({
-				renderRangeStart: renderRangeStart,
-				renderRangeEnd: renderRangeEnd
-			}),
-			dataType: "json",
-			headers : {
-				"Accept" : "application/json",
-				"Content-Type" : "application/json"
-			},
-			success : function(JSONData, status) {
-				ScheduleList = [];
-				JSONData.forEach(function (item, index, array) {
-					schedule = new ScheduleInfo();
-					schedule.id = item.scheduleNo;
-					schedule.calendarId = item.userCategoryNo+'';
-					schedule.title = item.scheduleTitle;
-					schedule.body = item.scheduleDetail;
-					schedule.location = item.scheduleLocation;
-					schedule.start = item.scheduleStartDate;
-					schedule.end = item.scheduleEndDate;
-					schedule.goingDuration = item.goingDuration;
-					schedule.comingDuration = item.comingDuration;
-					schedule.isAllday = item.isScheduleDDay;
-					schedule.state = item.markDDay;
-					schedule.category = item.isScheduleImportant;
-					schedule.recurrenceRule = item.scheduleAlarmTime;
-					schedule = fncAdjustScheduleValues(schedule);
-					ScheduleList.push(schedule);
-				});
-				setSchedules();
-			}
-		});
-	}
 
     function onNewSchedule() {
         var title = $('#new-schedule-title').val();
@@ -441,6 +404,36 @@
         renderRangeStart = cal.getDateRangeStart().getTime();
         renderRangeEnd = cal.getDateRangeEnd().getTime();
     }
+    
+    function fncGetNewScheduleList(){
+		$.ajax({
+			url : "/calendarRest/getInterestList",
+			method : "POST",
+			data: JSON.stringify({
+				renderRangeStart: renderRangeStart,
+				renderRangeEnd: renderRangeEnd
+			}),
+			dataType: "json",
+			headers : {
+				"Accept" : "application/json",
+				"Content-Type" : "application/json"
+			},
+			success : function(JSONData, status) {
+				ScheduleList = [];
+				var list = JSONData["calendarMovieList"];
+				list.forEach(function (item, index, array) {
+					schedule = new ScheduleInfo();
+					schedule.calendarId = item.userCategoryNo+'';
+					schedule.title = item.scheduleTitle;
+					schedule.start = item.scheduleStartDate;
+					schedule.category = item.isScheduleImportant;
+					schedule = fncAdjustScheduleValues(schedule);
+					ScheduleList.push(schedule);
+				});
+				setSchedules();
+			}
+		});
+	}
 
     function setSchedules() {
         cal.clear();

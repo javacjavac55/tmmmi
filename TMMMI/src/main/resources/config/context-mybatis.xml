@@ -21,4 +21,10 @@
 		<constructor-arg ref="sqlSessionFactoryBean"/>
 	</bean>
 	
+	<bean id="sqlSessionTemplateBatch"		
+					class="org.mybatis.spring.SqlSessionTemplate" >		
+		<constructor-arg ref="sqlSessionFactoryBean"/>
+		<constructor-arg value="BATCH"/>
+	</bean>
+	
 </beans>

@@ -1,6 +1,7 @@
 package com.tmmmi.service.calendarmovie.impl;
 
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -21,32 +22,46 @@ import kr.or.kobis.kobisopenapi.consumer.rest.KobisOpenAPIRestService;
 //@EnableScheduling
 public class ScheduleMovieTaskExecutor {
 	@Autowired
-	@Qualifier("sqlSessionTemplate")
+	@Qualifier("sqlSessionTemplateBatch")
 	private SqlSession sqlSession;
 	public void setSqlSession(SqlSession sqlSession) {
 		this.sqlSession = sqlSession;
 	}
 	
 	//@Scheduled(cron="0 0 9 * * ?")
-	//@Scheduled(cron="0 * * ? * *")
+	//@Scheduled(cron="0 */42 * ? * *")
 	public void recordMovieOpenDate(/*List<CalendarMovie> calendarMovieList*/) {
-		System.out.println("hello");
-		String key = "282479c86fdb72b4b67b66e06b045e0f";
+		System.out.println("start record movie open date");
+		String key = "8a2950d63f7db056cb2150a0a19bc7bd";
 		ObjectMapper mapper = new ObjectMapper();
 		KobisOpenAPIRestService service = new KobisOpenAPIRestService(key);
-		
+		int totalPages = 0;
+		int currentPage = 1;
+		int searchYear = 2018;
+				
 		try {
-			String initialResult = service.getMovieList(true, "1", "100", null, null, "2019", "2019", "2016", "2019", null, null);
+			String initialResult = service.getMovieList(true, currentPage+"", "100", null, null, searchYear+"", (searchYear+1)+"", (searchYear-5)+"", (searchYear+1)+"", null, null);
 			Result result = mapper.readValue(initialResult, Result.class);
+			System.out.println("totalCount: "+ result.getMovieListResult().getTotCnt());
+			totalPages = (result.getMovieListResult().getTotCnt()/100)+1;
+			System.out.println("totalPages: "+ totalPages);
+			
 			Date date = null;
 			String pattern = "yyyyMMdd";
-			for (CalendarMovie movie: result.getMovieListResult().getMovieList()) {
-				date = new SimpleDateFormat(pattern).parse(movie.getOpenDt()+"");
-				movie.setOpenDt(date.getTime());
-				System.out.println(movie.getOpenDt());
-				sqlSession.insert("CalendarMovieMapper.addCalendarMovie", movie);
-			}
-			
+			do {
+				System.out.println("currentPage: " + currentPage);
+				currentPage+=1;
+				for (CalendarMovie movie: result.getMovieListResult().getMovieList()) {
+					if (!service.getMovieInfo(true, movie.getMovieCd()).contains("청소년관람불가")) {
+						System.out.println(movie.getMovieCd() + " " + movie.getMovieNm());
+						date = new SimpleDateFormat(pattern).parse(movie.getOpenDt()+"");
+						movie.setOpenDt(date.getTime());
+						sqlSession.update("CalendarMovieMapper.addCalendarMovie", movie);
+					}
+				}
+				initialResult = service.getMovieList(true, currentPage+"", "100", null, null, searchYear+"", (searchYear+1)+"", (searchYear-5)+"", (searchYear+1)+"", null, null);
+				result = mapper.readValue(initialResult, Result.class);
+			} while (currentPage<=totalPages);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
