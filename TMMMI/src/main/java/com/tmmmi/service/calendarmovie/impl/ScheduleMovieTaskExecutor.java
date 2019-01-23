@@ -29,7 +29,7 @@ public class ScheduleMovieTaskExecutor {
 	}
 	
 	@Scheduled(cron="0 0 9 * * ?")
-	//@Scheduled(cron="0 */26 * ? * *")
+	//@Scheduled(cron="0 */27 * ? * *")
 	public void recordMovieOpenDate(/*List<CalendarMovie> calendarMovieList*/) {
 		System.out.println("start record movie open date");
 		String key = "8a2950d63f7db056cb2150a0a19bc7bd";

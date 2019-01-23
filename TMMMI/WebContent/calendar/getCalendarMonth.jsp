@@ -260,6 +260,22 @@
 				}
 			});
 		}
+		
+		$(function(){
+			$('.tui-full-calendar-floating-layer.tui-view-14').on("change", function(){
+				$('.tui-full-calendar-popup-section-item.tui-full-calendar-section-allday').on("click",function(){
+					if (!$('#tui-full-calendar-schedule-allday').is(":checked") && $('#tui-full-calendar-schedule-milestone').is(":checked")) {
+						$('.tui-full-calendar-popup-section-item.tui-full-calendar-section-milestone').click();
+					}
+				});
+				
+				$('.tui-full-calendar-popup-section-item.tui-full-calendar-section-milestone').on("click",function(){
+					if (!$('#tui-full-calendar-schedule-milestone').is(":checked") && $('#tui-full-calendar-schedule-allday').is(":checked")) {
+						$('.tui-full-calendar-popup-section-item.tui-full-calendar-section-allday').click();
+					}
+				})
+			});
+		})
     </script>
 </body>
 </html>
