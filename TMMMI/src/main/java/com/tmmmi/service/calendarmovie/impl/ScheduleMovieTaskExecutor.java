@@ -18,8 +18,8 @@ import com.tmmmi.service.domain.CalendarMovie;
 
 import kr.or.kobis.kobisopenapi.consumer.rest.KobisOpenAPIRestService;
 
-//@Configuration
-//@EnableScheduling
+@Configuration
+@EnableScheduling
 public class ScheduleMovieTaskExecutor {
 	@Autowired
 	@Qualifier("sqlSessionTemplateBatch")
@@ -28,8 +28,8 @@ public class ScheduleMovieTaskExecutor {
 		this.sqlSession = sqlSession;
 	}
 	
-	//@Scheduled(cron="0 0 9 * * ?")
-	//@Scheduled(cron="0 */42 * ? * *")
+	@Scheduled(cron="0 0 9 * * ?")
+	//@Scheduled(cron="0 */26 * ? * *")
 	public void recordMovieOpenDate(/*List<CalendarMovie> calendarMovieList*/) {
 		System.out.println("start record movie open date");
 		String key = "8a2950d63f7db056cb2150a0a19bc7bd";
@@ -40,21 +40,24 @@ public class ScheduleMovieTaskExecutor {
 		int searchYear = 2018;
 				
 		try {
+			long today = 0;
+			
 			String initialResult = service.getMovieList(true, currentPage+"", "100", null, null, searchYear+"", (searchYear+1)+"", (searchYear-5)+"", (searchYear+1)+"", null, null);
 			Result result = mapper.readValue(initialResult, Result.class);
 			System.out.println("totalCount: "+ result.getMovieListResult().getTotCnt());
 			totalPages = (result.getMovieListResult().getTotCnt()/100)+1;
 			System.out.println("totalPages: "+ totalPages);
 			
-			Date date = null;
-			String pattern = "yyyyMMdd";
+			Date date = new Date();
+			SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMdd");
+			today = Long.parseLong(sdf.format(date));
 			do {
 				System.out.println("currentPage: " + currentPage);
 				currentPage+=1;
 				for (CalendarMovie movie: result.getMovieListResult().getMovieList()) {
-					if (!service.getMovieInfo(true, movie.getMovieCd()).contains("청소년관람불가")) {
+					if (today<movie.getOpenDt() && !service.getMovieInfo(true, movie.getMovieCd()).contains("청소년관람불가")) {
 						System.out.println(movie.getMovieCd() + " " + movie.getMovieNm());
-						date = new SimpleDateFormat(pattern).parse(movie.getOpenDt()+"");
+						date = sdf.parse(movie.getOpenDt()+"");
 						movie.setOpenDt(date.getTime());
 						sqlSession.update("CalendarMovieMapper.addCalendarMovie", movie);
 					}
