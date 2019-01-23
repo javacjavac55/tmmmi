@@ -1,7 +1,5 @@
 package com.tmmmi.web;
 
-import java.util.List;
-
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -33,10 +31,15 @@ public class ContentSettingRestController {
 		System.out.println("/contentSetting/updateContentSetting : POST");
 		int userNo = (int)session.getAttribute("userNo");
 		ContentSetting contentSetting = contentSettingService.getContentSetting(userNo);
+		
+		System.out.println("upContentSetting : "+upContentSetting);
+		System.out.println("contentSetting : "+contentSetting);
 		if(upContentSetting.equals(contentSetting)) {
 			return false;
 		}else {
-			contentSettingService.updateContentSetting(contentSetting);
+			upContentSetting.setUserNo(userNo);
+			contentSettingService.updateContentSetting(upContentSetting);
+			System.out.println("업데이트 후:"+contentSettingService.getContentSetting(userNo));
 			return true;
 		}
 	}

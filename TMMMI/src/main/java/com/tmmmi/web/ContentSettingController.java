@@ -40,7 +40,7 @@ public class ContentSettingController {
 		return modelAndView;
 	}
 	
-	@RequestMapping(value="updateContentSetting", method=RequestMethod.POST)
+	/*@RequestMapping(value="updateContentSetting", method=RequestMethod.POST)
 	public ModelAndView updateContentSetting(@ModelAttribute("contentSetting") ContentSetting contentSetting, HttpSession session) {
 		System.out.println("/contentSetting/updateContentSetting : POST");
 		contentSettingService.updateContentSetting(contentSetting);
@@ -53,5 +53,5 @@ public class ContentSettingController {
 		modelAndView.setViewName("/contentSetting/contentSetting.jsp");
 		
 		return modelAndView;
-	}
+	}*/
 }

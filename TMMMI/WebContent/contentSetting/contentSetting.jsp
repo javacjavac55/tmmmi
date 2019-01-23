@@ -38,7 +38,13 @@
   	</style>
   	
   	<!-- sortable script -->
-  	<script>		
+  	<script>
+  	/* 		function viewArray(){
+    var result = $('#sortable').sortable('toArray');
+    console.log(result);
+    alert( 'value:' + result );
+    alert( 'first value:' + result[0] );
+}  */
 	$(function(){ 
 		$("#sortable").sortable({
 			update: function (event, ui) {
@@ -51,7 +57,7 @@
 	function getOrder(){
 	    var getOrder = [];
 	    $('.ui-state-default.ui-sortable-handle').each(function(index){
-	    	result.push($( this ).attr("id")+":"+(index+1));
+	    	getOrder.push($( this ).attr("id")+":"+(index+1));
 	    });
 	    console.log(getOrder);
 	}
@@ -75,7 +81,7 @@
  	 	    
  	 	  	$("input[type=text]").on("change", function(){
  	 	  		var id = $(this).attr('id').replace("Check", "");
-				if ($(this).val() == '') {
+				if ($(this).val() == '' || $("input[name='tastyKeyword']")) {
 					$('#'+id).remove();
 				} else {
 					$('li').last().after('<li id=\''+id+'\'class="ui-state-default ui-sortable-handle">'+$(this).val()+'</li>');
@@ -97,41 +103,43 @@
  	<!-- Rest -->
  	<script type="text/javascript">
  	function fncUpdateContentSetting(){
- 		var result = [];
+ 		/* var result = [];
 	    $('.ui-state-default.ui-sortable-handle').each(function(index){
 	    	result.push($( this ).attr("id")+":"+(index+1));
 	    });
+	    result.push('tastyKeyword'+":"+$("input[name='tastyKeyword']").val());
+	    result.push('shoppingSearch1'+":"+$("input[name='shoppingSearch1']").val());
+	    result.push('showShoppingSearch2'+":"+$("input[name='shoppingSearch2']").val());
+	    result.push('showShoppingSearch3'+":"+$("input[name='shoppingSearch3']").val());
+	    result.push('showShoppingReview'+":"+$("input[name='shoppingReview']").val());
+	    result.push('showUserSearch1'+":"+$("input[name='userSearch1']").val());
+	    result.push('showUserSearch2'+":"+$("input[name='userSearch2']").val());
+	    result.push('showUserSearch3'+":"+$("input[name='userSearch3']").val());
+	    result.push('showUserVideo1'+":"+$("input[name='userVideo1']").val());
+	    result.push('showUserVideo2'+":"+$("input[name='userVideo2']").val()); */
+	    
+	    var result = '{';
+	    $('.ui-state-default.ui-sortable-handle').each(function(index){
+	    	result = result.concat('"'+$( this ).attr("id")+'":'+(index+1)+",");
+	    });
+	    result = result.concat('"tastyKeyword"'+':"'+$("input[name='tastyKeyword']").val()+'",');
+	    result = result.concat('"shoppingSearch1"'+':"'+$("input[name='shoppingSearch1']").val()+'",');
+	    result = result.concat('"shoppingSearch2"'+':"'+$("input[name='shoppingSearch2']").val()+'",');
+	    result = result.concat('"shoppingSearch3"'+':"'+$("input[name='shoppingSearch3']").val()+'",');
+	    result = result.concat('"shoppingReview"'+':"'+$("input[name='shoppingReview']").val()+'",');
+	    result = result.concat('"userSearch1"'+':"'+$("input[name='userSearch1']").val()+'",');
+	    result = result.concat('"userSearch2"'+':"'+$("input[name='userSearch2']").val()+'",');
+	    result = result.concat('"userSearch3"'+':"'+$("input[name='userSearch3']").val()+'",');
+	    result = result.concat('"userVideo1"'+':"'+$("input[name='userVideo1']").val()+'",');
+	    result = result.concat('"userVideo2"'+':"'+$("input[name='userVideo2']").val()+'"'); 
+	    result = result.concat('}'); 
+	    
 	    console.log(result);
-	    
-	    var inTastyKeyword=$("input[name='tastyKeyword']").val();
-	    
-	    var inShoppingSearch1=$("input[name='shoppingSearch1']").val();
-	    var inShoppingSearch2=$("input[name='shoppingSearch2']").val();
-	    var inShoppingSearch3=$("input[name='shoppingSearch3']").val();
-	    var inShoppingReview=$("input[name='shoppingReview']").val();
-	   
-	    var inUserSearch1=$("input[name='userSearch1']").val();
-	    var inUserSearch2=$("input[name='userSearch2']").val();
-	    var inUserSearch3=$("input[name='userSearch3']").val();
-	    var inUserVideo1=$("input[name='userVideo1']").val();
-	    var inUserVideo2=$("input[name='userVideo2']").val();
 	    
 	    $.ajax({
 	    	url : "/contentSettingRest/updateContentSetting",
 	    	method : "POST",
-	    	data : JSON.stringify({
-	    		'tastyKeyword' : inTastyKeyword,
-	    		'shoppingSearch1' : inShoppingSearch1,
-	    		'shoppingSearch2' : inShoppingSearch2,
-	    		'shoppingSearch3' : inShoppingSearch3,
-	    		'shoppingReview' : inShoppingReview,
-	    		'userSearch1' : inUserSearch1,
-	    		'userSearch2' : inUserSearch2,
-	    		'userSearch3' : inUserSearch3,
-	    		'userVideo1' : inUserVideo1,
-	    		'userVideo2' : inUserVideo2,
-	    		'list' : result
-	    	}),
+	    	data : result,
 	    	dataType : 'json',
 	    	headers : {
 	    		'Accept' : 'application/json',
@@ -185,7 +193,7 @@
 				<div class="col-sm-2"><input type="checkbox" class="box" id="chineseFoodCheck" value="중식" ${ ! empty contentSetting.chineseFood && contentSetting.chineseFood >= 1 ? "checked" : "" }><label for="chineseFoodCheck">중식</label></div>
 				<div class="col-sm-2"><input type="checkbox" class="box" id="japaneseFoodCheck" value="일식" ${ ! empty contentSetting.japaneseFood && contentSetting.japaneseFood >= 1 ? "checked" : "" }><label for="japaneseFoodCheck">일식</label></div>
 				<div class="col-sm-2"><input type="checkbox" class="box" id="foreignFoodCheck" value="양식" ${ ! empty contentSetting.foreignFood && contentSetting.foreignFood >= 1 ? "checked" : "" }><label for="foreignFoodCheck">양식</label></div>
-				<div class="col-sm-2"><input type="checkbox" class="box" id="desseartCheck" value="디저트" ${ ! empty contentSetting.desseart && contentSetting.desseart >= 1 ? "checked" : "" }><label for="desseartCheck">디저트</label></div>
+				<div class="col-sm-2"><input type="checkbox" class="box" id="dessertCheck" value="디저트" ${ ! empty contentSetting.dessert && contentSetting.dessert >= 1 ? "checked" : "" }><label for="dessertCheck">디저트</label></div>
 				<div class="col-sm-2"><input type="text" name="tastyKeyword" id="tastyKeywordCheck"  value="${contentSetting.tastyKeyword }"><label for="tastyKeywordCheck" align="center">맛집 키워드</label></div>
 				<hr width="98%" />
 			</div>
@@ -229,11 +237,11 @@
 			  <c:if test="${ ! empty contentSetting.sportGeneral && contentSetting.sportGeneral >=1 }"><li id="sportGeneral"  class="ui-state-default">스포츠 일반</li></c:if>
 			  <c:if test="${ ! empty contentSetting.sportHighlight && contentSetting.sportHighlight >=1 }"><li id="sportHighlight"  class="ui-state-default">하이라이트</li></c:if>
 			  
-			  <c:if test="${ ! empty contentSetting.soccer && contentSetting.soccer >=1 }"><li id="koreanFood" class="ui-state-default">한식</li></c:if>
-			  <c:if test="${ ! empty contentSetting.soccer && contentSetting.soccer >=1 }"><li id="chineseFood"  class="ui-state-default">중식</li></c:if>
-			  <c:if test="${ ! empty contentSetting.soccer && contentSetting.soccer >=1 }"><li id="japaneseFood"  class="ui-state-default">일식</li></c:if>
-			  <c:if test="${ ! empty contentSetting.soccer && contentSetting.soccer >=1 }"><li id="foreignFood"  class="ui-state-default">양식</li></c:if>
-			  <c:if test="${ ! empty contentSetting.soccer && contentSetting.soccer >=1 }"><li id="dessert"  class="ui-state-default">디저트</li></c:if>
+			  <c:if test="${ ! empty contentSetting.koreanFood && contentSetting.koreanFood >=1 }"><li id="koreanFood" class="ui-state-default">한식</li></c:if>
+			  <c:if test="${ ! empty contentSetting.chineseFood && contentSetting.chineseFood >=1 }"><li id="chineseFood"  class="ui-state-default">중식</li></c:if>
+			  <c:if test="${ ! empty contentSetting.japaneseFood && contentSetting.japaneseFood >=1 }"><li id="japaneseFood"  class="ui-state-default">일식</li></c:if>
+			  <c:if test="${ ! empty contentSetting.foreignFood && contentSetting.foreignFood >=1 }"><li id="foreignFood"  class="ui-state-default">양식</li></c:if>
+			  <c:if test="${ ! empty contentSetting.dessert && contentSetting.dessert >=1 }"><li id="dessert"  class="ui-state-default">디저트</li></c:if>
 			 
 			  <c:if test="${ ! empty contentSetting.shoppingSearch1 && contentSetting.showShoppingSearch1 >=1 }"><li id="showShoppingSearch1"  class="ui-state-default">쇼핑 키워드1</li></c:if>
 			  <c:if test="${ ! empty contentSetting.shoppingSearch2 && contentSetting.showShoppingSearch2 >=1 }"><li id="showShoppingSearch2"  class="ui-state-default">쇼핑 키워드2</li></c:if>
