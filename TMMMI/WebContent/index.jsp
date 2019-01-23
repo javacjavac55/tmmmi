@@ -31,7 +31,13 @@
 	<!-- 중열 -->
 	<a href="/diary/addDiary.jsp">다이어리 등록</a><br/>
 	<a href="/diary/listDiary">다이어리 리스트</a><br/>
-	<a href="/content/getContentWsoccerList">스포츠 리스트</a><br/><br/>
+	<a href="/content/getContentKsoccerList">국내축구 리스트</a><br/>
+	<a href="/content/getContentWsoccerList">해외축구 리스트</a><br/>
+	<a href="/content/getContentKbaseballList">국내야구 리스트</a><br/>
+	<a href="/content/getContentWbaseballList">해외야구 리스트</a><br/>
+	<a href="/content/getContentBasketballList">농구 리스트</a><br/>
+	<a href="/content/getContentGeneralList">일반 리스트</a><br/>
+	<br/>
 	
 	<!-- 명훈 -->
 	

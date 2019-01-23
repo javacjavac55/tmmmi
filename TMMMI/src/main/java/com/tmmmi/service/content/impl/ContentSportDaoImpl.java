@@ -79,8 +79,9 @@ public class ContentSportDaoImpl implements ContentDao {
 
 			doc = Jsoup.connect(fullAddress).header("User-Agent", "Mozilla/5.0").get();
 			Elements title = doc.select(".news_headline > .title");
-			Elements thumbnail = doc.select(".end_photo_org > img");
-
+			//Elements thumbnail = doc.select(".end_photo_org > img");
+			Elements thumbnail = doc.select("#newsEndContents img");
+			
 			// contentSport.setSportTitle(((element2.toString()).split("\">")[1]).split("<")[0]);
 			// contentSport.setSportThumbnail((((element3.toString()).split("\"
 			// alt=")[0]).replaceAll("src=\"data:", "")).split("src=\"")[1]);
@@ -130,7 +131,7 @@ public class ContentSportDaoImpl implements ContentDao {
 
 			doc = Jsoup.connect(fullAddress).header("User-Agent", "Mozilla/5.0").get();
 			Elements title = doc.select(".news_headline > .title");
-			Elements thumbnail = doc.select(".end_photo_org > img");
+			Elements thumbnail = doc.select("#newsEndContents img");
 
 			// contentSport.setSportTitle(((element2.toString()).split("\">")[1]).split("<")[0]);
 			// contentSport.setSportThumbnail((((element3.toString()).split("\"
@@ -180,7 +181,7 @@ public class ContentSportDaoImpl implements ContentDao {
 
 			doc = Jsoup.connect(fullAddress).header("User-Agent", "Mozilla/5.0").get();
 			Elements title = doc.select(".news_headline > .title");
-			Elements thumbnail = doc.select(".end_photo_org > img");
+			Elements thumbnail = doc.select("#newsEndContents img");
 
 			// contentSport.setSportTitle(((element2.toString()).split("\">")[1]).split("<")[0]);
 			// contentSport.setSportThumbnail((((element3.toString()).split("\"
@@ -216,7 +217,7 @@ public class ContentSportDaoImpl implements ContentDao {
 
 		List<Object> sportList = new ArrayList<Object>();
 
-		for (int i = start; i < 20; i++) {
+		for (int i = start; i < 15; i++) {
 			Element element = contents.get(i);
 			subAddress = element.attr("href");
 			// subAddress=
@@ -230,7 +231,7 @@ public class ContentSportDaoImpl implements ContentDao {
 
 			doc = Jsoup.connect(fullAddress).header("User-Agent", "Mozilla/5.0").get();
 			Elements title = doc.select(".news_headline > .title");
-			Elements thumbnail = doc.select(".end_photo_org > img");
+			Elements thumbnail = doc.select("#newsEndContents img");
 
 			// contentSport.setSportTitle(((element2.toString()).split("\">")[1]).split("<")[0]);
 			// contentSport.setSportThumbnail((((element3.toString()).split("\"
@@ -280,7 +281,7 @@ public class ContentSportDaoImpl implements ContentDao {
 
 			doc = Jsoup.connect(fullAddress).header("User-Agent", "Mozilla/5.0").get();
 			Elements title = doc.select(".news_headline > .title");
-			Elements thumbnail = doc.select(".end_photo_org > img");
+			Elements thumbnail = doc.select("#newsEndContents img");
 
 			// contentSport.setSportTitle(((element2.toString()).split("\">")[1]).split("<")[0]);
 			// contentSport.setSportThumbnail((((element3.toString()).split("\"
@@ -330,7 +331,7 @@ public class ContentSportDaoImpl implements ContentDao {
 
 			doc = Jsoup.connect(fullAddress).header("User-Agent", "Mozilla/5.0").get();
 			Elements title = doc.select(".news_headline > .title");
-			Elements thumbnail = doc.select(".end_photo_org > img");
+			Elements thumbnail = doc.select("#newsEndContents img");
 
 			// contentSport.setSportTitle(((element2.toString()).split("\">")[1]).split("<")[0]);
 			// contentSport.setSportThumbnail((((element3.toString()).split("\"

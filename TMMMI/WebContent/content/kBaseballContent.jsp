@@ -52,7 +52,7 @@ img {
 	</div>
 
 	<section style="padding: 10%;"> <header class="major">
-	<h2>해외 축구<h2>
+	<h2>국내 야구<h2>
 	</header>
 	<div class="posts" style="margin: 0 auto;">
 		<c:forEach var="sport" items="${contentSport}">

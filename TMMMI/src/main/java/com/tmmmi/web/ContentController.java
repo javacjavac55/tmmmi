@@ -83,8 +83,8 @@ public class ContentController {
 	}
 	
 	/*국내야구*/
-	@RequestMapping(value="getContenKbaseballList", method=RequestMethod.GET)
-	public ModelAndView getContenKbaseballList(HttpSession session)throws Exception  {		
+	@RequestMapping(value="getContentKbaseballList", method=RequestMethod.GET)
+	public ModelAndView getContentKbaseballList(HttpSession session)throws Exception  {		
 		
 		System.out.println("content/sportContent : GET");
 		int userNo = ((int)session.getAttribute("userNo"));
@@ -115,7 +115,6 @@ public class ContentController {
 		System.out.println("contentSetting"+contentSetting);
 		
 		List<Object> sportList = contentService.getContentWbaseballList(contentSetting , 1);
-		
 		
 		
 		ModelAndView modelAndView = new ModelAndView();
