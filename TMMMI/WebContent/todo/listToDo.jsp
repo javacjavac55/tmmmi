@@ -7,16 +7,15 @@
         <meta content="width=device-width, initial-scale=1" name="viewport">
         <!-- jQuery CSS  -->
         <link href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css" rel="stylesheet">
+        <!-- Bootstrap CSS -->
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
         <!-- ToastUI CSS -->
         <link href="https://uicdn.toast.com/tui.date-picker/latest/tui-date-picker.css" rel="stylesheet" type="text/css">
-        <!-- Bootstrap CSS -->
-        <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
-        <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" rel="stylesheet">
-        <!-- template CSS -->
-        <link rel="stylesheet" href="/css/template/main.css" />
         <!-- font CSS-->
    		<link href="https://fonts.googleapis.com/css?family=Nanum+Gothic:400,700,800&amp;subset=korean" rel="stylesheet">
-       
+        <!-- template CSS -->
+        <link href="/css/template/material-kit.css" rel="stylesheet" />
+       <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Roboto+Slab:400,700|Material+Icons" />
 		<!-- jQuery script  -->
         <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
         <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
@@ -25,16 +24,29 @@
         <script src="https://uicdn.toast.com/tui.date-picker/latest/tui-date-picker.min.js" type="text/javascript"></script>
         
         <!-- Bootstrap script -->
-        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js" integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k" crossorigin="anonymous"></script>
+        <!--   Core JS Files   -->
+		<script src="/javascript/template/core/jquery.min.js" type="text/javascript"></script>
+		<script src="/javascript/template/core/popper.min.js" type="text/javascript"></script>
+		<script src="/javascript/template/core/bootstrap-material-design.min.js" type="text/javascript"></script>
+		<script src="/javascript/template/plugins/moment.min.js"></script>
+		<script async defer src="https://buttons.github.io/buttons.js"></script>
+		
+		<!-- Control Center for Material Kit: parallax effects, scripts for the example pages etc -->
+		<script src="/javascript/template/material-kit.js" type="text/javascript"></script>
+		
         <!-- sweetalert2 script -->
         <script src="https://cdn.jsdelivr.net/npm/sweetalert2@8/dist/sweetalert2.min.js"></script>
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@8/dist/sweetalert2.min.css">
         <!-- Style CSS-->
    		<style type="text/css">
-   		body, h3, h2, button{
+   		 body, h4{
+         font-family: "Nanum Gothic", sans-serif;
+         font-size: medium;
+        }
+   		h3, h2, button{
            font-family: "Nanum Gothic", sans-serif;
         }
-        .
    		</style>
         <script>
             // ==> DOM Object GET 3가지 방법 ==> 1. $(tagName) : 2.(#id) : 3.$(.className)
@@ -89,8 +101,8 @@
                     });
                     picker2.setStartDate(start);
                     picker2.setEndDate(end);
-                    $("#todolist" + todoNo).toggleClass("hide");
-                    $("#retodolist" + todoNo).toggleClass("show");
+                    $("#todolist" + todoNo).toggleClass("invisible");
+                    $("#retodolist" + todoNo).removeClass("invisible");
                 })
             });
             // /////////////////////////////// 할 일 수정/////////////////////////////////////
@@ -222,32 +234,41 @@
     </head>
     <body>
         <!-- 모달 -->
-        <div class="modal fade" id="todomodal">
-            <div class="modal-dialog">
+        <div class="modal fade" id="todomodal" tabindex="-1" role="">
+            <div class="modal-dialog modal-login" role="document">
                 <div class="modal-content">
-                    <div class="modal-header">할 일 등록</div>
+                <div class="card card-plain">
+                    <div class="modal-header">
+                     <div class="card-header card-header-primary text-center">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                      <i class="material-icons">clear</i>
+                    </button>
+                    <h4 class="card-title">할 일 등록</h4>
+                    </div>
+                    </div>
+                    </div>
                     <div class="modal-body">
                         <form class="form-inline" id="addToDo">
                             <div class="form-group">
-                                <label for="toDoDetail">할 일 내용</label>
+                                <label>할 일 내용</label>
                                 <div class="tui-datetime-input col-md-3">
                                 <input class="form-control" id="addToDoDetail" name="toDoDetail" placeholder="할 일을 입력해주세요" type="text">
                             	</div>
                             </div>
-                            	<label for="datelocation">할 일 기간</label>
-                            <div class="tui-datetime-input tui-has-focus col-md-3">
-                                <input aria-label="Date" autocomplete="off" id="startpicker-input" name="toDoStartDate" placeholder="시작 날짜" type="text" readonly>
+                            	<label class="label-control">할 일 기간</label>
+                            <div class="tui-has-focus col-md-3">
+                                <input class="form-control datetimepicker" aria-label="Date" autocomplete="off" id="startpicker-input" name="toDoStartDate" placeholder="시작 날짜" type="text" readonly>
                                 <div id="startpicker-container" style="margin-left: -1px;"></div>
                             </div>
-                            <div class="tui-datetime-input tui-has-focus col-md-3">
-                                <input aria-label="Date" autocomplete="off" id="endpicker-input" name="toDoEndDate" placeholder="종료 날짜" type="text" readonly>
+                            <div class="tui-has-focus col-md-3">
+                                <input class="form-control datetimepicker" aria-label="Date" autocomplete="off" id="endpicker-input" name="toDoEndDate" placeholder="종료 날짜" type="text" readonly>
                                 <div id="endpicker-container" style="margin-left: -1px;"></div>
                             </div>
                         </form>
                     </div>
                     <div class="modal-footer">
-                        <button class="btn danger" data-dismiss="modal" type="button">취소</button>
-                        <button class="btn default" id="addToDobtn" type="submit">등록</button>
+                        <button class="btn btn-secondary" data-dismiss="modal" type="button">취소</button>
+                        <button class="btn btn-primary" id="addToDobtn" type="submit">등록</button>
                     </div>
                 </div>
                 <!-- /.modal-content -->
@@ -258,7 +279,7 @@
         <!-- 모달 끝 -->
         <!-- 할 일 리스트 -->
             <div class="container"> <h2 style="margin:5px">나의 할 일 관리</h2>
-            <button class="button primary large" data-target="#todomodal" data-toggle="modal"><h2>할 일 등록</h2></button>
+            <button class="btn btn-primary btn-lg" data-target="#todomodal" data-toggle="modal"><h2>할 일 등록</h2></button>
             <div class="row">
                 <div class="col-md-3">
                     <h3><strong>오늘의 할 일</strong></h3>
@@ -275,24 +296,24 @@
             </div>
             <c:forEach items="${todolist}" var="todo">
             	<c:if test="${todo.toDoCompleteNo  eq 0}">
-                <div class="row" id="todolist${todo.toDoNo}">
+                <div class="row visible" id="todolist${todo.toDoNo}">
                     <input class="todo col-md-3" type="hidden" value="${todo.toDoNo}">
                     <div class="col-md-3">${todo.toDoDetail}</div>
                     <div class="col-md-3">${todo.toDoStartDate}</div>
                     <div class="col-md-3">${todo.toDoEndDate}</div>
                     <div class="col-md-3">
                         <button aria-label="Left Align" class="btn btn-warning completebtn" data-ctodono="${todo.toDoNo}" data-dctodono="${todo.toDoCompleteNo}" type="button">
-                            <span aria-hidden="true" class="glyphicon glyphicon-ok"></span>
+                            <i class="material-icons">check</i>
                        </button>
                         <button aria-label="Left Align" class="btn btn-primary updateViewbtn" data-enddate="${todo.toDoEndDate}" data-startdate="${todo.toDoStartDate}" data-utodonov="${todo.toDoNo}" type="button">
-                            <span aria-hidden="true" class="glyphicon glyphicon-pencil"></span>
+                            <i class="material-icons">edit</i>
                         </button>
                         <button aria-label="Left Align" class="btn btn-danger deletebtn" data-dtodono="${todo.toDoNo}" type="button">
-                            <span aria-hidden="true" class="glyphicon glyphicon-remove"></span>
+                            <i class="material-icons">clear</i>
                         </button>
                     </div>
                 </div>
-                <div class="row hide" id="retodolist${todo.toDoNo}">
+                <div class="row invisible" id="retodolist${todo.toDoNo}">
                     <div class="col-md-3"><input class="updateToDoDetail" id="toDoDetail${todo.toDoNo}" name="toDoDetail" type="text" value="${todo.toDoDetail}">
                     </div>
                     <div class="col-md-3 tui-datetime-input tui-has-focus">
@@ -307,7 +328,7 @@
                     </div>
                     <div class="col-md-3">
                         <button aria-label="Left Align" class="btn btn-primary updateToDobtn" data-utodono="${todo.toDoNo}" type="button">
-                            <span aria-hidden="true" class="glyphicon glyphicon-pencil"></span>
+                            <i class="material-icons">edit</i>
                         </button>
                     </div>
                 </div>
@@ -332,7 +353,7 @@
                     <div class="col-md-6">${todo.toDoCompleteDate}</div>
                     <div class="col-md-3">
                         <button aria-label="Left Align" class="btn btn-danger completeDelbtn" data-dctodono="${todo.toDoCompleteNo}" type="button">
-                            <span aria-hidden="true" class="glyphicon glyphicon-remove"></span>
+                            <i class="material-icons">clear</i>
                        </button>
                     </div>
                 </div>

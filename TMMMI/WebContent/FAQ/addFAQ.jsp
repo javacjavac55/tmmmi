@@ -25,6 +25,8 @@
   	<link rel="stylesheet" href="/css/summernote/loading.css">  	
     <script src="/javascript/summernote/loading.js"></script>
     
+    <!-- template -->
+	<link rel="stylesheet" href="/css/template/main.css">
   	
 	<!--  ///////////////////////// CSS ////////////////////////// -->
 	<style>
