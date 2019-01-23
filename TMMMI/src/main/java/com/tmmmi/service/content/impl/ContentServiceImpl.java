@@ -37,10 +37,34 @@ public class ContentServiceImpl implements ContentService {
 		System.out.println("getContentList Á¢±Ù");
 		return contentDao.getContentList(contentSetting, index);
 	}
-
 	@Override
-	public List<Object> getContentSportList(ContentSetting contentSetting, int index) throws Exception {
+	public List<Object> getContentKsoccerList(ContentSetting contentSetting, int index) throws Exception {
 		// TODO Auto-generated method stub
-		return contentDao.getContentList(contentSetting, index);
+		return contentDao.getContentKsoccerList(contentSetting, index);
+	}
+	@Override
+	public List<Object> getContentWsoccerList(ContentSetting contentSetting, int index) throws Exception {
+		// TODO Auto-generated method stub
+		return contentDao.getContentWsoccerList(contentSetting, index);	
+	}
+	@Override
+	public List<Object> getContentKbaseballList(ContentSetting contentSetting, int index) throws Exception {
+		// TODO Auto-generated method stub
+		return contentDao.getContentKbaseballList(contentSetting, index);	
+	}
+	@Override
+	public List<Object> getContentWbaseballList(ContentSetting contentSetting, int index) throws Exception {
+		// TODO Auto-generated method stub
+		return contentDao.getContentWbaseballList(contentSetting, index);	
+	}
+	@Override
+	public List<Object> getContentBasketballList(ContentSetting contentSetting, int index) throws Exception {
+		// TODO Auto-generated method stub
+		return contentDao.getContentBasketballList(contentSetting, index);	
+	}
+	@Override
+	public List<Object> getContentGeneralList(ContentSetting contentSetting, int index) throws Exception {
+		// TODO Auto-generated method stub
+		return contentDao.getContentGeneralList(contentSetting, index);	
 	}
 }

@@ -27,10 +27,13 @@ public class UserRestController {
 	@Autowired
 	@Qualifier("userServiceImpl")
 	private UserService userService;
+	@Autowired
 	@Qualifier("calendarSettingServiceImpl")
 	private CalendarSettingService calendarSettingService;
+	@Autowired
 	@Qualifier("userSettingServiceImpl")
 	private UserSettingService userSettingService;
+	@Autowired
 	@Qualifier("contentSettingServiceImpl")
 	private ContentSettingService contentSettingService;
 	
