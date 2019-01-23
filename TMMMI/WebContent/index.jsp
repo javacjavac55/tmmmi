@@ -31,7 +31,7 @@
 	<!-- 중열 -->
 	<a href="/diary/addDiary.jsp">다이어리 등록</a><br/>
 	<a href="/diary/listDiary">다이어리 리스트</a><br/>
-	<a href="/content/sportContent">스포츠 리스트</a><br/><br/>
+	<a href="/content/getContentWsoccerList">스포츠 리스트</a><br/><br/>
 	
 	<!-- 명훈 -->
 	

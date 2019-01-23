@@ -64,4 +64,40 @@ public class ContentShoppingDaoNaverImpl implements ContentDao {
 	        }
 			return null;
 	}
+
+	@Override
+	public List<Object> getContentKsoccerList(ContentSetting contentSetting, int index) throws Exception {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public List<Object> getContentWsoccerList(ContentSetting contentSetting, int index) throws Exception {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public List<Object> getContentKbaseballList(ContentSetting contentSetting, int index) throws Exception {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public List<Object> getContentWbaseballList(ContentSetting contentSetting, int index) throws Exception {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public List<Object> getContentBasketballList(ContentSetting contentSetting, int index) throws Exception {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public List<Object> getContentGeneralList(ContentSetting contentSetting, int index) throws Exception {
+		// TODO Auto-generated method stub
+		return null;
+	}
 }
