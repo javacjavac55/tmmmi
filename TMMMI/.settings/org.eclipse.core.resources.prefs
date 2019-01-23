@@ -2,8 +2,6 @@
 <<<<<<<=HEAD
 >>>>>>>=refs/remotes/origin/master
 eclipse.preferences.version=1
-encoding//WebContent/FAQ/listFAQ2.jsp=UTF-8
-encoding//WebContent/FAQ/listFAQ3.jsp=UTF-8
 encoding//WebContent/common/loading.jsp=UTF-8
 encoding//WebContent/widget=UTF-8
 encoding//WebContent/widget/getWeather.jsp=UTF-8
