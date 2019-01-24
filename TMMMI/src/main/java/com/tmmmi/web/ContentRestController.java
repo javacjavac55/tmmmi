@@ -30,24 +30,4 @@ public class ContentRestController {
 	public ContentRestController() {
 		System.out.println(this.getClass());
 	}
-	
-	/*///Method
-	@RequestMapping(value="/getContentTastyList")
-	public List<Object> getContentList( int index)throws Exception {
-		List<Object> contentList = contentService.getContentTastyList(contentSetting, index);
-		System.out.println(contentList);
-		System.out.println(contentList.size());
-		return contentList;
-	}*/
-	/*
-	///Method
-		@RequestMapping(value="/getContentSportList")
-		public List<Object> getContentSportList(@RequestBody ContentSetting contentSetting, HttpSession session)throws Exception {
-			int userNo = ((int)session.getAttribute("userNo"));		
-			contentSetting = contentSettingService.getContentSetting(userNo);
-			
-			List<Object> sportList = contentService.getContentSportList(contentSettingn);
-			System.out.println(sportList);
-			return sportList;
-		}*/
 }

@@ -5,7 +5,6 @@ import java.util.List;
 import com.tmmmi.service.domain.ContentSetting;
 
 public interface ContentService {
-	
 	//movie
 	
 	//sport
@@ -27,5 +26,4 @@ public interface ContentService {
 	public List<Object> getContentShoppingFirstList(ContentSetting contentSetting, int index) throws Exception;
 	
 	//keyword
-	
 }

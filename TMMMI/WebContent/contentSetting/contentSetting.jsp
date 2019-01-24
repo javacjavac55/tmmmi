@@ -98,6 +98,12 @@
 			fncUpdateContentSetting();
 		});
 	});
+ 	$( function() {
+		//==> DOM Object GET 3가지 방법 ==> 1. $(tagName) : 2.(#id) : 3.$(.className)
+		$("a[href='#' ]").on("click" , function() {
+			self.location = "/content/listContent"
+		});
+	});
  	</script>
  	
  	<!-- Rest -->
@@ -258,6 +264,7 @@
 		</div>
 		<div class="col-sm-12">
 			<br/>
+			<a class="button" href="#" role="button">이&nbsp;전</a>
 			<button type="button" class="button primary" ><span id="p1" style="font-size:20px">수&nbsp;정</span></button><br/><br/>
 		</div>
 	</form>

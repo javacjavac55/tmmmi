@@ -1,11 +1,11 @@
 =\=\=\=\=\=\=
 <<<<<<<=HEAD
->>>>>>>=refs/remotes/origin/master
+>>>>>>>=refs/remotes/choose_remote_name/master
 eclipse.preferences.version=1
 encoding//WebContent/common/loading.jsp=UTF-8
 encoding//WebContent/widget=UTF-8
-encoding//WebContent/widget/getWeather.jsp=UTF-8
 encoding//src/main/java/com/tmmmi/service/content/impl/ContentTastyDaoImpl.java=UTF-8
 encoding//src/main/java/com/tmmmi/service/qna/NaverSearchAPI2.java=UTF-8
 encoding//src/main/java/com/tmmmi/service/qna/naverSearchAPI.java=UTF-8
+encoding//src/main/java/com/tmmmi/web/QNAController.java=UTF-8
 encoding//src/main/java/com/tmmmi/web/UserRestController.java=UTF-8

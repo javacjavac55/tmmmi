@@ -5,7 +5,6 @@
 <head>
 <title>로그인</title>
 	<meta http-equiv="Content-Type" content="text/html; charset=EUC-KR">
-	<meta charset="EUC-KR">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 	
 	<!-- bootstrap -->
@@ -19,15 +18,17 @@
 	<!-- template -->
 	<link rel="stylesheet" href="/css/template/main.css">
     
-    <!-- font -->
+    <!-- font and icons-->
 	<link href="https://fonts.googleapis.com/css?family=Nanum+Gothic:400,700,800&amp;subset=korean" rel="stylesheet">
-	
+	<link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Roboto+Slab:400,700|Material+Icons" />
+  	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css">
+  
 	<!-- style -->
-    <style>
+<!--     <style>
   		body, h2, h4{
   			font-family: "Nanum Gothic", sans-serif;
   		}
-  	</style>
+  	</style> -->
   	
     <!-- 로그인  -->
 	<script type="text/javascript">

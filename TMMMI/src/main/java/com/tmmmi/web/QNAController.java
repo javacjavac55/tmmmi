@@ -48,8 +48,8 @@ public class QNAController {
 		System.out.println("/QNA/addQNA : GET");
 		
 		ModelAndView modelAndView = new ModelAndView();
-		//userNo session으로 받아오기 &userId만 빼오기
-		//문의글 작성 페이지에서 userId가 필요함
+		//userNo session�쑝濡� 諛쏆븘�삤湲� &userId留� 鍮쇱삤湲�
+		//臾몄쓽湲� �옉�꽦 �럹�씠吏��뿉�꽌 userId媛� �븘�슂�븿
 		int userNo = (int) session.getAttribute("userNo");
 		modelAndView.addObject("userId", userService.getUser(userNo).getUserId() );
 		modelAndView.setViewName("/QNA/addQNA.jsp");
@@ -75,17 +75,16 @@ public class QNAController {
 		
 		ModelAndView modelAndView = new ModelAndView();
 	
-		//클릭한 사람의 userNo
-		//userRoll 받아오기위해 필요
+		//�겢由��븳 �궗�엺�쓽 userNo
+		//userRoll 諛쏆븘�삤湲곗쐞�빐 �븘�슂
 		int userNo = (int)session.getAttribute("userNo");
 		modelAndView.addObject("role", userService.getUser(userNo).getRole());
 		
-		//작성자의 정보들
+		//�옉�꽦�옄�쓽 �젙蹂대뱾
 		int writerUserNo = qnaService.getQNA(qnaNo).getUserNo();
 		modelAndView.addObject("writerUserNo", qnaService.getQNA(qnaNo).getUserNo());
 		modelAndView.addObject("writerUserId", userService.getUser(writerUserNo).getUserId());
 		modelAndView.addObject("writerUserName", userService.getUser(writerUserNo).getUserName());
-		
 		
 		QNA qna = qnaService.getQNA(qnaNo);
 		modelAndView.addObject("qna", qna);
@@ -99,6 +98,7 @@ public class QNAController {
 		
 		int userNo = (int)session.getAttribute("userNo");
 		System.out.println("userNo::::" +userNo);
+		int role = userService.getUser(userNo).getRole();
 	
 		if(search.getCurrentPage() ==0 ){
 			search.setCurrentPage(1);
@@ -108,8 +108,8 @@ public class QNAController {
 		Map<String, Object> map;
 		ModelAndView modelAndView = new ModelAndView();
 		
-		//admin은 userNo 0으로 고정해놓음
-		if(userNo == 0) {
+		//admin�� userNo 0�쑝濡� 怨좎젙�빐�넃�쓬
+		if(role == 0) {
 			map = qnaService.getAdminQNAList(search);
 		}else {
 			map = qnaService.getQNAList(search, userNo);
@@ -120,8 +120,7 @@ public class QNAController {
 		modelAndView.addObject("list", map.get("list"));
 		modelAndView.addObject("resultPage", resultPage);
 		modelAndView.addObject("search", search);
-		
-		System.out.println("333333333");
+	
 		modelAndView.setViewName("/QNA/listQNA.jsp");
 		return modelAndView;
 	}

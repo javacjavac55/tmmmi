@@ -19,7 +19,7 @@
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" ></script>
 	
 	<!-- template -->
-	<link rel="stylesheet" href="/css/template/main.css">
+	<link rel="stylesheet" href="/css/template/material-kit.css" >
 	
 	<script type="text/javascript">
 	
