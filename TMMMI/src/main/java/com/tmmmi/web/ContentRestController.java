@@ -16,12 +16,6 @@ import com.tmmmi.service.domain.ContentSetting;
 @RestController
 @RequestMapping("/contentRest/*")
 public class ContentRestController {
-	
-	///Field
-	@Autowired
-	@Qualifier("contentServiceImpl")
-	private ContentService contentService;
-	
 	@Autowired
 	@Qualifier("contentSettingServiceImpl")
 	private ContentSettingService contentSettingService;
