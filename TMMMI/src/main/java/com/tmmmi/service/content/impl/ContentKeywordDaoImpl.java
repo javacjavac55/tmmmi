@@ -5,27 +5,35 @@ import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.net.URLEncoder;
+import java.util.ArrayList;
 import java.util.List;
-
 import org.springframework.stereotype.Repository;
 
-import com.tmmmi.service.content.ContentDao;
 import com.tmmmi.service.domain.ContentSetting;
 
-@Repository("contentKeywordDaoNaverImpl")
-public class ContentKeywordDaoNaverImpl implements ContentDao {
+@Repository("contentKeywordDaoImpl")
+public class ContentKeywordDaoImpl extends ContentDaoAdaptor {
 	///Constructor
-	public ContentKeywordDaoNaverImpl() {
+	public ContentKeywordDaoImpl() {
 		System.out.println(this.getClass());
     }
-	@Override
-	public void getContent() {
-		// TODO Auto-generated method stub
 
-	}
-
-	@Override
-	public List<Object> getContentList(ContentSetting contentSetting, int index) {
+	/*@Override
+	public Map<Integer, List<Object>> getContentMap(ContentSetting contentSetting, int index) {
+		Map<Integer, List<Object>> contentMap = new HashMap<Integer, List<Object>>();
+		
+		if (contentSetting.getShowUserSearch1() != 0) {
+			contentMap.put(contentSetting.getShowUserSearch1(), getKeywordFirst(contentSetting, index));
+		} 
+		/// else if 
+			//put
+		
+		return contentMap;		
+	}*/
+	
+	public List<Object> getKeywordFirst(ContentSetting contentSetting, int index){
+		List<Object> objectList = new ArrayList<Object>();
+		
 		StringBuilder sb;
 	    String clientId = "8UnBF2q3kdzG36xN7kVj";//애플리케이션 클라이언트 아이디값";
 	    String clientSecret = "LJxxFFhxEN";//애플리케이션 클라이언트 시크릿값";
@@ -59,37 +67,7 @@ public class ContentKeywordDaoNaverImpl implements ContentDao {
 	    } catch (Exception e) {
 	        System.out.println(e);
 	    }
-	    
-	    return null;
-	}
-	@Override
-	public List<Object> getContentKsoccerList(ContentSetting contentSetting, int index) throws Exception {
-		// TODO Auto-generated method stub
-		return null;
-	}
-	@Override
-	public List<Object> getContentWsoccerList(ContentSetting contentSetting, int index) throws Exception {
-		// TODO Auto-generated method stub
-		return null;
-	}
-	@Override
-	public List<Object> getContentKbaseballList(ContentSetting contentSetting, int index) throws Exception {
-		// TODO Auto-generated method stub
-		return null;
-	}
-	@Override
-	public List<Object> getContentWbaseballList(ContentSetting contentSetting, int index) throws Exception {
-		// TODO Auto-generated method stub
-		return null;
-	}
-	@Override
-	public List<Object> getContentBasketballList(ContentSetting contentSetting, int index) throws Exception {
-		// TODO Auto-generated method stub
-		return null;
-	}
-	@Override
-	public List<Object> getContentGeneralList(ContentSetting contentSetting, int index) throws Exception {
-		// TODO Auto-generated method stub
-		return null;
+		
+		return objectList;
 	}
 }

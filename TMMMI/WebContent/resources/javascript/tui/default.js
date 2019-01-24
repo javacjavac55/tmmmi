@@ -426,8 +426,17 @@
         var options = cal.getOptions();
         var viewName = cal.getViewName();
         var html = [];
+        
+        //updateRenderRange
+        renderRangeStart = cal.getDateRangeStart().getTime();
+        renderRangeEnd = cal.getDateRangeEnd().getTime();
+        
         if (viewName === 'day') {
             html.push(moment(cal.getDate().getTime()).format('YYYY.MM.DD'));
+            //updateRenderRange
+            var quotient = Math.floor(cal.getDate().getTime()/86400000);
+            renderRangeStart = quotient*86400000;
+            renderRangeEnd = ((quotient+1)*86400000-1);
         } else if (viewName === 'month' &&
             (!options.month.visibleWeeksCount || options.month.visibleWeeksCount > 4)) {
             html.push(moment(cal.getDate().getTime()).format('YYYY.MM'));
@@ -437,9 +446,7 @@
             html.push(moment(cal.getDateRangeEnd().getTime()).format(' MM.DD'));
         }
         renderRange.innerHTML = html.join('');
-        //updateRenderRange
-        renderRangeStart = cal.getDateRangeStart().getTime();
-        renderRangeEnd = cal.getDateRangeEnd().getTime();
+        
     }
 
     function setSchedules() {

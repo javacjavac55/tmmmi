@@ -2,27 +2,13 @@ package com.tmmmi.service.content.impl;
 
 import java.util.List;
 
-import com.tmmmi.service.content.ContentDao;
+import com.tmmmi.service.content.ContentService;
 import com.tmmmi.service.domain.ContentSetting;
 
-public class ContentMovieDaoNaverImpl implements ContentDao {
-
-	public ContentMovieDaoNaverImpl() {
-		// TODO Auto-generated constructor stub
-	}
-
-	@Override
-	public void getContent() {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public List<Object> getContentList(ContentSetting contentSetting, int index) {
-		
-		return null;
-	}
-
+public abstract class ContentServiceAdaptor implements ContentService {
+	//movie
+	
+	//sport
 	@Override
 	public List<Object> getContentKsoccerList(ContentSetting contentSetting, int index) throws Exception {
 		// TODO Auto-generated method stub
@@ -58,5 +44,15 @@ public class ContentMovieDaoNaverImpl implements ContentDao {
 		// TODO Auto-generated method stub
 		return null;
 	}
+	
+	//tasty
+	
+	//shopping
+	@Override
+	public List<Object> getContentShoppingFirstList(ContentSetting contentSetting, int index) throws Exception {
+		// TODO Auto-generated method stub
+		return null;
+	}
 
+	//keyword
 }

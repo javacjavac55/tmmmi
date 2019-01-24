@@ -135,10 +135,10 @@
 			schedule.isAllday = true;
 			schedule.category = 'allday';
 			
-			var quotient = Math.floor((schedule.start*=1)/86400000);
+			var quotient = Math.floor((schedule.start*=1)/86400000)+1;
 						
-			schedule.start = new Date((quotient+1)*86400000);
-			schedule.end = new Date((quotient+1)*86400000-1); 
+			schedule.start = new Date(quotient*86400000);
+			schedule.end = new Date(quotient*86400000-1); 
 			return schedule;
 		}
 		

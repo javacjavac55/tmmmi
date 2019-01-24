@@ -14,19 +14,16 @@ import java.util.List;
 import org.codehaus.jackson.map.ObjectMapper;
 import org.springframework.stereotype.Repository;
 
-@Repository("contentTastyDaoNaverImpl")
-public class ContentTastyDaoNaverImpl implements ContentDao {
+@Repository("contentTastyDaoImpl")
+public class ContentTastyDaoNaverImpl extends ContentDaoAdaptor {
 	
 	///Constructor
 	public ContentTastyDaoNaverImpl() {
 	}
 	
 	///Method
-	@Override
-	public void getContent() {
-	}
 
-	@Override
+	/*@Override
 	public List<Object> getContentList(ContentSetting contentSetting, int index) {
 		String clientId = "d9ROlDLvnXulcE2hxtAm";
         String clientSecret = "O4TGEmLBA4";
@@ -63,7 +60,7 @@ public class ContentTastyDaoNaverImpl implements ContentDao {
             System.out.println(e);
         } 
 		return tastyList;
-	}
+	}*/
 /*	public static void main(String[] args) {
 		String clientId = "d9ROlDLvnXulcE2hxtAm";
         String clientSecret = "O4TGEmLBA4";
@@ -102,41 +99,6 @@ public class ContentTastyDaoNaverImpl implements ContentDao {
 =======
 	}*/
 
-	@Override
-	public List<Object> getContentKsoccerList(ContentSetting contentSetting, int index) throws Exception {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public List<Object> getContentWsoccerList(ContentSetting contentSetting, int index) throws Exception {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public List<Object> getContentKbaseballList(ContentSetting contentSetting, int index) throws Exception {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public List<Object> getContentWbaseballList(ContentSetting contentSetting, int index) throws Exception {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public List<Object> getContentBasketballList(ContentSetting contentSetting, int index) throws Exception {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public List<Object> getContentGeneralList(ContentSetting contentSetting, int index) throws Exception {
-		// TODO Auto-generated method stub
-		return null;
-	}
 }
 
 class TastyTotal {

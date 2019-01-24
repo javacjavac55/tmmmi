@@ -17,32 +17,11 @@ import com.tmmmi.service.domain.ContentSetting;
 import com.tmmmi.service.domain.ContentSport;
 
 @Repository("contentSportDaoImpl")
-public class ContentSportDaoImpl implements ContentDao {
-
-	/// Field
-	@Autowired
-	@Qualifier("sqlSessionTemplate")
-	private SqlSession sqlSession;
-
-	public void setSqlSession(SqlSession sqlSession) {
-		this.sqlSession = sqlSession;
-	}
-
+public class ContentSportDaoImpl extends ContentDaoAdaptor {
+	
 	public ContentSportDaoImpl() {
 		// TODO Auto-generated constructor stub
 		System.out.println(this.getClass());
-	}
-
-	@Override
-	public void getContent() throws Exception {
-		// TODO Auto-generated method stub
-
-	}
-
-	@Override
-	public List<Object> getContentList(ContentSetting contentSetting, int index) throws Exception {
-		// TODO Auto-generated method stub
-		return null;
 	}
 	
 	public List<Object> getContentKsoccerList(ContentSetting contentSetting, int index) throws Exception {

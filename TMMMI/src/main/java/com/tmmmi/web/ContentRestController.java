@@ -21,6 +21,9 @@ public class ContentRestController {
 	@Autowired
 	@Qualifier("contentServiceImpl")
 	private ContentService contentService;
+	
+	@Autowired
+	@Qualifier("contentSettingServiceImpl")
 	private ContentSettingService contentSettingService;
 	
 	///Constructor
@@ -28,14 +31,14 @@ public class ContentRestController {
 		System.out.println(this.getClass());
 	}
 	
-	///Method
+	/*///Method
 	@RequestMapping(value="/getContentTastyList")
-	public List<Object> getContentList(@RequestBody ContentSetting contentSetting, int index)throws Exception {
+	public List<Object> getContentList( int index)throws Exception {
 		List<Object> contentList = contentService.getContentTastyList(contentSetting, index);
 		System.out.println(contentList);
 		System.out.println(contentList.size());
 		return contentList;
-	}
+	}*/
 	/*
 	///Method
 		@RequestMapping(value="/getContentSportList")

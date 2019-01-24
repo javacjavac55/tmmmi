@@ -18,8 +18,8 @@ import com.tmmmi.service.domain.ContentSetting;
 import com.tmmmi.service.domain.UserSetting;
 
 @Controller
-@RequestMapping("/content/*")
-public class ContentController {
+@RequestMapping("/contentSport/*")
+public class ContentTastyController {
 	
 	@Autowired
 	@Qualifier("contentServiceImpl")
@@ -29,12 +29,19 @@ public class ContentController {
 	@Qualifier("contentSettingServiceImpl")
 	private ContentSettingService contentSettingService;
 	
-	public ContentController() {
+	public ContentTastyController() {
 		// TODO Auto-generated constructor stub
 	}
 	
-	
-	/*public void getContent() {}*/
+	/*@RequestMapping(value="getContentMap", method=RequestMethod.GET)
+	public ModelAndView getContentMap(HttpSession session) throws Exception {
+		int userNo = (int)session.getAttribute("userNo");
+		ModelAndView modelAndView = new ModelAndView();
+		modelAndView.addObject("contentMap", contentService.getContentMap(contentSettingService.getContentSetting(userNo), 1));
+		modelAndView.setViewName("/content/listContent.jsp");
+		
+		return modelAndView;
+	}*/
 	
 	/*국내축구*/
 	@RequestMapping(value="getContentKsoccerList", method=RequestMethod.GET)
