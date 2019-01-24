@@ -24,6 +24,14 @@
 <link rel="stylesheet" href=/css/template/main.css>
 <link rel="stylesheet" href="assets/css/main.css" />
 
+<script type="text/javascript">
+	$(function() {
+
+		$('#back').on("click", function() {
+			self.location = "/index.jsp";
+		});
+	});
+</script>
 
 <style>
 #giyong {
@@ -38,21 +46,27 @@ img {
 </head>
 <body>
 
-	<section style="padding: 10%;"> <header class="major">
-	<h2>해외 축구<h2>
-	</header>
-	<div class="posts" style="margin: 0 auto;">
-		<c:forEach var="sport" items="${contentSport}">
-			<article id="giyong"> <a href="#" class="image"><img
-				src="${sport.sportThumbnail}" alt="" /></a> <a
-				href="${sport.sportLink}" target="_blank">${sport.sportTitle}</a>
-			<br />
-			<ul class="actions" align="right">
-				<li><a href="${sport.sportLink}" target="_blank" class="button">More</a></li>
-			</ul>
-			</article>
-		</c:forEach>
+	<div class="navbar  navbar-default">
+		<div class="container">
+			<a class="navbar-brand" href="/index.jsp">Tmmmi</a>
+		</div>
 	</div>
-	</section>
+	
+	<c:import url="/content/getContentKsoccerList">
+	</c:import>
+	<c:import url="/content/getContentWsoccerList">
+	</c:import>
+	<c:import url="/content/getContentKbaseballList">
+	</c:import>
+	<c:import url="/content/getContentWbaseballList">
+	</c:import>
+	<c:import url="/content/getContentBasketballList">
+	</c:import>
+	<c:import url="/content/getContentGeneralList">
+	</c:import>
+
+	<form class="form-inline" name="detailForm" align="center">
+		<button type="button" id="back">홈으로</button>
+	</form>
 </body>
 </html>

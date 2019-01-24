@@ -8,6 +8,7 @@ public interface ContentDao {
 	
 	public void getContent() throws Exception;
 
+
 	public List<Object> getContentList(ContentSetting contentSetting, int index) throws Exception;
 
 	public List<Object> getContentKsoccerList(ContentSetting contentSetting, int index) throws Exception;
@@ -22,5 +23,4 @@ public interface ContentDao {
 		
 	public List<Object> getContentGeneralList(ContentSetting contentSetting, int index) throws Exception;
 	
-
 }

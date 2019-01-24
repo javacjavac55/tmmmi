@@ -81,7 +81,7 @@
 	
 		<form class="form-horizontal">
 			<div class="form-group">
-			  <label for="userId" class="col-sm-offset-1 col-sm-3 control-label">아 이 디</label>
+			  <label for="userId" class="col-sm-offset-1 col-sm-3 control-label">닉 네 임</label>
 			  <div class="col-sm-4">
 				<input type="text" class="form-control" id="userName" name="userName" placeholder="닉네임을 입력하세요."/>
 			  </div>

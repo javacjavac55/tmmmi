@@ -8,7 +8,7 @@ public interface ContentService {
 	
 	public void getContent();
 
-	public List<Object> getContentTastyList(ContentSetting contentSetting, int index) throws Exception;
+	public List<Object> getContentTastyList(ContentSetting contentSetting) throws Exception;
 	
 	public List<Object> getContentKsoccerList(ContentSetting contentSetting, int index) throws Exception;
 	

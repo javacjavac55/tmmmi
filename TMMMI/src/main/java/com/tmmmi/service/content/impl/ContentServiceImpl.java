@@ -16,10 +16,16 @@ public class ContentServiceImpl implements ContentService {
 	///Field
 	@Autowired
 	@Qualifier("contentSportDaoImpl")
-	private ContentDao contentDao;
+	private ContentDao contentSportDao;
+	public void setContentSportDao(ContentDao contentSportDao) {
+		this.contentSportDao = contentSportDao;
+	}
 	
-	public void setContentServiceDao(ContentDao contentDao) {
-		this.contentDao = contentDao;
+	@Autowired
+	@Qualifier("contentTastyDaoNaverImpl")
+	private ContentDao contentTastyDao;
+	public void setContentTastyDao(ContentDao contentTastyDao) {
+		this.contentTastyDao = contentTastyDao;
 	}
 	//Constructor
 	public ContentServiceImpl() {
@@ -31,40 +37,39 @@ public class ContentServiceImpl implements ContentService {
 	public void getContent() {
 		
 	}
-
 	@Override
-	public List<Object> getContentTastyList(ContentSetting contentSetting, int index) throws Exception{
-		System.out.println("getContentList Á¢±Ù");
-		return contentDao.getContentList(contentSetting, index);
+	public List<Object> getContentTastyList(ContentSetting contentSetting) throws Exception {
+		// TODO Auto-generated method stub
+		return null;
 	}
 	@Override
 	public List<Object> getContentKsoccerList(ContentSetting contentSetting, int index) throws Exception {
 		// TODO Auto-generated method stub
-		return contentDao.getContentKsoccerList(contentSetting, index);
+		return null;
 	}
 	@Override
 	public List<Object> getContentWsoccerList(ContentSetting contentSetting, int index) throws Exception {
 		// TODO Auto-generated method stub
-		return contentDao.getContentWsoccerList(contentSetting, index);	
+		return null;
 	}
 	@Override
 	public List<Object> getContentKbaseballList(ContentSetting contentSetting, int index) throws Exception {
 		// TODO Auto-generated method stub
-		return contentDao.getContentKbaseballList(contentSetting, index);	
+		return null;
 	}
 	@Override
 	public List<Object> getContentWbaseballList(ContentSetting contentSetting, int index) throws Exception {
 		// TODO Auto-generated method stub
-		return contentDao.getContentWbaseballList(contentSetting, index);	
+		return null;
 	}
 	@Override
 	public List<Object> getContentBasketballList(ContentSetting contentSetting, int index) throws Exception {
 		// TODO Auto-generated method stub
-		return contentDao.getContentBasketballList(contentSetting, index);	
+		return null;
 	}
 	@Override
 	public List<Object> getContentGeneralList(ContentSetting contentSetting, int index) throws Exception {
 		// TODO Auto-generated method stub
-		return contentDao.getContentGeneralList(contentSetting, index);	
+		return null;
 	}
 }
