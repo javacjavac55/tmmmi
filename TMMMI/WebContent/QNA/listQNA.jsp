@@ -134,7 +134,6 @@
 		
 		<a class= "btn btn-default pull-right" >1:1 문의하기</a>
 		
-		
 		<div>
 			   <input type="hidden" id="currentPage" name="currentPage" value="" />
 				<jsp:include page="../common/pageNavigator.jsp"/>	
