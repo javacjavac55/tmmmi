@@ -1,24 +1,16 @@
 package com.tmmmi.service.content.impl;
 
-import com.tmmmi.service.content.ContentDao;
-import com.tmmmi.service.domain.ContentSetting;
 import com.tmmmi.service.domain.ContentTasty;
 
-import java.io.BufferedReader;
-import java.io.InputStreamReader;
-import java.net.HttpURLConnection;
-import java.net.URL;
-import java.net.URLEncoder;
 import java.util.List;
 
-import org.codehaus.jackson.map.ObjectMapper;
 import org.springframework.stereotype.Repository;
 
 @Repository("contentTastyDaoImpl")
-public class ContentTastyDaoNaverImpl extends ContentDaoAdaptor {
+public class ContentTastyDaoImpl extends ContentDaoAdaptor {
 	
 	///Constructor
-	public ContentTastyDaoNaverImpl() {
+	public ContentTastyDaoImpl() {
 	}
 	
 	///Method
@@ -91,12 +83,6 @@ public class ContentTastyDaoNaverImpl extends ContentDaoAdaptor {
         } catch (Exception e) {
             System.out.println(e);
         }
-<<<<<<< HEAD
-        
-        ArrayList list = new ArrayList<>();
-		
-        return null;
-=======
 	}*/
 
 }
