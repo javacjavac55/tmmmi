@@ -422,4 +422,182 @@ public class ContentSetting {
 				+ showUserVideo1 + ", showUserVideo2=" + showUserVideo2 + "]";
 	}
 
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + action;
+		result = prime * result + animation;
+		result = prime * result + baseball;
+		result = prime * result + basketball;
+		result = prime * result + boxOfficeTop10;
+		result = prime * result + chineseFood;
+		result = prime * result + contentSettingNo;
+		result = prime * result + dessert;
+		result = prime * result + fantasySF;
+		result = prime * result + foreignFood;
+		result = prime * result + horrorThriller;
+		result = prime * result + japaneseFood;
+		result = prime * result + koreanFood;
+		result = prime * result + overseaBaseball;
+		result = prime * result + overseaBasketball;
+		result = prime * result + overseaSoccer;
+		result = prime * result + romanceComedy;
+		result = prime * result + shoppingKeywordNo;
+		result = prime * result + ((shoppingReview == null) ? 0 : shoppingReview.hashCode());
+		result = prime * result + ((shoppingSearch1 == null) ? 0 : shoppingSearch1.hashCode());
+		result = prime * result + ((shoppingSearch2 == null) ? 0 : shoppingSearch2.hashCode());
+		result = prime * result + ((shoppingSearch3 == null) ? 0 : shoppingSearch3.hashCode());
+		result = prime * result + showShoppingReview;
+		result = prime * result + showShoppingSearch1;
+		result = prime * result + showShoppingSearch2;
+		result = prime * result + showShoppingSearch3;
+		result = prime * result + showUserSearch1;
+		result = prime * result + showUserSearch2;
+		result = prime * result + showUserSearch3;
+		result = prime * result + showUserVideo1;
+		result = prime * result + showUserVideo2;
+		result = prime * result + soccer;
+		result = prime * result + sortSectionNo;
+		result = prime * result + sportGeneral;
+		result = prime * result + sportHighlight;
+		result = prime * result + ((tastyKeyword == null) ? 0 : tastyKeyword.hashCode());
+		result = prime * result + userKeywordNo;
+		result = prime * result + userNo;
+		result = prime * result + ((userSearch1 == null) ? 0 : userSearch1.hashCode());
+		result = prime * result + ((userSearch2 == null) ? 0 : userSearch2.hashCode());
+		result = prime * result + ((userSearch3 == null) ? 0 : userSearch3.hashCode());
+		result = prime * result + ((userVideo1 == null) ? 0 : userVideo1.hashCode());
+		result = prime * result + ((userVideo2 == null) ? 0 : userVideo2.hashCode());
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		ContentSetting other = (ContentSetting) obj;
+		if (action != other.action)
+			return false;
+		if (animation != other.animation)
+			return false;
+		if (baseball != other.baseball)
+			return false;
+		if (basketball != other.basketball)
+			return false;
+		if (boxOfficeTop10 != other.boxOfficeTop10)
+			return false;
+		if (chineseFood != other.chineseFood)
+			return false;
+		if (contentSettingNo != other.contentSettingNo)
+			return false;
+		if (dessert != other.dessert)
+			return false;
+		if (fantasySF != other.fantasySF)
+			return false;
+		if (foreignFood != other.foreignFood)
+			return false;
+		if (horrorThriller != other.horrorThriller)
+			return false;
+		if (japaneseFood != other.japaneseFood)
+			return false;
+		if (koreanFood != other.koreanFood)
+			return false;
+		if (overseaBaseball != other.overseaBaseball)
+			return false;
+		if (overseaBasketball != other.overseaBasketball)
+			return false;
+		if (overseaSoccer != other.overseaSoccer)
+			return false;
+		if (romanceComedy != other.romanceComedy)
+			return false;
+		if (shoppingKeywordNo != other.shoppingKeywordNo)
+			return false;
+		if (shoppingReview == null) {
+			if (other.shoppingReview != null)
+				return false;
+		} else if (!shoppingReview.equals(other.shoppingReview))
+			return false;
+		if (shoppingSearch1 == null) {
+			if (other.shoppingSearch1 != null)
+				return false;
+		} else if (!shoppingSearch1.equals(other.shoppingSearch1))
+			return false;
+		if (shoppingSearch2 == null) {
+			if (other.shoppingSearch2 != null)
+				return false;
+		} else if (!shoppingSearch2.equals(other.shoppingSearch2))
+			return false;
+		if (shoppingSearch3 == null) {
+			if (other.shoppingSearch3 != null)
+				return false;
+		} else if (!shoppingSearch3.equals(other.shoppingSearch3))
+			return false;
+		if (showShoppingReview != other.showShoppingReview)
+			return false;
+		if (showShoppingSearch1 != other.showShoppingSearch1)
+			return false;
+		if (showShoppingSearch2 != other.showShoppingSearch2)
+			return false;
+		if (showShoppingSearch3 != other.showShoppingSearch3)
+			return false;
+		if (showUserSearch1 != other.showUserSearch1)
+			return false;
+		if (showUserSearch2 != other.showUserSearch2)
+			return false;
+		if (showUserSearch3 != other.showUserSearch3)
+			return false;
+		if (showUserVideo1 != other.showUserVideo1)
+			return false;
+		if (showUserVideo2 != other.showUserVideo2)
+			return false;
+		if (soccer != other.soccer)
+			return false;
+		if (sortSectionNo != other.sortSectionNo)
+			return false;
+		if (sportGeneral != other.sportGeneral)
+			return false;
+		if (sportHighlight != other.sportHighlight)
+			return false;
+		if (tastyKeyword == null) {
+			if (other.tastyKeyword != null)
+				return false;
+		} else if (!tastyKeyword.equals(other.tastyKeyword))
+			return false;
+		if (userKeywordNo != other.userKeywordNo)
+			return false;
+		if (userNo != other.userNo)
+			return false;
+		if (userSearch1 == null) {
+			if (other.userSearch1 != null)
+				return false;
+		} else if (!userSearch1.equals(other.userSearch1))
+			return false;
+		if (userSearch2 == null) {
+			if (other.userSearch2 != null)
+				return false;
+		} else if (!userSearch2.equals(other.userSearch2))
+			return false;
+		if (userSearch3 == null) {
+			if (other.userSearch3 != null)
+				return false;
+		} else if (!userSearch3.equals(other.userSearch3))
+			return false;
+		if (userVideo1 == null) {
+			if (other.userVideo1 != null)
+				return false;
+		} else if (!userVideo1.equals(other.userVideo1))
+			return false;
+		if (userVideo2 == null) {
+			if (other.userVideo2 != null)
+				return false;
+		} else if (!userVideo2.equals(other.userVideo2))
+			return false;
+		return true;
+	}
+
 }

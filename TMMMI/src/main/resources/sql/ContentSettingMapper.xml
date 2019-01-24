@@ -36,9 +36,9 @@
 		<result property="foreignFood" 			column="show_foreign_food" 			jdbcType="NUMERIC"/>
 		<result property="dessert" 				column="show_dessert" 				jdbcType="NUMERIC"/>
 		
-		<result property="shoppingKeyword1" 	column="shopping_search_1"			jdbcType="VARCHAR"/>
-		<result property="shoppingKeyword2" 	column="shopping_search_2" 			jdbcType="VARCHAR"/>
-		<result property="shoppingKeyword3" 	column="shopping_search_3" 			jdbcType="VARCHAR"/>
+		<result property="shoppingSearch1" 		column="shopping_search_1"			jdbcType="VARCHAR"/>
+		<result property="shoppingSearch2" 		column="shopping_search_2" 			jdbcType="VARCHAR"/>
+		<result property="shoppingSearch3" 		column="shopping_search_3" 			jdbcType="VARCHAR"/>
 		<result property="shoppingReview" 		column="shopping_review" 			jdbcType="VARCHAR"/>
 
 		<result property="userSearch1" 			column="user_search_1" 				jdbcType="VARCHAR"/>
@@ -47,16 +47,16 @@
 		<result property="userVideo1" 			column="user_video_1" 				jdbcType="VARCHAR"/>
 		<result property="userVideo2" 			column="user_video_2" 				jdbcType="VARCHAR"/>
 		
-		<result property="showShoppingSearch1" 	column="shopping_search_1" 			jdbcType="NUMERIC"/>
-		<result property="showShoppingSearch2" 	column="shopping_search_2" 			jdbcType="NUMERIC"/>
-		<result property="showShoppingSearch3" 	column="shopping_search_3" 			jdbcType="NUMERIC"/>
-		<result property="showShoppingReview" 	column="shopping_review" 			jdbcType="NUMERIC"/>
+		<result property="showShoppingSearch1" 	column="show_shopping_search_1" 	jdbcType="NUMERIC"/>
+		<result property="showShoppingSearch2" 	column="show_shopping_search_2" 	jdbcType="NUMERIC"/>
+		<result property="showShoppingSearch3" 	column="show_shopping_search_3" 	jdbcType="NUMERIC"/>
+		<result property="showShoppingReview" 	column="show_shopping_review" 		jdbcType="NUMERIC"/>
 
 		<result property="showUserSearch1" 		column="show_user_search_1" 		jdbcType="NUMERIC"/>
 		<result property="showUserSearch2" 		column="show_user_search_2" 		jdbcType="NUMERIC"/>
 		<result property="showUserSearch3" 		column="show_user_search_3" 		jdbcType="NUMERIC"/>
 		<result property="showUserVideo1" 		column="show_user_video_1" 			jdbcType="NUMERIC"/>
-		<result property="showUserVideo2" 	column="show_user_video_2" 			jdbcType="NUMERIC"/>
+		<result property="showUserVideo2" 		column="show_user_video_2" 			jdbcType="NUMERIC"/>
 	</resultMap>
 	
 	<!-- SQL : INSERT(content_setting) -->
@@ -121,7 +121,7 @@
 	<update id="updateContentSetting" parameterType="com.tmmmi.service.domain.ContentSetting">
 		UPDATE content_setting
 		<set>
-			tasty_keyword = #{tastyKeyword:VARCHAR}
+			tasty_keyword = #{tastyKeyword}
 		</set>
 		WHERE user_no = #{userNo}
 	</update>
@@ -130,9 +130,10 @@
 	<update id="updateShoppingKeyword" parameterType="com.tmmmi.service.domain.ContentSetting">
 		UPDATE shopping_keyword
 		<set>
-			shopping_search_1 = #{shoppingSearch1},
-			shopping_search_2 = #{shoppingSearch2},
-			shopping_search_3 = #{shoppingSearch3}
+			shopping_search_1 = #{shoppingSearch1:VARCHAR},
+			shopping_search_2 = #{shoppingSearch2:VARCHAR},
+			shopping_search_3 = #{shoppingSearch3:VARCHAR},
+			shopping_review = #{shoppingReview:VARCHAR}
 		</set>
 		WHERE shopping_keyword_no = (SELECT shopping_keyword_no FROM content_setting WHERE user_no = #{userNo})
 	</update>
@@ -141,11 +142,11 @@
 	<update id="updateUserKeyword" parameterType="com.tmmmi.service.domain.ContentSetting">
 		UPDATE user_keyword
 		<set>
-			user_search_1 = #{userSearch1},
-			user_search_2 = #{userSearch2}
-			user_search_3 = #{userSearch3},
-			user_video_1 = #{userVideo1},
-			user_video_2 = #{userVideo2}
+			user_search_1 = #{userSearch1:VARCHAR},
+			user_search_2 = #{userSearch2:VARCHAR},
+			user_search_3 = #{userSearch3:VARCHAR},
+			user_video_1 = #{userVideo1:VARCHAR},
+			user_video_2 = #{userVideo2:VARCHAR}
 		</set>
 		WHERE user_keyword_no = (SELECT user_keyword_no FROM content_setting WHERE user_no = #{userNo})
 	</update>

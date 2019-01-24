@@ -37,16 +37,39 @@ public class ContentServiceImpl implements ContentService {
 	public void getContent() {
 		
 	}
-
 	@Override
-	public List<Object> getContentTastyList(ContentSetting contentSetting) throws Exception{
-		System.out.println("getContentList Á¢±Ù");
-		return contentTastyDao.getContentList(contentSetting);
-	}
-
-	@Override
-	public List<Object> getContentSportList(ContentSetting contentSetting, int index) throws Exception {
+	public List<Object> getContentTastyList(ContentSetting contentSetting) throws Exception {
 		// TODO Auto-generated method stub
-		return contentSportDao.getContentList(contentSetting, index);
+		return null;
+	}
+	@Override
+	public List<Object> getContentKsoccerList(ContentSetting contentSetting, int index) throws Exception {
+		// TODO Auto-generated method stub
+		return null;
+	}
+	@Override
+	public List<Object> getContentWsoccerList(ContentSetting contentSetting, int index) throws Exception {
+		// TODO Auto-generated method stub
+		return null;
+	}
+	@Override
+	public List<Object> getContentKbaseballList(ContentSetting contentSetting, int index) throws Exception {
+		// TODO Auto-generated method stub
+		return null;
+	}
+	@Override
+	public List<Object> getContentWbaseballList(ContentSetting contentSetting, int index) throws Exception {
+		// TODO Auto-generated method stub
+		return null;
+	}
+	@Override
+	public List<Object> getContentBasketballList(ContentSetting contentSetting, int index) throws Exception {
+		// TODO Auto-generated method stub
+		return null;
+	}
+	@Override
+	public List<Object> getContentGeneralList(ContentSetting contentSetting, int index) throws Exception {
+		// TODO Auto-generated method stub
+		return null;
 	}
 }

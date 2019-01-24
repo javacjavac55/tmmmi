@@ -53,7 +53,7 @@
 	            		'email' : inEmail
 	            	}					
 	            ),
-	            dataType: 'text',
+	            dataType : 'text',
 	            headers : {
 	            	'Accept' : 'application/json',
 					'Content-Type' : 'application/json'
@@ -63,7 +63,7 @@
             		alert('아이디는'+result+'*** 입니다.');
             		window.location = '/user/login.jsp';
 	            },
-	            error : function(request, status, error ) {   // 오류가 발생했을 때 호출된다. 
+	            error : function(request, status, error ) {  
 
 	            	console.log('code:'+request.status+'\n'+'message:'+request.responseText+'\n'+'error:'+error);
 

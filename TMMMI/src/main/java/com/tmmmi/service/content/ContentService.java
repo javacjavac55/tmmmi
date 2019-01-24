@@ -10,7 +10,17 @@ public interface ContentService {
 
 	public List<Object> getContentTastyList(ContentSetting contentSetting) throws Exception;
 	
-	public List<Object> getContentSportList(ContentSetting contentSetting, int index) throws Exception;
+	public List<Object> getContentKsoccerList(ContentSetting contentSetting, int index) throws Exception;
+	
+	public List<Object> getContentWsoccerList(ContentSetting contentSetting, int index) throws Exception;
+	
+	public List<Object> getContentKbaseballList(ContentSetting contentSetting, int index) throws Exception;
+	
+	public List<Object> getContentWbaseballList(ContentSetting contentSetting, int index) throws Exception;
+	
+	public List<Object> getContentBasketballList(ContentSetting contentSetting, int index) throws Exception;
+	
+	public List<Object> getContentGeneralList(ContentSetting contentSetting, int index) throws Exception;
 
 	
 }

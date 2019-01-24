@@ -31,8 +31,8 @@
 <!-- <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script> -->
 <script src="/javascript/summernote/loading.js"></script>
 
-<link rel="stylesheet" href=/css/template/main.css>
-<link rel="stylesheet" href="assets/css/main.css" />
+<!-- <link rel="stylesheet" href=/css/template/main.css>
+<link rel="stylesheet" href="assets/css/main.css" /> -->
 <script type="text/javascript">
 	/* function postForm() {
 	    $('textarea[name="diaryDetail"]').val($('#summernote').summernote('code'));
@@ -76,7 +76,7 @@
 							setTimeout(function() {
 								$note.summernote('insertImage', url);
 								isloading.stop();
-							}, 4000);
+							}, 4250);
 
 						}
 					});
@@ -166,7 +166,7 @@
 			<div class="col-sm-offset-4  col-sm-4 text-center">
 
 				<button type="button" class="btn btn-primary">등록</button>
-				<a class="btn btn-primary" href="#" role="button">취&nbsp;소</a>
+				<a class="btn btn-primary" href="#" role="button">취소</a>
 			</div>
 		</div>
 
