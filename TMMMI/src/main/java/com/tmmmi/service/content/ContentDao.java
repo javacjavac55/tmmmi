@@ -8,6 +8,6 @@ public interface ContentDao {
 	
 	public void getContent() throws Exception;
 
-	public List<Object> getContentList(ContentSetting contentSetting, int index) throws Exception;
+	public List<Object> getContentList(ContentSetting contentSetting) throws Exception;
 
 }

@@ -30,8 +30,8 @@ public class ContentRestController {
 	
 	///Method
 	@RequestMapping(value="/getContentTastyList")
-	public List<Object> getContentList(@RequestBody ContentSetting contentSetting, int index)throws Exception {
-		List<Object> contentList = contentService.getContentTastyList(contentSetting, index);
+	public List<Object> getContentTastyList(@RequestBody ContentSetting contentSetting)throws Exception {
+		List<Object> contentList = contentService.getContentTastyList(contentSetting);
 		System.out.println(contentList);
 		System.out.println(contentList.size());
 		return contentList;

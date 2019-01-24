@@ -16,10 +16,16 @@ public class ContentServiceImpl implements ContentService {
 	///Field
 	@Autowired
 	@Qualifier("contentSportDaoImpl")
-	private ContentDao contentDao;
+	private ContentDao contentSportDao;
+	public void setContentSportDao(ContentDao contentSportDao) {
+		this.contentSportDao = contentSportDao;
+	}
 	
-	public void setContentServiceDao(ContentDao contentDao) {
-		this.contentDao = contentDao;
+	@Autowired
+	@Qualifier("contentTastyDaoNaverImpl")
+	private ContentDao contentTastyDao;
+	public void setContentTastyDao(ContentDao contentTastyDao) {
+		this.contentTastyDao = contentTastyDao;
 	}
 	//Constructor
 	public ContentServiceImpl() {
@@ -33,14 +39,14 @@ public class ContentServiceImpl implements ContentService {
 	}
 
 	@Override
-	public List<Object> getContentTastyList(ContentSetting contentSetting, int index) throws Exception{
+	public List<Object> getContentTastyList(ContentSetting contentSetting) throws Exception{
 		System.out.println("getContentList Á¢±Ù");
-		return contentDao.getContentList(contentSetting, index);
+		return contentTastyDao.getContentList(contentSetting);
 	}
 
 	@Override
 	public List<Object> getContentSportList(ContentSetting contentSetting, int index) throws Exception {
 		// TODO Auto-generated method stub
-		return contentDao.getContentList(contentSetting, index);
+		return contentSportDao.getContentList(contentSetting, index);
 	}
 }
