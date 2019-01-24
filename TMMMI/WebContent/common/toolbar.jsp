@@ -69,7 +69,7 @@
 	                    <ul class="dropdown-menu">
 	                        <li><a href="/diary/addDiary.jsp">다이어리 등록</a></li>         
 	                        <li><a href="/diary/listDiary">다이어리 리스트</a></li>    
-							<li><a href="/content/sportContent">스포츠 리스트</a></li>    
+							<li><a href="/content/sportContent.jsp">스포츠 리스트</a></li>    
 	                     </ul>
 	               </li>
 	      
