@@ -1,62 +1,122 @@
 <%@ page language="java" contentType="text/html; charset=EUC-KR"
     pageEncoding="EUC-KR"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-<html>
+<!DOCTYPE html>
+<html lang="ko">
+
 <head>
-	<meta charset="EUC-KR">
-	
-	<!--   jQuery , Bootstrap CDN  -->
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" >
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" >
+	<title>Tmmmi</title>
+	<meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0, shrink-to-fit=no' name='viewport' />
+	<!--     Fonts and icons     -->
+	<link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Roboto+Slab:400,700|Material+Icons" />
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css">
+	<!-- CSS Files -->
+	<link href="/css/template/material-kit.css" rel="stylesheet" />
+	<!-- CSS Just for demo purpose, don't include it in your project -->
+	<link href="/css/template/demo.css" rel="stylesheet" />
+	<!-- jQuery -->
 	<script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" ></script>
-	<!-- Bootstrap Dropdown Hover CSS -->
-   <link href="/css/animate.min.css" rel="stylesheet">
-   <link href="/css/bootstrap-dropdownhover.min.css" rel="stylesheet">
-   
-    <!-- Bootstrap Dropdown Hover JS -->
-   <script src="/javascript/bootstrap-dropdownhover.min.js"></script>
-
+	<!-- Style -->
+	<style type="text/css">
+	 	#yeong{
+	 		width : 100%;
+	 		text-align : center;
+	 	}
+	 	.card.bg-primary, .card .card-header-primary, .card.card-rotate.bg-primary .back, .card.card-rotate.bg-primary .front {
+	   	background: linear-gradient(60deg, #e09e9e, #f56a6a);
+	}
+	.btn.btn-primary.btn-link, .btn.btn-primary.btn-link:active, .btn.btn-primary.btn-link:focus, .btn.btn-primary.btn-link:hover {
+	  		background-color: transparent;
+	   	color: #e91e63;
+	}
+	 </style>
+   <!-- 로그인  -->
+	<script type="text/javascript">
+		$(function() {
+			$( "#login" ).on("click" , function() {
+				fncLogin();
+			});
+		});	
+		
+		function fncLogin() {
+			
+			var id=$("input:text").val();
+			var pw=$("input:password").val();
+			
+			if(id == null || id.length <1) {
+				alert('ID 를 입력하지 않으셨습니다.');
+				$("#userId").focus();
+				return;
+			}
+			
+			if(pw == null || pw.length <1) {
+				alert('패스워드를 입력하지 않으셨습니다.');
+				$("#password").focus();
+				return;
+			}
+			
+			$("form").attr("method","POST").attr("action","/user/login").attr("target","_parent").submit();
+		};
+		
+	</script>
 </head>
-<body>
-	<c:if test="${ !empty userNo }">
-		<jsp:include page="/common/toolbar.jsp"  />
-		
-		<p>각자 필요한 링크 밑에 달기</p>	
-		<!-- 도형 -->
-		<a href="/common/color-picker.jsp">컬러픽커</a><br/>
-		<a href="/calendar/addUserCategory.jsp">유저 카테고리</a><br/>
-		<a href="/calendar/getCalendarMonth">월 달력</a><br/>
-		<a href="/calendar/getCalendarInterest">관심사 달력</a><br/>
-		
-		<!-- 지영 -->
-		<a href="/user/addUser.jsp">회원가입</a><br/>
-		<a href="/user/login.jsp">로그인</a><br/>
-		<a href="/user/getUserList">회원 리스트</a><br/>
-		<a href="/user/searchUserId.jsp">아이디 찾기</a><br/>
-		<a href="/contentSetting/getContentSetting">컨텐츠 설정</a><br/>
-		
-		<!-- 중열 -->
-		<a href="/diary/addDiary.jsp">다이어리 등록</a><br/>
-		<a href="/diary/listDiary">다이어리 리스트</a><br/>
-		<a href="/content/sportContent.jsp">스포츠 컨텐츠 리스트</a>
-		<br/>
-		
-		<!-- 명훈 -->
-		
-		<a href="/todo/getToDoList">할 일 리스트</a><br/>
-		<a href="/content/tastyContent.jsp">맛집컨텐츠박스</a><br/>
-	<a href="/todo/getToDoMonthGraph">할 일 그래프</a><br/>
-		<!-- 지슬 -->
-		<a href="/faq/getFAQList">FAQ 리스트</a><br/>
-		<a href="/qna/getQNAList">QNA 리스트</a><br/>
-		<a href="/widget/getWeather3.jsp">날씨 </a><br/>
-	
- 	</c:if>
- 	<c:if test="${ empty userNo }">
- 		다시 로그인을 시도하세요.<br/>
- 		<a href="/user/login">로그인 페이지로 이동</a>
- 	</c:if>
+
+<body class="login-page sidebar-collapse">
+  <jsp:include page="/common/toolbar2.jsp"></jsp:include>
+  <div class="page-header header-filter" style="background-image: url('/images/template/bg2.jpg'); background-size: cover; background-position: top center;">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-4 col-md-6 ml-auto mr-auto">
+          <div class="card card-login">
+            <form class="form" method="" action="">
+              <div class="card-header card-header-primary text-center">
+                <h4 class="card-title">Login</h4>
+              </div>
+              <div id="yeong" style="margin: 50px 0 50px 0;">
+              		<span class="description text-center">아이디/</span>
+              		<span class="description text-center">비밀번호</span>
+              		<span class="description text-center">찾기</span>
+              	</div>
+              <div class="card-body">
+                <div class="input-group">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text">
+                      <i class="material-icons">face</i>
+                    </span>
+                  </div>
+                  <input type="text" class="form-control"  name="userId" id="userId" placeholder="Id">
+                </div>
+                <div class="input-group">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text">
+                      <i class="material-icons">lock_outline</i>
+                    </span>
+                  </div>
+                  <input type="password" class="form-control" name="password" id="password" placeholder="Password">
+                </div>
+              </div>
+              <div class="footer text-center">
+                <a href="/user/addUser" class="btn btn-primary btn-link btn-wd btn-lg">Sign in</a>
+              	<span class="btn btn-primary btn-link btn-wd btn-lg" id="login">Login</span>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+	<jsp:include page="/common/footer.jsp"></jsp:include>
+  </div>
+  <!--   Core JS Files   -->
+  <script src="/javascript/template/core/jquery.min.js" type="text/javascript"></script>
+  <script src="/javascript/template/core/popper.min.js" type="text/javascript"></script>
+  <script src="/javascript/template/core/bootstrap-material-design.min.js" type="text/javascript"></script>
+  <script src="/javascript/template/plugins/moment.min.js"></script>
+  <!--	Plugin for the Datepicker, full documentation here: https://github.com/Eonasdan/bootstrap-datetimepicker -->
+  <script src="/javascript/template/plugins/bootstrap-datetimepicker.js" type="text/javascript"></script>
+  <!--  Plugin for the Sliders, full documentation here: http://refreshless.com/nouislider/ -->
+  <script src="/javascript/template/plugins/nouislider.min.js" type="text/javascript"></script>
+  <!-- Control Center for Material Kit: parallax effects, scripts for the example pages etc -->
+  <script src="/javascript/template/material-kit.js" type="text/javascript"></script>
 </body>
+
 </html>

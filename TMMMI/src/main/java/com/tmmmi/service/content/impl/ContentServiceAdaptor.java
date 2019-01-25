@@ -45,6 +45,11 @@ public abstract class ContentServiceAdaptor implements ContentService {
 		return null;
 	}
 	
+	@Override
+	public List<Object> getContentHighlightList(ContentSetting contentSetting, int index)throws Exception{
+		return null;
+	}
+	
 	//tasty
 	
 	//shopping

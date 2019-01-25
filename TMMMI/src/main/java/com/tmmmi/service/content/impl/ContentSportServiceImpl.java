@@ -56,6 +56,11 @@ public class ContentSportServiceImpl extends ContentServiceAdaptor {
 		return contentSportDao.getContentGeneralList(contentSetting, index);	
 	}
 	
+	@Override
+	public List<Object> getContentHighlightList(ContentSetting contentSetting, int index)throws Exception{
+		return contentSportDao.getContentHighlightList(contentSetting, index);
+	}
+	
 	/*//Method
 	@Override
 	public Map<String, Object> getContentMap(ContentSetting contentSetting, int index) throws Exception {

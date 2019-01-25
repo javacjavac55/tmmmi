@@ -1,22 +1,24 @@
 <%@ page language="java" contentType="text/html; charset=EUC-KR"
     pageEncoding="EUC-KR"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<!DOCTYPE html>
 <html lang="ko">
 <head>
-<title>회원 정보 수정</title>
-	<meta http-equiv="Content-Type" content="text/html; charset=EUC-KR">
-	<meta charset="EUC-KR">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-	
-	<!-- bootstrap -->
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" >
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" >
-	
+	<link rel="apple-touch-icon" sizes="76x76" href="./assets/img/apple-icon.png">
+	<link rel="icon" type="image/png" href="./assets/img/favicon.png">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+	<title>Tmmmi</title>
+	<meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0, shrink-to-fit=no' name='viewport' />
+	<!--  Fonts and icons -->
+	<link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Roboto+Slab:400,700|Material+Icons" />
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css">
+	<!-- CSS Files -->
+	<link href="/css/template/material-kit.css" rel="stylesheet" />
+	<!-- CSS Just for demo purpose, don't include it in your project -->
+	<link href="/css/template/demo.css" rel="stylesheet" />
 	<!-- jQuery -->
 	<script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" ></script>
-	
-	<!-- styleSheet -->
+  	<!-- styleSheet -->
 	<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
 	
 	<!-- 버튼 이벤트 -->
@@ -109,11 +111,24 @@
 		}
 	</script>
 </head>
-<body>
-	<!-- sideMenu.jsp 추가 -->
-	<!-- 화면구성 -->
-	<div class="container">
-		<div class="page-header text-center">
+
+<body class="index-page sidebar-collapse">
+<jsp:include page="/common/toolbar2.jsp"></jsp:include>
+  <div class="page-header header-filter clear-filter purple-filter" data-parallax="true">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-8 ml-auto mr-auto">
+          <div class="brand">
+            <h2 class="title">Tmmmi</h2>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="main main-raised">
+    <div class="section section-basic">
+      <div class="container">
+		 <div class="page-header text-center">
 		<h3 class=" text-info">회원정보수정</h3>
 		<h5 class="text-muted">내 정보를 <strong class="text-danger">최신정보로 관리</strong>해 주세요.</h5>
 		</div>
@@ -181,6 +196,10 @@
 				</div>
 			</div>
 		</form>
-	</div>
+      </div>
+    </div>
+  </div>
+  <jsp:include page="/common/footer.jsp"></jsp:include>
 </body>
+
 </html>
