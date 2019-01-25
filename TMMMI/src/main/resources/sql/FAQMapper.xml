@@ -36,14 +36,11 @@
 								faq_delete_check = 1
 								<if test="searchCondition != null">
 									<if test="searchCondition == 0 and searchKeyword !='' ">
-									 	AND faq_title=#{searchKeyword}
-									</if>
-									<if test="searchCondition == 1 and searchKeyword != '' ">
-										AND faq_detail=#{searchKeyword} 
+									 	AND faq_title LIKE '%'||#{searchKeyword}||'%' OR faq_detail LIKE '%'||#{searchKeyword}||'%'
 									</if>
 								</if>
 								</where>
-								ORDER BY faq_no ) inner_table
+								ORDER BY faq_no DESC ) inner_table
 						WHERE ROWNUM &lt;= #{endRowNum} )
 		WHERE row_seq BETWEEN #{startRowNum} AND #{endRowNum} 
 	 </select>

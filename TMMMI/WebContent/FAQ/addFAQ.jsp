@@ -26,16 +26,38 @@
     <script src="/javascript/summernote/loading.js"></script>
     
     <!-- template -->
-	<link rel="stylesheet" href="/css/template/main.css">
+	<link rel="stylesheet" href="/css/template/main.css"> 
+
+	<!-- sweetAlert -->
+	<script src ="https://unpkg.com/sweetalert/dist/sweetalert.min.js" ></script >
+	<<!-- script src ="/css/sweetAlert/docs/assets/sweetalert/sweetalert.min.js"></script >
+	<!-- <link href= "/css/sweetAlert/src/sweetalert.css" rel="stylesheet"> -->
+	<!-- <script src="/javascript/sweet/sweetalert2.js"></script>
+	<link rel="stylesheet" href="/css/sweet/sweetalert2.min.css"> --> -->
+	
+	<link href="https://fonts.googleapis.com/css?family=Nanum+Gothic:400,700,800&amp;subset=korean" rel="stylesheet">
+
   	
 	<!--  ///////////////////////// CSS ////////////////////////// -->
 	<style>
  		.row {
  			margin-bottom:10px
  		}
+ 		
+ 		.swal-title {
+		  margin: 0px;
+		  font-size: 16px;
+		  margin-bottom: 28px;
+		}
+		.swal-button {
+		  padding: 1px 16px;
+		  background-color: #f4f6c6;
+		  font-size: 12px;
+		  border: 3px solid #f4f6c6;
+		}
 	</style>
 
-	<script type="text/javascript">
+	<script type="text/javascript" >
 	
 	var $note = null;
     $(document).ready(function() {
@@ -79,8 +101,27 @@
     });
 	
 	$(function() {
-		$( ".btn-pink:contains('작성하기')" ).on("click" , function() {
-			fncAddFAQ();
+
+		 $( ".btn-pink:contains('작성하기')" ).on("click" , function() {
+			var name=$("input[name='FAQTitle']").val();
+			var detail = $("textarea[name='FAQDetail']").val();
+				
+			if(name == null || name.length<1){
+				swal("제목은 반드시 입력하여야 합니다!", "얼른 입력해주세요");
+				return;
+			}
+			 if(detail == null || detail.length<1){
+				 swal("내용은 반드시 입력하여야 합니다!", "얼른 입력해주세요");
+				return;
+			}
+			 swal("작성완료 하시겠습니까?", {
+				 buttons: true,
+				 value: true,
+				}).then((result)=>{
+					if (result === true) {
+						fncAddFAQ();
+				      }
+				}, function (dismiss) { });
 		});
 		
 		$( ".btn-default:contains('취소')" ).on("click" , function() {
@@ -89,21 +130,13 @@
 	});
 	
 	function fncAddFAQ() {
-		
-		var name=$("input[name='FAQTitle']").val();
-		var detail = $("textarea[name='FAQDetail']").val();
-		
-		if(name == null || name.length<1){
-			alert("제목은 반드시 입력하여야 합니다.");
-			return;
-		}
-		 if(detail == null || detail.length<1){
-			alert("내용은 반드시 입력하여야 합니다.");
-			return;
-		}
-		
-		$("form").attr("method" , "POST").attr("enctype","multipart/form-data").attr("action" , "/faq/addFAQ").submit();
-
+		swal({
+			title : "작성완료 " , 
+			text: "리스트 페이지로 이동합니다! " , 
+			icon : "success" , 
+		}).then((value) => {
+			 $("form").attr("method" , "POST").attr("enctype","multipart/form-data").attr("action" , "/faq/addFAQ").submit();
+		});
 	}
 
 	</script>

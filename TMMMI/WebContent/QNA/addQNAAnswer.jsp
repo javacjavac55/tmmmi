@@ -65,15 +65,6 @@
 			<h2>1:1 답변하기</h2>
 		</div>
 		
-		<div class="row">
-			<div class="col-md-1">
-				<button type="button" class="btn btn-default;">작성날짜</button>
-			</div>
-			<div class="col-md-8">
-				 <input type="text" id="date">
-			</div>
-		</div>
-	
 		<div class="row" >
 			<div class="col-md-1">
 				<button type="button"  class="btn btn-default;">내용</button>

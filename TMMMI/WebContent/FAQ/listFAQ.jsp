@@ -18,8 +18,8 @@
 	<script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" ></script>
 	
-	<!-- template -->
-	<link rel="stylesheet" href="/css/template/material-kit.css" >
+	<!-- <!-- template -->
+	<link rel="stylesheet" href="/css/template/main.css"> -->
 	
 	<script type="text/javascript">
 	
@@ -78,8 +78,7 @@
 		<h2>FAQ 검색</h2>
 		<div>
 			<select name="searchCondition" class="ct_input_g" style="width:80px; height:25px;">
-				<option value="0"  ${ ! empty search.searchCondition && search.searchCondition==0 ? "selected" : "" }>글 제목</option>
-				<option value="1"  ${ ! empty search.searchCondition && search.searchCondition==1 ? "selected" : "" }>글 내용</option>
+				<option value="0"  ${ ! empty search.searchCondition && search.searchCondition==0 ? "selected" : "" }>글 제목+글 내용</option>
 			</select>
 			<input type="text" name="searchKeyword" 
 						value="${! empty search.searchKeyword ? search.searchKeyword : ""}"  
@@ -122,16 +121,20 @@
 					</tr>
 					<tr class="hide${faq.FAQNo} hide" >
 						<td class="detail" >${faq.FAQDetail}
-						<a class= "btn btn-default pull-right" data-param2="${faq.FAQNo}">수정하기</a>
-						<a class= "btn btn-default pull-right" data-param2="${faq.FAQNo}">삭제하기</a></td>
+						<c:if test="${role == 0}">
+							<a class= "btn btn-default pull-right" data-param2="${faq.FAQNo}">수정하기</a>
+							<a class= "btn btn-default pull-right" data-param2="${faq.FAQNo}">삭제하기</a>
+						</c:if>
+						</td>
 					</tr>
 			</c:forEach>
 		</tbody>			
 		</table>
 		<hr/>
 		
-		<a class= "btn btn-default pull-right">글쓰기</a>
-		
+		<c:if test="${role == 0}">
+			<a class= "btn btn-default pull-right">글쓰기</a>
+		</c:if>
 		
 		<div>
 			   <input type="hidden" id="currentPage" name="currentPage" value=""/>
