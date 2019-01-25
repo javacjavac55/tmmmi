@@ -11,6 +11,12 @@ public class ContentMovie {
 	private String movieRating;	
 	private String movieThumbnail;
 	private String movieVideo;
+	private String movieLink;
+	
+	//Box Office
+	private String movieOpenDate;
+	private String movieDayAudience;
+	private String movieTotalAudience;
 	
 	public ContentMovie() {
 		// TODO Auto-generated constructor stub
@@ -86,5 +92,70 @@ public class ContentMovie {
 
 	public void setMovieVideo(String movieVideo) {
 		this.movieVideo = movieVideo;
+	}
+
+	public String getMovieLink() {
+		return movieLink;
+	}
+
+	public void setMovieLink(String movieLink) {
+		this.movieLink = movieLink;
+	}
+
+	public String getMovieOpenDate() {
+		return movieOpenDate;
+	}
+
+	public void setMovieOpenDate(String movieOpenDate) {
+		this.movieOpenDate = movieOpenDate;
+	}
+
+	public String getMovieDayAudience() {
+		return movieDayAudience;
+	}
+
+	public void setMovieDayAudience(String movieDayAudience) {
+		this.movieDayAudience = movieDayAudience;
+	}
+
+	public String getMovieTotalAudience() {
+		return movieTotalAudience;
+	}
+
+	public void setMovieTotalAudience(String movieTotalAudience) {
+		this.movieTotalAudience = movieTotalAudience;
+	}
+
+	@Override
+	public String toString() {
+		StringBuilder builder = new StringBuilder();
+		builder.append("ContentMovie [sectionNo=");
+		builder.append(sectionNo);
+		builder.append(", movieNo=");
+		builder.append(movieNo);
+		builder.append(", movieTitle=");
+		builder.append(movieTitle);
+		builder.append(", movieDetail=");
+		builder.append(movieDetail);
+		builder.append(", movieDirector=");
+		builder.append(movieDirector);
+		builder.append(", movieActor=");
+		builder.append(movieActor);
+		builder.append(", movieRating=");
+		builder.append(movieRating);
+		builder.append(", movieThumbnail=");
+		builder.append(movieThumbnail);
+		builder.append(", movieVideo=");
+		builder.append(movieVideo);
+		builder.append(", movieLink=");
+		builder.append(movieLink);
+		builder.append(", movieOpenDate=");
+		builder.append(movieOpenDate);
+		builder.append(", movieDayAudience=");
+		builder.append(movieDayAudience);
+		builder.append(", movieTotalAudience=");
+		builder.append(movieTotalAudience);
+		builder.append("]");
+		return builder.toString();
 	}
 }

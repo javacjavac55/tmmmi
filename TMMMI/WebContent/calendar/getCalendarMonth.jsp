@@ -146,7 +146,7 @@
 			schedule.end = new Date(schedule.end*=1); 
 			return schedule;
 		}
-		
+		console.log("${scheduleList}");
 		var schedule;
 		<c:forEach var="schedule" items="${scheduleList}">
 			schedule = new ScheduleInfo();

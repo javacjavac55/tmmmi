@@ -6,6 +6,7 @@ import com.tmmmi.service.domain.ContentSetting;
 
 public interface ContentDao {
 	//movie
+	public List<Object> getBoxOfficeList(ContentSetting contentSetting, int index) throws Exception;
 	
 	//sport
 	public List<Object> getContentKsoccerList(ContentSetting contentSetting , int index) throws Exception;

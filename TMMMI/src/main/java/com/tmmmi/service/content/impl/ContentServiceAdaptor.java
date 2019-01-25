@@ -7,6 +7,11 @@ import com.tmmmi.service.domain.ContentSetting;
 
 public abstract class ContentServiceAdaptor implements ContentService {
 	//movie
+	@Override
+	public List<Object> getBoxOfficeList(ContentSetting contentSetting, int index) throws Exception {
+		// TODO Auto-generated method stub
+				return null;
+	}
 	
 	//sport
 	@Override

@@ -1,11 +1,14 @@
 package com.tmmmi.service.content.impl;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 
 import org.springframework.stereotype.Service;
 
 import com.tmmmi.service.content.ContentDao;
+import com.tmmmi.service.domain.ContentSetting;
 
 @Service("contentMovieServiceImpl")
 public class ContentMovieServiceImpl extends ContentServiceAdaptor {	
@@ -20,5 +23,9 @@ public class ContentMovieServiceImpl extends ContentServiceAdaptor {
 	//Constructor
 	public ContentMovieServiceImpl() {
 		System.out.println(this.getClass());
-	}	
+	}
+	
+	public List<Object> getBoxOfficeList(ContentSetting contentSetting, int index) throws Exception {
+		return contentMovieDao.getBoxOfficeList(contentSetting, index);
+	}
 }
