@@ -75,9 +75,11 @@ public class ToDoDaoImpl implements ToDoDao {
 	}
 
 	@Override
-	public void getMonthGraph() {
-		// TODO Auto-generated method stub
-		
+	public List<ToDo> getMonthGraph(Map<String, Object> todomap) throws Exception {
+		System.out.println("getMonthGraphDao Á¢±Ù");
+		System.out.println(todomap);
+		System.out.println(sqlSession.selectList("TodoMapper.getMonthList", todomap));
+		return sqlSession.selectList("TodoMapper.getMonthList", todomap);
 	}
 
 	@Override

@@ -4,30 +4,19 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <html lang="ko">
     <head>
-        <meta
-            content="width=device-width, initial-scale=1" name="viewport">
-            <!-- jQuery CSS  -->
-<link
-    href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css" rel="stylesheet">
-    <!-- Bootstrap CSS -->
-<link
-    crossorigin="anonymous" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" rel="stylesheet">
-    <!-- ToastUI CSS -->
-<link
-    href="https://uicdn.toast.com/tui.date-picker/latest/tui-date-picker.css" rel="stylesheet" type="text/css">
-    <!-- font CSS-->
-<link
-    href="https://fonts.googleapis.com/css?family=Nanum+Gothic:400,700,800&amp;subset=korean" rel="stylesheet">
+        <meta content="width=device-width, initial-scale=1" name="viewport">
+            <!-- <!-- jQuery CSS  -->
+<link href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css" rel="stylesheet">
+
+<link crossorigin="anonymous" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" rel="stylesheet">
+
+<link href="https://fonts.googleapis.com/css?family=Nanum+Gothic:400,700,800&amp;subset=korean" rel="stylesheet">
     <!-- template CSS -->
-<link href="/css/template/material-kit.css" rel="stylesheet"/>
-<link
-href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Roboto+Slab:400,700|Material+Icons" rel="stylesheet" type="text/css"/>
+<link href="/css/template/material-kit.min.css?v=2.0.5" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Roboto+Slab:400,700|Material+Icons" rel="stylesheet" type="text/css"/>
 <!-- jQuery script  -->
 <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-<!-- ToastUI script -->
-<script src="https://uicdn.toast.com/tui.code-snippet/latest/tui-code-snippet.min.js" type="text/javascript"></script>
-<script src="https://uicdn.toast.com/tui.date-picker/latest/tui-date-picker.min.js" type="text/javascript"></script>
 <!-- Bootstrap script -->
 <script crossorigin="anonymous" integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k" src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js"></script>
 <!--   Core JS Files   -->
@@ -39,10 +28,6 @@ href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Roboto+Slab
 <script src="/javascript/template/plugins/bootstrap-datetimepicker.js" type="text/javascript"></script>
 <!-- Control Center for Material Kit: parallax effects, scripts for the example pages etc -->
 <script src="/javascript/template/material-kit.js" type="text/javascript"></script>
-<!-- sweetalert2 script -->
-<script src="https://cdn.jsdelivr.net/npm/sweetalert2@8/dist/sweetalert2.min.js"></script>
-<link
-    href="https://cdn.jsdelivr.net/npm/sweetalert2@8/dist/sweetalert2.min.css" rel="stylesheet">
     <!-- Style CSS-->
 <style type="text/css">
 body,
@@ -54,6 +39,9 @@ button,
 h2,
 h3 {
     font-family: "Nanum Gothic", sans-serif;
+}
+body{
+	background-image: url( "/images/background/memo2.png" );
 }
 </style>
 <script>
@@ -96,7 +84,7 @@ h3 {
                                            var today = new Date();
                                            var start = new Date($(this).data("startdate"));
                                            var end = new Date($(this).data("enddate"));
-                                           var picker2 = tui.DatePicker.createRangePicker({
+                                           /* var picker2 = tui.DatePicker.createRangePicker({
                                                startpicker: {
                                                    input: '#addToDoStartDate' + todoNo,
                                                    container: '#startpicker-container' + todoNo
@@ -108,7 +96,7 @@ h3 {
                                                }
                                            });
                                            picker2.setStartDate(start);
-                                           picker2.setEndDate(end);
+                                           picker2.setEndDate(end); */
                                            $("#todolist" + todoNo).hide();
                                            $("#retodolist" + todoNo).show(1000);
                                        })
@@ -216,23 +204,27 @@ h3 {
                                            })
                                        })
                                    });
-                                   // ////////////////////////////////////Toast UI Datepicker///////////////////////////////
-                                   $(function () {
-                                       var today = new Date();
-                                       var picker = tui.DatePicker.createRangePicker({
-                                           startpicker: {
-                                               language: 'ko',
-                                               input: '#startpicker-input',
-                                               container: '#startpicker-container'
-                                           },
-                                           endpicker: {
-                                               language: 'ko',
-                                               date: today,
-                                               input: '#endpicker-input',
-                                               container: '#endpicker-container'
-                                           }
-                                       });
-                                   });
+                                   
+                                   ///Datepicker
+                                   
+							        $(function () {
+							            $('.datetimepicker').datetimepicker({
+							            	icons: {
+							            	time: "fa fa-clock-o",
+							                date: "fa fa-calendar",
+							                up: "fa fa-chevron-up",
+							                down: "fa fa-chevron-down",
+							                previous: 'fa fa-chevron-left',
+							                next: 'fa fa-chevron-right',
+							                today: 'fa fa-screenshot',
+							                clear: 'fa fa-trash',
+							                close: 'fa fa-remove'
+							            	},
+							            inline: true,
+							            sideBySide: true,
+							            format: 'L'
+							            });
+							        });
                                    // 할 일 체크
                                    /* 	var ToDay = new Date()
 
@@ -242,7 +234,7 @@ y.getFullYear() + "-" + (y.getMonth() +1 < 10? "0" +  (y.getMonth() +1): y.getMo
 
 (y.getDate() < 10? "0" +  y.getDate(): y.getDate())
  */
-                               </script>
+</script>
 </head>
 <body>
     <!-- 모달 -->
@@ -291,37 +283,24 @@ y.getFullYear() + "-" + (y.getMonth() +1 < 10? "0" +  (y.getMonth() +1): y.getMo
 
 <!--  달력UI -->
 <!-- 할 일 리스트 -->
-<div class="container"> <h2 style="margin:5px">나의 할 일 관리</h2>
-<div style="overflow:hidden;float: left;width:50%;">
-    <div class="form-group" style="float: left">
-        <div class="row">
-            <div class="col-md-8">
-                <div id="datetimepicker12"></div>
-            </div>
-        </div>
-    </div>
-    <script type="text/javascript">
-        $(function () {
-            $('#datetimepicker12').datetimepicker({
-                inline: true
-            });
-        });
-    </script>
+<div class="container">
+<div><h2 style="margin:5px;text-align:center">나의 할 일 관리</h2></div>
+    <div class="form-group">
+    <label class="label-control">Datetime Picker</label>
+    <input type="text" class="form-control datetimepicker" value=""/>
 </div>
-<button class="btn btn-primary btn-lg" data-target="#todomodal" data-toggle="modal">
-    <h4>할 일 등록</h4>
-</button>
-<div class="row" >
+<div class="list">
+<div class="row">
     <div class="col-md-3">
         <h3>
             <strong>오늘의 할 일</strong>
         </h3>
     </div>
     <div class="col-md-3">
-        <h3>
-            <strong>완료/수정/삭제</strong>
-        </h3>
-    </div>
+    <button class="btn btn-primary btn-fab btn-fab-mini btn-round" data-target="#todomodal" data-toggle="modal">
+	<i class="material-icons">edit</i>
+	</button>
+	</div>
 </div>
 <c:forEach items="${todolist}" var="todo">
 <c:if test="${todo.toDoCompleteNo  eq 0}">
@@ -329,35 +308,20 @@ y.getFullYear() + "-" + (y.getMonth() +1 < 10? "0" +  (y.getMonth() +1): y.getMo
      <input class="todo col-md-3" type="hidden" value="${todo.toDoNo}">
          <div class="col-md-3">${todo.toDoDetail}</div>
          <div class="col-md-3">
-             <button aria-label="Left Align" class="btn btn-warning completebtn" data-ctodono="${todo.toDoNo}" data-dctodono="${todo.toDoCompleteNo}" type="button">
+             <button aria-label="Left Align" class="btn btn-primary btn-fab btn-fab-mini completebtn" data-ctodono="${todo.toDoNo}" data-dctodono="${todo.toDoCompleteNo}" type="button">
                  <i class="material-icons">check</i>
              </button>
-             <button aria-label="Left Align" class="btn btn-primary updateViewbtn" data-enddate="${todo.toDoEndDate}" data-startdate="${todo.toDoStartDate}" data-utodonov="${todo.toDoNo}" type="button">
+             <button aria-label="Left Align" class="btn btn-primary btn-fab btn-fab-mini updateViewbtn" data-enddate="${todo.toDoEndDate}" data-startdate="${todo.toDoStartDate}" data-utodonov="${todo.toDoNo}" type="button">
                  <i class="material-icons">edit</i>
              </button>
-             <button aria-label="Left Align" class="btn btn-danger deletebtn" data-dtodono="${todo.toDoNo}" type="button">
+             <button aria-label="Left Align" class="btn btn-primary btn-fab btn-fab-mini deletebtn" data-dtodono="${todo.toDoNo}" type="button">
                  <i class="material-icons">clear</i>
              </button>
          </div>
      </div>
-     <%-- <div class="row" id="retodolist${todo.toDoNo}" style="display:none;">
-         <div class="col-md-3">
-             <input class="updateToDoDetail" id="toDoDetail${todo.toDoNo}" name="toDoDetail" type="text" value="${todo.toDoDetail}"></div>
-             <div class="col-md-3 tui-datetime-input tui-has-focus">
-                 <input aria-label="Date" autocomplete="off" class="updateToDo" id="addToDoStartDate${todo.toDoNo}" name="toDoStartDate" readonly type="text" value="${todo.toDoStartDate}">
-                     <div id="startpicker-container${todo.toDoNo}" style="margin-left: -1px;"></div>
-                 </div>
-                 <div class="col-md-3 tui-datetime-input tui-has-focus">
-                     <input aria-label="Date" autocomplete="off" class="updateToDoEnd" id="addToDoEndDate${todo.toDoNo}" name="toDoEndDate" readonly type="text" value="${todo.toDoEndDate}">
-                         <div id="endpicker-container${todo.toDoNo}" style="margin-left: -1px;"></div>
-                     </div>
-                     <div class="col-md-3">
-                         <button aria-label="Left Align" class="btn btn-primary updateToDobtn" data-utodono="${todo.toDoNo}" type="button">
-                             <i class="material-icons">edit</i>
-                         </button>
-                     </div>
-                 </div> --%>
              </c:if>
          </c:forEach>
+         </div>
+         </div>
      </body>
  </html>

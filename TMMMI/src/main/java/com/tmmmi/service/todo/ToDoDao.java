@@ -15,6 +15,6 @@ public interface ToDoDao {
 	public void updateToDoComplete(ToDo toDo) throws Exception;
 	public void deleteToDoComplete(ToDo toDo) throws Exception;
 	public void getDayGraph();
-	public void getMonthGraph();
+	public List<ToDo> getMonthGraph(Map<String, Object> todomap) throws Exception;
 	public void getWordCloud();
 }

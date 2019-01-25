@@ -61,15 +61,16 @@ public class ToDoServiceImpl implements ToDoService {
 		toDoDao.deleteToDoComplete(toDo);
 	}
 	@Override
-	public void getToDoDayGraph() {
-		// TODO Auto-generated method stub
+	public void getToDoDayGraph(Map<String, Object> todomap) throws Exception {
 		
 	}
 
 	@Override
-	public void getToDoMonthGraph() {
-		// TODO Auto-generated method stub
-		
+	public List<ToDo> getToDoMonthGraph(Map<String, Object> todomap) throws Exception {
+		System.out.println("getToDoMonthGraphServiceImpl Á¢±Ù");
+		List<ToDo> todoMonth = toDoDao.getMonthGraph(todomap);
+		System.out.println(todoMonth);
+		return todoMonth;
 	}
 
 	@Override

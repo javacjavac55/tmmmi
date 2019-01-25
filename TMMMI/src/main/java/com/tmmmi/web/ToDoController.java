@@ -1,6 +1,7 @@
 package com.tmmmi.web;
 
 import java.text.SimpleDateFormat;
+import java.time.Year;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
@@ -102,7 +103,34 @@ public class ToDoController {
 		return modelAndView;
 		}
 	public void getToDoDayGraph() {}
-	public void getToDoMonthGraph() {}
+	
+	@RequestMapping(value="/getToDoMonthGraph", method=RequestMethod.GET)
+	public ModelAndView getToDoMonthGraph(HttpSession session) throws Exception {
+		System.out.println("/getToDoMonthGraph 접근");
+		int userNo = (int)session.getAttribute("userNo");
+		
+		//현재 날짜 계산
+		int year = Year.now().getValue();
+		String transYear = Integer.toString(year);
+		String startDate = transYear+"-01-01";
+		String lastDate= transYear+"-12-31";
+		java.sql.Date startDate1 = java.sql.Date.valueOf(startDate);
+		java.sql.Date lastDate1 = java.sql.Date.valueOf(lastDate);
+		
+		Map<String, Object> todomap = new HashMap<String, Object>();
+		todomap.put("userNo", userNo);
+		todomap.put("startDate", startDate1);
+		todomap.put("lastDate", lastDate1);
+		System.out.println(todomap);
+		
+		//Business Logic
+		List<ToDo> todoMonth = toDoService.getToDoMonthGraph(todomap);
+		ModelAndView modelAndView = new ModelAndView();
+		System.out.println("todoMonth"+todoMonth);
+		modelAndView.setViewName("/todo/getToDoMonthGraph.jsp");
+		modelAndView.addObject("todoMonth",todoMonth);
+		return modelAndView;
+	}
 	public void getToDoWordCloud() {}
 	
 }
