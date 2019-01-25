@@ -46,6 +46,7 @@
 	<a href="/diary/addDiary.jsp">다이어리 등록</a><br/>
 	<a href="/diary/listDiary">다이어리 리스트</a><br/>
 	<a href="/content/sportContent.jsp">스포츠 컨텐츠 리스트</a>
+	<a href="/contentSport/getContentHighlightList">하이라이트</a>
 	<br/>
 	
 	<!-- 명훈 -->

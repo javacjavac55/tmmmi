@@ -45,11 +45,9 @@ public class ContentSportController {
 	
 	/*국내축구*/
 	@RequestMapping(value="getContentKsoccerList", method=RequestMethod.GET)
-	public ModelAndView getContentKsoccerList(HttpSession session)throws Exception  {
+	public ModelAndView getContentKsoccerList(HttpSession session)throws Exception  {				
 		
-		
-		
-		System.out.println("content/sportContent : GET");
+		System.out.println("contentSport/getContentKsoccerList : GET");
 		int userNo = ((int)session.getAttribute("userNo"));
 		System.out.println("userNo : "+userNo);
 		
@@ -71,7 +69,7 @@ public class ContentSportController {
 	@RequestMapping(value="getContentWsoccerList", method=RequestMethod.GET)
 	public ModelAndView getContentWsoccerList(HttpSession session)throws Exception  {		
 		
-		System.out.println("content/sportContent : GET");
+		System.out.println("contentSport/getContentWsoccerList : GET");
 		int userNo = ((int)session.getAttribute("userNo"));
 		System.out.println("userNo : "+userNo);
 		
@@ -93,7 +91,7 @@ public class ContentSportController {
 	@RequestMapping(value="getContentKbaseballList", method=RequestMethod.GET)
 	public ModelAndView getContentKbaseballList(HttpSession session)throws Exception  {		
 		
-		System.out.println("content/sportContent : GET");
+		System.out.println("contentSport/getContentKbaseballList : GET");
 		int userNo = ((int)session.getAttribute("userNo"));
 		System.out.println("userNo : "+userNo);
 		
@@ -114,7 +112,7 @@ public class ContentSportController {
 	@RequestMapping(value="getContentWbaseballList", method=RequestMethod.GET)
 	public ModelAndView getContentWbaseballList(HttpSession session)throws Exception  {		
 		
-		System.out.println("content/sportContent : GET");
+		System.out.println("contentSport/getContentWbaseballList : GET");
 		int userNo = ((int)session.getAttribute("userNo"));
 		System.out.println("userNo : "+userNo);
 		
@@ -135,7 +133,7 @@ public class ContentSportController {
 	@RequestMapping(value="getContentBasketballList", method=RequestMethod.GET)
 	public ModelAndView getContentBasketballList(HttpSession session)throws Exception  {		
 		
-		System.out.println("content/sportContent : GET");
+		System.out.println("contentSport/getContentBasketballList : GET");
 		int userNo = ((int)session.getAttribute("userNo"));
 		System.out.println("userNo : "+userNo);
 		
@@ -157,7 +155,7 @@ public class ContentSportController {
 	@RequestMapping(value="getContentGeneralList", method=RequestMethod.GET)
 	public ModelAndView getContentGeneralList(HttpSession session)throws Exception  {		
 		
-		System.out.println("content/sportContent : GET");
+		System.out.println("contentSport/getContentGeneralList : GET");
 		int userNo = ((int)session.getAttribute("userNo"));
 		System.out.println("userNo : "+userNo);
 		
@@ -175,5 +173,23 @@ public class ContentSportController {
 		return modelAndView;
 	}
 	
+	@RequestMapping(value="getContentHighlightList", method=RequestMethod.GET)
+	public ModelAndView getContenntHighlightList(HttpSession session)throws Exception{
+		
+		System.out.println("contentSport/getContentHighlightList : GET");
+		int userNo = ((int)session.getAttribute("userNo"));
+		System.out.println("userNo: "+userNo);
+		
+		ContentSetting contentSetting = contentSettingService.getContentSetting(userNo);
+		System.out.println("contentSetting"+contentSetting);
+		
+		List<Object> sportList = contentSportService.getContentHighlightList(contentSetting, 1);
+		
+		ModelAndView modelAndView = new	 ModelAndView();
+		modelAndView.addObject("contentSport", sportList);
+		modelAndView.setViewName("/content/highlightContent.jsp");
+		
+		return modelAndView;
+	}
 	
 }
