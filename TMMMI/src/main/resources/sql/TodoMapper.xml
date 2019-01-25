@@ -13,6 +13,8 @@
 		<result property="toDoEndDate" column="todo_end_date" jdbcType="DATE"/>
 		<result property="toDoCompleteNo" column="todo_complete_no" jdbcType="NUMERIC"/>
 		<result property="toDoCompleteDate" column="todo_complete_date" jdbcType="DATE"/>
+		<result property="toDoCount" column="todo_count" jdbcType="NUMERIC"/>
+		<result property="toDoCountDate" column="todo_count_date" jdbcType="VARCHAR"/>
 		</resultMap>
 		
 		<insert id="addTodo" parameterType="com.tmmmi.service.domain.ToDo">
@@ -66,5 +68,34 @@
 			WHERE user_no = #{userNo}
                         AND t.todo_no = tc.todo_no(+)
 						AND #{targetDate} BETWEEN todo_start_date AND todo_end_date
+		</select>
+		
+		<select id="getMonthList" parameterType="map" resultMap="TodoSelectMap">
+		SELECT m.month as todo_count_date, nvl(md.todo_count, 0) as todo_count
+		FROM
+		(
+		   select '01' month from dual union all
+		   select '02' month from dual union all
+		   select '03' month from dual union all
+		   select '04' month from dual union all
+		   select '05' month from dual union all
+		   select '06' month from dual union all
+		   select '07' month from dual union all
+		   select '08' month from dual union all
+		   select '09' month from dual union all
+		   select '10' month from dual union all
+		   select '11' month from dual union all
+		   select '12' month from dual
+		) m ,(
+					SELECT COUNT(*) as todo_count, to_char(tc.todo_complete_date, 'MM') as todo_count_date
+					FROM todo t, todo_complete tc
+					WHERE t.user_no = #{userNo}
+					AND t.todo_no = tc.todo_no(+)
+					AND todo_complete_date BETWEEN #{startDate} AND #{lastDate}
+					GROUP BY  to_char(tc.todo_complete_date, 'MM')
+					ORDER BY to_char(tc.todo_complete_date, 'MM')
+					) md 
+			WHERE m.month = md.todo_count_date(+)
+			ORDER BY m.month
 		</select>
 </mapper>

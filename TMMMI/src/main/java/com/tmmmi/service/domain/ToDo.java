@@ -12,7 +12,8 @@ public class ToDo {
 	private Date toDoEndDate;
 	private int toDoCompleteNo;
 	private Date toDoCompleteDate;
-	
+	private int toDoCount;
+	private String toDoCountDate;
 	
 	///Constructor
 	public ToDo() {
@@ -75,11 +76,27 @@ public class ToDo {
 		this.toDoCompleteDate = toDoCompleteDateList;
 	}
 
+	public int getToDoCount() {
+		return toDoCount;
+	}
+
+	public void setToDoCount(int toDoCount) {
+		this.toDoCount = toDoCount;
+	}
+
+	public String getToDoCompleteCount() {
+		return toDoCountDate;
+	}
+
+	public void setToDoCompleteCount(String toDoCompleteCount) {
+		this.toDoCountDate = toDoCompleteCount;
+	}
+
 	@Override
 	public String toString() {
 		return "ToDo [toDoNo=" + toDoNo + ", userNo=" + userNo + ", toDoDetail=" + toDoDetail + ", toDoStartDate="
 				+ toDoStartDate + ", toDoEndDate=" + toDoEndDate + ", toDoCompleteNo=" + toDoCompleteNo
-				+ ", toDoCompleteDate=" + toDoCompleteDate + "]";
+				+ ", toDoCompleteDate=" + toDoCompleteDate + ", toDoCount=" + toDoCount + ", toDoCompleteCount="
+				+ toDoCountDate + "]";
 	}
-	
 }

@@ -1,40 +1,51 @@
 <%@ page language="java" contentType="text/html; charset=EUC-KR"
     pageEncoding="EUC-KR"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<!DOCTYPE html>
 <html lang="ko">
 <head>
-<title>내 정보 보기</title>
-	<meta http-equiv="Content-Type" content="text/html; charset=EUC-KR">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-	
-	<!-- bootstrap -->
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" >
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" >
-	
-	<!-- jQuery -->
+  <link rel="apple-touch-icon" sizes="76x76" href="./assets/img/apple-icon.png">
+  <link rel="icon" type="image/png" href="./assets/img/favicon.png">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+  <title>Tmmmi</title>
+  <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0, shrink-to-fit=no' name='viewport' />
+  <!--     Fonts and icons     -->
+  <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Roboto+Slab:400,700|Material+Icons" />
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css">
+  <!-- CSS Files -->
+  <link href="/css/template/material-kit.css" rel="stylesheet" />
+  <!-- CSS Just for demo purpose, don't include it in your project -->
+  <link href="/css/template/demo.css" rel="stylesheet" />
+  	<!-- jQuery -->
 	<script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" ></script>
-	
-	<!-- styleSheet -->
-	<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
-	
-	<!-- 회원 정보 수정 이벤트 -->
-	<script type="text/javascript">
-	$(function() {
-		$( "button.btn.btn-primary" ).on("click" , function() {
-			self.location = "/user/updateUser?userNo=${userNo}"
+  
+  <!-- 버튼 이벤트 -->
+  <script type="text/javascript">
+	$(function(){
+		$(document).on('click', 'button.btn.btn-primary', function(){
+			self.location = "/user/updateUser"
 		});
-	});
-	</script>
+	})
+  </script>
 </head>
-<body>
-	<!-- sideMenu.jsp 추가 -->
-	<!-- 화면구성 -->
-	<div class="container">
-		<div class="page-header">
-	       <h3 class=" text-info">회원정보조회</h3>
-	    </div>
-	
+
+<body class="index-page sidebar-collapse">
+<jsp:include page="/common/toolbar2.jsp"></jsp:include>
+  <div class="page-header header-filter clear-filter purple-filter" data-parallax="true">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-8 ml-auto mr-auto">
+          <div class="brand">
+            <h2 class="title">Tmmmi</h2>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="main main-raised">
+    <div class="section section-basic">
+      <div class="container">
+		<h2>내 정보 조회</h2>
 		<div class="row">
 	  		<div class="col-xs-4 col-md-2"><strong>아 이 디</strong></div>
 			<div class="col-xs-8 col-md-4">${user.userId}</div>
@@ -75,9 +86,11 @@
 	  			<button type="button" class="btn btn-primary">회원정보수정</button>
 	  		</div>
 		</div>
-		
-		<br/>
-		
+		<br/>		
  	</div>
+    </div>
+  </div>
+  <jsp:include page="/common/footer.jsp"></jsp:include>
 </body>
+
 </html>

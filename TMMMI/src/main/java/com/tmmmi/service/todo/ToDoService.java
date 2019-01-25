@@ -13,7 +13,7 @@ public interface ToDoService {
 	public void updateToDo(ToDo toDo) throws Exception;
 	public void updateToDoComplete(ToDo toDo) throws Exception;
 	public void deleteToDoComplete(ToDo toDo) throws Exception;
-	public void getToDoDayGraph();
-	public void getToDoMonthGraph();
+	public void getToDoDayGraph(Map<String, Object> todomap) throws Exception;
+	public List<ToDo> getToDoMonthGraph(Map<String, Object> todomap) throws Exception;
 	public void getToDoWordCloud();
 }

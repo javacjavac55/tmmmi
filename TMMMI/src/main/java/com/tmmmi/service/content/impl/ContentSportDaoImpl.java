@@ -2,16 +2,25 @@ package com.tmmmi.service.content.impl;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 
 import org.apache.ibatis.session.SqlSession;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
+import org.openqa.selenium.By;
+import org.openqa.selenium.NoSuchElementException;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.support.ui.FluentWait;
+import org.openqa.selenium.support.ui.Wait;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Repository;
 
+import com.google.common.base.Function;
 import com.tmmmi.service.content.ContentDao;
 import com.tmmmi.service.domain.ContentSetting;
 import com.tmmmi.service.domain.ContentSport;
@@ -44,7 +53,7 @@ public class ContentSportDaoImpl extends ContentDaoAdaptor {
 
 		List<Object> sportList = new ArrayList<Object>();
 
-		for (int i = start; i < 20; i++) {
+		for (int i = start; i < 5; i++) {
 			Element element = contents.get(i);
 			subAddress = element.attr("href");
 			// subAddress=
@@ -96,7 +105,7 @@ public class ContentSportDaoImpl extends ContentDaoAdaptor {
 
 		List<Object> sportList = new ArrayList<Object>();
 
-		for (int i = start; i < 20; i++) {
+		for (int i = start; i < 5; i++) {
 			Element element = contents.get(i);
 			subAddress = element.attr("href");
 			// subAddress=
@@ -146,7 +155,7 @@ public class ContentSportDaoImpl extends ContentDaoAdaptor {
 
 		List<Object> sportList = new ArrayList<Object>();
 
-		for (int i = start; i < 20; i++) {
+		for (int i = start; i < 5; i++) {
 			Element element = contents.get(i);
 			subAddress = element.attr("href");
 			// subAddress=
@@ -196,7 +205,7 @@ public class ContentSportDaoImpl extends ContentDaoAdaptor {
 
 		List<Object> sportList = new ArrayList<Object>();
 
-		for (int i = start; i < 15; i++) {
+		for (int i = start; i < 5; i++) {
 			Element element = contents.get(i);
 			subAddress = element.attr("href");
 			// subAddress=
@@ -246,7 +255,7 @@ public class ContentSportDaoImpl extends ContentDaoAdaptor {
 
 		List<Object> sportList = new ArrayList<Object>();
 
-		for (int i = start; i < 20; i++) {
+		for (int i = start; i < 5; i++) {
 			Element element = contents.get(i);
 			subAddress = element.attr("href");
 			// subAddress=
@@ -296,7 +305,7 @@ public class ContentSportDaoImpl extends ContentDaoAdaptor {
 
 		List<Object> sportList = new ArrayList<Object>();
 
-		for (int i = start; i < 20; i++) {
+		for (int i = start; i < 5; i++) {
 			Element element = contents.get(i);
 			subAddress = element.attr("href");
 			// subAddress=
@@ -326,5 +335,45 @@ public class ContentSportDaoImpl extends ContentDaoAdaptor {
 		return sportList;
 	}
 
-
+	@Override
+	public List<Object> getContentHighlightList(ContentSetting contentSetting, int index) throws Exception {
+		
+		String address = "https://tv.naver.com/spotvmaster/clips";
+		int start = 0;
+		int end = 5 + (index * 5);
+		String firstAddress = "https://tv.naver.com";
+		String subAddress = "";
+		String fullAddress = "";
+		
+		System.out.println("");
+		Document doc = Jsoup.connect(address).header("User-Agent", "Mozilla/5.0").get();
+		
+		List<Object> sportList = new ArrayList<Object>();
+		
+		Elements link = doc.select(".cds._MM_CARD > div > a");
+		
+		for(int i = start; i<5; i++) {
+			Element element = link.get(i);
+			
+			ContentSport contentSport = new ContentSport();
+			
+			contentSport.setSportThumbnail(element.getElementsByTag("img").first().attr("src"));
+			contentSport.setSportTitle(element.getElementsByTag("img").first().attr("alt"));
+			
+			subAddress=element.attr("href");
+			fullAddress= firstAddress + subAddress;
+			
+			doc = Jsoup.connect(fullAddress).header("User-Agent", "Mozilla/5.0").get();
+			//System.out.println(doc.getElementsByAttributeValue("property", "og:video:url").attr("content"));
+			contentSport.setSportVideo(doc.getElementsByAttributeValue("property", "og:video:url").attr("content"));
+			
+			sportList.add(contentSport);
+		}
+		System.out.println(sportList);
+		
+		return sportList;
+	}
+	
+		
+	
 }
