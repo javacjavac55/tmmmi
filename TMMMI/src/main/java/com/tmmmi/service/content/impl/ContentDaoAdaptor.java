@@ -49,14 +49,20 @@ public abstract class ContentDaoAdaptor implements ContentDao {
 		return null;
 	}
 	
-	//tasty
+	@Override
+	public List<Object> getContentHighlightList(ContentSetting contentSetting, int index) throws Exception{
+		return null;
+	}
 	
-	//shopping
 	@Override
 	public List<Object> getContentShoppingFirstList(ContentSetting contentSetting, int index) throws Exception {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
+	//tasty
+	
+	//shopping
+	
 	//keyword
 }

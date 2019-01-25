@@ -40,17 +40,20 @@
 	<a href="/user/getUserList">회원 리스트</a><br/>
 	<a href="/user/searchUserId.jsp">아이디 찾기</a><br/>
 	<a href="/contentSetting/getContentSetting">컨텐츠 설정</a><br/>
+	<a href="/common/TopMenu.jsp">사이드 메뉴</a><br/>
 	
 	<!-- 중열 -->
 	<a href="/diary/addDiary.jsp">다이어리 등록</a><br/>
 	<a href="/diary/listDiary">다이어리 리스트</a><br/>
 	<a href="/content/sportContent.jsp">스포츠 컨텐츠 리스트</a>
+	<a href="/contentSport/getContentHighlightList">하이라이트</a>
 	<br/>
 	
 	<!-- 명훈 -->
 	
 	<a href="/todo/getToDoList">할 일 리스트</a><br/>
 	<a href="/content/tastyContent.jsp">맛집컨텐츠박스</a><br/>
+	<a href="/todo/getToDoMonthGraph.jsp">할 일 그래프</a>
 	
 	<!-- 지슬 -->
 	<a href="/faq/getFAQList">FAQ 리스트</a><br/>

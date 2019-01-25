@@ -70,14 +70,13 @@
 	<div class="page-header">
 		<h2>1:1 문의하기</h2>
 		<p align="right">
-		<select name="searchCondition" class="ct_input_g" style="width:80px; height:25px;">
-			<option value="0"  ${ ! empty search.searchCondition && search.searchCondition==0 ? "selected" : "" }>글 제목</option>
-			<option value="1"  ${ ! empty search.searchCondition && search.searchCondition==1 ? "selected" : "" }>글 내용</option>
-		</select>
-		<input type="text" name="searchKeyword" 
-					value="${! empty search.searchKeyword ? search.searchKeyword : ""}"  
-					class="ct_input_g" style="width:200px; height:25px" > 
-		<button type="button" class="btn btn-default" style="height:27px;">검색</button>
+			<select name="searchCondition" class="ct_input_g" style="width:200px; height:25px;">
+				<option value="0"  ${ ! empty search.searchCondition && search.searchCondition==0 ? "selected" : "" }>글 제목 + 글 내용</option>
+			</select>
+			<input type="text" name="searchKeyword" 
+						value="${! empty search.searchKeyword ? search.searchKeyword : ""}"  
+						class="ct_input_g" style="width:200px; height:25px" > 
+			<button type="button" class="btn btn-default" style="height:27px;">검색</button>
 		</p>
 	</div>
 	

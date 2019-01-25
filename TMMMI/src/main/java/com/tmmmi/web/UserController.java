@@ -164,7 +164,7 @@ public class UserController {
 		}
 		
 		ModelAndView modelAndView = new ModelAndView();
-		modelAndView.setViewName("redirect:/user/loginIndex.jsp");
+		modelAndView.setViewName("redirect:/common/TopMenu.jsp");
 		return modelAndView;
 	}
 	

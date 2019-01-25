@@ -52,17 +52,19 @@ img {
 		</div>
 	</div>
 	
-	<c:import url="/content/getContentKsoccerList">
+	<c:import url="/contentSport/getContentKsoccerList">
 	</c:import>
-	<c:import url="/content/getContentWsoccerList">
+	<c:import url="/contentSport/getContentWsoccerList">
 	</c:import>
-	<c:import url="/content/getContentKbaseballList">
+	<c:import url="/contentSport/getContentKbaseballList">
 	</c:import>
-	<c:import url="/content/getContentWbaseballList">
+	<c:import url="/contentSport/getContentWbaseballList">
 	</c:import>
-	<c:import url="/content/getContentBasketballList">
+	<c:import url="/contentSport/getContentBasketballList">
 	</c:import>
-	<c:import url="/content/getContentGeneralList">
+	<c:import url="/contentSport/getContentGeneralList">
+	</c:import>
+	<c:import url="/contentSport/getContentHighlightList">
 	</c:import>
 
 	<form class="form-inline" name="detailForm" align="center">

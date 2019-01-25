@@ -42,14 +42,11 @@
 								user_no = #{userNo}
 									<if test="searchCondition != null">
 										<if test="searchCondition == 0 and searchKeyword !='' ">
-											qna_title=#{search.searchKeyword}
-										</if>
-										<if test="searchCondition == 1 and searchKeyword != '' ">
-											qna_detail=#{search.searchKeyword} 
+											qna_title LIKE '%'||#{searchKeyword}||'%' OR qna_detail LIKE '%'||#{searchKeyword}||'%'
 										</if>
 									</if>
 								</where>
-									ORDER BY qna_no ) inner_table
+									ORDER BY qna_no DESC) inner_table
 							WHERE ROWNUM &lt;= #{search.endRowNum} )
 		WHERE row_seq BETWEEN #{search.startRowNum} AND #{search.endRowNum} 
 	 </select>
@@ -80,7 +77,7 @@
 										</if>
 										</where>
 									</if>
-									ORDER BY qna_no ) inner_table
+									ORDER BY qna_no DESC) inner_table
 							WHERE ROWNUM &lt;= #{search.endRowNum} )
 		WHERE row_seq BETWEEN #{search.startRowNum} AND #{search.endRowNum} 
 	 </select>

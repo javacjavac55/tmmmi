@@ -2,6 +2,8 @@ package com.tmmmi.web;
 
 import java.util.Map;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.factory.annotation.Value;
@@ -16,6 +18,7 @@ import com.tmmmi.common.Page;
 import com.tmmmi.common.Search;
 import com.tmmmi.service.domain.FAQ;
 import com.tmmmi.service.faq.FAQService;
+import com.tmmmi.service.user.UserService;
 
 @Controller
 @RequestMapping("/faq/*")
@@ -24,6 +27,10 @@ public class FAQController {
 	@Autowired
 	@Qualifier("faqServiceImpl")
 	private FAQService faqService;
+	
+	@Autowired
+	@Qualifier("userServiceImpl")
+	private UserService userService;
 	
 	public FAQController() {
 		// TODO Auto-generated constructor stub
@@ -58,10 +65,10 @@ public class FAQController {
 	
 	
 	@RequestMapping(value="getFAQList" )
-	public ModelAndView getFAQList(@ModelAttribute("search") Search search) throws Exception{
+	public ModelAndView getFAQList(@ModelAttribute("search") Search search, HttpSession session) throws Exception{
 		
 		System.out.println("/FAQ/getFAQList : GET/POST");
-		
+			
 		if(search.getCurrentPage() ==0 ){
 			search.setCurrentPage(1);
 		}
@@ -80,6 +87,9 @@ public class FAQController {
 		System.out.println("map.get::::" +map.get("list"));
 		modelAndView.addObject("resultPage", resultPage);
 		modelAndView.addObject("search", search);
+		
+		int userNo = (int)session.getAttribute("userNo");
+		modelAndView.addObject("role", userService.getUser(userNo).getRole());
 		
 		modelAndView.setViewName("/FAQ/listFAQ.jsp");
 		return modelAndView;
