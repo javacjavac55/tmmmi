@@ -1,11 +1,14 @@
 package com.tmmmi.service.content.impl;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 
 import org.springframework.stereotype.Service;
 
 import com.tmmmi.service.content.ContentDao;
+import com.tmmmi.service.domain.ContentSetting;
 
 @Service("contentShoppingServiceImpl")
 public class ContentShoppingServiceImpl extends ContentServiceAdaptor {	
@@ -21,5 +24,9 @@ public class ContentShoppingServiceImpl extends ContentServiceAdaptor {
 	public ContentShoppingServiceImpl() {
 		System.out.println(this.getClass());
 	}
-		
+	
+	public List<Object> getContentShoppingFirstList(ContentSetting contentSetting, int index) throws Exception{
+		return contentShoppingDao.getContentShoppingFirstList(contentSetting, index);
+	}
+	
 }

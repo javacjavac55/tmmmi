@@ -1,5 +1,9 @@
 package com.tmmmi.web;
 
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -55,5 +59,25 @@ public class ToDoRestController {
 		System.out.println(toDo);
 		toDoService.deleteToDoComplete(toDo);
 		System.out.println("/deleteToDoComplete 완료");
+	}
+	@RequestMapping(value="/getToDoMonthGraphPost",method=RequestMethod.POST)
+	public List<ToDo> getToDoMonthGraphPost(@RequestBody String year, HttpSession session) throws Exception{
+		System.out.println("그래프접근"+year);
+		String startDate = year+"-01-01";
+		String lastDate= year+"-12-31";
+		System.out.println(startDate+","+lastDate);
+		java.sql.Date startDate1 = java.sql.Date.valueOf(startDate);
+		java.sql.Date lastDate1 = java.sql.Date.valueOf(lastDate);
+		
+		Map<String, Object> todomap = new HashMap<String, Object>();
+		int userNo = (int) session.getAttribute("userNo");
+		todomap.put("userNo", userNo);
+		todomap.put("startDate", startDate1);
+		todomap.put("lastDate", lastDate1);
+		System.out.println(todomap);
+		
+		//Business Logic
+		List<ToDo> todoMonth = toDoService.getToDoMonthGraph(todomap);
+		return todoMonth;
 	}
 }
