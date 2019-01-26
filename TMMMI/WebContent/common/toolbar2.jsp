@@ -56,6 +56,7 @@
             <div class="dropdown-menu dropdown-with-icons">
 				<a href="/todo/getToDoList" class="dropdown-item">할 일 리스트</a>
 				<a href="/content/tastyContent.jsp" class="dropdown-item">맛집컨텐츠박스</a>
+				<a href="/todo/getToDoMonthGraph">할 일 그래프</a>
             </div>
           </li>
           <!-- 지슬 -->

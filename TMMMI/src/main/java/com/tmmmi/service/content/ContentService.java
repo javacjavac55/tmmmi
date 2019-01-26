@@ -23,7 +23,7 @@ public interface ContentService {
 	
 	public List<Object> getContentHighlightList(ContentSetting contentSetting, int index)throws Exception;
 	//tasty
-	
+	public List<Object> getContentTastyList(ContentSetting contentSetting, int index)throws Exception;
 	//shopping
 	public List<Object> getContentShoppingFirstList(ContentSetting contentSetting, int index) throws Exception;
 	

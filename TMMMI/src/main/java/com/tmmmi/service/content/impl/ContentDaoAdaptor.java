@@ -59,9 +59,11 @@ public abstract class ContentDaoAdaptor implements ContentDao {
 		// TODO Auto-generated method stub
 		return null;
 	}
-
 	//tasty
-	
+	public List<Object> getContentList(ContentSetting contentSetting, int index) throws Exception {
+		// TODO Auto-generated method stub
+		return null;
+	}
 	//shopping
 	
 	//keyword
