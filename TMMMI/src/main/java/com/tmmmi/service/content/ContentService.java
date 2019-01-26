@@ -21,7 +21,7 @@ public interface ContentService {
 	
 	public List<Object> getContentGeneralList(ContentSetting contentSetting , int index) throws Exception;
 	
-	public List<Object> getContentHighlightList(ContentSetting contentSetting, int index)throws Exception;
+	public List<Object> getContentHighlightList(ContentSetting contentSetting, int index) throws Exception;
 	//tasty
 	public List<Object> getContentTastyList(ContentSetting contentSetting, int index)throws Exception;
 	//shopping
