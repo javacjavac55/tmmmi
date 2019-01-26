@@ -6,12 +6,13 @@ public class CalendarSport {
 
 	private String leagueTitle;
 	private Date matchDate;
-	private String teamAway;
-	private String teamHome;
-	private int teamAwayScore;
-	private int teamHomeScore;
-	private String teamAwayEmblem;
-	private String teamHomeEmblem;
+	private String gameStartTime;	
+	private String awayTeamName;
+	private String homeTeamName;
+	private int awayTeamScore;
+	private int homeTeamScore;
+	private String awayTeamEmblem64URI;
+	private String homeTeamEmblem64URI;
 	
 	public CalendarSport() {
 	}
@@ -33,51 +34,68 @@ public class CalendarSport {
 	}
 
 	public String getTeamAway() {
-		return teamAway;
+		return awayTeamName;
 	}
 
-	public void setTeamAway(String teamAway) {
-		this.teamAway = teamAway;
+	public void setTeamAway(String awayTeamName) {
+		this.awayTeamName = awayTeamName;
 	}
 
 	public String getTeamHome() {
-		return teamHome;
+		return homeTeamName;
 	}
 
-	public void setTeamHome(String teamHome) {
-		this.teamHome = teamHome;
+	public void setTeamHome(String homeTeamName) {
+		this.homeTeamName = homeTeamName;
 	}
 
 	public int getTeamAwayScore() {
-		return teamAwayScore;
+		return awayTeamScore;
 	}
 
-	public void setTeamAwayScore(int teamAwayScore) {
-		this.teamAwayScore = teamAwayScore;
+	public void setTeamAwayScore(int awayTeamScore) {
+		this.awayTeamScore = awayTeamScore;
 	}
 
 	public int getTeamHomeScore() {
-		return teamHomeScore;
+		return homeTeamScore;
 	}
 
-	public void setTeamHomeScore(int teamHomeScore) {
-		this.teamHomeScore = teamHomeScore;
+	public void setTeamHomeScore(int homeTeamScore) {
+		this.homeTeamScore = homeTeamScore;
 	}
 
 	public String getTeamAwayEmblem() {
-		return teamAwayEmblem;
+		return awayTeamEmblem64URI;
 	}
 
-	public void setTeamAwayEmblem(String teamAwayEmblem) {
-		this.teamAwayEmblem = teamAwayEmblem;
+	public void setTeamAwayEmblem(String awayTeamEmblem64URI) {
+		this.awayTeamEmblem64URI = awayTeamEmblem64URI;
 	}
 
 	public String getTeamHomeEmblem() {
-		return teamHomeEmblem;
+		return homeTeamEmblem64URI;
 	}
 
-	public void setTeamHomeEmblem(String teamHomeEmblem) {
-		this.teamHomeEmblem = teamHomeEmblem;
+	public void setTeamHomeEmblem(String homeTeamEmblem64URI) {
+		this.homeTeamEmblem64URI = homeTeamEmblem64URI;
 	}
+
+	public String getMatchTime() {
+		return gameStartTime;
+	}
+
+	public void setMatchTime(String gameStartTime) {
+		this.gameStartTime = gameStartTime;
+	}
+	
+	@Override
+	public String toString() {
+		return "CalendarSport [leagueTitle=" + leagueTitle + ", matchDate=" + matchDate + ", gameStartTime=" + gameStartTime
+				+ ", awayTeamName=" + awayTeamName + ", homeTeamName=" + homeTeamName + ", awayTeamScore=" + awayTeamScore
+				+ ", homeTeamScore=" + homeTeamScore + ", awayTeamEmblem64URI=" + awayTeamEmblem64URI + ", homeTeamEmblem64URI="
+				+ homeTeamEmblem64URI + "]";
+	}
+
 
 }

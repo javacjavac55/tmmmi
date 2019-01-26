@@ -1,5 +1,6 @@
 package com.tmmmi.service.calendarsport.impl;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -12,6 +13,7 @@ import com.tmmmi.service.calendarsport.CalendarSportDao;
 import com.tmmmi.service.calendarsport.CalendarSportService;
 import com.tmmmi.service.diary.DiaryDao;
 import com.tmmmi.service.domain.CalendarSport;
+import com.tmmmi.service.domain.Schedule;
 
 @Service("calendarSportServiceImpl")
 public class CalendarSportServiceImpl implements CalendarSportService {
@@ -25,11 +27,12 @@ public class CalendarSportServiceImpl implements CalendarSportService {
 	}
 
 	@Override
-	public Map<String, Object> getCalendarSportList(Search search, int userNo) throws Exception {
-		// TODO Auto-generated method stub
-		List<CalendarSport> list = calendarSportDao.getCalendarSportList(search, userNo);
+	public List<Schedule> getCalendarSportList(long startDate, long endDate) throws Exception{
+		Map<String, Long> map = new HashMap<String, Long>();
+		map.put("startDate", startDate);
+		map.put("endDate", endDate);
 		
-		return null;
+		return calendarSportDao.getCalendarSportList(map);
 	}
 
 }
