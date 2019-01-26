@@ -123,7 +123,6 @@ body{
                                                ),
                                                dataType: 'json',
                                                success: $(function () {
-                                                   console.log();
                                                    $("#todolist" + todoNo + " > div ").eq(0).text($("#toDoDetail" + todoNo).val());
                                                    $("#todolist" + todoNo + " > div ").eq(1).text($("#addToDoStartDate" + todoNo).val());
                                                    $("#todolist" + todoNo + " > div ").eq(2).text($("#addToDoEndDate" + todoNo).val());

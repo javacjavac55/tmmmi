@@ -62,7 +62,9 @@ public abstract class ContentServiceAdaptor implements ContentService {
 	}
 	
 	//tasty
-	
+	public List<Object>getContentTastyList(ContentSetting contentSetting, int index)throws Exception{
+		return null;
+	}
 	//shopping
 	@Override
 	public List<Object> getContentShoppingFirstList(ContentSetting contentSetting, int index) throws Exception {

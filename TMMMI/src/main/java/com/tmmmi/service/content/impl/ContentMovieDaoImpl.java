@@ -53,7 +53,6 @@ public class ContentMovieDaoImpl extends ContentDaoAdaptor {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-
 		return result;
 	}
 	

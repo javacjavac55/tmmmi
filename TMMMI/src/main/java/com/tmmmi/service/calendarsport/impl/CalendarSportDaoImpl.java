@@ -12,6 +12,7 @@ import org.springframework.stereotype.Repository;
 import com.tmmmi.common.Search;
 import com.tmmmi.service.calendarsport.CalendarSportDao;
 import com.tmmmi.service.domain.CalendarSport;
+import com.tmmmi.service.domain.Schedule;
 
 @Repository("calendarSportDaoImpl")
 public class CalendarSportDaoImpl implements CalendarSportDao {
@@ -25,19 +26,11 @@ public class CalendarSportDaoImpl implements CalendarSportDao {
 	
 	public CalendarSportDaoImpl() {
 		// TODO Auto-generated constructor stub
-		System.out.println(this.getClass());
-		
 	}
 
-	
 	@Override
-	public List<CalendarSport> getCalendarSportList(Search search, int userNo) throws Exception {
-		// TODO Auto-generated method stub
-		Map<String, Object> map= new HashMap<String, Object>();
-		map.put("search", search);
-		map.put("userNo", userNo);
-		
-		return sqlSession.selectList("CalendarSportMapper.getCalendarSportList", map);
+	public List<Schedule> getCalendarSportList(Map<String, Long> map) throws Exception{
+		return sqlSession.selectList("CalendarMovieMapper.getCalendarSportList", map);
 	}
 
 }

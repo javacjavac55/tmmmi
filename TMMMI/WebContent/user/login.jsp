@@ -91,7 +91,7 @@
                       <i class="material-icons">lock_outline</i>
                     </span>
                   </div>
-                  <input type="password" class="form-control" name="password" id="password" placeholder="Password">
+                  <input type="password" class="form-control" name="password" id="password" placeholder="Password" onKeyPress="if(event.keyCode=='13'){fncLogin() }">
                 </div>
               </div>
               <div class="footer text-center">
@@ -104,7 +104,6 @@
       </div>
     </div>
   </div>
-  <jsp:include page="/common/footer.jsp"></jsp:include>
 </body>
 
 </html>

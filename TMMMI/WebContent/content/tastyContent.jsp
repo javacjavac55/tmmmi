@@ -49,7 +49,7 @@
                                                     ),
                                                     dateType: 'json',
                                                     success: function (JSONData) {
-                                                        console.log("abc")
+                                                        console.log("abc");
                                                         $.each(JSONData, function (i) {
                                                             var list = JSONData[i];
                                                             var trmapx = JSONData[i].mapx;

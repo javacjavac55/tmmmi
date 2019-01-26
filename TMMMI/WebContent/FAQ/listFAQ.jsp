@@ -18,8 +18,8 @@
 	<script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" ></script>
 	
-	<!-- <!-- template -->
-	<link rel="stylesheet" href="/css/template/main.css"> -->
+	<!-- template -->
+	<link rel="stylesheet" href="/css/template/main.css">
 	
 	<script type="text/javascript">
 	
@@ -35,8 +35,7 @@
 		
 		var faqNo=$(this).data("param1");
 		$(".title").on("click",function(){
-			/* alert("Å¬¸¯µÊ?") */
-			
+			/* alert("Å¬¸¯µÊ?") */			
 			var faqNo=$(this).data("param1");
 			$(".hide"+faqNo).toggleClass("show");
         });

@@ -49,7 +49,6 @@ public class UserSettingServiceTest {
 		UserSetting userSetting = new UserSetting();
 		userSetting.setUserNo(1);
 		userSetting.setMainColorModeNo(1);
-		userSetting.setMenuBackgroundColor("E8F5FF");
 		userSetting.setMenuFontColor("#000000");
 		
 		userSettingService.updateUserSetting(userSetting);

@@ -114,12 +114,12 @@
 
 <body class="index-page sidebar-collapse">
 <jsp:include page="/common/toolbar2.jsp"></jsp:include>
-  <div class="page-header header-filter clear-filter purple-filter" data-parallax="true">
+  <div class="page-header header-filter clear-filter" data-parallax="true" style="background-image: url(' ${ ! empty userSetting.image ? " ${userSetting.image}" : " /images/template/image_6845277191476929532543.jpg" }')">
     <div class="container">
       <div class="row">
         <div class="col-md-8 ml-auto mr-auto">
           <div class="brand">
-            <h2 class="title">Tmmmi</h2>
+            <h2 class="title">Update User Setting</h2>
           </div>
         </div>
       </div>
@@ -128,6 +128,9 @@
   <div class="main main-raised">
     <div class="section section-basic">
       <div class="container">
+      <div class="row">
+		<div class="col-md-6 ml-auto mr-auto">
+		<div class="profile">
 		 <div class="page-header text-center">
 		<h3 class=" text-info">회원정보수정</h3>
 		<h5 class="text-muted">내 정보를 <strong class="text-danger">최신정보로 관리</strong>해 주세요.</h5>
@@ -196,6 +199,9 @@
 				</div>
 			</div>
 		</form>
+      </div>
+      </div>
+      </div>
       </div>
     </div>
   </div>
