@@ -30,10 +30,16 @@ public class UserController {
 	@Autowired
 	@Qualifier("userServiceImpl")
 	private UserService userService;
+	
+	@Autowired
 	@Qualifier("calendarSettingServiceImpl")
 	private CalendarSettingService calendarSettingService;
+	
+	@Autowired
 	@Qualifier("userSettingServiceImpl")
 	private UserSettingService userSettingService;
+	
+	@Autowired
 	@Qualifier("contentSettingServiceImpl")
 	private ContentSettingService contentSettingService;
 	
@@ -161,6 +167,7 @@ public class UserController {
 		User dbUser = userService.getUserId(user.getUserId());
 		if(user.getPassword().equals(dbUser.getPassword())) {
 			session.setAttribute("userNo", dbUser.getUserNo());
+			session.setAttribute("userSetting", userSettingService.getUserSetting(dbUser.getUserNo()));
 		}
 		
 		ModelAndView modelAndView = new ModelAndView();
