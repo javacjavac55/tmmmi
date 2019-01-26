@@ -9,16 +9,6 @@
 <body>
   <footer class="footer" data-background-color="black">
     <div class="container">
-      <nav class="float-left">
-        <ul>
-          <li>
-          	Calendar
-          </li>
-          <li>
-          	Content
-          </li>
-        </ul>
-      </nav>
       <div class="copyright float-right">
         <i class="material-icons">favorite</i>Tmmmi
       </div>

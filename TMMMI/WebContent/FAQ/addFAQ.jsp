@@ -32,8 +32,7 @@
 	<script src ="https://unpkg.com/sweetalert/dist/sweetalert.min.js" ></script >
 	<<!-- script src ="/css/sweetAlert/docs/assets/sweetalert/sweetalert.min.js"></script >
 	<!-- <link href= "/css/sweetAlert/src/sweetalert.css" rel="stylesheet"> -->
-	<!-- <script src="/javascript/sweet/sweetalert2.js"></script>
-	<link rel="stylesheet" href="/css/sweet/sweetalert2.min.css"> --> -->
+
 	
 	<link href="https://fonts.googleapis.com/css?family=Nanum+Gothic:400,700,800&amp;subset=korean" rel="stylesheet">
 

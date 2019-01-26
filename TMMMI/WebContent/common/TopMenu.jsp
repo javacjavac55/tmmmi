@@ -3,9 +3,6 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
-  <link rel="apple-touch-icon" sizes="76x76" href="./assets/img/apple-icon.png">
-  <link rel="icon" type="image/png" href="./assets/img/favicon.png">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
   <title>Tmmmi</title>
   <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0, shrink-to-fit=no' name='viewport' />
   <!--  Fonts and icons -->
@@ -28,7 +25,8 @@
       <div class="row">
         <div class="col-md-8 ml-auto mr-auto">
           <div class="brand">
-            <h2 class="title">Tmmmi</h2>
+            <h2 class="title">Tmmmi Side Menu</h2>
+            <h3 class="title">¸ðµÎ Èû³»º¾½Ã´Ù</h3>
           </div>
         </div>
       </div>

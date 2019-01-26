@@ -56,7 +56,9 @@
 </script>
 
 <style>
-		.title{cursor:pointer;}
+		.title{
+			cursor:pointer;
+		}
 		/* .finish{background-color: whitesmoke} */
 </style>
 

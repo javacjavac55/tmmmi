@@ -37,7 +37,7 @@ public class UserSettingController {
 		ModelAndView modelAndView = new ModelAndView();
 		modelAndView.addObject("userSetting", userSetting);
 		modelAndView.setViewName("/userSetting/getUserSetting.jsp");
-		System.out.println("³¡");
+		
 		return modelAndView;
 	}
 	
