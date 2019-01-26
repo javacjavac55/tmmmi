@@ -59,8 +59,11 @@
 	<a href="/faq/getFAQList">FAQ 리스트</a><br/>
 	<a href="/qna/getQNAList">QNA 리스트</a><br/>
 	<a href="/widget/getWeather3.jsp">날씨 </a><br/>
-
-
+	<a href="/contentShopping/shoppingContent">쇼핑해보자 </a><br/>
+	
+	<br/><br/>
+	왜리스트가없져? <br/>
+	<a href="/content/listContent.jsp">FAQ 리스트</a><br/>
 </body>
 
 </html>

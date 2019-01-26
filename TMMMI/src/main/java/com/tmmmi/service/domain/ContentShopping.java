@@ -4,7 +4,7 @@ public class ContentShopping {
 	
 	private int sectionNo;
 	private String shoppingTitle;
-	private String shoppingDetail;
+	private String shoppingLink;
 	private int shoppingPrice;
 	private String shoppingThumbnail;
 	private String shoppingVideo;
@@ -29,12 +29,12 @@ public class ContentShopping {
 		this.shoppingTitle = shoppingTitle;
 	}
 
-	public String getShoppingDetail() {
-		return shoppingDetail;
+	public String getShoppingLink() {
+		return shoppingLink;
 	}
 
-	public void setShoppingDetail(String shoppingDetail) {
-		this.shoppingDetail = shoppingDetail;
+	public void setShoppingLink(String shoppingLink) {
+		this.shoppingLink = shoppingLink;
 	}
 
 	public int getShoppingPrice() {
