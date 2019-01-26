@@ -18,6 +18,13 @@ public class ContentMovie {
 	private String movieDayAudience;
 	private String movieTotalAudience;
 	
+	//New Movie
+	private String movieRatingCount;
+	private String movieReserveRate;
+	private String movieGenre;
+	private String movieRunningTime;
+	
+	
 	public ContentMovie() {
 		// TODO Auto-generated constructor stub
 	}
@@ -126,6 +133,38 @@ public class ContentMovie {
 		this.movieTotalAudience = movieTotalAudience;
 	}
 
+	public String getMovieRatingCount() {
+		return movieRatingCount;
+	}
+
+	public void setMovieRatingCount(String movieRatingCount) {
+		this.movieRatingCount = movieRatingCount;
+	}
+
+	public String getMovieReserveRate() {
+		return movieReserveRate;
+	}
+
+	public void setMovieReserveRate(String movieReserveRate) {
+		this.movieReserveRate = movieReserveRate;
+	}
+
+	public String getMovieGenre() {
+		return movieGenre;
+	}
+
+	public void setMovieGenre(String movieGenre) {
+		this.movieGenre = movieGenre;
+	}
+
+	public String getMovieRunningTime() {
+		return movieRunningTime;
+	}
+
+	public void setMovieRunningTime(String movieRunningTime) {
+		this.movieRunningTime = movieRunningTime;
+	}
+
 	@Override
 	public String toString() {
 		StringBuilder builder = new StringBuilder();
@@ -155,6 +194,14 @@ public class ContentMovie {
 		builder.append(movieDayAudience);
 		builder.append(", movieTotalAudience=");
 		builder.append(movieTotalAudience);
+		builder.append(", movieRatingCount=");
+		builder.append(movieRatingCount);
+		builder.append(", movieReserveRate=");
+		builder.append(movieReserveRate);
+		builder.append(", movieGenre=");
+		builder.append(movieGenre);
+		builder.append(", movieRunningTime=");
+		builder.append(movieRunningTime);
 		builder.append("]");
 		return builder.toString();
 	}

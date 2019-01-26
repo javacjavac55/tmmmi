@@ -36,5 +36,13 @@ public class ContentMovieController {
 		modelAndView.setViewName("/content/contentMovieBoxOffice.jsp");
 		return modelAndView;
 	}
+	
+	@RequestMapping(value="contentMovieNewMovie", method=RequestMethod.GET)
+	public ModelAndView getNewMovieList() throws Exception {
+		ModelAndView modelAndView = new ModelAndView();
+		modelAndView.addObject("contentMovieNewMovieList", contentMovieService.getNewMovieList(null, 0));
+		modelAndView.setViewName("/content/contentMovieNewMovie.jsp");
+		return modelAndView;
+	}
 		
 }

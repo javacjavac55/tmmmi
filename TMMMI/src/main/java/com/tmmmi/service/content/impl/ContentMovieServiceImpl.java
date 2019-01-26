@@ -28,4 +28,8 @@ public class ContentMovieServiceImpl extends ContentServiceAdaptor {
 	public List<Object> getBoxOfficeList(ContentSetting contentSetting, int index) throws Exception {
 		return contentMovieDao.getBoxOfficeList(contentSetting, index);
 	}
+	
+	public List<Object> getNewMovieList(ContentSetting contentSetting, int index) throws Exception {
+		return contentMovieDao.getNewMovieList(contentSetting, index);
+	}
 }

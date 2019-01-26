@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=EUC-KR"
     pageEncoding="EUC-KR"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <!DOCTYPE html>
 <html>
 	<head>
@@ -23,20 +24,36 @@
 <body>
 	<section class="carousel" style="background-color:#1d1d1d;">
 		<div class="reel" style="overflow: visible; transform: translate(-1285px, 0px);">
-			<c:forEach var="contentMovie" items="${contentMovieBoxOfficeList}">
+			<c:forEach var="contentMovie" items="${contentMovieNewMovieList}">
 				
-				<article>
-					<a href="${contentMovie.movieLink}" class="image featured">
+				<article class="movie-left">
+					<a href="#" class="image featured">
 						<img src="${contentMovie.movieThumbnail}">
 					</a>	
+				</article>
+				<article class="movie-right">
 					<header>
 						<h3>${contentMovie.movieTitle}</h3>
 					</header>
-					<p>
-						개봉일: ${contentMovie.movieOpenDate}<br/>
-						일간 관객수: ${contentMovie.movieDayAudience}<br/>
-						누적 관객수: ${contentMovie.movieTotalAudience}<br/>
-					</p>
+					<div class="movie-info">
+						<span class="field">개봉일</span>  <span>${contentMovie.movieOpenDate}</span><br/>
+						<span class="field">네티즌 평점</span>  
+								<div class="star-ratings-css"> 
+									<div class="star-ratings-css-top" style="width:${contentMovie.movieRating}%;">
+										★★★★★
+									</div>
+									<div class="star-ratings-css-bottom">
+										★★★★★
+									</div>
+								</div>
+								<span>${contentMovie.movieRating}</span><br/>
+						<span class="field">예매율</span> <span>${contentMovie.movieReserveRate}</span><br/>
+						<span class="field">상영 시간</span> <span>${contentMovie.movieRunningTime}</span><br/>	
+						
+						<span class="field">감독</span> <span>${contentMovie.movieDirector}</span><br/>
+						<span class="field">배우</span> <span>${contentMovie.movieActor}</span><br/>
+						<span class="field">장르</span> <span>${contentMovie.movieGenre}</span><br/>										
+					</div>
 				</article>
 			</c:forEach>
 		</div>
