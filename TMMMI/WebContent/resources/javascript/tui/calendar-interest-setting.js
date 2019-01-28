@@ -16,7 +16,7 @@
         useCreationPopup: useCreationPopup,
         useDetailPopup: useDetailPopup,
         calendars: CalendarList,
-        taskView: ['milestone'],
+        taskView: false,
         template: {
             milestone: function(model) {
                 return '<span style="background-color: ' + model.bgColor + '">' + model.title + '</span>';
@@ -389,8 +389,17 @@
         var options = cal.getOptions();
         var viewName = cal.getViewName();
         var html = [];
+        
+        //updateRenderRange
+        renderRangeStart = cal.getDateRangeStart().getTime();
+        renderRangeEnd = cal.getDateRangeEnd().getTime();
+        
         if (viewName === 'day') {
             html.push(moment(cal.getDate().getTime()).format('YYYY.MM.DD'));
+            //updateRenderRange
+            var quotient = Math.floor(cal.getDate().getTime()/86400000);
+            renderRangeStart = quotient*86400000-32400000;
+            renderRangeEnd = ((quotient+1)*86400000-32400001);
         } else if (viewName === 'month' &&
             (!options.month.visibleWeeksCount || options.month.visibleWeeksCount > 4)) {
             html.push(moment(cal.getDate().getTime()).format('YYYY.MM'));
@@ -400,9 +409,7 @@
             html.push(moment(cal.getDateRangeEnd().getTime()).format(' MM.DD'));
         }
         renderRange.innerHTML = html.join('');
-        //updateRenderRange
-        renderRangeStart = cal.getDateRangeStart().getTime();
-        renderRangeEnd = cal.getDateRangeEnd().getTime();
+        
     }
     
     function fncGetNewScheduleList(){
@@ -430,6 +437,17 @@
 					schedule = fncAdjustScheduleValues(schedule);
 					ScheduleList.push(schedule);
 				});
+				
+				var sportlist = JSONData["calendarSportList"];
+				sportlist.forEach(function (item, index, array) {
+					schedule = new ScheduleInfo();
+					schedule.calendarId = item.userCategoryNo+'';
+					schedule.title = item.scheduleTitle;
+					schedule.start = item.scheduleStartDate;
+					schedule = fncAdjustSportScheduleValues(schedule);
+					ScheduleList.push(schedule);
+				});
+				
 				setSchedules();
 			}
 		});
