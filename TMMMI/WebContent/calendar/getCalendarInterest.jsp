@@ -138,7 +138,18 @@
 			var quotient = Math.floor((schedule.start*=1)/86400000)+1;
 						
 			schedule.start = new Date(quotient*86400000);
-			schedule.end = new Date(quotient*86400000-1); 
+			schedule.end = new Date(quotient*86400000-1);
+			console.log(schedule);
+			return schedule;
+		}
+		
+		function fncAdjustSportScheduleValues(schedule){
+			console.log(schedule);
+			schedule.isAllday = false;
+			schedule.category = 'time';
+			
+			schedule.end = new Date((schedule.start*=1)+7200000);
+			schedule.start = new Date(schedule.start*=1);
 			return schedule;
 		}
 		
@@ -161,6 +172,15 @@
 			schedule = fncAdjustScheduleValues(schedule);
 			ScheduleList.push(schedule);
 		</c:forEach>
+		
+		 <c:forEach var="schedule" items="${calendarSportList}">
+			schedule = new ScheduleInfo();
+			schedule.calendarId = "${schedule.userCategoryNo}";
+			schedule.title = "${schedule.scheduleTitle}";
+			schedule.start = "${schedule.scheduleStartDate}";
+			schedule = fncAdjustSportScheduleValues(schedule);
+			ScheduleList.push(schedule);
+		</c:forEach> 
     </script>
     
     <script src="/javascript/tui/theme/dooray.js"></script>

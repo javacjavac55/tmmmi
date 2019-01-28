@@ -21,7 +21,6 @@ public class ContentTastyDaoImpl extends ContentDaoAdaptor {
 	}
 	
 	///Method
-	@Override
 	public List<Object> getContentList(ContentSetting contentSetting, int index) {
 		String clientId = "d9ROlDLvnXulcE2hxtAm";
         String clientSecret = "O4TGEmLBA4";
@@ -59,7 +58,7 @@ public class ContentTastyDaoImpl extends ContentDaoAdaptor {
         } 
 		return tastyList;
 	}
-/*	public static void main(String[] args) {
+	public static void main(String[] args) {
 		String clientId = "d9ROlDLvnXulcE2hxtAm";
         String clientSecret = "O4TGEmLBA4";
         try {
@@ -89,7 +88,7 @@ public class ContentTastyDaoImpl extends ContentDaoAdaptor {
         } catch (Exception e) {
             System.out.println(e);
         }
-	}*/
+	}
 
 }
 
