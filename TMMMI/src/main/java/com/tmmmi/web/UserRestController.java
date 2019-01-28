@@ -151,9 +151,5 @@ public class UserRestController {
 		
 		
 	}*/
-	 
-	public void naverLogin() {}
-	public void kakaoLogin() {}
-	public void googleLogin() {}
 
 }

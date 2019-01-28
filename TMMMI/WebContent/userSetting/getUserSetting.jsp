@@ -19,7 +19,7 @@
 <script type="text/javascript">
 $(function(){
 	$("#update").on("click", function(){
-		self.location = "/user/updateUserSetting";
+		self.location = "/userSetting/updateUserSetting";
 	});
 });
 </script>

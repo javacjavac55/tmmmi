@@ -21,8 +21,7 @@ public class ContentTastyDaoImpl extends ContentDaoAdaptor {
 	}
 	
 	///Method
-	@Override
-	public List<Object> getContentList(ContentSetting contentSetting, int index) {
+	public List<Object> getContentTastyList(ContentSetting contentSetting, int index) {
 		String clientId = "d9ROlDLvnXulcE2hxtAm";
         String clientSecret = "O4TGEmLBA4";
         List<Object> tastyList = null;

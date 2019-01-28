@@ -65,7 +65,7 @@
 				return;
 			}
 			
-			$("form").attr("method" , "POST").attr("action" , "/user/addUser").submit();
+			$("form").attr("method" , "POST").attr("action" , "/user/addSNSUser").submit();
 		}
 	</script>
 	
@@ -211,8 +211,8 @@
 		<h1 class="bg-primary text-center">SNS 회 원 가 입</h1>
 	
 		<form class="form-horizontal">
-			
 			<div class="form-group">
+				<input type="hidden" id="userNo" name="userNo" value="${userNo }" >
 			    <label for="userName" class="col-sm-offset-1 col-sm-3 control-label">닉네임</label>
 			    <div class="col-sm-4">
 			   		<input autocomplete="off" type="text" class="form-control" id="userName" name="userName" placeholder="닉네임">
