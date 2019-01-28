@@ -30,7 +30,17 @@ public class CalendarSportDaoImpl implements CalendarSportDao {
 
 	@Override
 	public List<Schedule> getCalendarSportList(Map<String, Long> map) throws Exception{
-		return sqlSession.selectList("CalendarMovieMapper.getCalendarSportList", map);
+		List<Schedule> result = sqlSession.selectList("CalendarSportMapper.getCalendarSportList", map);
+		for (Schedule s:result) {
+			if (s.getScheduleTitle().contains("777:777")) {
+				s.setScheduleTitle(s.getScheduleTitle().replaceAll("777:777", "VS"));
+			}
+			
+			if (s.getScheduleStartDate() > System.currentTimeMillis()) {
+				s.setScheduleTitle(s.getScheduleTitle().replaceAll("0:0", "VS"));
+			}
+		}
+		return result;
 	}
 
 }

@@ -50,7 +50,18 @@ public class ToDoController {
 		modelAndView.setViewName("redirect:/todo/getToDoList");
 		return modelAndView;
 	}
-	
+	@RequestMapping(value="/updateToDo", method=RequestMethod.POST)
+	public ModelAndView updateToDo(@ModelAttribute("todo") ToDo toDo, HttpSession session) throws Exception{
+		System.out.println("/updateToDo 접근");
+		System.out.println(toDo);
+		int userNo = (int)session.getAttribute("userNo");
+		toDo.setUserNo(userNo);
+		toDoService.updateToDo(toDo);
+		System.out.println("/updateToDo 완료");
+		ModelAndView modelAndView = new ModelAndView();
+		modelAndView.setViewName("redirect:/todo/getToDoList");
+		return modelAndView;
+	}
 	@RequestMapping(value="/getToDoList", method=RequestMethod.GET)
 	public ModelAndView getToDoList(HttpSession session) throws Exception{
 		System.out.println("/getToDoListGET 접근");
@@ -73,20 +84,17 @@ public class ToDoController {
 		System.out.println("todolist"+todolist);
 		modelAndView.setViewName("/todo/listToDo.jsp");
 		modelAndView.addObject("todolist",todolist);
-		/*modelAndView.addObject("todolist", todolist.get("todoListMap"));
-		modelAndView.addObject("completetodolist", todolist.get("todoListMap"));*/
 		return modelAndView;
 		}
-	
+		
 	@RequestMapping(value="/getToDoList", method=RequestMethod.POST)
-	public ModelAndView getToDoList(int targetDate, HttpSession session) throws Exception{
+	public List<ToDo> getToDoList(String ymd, HttpSession session) throws Exception{
 		System.out.println("/getToDoListPOST 접근");
+		System.out.println(ymd);
 		int userNo = (int)session.getAttribute("userNo");
 		
 		//현재 날짜 계산
-		SimpleDateFormat mSimpleDateFormat = new SimpleDateFormat ( "yyyy-MM-dd");
-		String mTime = mSimpleDateFormat.format( new Date());
-		java.sql.Date targetDate1 = java.sql.Date.valueOf(mTime);
+		java.sql.Date targetDate1 = java.sql.Date.valueOf(ymd);
 		System.out.println ("targetDate : "+targetDate1);
 		
 		Map<String, Object> todomap = new HashMap<String, Object>();
@@ -95,13 +103,10 @@ public class ToDoController {
 		System.out.println(todomap);
 		//Business Logic
 		List<ToDo> todolist = toDoService.getToDoList(todomap);
-		ModelAndView modelAndView = new ModelAndView();
-		modelAndView.setViewName("/todo/listToDo.jsp");
-		modelAndView.addObject("todolist",todolist);
-		/*modelAndView.addObject("todolist", todolist.get("todoListMap.todolist"));
-		modelAndView.addObject("completetodolist", todolist.get("todoListMap.completetodolist"));*/
-		return modelAndView;
+		System.out.println(todolist);
+		return todolist;
 		}
+	
 	public void getToDoDayGraph() {}
 	
 	@RequestMapping(value="/getToDoMonthGraph", method=RequestMethod.GET)

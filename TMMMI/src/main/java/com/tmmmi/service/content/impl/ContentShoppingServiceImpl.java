@@ -29,4 +29,16 @@ public class ContentShoppingServiceImpl extends ContentServiceAdaptor {
 		return contentShoppingDao.getContentShoppingFirstList(contentSetting, index);
 	}
 	
+	public List<Object> getContentShoppingSecondList(ContentSetting contentSetting, int index) throws Exception{
+		return contentShoppingDao.getContentShoppingSecondList(contentSetting, index);
+	}
+	
+	public List<Object> getContentShoppingThirdList(ContentSetting contentSetting, int index) throws Exception{
+		return contentShoppingDao.getContentShoppingThirdList(contentSetting, index);
+	}
+	
+	public List<Object> getContentShoppingReviewList(ContentSetting contentSetting, int index) throws Exception{
+		return contentShoppingDao.getContentShoppingReviewList(contentSetting, index);
+	}
+	
 }
