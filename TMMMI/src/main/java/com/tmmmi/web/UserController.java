@@ -85,6 +85,22 @@ public class UserController {
 		return modelAndView;
 	}
 	
+	@RequestMapping(value="addSNSUser", method=RequestMethod.POST)
+	public ModelAndView addSNSUser(@ModelAttribute("user") User user, HttpSession session) throws Exception{
+		System.out.println("user/addSNSUser : POST");
+		
+		ModelAndView modelAndView = new ModelAndView();
+		if(user.getAuthNum().equals(((String)session.getAttribute("authNum")))){
+			user.setEmailCheck(1);
+			userService.updateUser(user);
+			modelAndView.setViewName("/user/login.jsp");
+		}else {
+			modelAndView.setViewName("/user/addUser.jsp");
+		}
+		
+		return modelAndView;
+	}
+	
 	@RequestMapping(value="getUser", method=RequestMethod.GET)
 	public ModelAndView getUser(HttpSession session) throws Exception{
 		

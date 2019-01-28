@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
 import com.tmmmi.common.Search;
+import com.tmmmi.service.calendarmovie.CalendarMovieDao;
 import com.tmmmi.service.calendarsport.CalendarSportDao;
 import com.tmmmi.service.calendarsport.CalendarSportService;
 import com.tmmmi.service.diary.DiaryDao;
@@ -20,12 +21,13 @@ public class CalendarSportServiceImpl implements CalendarSportService {
 	
 	@Autowired
 	@Qualifier("calendarSportDaoImpl")	
-	private CalendarSportDao calendarSportDao;
-	
+	private CalendarSportDao calendarSportDao;	
+	public void setCalendarSportDao(CalendarSportDao calendarSportDao) {
+		this.calendarSportDao = calendarSportDao;
+	}
 	public CalendarSportServiceImpl() {
 		// TODO Auto-generated constructor stub
 	}
-
 	@Override
 	public List<Schedule> getCalendarSportList(long startDate, long endDate) throws Exception{
 		Map<String, Long> map = new HashMap<String, Long>();

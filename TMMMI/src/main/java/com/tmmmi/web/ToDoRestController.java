@@ -12,7 +12,6 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
-
 import com.tmmmi.service.domain.ToDo;
 import com.tmmmi.service.todo.ToDoService;
 @RestController
@@ -30,13 +29,13 @@ public class ToDoRestController {
 	}
 	
 	///Method
-	@RequestMapping(value="/updateToDo", method=RequestMethod.POST)
+	/*@RequestMapping(value="/updateToDo", method=RequestMethod.POST)
 	public void updateToDo(@RequestBody ToDo toDo) throws Exception{
 		System.out.println("/updateToDo 접근");
 		System.out.println(toDo);
 		toDoService.updateToDo(toDo);
-		System.out.println("/updateToDo 완료");	
-	}
+		System.out.println("/updateToDo 완료");
+	}*/
 	@RequestMapping(value="/deleteToDo", method=RequestMethod.POST)
 	public void deleteToDo(@RequestBody ToDo toDo, HttpSession session)throws Exception {
 		System.out.println("/deleteToDo 접근");
@@ -60,6 +59,7 @@ public class ToDoRestController {
 		toDoService.deleteToDoComplete(toDo);
 		System.out.println("/deleteToDoComplete 완료");
 	}
+	
 	@RequestMapping(value="/getToDoMonthGraphPost",method=RequestMethod.POST)
 	public List<ToDo> getToDoMonthGraphPost(@RequestBody String year, HttpSession session) throws Exception{
 		System.out.println("그래프접근"+year);

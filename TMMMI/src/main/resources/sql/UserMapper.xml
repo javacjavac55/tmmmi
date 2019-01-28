@@ -32,7 +32,7 @@
 			#{password:VARCHAR}, 
 			#{email}, 
 			#{emailCheck}, 
-			#{userName}, 
+			#{userName:VARCHAR}, 
 			#{birthday:DATE},
 			#{refreshToken:VARCHAR},
 			#{refreshTokenExpireTime:VARCHAR},
@@ -82,10 +82,10 @@
 	<update id="updateUser" parameterType="com.tmmmi.service.domain.User">
 		UPDATE users
 		<set>
-			user_name=#{userName},
-			password=#{password},
+			user_name=#{userName:VARCHAR},
+			password=#{password:VARCHAR},
 			birthday=#{birthday:DATE},
-			role=#{role},
+			role=#{role:NUMERIC},
 			email=#{email}
 		</set>
 		WHERE user_no=#{userNo}

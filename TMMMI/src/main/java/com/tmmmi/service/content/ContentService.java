@@ -28,10 +28,18 @@ public interface ContentService {
 	public List<Object> getContentGeneralList(ContentSetting contentSetting , int index) throws Exception;
 	
 	public List<Object> getContentHighlightList(ContentSetting contentSetting, int index) throws Exception;
+	
 	//tasty
 	public List<Object> getContentTastyList(ContentSetting contentSetting, int index)throws Exception;
+	
 	//shopping
 	public List<Object> getContentShoppingFirstList(ContentSetting contentSetting, int index) throws Exception;
+	
+	public List<Object> getContentShoppingSecondList(ContentSetting contentSetting, int index) throws Exception;
+	
+	public List<Object> getContentShoppingThirdList(ContentSetting contentSetting, int index) throws Exception;
+	
+	public List<Object> getContentShoppingReviewList(ContentSetting contentSetting, int index) throws Exception;
 	
 	//keyword
 }

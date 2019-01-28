@@ -77,10 +77,27 @@ public abstract class ContentServiceAdaptor implements ContentService {
 	public List<Object>getContentTastyList(ContentSetting contentSetting, int index)throws Exception{
 		return null;
 	}
+	
 	//shopping
 	@Override
 	public List<Object> getContentShoppingFirstList(ContentSetting contentSetting, int index) throws Exception {
 		// TODO Auto-generated method stub
+		return null;
+	}
+	@Override
+	public List<Object> getContentShoppingSecondList(ContentSetting contentSetting, int index) throws Exception {
+		// TODO Auto-generated method stub
+		return null;
+	}
+	
+	@Override
+	public List<Object> getContentShoppingThirdList(ContentSetting contentSetting, int index) throws Exception {
+		// TODO Auto-generated method stub
+		return null;
+	}
+	
+	@Override
+	public List<Object> getContentShoppingReviewList(ContentSetting contentSetting, int index) throws Exception{
 		return null;
 	}
 

@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.tmmmi.service.calendarmovie.CalendarMovieService;
+import com.tmmmi.service.calendarsport.CalendarSportService;
 import com.tmmmi.service.dday.DDayService;
 import com.tmmmi.service.domain.Schedule;
 import com.tmmmi.service.domain.UserCategory;
@@ -36,6 +37,10 @@ public class CalendarRestController {
 	@Autowired
 	@Qualifier("calendarMovieServiceImpl")
 	private CalendarMovieService calendarMovieService;
+	
+	@Autowired
+	@Qualifier("calendarSportServiceImpl")
+	private CalendarSportService calendarSportService;
 
 	public CalendarRestController() {
 		System.out.println(this.getClass());
@@ -125,13 +130,15 @@ public class CalendarRestController {
 	public void deleteDDay() {}
 	
 	@RequestMapping( value="getInterestList", method=RequestMethod.POST )
-	public Map<String,Object> getInterestList(@RequestBody RenderRange renderRange, HttpSession session) {
+	public Map<String,Object> getInterestList(@RequestBody RenderRange renderRange, HttpSession session) throws Exception {
 		System.out.println("/getInterestList.do");
 		Map<String,Object> interestList = new HashMap<String,Object>();
 		List<Schedule> calendarMovieList = calendarMovieService.getCalendarMovieList(renderRange.getRenderRangeStart(),renderRange.getRenderRangeEnd());
+		List<Schedule> calendarSportList = calendarSportService.getCalendarSportList(renderRange.getRenderRangeStart(), renderRange.getRenderRangeEnd());
 		
 		System.out.println("calendarMovieList: "+calendarMovieList);
 		interestList.put("calendarMovieList", calendarMovieList);
+		interestList.put("calendarSportList", calendarSportList);
 		
 		return interestList;
 	}

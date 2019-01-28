@@ -8,5 +8,7 @@ encoding//src/main/java/com/tmmmi/service/content/impl/ContentTastyDaoImpl.java=
 encoding//src/main/java/com/tmmmi/service/qna/NaverSearchAPI2.java=UTF-8
 encoding//src/main/java/com/tmmmi/service/qna/NaverSearchAPI3.java=UTF-8
 encoding//src/main/java/com/tmmmi/service/qna/naverSearchAPI.java=UTF-8
+encoding//src/main/java/com/tmmmi/service/user/impl/GoogleDaoImpl.java=UTF-8
+encoding//src/main/java/com/tmmmi/service/user/impl/KakaoDaoImpl.java=UTF-8
 encoding//src/main/java/com/tmmmi/web/QNAController.java=UTF-8
 encoding//src/main/java/com/tmmmi/web/UserRestController.java=UTF-8

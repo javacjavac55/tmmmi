@@ -57,7 +57,6 @@
 			
 			$("form").attr("method","POST").attr("action","/user/login").attr("target","_parent").submit();
 		};
-		
 	</script>
 </head>
 
@@ -67,15 +66,15 @@
       <div class="row">
         <div class="col-lg-4 col-md-6 ml-auto mr-auto">
           <div class="card card-login">
-            <form class="form" method="" action="">
+            <form class="form">
               <div class="card-header card-header-primary text-center">
                 <h4 class="card-title">Login</h4>
               </div>
-              <div id="yeong" style="margin: 50px 0 50px 0;">
-              		<span class="description text-center">아이디/</span>
-              		<span class="description text-center">비밀번호</span>
-              		<span class="description text-center">찾기</span>
-              	</div>
+              <div style="text-align : center;">
+             	<a href="/SNSLogin/kakaoLoginRequest" id="kakaoLogin"><img src="/images/loginImage/kakaolink_btn_small_ov.png"  width="45px" id="kakaoLogin" /></a>
+              	<a href="/SNSLogin/googleLoginRequest" id="googleLogin"><img src="/images/loginImage/googleg_standard_color_128dp.png"  width="40px" id="googleLogin" style="margin : 0 20px 0 20px"/></a>
+              	<a href="/SNSLogin/naverLoginRequest" id="naverLogin"><img src="/images/loginImage/naverLogin.PNG"  width="50px" id="naverLogin" /></a><br/>
+              </div>
               <div class="card-body">
                 <div class="input-group">
                   <div class="input-group-prepend">
@@ -91,8 +90,13 @@
                       <i class="material-icons">lock_outline</i>
                     </span>
                   </div>
-                  <input type="password" class="form-control" name="password" id="password" placeholder="Password" onKeyPress="if(event.keyCode=='13'){fncLogin() }">
+                  <input type="password" class="form-control" name="password" id="password" placeholder="Password" onKeyPress="if(event.keyCode=='13'){fncLogin()}">
                 </div>
+              </div>
+              <div id="yeong" style="margin: 50px 0 50px 0;">
+              		<span class="description text-center">아이디/</span>
+              		<span class="description text-center">비밀번호</span>
+              		<span class="description text-center">찾기</span>
               </div>
               <div class="footer text-center">
                 <a href="/user/addUser" class="btn btn-primary btn-link btn-wd btn-lg">Sign in</a>

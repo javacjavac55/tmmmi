@@ -20,6 +20,7 @@
 		<mapper resource="sql/UserCategoryMapper.xml"/>
 		<mapper resource="sql/ScheduleMapper.xml"/>
 		<mapper resource="sql/CalendarMovieMapper.xml"/>
+		<mapper resource="sql/CalendarSportMapper.xml"/>
 		<mapper resource="sql/DiaryMapper.xml"/>
 		<mapper resource="sql/FAQMapper.xml"/>
 		<mapper resource="sql/QNAMapper.xml"/>

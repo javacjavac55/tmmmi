@@ -7,15 +7,7 @@
 <title>Insert title here</title>
 </head>
 <body>
-  <footer class="footer" data-background-color="black">
-    <div class="container">
-      <div class="copyright float-right">
-        <i class="material-icons">favorite</i>Tmmmi
-      </div>
-    </div>
-  </footer>
   <!--   Core JS Files   -->
-  <script src="/javascript/template/core/jquery.min.js" type="text/javascript"></script>
   <script src="/javascript/template/core/popper.min.js" type="text/javascript"></script>
   <script src="/javascript/template/core/bootstrap-material-design.min.js" type="text/javascript"></script>
   <script src="/javascript/template/plugins/moment.min.js"></script>

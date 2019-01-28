@@ -7,16 +7,12 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=EUC-KR">
 
-
-<link
-	href="https://fonts.googleapis.com/css?family=Nanum+Gothic:400,700,800&amp;subset=korean"
-	rel="stylesheet">
-
+<!-- ChartJS -->
 <script
 	src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.3/Chart.bundle.js"></script>
 <script
 	src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.3/Chart.min.js"></script>
-
+<!-- Templete CSS -->
 <link href="/css/template/material-kit.min.css?v=2.0.5" rel="stylesheet" />
 <!--   Core JS Files   -->
 <script src="/javascript/template/core/jquery.min.js"
@@ -37,6 +33,9 @@
 	href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Roboto+Slab:400,700|Material+Icons" />
 <link rel="stylesheet"
 	href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css">
+<link
+	href="https://fonts.googleapis.com/css?family=Nanum+Gothic:400,700,800&amp;subset=korean"
+	rel="stylesheet">
 <style type="text/css">
 
 .controlbtn {

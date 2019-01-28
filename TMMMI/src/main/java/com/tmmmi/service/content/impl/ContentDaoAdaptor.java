@@ -80,8 +80,23 @@ public abstract class ContentDaoAdaptor implements ContentDao {
 	//shopping
 	@Override
 	public List<Object> getContentShoppingFirstList(ContentSetting contentSetting, int index) throws Exception {
-		// TODO Auto-generated method stub
 		return null;
 	}
+	
+	@Override
+	public List<Object> getContentShoppingSecondList(ContentSetting contentSetting, int index) throws Exception {
+		return null;
+	}
+	
+	@Override
+	public List<Object> getContentShoppingThirdList(ContentSetting contentSetting, int index) throws Exception {
+		return null;
+	}
+	
+	@Override
+	public List<Object> getContentShoppingReviewList(ContentSetting contentSetting, int index) throws Exception{
+		return null;
+	}
+	
 	//keyword
 }
