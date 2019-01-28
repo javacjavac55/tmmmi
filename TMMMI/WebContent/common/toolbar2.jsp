@@ -76,6 +76,8 @@
 				<a href="/faq/getFAQList" class="dropdown-item">FAQ 리스트</a>
 				<a href="/qna/getQNAList" class="dropdown-item">QNA 리스트</a>
 				<a href="/widget/getWeather3.jsp" class="dropdown-item">날씨 </a>
+				<a href="/contentShopping/getShoppingList" class="dropdown-item">쇼핑컨텐츠</a>
+				<a href="/contentShopping/getShoppingReviewList" class="dropdown-item">유튜브</a>
             </div>
           </li>
           <!-- 로그아웃 -->

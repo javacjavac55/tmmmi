@@ -15,6 +15,7 @@
 <div><c:import url="/contentMovie/contentMovieBoxOffice"></c:import></div>
 <div><c:import url="/contentMovie/contentMovieBoxOffice"></c:import></div>
 
-<div><c:import url="/contentShopping/shoppingContent"></c:import></div>
+<div><c:import url="/contentShopping/getShoppingList"></c:import></div>
+<div><c:import url="/contentShopping/getShoppingReviewList"></c:import></div>
 </body>
 </html>
