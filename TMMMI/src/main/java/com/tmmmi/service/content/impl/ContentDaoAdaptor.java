@@ -18,6 +18,18 @@ public abstract class ContentDaoAdaptor implements ContentDao {
 		return null;
 	}
 	
+	@Override
+	public List<Object> getUpcomingMovieList(ContentSetting contentSetting, int index) throws Exception {
+		// TODO Auto-generated method stub
+		return null;
+	}
+	
+	@Override
+	public List<Object> getMovieReviewList(ContentSetting contentSetting, int index) throws Exception {
+		// TODO Auto-generated method stub
+		return null;
+	}
+	
 	//sport
 	@Override
 	public List<Object> getContentKsoccerList(ContentSetting contentSetting, int index) throws Exception {

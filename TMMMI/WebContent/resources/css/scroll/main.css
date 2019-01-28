@@ -2698,7 +2698,7 @@ body.homepage.is-preload #header:after {
 	font-size: 25px;
 	height: 25px;
 	width: 125px;
-	margin: 0 auto;
+	margin: 10px 0;
 	position: relative;
 	padding: 0;
 	text-shadow: 0px 1px 0 #a2a2a2;
@@ -2710,7 +2710,6 @@ body.homepage.is-preload #header:after {
 	padding: 0;
 	position: absolute;
 	z-index: 1;
-	display: block;
 	top: 0;
 	left: 0;
 	overflow: hidden;
@@ -2719,7 +2718,6 @@ body.homepage.is-preload #header:after {
 
 .star-ratings-css-bottom {
 	padding: 0;
-	display: block;
 	z-index: 0;
 	display: inline;
 }
@@ -2739,6 +2737,12 @@ body.homepage.is-preload #header:after {
 	-ms-transition: opacity 0.75s ease-in-out;
 	transition: opacity 0.75s ease-in-out;
 	box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+	position:relateive;
+}
+
+.carousel article.movie-left img{
+	width: 421px;
+	height: 600px;
 }
 
 .carousel article.movie-right {
@@ -2759,6 +2763,7 @@ body.homepage.is-preload #header:after {
 	border: solid;
 	border-color: #483949;
 	border-width: 7px;
+	position: relative;
 }
 
 .movie-info {
@@ -2774,7 +2779,8 @@ body.homepage.is-preload #header:after {
 	font-weight: bold;
 	color: black;
 	display: inline-block;
-	width: 50%;
+	width: 55%;
+	margin-top: 10px;
 }
 
 .movie-right .field {
@@ -2785,10 +2791,44 @@ body.homepage.is-preload #header:after {
 	padding: 0 10px 0 10px;
 	border-radius: 2px;
 	border: 0;
-	margin: 0 10px;
+	margin-top: 10px;
 	width: 110px;
 	height: auto;
 	margin: 10px 10px 10px 10px;
 	box-sizing: content-box;
 	text-align: center;
+	vertical-align: top;
+}
+
+#movie-rating {
+	width: auto;
+}
+
+.movie-preview {
+	background-color:#483949 !important; 
+	color:white !important;
+	z-index:3 !important;
+	vertical-align: top !important;
+	position: absolute !important;
+	top: 5px !important;
+ 	right: 10px !important;
+  	width: 60px !important;
+  	heigth: 50px !important;
+  	font-weight:normal !important;
+  	font-size: 15px !important;
+  	padding: 2px !important;
+  	border-radius: 15px;
+}
+
+.movie-preview-wrapper {
+	display:none;
+	position:fixed !important;
+	top:0px !important;
+	width: 800px !important;
+	height:600px !important;
+	z-index:5 !important;
+}
+
+.movie-review span {
+	width: auto;
 }

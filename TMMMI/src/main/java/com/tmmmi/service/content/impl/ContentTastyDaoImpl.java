@@ -19,7 +19,7 @@ public class ContentTastyDaoImpl extends ContentDaoAdaptor {
 	///Constructor
 	public ContentTastyDaoImpl() {
 	}
-	
+	/*
 	///Method
 	@Override
 	public List<Object> getContentList(ContentSetting contentSetting, int index) {
@@ -59,7 +59,7 @@ public class ContentTastyDaoImpl extends ContentDaoAdaptor {
         } 
 		return tastyList;
 	}
-/*	public static void main(String[] args) {
+	public static void main(String[] args) {
 		String clientId = "d9ROlDLvnXulcE2hxtAm";
         String clientSecret = "O4TGEmLBA4";
         try {

@@ -48,7 +48,7 @@
 				<a href="/user/searchUserPw.jsp" class="dropdown-item">비밀번호 찾기</a>
 				<a href="/user/getUser" class="dropdown-item">내 정보 보기</a>
 				<a href="/userSetting/getUserSetting" class="dropdown-item">사용자 설정</a>
-				<a href="/contentSetting/contentSetting" class="dropdown-item">컨텐츠 설정</a>
+				<a href="/contentSetting/getContentSetting" class="dropdown-item">컨텐츠 설정</a>
             </div>
           </li>
           <!-- 중열 -->

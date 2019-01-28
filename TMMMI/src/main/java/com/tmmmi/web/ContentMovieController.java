@@ -29,7 +29,7 @@ public class ContentMovieController {
 		// TODO Auto-generated constructor stub
 	}
 	
-	@RequestMapping(value="contentMovieBoxOffice", method=RequestMethod.GET)
+	@RequestMapping(value="getContentMovieBoxOffice", method=RequestMethod.GET)
 	public ModelAndView getBoxOfficeList() throws Exception {
 		ModelAndView modelAndView = new ModelAndView();
 		modelAndView.addObject("contentMovieBoxOfficeList", contentMovieService.getBoxOfficeList(null, 0));
@@ -37,12 +37,27 @@ public class ContentMovieController {
 		return modelAndView;
 	}
 	
-	@RequestMapping(value="contentMovieNewMovie", method=RequestMethod.GET)
+	@RequestMapping(value="getContentMovieNew", method=RequestMethod.GET)
 	public ModelAndView getNewMovieList() throws Exception {
 		ModelAndView modelAndView = new ModelAndView();
 		modelAndView.addObject("contentMovieNewMovieList", contentMovieService.getNewMovieList(null, 0));
 		modelAndView.setViewName("/content/contentMovieNewMovie.jsp");
 		return modelAndView;
 	}
-		
+	
+	@RequestMapping(value="getContentMovieUpcoming", method=RequestMethod.GET)
+	public ModelAndView getUpcomingMovieList() throws Exception {
+		ModelAndView modelAndView = new ModelAndView();
+		modelAndView.addObject("contentMovieUpcomingMovieList", contentMovieService.getUpcomingMovieList(null, 0));
+		modelAndView.setViewName("/content/contentMovieUpcomingMovie.jsp");
+		return modelAndView;
+	}
+	
+	@RequestMapping(value="getContentMovieReview", method=RequestMethod.GET)
+	public ModelAndView getMovieReviewList() throws Exception {
+		ModelAndView modelAndView = new ModelAndView();
+		modelAndView.addObject("contentMovieReviewList", contentMovieService.getMovieReviewList(null, 0));
+		modelAndView.setViewName("/content/contentMovieReview.jsp");
+		return modelAndView;
+	}
 }

@@ -6,7 +6,7 @@
 <html>
 	<head>
 		<meta http-equiv="Content-Type" content="text/html; charset=EUC-KR">
-		<title>contentMovieNewMovie</title>
+		<title>contentMovieUpcomingMovie</title>
 		
 		<!-- Material Kit CSS -->
 		<link href="/css/template/material-kit.min.css?v=2.0.5" rel="stylesheet" />
@@ -24,7 +24,7 @@
 <body>
 	<section class="carousel" style="background-color:#1d1d1d;">
 		<div class="reel" style="overflow: visible; transform: translate(-1285px, 0px);">
-			<c:forEach var="contentMovie" items="${contentMovieNewMovieList}">
+			<c:forEach var="contentMovie" items="${contentMovieUpcomingMovieList}">
 				<article class="movie-left">
 					<a href="#" class="image featured">
 						<img src="${contentMovie.movieThumbnail}">
@@ -41,16 +41,6 @@
 					</header>
 					<div class="movie-info">
 						<span class="field">개봉일</span>  <span>${contentMovie.movieOpenDate}</span>
-						<span class="field">네티즌 평점</span>  
-							<div class="star-ratings-css"> 
-								<div class="star-ratings-css-top" style="width:${contentMovie.movieRating*0.95}%;">
-									★★★★★
-								</div>
-								<div class="star-ratings-css-bottom">
-									★★★★★
-								</div>
-							</div><span id="movie-rating">${contentMovie.movieRating}</span><br/>
-						<span class="field">예매율</span> <span>${contentMovie.movieReserveRate}</span><br/>
 						<span class="field">상영 시간</span> <span>${contentMovie.movieRunningTime}</span><br/>	
 						
 						<span class="field">감독</span> <span>${contentMovie.movieDirector}</span><br/>

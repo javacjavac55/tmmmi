@@ -10,6 +10,10 @@ public interface ContentDao {
 	
 	public List<Object> getNewMovieList(ContentSetting contentSetting, int index) throws Exception;
 	
+	public List<Object> getUpcomingMovieList(ContentSetting contentSetting, int index) throws Exception;
+	
+	public List<Object> getMovieReviewList(ContentSetting contentSetting, int index) throws Exception;
+	
 	//sport
 	public List<Object> getContentKsoccerList(ContentSetting contentSetting , int index) throws Exception;
 	

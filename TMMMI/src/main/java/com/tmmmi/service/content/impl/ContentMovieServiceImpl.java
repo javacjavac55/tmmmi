@@ -32,4 +32,12 @@ public class ContentMovieServiceImpl extends ContentServiceAdaptor {
 	public List<Object> getNewMovieList(ContentSetting contentSetting, int index) throws Exception {
 		return contentMovieDao.getNewMovieList(contentSetting, index);
 	}
+	
+	public List<Object> getUpcomingMovieList(ContentSetting contentSetting, int index) throws Exception {
+		return contentMovieDao.getUpcomingMovieList(contentSetting, index);
+	}
+	
+	public List<Object> getMovieReviewList(ContentSetting contentSetting, int index) throws Exception {
+		return contentMovieDao.getMovieReviewList(contentSetting, index);
+	}
 }

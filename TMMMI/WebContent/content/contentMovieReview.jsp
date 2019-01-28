@@ -6,7 +6,7 @@
 <html>
 	<head>
 		<meta http-equiv="Content-Type" content="text/html; charset=EUC-KR">
-		<title>contentMovieNewMovie</title>
+		<title>contentMovieUpcomingMovie</title>
 		
 		<!-- Material Kit CSS -->
 		<link href="/css/template/material-kit.min.css?v=2.0.5" rel="stylesheet" />
@@ -24,39 +24,22 @@
 <body>
 	<section class="carousel" style="background-color:#1d1d1d;">
 		<div class="reel" style="overflow: visible; transform: translate(-1285px, 0px);">
-			<c:forEach var="contentMovie" items="${contentMovieNewMovieList}">
+			<c:forEach var="contentMovie" items="${contentMovieReviewList}">
 				<article class="movie-left">
 					<a href="#" class="image featured">
 						<img src="${contentMovie.movieThumbnail}">
 					</a>
-					<div class="movie-preview-wrapper">
-						<button type="button" class="movie-preview">돌아가기</button>
-						${contentMovie.movieVideo}
-					</div>
 				</article>
 				<article class="movie-right">
-					<button type="button" class="movie-preview">예고편</button>
-					<header>
-						<h3>${contentMovie.movieTitle}</h3>
-					</header>
-					<div class="movie-info">
-						<span class="field">개봉일</span>  <span>${contentMovie.movieOpenDate}</span>
-						<span class="field">네티즌 평점</span>  
-							<div class="star-ratings-css"> 
-								<div class="star-ratings-css-top" style="width:${contentMovie.movieRating*0.95}%;">
-									★★★★★
-								</div>
-								<div class="star-ratings-css-bottom">
-									★★★★★
-								</div>
-							</div><span id="movie-rating">${contentMovie.movieRating}</span><br/>
-						<span class="field">예매율</span> <span>${contentMovie.movieReserveRate}</span><br/>
-						<span class="field">상영 시간</span> <span>${contentMovie.movieRunningTime}</span><br/>	
-						
-						<span class="field">감독</span> <span>${contentMovie.movieDirector}</span><br/>
-						<span class="field">배우</span> <span>${contentMovie.movieActor}</span><br/>
-						<span class="field">장르</span> <span>${contentMovie.movieGenre}</span><br/>										
-					</div>
+					<c:set var="movieIndex" value="0" />
+					<c:forEach var="review" items="${contentMovie.movieReviewTitle}">
+						<div class="movie-review">
+							<div>
+								<a href="${contentMovie.movieReviewLink[movieIndex]}"><span>${contentMovie.movieReviewTitle[movieIndex]}</span></a><br/>										
+							</div>
+						</div>
+						<c:set var="movieIndex" value="${movieIndex + 1}"/>
+					</c:forEach>
 				</article>
 			</c:forEach>
 		</div>

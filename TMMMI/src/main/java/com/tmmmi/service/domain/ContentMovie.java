@@ -1,29 +1,34 @@
 package com.tmmmi.service.domain;
 
+import java.util.List;
+
 public class ContentMovie {
-	
+
 	private int sectionNo;
 	private int movieNo;
 	private String movieTitle;
 	private String movieDetail;
 	private String movieDirector;
 	private String movieActor;
-	private String movieRating;	
+	private String movieRating;
 	private String movieThumbnail;
 	private String movieVideo;
 	private String movieLink;
-	
-	//Box Office
+
+	// Box Office
 	private String movieOpenDate;
 	private String movieDayAudience;
 	private String movieTotalAudience;
-	
-	//New Movie
+
+	// New Movie + Upcoming Movie
 	private String movieRatingCount;
 	private String movieReserveRate;
 	private String movieGenre;
 	private String movieRunningTime;
 	
+	// Review
+	private List<String> movieReviewTitle;
+	private List<String> movieReviewLink;
 	
 	public ContentMovie() {
 		// TODO Auto-generated constructor stub
@@ -165,6 +170,22 @@ public class ContentMovie {
 		this.movieRunningTime = movieRunningTime;
 	}
 
+	public List<String> getMovieReviewTitle() {
+		return movieReviewTitle;
+	}
+
+	public void setMovieReviewTitle(List<String> movieReviewTitle) {
+		this.movieReviewTitle = movieReviewTitle;
+	}
+
+	public List<String> getMovieReviewLink() {
+		return movieReviewLink;
+	}
+
+	public void setMovieReviewLink(List<String> movieReviewLink) {
+		this.movieReviewLink = movieReviewLink;
+	}
+
 	@Override
 	public String toString() {
 		StringBuilder builder = new StringBuilder();
@@ -202,6 +223,10 @@ public class ContentMovie {
 		builder.append(movieGenre);
 		builder.append(", movieRunningTime=");
 		builder.append(movieRunningTime);
+		builder.append(", movieReviewTitle=");
+		builder.append(movieReviewTitle);
+		builder.append(", movieReviewLink=");
+		builder.append(movieReviewLink);
 		builder.append("]");
 		return builder.toString();
 	}
