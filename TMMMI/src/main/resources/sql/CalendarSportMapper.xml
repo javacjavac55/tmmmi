@@ -8,12 +8,41 @@
 
 	<resultMap id="scheduleSelectMap" type="com.tmmmi.service.domain.Schedule">
 		<result property="userCategoryNo"		column="user_category_no"			jdbcType="NUMERIC" />
-		<result property="scheduleTitle"		column="calendar_movie_title"		jdbcType="VARCHAR" />
-		<result property="scheduleStartDate"	column="calendar_movie_open_date" 	jdbcType="DATE" />
+		<result property="scheduleTitle"		column="calendar_sport_title"		jdbcType="VARCHAR" />
+		<result property="scheduleStartDate"	column="calendar_sport_date" 	jdbcType="DATE" />
 	</resultMap>
 	
 	<update id = "addCalendarSport" parameterType="com.tmmmi.service.domain.CalendarSport">
-	
+		MERGE INTO
+			calendar_sport
+		USING DUAL
+			ON (calendar_sport_date =#{matchDate} and (team_home_name =#{homeTeamName} OR team_away_name=#{awayTeamName} ))
+		WHEN MATCHED THEN
+			UPDATE SET
+				user_category_no = #{userCategoryNo},
+				league_name = #{leagueTitle},
+				calendar_sport_time = #{gameStartTime},
+				team_home_score = #{homeTeamScore},
+				team_away_score = #{awayTeamScore},
+				team_home_emblem = #{homeTeamEmblem64URI:VARCHAR},
+				team_away_emblem = #{awayTeamEmblem64URI:VARCHAR}
+								
+		WHEN NOT MATCHED THEN
+			INSERT
+				(calendar_sport_no, user_category_no, league_name,
+				 calendar_sport_date, calendar_sport_time, team_home_name,
+				  team_away_name, team_home_score, team_away_score, team_home_emblem, team_away_emblem)
+			VALUES
+				(calendar_sport_no.nextval, #{userCategoryNo}, #{leagueTitle}, #{matchDate},
+				 #{gameStartTime}, #{homeTeamName}, #{awayTeamName}, #{homeTeamScore}, #{awayTeamScore},
+				 #{homeTeamEmblem64URI:VARCHAR}, #{awayTeamEmblem64URI:VARCHAR})	  
+			
 	</update>
-
+	
+	<select id ="getCalendarSportList" parameterType = "map" fetchSize="10000" resultMap="scheduleSelectMap">
+		SELECT calendar_sport_date, (team_home_name||' '||team_home_score||':'||team_away_score||' '||team_away_name) as calendar_sport_title, user_category_no
+		FROM calendar_sport
+		WHERE calendar_sport_date  BETWEEN #{startDate} AND #{endDate}
+	</select>
+	
 </mapper>

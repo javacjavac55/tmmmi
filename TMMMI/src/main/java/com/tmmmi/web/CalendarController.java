@@ -50,8 +50,8 @@ public class CalendarController {
 	@Qualifier("calendarMovieServiceImpl")
 	private CalendarMovieService calendarMovieService;
 	
-	/*@Autowired
-	@Qualifier("calendarSportServiceImpl")*/
+	@Autowired
+	@Qualifier("calendarSportServiceImpl")
 	private CalendarSportService calendarSportService;
 	
 	public CalendarController() {
@@ -111,7 +111,7 @@ public class CalendarController {
 	public void getCalendarDay() {}
 	
 	@RequestMapping(value="getCalendarInterest", method=RequestMethod.GET)
-	public ModelAndView getCalendarInterest(){
+	public ModelAndView getCalendarInterest() throws Exception{
 		long startDate = 0;
 		long endDate = 0;
 		Calendar calendar = Calendar.getInstance();
@@ -122,10 +122,12 @@ public class CalendarController {
 		
 		List<UserCategory> interestCategoryList = userCategoryService.getInterestCategoryList();
 		List<Schedule> calendarMovieList = calendarMovieService.getCalendarMovieList(startDate,endDate);
+		List<Schedule> calendarSportList = calendarSportService.getCalendarSportList(startDate, endDate);
 		
 		ModelAndView modelAndView = new ModelAndView();
 		modelAndView.addObject("interestCategoryList", interestCategoryList);
 		modelAndView.addObject("calendarMovieList", calendarMovieList);
+		modelAndView.addObject("calendarSportList", calendarSportList);
 		modelAndView.setViewName("/calendar/getCalendarInterest.jsp");
 		return modelAndView;
 	}
