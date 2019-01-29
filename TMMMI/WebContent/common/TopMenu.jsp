@@ -17,7 +17,6 @@
 </head>
 
 <body class="index-page sidebar-collapse">
-<%-- <jsp:include page="/common/toolbar2.jsp"></jsp:include> --%>
 <jsp:include page="/common/toolbar2.jsp"></jsp:include>
   <div class="page-header header-filter clear-filter" data-parallax="true" style="background-image: url('/images/userSetting/ ${userSetting.image}')">
     <div class="container">
@@ -33,7 +32,7 @@
   <div class="main main-raised">
     <div class="section section-basic">
       <div class="container">
-		 <div aling="center">이 부분에 코딩한거 넣으세요~^_^*
+		 <div align="center">이 부분에 코딩한거 넣으세요~^_^*
 		 <br/>toolbar2, footer부분 주석 풀고 원래문장 지우면 됨!</div>
       </div>
     </div>

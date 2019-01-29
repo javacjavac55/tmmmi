@@ -8,61 +8,71 @@
 <html lang="ko">
 
 <head>
-	<meta charset="EUC-KR">
-	<title> listFAQ </title>
-	
-	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  
-  	<!--  Fonts and icons -->
-  	<link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Roboto+Slab:400,700|Material+Icons" />
-  	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css">
-  	
-  	<script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
-	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" ></script>
-	
-    <!-- CSS Files -->
-    <link href="/css/template/material-kit.css" rel="stylesheet" />
-    <!-- CSS Just for demo purpose, don't include it in your project -->
-    <link href="/css/template/demo.css" rel="stylesheet" />
-    
+<meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0, shrink-to-fit=no' name='viewport' />
+<!--  Fonts and icons -->
+<link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Roboto+Slab:400,700|Material+Icons" />
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css">
+<!-- CSS Files -->
+<link href="/css/template/material-kit.css" rel="stylesheet" />
+
+<!-- jQuery -->
+<script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+	    
     <script type="text/javascript">
-	
-	function fncGetList(currentPage) {
-		
-		//document.getElementById("currentPage").value = currentPage;
-		$("#currentPage").val(currentPage)
-	   	//document.detailForm.submit();
-		$("form").attr("method" , "POST").attr("action" , "/faq/getFAQList").submit();
-	}
-	
+    
 	$(function() {	
-		
-		var faqNo=$(this).data("param1");
-		/* $(".title").on("click",function(){
-			/* alert("클릭됨?") */			
+			
 			var faqNo=$(this).data("param1");
-			$(".hide"+faqNo).toggleClass("show");
-        }); */
-		
-		$("a:contains('글쓰기')" ).on("click" , function() {
-			 self.location = "/faq/addFAQ";
-		 });
-		 
-		$("a:contains('수정하기')" ).on("click" , function() {
-			var faqNo =$(this).data("param2");
-			 self.location = "/faq/updateFAQ?faqNo="+faqNo;
-		 });
-		
-		$("a:contains('삭제하기')" ).on("click" , function() {
-			var faqNo =$(this).data("param2");
-			alert("asd");
-			 self.location = "/faq/deleteFAQ?faqNo="+faqNo;
-		 });
-		
-		$("button:contains('검색')" ).on("click" , function() {
-			fncGetList(1);
-		 });
- 	});
+			var currentPage=$("#currentPage").val();
+			
+			 $(".title").on("click",function(){	
+				var faqNo=$(this).data("param1");
+				$(".hide"+faqNo).toggleClass("show");
+	        }); 
+			
+			$("button:contains('글쓰기')" ).on("click" , function() {
+				 $("form").attr("method" , "GET").attr("action" , "/faq/addFAQ").submit();
+			 });
+			 
+			$("button:contains('수정하기')" ).on("click" , function() { 
+				var faqNo =$(this).data("param1");
+				$("form").attr("method" , "GET").attr("action" , "/faq/updateFAQ?faqNo="+faqNo).submit();
+			 });
+			
+			$("button:contains('삭제하기')" ).on("click" , function() {
+				var faqNo =$(this).data("param2");
+				$("form").attr("method" , "GET").attr("action" , "/faq/deleteFAQ?faqNo="+faqNo).submit();
+			 });
+			
+			$("button:contains('검색')" ).on("click" , function() {
+				fncGetList(1);
+			 });
+	 	});
+ 	
+	    function fncGetList(currentPage) {
+			$("#currentPage").val(currentPage)
+			console.log(currentPage)
+			$("form").attr("method" , "POST").attr("action" , "/faq/getFAQList").submit();
+	
+		}
+	    
+	    function fncJsonGetList(currentPage) {
+	    	$.ajax({
+	    			url:"/faqRest/json/getFAQList/" +currentPage,
+	    			method:"GET",
+					headers : {
+						"Accept" : "application/json",
+						"Content-Type" : "application/json"
+					},
+					success : function(data) {
+					console.log(data)
+					$('#table').html(data);
+					}
+			});
+	    }
+	
+	
 	</script>
 
 	<style>
@@ -72,29 +82,27 @@
 </head>
 
 <body class="index-page sidebar-collapse">
-	<jsp:include page="/common/toolbar2.jsp"></jsp:include>
-	
-	  <div class="page-header header-filter clear-filter purple-filter" data-parallax="true">
-	    <div class="container">
-	      <div class="row">
-	        <div class="col-md-8 ml-auto mr-auto">
-	          <div class="brand">
-	          
-	          </div>
-	        </div>
-	      </div>
-	    </div>
-	  </div>
+<form>
+<jsp:include page="/common/toolbar2.jsp"></jsp:include>
+  <div class="page-header header-filter clear-filter" style="height: 50vh; background-image: url('/images/weather/4016924c4eb809d80e5ac60ad0703088.jpg');">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-8 ml-auto mr-auto">
+          <div class="brand">
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 	  
   <div class="main main-raised">
     <div class="section section-basic">
       <div class="container">
-		 <div>
 		 	
+
 		 	<span>Home/FAQ</span>
 		 	<h2 style="margin-top:-0.3%">고객센터</h2>
-		 	
-		 	
+		 			 	
 		 	<br/><br/><br/><br/>
 		 	
 			<div class="row searchFAQ" style="margin:0 auto; ">
@@ -145,7 +153,7 @@
 				</div>
 			</div>
 			
-			<br/><br/><br/><br/><br/><br/>
+			<br/><br/><br/>
 			
 			<hr style="margin-bottom:-0.1%;">
 			<ul class="nav justify-content-center" >
@@ -158,15 +166,23 @@
 			</ul>
 			<hr style="margin-top:0.1%;">
 		
-			<br/><br/>
+			<br/>
+		    
+		    <div id="table">
+				<jsp:include page="../FAQ/FAQTable.jsp"/>
+			</div>
 			
-			
-			
-		 </div>
+			<div>
+				<c:if test="${role == 0}">
+					<button class="btn btn-primary btn-round btn-sm" style="left: 95%;">글쓰기</button>
+				</c:if>
+			</div>
+		
+			<br/><br/><br/><br/>
       </div>
     </div>
   </div>
-  
+  </form>
   <jsp:include page="/common/footer.jsp"></jsp:include>
 </body>
 

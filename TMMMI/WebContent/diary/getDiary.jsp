@@ -1,20 +1,5 @@
 <%@ page contentType="text/html; charset=EUC-KR"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-
-
-<%--
-<%
-	Product product = (Product)request.getAttribute("product");
-	String menu = request.getParameter("menu");
-	User vo = (User) session.getAttribute("user");
-
-	String role = "";
-
-	if (vo != null) {
-		role = vo.getRole();
-	}
-%>	
---%>
 <%@ page language="java" contentType="text/html; charset=EUC-KR"
 	pageEncoding="EUC-KR"%>
 <!DOCTYPE html>
@@ -68,8 +53,7 @@ body {
 			<div class="row">
 				<div class="col-md-8 ml-auto mr-auto">
 					<div class="brand">
-						<h2 class="title">Tmmmi Side Menu</h2>
-						<h3 class="title">모두 힘내봅시다</h3>
+						<h2 class="title">Tmmmi Side Menu</h2>						
 					</div>
 				</div>
 			</div>
@@ -81,7 +65,6 @@ body {
 				<div align="center">
 					<!-- Wrapper -->
 					<div id="wrapper">
-
 						<!-- Main -->
 						<div id="main">
 							<div class="info">
@@ -91,8 +74,6 @@ body {
 									${diary.userCategoryNo}</a>
 								<p align="right">
 									<strong>작성날짜 : </strong>${diary.diaryDate}</p>
-
-
 								<h4 class="info-title">${diary.diaryTitle}</h4>
 								<p>${diary.diaryDetail}</p>
 							</div>
@@ -104,9 +85,6 @@ body {
 							<button type="button" id="back" class="btn btn-default">확인</button>
 						</div>
 					</div>
-
-
-
 					<hr />
 				</div>
 			</div>

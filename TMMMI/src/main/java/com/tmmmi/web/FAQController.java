@@ -74,10 +74,10 @@ public class FAQController {
 		}
 		search.setPageSize(pageSize);
 		
-		if(search.getSearchCondition() == null & search.getSearchKeyword() == null) {
+		/*if(search.getSearchCondition() == null & search.getSearchKeyword() == null) {
 			search.setSearchCondition("0");
 			search.setSearchKeyword("");
-		}
+		}*/
 		
 		Map<String, Object> map = faqService.getFAQList(search);
 		Page resultPage = new Page(search.getCurrentPage(),  ((Integer)map.get("totalCount")).intValue(), pageUnit, pageSize);

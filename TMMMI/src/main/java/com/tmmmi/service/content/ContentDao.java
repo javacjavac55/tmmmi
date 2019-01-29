@@ -28,7 +28,9 @@ public interface ContentDao {
 	public List<Object> getContentGeneralList(ContentSetting contentSetting , int index) throws Exception;
 	
 	public List<Object> getContentHighlightList(ContentSetting contentSetting, int index) throws Exception;
+	
 	//tasty
+	public List<Object> getContentTastyList(ContentSetting contentSetting, int index) throws Exception;
 	
 	//shopping
 	public List<Object> getContentShoppingFirstList(ContentSetting contentSetting, int index) throws Exception;
@@ -38,6 +40,8 @@ public interface ContentDao {
 	public List<Object> getContentShoppingThirdList(ContentSetting contentSetting, int index) throws Exception;
 	
 	public List<Object> getContentShoppingReviewList(ContentSetting contentSetting, int index) throws Exception;
+
+	
 	
 	//keyword
 	public List<Object> getContentUserKeywordFirstList(ContentSetting contentSetting, int index) throws Exception;

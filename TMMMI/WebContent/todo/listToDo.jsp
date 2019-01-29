@@ -1,50 +1,43 @@
 <%@ page language="java" contentType="text/html; charset=EUC-KR"
-	pageEncoding="EUC-KR"%>
+    pageEncoding="EUC-KR"%>
 <!DOCTYPE html>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <html lang="ko">
 <head>
-<meta content="width=device-width, initial-scale=1" name="viewport">
-
-<!-- ChartJS -->
-<script
-	src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.3/Chart.bundle.js"></script>
-<script
-	src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.3/Chart.min.js"></script>
-<!-- Templete CSS -->
+  <title>Tmmmi</title>
+  <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0, shrink-to-fit=no' name='viewport' />
+  <!--  Fonts and icons -->
+  <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Roboto+Slab:400,700|Material+Icons" />
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css">
+  <!-- CSS Just for demo purpose, don't include it in your project -->
+  <link href="/css/template/demo.css" rel="stylesheet" />
+  <!-- jQuery -->
+  <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" ></script>
+  <!-- Templete CSS -->
 <link href="/css/template/material-kit.min.css?v=2.0.5" rel="stylesheet" />
 <!--   Core JS Files   -->
-<script src="/javascript/template/core/jquery.min.js"
-	type="text/javascript"></script>
-<script src="/javascript/template/core/popper.min.js"
-	type="text/javascript"></script>
-<script src="/javascript/template/core/bootstrap-material-design.min.js"
-	type="text/javascript"></script>
+<script src="/javascript/template/core/jquery.min.js" type="text/javascript"></script>
+<script src="/javascript/template/core/popper.min.js" type="text/javascript"></script>
+<script src="/javascript/template/core/bootstrap-material-design.min.js" type="text/javascript"></script>
 <!--momentJS  -->
 <script src="/javascript/moment/moment.js" type="text/javascript"></script>
 <!-- Place this tag in your head or just before your close body tag. -->
 <script async defer src="https://buttons.github.io/buttons.js"></script>
 <!-- Control Center for Material Kit: parallax effects, scripts for the example pages etc -->
-<script src="/javascript/template/material-kit.js?v=2.0.5"
-	type="text/javascript"></script>
+<script src="/javascript/template/material-kit.js?v=2.0.5" type="text/javascript"></script>
 <!-- Datedropper SET-->
 <link href="/css/datedropper/datedropper.css" rel="stylesheet"
 	type="text/css" />
 <script src="/javascript/datedropper/datedropper.js"></script>
-<link href="/font/datedropper/datedropper.woff" rel="stylesheet"
-	type="text/css" />
+<link href="/font/datedropper/datedropper.woff" rel="stylesheet" type="text/css" />
 <!--     Fonts and icons     -->
-<link rel="stylesheet" type="text/css"
-	href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Roboto+Slab:400,700|Material+Icons" />
-<link rel="stylesheet"
-	href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css">
-<link
-	href="https://fonts.googleapis.com/css?family=Nanum+Gothic:400,700,800&amp;subset=korean"
-	rel="stylesheet">
-	<link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Roboto+Slab:400,700|Material+Icons" />
+<link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Roboto+Slab:400,700|Material+Icons" />
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css">
+<link href="https://fonts.googleapis.com/css?family=Nanum+Gothic:400,700,800&amp;subset=korean" rel="stylesheet">
+<link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Roboto+Slab:400,700|Material+Icons" />
 <!-- Style CSS-->
 <style type="text/css">
-
 button, h3 {
 	font-family: "Nanum Gothic", sans-serif;
 }
@@ -91,8 +84,8 @@ span:hover:before {
 			return;
 		}
 		$(function() {
-			$(".addform").attr("method", "POST").attr("action", "/todo/addToDo")
-					.submit();
+			$(".addform").attr("method", "POST")
+					.attr("action", "/todo/addToDo").submit();
 		})
 	}
 	// ////////////////////////////// 할 일 등록//////////////////////////////////////
@@ -220,7 +213,7 @@ span:hover:before {
 	});
 	// /////////////////////////////////할 일 완료 취소/////////////////////////////////////////
 	$(function() {
-		$(".btn.btn-danger.completeDelbtn").click(function() {
+		$(".btn.btn-success.completeDelbtn").click(function() {
 			var dctodono = $(this).data("dctodono");
 			$.ajax({
 				url : "/todoRest/deleteToDoComplete",
@@ -241,35 +234,27 @@ span:hover:before {
 	});
 	//effect
 	$(function() {
-
 		$(".list-group.list-group-flush").hover(function() {
 			var todoNo = $(this).data("todono");
-			console.log(todoNo);
-			/* $(".no"+todoNo).attr('style', 'display:inline'); */
-			$(".no"+ todoNo).show();
+			$(".no" + todoNo).show();
 		}, function() {
-			console.log("1234");
 			var todoNo = $(this).data("todono");
-			/* $(".no"+ todoNo).attr('style', 'display:none'); */
-			$(".no"+ todoNo).hide(100);
+			$(".no" + todoNo).hide(100);
 		});
-		/* 
-		$("#todolist" + todoNo).hide();
-		 */
 	})
-	// 할 일 체크
-	/* 	var ToDay = new Date()
-
-	var y = new Date(ToDay.getFullYear(),ToDay.getMonth(),ToDay.getDate() - 34)
-
-	y.getFullYear() + "-" + (y.getMonth() +1 < 10? "0" +  (y.getMonth() +1): y.getMonth() +1 ) + "-" +
-
-	(y.getDate() < 10? "0" +  y.getDate(): y.getDate())
-	 */
+	$(function() {
+		$("#search").on(
+				"click",
+				function() {
+					$(".currentdateform").attr("method", "POST").attr("action",
+							"/todo/getToDoList").submit();
+				})
+	})
 </script>
 </head>
-<body>
-	<!-- 등록 모달 -->
+
+<body class="index-page sidebar-collapse">
+<!-- 등록 모달 -->
 	<div class="modal fade" id="todomodal" role="" tabindex="-1">
 		<div class="modal-dialog" role="document">
 			<div class="modal-content">
@@ -343,7 +328,7 @@ span:hover:before {
 		<!-- /.modal-dialog -->
 	</div>
 	<!-- 등록 모달 끝 -->
-	
+
 	<!--수정 모달 -->
 	<div class="modal fade" id="updatetodomodal" role="" tabindex="-1">
 		<div class="modal-dialog" role="document">
@@ -383,7 +368,8 @@ span:hover:before {
 										</div>
 									</div>
 									<input type="text" class="form-control" name="toDoStartDate"
-										data-format="Y-m-d" data-large-mode="true"  data-init-set="false" id="dd3">
+										data-format="Y-m-d" data-large-mode="true"
+										data-init-set="false" id="dd3">
 									<script>
 										$('#dd3').dateDropper();
 									</script>
@@ -396,7 +382,7 @@ span:hover:before {
 											<i class="material-icons">flag</i>
 										</div>
 									</div>
-									<input type="text" class="form-control" name="toDoEndDate"
+									<input type="text" class="form-control" name="toDoListDate"
 										data-format="Y-m-d" data-large-mode="true"
 										data-init-set="false" id="dd4">
 									<script>
@@ -418,136 +404,117 @@ span:hover:before {
 		<!-- /.modal-dialog -->
 	</div>
 	<!-- 수정 모달 끝 -->
+	
+<jsp:include page="/common/toolbar2.jsp"></jsp:include>
+  <div class="page-header header-filter clear-filter purple-filter" data-parallax="true">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-8 ml-auto mr-auto">
+          <div class="brand">
+            <h2 class="title">Tmmmi Side Menu</h2>
+            <h3 class="title">모두 힘내봅시다</h3>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="main main-raised">
+    <div class="section section-basic">
+      <div class="container">
 	<!-- 할 일 리스트 -->
 	<div class="container">
-		<div class="form-group">
-		</div>
+		<div class="form-group"></div>
 		<div class="list">
-				<div class="card">
-		          <div class="card-header card-header-text card-header-primary">
-		            <div class="card-text">
-		            <div class="row">
-		            	<div class="col-md-6">
-		              <h3 class="card-title">Today's Promise
-					<button class="btn btn-warning btn-fab btn-fab-mini btn-round"
-						data-target="#todomodal" data-toggle="modal" style="align=right;">
-						<i class="material-icons">add</i>
-					</button>
-					</h3>
+			<div class="card">
+				<div class="card-header card-header-text card-header-primary">
+					<div class="card-text">
+						<div class="row">
+							<div class="col-md-6">
+								<h3 class="card-title">
+									Today's Promise
+									<button class="btn btn-warning btn-fab btn-fab-mini btn-round"
+										data-target="#todomodal" data-toggle="modal" style="">
+										<i class="material-icons">add</i>
+									</button>
+								</h3>
+							</div>
+							<form class="currentdateform" action="">
+							<div class="form-group">
+							<div class="row">
+							<div class="col-md-8">
+									<input type="text" class="form-control" name="toDoStartDate"
+										value="${displaydate}" data-format="Y-m-d" data-large-mode="true"
+										data-init-set="false" id="dd5">
+										</div>
+										<div class="col-md-4">
+									<button
+										class="btn btn-warning btn-fab btn-fab-mini btn-round search"
+										id="search" type="submit">
+										<i class="material-icons">search</i>
+									</button>
+									</div>
+									<script>
+										$('#dd5').dateDropper();
+									</script>
+									</div>
+								</div>
+							</form>
+						</div>
 					</div>
-					<div class="col-md-1">
-					<button type="button" class="btn btn-warning btn-fab btn-round">
-						<i class="material-icons">chevron_left</i>
-					</button>
-					</div>
-					<form class="currentdateform" action="">
-					<div class="col-md-3">
-					<h4 id="currentday" style="margin-left: 30px;" ><input type="hidden" id="dayinput"></h4>
-					</div>
-					</form>
-					<div class="col-md-1">
-					<button type="button" class="btn btn-warning btn-fab btn-round">
-						<i class="material-icons">chevron_right</i>
-					</button>
-					</div>
-					</div>
-          		</div>
-          		</div>
-         	 <div class="card-body">
-			<c:forEach items="${todolist}" var="todo">
-					<ul class="list-group list-group-flush" data-todono="${todo.toDoNo}">
+				</div>
+				<div class="card-body">
+					<c:forEach items="${todolist}" var="todo">
+						<ul class="list-group list-group-flush"
+							data-todono="${todo.toDoNo}">
 							<li class="list-group-item">
 							<c:if test="${todo.toDoCompleteNo  eq 0}">
-								<button aria-label="Left Align"
-									class="btn btn-primary btn-fab btn-fab-mini completebtn"
-									data-ctodono="${todo.toDoNo}"
-									data-dctodono="${todo.toDoCompleteNo}" type="button">
-									<i class="material-icons">check</i>
-								</button>
-							</c:if>
+									<button aria-label="Left Align"
+										class="btn btn-primary btn-fab btn-fab-mini completebtn"
+										data-ctodono="${todo.toDoNo}"
+										data-dctodono="${todo.toDoCompleteNo}" type="button">
+										<i class="material-icons">check</i>.
+									</button>
+								</c:if> 
 								<c:if test="${todo.toDoCompleteNo  ne 0}">
 									<button aria-label="Left Align"
-									class="btn btn-success btn-fab btn-fab-mini completeDelbtn"
-									data-ctodono="${todo.toDoNo}"
-									data-dctodono="${todo.toDoCompleteNo}" type="button">
-									<i class="material-icons">check</i>
+										class="btn btn-success btn-fab btn-fab-mini completeDelbtn"
+										data-ctodono="${todo.toDoNo}"
+										data-dctodono="${todo.toDoCompleteNo}" type="button">
+										<i class="material-icons">check</i>
 									</button>
-								</c:if>
+								</c:if> 
 								<c:if test="${todo.toDoCompleteNo eq 0}">
 										${todo.toDoDetail}
-								</c:if>
+								</c:if> 
 								<c:if test="${todo.toDoCompleteNo  ne 0}">
-										<strike>${todo.toDoDetail}</strike>
+									<strike>${todo.toDoDetail}</strike>
 								</c:if>
-							<div class="no${todo.toDoNo} hide" style="margin-left: 50px;">
-							<input class="todoNo" type="hidden" value="${todo.toDoNo}">
-								<button aria-label="Left Align"
-									class="btn btn-primary btn-fab btn-fab-mini updateViewbtn"
-									data-enddate="${todo.toDoEndDate}"
-									data-startdate="${todo.toDoStartDate}"
-									data-utodonov="${todo.toDoNo}" data-target="#updatetodomodal"
-									data-toggle="modal" type="button">
-									<i class="material-icons">edit</i>
-								</button>
-								<button aria-label="Left Align"
-									class="btn btn-primary btn-fab btn-fab-mini deletebtn"
-									data-dtodono="${todo.toDoNo}" type="button">
-									<i class="material-icons">clear</i>
-								</button>
-							</div>
-							</li>
-					</ul>
-			</c:forEach>
+								<div class="no${todo.toDoNo} hide" style="margin-left: 50px;">
+									<input class="todoNo" type="hidden" value="${todo.toDoNo}">
+									<button aria-label="Left Align"
+										class="btn btn-primary btn-fab btn-fab-mini updateViewbtn"
+										data-enddate="${todo.toDoEndDate}"
+										data-startdate="${todo.toDoStartDate}"
+										data-utodonov="${todo.toDoNo}" data-target="#updatetodomodal"
+										data-toggle="modal" type="button">
+										<i class="material-icons">edit</i>
+									</button>
+									<button aria-label="Left Align"
+										class="btn btn-primary btn-fab btn-fab-mini deletebtn"
+										data-dtodono="${todo.toDoNo}" type="button">
+										<i class="material-icons">clear</i>
+									</button>
+								</div>
+								</li>
+						</ul>
+					</c:forEach>
+				</div>
 			</div>
 		</div>
-		</div>
 	</div>
+      </div>
+    </div>
+  </div>
+  <jsp:include page="/common/footer.jsp"></jsp:include>
 </body>
-<script type="text/javascript">
-		$(function() {
-			var currentday = moment().format("YYYY년 MM월 DD일");
-			var y;
-			var ymd;
-			$("#currentday").text(currentday);
-			var currentday = moment();
-			$("i:contains('chevron_right')").on("click", function () {
-				currentday = currentday.add(1, 'days')
-				 y = currentday.format("YYYY년 MM월 DD일");
-				ymd = currentday.format("YYYY-MM-DD");
-				 console.log(ymd);
-				 $('#dayinput').val(ymd);
-				 $(".currentdateform").attr("method", "POST").attr("action", "/todo/getToDoList")
-					.submit();
-				 $("#currentday").text(y);
-			 })
-			 $("i:contains('chevron_left')").on("click", function () {
-				 currentday = currentday.add(-1, 'days')
-				 y = currentday.format("YYYY년 MM월 DD일");
-				 ymd = currentday.format("YYYY-MM-DD");
-				 console.log(y);
-				 $("#currentday").text(y);
-			 })
-			/*  $(".btn.btn-warning.btn-fab.btn-round").on("click",function(){
-			 $.ajax({
-                 url: "/todoRest/getToDoList",
-                 method: 'POST',
-                 headers: {
-                     "Accept": "application/json",
-                     "Content-Type": "application/json"
-                 },
-                 data: ymd,
-                 dataType: 'json',
-                 success: function (result) {
-                 console.log(result);
-                	  $( "ul" ).empty();
-                	  $.each(result, function (i) {
-                		  console.log(result[i].toDoDetail);
-                		  $('.card-body').append('<ul>'),
-                		  $('<ul>').append('<li>'+result[i].toDoDetail+'</li></ul>');
-                	  })
-                 }
-             })
-			 }) */
-		 })
-	</script>
 </html>
