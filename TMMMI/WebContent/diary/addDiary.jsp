@@ -1,38 +1,54 @@
+<%@ page contentType="text/html; charset=EUC-KR"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ page language="java" contentType="text/html; charset=EUC-KR"
 	pageEncoding="EUC-KR"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%-- <% 	Product product = (Product)request.getAttribute("product");
-	System.out.println(product);
-	User user = (User)request.getSession().getAttribute("user");
-	System.out.println(user);
-	
-%> --%>
-
-<html>
+<!DOCTYPE html>
+<html lang="ko">
 <head>
-
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<!-- 부트스트랩, 제이쿼리 -->
+<title>Tmmmi</title>
+<meta
+	content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0, shrink-to-fit=no'
+	name='viewport' />
+<!--  Fonts and icons -->
+<link rel="stylesheet" type="text/css"
+	href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Roboto+Slab:400,700|Material+Icons" />
 <link rel="stylesheet"
-	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-<link rel="stylesheet"
-	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css">
-<script
-	src="http://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.js"></script>
+	href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css">
 
-<!-- summernote -->
+<!-- CSS Files -->
+<link href="/css/template/material-kit.css" rel="stylesheet" />
+
+<!-- CSS Just for demo purpose, don't include it in your project -->
+<link href="/css/template/demo.css" rel="stylesheet" />
+
+<!-- jQuery -->
+<script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+
+
+<!-- <!-- summernote -->
+<!-- 
 <script
 	src="http://netdna.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.js"></script>
 <link href="/css/summernote/summernote.css" rel="stylesheet">
-<script src="/javascript/summernote/summernote.js"></script>
+<script src="/javascript/summernote/summernote.js"></script> -->
+
+
+<!--ckeditor  -->
+<!-- <script src="/ckeditor/ckeditor.js"></script> -->
+<script src="//cdn.ckeditor.com/4.7.3/full/ckeditor.js"></script>
 
 <!-- 로딩 -->
 <link rel="stylesheet" href="/css/summernote/loading.css">
 <!-- <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script> -->
-<script src="/javascript/summernote/loading.js"></script>
+<!-- <script src="/javascript/summernote/loading.js"></script> -->
 
-<!-- <link rel="stylesheet" href=/css/template/main.css>
-<link rel="stylesheet" href="assets/css/main.css" /> -->
+
+<style>
+body {
+	padding-top: 50px;
+}
+</style>
+
 <script type="text/javascript">
 	/* function postForm() {
 	    $('textarea[name="diaryDetail"]').val($('#summernote').summernote('code'));
@@ -44,7 +60,7 @@
 		    spinner:"spinner2" // 로딩중으로 원하는 로딩이미지타입
 	})};  */
 
-	var $note = null;
+	/* var $note = null;
 	$(document).ready(function() {
 
 		$('#summernote').summernote({
@@ -85,8 +101,7 @@
 
 		});
 		/* $('textarea[name="Contents"]').html($('.summernote').code()); */
-	});
-
+	//});
 	/* function senFIle(file, el){
 		var form_data = new FormData();
 		form_data.append('file', file)
@@ -118,59 +133,99 @@
 </script>
 </head>
 
-
-<body>
-	<form name="addDiary" class="form-horizontal">
-		<div class="navbar  navbar-default">
+<body class="index-page sidebar-collapse">
+	<jsp:include page="/common/toolbar2.jsp"></jsp:include>
+	<div class="page-header header-filter clear-filter purple-filter"
+		data-parallax="true">
+		<div class="container">
+			<div class="row">
+				<div class="col-md-8 ml-auto mr-auto">
+					<div class="brand">
+						<h2 class="title">Diary</h2>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="main main-raised">
+		<div class="section section-basic">
 			<div class="container">
-				<a class="navbar-brand" href="/index.jsp">Tmmmi</a>
+				<div align="center">
+					<!-- Wrapper -->
+					<div id="wrapper">
+						<!-- Main -->
+						<div id="main">
+							<form name="addDiary" class="form-horizontal">
+							
+								<div class="form-group" align="left">
+									<label for="userCategoryNo" class="col-sm-offset-1 col-sm-1 control-label text-center"></label>\
+									<h3>다이어리를 등록해주세요</h3>	
+									<div class="col-sm-4">
+																		
+									</div>
+								</div>								
+								
+								<div class="form-group" align="left">
+									<label for="userCategoryNo" class="col-sm-offset-1 col-sm-1 control-label text-center"></label>
+									<div class="col-sm-4">
+										<input type="text" name="userCategoryNo" class="form-control" placeholder="유저 카테고리" />
+									</div>
+								</div>
+
+								<div class="form-group" align="left">
+									<label for="diaryTitle" class="col-sm-offset-1 col-sm-1 control-label text-center"></label>
+									<div class="col-sm-4">
+										<input type="text" name="diaryTitle" class="form-control" placeholder="제목" />
+									</div>
+								</div>
+								
+								<div>
+									<label for="diaryDetail" class="col-sm-offset-1 col-sm-3 control-label text-center"></label>
+									<div class="col-sm-12" align="center">
+										<textarea id="ckeditor" name="diaryDetail" style="display: none;"></textarea>
+									</div>
+								</div>
+
+								<div class="form-group">
+									<div class="col-sm-offset-4  col-sm-4 text-center">
+										<button type="button" class="btn btn-primary">등록</button>
+										<a class="btn btn-primary" href="#" role="button">취소</a>
+									</div>
+								</div>
+							</form>
+						</div>
+					</div>	
+				</div>
 			</div>
 		</div>
+	</div>
+	<hr />
+	<%-- <jsp:include page="/common/footer.jsp"></jsp:include> --%>
+	<jsp:include page="/common/footer.jsp"></jsp:include>
+	<script>
+		$(function() {
 
-		<h1 class="bg-primary text-center">다이어리 등 록</h1>
+			CKEDITOR.replace('ckeditor', {//해당 이름으로 된 textarea에 에디터를 적용
+				width : '100%',
+				height : '700PX',
+				filebrowserImageUploadUrl : '/diary/imageDiary?type=image'
 
+			});
 
+			CKEDITOR.on('dialogDefinition', function(ev) {
+				var dialogName = ev.data.name;
+				var dialogDefinition = ev.data.definition;
 
-		<div class="form-group">
-			<label for="userCategoryNo"
-				class="col-sm-offset-1 col-sm-3 control-label text-center">유저카테고리</label>
-			<div class="col-sm-4">
-				<input type="text" name="userCategoryNo" class="form-control"
-					placeholder="유저카테고리." />
+				switch (dialogName) {
+				case 'image': //Image Properties dialog
+					//dialogDefinition.removeContents('info');
+					dialogDefinition.removeContents('Link');
+					dialogDefinition.removeContents('advanced');
+					break;
+				}
+			});
 
-			</div>
-		</div>
-		<hr />
-
-		<div class="form-group">
-			<label for="diaryTitle"
-				class="col-sm-offset-1 col-sm-3 control-label text-center">제목</label>
-			<div class="col-sm-4">
-				<input type="text" name="diaryTitle" class="form-control"
-					placeholder="제목" />
-			</div>
-		</div>
-		<hr />
-		<div class="form-group">
-			<label for="diaryDetail"
-				class="col-sm-offset-1 col-sm-3 control-label text-center">내용</label>
-			<div class="col-sm-4">
-				<textarea id="summernote" name="diaryDetail" style="display: none;"></textarea>
-			</div>
-		</div>
-
-		<hr />
-
-
-		<div class="form-group">
-			<div class="col-sm-offset-4  col-sm-4 text-center">
-
-				<button type="button" class="btn btn-primary">등록</button>
-				<a class="btn btn-primary" href="#" role="button">취소</a>
-			</div>
-		</div>
-
-
-	</form>
+		});
+	</script>
 </body>
 </html>
