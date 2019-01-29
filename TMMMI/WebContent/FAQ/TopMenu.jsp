@@ -1,18 +1,23 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
+<%@ page contentType="text/html; charset=EUC-KR" %>
+<%@ page pageEncoding="EUC-KR"%>
+
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
 <!DOCTYPE html>
 <html lang="ko">
+
 <head>
-  <title>Tmmmi</title>
+  <title>listFAQ</title>
+  
   <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0, shrink-to-fit=no' name='viewport' />
+  
   <!--  Fonts and icons -->
   <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Roboto+Slab:400,700|Material+Icons" />
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css">
+  
   <!-- CSS Files -->
   <link href="/css/template/material-kit.css" rel="stylesheet" />
-  <!-- CSS Just for demo purpose, don't include it in your project -->
-  <link href="/css/template/demo.css" rel="stylesheet" />
-  <!-- jQuery -->
+
   <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" ></script>
 </head>
@@ -24,8 +29,6 @@
       <div class="row">
         <div class="col-md-8 ml-auto mr-auto">
           <div class="brand">
-            <h2 class="title">Tmmmi Side Menu</h2>
-            <h3 class="title">¸ðµÎ Èû³»º¾½Ã´Ù</h3>
           </div>
         </div>
       </div>
