@@ -105,4 +105,28 @@ public abstract class ContentDaoAdaptor implements ContentDao {
 	}
 	
 	//keyword
+	@Override
+	public List<Object> getContentUserKeywordFirstList(ContentSetting contentSetting, int index) throws Exception{
+		return null;
+	}
+	
+	@Override
+	public List<Object> getContentUserKeywordSecondList(ContentSetting contentSetting, int index) throws Exception{
+		return null;
+	}
+	
+	@Override
+	public List<Object> getContentUserKeywordThirdList(ContentSetting contentSetting, int index) throws Exception{
+		return null;
+	}
+	
+	@Override
+	public List<Object> getContentUserKeywordVideoFirstList(ContentSetting contentSetting, int index) throws Exception{
+		return null;
+	}
+	
+	@Override
+	public List<Object> getContentUserKeywordVideoSecondList(ContentSetting contentSetting, int index) throws Exception{
+		return null;
+	}
 }

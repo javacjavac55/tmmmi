@@ -16,7 +16,7 @@
   <nav class="navbar navbar-transparent navbar-color-on-scroll fixed-top navbar-expand-lg" color-on-scroll="100" id="sectionsNav">
     <div class="container">
       <div class="navbar-translate">
-        <a class="navbar-brand" href="http://localhost:8080/common/TopMenu.jsp">Tmmmi</a>
+       <!--  <a class="navbar-brand" href="http://localhost:8080/common/TopMenu.jsp">Tmmmi</a> -->
         <button class="navbar-toggler" type="button" data-toggle="collapse" aria-expanded="false" aria-label="Toggle navigation">
           <span class="sr-only">Toggle navigation</span>
           <span class="navbar-toggler-icon"></span>
@@ -65,8 +65,8 @@
             <a href="#" class="dropdown-toggle nav-link" data-toggle="dropdown">명훈</a>
             <div class="dropdown-menu dropdown-with-icons">
 				<a href="/todo/getToDoList" class="dropdown-item">할 일 리스트</a>
-				<a href="/content/tastyContent.jsp" class="dropdown-item">맛집컨텐츠박스</a>
-				<a href="/todo/getToDoMonthGraph">할 일 그래프</a>
+				<a href="/contentTasty/contentTastyList" class="dropdown-item">맛집컨텐츠박스</a>
+				<a href="/todo/getToDoMonthGraph" class="dropdown-item">할 일 그래프</a>
             </div>
           </li>
           <!-- 지슬 -->
