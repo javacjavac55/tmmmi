@@ -28,7 +28,7 @@ public class ContentTastyDaoImpl extends ContentDaoAdaptor {
         String clientSecret = "O4TGEmLBA4";
         List<Object> tastyList = null;
         try {
-        	String text = URLEncoder.encode(contentSetting.getTastyKeyword(), "UTF-8");
+        	String text = URLEncoder.encode(contentSetting.getTastyKeyword()+" 맛집", "UTF-8");
             String apiURL = "https://openapi.naver.com/v1/search/local?query="+ text;
             ObjectMapper objectMapper = new ObjectMapper();
             URL url = new URL(apiURL);
@@ -60,7 +60,7 @@ public class ContentTastyDaoImpl extends ContentDaoAdaptor {
         } 
 		return tastyList;
 	}
-	public static void main(String[] args) {
+	/*public static void main(String[] args) {
 		String clientId = "d9ROlDLvnXulcE2hxtAm";
         String clientSecret = "O4TGEmLBA4";
         try {
@@ -90,7 +90,7 @@ public class ContentTastyDaoImpl extends ContentDaoAdaptor {
         } catch (Exception e) {
             System.out.println(e);
         }
-	}
+	}*/
 
 }
 
