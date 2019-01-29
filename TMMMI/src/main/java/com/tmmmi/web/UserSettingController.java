@@ -1,5 +1,7 @@
 package com.tmmmi.web;
 
+import java.io.File;
+
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,6 +10,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.tmmmi.service.domain.UserSetting;
@@ -46,6 +50,7 @@ public class UserSettingController {
 		System.out.println("/userSetting/updateUserSetting : GET");
 		
 		int userNo = ((int)session.getAttribute("userNo"));
+		System.out.println(userNo);
 		UserSetting userSetting = userSettingService.getUserSetting(userNo);
 		System.out.println(userSetting);
 		ModelAndView modelAndView = new ModelAndView();
@@ -56,10 +61,19 @@ public class UserSettingController {
 	}
 	
 	@RequestMapping(value="updateUserSetting", method=RequestMethod.POST)
-	public ModelAndView updateUserSetting(@ModelAttribute("userSetting") UserSetting userSetting) {
+	public ModelAndView updateUserSetting(@ModelAttribute("userSetting") UserSetting userSetting, @RequestParam("file") MultipartFile fileName, HttpSession session) throws Exception{
 		System.out.println("/userSetting/updateUserSetting : POST");
 		
+		String file = fileName.getOriginalFilename();
+		String filePath = "C:\\Users\\bit\\git\\tmmmi\\TMMMI\\WebContent\\resources\\images\\userSetting\\";
+		File fileImage = new File(filePath, file);
+		fileName.transferTo(fileImage);
+		userSetting.setImage(file);
+		userSetting.setUserNo((int)session.getAttribute("userNo"));
+		
 		userSettingService.updateUserSetting(userSetting);
+		session.removeValue("userSetting");
+		session.setAttribute("userSetting", userSettingService.getUserSetting((int)session.getAttribute("userNo")));
 		
 		ModelAndView modelAndView = new ModelAndView();
 		modelAndView.setViewName("/userSetting/getUserSetting.jsp");

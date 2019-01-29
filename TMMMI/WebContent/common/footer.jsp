@@ -7,6 +7,7 @@
 <title>Insert title here</title>
 </head>
 <body>
+<br/><br/>
   <!--   Core JS Files   -->
   <script src="/javascript/template/core/popper.min.js" type="text/javascript"></script>
   <script src="/javascript/template/core/bootstrap-material-design.min.js" type="text/javascript"></script>

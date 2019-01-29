@@ -200,4 +200,12 @@ public class UserController {
 		return modelAndView;
 	}
 	
+	@RequestMapping(value="menu", method=RequestMethod.POST)
+	public ModelAndView menu() throws Exception{
+		ModelAndView modelAndView = new ModelAndView();
+		modelAndView.setViewName("redirect:/common/TopMenu.jsp");
+		
+		return modelAndView;
+	}
+	
 }

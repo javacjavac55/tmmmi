@@ -40,4 +40,13 @@ public interface ContentDao {
 	public List<Object> getContentShoppingReviewList(ContentSetting contentSetting, int index) throws Exception;
 	
 	//keyword
+	public List<Object> getContentUserKeywordFirstList(ContentSetting contentSetting, int index) throws Exception;
+	
+	public List<Object> getContentUserKeywordSecondList(ContentSetting contentSetting, int index) throws Exception;
+	
+	public List<Object> getContentUserKeywordThirdList(ContentSetting contentSetting, int index) throws Exception;
+	
+	public List<Object> getContentUserKeywordVideoFirstList(ContentSetting contentSetting, int index) throws Exception;
+	
+	public List<Object> getContentUserKeywordVideoSecondList(ContentSetting contentSetting, int index) throws Exception;
 }

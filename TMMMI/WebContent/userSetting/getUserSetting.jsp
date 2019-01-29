@@ -27,7 +27,7 @@ $(function(){
 
 <body class="index-page sidebar-collapse">
 	<jsp:include page="/common/toolbar2.jsp"></jsp:include>
-	<div class="page-header header-filter clear-filter" data-parallax="true" style="background-image: url(' ${ ! empty userSetting.image ? " ${userSetting.image}" : " /images/template/image_6845277191476929532543.jpg" }')">
+	<div class="page-header header-filter clear-filter" data-parallax="true" style="background-image: url('/images/userSetting/ ${userSetting.image}')">
 		<div class="container">
 			<div class="row">
 				<div class="col-md-8 ml-auto mr-auto">
@@ -47,23 +47,32 @@ $(function(){
 
 							<div class="description text-center">
 								<div class="form-group bmd-form-group">
-									<label class="bmd-label-static">Main Color</label> 
-									<input type="text" class="form-control" value="${userSetting.mainColorModeNo }" readonly="readonly">
+									<label class="bmd-label-static">Main Color</label>
+									<c:if test="${userSetting.mainColorModeNo eq 0}">
+										<div id="chgcolor" style="background-color:#483949; heihgt:50px; width:300px; border:solid 1px">
+											컨텐츠 배경색 입니다.
+										</div>
+										<div id="chgcolor" style="background-color:#fafafa; heihgt:50px;width:300px;border:solid 1px">
+											컨텐츠 폰트색 입니다.
+										</div>
+									</c:if>
+									<c:if test="${userSetting.mainColorModeNo eq 1}">
+										<div id="chgcolor" style="background-color:#fafafa; heihgt:50px;width:300px;border:solid 1px">
+											컨텐츠 배경색 입니다.
+										</div>
+										<div id="chgcolor" style="background-color:#483949;heihgt:50px;width:300px;border:solid 1px">
+											컨텐츠 폰트색 입니다.
+										</div>
+									</c:if>
 								</div>
 							</div>
 
 							<div class="description text-center">
 								<div class="form-group bmd-form-group">
 									<label class="bmd-label-static">Menu Font Color</label> 
-									<input type="text" class="form-control" value="${userSetting.menuFontColor }" readonly="readonly">
-								</div>
-							</div>
-
-							<div class="description text-center">
-								<div class="form-group bmd-form-group">
-									<label class="bmd-label-static">Alarm</label> 
-									<c:if test="${userSetting.showScrapAlarm eq 0}"><input type="text" class="form-control" value="알람을 사용하지 않습니다."></c:if>
-									<c:if test="${userSetting.showScrapAlarm eq 1}"><input type="text" class="form-control" value="${userSetting.scrapAlarmTime }" readonly="readonly"></c:if>
+									<div id="chgcolor" style="background-color:${userSetting.menuFontColor};heihgt:50px;width:300px;border:solid 1px">
+										배경색이 메뉴 폰트 색상입니다.
+									</div>
 								</div>
 							</div>
 							
@@ -71,7 +80,7 @@ $(function(){
 								<div class="form-group bmd-form-group">
 									<label class="bmd-label-static">Image</label>
 									<c:if test="${ empty userSetting.image  }"><input type="text" class="form-control" value="이미지가 없습니다. 수정해주세요!" readonly="readonly"></c:if> 
-									<c:if test="${ ! empty userSetting.image }">이미지 띄우기</c:if>
+									<c:if test="${ ! empty userSetting.image }"><img src="/images/userSetting/ ${userSetting.image}"  height="80%" width="40%"></c:if>
 								</div>
 							</div>
 
