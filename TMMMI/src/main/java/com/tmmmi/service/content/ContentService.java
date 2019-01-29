@@ -14,6 +14,8 @@ public interface ContentService {
 	
 	public List<Object> getMovieReviewList(ContentSetting contentSetting, int index) throws Exception;
 	
+	public List<Object> getMovieTrailerList(ContentSetting contentSetting, int index) throws Exception;
+	
 	//sport
 	public List<Object> getContentKsoccerList(ContentSetting contentSetting , int index) throws Exception;
 	

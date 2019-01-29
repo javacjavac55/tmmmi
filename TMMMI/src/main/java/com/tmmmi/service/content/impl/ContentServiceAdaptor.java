@@ -31,6 +31,12 @@ public abstract class ContentServiceAdaptor implements ContentService {
 		return null;
 	}
 	
+	@Override
+	public List<Object> getMovieTrailerList(ContentSetting contentSetting, int index) throws Exception {
+		// TODO Auto-generated method stub
+		return null;
+	}
+	
 	//sport
 	@Override
 	public List<Object> getContentKsoccerList(ContentSetting contentSetting, int index) throws Exception {

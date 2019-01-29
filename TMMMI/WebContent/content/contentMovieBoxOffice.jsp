@@ -24,10 +24,9 @@
 	<section class="carousel" style="background-color:#1d1d1d;">
 		<div class="reel" style="overflow: visible; transform: translate(-1285px, 0px);">
 			<c:forEach var="contentMovie" items="${contentMovieBoxOfficeList}">
-				
 				<article>
-					<a href="${contentMovie.movieLink}" class="image featured">
-						<img src="${contentMovie.movieThumbnail}">
+					<a href="${contentMovie.movieLink}">
+						<img class="poster" src="${contentMovie.movieThumbnail}">
 					</a>	
 					<header>
 						<h3>${contentMovie.movieTitle}</h3>

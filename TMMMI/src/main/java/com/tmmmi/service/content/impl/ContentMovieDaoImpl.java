@@ -74,11 +74,9 @@ public class ContentMovieDaoImpl extends ContentDaoAdaptor {
 				
 				
 				//thumbnail
-				//System.out.println(movie.getElementsByTag("img").attr("src").split("\\?type=")[0]);
 				contentMovie.setMovieThumbnail(movie.getElementsByTag("img").attr("src").split("\\?type=")[0]);
 				
 				//title
-				//System.out.println(movie.select(".tit a").text());
 				contentMovie.setMovieTitle(movie.select(".tit a").text());
 				
 				
@@ -86,7 +84,6 @@ public class ContentMovieDaoImpl extends ContentDaoAdaptor {
 					switch (e.text()) {
 					case "개요":
 						//genre + running time + open date
-						//System.out.println(e.nextElementSibling().text());
 						String[] info = e.nextElementSibling().text().split(" \\| ");
 						
 						for (String val:info) {
@@ -100,12 +97,10 @@ public class ContentMovieDaoImpl extends ContentDaoAdaptor {
 						break;
 					case "감독":
 						//director
-						//System.out.println(e.nextElementSibling().text());
 						contentMovie.setMovieDirector(e.nextElementSibling().text());
 						break;
 					case "출연":
 						//actor
-						//System.out.println(e.nextElementSibling().text());
 						String[] actor = e.nextElementSibling().text().split(",");
 						if (actor.length>3) {
 							contentMovie.setMovieActor(actor[0]+","+actor[1]+","+actor[2]+" 외");
@@ -117,7 +112,6 @@ public class ContentMovieDaoImpl extends ContentDaoAdaptor {
 						
 				}
 				//rating + reserve rating
-				//System.out.println(movie.select(".star_t1 .num").text());
 				String[] info2 = movie.select(".star_t1 .num").text().split(" ");
 				contentMovie.setMovieRating(BigDecimal.valueOf(Double.parseDouble(info2[0])*10).setScale(3, RoundingMode.HALF_UP).doubleValue()+"");
 				if (info2.length>1) {
@@ -125,21 +119,19 @@ public class ContentMovieDaoImpl extends ContentDaoAdaptor {
 				}
 				
 				//rating count
-				//System.out.println(movie.select(".num2").text());
 				contentMovie.setMovieRatingCount(movie.select(".num2").text());
 				
 				//video
 				innerDoc = Jsoup.connect("http://movie.naver.com"+movie.select(".item2").attr("href")).header("User-Agent", "Mozilla/5.0").get();
-				//System.out.println(innerDoc.select(".video_ar").html());
 				contentMovie.setMovieVideo(innerDoc.select(".video_ar").html().replaceAll("src=\"/movie","src=\"https://movie.naver.com/movie").replaceAll("playerSize=...x...", "playerSize=800x600").replaceAll("height=\"480\"", "height=\"600\""));
 				
 				//link
-				//System.out.println("https://movie.naver.com"+movie.getElementsByAttributeValueContaining("href", ".nhn?code=").attr("href"));
 				contentMovie.setMovieLink("https://movie.naver.com"+movie.getElementsByAttributeValueContaining("href", ".nhn?code=").attr("href"));
 				
-				System.out.println(contentMovie);
-				result.add(contentMovie);
+				//no
+				contentMovie.setMovieNo(Integer.parseInt(movie.getElementsByAttributeValueContaining("href", ".nhn?code=").attr("href").split("code=")[1]));
 				
+				result.add(contentMovie);
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -165,18 +157,15 @@ public class ContentMovieDaoImpl extends ContentDaoAdaptor {
 				ContentMovie contentMovie = new ContentMovie();
 
 				// thumbnail
-				// System.out.println(movie.getElementsByTag("img").attr("src").split("\\?type=")[0]);
 				contentMovie.setMovieThumbnail(movie.getElementsByTag("img").attr("src").split("\\?type=")[0]);
 
 				// title
-				// System.out.println(movie.select(".tit a").text());
 				contentMovie.setMovieTitle(movie.select(".tit a").text());
 
 				for (Element e : movie.select(".info_txt1 dt")) {
 					switch (e.text()) {
 					case "개요":
 						// genre + running time + open date
-						// System.out.println(e.nextElementSibling().text());
 						String[] info = e.nextElementSibling().text().split(" \\| ");
 						
 						for (String val:info) {
@@ -190,12 +179,10 @@ public class ContentMovieDaoImpl extends ContentDaoAdaptor {
 						break;
 					case "감독":
 						// director
-						// System.out.println(e.nextElementSibling().text());
 						contentMovie.setMovieDirector(e.nextElementSibling().text());
 						break;
 					case "출연":
 						// actor
-						// System.out.println(e.nextElementSibling().text());
 						String[] actor = e.nextElementSibling().text().split(",");
 						if (actor.length > 3) {
 							contentMovie.setMovieActor(actor[0] + "," + actor[1] + "," + actor[2] + " 외");
@@ -211,7 +198,6 @@ public class ContentMovieDaoImpl extends ContentDaoAdaptor {
 				if (movie.select(".item2").text().contains("예고편")) {
 					innerDoc = Jsoup.connect("http://movie.naver.com" + movie.getElementsContainingText("예고편").attr("href"))
 							.header("User-Agent", "Mozilla/5.0").get();
-					// System.out.println(innerDoc.select(".video_ar").html());
 					contentMovie.setMovieVideo(innerDoc.select(".video_ar").html()
 							.replaceAll("src=\"/movie", "src=\"https://movie.naver.com/movie")
 							.replaceAll("playerSize=...x...", "playerSize=800x600")
@@ -219,12 +205,12 @@ public class ContentMovieDaoImpl extends ContentDaoAdaptor {
 				}
 				
 				// link
-				// System.out.println("https://movie.naver.com"+movie.getElementsByAttributeValueContaining("href",
-				// ".nhn?code=").attr("href"));
 				contentMovie.setMovieLink("https://movie.naver.com"
 						+ movie.getElementsByAttributeValueContaining("href", ".nhn?code=").attr("href"));
 
-				System.out.println(contentMovie);
+				//no
+				contentMovie.setMovieNo(Integer.parseInt(movie.getElementsByAttributeValueContaining("href", ".nhn?code=").attr("href").split("code=")[1]));
+				
 				result.add(contentMovie);
 
 			}
@@ -316,13 +302,10 @@ public class ContentMovieDaoImpl extends ContentDaoAdaptor {
 				//movieTitle
 				contentMovie.setMovieTitle(movie.select(".tit > a").text());
 				
-				doc2 = Jsoup.connect("https://movie.naver.com"+movie.select(".tit > a").attr("href")).header("User-Agent", "Mozilla/5.0").get();
 				//movieLink
+				doc2 = Jsoup.connect("https://movie.naver.com"+movie.select(".tit > a").attr("href")).header("User-Agent", "Mozilla/5.0").get();
 				contentMovie.setMovieVideo(doc2.select(".video_ar").html().replaceAll("src=\"/movie","src=\"https://movie.naver.com/movie").replaceAll("playerSize=...x...", "playerSize=800x600").replaceAll("height=\"480\"", "height=\"600\""));
-				
-				System.out.println(contentMovie);
 			}
-			
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

@@ -60,4 +60,12 @@ public class ContentMovieController {
 		modelAndView.setViewName("/content/contentMovieReview.jsp");
 		return modelAndView;
 	}
+	
+	@RequestMapping(value="getContentMovieTrailer", method=RequestMethod.GET)
+	public ModelAndView getMovieTrailerList() throws Exception {
+		ModelAndView modelAndView = new ModelAndView();
+		modelAndView.addObject("contentMovieTrailerList", contentMovieService.getMovieTrailerList(null, 0));
+		modelAndView.setViewName("/content/contentMovieTrailer.jsp");
+		return modelAndView;
+	}
 }

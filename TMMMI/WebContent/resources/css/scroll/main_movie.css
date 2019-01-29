@@ -23,7 +23,7 @@ html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p,
 	border: 0;
 	font-size: 100%;
 	font: inherit;
-	vertical-align: baseline;
+	vertical-align: top;
 }
 
 article, aside, details, figcaption, figure, footer, header, hgroup,
@@ -2238,14 +2238,15 @@ body.homepage.is-preload #header:after {
 	position: relative;
 	-webkit-overflow-scrolling: touch;
 	padding: 0 2em 0 2em;
+	-webkit-perspective: 1000;
 }
 
 .carousel article {
 	display: inline-block;
-	width: 18em;
+	width: 824px !important;
+	height: 600px !important;
 	background: #fff;
 	text-align: center;
-	padding: 0 1em 3em 1em;
 	margin: 0 2em 0 0;
 	white-space: normal;
 	opacity: 1.0;
@@ -2253,23 +2254,11 @@ body.homepage.is-preload #header:after {
 	-webkit-transition: opacity 0.75s ease-in-out;
 	-ms-transition: opacity 0.75s ease-in-out;
 	transition: opacity 0.75s ease-in-out;
+	position: relative;
 }
 
 .carousel article.loading {
 	opacity: 0;
-}
-
-.carousel article .image {
-	position: relative;
-	left: -1em;
-	top: 0;
-	width: auto;
-	margin-right: -2em;
-	margin-bottom: 3em;
-}
-
-.carousel article p {
-	text-align: center;
 }
 
 /* Wide */
@@ -2690,4 +2679,68 @@ body.homepage.is-preload #header:after {
 	.carousel article .image {
 		margin-bottom: 2em;
 	}
+}
+
+.star-ratings-css {
+	unicode-bidi: bidi-override;
+	color: #c5c5c5;
+	font-size: 25px;
+	height: 25px;
+	width: 125px;
+	margin: 10px 0;
+	position: relative;
+	padding: 0;
+	text-shadow: 0px 1px 0 #a2a2a2;
+	display: inline;
+}
+
+.star-ratings-css-top {
+	color: #e7711b;
+	padding: 0;
+	position: absolute;
+	z-index: 1;
+	top: 0;
+	left: 0;
+	overflow: hidden;
+	display: inline;
+}
+
+.star-ratings-css-bottom {
+	padding: 0;
+	z-index: 0;
+	display: inline;
+}
+
+.poster {
+	position: relative;
+	top: 0;
+	width: 421px !important;
+	height: 600px !important;
+	display: inline-block !important;
+	float:left;
+}
+
+.carousel article p {
+	text-align: center;
+}
+
+.carousel article header {
+	text-align: center;
+	width: 50%;
+	display: inline-block !important;
+	float:right;
+	vertical-align:top;
+}
+
+.movie {
+	height: 600px;
+}
+
+.movie-preview {
+	position:absolute;
+	width:824px;
+	top:0px;
+	left:0px;
+	z-index:5;
+	display:none;
 }
