@@ -191,7 +191,6 @@
 												id="addDiary" onclick="fncAddDiary();">±Û¾²±â</button>
 										</div>
 									</div>
-
 								</form>
 							</div>
 						</div>
