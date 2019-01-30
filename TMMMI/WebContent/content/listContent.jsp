@@ -12,9 +12,9 @@ body {
 }
 iframe {
 	width: 100%;
-	height: 800px;
+	height: 680px;
 	display: block;
-	
+	border: none;
 }
 
 .modal-dialog.modal-fullsize {
@@ -43,8 +43,13 @@ iframe {
 <script>
 $(function(){
 	window.onload = function () {  //call when iframe is fully loaded
-		var tmp = $('#movieNew').contents().find('.content-model-btn').html();
-		console.log(tmp);
+		$($('#movieBoxOffice').contents().find('.content-model-btn')).on('click', function(){
+			var content = $('#movieBoxOffice').contents().find('#movieBoxOfficeInput').val();
+			  
+			$('.modal-body').html('<iframe class="content-modal" src="'+content+'" />');
+			$('.content-modal-btn').click();
+		});
+		
 		$($('#movieNew').contents().find('.content-model-btn')).on('click', function(){
 			var content = $('#movieNew').contents().find('#movieNewInput').val();
 			  
@@ -54,6 +59,13 @@ $(function(){
 		  
 		$($('#movieUpcoming').contents().find('.content-model-btn')).on('click', function(){
 			var content = $('#movieUpcoming').contents().find('#movieUpcomingInput').val();
+			  
+			$('.modal-body').html('<iframe class="content-modal" src="'+content+'" />');
+			$('.content-modal-btn').click();
+		});
+		
+		$($('#movieTrailer').contents().find('.content-model-btn')).on('click', function(){
+			var content = $('#movieTrailer').contents().find('#movieTrailerInput').val();
 			  
 			$('.modal-body').html('<iframe class="content-modal" src="'+content+'" />');
 			$('.content-modal-btn').click();
@@ -89,7 +101,7 @@ $(function(){
   <div class="modal-dialog modal-fullsize">
     <div class="modal-content modal-fullsize">
 	      <div class="modal-header">
-	        <h5 class="modal-title" id="exampleModalLongTitle">영화 더 보기</h5>
+	        <h5 class="modal-title" id="exampleModalLongTitle"></h5>
 	        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
 	          <span aria-hidden="true">&times;</span>
 	        </button>
@@ -104,5 +116,6 @@ $(function(){
 	    </div>
 	  </div>
   </div>
+  <jsp:include page="/common/mainMenu.jsp"/>
 </body>
 </html>

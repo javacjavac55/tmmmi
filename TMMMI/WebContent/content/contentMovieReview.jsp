@@ -33,7 +33,7 @@
 						<c:set var="movieIndex" value="0" />
 						<c:forEach var="review" items="${contentMovie.movieReviewTitle}">
 							<div class="movie-review">
-								<div>
+								<div class="movie-review-title">
 									<a href="${contentMovie.movieReviewLink[movieIndex]}"><span>${contentMovie.movieReviewTitle[movieIndex]}</span></a><br/>										
 								</div>
 							</div>

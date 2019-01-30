@@ -2257,6 +2257,22 @@ body.homepage.is-preload #header:after {
 	position: relative;
 }
 
+.carousel .content-movie-trailer {
+	display: inline-block;
+	width: 600px !important;
+	height: 600px !important;
+	background: #fff;
+	text-align: center;
+	margin: 0 2em 0 0;
+	white-space: normal;
+	opacity: 1.0;
+	-moz-transition: opacity 0.75s ease-in-out;
+	-webkit-transition: opacity 0.75s ease-in-out;
+	-ms-transition: opacity 0.75s ease-in-out;
+	transition: opacity 0.75s ease-in-out;
+	position: relative;
+}
+
 .carousel article.loading {
 	opacity: 0;
 }
@@ -2743,4 +2759,53 @@ body.homepage.is-preload #header:after {
 	left:0px;
 	z-index:5;
 	display:none;
+}
+
+.videoThmb {
+	position: relative;
+	top: 0;
+	width: 500px !important;
+	height: 348px !important;
+	display: inline-block !important;
+}
+
+.movie .field {
+	font-weight: normal;
+	color: white;
+	background: #483949;
+	width: 130px !important;
+	padding: 0 10px 0 10px;
+	border-radius: 2px;
+	border: 0;
+	margin-top: 10px;
+	margin-left: 3%;
+	height: auto;
+	box-sizing: content-box;
+	text-align: center;
+	vertical-align: top;
+}
+
+.movie-info {
+	text-align: left;
+}
+
+.movie-title {
+	font-weight: bold;
+	font-size: large;
+	color: black;
+	font-family: 'Noto Sans KR', sans-serif;
+}
+
+.movie-review {
+	font-weight: bold;
+	font-size: large;
+	color: black;
+	width: 40%;
+	margin-left: 55%;
+}
+
+.movie-review-title {
+	border: solid;
+	border-width: 3px;
+	margin-bottom: 15px;
 }

@@ -30,8 +30,8 @@
 						<a href="#" >
 							<img class="poster" src="${contentMovie.movieThumbnail}">
 						</a>
-						<div>
-							<p>${contentMovie.movieTitle}</p>
+						<div class="movie-info">
+							<p class="movie-title">${contentMovie.movieTitle}</p>
 							<span class="field">개봉일</span>  <span>${contentMovie.movieOpenDate}</span><br/>
 							<span class="field">네티즌 평점</span>  
 								<div class="star-ratings-css"> 
@@ -48,9 +48,11 @@
 							<span class="field">감독</span> <span>${contentMovie.movieDirector}</span><br/>
 							<span class="field">배우</span> <span>${contentMovie.movieActor}</span><br/>
 							<span class="field">장르</span> <span>${contentMovie.movieGenre}</span><br/>	
-							<button class="movie-preview-btn" type="button" data-no="${contentMovie.movieNo}" data-link='${contentMovie.movieVideo}'>예고편</button>
-							<button class="content-model-btn" type="button" data-toggle="modal" data-target="#myFullsizeModal" data-content="${contentMovie.movieLink}">더 보기</button>		
 						</div>
+						<c:if test="${! empty contentMovie.movieVideo}">	
+							<button class="movie-preview-btn" type="button" data-no="${contentMovie.movieNo}" data-link='${contentMovie.movieVideo}'>예고편</button>
+						</c:if>
+						<button class="content-model-btn" type="button" data-content="${contentMovie.movieLink}">더 보기</button>		
 					</div>
 					<div class="movie-preview" id="movie-preview-${contentMovie.movieNo}">
 						
@@ -59,26 +61,7 @@
 			</c:forEach>
 		</div>
 	</section>
-	<!-- <div class="modal fade" id="myFullsizeModal" tabindex="-1" role="dialog" aria-labelledby="myFullsizeModalLabel" aria-hidden="true">
-	  <div class="modal-dialog modal-fullsize">
-	    <div class="modal-content modal-fullsize">
-		      <div class="modal-header">
-		        <h5 class="modal-title" id="exampleModalLongTitle">영화 더 보기</h5>
-		        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-		          <span aria-hidden="true">&times;</span>
-		        </button>
-		      </div>
-		      <div class="modal-body">
-		        
-		      </div>
-		      <div class="modal-footer">
-		        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-		        <button type="button" class="btn btn-primary">Save changes</button>
-		      </div>
-		    </div>
-		  </div>
-	  </div> -->
-	  <input type="hidden" id="movieNewInput" value=""/>
+	<input type="hidden" id="movieNewInput" value=""/>
 	<!-- Carousel JS -->
 	<script src="/javascript/scroll/jquery.dropotron.min.js"></script>
 	<script src="/javascript/scroll/jquery.scrolly.min.js"></script>
