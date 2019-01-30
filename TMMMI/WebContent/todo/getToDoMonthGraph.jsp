@@ -77,32 +77,9 @@
 					</button>
 				</li>
 			</ul>
-			<!-- <div class="col-md-1 col-md-offset-6">
-				<button type="button" class="btn btn-info btn-fab btn-round">
-					<i class="material-icons">chevron_left</i>
-				</button>
-			</div>
-			<div class="col-md-1">
-				<button type="button" class="btn btn-info btn-fab btn-round">
-					<i class="material-icons">first_page</i>
-				</button>
-			</div>
-			<div class="col-md-2" id="currentyear" style="text-align: center">
-				<h3></h3>
-			</div>
-			<div class="col-md-1">
-				<button type="button" class="btn btn-info btn-fab btn-round">
-					<i class="material-icons">chevron_right</i>
-				</button>
-			</div>
-			<div class="col-md-1 col-md-offset-6">
-				<button type="button" class="btn btn-info btn-fab btn-round">
-					<i class="material-icons">last_page</i>
-				</button>
-			</div> -->
 		</div>
 
-		<canvas id="myChart" style="height: 70vh; width: 50vw;"></canvas>
+		<canvas id="myChart" style="position: relative; height: 70vh; width: 50vw;"></canvas>
 	</div>
 
 	<script type="text/javascript">

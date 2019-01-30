@@ -24,29 +24,29 @@
         <meta charset="UTF-8">
 	    <meta content="IE=edge" http-equiv="X-UA-Compatible">
 	     <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no" name="viewport">
-	      <!-- <style type="text/css">
-	            #map img {
-	                max-width: none;
-	                height: auto;
-	                border: 0
-	            }
-	        </style> -->
 	</head>
 <body>
 	<section class="carousel" style="background-color:#1d1d1d;">
-		<div class="reel" style="overflow: visible; transform: translate(-1285px, 0px);">
+		<div class="reel" style="overflow: visible; transform: translate(-1285px, 0px); height:65vh;">
 				<c:forEach items="${contentTastyList}" var="contentTastyList" begin="0" end="9">
-				<article>
-					<div id="map${contentTastyList.tastyTitle}" style="width: 100%; height: 100%;"></div>
-					<header>
-						<h3>${contentTastyList.tastyTitle}</h3>
-					</header>
-					<p style="text-align:left; font-size:small">
-						맛집 전화번호: ${contentTastyList.tastyTel}<br/>
-						맛집 분류: ${contentTastyList.tastyMenu}<br/>
-						맛집 주소: ${contentTastyList.tastyAddress}<br/>
-					</p>
+				
+				<article class="area" style="width: 20vw; height: 30vh; padding:0px; margin-right:0px;">
+				<div class="card">
+					        <div class="card-header card-header-rose" style="height: 15vh;">
+					            <h4 class="card-title">${contentTastyList.tastyTitle}</h4>
+					            <p class="category">${contentTastyList.tastyMenu}</p>
+					        </div>
+							<div id="map${contentTastyList.tastyTitle}" style="width: 20vw; height: 30vh;padding-left:0px; margin-right:0px;"></div>
+							<div class="col-md-12" style="padding:5%; height: 20vh">
+							<p style="text-align:left; font-size:small">
+								맛집 전화번호: ${contentTastyList.tastyTel}<br/>
+								맛집 분류: ${contentTastyList.tastyMenu}<br/>
+								맛집 주소: ${contentTastyList.tastyAddress}<br/>
+							</p>
+						</div>
+						</div>
 				</article>
+				
 			</c:forEach>
 		</div>
 	</section>
@@ -92,8 +92,6 @@
                                     }
                                 });
                             infowindow.open(map, marker);
-                            console.log(map);
-                            console.log("list :", list);
                         }) // $.each end
                     } // success end
                 }) // ajax end
