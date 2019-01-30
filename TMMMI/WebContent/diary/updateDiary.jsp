@@ -1,53 +1,36 @@
-<%@ page contentType="text/html; charset=euc-kr" %>
-
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-
-<%--
-<%@page import="java.util.*"%>
-<%@page import="com.model2.mvc.common.Search"%>
-
-<%@page import="com.model2.mvc.service.domain.Product"%>
-<%@page import="com.model2.mvc.service.product.dao.ProductDAO"%>
-
-
-<% Product product = (Product)request.getAttribute("product"); 
-
-%>
---%>
-
-<html>
+<%@ page contentType="text/html; charset=EUC-KR"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ page language="java" contentType="text/html; charset=EUC-KR"
+	pageEncoding="EUC-KR"%>
+<!DOCTYPE html>
+<html lang="ko">
 <head>
-<title>다이어리 정보 수정</title>
+<title>Tmmmi</title>
+<meta
+	content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0, shrink-to-fit=no'
+	name='viewport' />
+<!--  Fonts and icons -->
+<link rel="stylesheet" type="text/css"
+	href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Roboto+Slab:400,700|Material+Icons" />
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css">
 
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-	
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" >
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" >
-	<script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
-	
-	
-	<!-- summernote -->
-	<script src="http://netdna.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.js"></script>		
-	<link href="/css/summernote/summernote.css" rel="stylesheet">
-  	<script src="/javascript/summernote/summernote.js"></script>     
-    
-    
-  	<!-- 로딩 -->
-  	<link rel="stylesheet" href="/css/summernote/loading.css">  	
-  	<!-- <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script> -->
-    <script src="/javascript/summernote/loading.js"></script>
-    
-   <style>
-		body {
-            padding-top : 50px;
-        }
-    </style>
-	
+<!-- CSS Files -->
+<link href="/css/template/material-kit.css" rel="stylesheet" />
+
+<!-- CSS Just for demo purpose, don't include it in your project -->
+<link href="/css/template/demo.css" rel="stylesheet" />
+
+<!-- jQuery -->
+<script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+<script	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<!--ck editor  -->
+<script src="//cdn.ckeditor.com/4.7.3/full/ckeditor.js"></script>
 
 <script type="text/javascript">
 
 
-$(document).ready(function() {    	   		
+/* $(document).ready(function() {    	   		
 	$('#summernote').summernote({  	        
         height:"400px",
         width: "700px",
@@ -85,42 +68,15 @@ $(document).ready(function() {
       	}
       
     	});
-  /* $('textarea[name="Contents"]').html($('.summernote').code()); */
-});
+  /* $('textarea[name="Contents"]').html($('.summernote').code());
+}); */
 	
-	function fncUpdateDiary(){
-	//Form 유효성 검증
-		/* var prodName=$("input[name='prodName']").val();
-		var prodDetail=$("input[name='prodDetail']").val();
-		var manuDate =$("input[name='manuDate']").val();
-		var price =$("input[name='price']").val();
-		
-		if(prodName == null || prodName.length<1){
-			alert("상품명은 반드시 입력하여야 합니다.");
-			return;
-		}
-		if(prodDetail == null || prodDetail.length<1){
-			alert("상품상세정보는 반드시 입력하여야 합니다.");
-			return;
-		}
-		if(manuDate == null || manuDate.length<1){
-			alert("제조일자는 반드시 입력하셔야 합니다.");
-			return;
-		}
-		if(price == null || price.length<1){
-			alert("가격은 반드시 입력하셔야 합니다.");
-			return;
-		} */
-			
-		/* document.detailForm.action='/product/updateProduct?menu=manage';
-		document.detailForm.submit(); */
+	function fncUpdateDiary(){	
 		$('form[name="updateDiary"]').attr("method" , "POST").attr("enctype","multipart/form-data").attr("action" , "/diary/updateDiary").submit();
 	}
 	
 	
-		//==> DOM Object GET 3가지 방법 ==> 1. $(tagName) : 2.(#id) : 3.$(.className)
-
-		//==> 1 과 3 방법 조합 : $("tagName.className:filter함수") 사용함.
+		
 		$(function(){
 			$( "#update" ).on("click" , function() {			
 				 fncUpdateDiary();
@@ -144,49 +100,119 @@ $(document).ready(function() {
 	
 </script>
 </head>
-
-<body>	
-	<div class="container">
-	
+<body class="index-page sidebar-collapse">
+	<jsp:include page="/common/toolbar2.jsp"></jsp:include>
+	<div class="page-header header-filter clear-filter" data-parallax="true" style="background-image: url('/images/userSetting/ ${userSetting.image}')">
 		
-<form name="updateDiary" class="form-horizontal">
-
-<%--<input type="hidden" name="prodNo" value="<%= product.getProdNo()%>"/> --%> 
-	<input type="hidden" name="diaryNo" value="${diary.diaryNo}"/>
-	
-	<div class="page-header text-center">
-	       <h3 class=" text-info">다이어리 수정</h3>	       
-    </div>
-		 <div class="form-group">
-		   <label for="userCategory" class="col-sm-offset-1 col-sm-3 control-label">유저카테고리</label>
-		   <div class="col-sm-4">
-		     <input type="text" class="form-control" id="userCategory" name="userCategoryNo" value="${diary.userCategoryNo}">
-		   </div>
-		   <label for="diaryDate" class="col-sm-offset-1 col-sm-3 control-label">작성날짜 ${diary.diaryDate}</label>		    
-		 </div>
-		  <div class="form-group">
-		    <label for="diaryTitle" class="col-sm-offset-1 col-sm-3 control-label">제목</label>
-		    <div class="col-sm-4">
-		      <input type="text" class="form-control" id="diaryTitle" name="diaryTitle" value="${diary.diaryTitle}">
-		    </div>
-		  </div>
-		  <div class="form-group">
-		    <label for="diaryDetail" class="col-sm-offset-1 col-sm-3 control-label">내용</label>
-		    <div class="col-sm-4">
-		      <textarea id="summernote" class="form-control" name="diaryDetail">
-		      ${diary.diaryDetail }
-		      </textarea>
-		    </div>
-		  </div>
-		  
-		  <div class="form-group">
-		    <div class="col-sm-offset-4  col-sm-4 text-center">
-		      <button type="button" id="update" class="btn btn-primary" data-param2=${diary.diaryNo } >수정</button>
-			  <a class="btn btn-primary btn" id="cancel" href="#" role="button">취소</a>
-		    </div>
+		<div class="container">
+			<div class="row">
+				<div class="col-md-8 ml-auto mr-auto">
+					<div class="brand">
+						<h2 class="title">Diary</h2>
+					</div>
+				</div>
+			</div>
 		</div>
-		<hr/>
-	</form>
-</div>
+	</div>
+	<div class="main main-raised">
+		<div class="section section-basic">
+			<div class="container">
+				<div align="center">
+					<!-- Wrapper -->
+					<div id="wrapper">
+						<!-- Main -->
+						<div id="main">
+							
+							<form name="updateDiary" class="form-horizontal">
+								<%--<input type="hidden" name="prodNo" value="<%= product.getProdNo()%>"/> --%> 
+								<input type="hidden" name="diaryNo" value="${diary.diaryNo}"/>
+								
+								<div class="form-group" align="left">
+									<label for="userCategoryNo" class="col-sm-offset-1 col-sm-1 control-label text-center"></label>
+									<h3>다이어리 수정</h3>	
+									<div class="col-sm-4">
+																		
+									</div>
+								</div>								
+								
+								<div class="form-group" align="left">
+									<label for="userCategoryNo" class="col-sm-offset-1 col-sm-1 control-label text-center"></label>
+									<div class="col-sm-3">
+										카테고리
+									</div>
+									<div class="col-sm-3" >
+										<input type="text" name="userCategoryNo" class="form-control" value="${diary.userCategoryNo}" />
+									</div>
+								</div>
+								
+								
+              					
+								<div class="form-group" align="left" style="height:70px;">
+									<label for="diaryTitle" class="col-sm-offset-1 col-sm-1 control-label text-center"></label>
+									<span class="col-sm-3" style ="float:left;">
+										제목
+									</span>
+									<span class="col-sm-3" style ="float:right;">
+										작성날짜 : ${diary.diaryDate}
+									</span>
+									<div class="col-sm-6">
+										<input type="text" name="diaryTitle" class="form-control" style="font-weight:bold; font-size:2em;" value="${diary.diaryTitle}"/>							
+										
+									</div>
+									
+								</div>
+			 
+								
+              						
+								<div>
+									<label for="diaryDetail" class="col-sm-offset-1 col-sm-3 control-label text-center"></label>
+									<div class="col-sm-12" align="center">
+										<textarea id="ckeditor" name="diaryDetail" style="display: none;"s>
+										${diary.diaryDetail }
+										</textarea>
+									</div>
+								</div>
+
+								<div class="form-group">
+									<div class="col-sm-offset-4  col-sm-4 text-center">
+										<button type="button" id="update" class="btn btn-primary" data-param2=${diary.diaryNo } >수정</button>
+										<a class="btn btn-primary btn" id="cancel" href="#" role="button">취소</a>
+									</div>
+								</div>
+							</form>
+						</div>
+					</div>	
+				</div>
+			</div>
+		</div>
+	</div>
+	<hr />
+	<%-- <jsp:include page="/common/footer.jsp"></jsp:include> --%>
+	<jsp:include page="/common/footer.jsp"></jsp:include>
+	<script>
+		$(function() {
+
+			CKEDITOR.replace('ckeditor', {//해당 이름으로 된 textarea에 에디터를 적용
+				width : '100%',
+				height : '700PX',
+				filebrowserImageUploadUrl : '/diary/imageDiary?type=image'
+
+			});
+
+			CKEDITOR.on('dialogDefinition', function(ev) {
+				var dialogName = ev.data.name;
+				var dialogDefinition = ev.data.definition;
+
+				switch (dialogName) {
+				case 'image': //Image Properties dialog
+					//dialogDefinition.removeContents('info');
+					dialogDefinition.removeContents('Link');
+					dialogDefinition.removeContents('advanced');
+					break;
+				}
+			});
+
+		});
+	</script>
 </body>
 </html>

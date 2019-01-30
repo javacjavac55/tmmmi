@@ -58,6 +58,34 @@ $(function(){
 			$('.modal-body').html('<iframe class="content-modal" src="'+content+'" />');
 			$('.content-modal-btn').click();
 		});
+		
+		$($('#kSoccer').contents().find('.content-model-btn')).on('click', function(){
+			var content = $('#kSoccer').contents().find('#kSoccerInput').val();
+			  
+			$('.modal-body').html('<iframe class="content-modal" src="'+content+'" />');
+			$('.content-modal-btn').click();
+		});
+		
+		$($('#wSoccer').contents().find('.content-model-btn')).on('click', function(){
+			var content = $('#wSoccer').contents().find('#wSoccerInput').val();
+			  
+			$('.modal-body').html('<iframe class="content-modal" src="'+content+'" />');
+			$('.content-modal-btn').click();
+		});
+		
+		$($('#basketball').contents().find('.content-model-btn')).on('click', function(){
+			var content = $('#basketball').contents().find('#basketballInput').val();
+			  
+			$('.modal-body').html('<iframe class="content-modal" src="'+content+'" />');
+			$('.content-modal-btn').click();
+		});
+		
+		$($('#general').contents().find('.content-model-btn')).on('click', function(){
+			var content = $('#general').contents().find('#generalInput').val();
+			  
+			$('.modal-body').html('<iframe class="content-modal" src="'+content+'" />');
+			$('.content-modal-btn').click();
+		});
 	};
 });
 </script>
@@ -82,7 +110,12 @@ $(function(){
 <iframe src="/contentShopping/getShoppingList"></iframe>
 <iframe src="/contentShopping/getShoppingReviewList"></iframe>
 
-
+<iframe id="kSoccer" src="/contentSport/getContentKsoccerList"></iframe>
+<iframe id="wSoccer" src="/contentSport/getContentWsoccerList"></iframe>
+<iframe id="kBaseball" src="/contentSport/getContentKbaseballList"></iframe>
+<iframe id="wBaseball" src="/contentSport/getContentWbaseballList"></iframe>
+<iframe id="basketball" src="/contentSport/getContentBasketballList"></iframe>
+<iframe id="general" src="/contentSport/getContentGeneralList"></iframe>
 
 <button class="content-modal-btn" type="button" data-toggle="modal" data-target="#myFullsizeModal" style="display:none"></button>
 <div class="modal fade" id="myFullsizeModal" tabindex="-1" role="dialog" aria-labelledby="myFullsizeModalLabel" aria-hidden="true">

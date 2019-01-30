@@ -20,14 +20,9 @@
 <link href="/css/template/demo.css" rel="stylesheet" />
 <!-- jQuery -->
 <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
-<script
-	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<script	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
-<style>
-body {
-	padding-top: 50px;
-}
-</style>
+
 
 <script type="text/javascript">
 	$(function() {
@@ -47,13 +42,12 @@ body {
 <body class="index-page sidebar-collapse">
 	<%-- <jsp:include page="/common/toolbar2.jsp"></jsp:include> --%>
 	<jsp:include page="/common/toolbar2.jsp"></jsp:include>
-	<div class="page-header header-filter clear-filter purple-filter"
-		data-parallax="true">
+	<div class="page-header header-filter clear-filter" data-parallax="true" style="background-image: url('/images/userSetting/ ${userSetting.image}')">
 		<div class="container">
 			<div class="row">
 				<div class="col-md-8 ml-auto mr-auto">
 					<div class="brand">
-						<h2 class="title">Tmmmi Side Menu</h2>						
+						<h2 class="title">Diary</h2>						
 					</div>
 				</div>
 			</div>
@@ -67,25 +61,48 @@ body {
 					<div id="wrapper">
 						<!-- Main -->
 						<div id="main">
-							<div class="info">
-								<a href="/diary/listDiary" class="logo"><h2>
-										<strong>다이어리</strong>
-									</h2>&nbsp;&nbsp;&nbsp;<strong>유저 카테고리 :</strong>&nbsp;
-									${diary.userCategoryNo}</a>
-								<p align="right">
-									<strong>작성날짜 : </strong>${diary.diaryDate}</p>
-								<h4 class="info-title">${diary.diaryTitle}</h4>
-								<p>${diary.diaryDetail}</p>
-							</div>
-
-						</div>
-						<div align="right" style="margin-left: 70%;">
-							<button type="button" id="update" class="btn btn-primary"
-								data-param1="${diary.diaryNo}">수정</button>
-							<button type="button" id="back" class="btn btn-default">확인</button>
-						</div>
+							
+								<div class="form-group" align="left">
+									<label for="userCategoryNo" class="col-sm-offset-1 col-sm-1 control-label text-center"></label>
+									<div class="col-sm-12" >
+										<strong>카테고리 : </strong>학교									
+									</div>
+								</div>
+								<div class="progress progress-line-primary">
+                					<div class="progress-bar progress-bar-primary" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width:0%;">
+					                  <span class="sr-only">60% Complete</span>
+                					</div>
+              					</div>
+								
+								<div class="form-group" align="left" style="height:50px;">
+									<label for="diaryTitle" class="col-sm-offset-1 col-sm-1 control-label text-center"></label>
+									<div class="col-sm-12" >
+										<span style="float:left; font-weight:bold; font-size:2em;">${diary.diaryTitle}</span>
+										<span style="float:right;"><strong>작성날짜 : </strong>${diary.diaryDate}</span>
+									</div>
+								</div>
+								
+								<div class="progress progress-line-primary">
+                					<div class="progress-bar progress-bar-primary" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 0%;">
+					                  <span class="sr-only">60% Complete</span>
+                					</div>
+              					</div>
+              					
+								<div class="form-group" align="left" style="height:500px;">
+									<label for="diaryDetail" class="col-sm-offset-1 col-sm-1 control-label text-center"></label>
+									<div class="col-sm-12" >
+										${diary.diaryDetail}
+									</div>
+								</div>
+								<hr/>
+								<div class="form-group">
+									<div class="col-sm-offset-4  col-sm-4 text-center">
+										<button type="button" id="update" class="btn btn-primary" data-param1="${diary.diaryNo}">수정</button>
+										<button type="button" id="back" class="btn btn-default" >확인</button>
+									</div>
+								</div>
+						</div>	
 					</div>
-					<hr />
 				</div>
 			</div>
 		</div>
