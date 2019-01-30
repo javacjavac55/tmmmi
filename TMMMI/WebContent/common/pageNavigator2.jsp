@@ -5,12 +5,13 @@
 <head>
 <!-- CSS Files -->
     <link href="/css/template/material-kit.css" rel="stylesheet" />
+    <link href="/css/template/demo.css" rel="stylesheet" />
 </head>
  
 <div class="container text-center">
 		 
 		<nav>
-		  <ul class="pagination" style="margin-left:35%">
+		  <ul class="pagination" style="margin-left:42%">
 		  
 		  	<!--  <<== ÁÂÃø nav -->
 		  	<c:if test="${ resultPage.currentPage <= resultPage.pageUnit }">
@@ -19,7 +20,7 @@
 		    <c:if test="${ resultPage.currentPage > resultPage.pageUnit }">
 		    	<li class="page-item">
 		    </c:if>
-		      <a class="page-link" href="javascript:fncGetList('${ resultPage.currentPage-1}')"  tabindex="-1">Previous</a>
+		      <a class="page-link" href="javascript:fncGetList('${ resultPage.currentPage-1}')"  tabindex="-1">Prev</a>
 		    </li>
 		    
 		    <!--  °¡¿îµ¥ -->

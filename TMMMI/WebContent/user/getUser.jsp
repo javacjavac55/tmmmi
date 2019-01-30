@@ -35,7 +35,7 @@
 
 <body class="index-page sidebar-collapse">
 	<jsp:include page="/common/toolbar2.jsp"></jsp:include>
-	<div class="page-header header-filter clear-filter" style="background-image: url('/images/template/image_6845277191476929532543.jpg')" data-parallax="true">
+	<div class="page-header header-filter clear-filter" data-parallax="true" style="background-image: url('/images/userSetting/ ${userSetting.image}')">
 		<div class="container">
 			<div class="row">
 				<div class="col-md-8 ml-auto mr-auto">
@@ -81,7 +81,7 @@
 								<div class="col-md-12 text-center ">
 									<button type="button" class="btn btn-primary btn-round">회원정보수정</button>
 								</div>
-								<br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
+								<br/>
 							</div>
 						</div>
 					</div>

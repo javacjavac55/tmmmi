@@ -1,4 +1,4 @@
-<%@ page contentType="text/html; charset=EUC-KR"%>
+
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ page language="java" contentType="text/html; charset=EUC-KR"
 	pageEncoding="EUC-KR"%>
@@ -23,6 +23,7 @@
 
 <!-- jQuery -->
 <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+<script	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
 
 <!-- <!-- summernote -->
@@ -38,16 +39,10 @@
 <script src="//cdn.ckeditor.com/4.7.3/full/ckeditor.js"></script>
 
 <!-- 로딩 -->
-<link rel="stylesheet" href="/css/summernote/loading.css">
+<!-- <link rel="stylesheet" href="/css/summernote/loading.css"> -->
 <!-- <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script> -->
 <!-- <script src="/javascript/summernote/loading.js"></script> -->
 
-
-<style>
-body {
-	padding-top: 50px;
-}
-</style>
 
 <script type="text/javascript">
 	/* function postForm() {
@@ -135,8 +130,8 @@ body {
 
 <body class="index-page sidebar-collapse">
 	<jsp:include page="/common/toolbar2.jsp"></jsp:include>
-	<div class="page-header header-filter clear-filter purple-filter"
-		data-parallax="true">
+	<div class="page-header header-filter clear-filter" data-parallax="true" style="background-image: url('/images/userSetting/ ${userSetting.image}')">
+		
 		<div class="container">
 			<div class="row">
 				<div class="col-md-8 ml-auto mr-auto">
@@ -158,7 +153,7 @@ body {
 							<form name="addDiary" class="form-horizontal">
 							
 								<div class="form-group" align="left">
-									<label for="userCategoryNo" class="col-sm-offset-1 col-sm-1 control-label text-center"></label>\
+									<label for="userCategoryNo" class="col-sm-offset-1 col-sm-1 control-label text-center"></label>
 									<h3>다이어리를 등록해주세요</h3>	
 									<div class="col-sm-4">
 																		

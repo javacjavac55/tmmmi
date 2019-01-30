@@ -113,87 +113,83 @@
 </head>
 
 <body class="index-page sidebar-collapse">
+<!-- sideMenu.jsp 추가 -->
 <jsp:include page="/common/toolbar2.jsp"></jsp:include>
-  <div class="page-header header-filter clear-filter" data-parallax="true" style="background-image: url(' ${ ! empty userSetting.image ? " ${userSetting.image}" : " /images/template/image_6845277191476929532543.jpg" }')">
+  	<div class="page-header header-filter clear-filter" data-parallax="true" style="background-image: url('/images/userSetting/ ${userSetting.image}')">
     <div class="container">
       <div class="row">
         <div class="col-md-8 ml-auto mr-auto">
           <div class="brand">
-            <h2 class="title">Update User Setting</h2>
+            <h2 class="title">Update User</h2>
           </div>
         </div>
       </div>
     </div>
   </div>
+  <!-- main start -->
   <div class="main main-raised">
     <div class="section section-basic">
       <div class="container">
       <div class="row">
 		<div class="col-md-6 ml-auto mr-auto">
 		<div class="profile">
-		 <div class="page-header text-center">
-		<h3 class=" text-info">회원정보수정</h3>
-		<h5 class="text-muted">내 정보를 <strong class="text-danger">최신정보로 관리</strong>해 주세요.</h5>
-		</div>
 	   
 		<!-- form Start-->
-		<form class="form-horizontal">
+		<form>
 		<input type="hidden" name="userNo" value="${userNo }"  />
-			<div class="form-group">
-				<label for="userId" class="col-sm-offset-1 col-sm-3 control-label">아 이 디</label>
-				<div class="col-sm-4">
+			
+			<div class="description text-center">
+				<div class="form-group bmd-form-group">
+					<label for="userId" class="bmd-label-static">Id</label>
 					<input type="text" class="form-control" id="userId" name="userId" value="${user.userId }" placeholder="중복확인하세요"  readonly>
-					<span id="helpBlock" class="help-block">
-					<strong class="text-danger">아이디는 수정불가</strong>
-				</span>
 				</div>
 			</div>
 			
-			<div class="form-group">
-				<label for="password" class="col-sm-offset-1 col-sm-3 control-label">비밀번호</label>
-				<div class="col-sm-4">
+			<div class="description text-center">
+				<div class="form-group bmd-form-group">
+					<label for="password" class="bmd-label-static">Password</label>
 					<input type="password" class="form-control" id="password" name="password" placeholder="변경비밀번호">
 				</div>
 			</div>
 			  
-			<div class="form-group">
-				<label for="password2" class="col-sm-offset-1 col-sm-3 control-label">비밀번호 확인</label>
-				<div class="col-sm-4">
+			<div class="description text-center">
+				<div class="form-group bmd-form-group">
+					<label for="password2" class="bmd-label-static">Password Confirm</label>			
 					<input type="password" class="form-control" id="password2" name="password2" placeholder="변경비밀번호 확인">
 				</div>
 			</div>
 			  
-			<div class="form-group">
-				<label for="userName" class="col-sm-offset-1 col-sm-3 control-label">닉네임</label>
-				<div class="col-sm-4">
+			<div class="description text-center">
+				<div class="form-group bmd-form-group">
+					<label for="userName" class="bmd-label-static">Nickname</label>
 					<input type="text" class="form-control" id="userName" name="userName" value="${user.userName}" placeholder="변경회원이름">
 				</div>
 			</div>
 			
-			<div class="form-group">
-				<label for="userName" class="col-sm-offset-1 col-sm-3 control-label">생년월일</label>
-				<div class="col-sm-4">
+			<div class="description text-center">
+				<div class="form-group bmd-form-group">
+					<label for="userName" class="bmd-label-static">Birthday</label>
 					<input type="text" class="form-control" id="birthday" name="birthday" value="${user.birthday}" placeholder="변경회원이름">
 				</div>
 			</div>
 			  
-			<div class="form-group">
-				<label for="ssn" class="col-sm-offset-1 col-sm-3 control-label">이메일</label>
-				<div class="col-sm-4">
+			<div class="description text-center">
+				<div class="form-group bmd-form-group">
+					<label for="ssn" class="bmd-label-static">E-mail</label>
 					<input type="text" class="form-control" id="email" name="email"  value="${user.email}" placeholder="변경주소">
-				</div>
-				<button type="button" class="btn btn-default" id="authEmail">인증하기</button>
-			</div>
-			  
-			<div class="form-group">
-				<label for="ssn" class="col-sm-offset-1 col-sm-3 control-label">이메일 검증</label>
-				<div class="col-sm-4">
-					<input type="text" class="form-control" id="emailCheck" name="emailCheck" placeholder="변경이메일">
+					<button type="button" class="btn btn-default" id="authEmail">confirm</button>
 				</div>
 			</div>
 			  
-			<div class="form-group">
-				<div class="col-sm-offset-4  col-sm-4 text-center">
+			<div class="description text-center">
+				<div class="form-group bmd-form-group">
+				<label for="ssn" class="bmd-label-static">E-mail confirm</label>
+					<input type="text" class="form-control" id="emailCheck" name="emailCheck" placeholder="코드 입력">
+				</div>
+			</div>
+			  
+			<div class="description text-center">
+				<div class="form-group bmd-form-group">
 					<button type="button" class="btn btn-primary"  >수 &nbsp;정</button>
 					<a class="btn btn-danger btn" href="#" role="button">취 &nbsp;소</a>
 				</div>

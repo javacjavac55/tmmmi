@@ -105,7 +105,7 @@
 	<select  id="getUserList"  parameterType="map"	resultMap="userSelectMap">
 	  	SELECT *
 	  	FROM ( SELECT inner_table.* , ROWNUM AS row_seq
-	  		   FROM ( SELECT user_no, user_id , user_name , email, withdraw_check, withdraw_date
+	  		   FROM ( SELECT user_no, user_id , user_name , email, withdraw_check, withdraw_date, sns_name
 				      FROM users
 						<if test="searchCondition != null">
 							<where>
@@ -125,7 +125,7 @@
 	<!-- SQL : SELECT ROW Count -->	 
 	<select  id="getTotalCount"  parameterType="com.tmmmi.common.Search"	 resultType="int">
 	  SELECT COUNT(*)
-	  FROM(	SELECT user_no, user_id , user_name , email, withdraw_check, withdraw_date
+	  FROM(	SELECT user_no, user_id , user_name , email, withdraw_check, withdraw_date, sns_name
 			FROM users
 			<if test="searchCondition != null">
 				<where>

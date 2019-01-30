@@ -29,17 +29,39 @@ public class ContentShoppingController {
 		// TODO Auto-generated constructor stub
 	}
 	
-	@RequestMapping(value="getShoppingList", method=RequestMethod.GET)
-	public ModelAndView getShoppingList(HttpSession session) throws Exception{
+	@RequestMapping(value="getShoppingListFirst", method=RequestMethod.GET)
+	public ModelAndView getShoppingListFirst(HttpSession session) throws Exception{
 		System.out.println("getShoppingList controller 실행!");
 		
 		int userNo = (int)session.getAttribute("userNo");		
 		
 		ModelAndView modelAndView = new ModelAndView();
 		modelAndView.addObject("shoppingContentFirstList", shoppingContentService.getContentShoppingFirstList(contentSettingService.getContentSetting(userNo), 0));
+		modelAndView.setViewName("/content/shoppingContentFirst.jsp");
+		return modelAndView;
+	}
+	
+	@RequestMapping(value="getShoppingListSecond", method=RequestMethod.GET)
+	public ModelAndView getShoppingListSecond(HttpSession session) throws Exception{
+		System.out.println("getShoppingList controller 실행!");
+		
+		int userNo = (int)session.getAttribute("userNo");		
+		
+		ModelAndView modelAndView = new ModelAndView();
 		modelAndView.addObject("shoppingContentSecondList", shoppingContentService.getContentShoppingSecondList(contentSettingService.getContentSetting(userNo), 0));
+		modelAndView.setViewName("/content/shoppingContentSecond.jsp");
+		return modelAndView;
+	}
+	
+	@RequestMapping(value="getShoppingListThird", method=RequestMethod.GET)
+	public ModelAndView getShoppingListThird(HttpSession session) throws Exception{
+		System.out.println("getShoppingList controller 실행!");
+		
+		int userNo = (int)session.getAttribute("userNo");		
+		
+		ModelAndView modelAndView = new ModelAndView();
 		modelAndView.addObject("shoppingContentThirdList", shoppingContentService.getContentShoppingThirdList(contentSettingService.getContentSetting(userNo), 0));
-		modelAndView.setViewName("/content/shoppingContent.jsp");
+		modelAndView.setViewName("/content/shoppingContentThird.jsp");
 		return modelAndView;
 	}
 	

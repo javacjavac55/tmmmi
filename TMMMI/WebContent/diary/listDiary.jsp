@@ -24,7 +24,9 @@
 
 <!-- jQuery -->
 <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
-
+<script	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+	
+	
 <script type="text/javascript">
 	/* 리스트 */
 	function fncGetList(currentPage) {
@@ -95,8 +97,7 @@
 </head>
 <body class="index-page sidebar-collapse">
 	<jsp:include page="/common/toolbar2.jsp"></jsp:include>
-	<div class="page-header header-filter clear-filter purple-filter"
-		data-parallax="true">
+	<div class="page-header header-filter clear-filter" data-parallax="true" style="background-image: url('/images/userSetting/ ${userSetting.image}')">
 		<div class="container">
 			<div class="row">
 				<div class="col-md-8 ml-auto mr-auto">
@@ -115,16 +116,13 @@
 					<div id="wrapper">
 						<!-- Main -->
 						<div id="main">
-
-
-							<div class="container">
 								<form name="detailForm">
 									<input type="hidden" value="search" />
 
 									<div class="form-group" align="left">
 										<label for="userCategoryNo"
 											class="col-sm-offset-1 col-sm-1 control-label text-center"></label>
-										<h3>내가 쓴 다이어리</h3>
+										<h3 class="title">My Diary</h3>
 										<div class="col-sm-4"></div>
 									</div>
 
@@ -154,7 +152,7 @@
 												<th align="center"><input id="allCheck" name="allCheck"
 													type="checkbox" onclick="fncAllchk();" />전체선택</th>
 												<th align="left">No</th>
-												<th align="left">카테고리번호</th>
+												<th align="left">카테고리</th>
 												<th align="left">다이어리 제목</th>
 												<th align="left">작성 날짜</th>
 											</tr>
@@ -191,11 +189,10 @@
 												id="addDiary" onclick="fncAddDiary();">글쓰기</button>
 										</div>
 									</div>
+									
 								</form>
-							</div>
-						</div>
-						
-					<jsp:include page="../common/pageNavigator.jsp" />
+							<jsp:include page="../common/pageNavigator2.jsp" />
+						</div>					
 					</div>
 				</div>
 				

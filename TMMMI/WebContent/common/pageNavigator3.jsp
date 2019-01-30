@@ -32,7 +32,7 @@
 			    </c:if>
 			    
 			    <c:if test="${ resultPage.currentPage != i}">	
-			    	<li class="page-item" style="margin-left:8px;">
+			    	<li class="page-item" style="margin-left:12px; margin-right:10px; margin-top:2px">
 				    	<a href="javascript:fncJsonGetList('${ i }');">${ i }</a>
 					</li>
 				</c:if>
