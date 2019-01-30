@@ -74,9 +74,12 @@
             <a href="#" class="dropdown-toggle nav-link" data-toggle="dropdown">аЖ╫╫</a>
             <div class="dropdown-menu dropdown-with-icons">
 				<a href="/faq/getFAQList" class="dropdown-item">FAQ ╦╝╫╨ф╝</a>
+				<a href="/FAQ/addFAQ.jsp" class="dropdown-item">FAQ юш╪╨</a>
 				<a href="/qna/getQNAList" class="dropdown-item">QNA ╦╝╫╨ф╝</a>
 				<a href="/widget/getWeather3.jsp" class="dropdown-item">Ё╞╬╬ </a>
-				<a href="/contentShopping/getShoppingList" class="dropdown-item">╪НгндаеыцВ</a>
+				<a href="/contentShopping/getShoppingListFirst" class="dropdown-item">╪НгндаеыцВ1</a>
+				<a href="/contentShopping/getShoppingListSecond" class="dropdown-item">╪НгндаеыцВ2</a>
+				<a href="/contentShopping/getShoppingListThird" class="dropdown-item">╪НгндаеыцВ3</a>
 				<a href="/contentShopping/getShoppingReviewList" class="dropdown-item">ю╞ф╘╨Й</a>
             </div>
           </li>

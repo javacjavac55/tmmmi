@@ -22,32 +22,29 @@
     <script type="text/javascript">
     
 	$(function() {	
-			
-			var faqNo=$(this).data("param1");
+		
 			var currentPage=$("#currentPage").val();
 			
 			 $(".title").on("click",function(){	
 				var faqNo=$(this).data("param1");
 				$(".hide"+faqNo).toggleClass("show");
 	        }); 
-			
-			$("button:contains('글쓰기')" ).on("click" , function() {
-				 $("form").attr("method" , "GET").attr("action" , "/faq/addFAQ").submit();
-			 });
 			 
-			$("button:contains('수정하기')" ).on("click" , function() { 
-				var faqNo =$(this).data("param1");
-				$("form").attr("method" , "GET").attr("action" , "/faq/updateFAQ?faqNo="+faqNo).submit();
-			 });
-			
-			$("button:contains('삭제하기')" ).on("click" , function() {
-				var faqNo =$(this).data("param2");
-				$("form").attr("method" , "GET").attr("action" , "/faq/deleteFAQ?faqNo="+faqNo).submit();
-			 });
+			$("#qna").on("click",function(){	
+				self.location = "/qna/getQNAList";
+		    }); 
 			
 			$("button:contains('검색')" ).on("click" , function() {
 				fncGetList(1);
-			 });
+			});
+			
+			$( ".card" ).hover(
+					  function() {
+					 	
+					  }, function() {
+					    $( this ).find( "span:last" ).remove();
+					  }
+			);
 	 	});
  	
 	    function fncGetList(currentPage) {
@@ -71,12 +68,37 @@
 					}
 			});
 	    }
+	    
 	
 	
 	</script>
 
 	<style>
 			.title{cursor:pointer;}
+			
+			/* 이미지확대 */
+			.rounded{ 
+			  transform: scale(1);
+			  -webkit-transform: scale(1);
+			  -moz-transform: scale(1);
+			  -ms-transform: scale(1);
+			  -o-transform: scale(1);
+			  transition: all ease-in-out;		 
+			}
+			.rounded:hover{
+			  transform: scale(1.05); /*이미지 hover 했을경우 transform: scale() 값을 키워 확대*/
+			  -webkit-transform: scale(1.05);
+			  -moz-transform: scale(1.05);
+			  -ms-transform: scale(1.05);
+			  -o-transform: scale(1.05);
+			} 
+			/* 속도조절 */
+			.rounded {
+				letter-spacing: 0;
+				/* -webkit-transition: all .28s ease-in-out; */
+				transition: all .1s ease-in-out;
+			} 
+		 	
 	</style>
     
 </head>
@@ -84,7 +106,7 @@
 <body class="index-page sidebar-collapse">
 <form>
 <jsp:include page="/common/toolbar2.jsp"></jsp:include>
-  <div class="page-header header-filter clear-filter" style="height: 50vh; background-image: url('/images/weather/4016924c4eb809d80e5ac60ad0703088.jpg');">
+  <div class="page-header header-filter clear-filter" style="height:55vh; background-image: url('/images/weather/4016924c4eb809d80e5ac60ad0703088.jpg');">
     <div class="container">
       <div class="row">
         <div class="col-md-8 ml-auto mr-auto">
@@ -124,35 +146,20 @@
 			
 			<br/><br/><br/><br/><br/><br/>
 			
-			<div class="row" style="margin-left:19%" >
-				<div class="card" style="width: 20rem;">
-				  <img class="card-img-top" src="https://images.unsplash.com/photo-1517303650219-83c8b1788c4c?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=bd4c162d27ea317ff8c67255e955e3c8&auto=format&fit=crop&w=2691&q=80" alt="Card image cap">
-				  <div class="card-body">
-				    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-				  </div>
-				</div>
-				<div class="card" style="width: 20rem; margin-left:2.4%;">
-				  <img class="card-img-top" src="https://images.unsplash.com/photo-1517303650219-83c8b1788c4c?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=bd4c162d27ea317ff8c67255e955e3c8&auto=format&fit=crop&w=2691&q=80" alt="Card image cap">
-				  <div class="card-body">
-				    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-				  </div>
-				</div>
+			<div class="row" style="margin-top:1.6%; text-align:center">
+				<img src="/images/weather/photo.jpg" style="margin-left:19%;" class="rounded float-left" >
+					<div class="text">
+       <h2>Some text</h2>
+    </div>
+					
+				  <img src="/images/weather/photo.jpg" style="margin-left:1.6%;" class="rounded float-right" >
 			</div>
-			<div class="row" style="margin-top: -2.5%; margin-left:19%;">
-				<div class="card" style="width: 20rem;">
-				  <img class="card-img-top" src="https://images.unsplash.com/photo-1517303650219-83c8b1788c4c?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=bd4c162d27ea317ff8c67255e955e3c8&auto=format&fit=crop&w=2691&q=80" alt="Card image cap">
-				  <div class="card-body">
-				    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-				  </div>
-				</div>
-				<div class="card" style="width: 20rem; margin-left:2.5%;">
-				  <img class="card-img-top" src="https://images.unsplash.com/photo-1517303650219-83c8b1788c4c?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=bd4c162d27ea317ff8c67255e955e3c8&auto=format&fit=crop&w=2691&q=80" alt="Card image cap">
-				  <div class="card-body">
-				    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-				  </div>
-				</div>
+			<div class="row" style="margin-top:1.6%; text-align:center">
+				  <img src="/images/weather/photo.jpg" style="margin-left:19%;" class="rounded float-left" >
+				  <img src="/images/weather/photo.jpg" style="margin-left:1.6%;" class="rounded float-right">
 			</div>
 			
+	
 			<br/><br/><br/>
 			
 			<hr style="margin-bottom:-0.1%;">
@@ -160,8 +167,8 @@
 			  <li class="nav-item">
 			    <a class="nav-link active" >FAQ</a>
 			  </li>
-			  <li class="nav-item">
-			    <a class="nav-link" data-toggle="tooltip" data-placement="right" title="QNA로 이동합니다">1:1 QNA</a>
+			  <li class="nav-item" style="cursor:pointer;">
+			    <a class="nav-link" id="qna" data-toggle="tooltip" data-placement="right" title="QNA로 이동합니다">1:1 QNA</a>
 			  </li>
 			</ul>
 			<hr style="margin-top:0.1%;">
@@ -171,12 +178,7 @@
 		    <div id="table">
 				<jsp:include page="../FAQ/FAQTable.jsp"/>
 			</div>
-			
-			<div>
-				<c:if test="${role == 0}">
-					<button class="btn btn-primary btn-round btn-sm" style="left: 95%;">글쓰기</button>
-				</c:if>
-			</div>
+		
 		
 			<br/><br/><br/><br/>
       </div>
