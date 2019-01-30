@@ -3,19 +3,22 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-<title>회원 가입</title>
-	<meta http-equiv="Content-Type" content="text/html; charset=EUC-KR">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-	
-	<!-- bootstrap -->
-	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" ></script>
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" >
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" >
-	
+	<link rel="apple-touch-icon" sizes="76x76" href="./assets/img/apple-icon.png">
+	<link rel="icon" type="image/png" href="./assets/img/favicon.png">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+	<title>Tmmmi</title>
+	<meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0, shrink-to-fit=no' name='viewport' />
+	<!--  Fonts and icons -->
+	<link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Roboto+Slab:400,700|Material+Icons" />
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css">
+	<!-- CSS Files -->
+	<link href="/css/template/material-kit.css" rel="stylesheet" />
+	<!-- CSS Just for demo purpose, don't include it in your project -->
+	<link href="/css/template/demo.css" rel="stylesheet" />
 	<!-- jQuery -->
 	<script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
-	
-	<!-- styleSheet -->
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" ></script>
+  	<!-- styleSheet -->
 	<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
 	<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 	
@@ -204,50 +207,71 @@
 	</script>
 </head>
 
-<body>
-	<!-- sideMenu.jsp 추가 -->
-	<!-- 화면구성 -->
-	<div class="container">
-		<h1 class="bg-primary text-center">SNS 회 원 가 입</h1>
-	
-		<form class="form-horizontal">
-			<div class="form-group">
-				<input type="hidden" id="userNo" name="userNo" value="${userNo }" >
-			    <label for="userName" class="col-sm-offset-1 col-sm-3 control-label">닉네임</label>
-			    <div class="col-sm-4">
-			   		<input autocomplete="off" type="text" class="form-control" id="userName" name="userName" placeholder="닉네임">
-			    </div>
+<body class="index-page sidebar-collapse">
+<!-- sideMenu.jsp 추가 -->
+<jsp:include page="/common/toolbar2.jsp"></jsp:include>
+ 	<div class="page-header header-filter clear-filter" data-parallax="true" style="background-image: url('/images/userSetting/ ${userSetting.image}')">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-8 ml-auto mr-auto">
+          <div class="brand">
+            <h2 class="title">Join Page</h2>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+<!-- 화면구성 -->
+<div class="main main-raised">
+	<div class="section section-basic">
+		<div class="container">
+			<div class="row">
+				<div class="col-md-6 ml-auto mr-auto">
+					<div class="profile">
+						<form>
+							<div class="description text-center">
+								<div class="form-group bmd-form-group">
+									<input type="hidden" id="userNo" name="userNo" value="${userNo }" >
+							   	 	<label for="userName" class="bmd-label-static">Nickname</label>
+							   		<input autocomplete="off" type="text" class="form-control" id="userName" name="userName" placeholder="닉네임">
+							    </div>
+							</div>
+							
+							<div class="description text-center">
+								<div class="form-group bmd-form-group">
+							    	<label for="birthday" class="bmd-label-static">Birthday</label>
+							    	<input type="text" class="form-control" id="birthday" name="birthday" placeholder="생년월일" readonly>
+							    </div>
+							</div>
+							
+							<div class="description text-center">
+								<div class="form-group bmd-form-group">
+							    	<label for="email" class="bmd-label-static">E-mail</label>
+							    	<input autocomplete="off" type="email" oninput="checkEmail()" class="form-control" id="email" name="email" placeholder="이메일">
+							    	<span id="emailHelpBlock" class="help-block"></span>
+							    </div>
+							    <button type="button" class="btn btn-default" id="authEmail">인증하기</button>
+							</div>
+							
+							<div class="description text-center">
+								<div class="form-group bmd-form-group">
+							    	<label for="emailCheck" class="bmd-label-static">E-mail Confirm</label>
+							    	<input type="text" autocomplete="off"  oninput="emailCheckDuplication()" class="form-control" id="authNum" name="authNum" placeholder="이메일로 전송된 코드 입력">
+							    	<span id="authNumHelpBlock" class="help-block"></span>
+							    </div>
+							</div>
+							
+							<div align="center">
+								<button type="button" class="btn btn-primary"  >가입</button>
+						        <a class="btn btn-danger btn" href="#" role="button">취소</a>
+							</div>
+						</form>
+					</div>
+				</div>
 			</div>
-			
-			<div class="form-group">
-			    <label for="birthday" class="col-sm-offset-1 col-sm-3 control-label">생년월일</label>
-			    <div class="col-sm-4">
-			    	<input type="text" class="form-control" id="birthday" name="birthday" placeholder="생년월일" readonly>
-			    </div>
-			</div>
-			
-			<div class="form-group">
-			    <label for="email" class="col-sm-offset-1 col-sm-3 control-label">이메일</label>
-			    <div class="col-sm-4">
-			    	<input autocomplete="off" type="email" oninput="checkEmail()" class="form-control" id="email" name="email" placeholder="이메일">
-			    	<span id="emailHelpBlock" class="help-block"></span>
-			    </div>
-			    <button type="button" class="btn btn-default" id="authEmail">인증하기</button>
-			</div>
-			
-			<div class="form-group">
-			    <label for="emailCheck" class="col-sm-offset-1 col-sm-3 control-label">인증번호</label>
-			    <div class="col-sm-4">
-			    	<input type="text" autocomplete="off"  oninput="emailCheckDuplication()" class="form-control" id="authNum" name="authNum" placeholder="이메일로 전송된 코드 입력">
-			    	<span id="authNumHelpBlock" class="help-block"></span>
-			    </div>
-			</div>
-			
-			<div align="center">
-				<button type="button" class="btn btn-primary"  >가입</button>
-		        <a class="btn btn-danger btn" href="#" role="button">취소</a>
-			</div>
-		</form>
+		</div>
 	</div>
+</div>
+<jsp:include page="/common/footer.jsp"></jsp:include>
 </body>
 </html>

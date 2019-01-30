@@ -1,23 +1,20 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<%@ page language="java" contentType="text/html; charset=EUC-KR" pageEncoding="EUC-KR"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<!DOCTYPE html>
 <html lang="ko">
 <head>
-<title>아이디 찾기</title>
-	<meta http-equiv="Content-Type" content="text/html; charset=EUC-KR">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-	
-	<!-- bootstrap -->
-	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" ></script>
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" >
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" >
-	
-	<!-- jQuery -->
-	<script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
-	
-	<!-- styleSheet -->
-	<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
-	<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+<title>내 정보 보기</title>
+<meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0, shrink-to-fit=no' name='viewport' />
+<!--     Fonts and icons     -->
+<link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Roboto+Slab:400,700|Material+Icons" />
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css">
+<!-- CSS Files -->
+<link href="/css/template/material-kit.css" rel="stylesheet" />
+<!-- CSS Just for demo purpose, don't include it in your project -->
+<link href="/css/template/demo.css" rel="stylesheet" />
+<!-- jQuery -->
+<script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 	
 	<!-- 버튼 이벤트 -->
 	<script type="text/javascript">
@@ -73,31 +70,51 @@
 	</script>
 
 </head>
-<body>
-	<!-- sideMenu.jsp 추가 -->
-	<!-- 화면구성 -->
-	<div class="container">
-		<h1 class="bg-primary text-center">아이디 찾기</h1>
-	
-		<form class="form-horizontal">
-			<div class="form-group">
-			  <label for="userId" class="col-sm-offset-1 col-sm-3 control-label">닉 네 임</label>
-			  <div class="col-sm-4">
-				<input type="text" class="form-control" id="userName" name="userName" placeholder="닉네임을 입력하세요."/>
-			  </div>
-			</div>
-		  
-			<div class="form-group">
-				<label for="password" class="col-sm-offset-1 col-sm-3 control-label">이 메 일</label>
-				<div class="col-sm-4">
-				  <input type="text" class="form-control" id="email" name="email" placeholder="이메일을 입력하세요.">
+
+<body class="index-page sidebar-collapse">
+	<jsp:include page="/common/toolbar2.jsp"></jsp:include>
+	<div class="page-header header-filter clear-filter" data-parallax="true" style="background-image: url('/images/userSetting/ ${userSetting.image}')">
+		<div class="container">
+			<div class="row">
+				<div class="col-md-8 ml-auto mr-auto">
+					<div class="brand">
+						<h2 class="title">Search UserId</h2>
+					</div>
 				</div>
 			</div>
-			
-			<div align="center">
-				<button type="button" class="btn btn-primary" >아이디 찾기</button>
-			</div>
-		</form>
+		</div>
 	</div>
+	<div class="main main-raised">
+		<div class="section section-basic">
+			<div class="container">
+				<div class="row">
+					<div class="col-md-6 ml-auto mr-auto">
+						<div class="profile">
+							<form class="form-horizontal">
+								<div class="description text-center">
+									<div class="form-group bmd-form-group">
+								 		<label for="userId" class="bmd-label-static">Nickname</label>
+										<input type="text" class="form-control" id="userName" name="userName" placeholder="닉네임을 입력하세요."/>
+								  	</div>
+								</div>
+							  
+								<div class="description text-center">
+									<div class="form-group bmd-form-group">
+										<label for="password" class="bmd-label-static">E-mail</label>
+									 	<input type="text" class="form-control" id="email" name="email" placeholder="이메일을 입력하세요.">
+									</div>
+								</div>
+								
+								<div align="center">
+									<button type="button" class="btn btn-primary" >아이디 찾기</button>
+								</div>
+							</form>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<jsp:include page="/common/footer.jsp"></jsp:include>
 </body>
 </html>

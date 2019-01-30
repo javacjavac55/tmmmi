@@ -93,31 +93,6 @@
 	<section class="carousel" style="background-color:#1d1d1d;">
 		<div class="reel" style="overflow: visible; transform: translate(-1285px, 0px); ">
 			<!-- items : 받아올 배열이름 var=내부에서 사용할변수 -->
-			<c:forEach var="contentShopping" items="${shoppingContentFirstList}">				
-				<article style="width: 356px; height: 518px;">
-					<div style="width: 300px; height: 380px; overflow: hidden; margin-top:18px;" class="image">
-						<img src="${contentShopping.shoppingThumbnail}" style="width: 350px; height: 450; margin-left: -30px; margin-top: -30px;">	
-					</div>
-					<h4 style="margin-top: -25px;"class="titleShopping">${contentShopping.shoppingTitle}</h4>
-					<%-- <a href="${contentShopping.shoppingLink}" class="image featured"></a> --%>
-					<span style="color: #575757">
-						${contentShopping.shoppingPrice} 원
-					</span>
-					<p>
-						<a href="${contentShopping.shoppingLink}" class="image featured">
-							<button class="btn btn-primary btn-round btn-sm" style="margin-top:14px;">
-							  <i class="material-icons" style="font-size:10px;">favorite</i> 보러가기
-							</button>
-						</a>
-					</p>
-				</article>
-			</c:forEach>
-		</div>
-	</section>
-	
-	<section class="carousel" style="background-color:#1d1d1d;">
-		<div class="reel" style="overflow: visible; transform: translate(-1285px, 0px); ">
-			<!-- items : 받아올 배열이름 var=내부에서 사용할변수 -->
 			<c:forEach var="contentShopping" items="${shoppingContentSecondList}">				
 				<article style="width: 356px; height: 518px;">
 					<div style="width: 300px; height: 380px; overflow: hidden; margin-top:18px;" class="image">
@@ -140,30 +115,7 @@
 		</div>
 	</section>
 	
-	<section class="carousel" style="background-color:#1d1d1d;">
-		<div class="reel" style="overflow: visible; transform: translate(-1285px, 0px); ">
-			<!-- items : 받아올 배열이름 var=내부에서 사용할변수 -->
-			<c:forEach var="contentShopping" items="${shoppingContentThirdList}">				
-				<article style="width: 356px; height: 518px;">
-					<div style="width: 300px; height: 380px; overflow: hidden; margin-top:18px;" class="image">
-						<img src="${contentShopping.shoppingThumbnail}" style="width: 350px; height: 450; margin-left: -30px; margin-top: -30px;">	
-					</div>
-					<h4 style="margin-top: -25px;"class="titleShopping">${contentShopping.shoppingTitle}</h4>
-					<%-- <a href="${contentShopping.shoppingLink}" class="image featured"></a> --%>
-					<span style="color: #575757">
-						${contentShopping.shoppingPrice} 원
-					</span>
-					<p>
-						<a href="${contentShopping.shoppingLink}" class="image featured">
-							<button class="btn btn-primary btn-round btn-sm" style="margin-top:14px;">
-							  <i class="material-icons" style="font-size:10px;">favorite</i> 보러가기
-							</button>
-						</a>
-					</p>
-				</article>
-			</c:forEach>
-		</div>
-	</section>
+	
 	
 	<!-- Carousel JS -->
 	<script src="/javascript/scroll/jquery.dropotron.min.js"></script>

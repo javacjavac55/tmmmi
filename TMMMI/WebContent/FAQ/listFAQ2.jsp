@@ -63,7 +63,7 @@
 		 
 		$("a:contains('수정하기')" ).on("click" , function() {
 			var faqNo =$(this).data("param2");
-			 self.location = "/faq/updateFAQ?faqNo="+faqNo;
+			self.location = "/faq/updateFAQ?faqNo="+faqNo;
 		 });
 		
 		$("a:contains('삭제하기')" ).on("click" , function() {
@@ -174,12 +174,19 @@
 		    <div id="table">
 				<jsp:include page="../FAQ/FAQTable.jsp"/>
 			</div>
-		
+			
+			<div>
+				<c:if test="${role == 0}">
+					<button class="btn btn-primary btn-round btn-sm" style="left: 95%;">글쓰기</button>
+				</c:if>
+			</div>
       </div>
     </div>
   </div>
   </form>
   <jsp:include page="/common/footer.jsp"></jsp:include>
+  
+  
 </body>
 
 </html>

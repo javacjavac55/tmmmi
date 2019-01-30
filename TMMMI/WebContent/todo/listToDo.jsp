@@ -7,6 +7,8 @@
   <title>Tmmmi</title>
   <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0, shrink-to-fit=no' name='viewport' />
   <!--  Fonts and icons -->
+  <!-- CSS Files -->
+	<link href="/css/template/material-kit.css" rel="stylesheet" />
   <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Roboto+Slab:400,700|Material+Icons" />
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css">
   <!-- CSS Just for demo purpose, don't include it in your project -->
@@ -55,6 +57,13 @@ span:hover:before {
 	transition: width 0.5s cubic-bezier(0.22, 0.61, 0.36, 1);
 }
 
+<<<<<<< HEAD
+=======
+/* .container {
+	padding: 5%;
+} */
+
+>>>>>>> refs/remotes/origin/master
 .hide {
 	display: none;
 }
