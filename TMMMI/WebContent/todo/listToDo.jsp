@@ -7,6 +7,8 @@
   <title>Tmmmi</title>
   <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0, shrink-to-fit=no' name='viewport' />
   <!--  Fonts and icons -->
+  <!-- CSS Files -->
+	<link href="/css/template/material-kit.css" rel="stylesheet" />
   <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Roboto+Slab:400,700|Material+Icons" />
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css">
   <!-- CSS Just for demo purpose, don't include it in your project -->
@@ -55,10 +57,13 @@ span:hover:before {
 	transition: width 0.5s cubic-bezier(0.22, 0.61, 0.36, 1);
 }
 
-.container {
+<<<<<<< HEAD
+=======
+/* .container {
 	padding: 5%;
-}
+} */
 
+>>>>>>> refs/remotes/origin/master
 .hide {
 	display: none;
 }
@@ -94,69 +99,22 @@ span:hover:before {
 			fncAddTodoCheck();
 		})
 	});
-	// ///////////////////////////////////// 할 일 수정 변환버튼////////////////////////////////
-	/* $(function() {
-		$(".btn.btn-primary.updateViewbtn").on("click", function() {
-			var todoNo = $(this).data("utodonov");
-			var today = new Date();
-			var start = new Date($(this).data("startdate"));
-			var end = new Date($(this).data("enddate"));
-			 var picker2 = tui.DatePicker.createRangePicker({
-			    startpicker: {
-			        input: '#addToDoStartDate' + todoNo,
-			        container: '#startpicker-container' + todoNo
-			    },
-			    endpicker: {
-			        date: today,
-			        input: '#addToDoEndDate' + todoNo,
-			        container: '#endpicker-container' + todoNo
-			    }
-			});
-			picker2.setStartDate(start);
-			picker2.setEndDate(end);
-		})
-	}); */
-	// /////////////////////////////// 할 일 수정/////////////////////////////////////
-	/* $(function() {
-		$(".btn.btn-primary.updateToDobtn").on(
-				"click",
-				function() {
-					var todoNo = $(this).data("utodono");
-					console.log(todoNo);
-					$.ajax({
-						url : "/todoRest/updateToDo",
-						method : 'POST',
-						headers : {
-							"Accept" : "application/json",
-							"Content-Type" : "application/json"
-						},
-						data : JSON.stringify({
-							toDoNo : todoNo,
-							toDoDetail : $("#toDoDetail" + todoNo).val(),
-							toDoStartDate : $("#addToDoStartDate" + todoNo)
-									.val(),
-							toDoEndDate : $("#addToDoEndDate" + todoNo).val()
-						}),
-						dataType : 'json',
-						success : $(function() {
-							$("#todolist" + todoNo + " > div ").eq(0).text(
-									$("#toDoDetail" + todoNo).val());
-							$("#todolist" + todoNo + " > div ").eq(1).text(
-									$("#addToDoStartDate" + todoNo).val());
-							$("#todolist" + todoNo + " > div ").eq(2).text(
-									$("#addToDoEndDate" + todoNo).val());
-							$("#retodolist" + todoNo).hide();
-							$("#todolist" + todoNo).show();
-							// history.go(0);
-						})
-					})
-				})
-	}); */
+	/////////////////////////////////할 일 수정//////////////////////////////////////
 	$(function() {
-		$("#updateToDobtn:contains('수정')").on(
-				"click",
-				function() {
-					$("updateform").attr("method", "POST").attr("action",
+				$(".updateViewbtn").on("click",function(){
+					var no = $(this).data("utodono");
+					var detail = $(this).data("detail");
+					var start = $(this).data("startdate");
+					var end = $(this).data("enddate");
+					$("#updateToDoNo").val(no);
+					$('#updateToDoDetail').val(detail);
+					$('#dd3').val(start);
+					$('#dd4').val(end);
+				})
+	});
+	$(function() {
+		$("#updateToDobtn:contains('수정')").on("click",function() {
+					$(".updateform").attr("method", "POST").attr("action",
 							"/todo/updateToDo").submit();
 				})
 	});
@@ -270,7 +228,7 @@ span:hover:before {
 					</div>
 				</div>
 				<div class="modal-body">
-					<form class="addform" method="" action="" id="addToDo">
+					<form class="addform" action="" id="addToDo">
 						<p class="description text-center">용기있는 사람은 모두 약속을 지키는 사람이다
 							-코르네이유-</p>
 						<div class="card-body">
@@ -345,7 +303,7 @@ span:hover:before {
 					</div>
 				</div>
 				<div class="modal-body">
-					<form class="form" method="" action="" id="addToDo">
+					<form class="updateform" method="" action="">
 						<p class="description text-center">용기있는 사람은 모두 약속을 지키는 사람이다
 							-코르네이유-</p>
 						<div class="card-body">
@@ -356,8 +314,9 @@ span:hover:before {
 											<i class="material-icons">create</i>
 										</div>
 									</div>
+									<input type="hidden" class="form-control" name="toDoNo" id="updateToDoNo">
 									<input type="text" class="form-control" id="updateToDoDetail"
-										name="toDoDetail" value="${todo.toDoDetail}">
+										name="toDoDetail" value="">
 								</div>
 							</div>
 							<div class="form-group bmd-form-group">
@@ -369,7 +328,7 @@ span:hover:before {
 									</div>
 									<input type="text" class="form-control" name="toDoStartDate"
 										data-format="Y-m-d" data-large-mode="true"
-										data-init-set="false" id="dd3">
+										data-init-set="false" id="dd3" value="">
 									<script>
 										$('#dd3').dateDropper();
 									</script>
@@ -382,9 +341,9 @@ span:hover:before {
 											<i class="material-icons">flag</i>
 										</div>
 									</div>
-									<input type="text" class="form-control" name="toDoListDate"
+									<input type="text" class="form-control" name="toDoEndDate"
 										data-format="Y-m-d" data-large-mode="true"
-										data-init-set="false" id="dd4">
+										data-init-set="false" id="dd4" value="">
 									<script>
 										$('#dd4').dateDropper();
 									</script>
@@ -406,13 +365,13 @@ span:hover:before {
 	<!-- 수정 모달 끝 -->
 	
 <jsp:include page="/common/toolbar2.jsp"></jsp:include>
-  <div class="page-header header-filter clear-filter purple-filter" data-parallax="true">
+  <div class="page-header header-filter clear-filter purple-filter" data-parallax="true" style="height:60vh; background-image:url(/images/todoimage/nightstar.jpg)">
     <div class="container">
       <div class="row">
         <div class="col-md-8 ml-auto mr-auto">
           <div class="brand">
-            <h2 class="title">Tmmmi Side Menu</h2>
-            <h3 class="title">모두 힘내봅시다</h3>
+            <h2 class="title">ToDo List</h2>
+            <h3 class="title">자신의 매일을 관리하세요</h3>
           </div>
         </div>
       </div>
@@ -439,12 +398,12 @@ span:hover:before {
 								</h3>
 							</div>
 							<form class="currentdateform" action="">
-							<div class="form-group">
+							<div class="form-group" style="margin:0px; padding:10px;">
 							<div class="row">
 							<div class="col-md-8">
 									<input type="text" class="form-control" name="toDoStartDate"
 										value="${displaydate}" data-format="Y-m-d" data-large-mode="true"
-										data-init-set="false" id="dd5">
+										data-init-set="false" id="dd5"  style="border-radius: 2px;">
 										</div>
 										<div class="col-md-4">
 									<button
@@ -493,9 +452,10 @@ span:hover:before {
 									<input class="todoNo" type="hidden" value="${todo.toDoNo}">
 									<button aria-label="Left Align"
 										class="btn btn-primary btn-fab btn-fab-mini updateViewbtn"
+										data-detail="${todo.toDoDetail}"
 										data-enddate="${todo.toDoEndDate}"
 										data-startdate="${todo.toDoStartDate}"
-										data-utodonov="${todo.toDoNo}" data-target="#updatetodomodal"
+										data-utodono="${todo.toDoNo}" data-target="#updatetodomodal"
 										data-toggle="modal" type="button">
 										<i class="material-icons">edit</i>
 									</button>

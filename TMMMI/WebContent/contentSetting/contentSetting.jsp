@@ -101,7 +101,7 @@
  	$( function() {
 		//==> DOM Object GET 3가지 방법 ==> 1. $(tagName) : 2.(#id) : 3.$(.className)
 		$("a[href='#' ]").on("click" , function() {
-			self.location = "/content/listContent"
+			self.location = "/content/listContent.jsp"
 		});
 	});
  	</script>
@@ -153,11 +153,13 @@
 	    	},
 	    	success : function(Data){
 	    		alert('수정 되었습니다!');
+	    		window.location = '/content/listContent.jsp';
 	    	},
 	    	error : function(request, status, error ) {  
 
             	console.log('code:'+request.status+'\n'+'message:'+request.responseText+'\n'+'error:'+error);
             	alert('수정 된 내용이 없습니다!');
+            	window.location = '/content/listContent.jsp';
             }
 	    }) 
  	}

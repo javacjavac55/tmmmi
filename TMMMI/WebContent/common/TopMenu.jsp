@@ -23,7 +23,8 @@
       <div class="row">
         <div class="col-md-8 ml-auto mr-auto">
           <div class="brand">
-            <h2 class="title">Tmmmi Top Menu</h2>
+            <h2 class="title">TMMMI</h2>
+            <h3>Too Much, Memorable, My Information </h3>
           </div>
         </div>
       </div>
@@ -32,8 +33,7 @@
   <div class="main main-raised">
     <div class="section section-basic">
       <div class="container">
-		 <div align="center">이 부분에 코딩한거 넣으세요~^_^*
-		 <br/>toolbar2, footer부분 주석 풀고 원래문장 지우면 됨!</div>
+		
       </div>
     </div>
   </div>
