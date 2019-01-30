@@ -16,7 +16,7 @@
   <nav class="navbar navbar-transparent navbar-color-on-scroll fixed-top navbar-expand-lg" color-on-scroll="100" id="sectionsNav">
     <div class="container">
       <div class="navbar-translate">
-       <!--  <a class="navbar-brand" href="http://localhost:8080/common/TopMenu.jsp">Tmmmi</a> -->
+       <a class="navbar-brand" href="/common/TopMenu.jsp">TMMMI</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" aria-expanded="false" aria-label="Toggle navigation">
           <span class="sr-only">Toggle navigation</span>
           <span class="navbar-toggler-icon"></span>
@@ -41,11 +41,11 @@
             <a href="#" class="dropdown-toggle nav-link" data-toggle="dropdown">지영</a>
             <div class="dropdown-menu dropdown-with-icons">
 				<a href="/user/addUser" class="dropdown-item">회원가입</a>
-				<a href="/user/snsAddUser" class="dropdown-item">SNS 회원가입</a>
+				<a href="/user/snsAddUser.jsp" class="dropdown-item">SNS 회원가입</a>
 				<a href="/user/login" class="dropdown-item">로그인</a>
 				<a href="/user/getUserList" class="dropdown-item">회원 리스트</a>
 				<a href="/user/searchUserId.jsp" class="dropdown-item">아이디 찾기</a>
-				<a href="/user/searchUserPw.jsp" class="dropdown-item">비밀번호 찾기</a>
+				<!-- <a href="/user/searchUserPw.jsp" class="dropdown-item">비밀번호 찾기</a> -->
 				<a href="/user/getUser" class="dropdown-item">내 정보 보기</a>
 				<a href="/userSetting/getUserSetting" class="dropdown-item">사용자 설정</a>
 				<a href="/contentSetting/getContentSetting" class="dropdown-item">컨텐츠 설정</a>
