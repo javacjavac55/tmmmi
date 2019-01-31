@@ -14,7 +14,6 @@
 	$(function() {			 
 			$("button:contains('수정하기')" ).on("click" , function() { 
 				var faqNo =$(this).data("param1");
-				console.log("매의눈으로"+faqNo)
 				self.location = "/faq/updateFAQ?faqNo="+faqNo;
 			 });
 			
@@ -23,9 +22,7 @@
 				$("form").attr("method" , "GET").attr("action" , "/faq/deleteFAQ?faqNo="+faqNo).submit();
 			 });
 			
-			$("button:contains('검색')" ).on("click" , function() {
-				fncGetList(1);
-			 });
+			
 	 	});
 	</script>    
 </head>

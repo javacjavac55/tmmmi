@@ -43,6 +43,8 @@ public class ScrapController {
 	//@Value("#{commonProperties['pageSize'] ?: 2}")
 	int pageSize;
 	
+
+	
 	@RequestMapping(value="getScrap", method=RequestMethod.GET)
 	public ModelAndView getScrap(@RequestParam("scrapNo") int scrapNo)throws Exception {
 		System.out.println("/diary/getScrap: GET");

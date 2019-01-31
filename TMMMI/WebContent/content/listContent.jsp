@@ -85,6 +85,20 @@ $(function(){
 			$('.content-modal-btn').click();
 		});
 		
+		$($('#kBaseball').contents().find('.content-model-btn')).on('click', function(){
+			var content = $('#kBaseball').contents().find('#kBaseballInput').val();
+			  
+			$('.modal-body').html('<iframe class="content-modal" src="'+content+'" />');
+			$('.content-modal-btn').click();
+		});
+		
+		$($('#wBaseball').contents().find('.content-model-btn')).on('click', function(){
+			var content = $('#wBaseball').contents().find('#wBaseballInput').val();
+			  
+			$('.modal-body').html('<iframe class="content-modal" src="'+content+'" />');
+			$('.content-modal-btn').click();
+		});
+		
 		$($('#basketball').contents().find('.content-model-btn')).on('click', function(){
 			var content = $('#basketball').contents().find('#basketballInput').val();
 			  
@@ -98,8 +112,20 @@ $(function(){
 			$('.modal-body').html('<iframe class="content-modal" src="'+content+'" />');
 			$('.content-modal-btn').click();
 		});
+		
+		$('#addScrap').on('click', function(){
+			fncAddScrap();
+		});
 	};
 });
+
+
+function fncAddScrap() {
+	document.addScrap.submit();
+	$('form[name="addScrap"]').attr("method", "POST").attr("enctype",
+			"multipart/form-data").attr("action", "/scrap/addScrap")
+			.submit();
+}
 </script>
 	
 </head>
@@ -110,7 +136,9 @@ $(function(){
 <iframe id="movieReview" src="/contentMovie/getContentMovieReview"></iframe>
 <iframe id="movieTrailer" src="/contentMovie/getContentMovieTrailer"></iframe>
 
-<iframe src="/contentShopping/getShoppingList"></iframe>
+<iframe src="/contentShopping/getShoppingListFirst"></iframe>
+<iframe src="/contentShopping/getShoppingListSecond"></iframe>
+<iframe src="/contentShopping/getShoppingListThird"></iframe>
 <iframe src="/contentShopping/getShoppingReviewList"></iframe>
 
 <iframe id="kSoccer" src="/contentSport/getContentKsoccerList"></iframe>
@@ -130,13 +158,14 @@ $(function(){
 	          <span aria-hidden="true">&times;</span>
 	        </button>
 	      </div>
-	      <div class="modal-body">
-	        
+	      <form name="addScrap" class="form-horizontal">
+	      <div class="modal-body">	        
 	      </div>
 	      <div class="modal-footer">
 	        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-	        <button type="button" class="btn btn-primary">Save changes</button>
+	        <button type="button" class="btn btn-primary" id="addScrap">Save changes</button>
 	      </div>
+	      </form>
 	    </div>
 	  </div>
   </div>

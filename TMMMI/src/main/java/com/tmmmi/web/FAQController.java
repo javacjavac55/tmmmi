@@ -74,10 +74,9 @@ public class FAQController {
 		}
 		search.setPageSize(pageSize);
 		
-		/*if(search.getSearchCondition() == null & search.getSearchKeyword() == null) {
+		if(search.getSearchKeyword() != null) {
 			search.setSearchCondition("0");
-			search.setSearchKeyword("");
-		}*/
+		}
 		
 		Map<String, Object> map = faqService.getFAQList(search);
 		Page resultPage = new Page(search.getCurrentPage(),  ((Integer)map.get("totalCount")).intValue(), pageUnit, pageSize);
@@ -92,6 +91,7 @@ public class FAQController {
 		modelAndView.addObject("role", userService.getUser(userNo).getRole());
 		
 		modelAndView.setViewName("/FAQ/listFAQ.jsp");
+		System.out.println("³¡");
 		return modelAndView;
 	}
 	
@@ -122,10 +122,7 @@ public class FAQController {
 	@RequestMapping(value="deleteFAQ")
 	public ModelAndView deleteFAQ(@ModelAttribute("faq") FAQ faq, @RequestParam("faqNo") int faqNo) throws Exception {
 		System.out.println("/FAQ/deleteFAQ : GET/POST");
-		
-		System.out.println(faqNo);
-		
-		
+
 		ModelAndView modelAndView = new ModelAndView();
 		faq.setFAQNo(faqNo);
 		faqService.deleteFAQ(faq);
