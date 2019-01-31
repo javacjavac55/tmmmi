@@ -104,15 +104,6 @@ $(function(){
 	
 </head>
 <body>
-<%-- <div><c:import url="/contentMovie/getContentMovieBoxOffice"></c:import></div>
-<div><c:import url="/contentMovie/getContentMovieNew"></c:import></div>
-<div><c:import url="/contentMovie/getContentMovieUpcoming"></c:import></div>
-<div><c:import url="/contentMovie/getContentMovieReview"></c:import></div>
-<div><c:import url="/contentMovie/getContentMovieTrailer"></c:import></div>
-
-<div><c:import url="/contentShopping/getShoppingList"></c:import></div>
-<div><c:import url="/contentShopping/getShoppingReviewList"></c:import></div> --%>
-
 <iframe id="movieBoxOffice" src="/contentMovie/getContentMovieBoxOffice"></iframe>
 <iframe id="movieNew" src="/contentMovie/getContentMovieNew"></iframe>
 <iframe id="movieUpcoming" src="/contentMovie/getContentMovieUpcoming"></iframe>

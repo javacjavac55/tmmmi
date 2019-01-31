@@ -70,7 +70,7 @@ public class CalendarController {
 		System.out.println("getUserCategoryList userCategoryList:"+userCategoryList);
 		ModelAndView modelAndView = new ModelAndView();
 		modelAndView.addObject("userCategoryList", userCategoryList);
-		modelAndView.setViewName("/calendar/listUserCategory.jsp");
+		modelAndView.setViewName("redirect:/calendar/listUserCategory.jsp");
 		
 		return modelAndView;
 	}
@@ -84,6 +84,8 @@ public class CalendarController {
 	@RequestMapping(value="getCalendarMonth", method=RequestMethod.GET)
 	public ModelAndView getCalendarMonth(HttpSession session) {
 		//set startDate, endDate with current month
+		ModelAndView modelAndView = new ModelAndView();
+		
 		long startDate = 0;
 		long endDate = 0;
 		Calendar calendar = Calendar.getInstance();
@@ -97,8 +99,15 @@ public class CalendarController {
 		
 		int userNo = (int)session.getAttribute("userNo");
 		List<UserCategory> userCategoryList = userCategoryService.getUserCategoryList(userNo);
+
+		//카테고리가 없으면
+		if (userCategoryList == null || userCategoryList.size() == 0) {
+			System.out.println("12345");
+			modelAndView.setViewName("/calendar/getUserCategoryList/");
+			return modelAndView;
+		}
+		
 		List<Schedule> scheduleList = scheduleService.getScheduleList(userNo,startDate,endDate);
-		ModelAndView modelAndView = new ModelAndView();
 		modelAndView.addObject("userCategoryList", userCategoryList);
 		System.out.println(scheduleList.size());
 		System.out.println(scheduleList);
