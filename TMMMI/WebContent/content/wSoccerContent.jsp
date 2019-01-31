@@ -74,7 +74,7 @@ img {
 		    </div>
 		  </div>
 	  </div> -->
-	<input type="hidden" id="wsoccerInput" value="" />
+	<input type="hidden" id="wSoccerInput" value="" />
 	<!-- Carousel JS -->
 	<script src="/javascript/scroll/jquery.dropotron.min.js"></script>
 	<script src="/javascript/scroll/jquery.scrolly.min.js"></script>

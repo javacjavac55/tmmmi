@@ -149,7 +149,7 @@
 			<div class="row" style="margin-top:1.6%; text-align:center">
 				<img src="/images/weather/photo.jpg" style="margin-left:19%;" class="rounded float-left" >
 					<div class="text">
-       <h2>Some text</h2>
+       
     </div>
 					
 				  <img src="/images/weather/photo.jpg" style="margin-left:1.6%;" class="rounded float-right" >
