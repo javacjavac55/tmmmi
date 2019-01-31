@@ -19,7 +19,7 @@ public class NaverDaoImpl implements com.tmmmi.service.user.NaverDao {
 	
 	private final static String CLIENT_ID = "zEjZt96FPqQKNE4TIB04"; 
 	private final static String CLIENT_SECRET = "p1bSCpqEI5";
-	private final static String REDIRECT_URI = "http://127.0.0.1:8080/SNSLogin/naverLogin";
+	private final static String REDIRECT_URI = "http://192.168.0.53:8080/SNSLogin/naverLogin";
 	private final static String SESSION_STATE = "oauth_state";
 	private final static String PROFILE_API_URL = "https://openapi.naver.com/v1/nid/me";
 	private final static String GET_TOKEN_API_URL = "https://nid.naver.com/oauth2.0/token";
