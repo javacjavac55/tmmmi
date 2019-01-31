@@ -56,14 +56,6 @@ span:hover:before {
 	width: 100%;
 	transition: width 0.5s cubic-bezier(0.22, 0.61, 0.36, 1);
 }
-
-<<<<<<< HEAD
-=======
-/* .container {
-	padding: 5%;
-} */
-
->>>>>>> refs/remotes/origin/master
 .hide {
 	display: none;
 }
