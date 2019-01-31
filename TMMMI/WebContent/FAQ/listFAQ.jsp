@@ -22,7 +22,6 @@
     <script type="text/javascript">
     
 	$(function() {	
-		
 			var currentPage=$("#currentPage").val();
 			
 			 $(".title").on("click",function(){	
@@ -32,26 +31,34 @@
 			 
 			$("#qna").on("click",function(){	
 				self.location = "/qna/getQNAList";
-		    }); 
-			
-			$("button:contains('검색')" ).on("click" , function() {
-				fncGetList(1);
-			});
-			
-			$( ".card" ).hover(
-					  function() {
-					 	
-					  }, function() {
-					    $( this ).find( "span:last" ).remove();
-					  }
-			);
+		    });
+
+			$(".btn-primary").on("click",function(){	//검색
+				fncGetList();
+		    }); 	
 	 	});
  	
-	    function fncGetList(currentPage) {
-			$("#currentPage").val(currentPage)
-			console.log(currentPage)
-			$("form").attr("method" , "POST").attr("action" , "/faq/getFAQList").submit();
-	
+	    function fncGetList(searchKeyword) {
+			alert("여기인가")
+			
+			var searchKeyword = $("#searchKeyword").val();
+			console.log(searchKeyword)
+			$.ajax({
+	    			url:"/faqRest/json/getFAQList/",
+	    			method:"POST",
+					headers : {
+						"Accept" : "application/json",
+						"Content-Type" : "application/json"
+					},
+					data: JSON.stringify({
+						searchKeyword : $("#searchKeyword").val()
+					}),
+					success : function(data) {
+					console.log(data)
+					$('#table').html(data);
+					}
+			});
+		
 		}
 	    
 	    function fncJsonGetList(currentPage) {
@@ -105,6 +112,7 @@
 
 <body class="index-page sidebar-collapse">
 <form>
+
 <jsp:include page="/common/toolbar2.jsp"></jsp:include>
   <div class="page-header header-filter clear-filter" style="height:55vh; background-image: url('/images/weather/4016924c4eb809d80e5ac60ad0703088.jpg');">
     <div class="container">
@@ -127,32 +135,29 @@
 		 			 	
 		 	<br/><br/><br/><br/>
 		 	
-			<div class="row searchFAQ" style="margin:0 auto; ">
+			<div class="row searchFAQ" style="margin:0 auto; " >
 				<div class="col-md-7" style="margin-left:15%; ">	
 					<label style="margin-left:20%">소중한 문의에 감사드리며, 성심성의껏 답변해드리겠습니다.</label>
-					<div class="input-group">
+					<div class="input-group" >
 					    <div class="input-group-prepend">
 					      <span class="input-group-text">
 					        <i class="fa fa-group"></i>
 					      </span>
 					    </div>
-					    <input type="text" class="form-control" >
-					  </div>
+					    <input type="text" class="form-control" name="searchKeyword" id="searchKeyword" value="${search.searchKeyword}">
+					</div>
 				</div>
 				<div class="col-md-1" style="margin-top:1%;">
-					<button type="submit" class="btn btn-primary">검색</button>
+					<button type="button" class="btn btn-primary" name="searchCondition" value="0">검색</button>
 				</div>
 			</div>
 			
 			<br/><br/><br/><br/><br/><br/>
 			
 			<div class="row" style="margin-top:1.6%; text-align:center">
-				<img src="/images/weather/photo.jpg" style="margin-left:19%;" class="rounded float-left" >
-					<div class="text">
-       <h2>Some text</h2>
-    </div>
-					
-				  <img src="/images/weather/photo.jpg" style="margin-left:1.6%;" class="rounded float-right" >
+				<img src="/images/weather/photo.jpg" style="margin-left:19%; position: relative;" class="rounded float-left" >		
+				 <img src="/images/weather/photo.jpg" style="margin-left:1.6%;" class="rounded float-right" >
+				  
 			</div>
 			<div class="row" style="margin-top:1.6%; text-align:center">
 				  <img src="/images/weather/photo.jpg" style="margin-left:19%;" class="rounded float-left" >

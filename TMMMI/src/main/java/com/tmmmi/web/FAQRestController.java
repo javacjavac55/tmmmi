@@ -13,6 +13,7 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
@@ -77,8 +78,8 @@ public class FAQRestController {
 		
 	}
 	
-	@RequestMapping( value="json/getFAQList/{currentPage}")
-	public ModelAndView  getFAQList(@ModelAttribute("search") Search search, 
+	@RequestMapping( value="json/getFAQList/")
+	public ModelAndView  getFAQList(@RequestBody Search search, 
 																HttpSession session) throws Exception{
 		
 		System.out.println("json/FAQ/getFAQList : GET/POST");
@@ -88,10 +89,9 @@ public class FAQRestController {
 		}
 		search.setPageSize(pageSize);
 		
-		/*if(search.getSearchCondition() == null & search.getSearchKeyword() == null) {
+		if(search.getSearchKeyword() != null) {
 			search.setSearchCondition("0");
-			search.setSearchKeyword("");
-		}*/
+		}
 		
 		Map<String, Object> map = faqService.getFAQList(search);
 		Page resultPage = new Page(search.getCurrentPage(),  ((Integer)map.get("totalCount")).intValue(), pageUnit, pageSize);
