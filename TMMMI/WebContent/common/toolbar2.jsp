@@ -57,7 +57,7 @@
             <div class="dropdown-menu dropdown-with-icons">
 				<a href="/diary/addDiary.jsp" class="dropdown-item">다이어리 등록</a>
 				<a href="/diary/listDiary" class="dropdown-item">다이어리 리스트</a>
-				<a href="/content/sportContent.jsp" class="dropdown-item">스포츠 리스트</a>
+				<a href="/content/listContent.jsp" class="dropdown-item">스포츠 리스트</a>
             </div>
           </li>
           <!-- 명훈 -->

@@ -66,7 +66,7 @@
 					<div class="grim__item-img grim__item-img--1" style="background-image: url(/images/mainMenu/1.jpg);"></div>
 					<a href="#content-2" class="grim__link grim__item-content">
 						<div class="grim__item-inner">
-							<h3 class="grim__item-title">To Do</h3>
+							<h3 class="grim__item-title" data-link="/todo/getCalendarMonth/">To Do</h3>
 							<span class="grim__item-desc">Lift your spirits</span>
 						</div>
 					</a>
@@ -77,7 +77,7 @@
 					<div class="grim__item-img grim__item-img--2" style="background-image: url(/images/mainMenu/2.jpg);"></div>
 					<a href="#content-3" class="grim__link grim__item-content">
 						<div class="grim__item-inner">
-							<h3 class="grim__item-title">My Page</h3>
+							<h3 class="grim__item-title" data-link="/user/getUser/">My Page</h3>
 							<span class="grim__item-desc">Find yourself</span>
 						</div>
 					</a>
@@ -88,7 +88,7 @@
 					<div class="grim__item-img grim__item-img--3" style="background-image: url(/images/mainMenu/3.jpg);"></div>
 					<a href="#content-4" class="grim__link grim__item-content">
 						<div class="grim__item-inner">
-							<h3 class="grim__item-title">Diary</h3>
+							<h3 class="grim__item-title" data-link="/diary/listDiary/">Diary</h3>
 							<span class="grim__item-desc">Uncover beauty</span>
 						</div>
 					</a>

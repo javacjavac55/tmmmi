@@ -19,11 +19,18 @@
 		<script src="/javascript/template/material-kit.js?v=2.0.5" type="text/javascript"></script>
 		<link href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css" rel="stylesheet">
         <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+        <!-- font -->
+        <link href="https://fonts.googleapis.com/css?family=Noto+Sans+KR" rel="stylesheet">
         <!--naver 지도 api -->
         <script src="https://openapi.map.naver.com/openapi/v3/maps.js?ncpClientId=px629oicfq&submodules=geocoder&callback=initMap" type="text/javascript"></script>
         <meta charset="UTF-8">
 	    <meta content="IE=edge" http-equiv="X-UA-Compatible">
 	     <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no" name="viewport">
+	<style type="text/css">
+	 .card-title, p{
+	 font-family: 'Noto Sans KR', sans-serif;
+	}
+	</style>
 	</head>
 <body>
 	<section class="carousel" style="background-color:#1d1d1d;">
@@ -33,7 +40,7 @@
 				<article class="area" style="width: 20vw; height: 30vh; padding:0px; margin-right:0px;">
 				<div class="card">
 					        <div class="card-header card-header-rose" style="height: 15vh;">
-					            <h4 class="card-title">${contentTastyList.tastyTitle}</h4>
+					            <h3 class="card-title">${contentTastyList.tastyTitle}</h3>
 					            <p class="category">${contentTastyList.tastyMenu}</p>
 					        </div>
 							<div id="map${contentTastyList.tastyTitle}" style="width: 20vw; height: 30vh;padding-left:0px; margin-right:0px;"></div>

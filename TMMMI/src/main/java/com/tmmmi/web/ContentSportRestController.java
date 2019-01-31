@@ -10,6 +10,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.tmmmi.service.content.ContentService;
@@ -17,9 +18,9 @@ import com.tmmmi.service.contentsetting.ContentSettingService;
 import com.tmmmi.service.domain.ContentSetting;
 import com.tmmmi.service.domain.UserSetting;
 
-@Controller
-@RequestMapping("/contentSport/*")
-public class ContentSportController {
+@RestController
+@RequestMapping("/contentRest/*")
+public class ContentSportRestController {
 	
 	@Autowired
 	@Qualifier("contentSportServiceImpl")
@@ -29,7 +30,7 @@ public class ContentSportController {
 	@Qualifier("contentSettingServiceImpl")
 	private ContentSettingService contentSettingService;
 	
-	public ContentSportController() {
+	public ContentSportRestController() {
 		// TODO Auto-generated constructor stub
 	}
 	
@@ -45,8 +46,7 @@ public class ContentSportController {
 	
 	/*국내축구*/
 	@RequestMapping(value="getContentKsoccerList", method=RequestMethod.GET)
-	public ModelAndView getContentKsoccerList(HttpSession session)throws Exception  {				
-		
+	public ModelAndView getContentKsoccerList(HttpSession session)throws Exception  {
 		System.out.println("contentSport/getContentKsoccerList : GET");
 		int userNo = ((int)session.getAttribute("userNo"));
 		System.out.println("userNo : "+userNo);

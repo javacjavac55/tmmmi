@@ -29,17 +29,41 @@ public class ContentKeywordController {
 		// TODO Auto-generated constructor stub
 	}
 	
-	@RequestMapping(value="getUserKeywordList", method=RequestMethod.GET)
-	public ModelAndView getUserKeywordList(HttpSession session) throws Exception{
-		System.out.println("getUserKeywordList : GET");
+	@RequestMapping(value="getUserKeywordListFirst", method=RequestMethod.GET)
+	public ModelAndView getUserKeywordListFirst(HttpSession session) throws Exception{
+		System.out.println("getUserKeywordListFirst : GET");
 		
 		int userNo = (int)session.getAttribute("userNo");
 		
 		ModelAndView modelAndView = new ModelAndView();
 		modelAndView.addObject("userKeywordFirstList", contentUserKeywordService.getContentUserKeywordFirstList(contentSettingService.getContentSetting(userNo), 0));
-		modelAndView.addObject("userKeywordSecondList", contentUserKeywordService.getContentUserKeywordFirstList(contentSettingService.getContentSetting(userNo), 0));
-		modelAndView.addObject("userKeywordThirdList", contentUserKeywordService.getContentUserKeywordFirstList(contentSettingService.getContentSetting(userNo), 0));
-		modelAndView.setViewName("/content/userKeywordContent.jsp");
+		modelAndView.setViewName("/content/userKeywordContentFirst.jsp");
+		
+		return modelAndView;
+	}
+	
+	@RequestMapping(value="getUserKeywordListSecond", method=RequestMethod.GET)
+	public ModelAndView getUserKeywordListSecond(HttpSession session) throws Exception{
+		System.out.println("getUserKeywordListSecond : GET");
+		
+		int userNo = (int)session.getAttribute("userNo");
+		
+		ModelAndView modelAndView = new ModelAndView();
+		modelAndView.addObject("userKeywordSecondList", contentUserKeywordService.getContentUserKeywordSecondList(contentSettingService.getContentSetting(userNo), 0));
+		modelAndView.setViewName("/content/userKeywordContentSecond.jsp");
+		
+		return modelAndView;
+	}
+	
+	@RequestMapping(value="getUserKeywordListThird", method=RequestMethod.GET)
+	public ModelAndView getUserKeywordListThird(HttpSession session) throws Exception{
+		System.out.println("getUserKeywordListThird : GET");
+		
+		int userNo = (int)session.getAttribute("userNo");
+		
+		ModelAndView modelAndView = new ModelAndView();
+		modelAndView.addObject("userKeywordThirdList", contentUserKeywordService.getContentUserKeywordThirdList(contentSettingService.getContentSetting(userNo), 0));
+		modelAndView.setViewName("/content/userKeywordContentThird.jsp");
 		
 		return modelAndView;
 	}

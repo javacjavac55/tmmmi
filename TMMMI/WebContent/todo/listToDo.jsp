@@ -43,7 +43,6 @@
 button, h3 {
 	font-family: "Nanum Gothic", sans-serif;
 }
-
 span {
 	position: relative;
 	display: block;
@@ -56,6 +55,7 @@ span:hover:before {
 	width: 100%;
 	transition: width 0.5s cubic-bezier(0.22, 0.61, 0.36, 1);
 }
+
 
 .hide {
 	display: none;
@@ -134,9 +134,9 @@ span:hover:before {
 			})
 		})
 	});
-	// ///////////////////////////////////// 할 일 완료////////////////////////////////////////
+	// ///////////////////////////////////// 할 일 완료(현재)////////////////////////////////////////
 	$(function() {
-		$(".completebtn").click(function() {
+		$(".btn.btn-primary.btn-fab.btn-fab-mini.completebtn").click(function() {
 			var ctodono = $(this).data("ctodono");
 			var Now = new Date();
 			var NowTime = Now.getFullYear();
@@ -157,15 +157,21 @@ span:hover:before {
 				}),
 				dataType : 'json',
 				success : $(function() {
-					history.go(0);
+					console.log($('.ctodoDetail'+ctodono).text());
+					$('.ctodoDetail'+ctodono).html($('.ctodoDetail'+ctodono).text().strike());
+					$('.completebtn.'+ctodono).attr('class','btn btn-success btn-fab btn-fab-mini completeDelbtn '+ctodono);
+					$('.ctodoDetail'+ctodono).attr('class','dtodoDetail'+ctodono);
+					completeDelToDo();
 				})
 			})
 		})
-	});
+	
 	// /////////////////////////////////할 일 완료 취소/////////////////////////////////////////
-	$(function() {
-		$(".btn.btn-success.completeDelbtn").click(function() {
+	function completeDelToDo() {
+		$(".btn.btn-success.btn-fab.btn-fab-mini.completeDelbtn").click(function() {
 			var dctodono = $(this).data("dctodono");
+			var ctodono = $(this).data("ctodono");
+			console.log(dctodono);
 			$.ajax({
 				url : "/todoRest/deleteToDoComplete",
 				method : 'POST',
@@ -178,19 +184,23 @@ span:hover:before {
 				}),
 				dataType : 'json',
 				success : $(function() {
-					history.go(0);
+					console.log($('.dtodoDetail'+ctodono).html());
+					console.log($('.dtodoDetail'+ctodono).html().replace(/<(\/strike|strike)([^>]*)>/gi,""));
+					 $('.dtodoDetail'+ctodono).html($('.dtodoDetail'+ctodono).html().replace(/<(\/strike|strike)([^>]*)>/gi,"")); 
+					$('.completeDelbtn.'+ctodono).attr('class','btn btn-primary btn-fab btn-fab-mini completebtn '+ctodono);
 				})
 			})
 		})
+	}
 	});
-	//effect
+	//////////////////////////////////////////////////effect////////////////////////////////////////////////////
 	$(function() {
 		$(".list-group.list-group-flush").hover(function() {
 			var todoNo = $(this).data("todono");
 			$(".no" + todoNo).show();
 		}, function() {
 			var todoNo = $(this).data("todono");
-			$(".no" + todoNo).hide(100);
+			$(".no" + todoNo).hide();
 		});
 	})
 	$(function() {
@@ -421,25 +431,24 @@ span:hover:before {
 							<li class="list-group-item">
 							<c:if test="${todo.toDoCompleteNo  eq 0}">
 									<button aria-label="Left Align"
-										class="btn btn-primary btn-fab btn-fab-mini completebtn"
-										data-ctodono="${todo.toDoNo}"
-										data-dctodono="${todo.toDoCompleteNo}" type="button">
-										<i class="material-icons">check</i>.
+										class="btn btn-primary btn-fab btn-fab-mini completebtn ${todo.toDoNo}"
+										data-ctodono="${todo.toDoNo}" type="button">
+										<i class="material-icons">check</i>
 									</button>
 								</c:if> 
 								<c:if test="${todo.toDoCompleteNo  ne 0}">
 									<button aria-label="Left Align"
-										class="btn btn-success btn-fab btn-fab-mini completeDelbtn"
+										class="btn btn-success btn-fab btn-fab-mini completeDelbtn ${todo.toDoNo}"
 										data-ctodono="${todo.toDoNo}"
 										data-dctodono="${todo.toDoCompleteNo}" type="button">
 										<i class="material-icons">check</i>
 									</button>
 								</c:if> 
-								<c:if test="${todo.toDoCompleteNo eq 0}">
-										${todo.toDoDetail}
-								</c:if> 
+								 <c:if test="${todo.toDoCompleteNo eq 0}">
+										<div class="ctodoDetail${todo.toDoNo}">${todo.toDoDetail}</div>
+								</c:if>
 								<c:if test="${todo.toDoCompleteNo  ne 0}">
-									<strike>${todo.toDoDetail}</strike>
+									<div class="dtodoDetail${todo.toDoNo}"><strike>${todo.toDoDetail}</strike></div>
 								</c:if>
 								<div class="no${todo.toDoNo} hide" style="margin-left: 50px;">
 									<input class="todoNo" type="hidden" value="${todo.toDoNo}">
