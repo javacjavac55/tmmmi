@@ -191,7 +191,7 @@
 									</div>
 									
 								</form>
-							<jsp:include page="../common/pageNavigator2.jsp" />
+							<jsp:include page="../common/pageNavigator.jsp" />
 						</div>					
 					</div>
 				</div>

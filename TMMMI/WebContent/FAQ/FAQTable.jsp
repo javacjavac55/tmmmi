@@ -73,5 +73,5 @@
 			</c:forEach>
 			</table>
 			
-			<jsp:include page="../common/pageNavigator3.jsp"/>
+			<jsp:include page="../common/pageNavigator.jsp"/>
 </form>
