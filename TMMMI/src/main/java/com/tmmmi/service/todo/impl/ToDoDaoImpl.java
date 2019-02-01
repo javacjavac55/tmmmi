@@ -69,6 +69,13 @@ public class ToDoDaoImpl implements ToDoDao {
 	}
 	
 	@Override
+	public ToDo getToDo(ToDo toDo) throws Exception {
+		System.out.println(this.getClass()+"Á¢±Ù");
+		System.out.println(toDo);
+		return sqlSession.selectOne("TodoMapper.getTodo", toDo);
+	}
+	
+	@Override
 	public void getDayGraph() {
 		// TODO Auto-generated method stub
 		
@@ -87,7 +94,4 @@ public class ToDoDaoImpl implements ToDoDao {
 		// TODO Auto-generated method stub
 		
 	}
-
-
-
 }
