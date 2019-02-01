@@ -74,7 +74,6 @@
             <a href="#" class="dropdown-toggle nav-link" data-toggle="dropdown">지슬</a>
             <div class="dropdown-menu dropdown-with-icons">
 				<a href="/faq/getFAQList" class="dropdown-item">FAQ 리스트</a>
-				<a href="/FAQ/addFAQ.jsp" class="dropdown-item">FAQ 작성</a>
 				<a href="/qna/getQNAList" class="dropdown-item">QNA 리스트</a>
 				<a href="/widget/getWeather3.jsp" class="dropdown-item">날씨 </a>
 				<a href="/contentShopping/getShoppingListFirst" class="dropdown-item">쇼핑컨텐츠1</a>

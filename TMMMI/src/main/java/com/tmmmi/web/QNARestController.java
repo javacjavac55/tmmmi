@@ -15,29 +15,27 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.tmmmi.common.Page;
 import com.tmmmi.common.Search;
-import com.tmmmi.service.faq.FAQService;
+import com.tmmmi.service.qna.QNAService;
 import com.tmmmi.service.user.UserService;
 
 @RestController
-@RequestMapping("/faqRest/*")
-public class FAQRestController {
+@RequestMapping("/qnaRest/*")
+public class QNARestController {
 	
 	@Autowired
-	@Qualifier("faqServiceImpl")
-	private FAQService faqService;
+	@Qualifier("qnaServiceImpl")
+	private QNAService qnaService;
 
 	@Autowired
 	@Qualifier("userServiceImpl")
 	private UserService userService;
 	
-	public FAQRestController() {
+	public QNARestController() {
 		// TODO Auto-generated constructor stub
 		System.out.println(this.getClass());
 	}
@@ -48,13 +46,13 @@ public class FAQRestController {
 	@Value("#{commonProperties['pageSize']}")
 	int pageSize;
 	
-	@RequestMapping(value="imageFAQ", method=RequestMethod.POST, produces="text/plain;charset=UTF-8")
+	/*@RequestMapping(value="imageFAQ", method=RequestMethod.POST, produces="text/plain;charset=UTF-8")
 	public void profileUpload(MultipartFile file, HttpServletRequest request, HttpServletResponse response) throws Exception{
 		System.out.println("½ÇÇà");
 		response.setContentType("text/html;charset=utf-8");
 		PrintWriter out = response.getWriter();
 		
-		/*String realFolder = request.getSession().getServletContext().getRealPath("C:\\Users\\Bit\\git\\tmmmi\\TMMMI\\WebContent\\resources\\images\\diaryImage");*/
+		String realFolder = request.getSession().getServletContext().getRealPath("C:\\Users\\Bit\\git\\tmmmi\\TMMMI\\WebContent\\resources\\images\\diaryImage");
 		String realFolder = "C:\\Users\\Bit\\git\\tmmmi\\TMMMI\\WebContent\\resources\\images\\FAQImage";
 		
 		
@@ -76,13 +74,17 @@ public class FAQRestController {
 		out.println("/images/FAQImage/"+strFilename);
 		out.close();
 		
-	}
+	}*/
 	
-	@RequestMapping( value="json/getFAQSearchList/" )
-	public ModelAndView  getFAQSearchList(@RequestBody Search search, 
+	@RequestMapping( value="json/getQNASearchList/" )
+	public ModelAndView  getQNASearchList(@RequestBody Search search, 
 																HttpSession session) throws Exception{
 		
-		System.out.println("json/FAQ/getFAQSearchList : POST");
+		System.out.println("json/QNA/getQNASearchList : POST");
+		
+		int userNo = (int)session.getAttribute("userNo");
+		System.out.println("userNo::::" +userNo);
+		int role = userService.getUser(userNo).getRole();
 			
 		if(search.getCurrentPage() ==0 ){
 			search.setCurrentPage(1);
@@ -93,27 +95,35 @@ public class FAQRestController {
 			search.setSearchCondition("0");
 		}
 		
-		Map<String, Object> map = faqService.getFAQList(search);
+		Map<String, Object> map;
+		ModelAndView modelAndView = new ModelAndView();
+		
+		if(role == 0) {
+			map = qnaService.getAdminQNAList(search);
+		}else {
+			map = qnaService.getQNAList(search, userNo);
+		}
+		
 		Page resultPage = new Page(search.getCurrentPage(),  ((Integer)map.get("totalCount")).intValue(), pageUnit, pageSize);
 		
-		ModelAndView modelAndView = new ModelAndView();
 		modelAndView.addObject("list", map.get("list"));
-		System.out.println("map.get::::" +map.get("list"));
 		modelAndView.addObject("resultPage", resultPage);
 		modelAndView.addObject("search", search);
-		
-		int userNo = (int)session.getAttribute("userNo");
-		modelAndView.addObject("role", userService.getUser(userNo).getRole());
-		modelAndView.setViewName("/FAQ/FAQTable.jsp");
+	
+		modelAndView.setViewName("/QNA/listQNA.jsp");
 		return modelAndView;
 	}
 	
-	@RequestMapping( value="json/getFAQList/{currentPage}")
-	public ModelAndView  getFAQList(@ModelAttribute Search search, 
+	@RequestMapping( value="json/getQNAList/{currentPage}")
+	public ModelAndView  getQNAList(@ModelAttribute Search search, 
 																HttpSession session) throws Exception{
 		
-		System.out.println("json/FAQ/getFAQList : GET");
-			
+		System.out.println("json/QNA/getQNAList : GET");
+		
+		int userNo = (int)session.getAttribute("userNo");
+		System.out.println("userNo::::" +userNo);
+		int role = userService.getUser(userNo).getRole();
+		
 		if(search.getCurrentPage() ==0 ){
 			search.setCurrentPage(1);
 		}
@@ -123,18 +133,23 @@ public class FAQRestController {
 			search.setSearchCondition("0");
 		}
 		
-		Map<String, Object> map = faqService.getFAQList(search);
+		Map<String, Object> map;
+		ModelAndView modelAndView = new ModelAndView();
+		
+		//admin
+		if(role == 0) {
+			map = qnaService.getAdminQNAList(search);
+		}else {
+			map = qnaService.getQNAList(search, userNo);
+		}
+		
 		Page resultPage = new Page(search.getCurrentPage(),  ((Integer)map.get("totalCount")).intValue(), pageUnit, pageSize);
 		
-		ModelAndView modelAndView = new ModelAndView();
 		modelAndView.addObject("list", map.get("list"));
-		System.out.println("map.get::::" +map.get("list"));
 		modelAndView.addObject("resultPage", resultPage);
 		modelAndView.addObject("search", search);
-		
-		int userNo = (int)session.getAttribute("userNo");
-		modelAndView.addObject("role", userService.getUser(userNo).getRole());
-		modelAndView.setViewName("/FAQ/FAQTable.jsp");
+	
+		modelAndView.setViewName("/QNA/QNATable.jsp");
 		return modelAndView;
 	}
 
