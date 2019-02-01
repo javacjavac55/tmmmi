@@ -61,6 +61,10 @@ public class ToDoServiceImpl implements ToDoService {
 		toDoDao.deleteToDoComplete(toDo);
 	}
 	@Override
+	public ToDo getToDo(ToDo toDo) throws Exception {
+		return toDoDao.getToDo(toDo);
+	}
+	@Override
 	public void getToDoDayGraph(Map<String, Object> todomap) throws Exception {
 		
 	}
@@ -78,7 +82,4 @@ public class ToDoServiceImpl implements ToDoService {
 		// TODO Auto-generated method stub
 		
 	}
-
-
-
 }

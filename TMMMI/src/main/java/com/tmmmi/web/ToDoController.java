@@ -119,6 +119,7 @@ public class ToDoController {
 		System.out.println("displayDate : "+displaydate);
 		
 		modelAndView.setViewName("/todo/listToDo.jsp");
+		modelAndView.addObject("targetDate", targetDate1);
 		modelAndView.addObject("todolist",todolist);
 		modelAndView.addObject("displaydate", displaydate);
 		System.out.println(modelAndView);

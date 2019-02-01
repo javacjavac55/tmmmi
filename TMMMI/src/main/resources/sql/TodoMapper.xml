@@ -44,12 +44,22 @@
 		
 		<delete id="deleteTodo" parameterType="com.tmmmi.service.domain.ToDo" >
   			DELETE FROM todo 
-  			WHERE todo_no = (SELECT t.todo_no
+  			WHERE todo_no IN (SELECT t.todo_no
 												FROM todo t, todo_complete tc
 												WHERE t.todo_no = tc.todo_no(+)
 									            AND t.todo_no = #{toDoNo}
 									            AND t.user_no = #{userNo})
 		</delete>
+		
+		<select id="getTodo" parameterType="com.tmmmi.service.domain.ToDo" resultMap="TodoSelectMap">
+			SELECT td.*, tc.todo_complete_no, tc.todo_complete_date
+				FROM todo_complete tc, 
+					(SELECT t.todo_no, t.user_no, t.todo_detail, t.todo_start_date, t.todo_end_date
+						FROM todo t
+						WHERE t.todo_no = #{toDoNo}) td
+				WHERE td.todo_no = tc.todo_no(+)
+				AND tc.todo_complete_date = #{toDoCompleteDate}
+		</select>
 		
 		<select id="getTodoList" parameterType="map" resultMap="TodoSelectMap">
 			SELECT td.*, tc.todo_complete_no, tc.todo_complete_date

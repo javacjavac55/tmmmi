@@ -38,6 +38,9 @@
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css">
 <link href="https://fonts.googleapis.com/css?family=Nanum+Gothic:400,700,800&amp;subset=korean" rel="stylesheet">
 <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Roboto+Slab:400,700|Material+Icons" />
+<!-- sweetAlert -->
+<script src ="https://unpkg.com/sweetalert/dist/sweetalert.min.js" ></script >
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@8"></script>
 <!-- Style CSS-->
 <style type="text/css">
 button, h3 {
@@ -60,10 +63,9 @@ span:hover:before {
 }
 </style>
 <script>
-	// ==> DOM Object GET 3가지 방법 ==> 1. $(tagName) : 2.(#id) : 3.$(.className)
-	// ///////////////////////////////// 할 일 등록 체크///////////////////////////////////////
-	function fncAddTodoCheck() {
-		console.log(2)
+	$(function() {
+		// ///////////////////////////////// 할 일 등록 체크///////////////////////////////////////
+		function fncAddTodoCheck() {
 		var toDoDetail = $(".form-control.1").val();
 		var toDoStartDate = $(".form-control.2").val();
 		var toDoEndDate = $(".form-control.3").val();
@@ -82,37 +84,45 @@ span:hover:before {
 		$(function() {
 			$(".addform").attr("method", "POST")
 					.attr("action", "/todo/addToDo").submit();
-		})
-	}
-	// ////////////////////////////// 할 일 등록//////////////////////////////////////
-	$(function() {
-		$("#addToDobtn:contains('등록')").on("click", function() {
-			fncAddTodoCheck();
-		})
-	});
-	/////////////////////////////////할 일 수정//////////////////////////////////////
-	$(function() {
-				$(".updateViewbtn").on("click",function(){
-					var no = $(this).data("utodono");
-					var detail = $(this).data("detail");
-					var start = $(this).data("startdate");
-					var end = $(this).data("enddate");
-					$("#updateToDoNo").val(no);
-					$('#updateToDoDetail').val(detail);
-					$('#dd3').val(start);
-					$('#dd4').val(end);
-				})
-	});
-	$(function() {
-		$("#updateToDobtn:contains('수정')").on("click",function() {
-					$(".updateform").attr("method", "POST").attr("action",
-							"/todo/updateToDo").submit();
-				})
-	});
-
-	// ///////////////////////////////////할 일 삭제/////////////////////////////////////////
-	$(function() {
-		$(".deletebtn").on("click", function() {
+			})
+		}
+		/////////////////////////////// 할 일 등록//////////////////////////////////////
+		$(document).on('click',"#addToDobtn:contains('등록')", function() {
+			fncAddTodoCheck()
+			});
+		
+		/////////////////////////////////할 일 수정 데이터전송//////////////////////////////////////
+		$(document).on('click',".updateViewbtn", function() {
+			var no = $(this).data("utodono");
+			var detail = $(this).data("detail");
+			var start = $(this).data("startdate");
+			var end = $(this).data("enddate");
+			$("#updateToDoNo").val(no);
+			$('#updateToDoDetail').val(detail);
+			$('#dd3').val(start);
+			$('#dd4').val(end);
+			});
+		///////////////////////////////할 일 수정/////////////////////////////////////////
+		$(document).on('click',"#updateToDobtn:contains('수정')", function() {
+			var toDoDetail = $(".form-control.4").val();
+			var toDoStartDate = $(".form-control.5").val();
+			var toDoEndDate = $(".form-control.6").val();
+			if (toDoDetail == null || toDoDetail.length < 1) {
+				alert("할 일의 내용은 반드시 입력하셔야 합니다.");
+				return;
+			}
+			if (toDoStartDate == null || toDoStartDate.length < 1) {
+				alert("할 일의 시작 날짜는 반드시 입력하셔야 합니다.");
+				return;
+			}
+			if (toDoEndDate == null || toDoEndDate.length < 1) {
+				alert("할 일의 종료 날짜는  반드시 입력하셔야 합니다.");
+				return;
+			}
+			$(".updateform").attr("method", "POST").attr("action","/todo/updateToDo").submit();
+		});
+		////////////////////////////////////할 일 삭제/////////////////////////////////////////
+		$(document).on('click',".deletebtn", function() {
 			var deleteToDoNo = $(this).data("dtodono");
 			console.log(deleteToDoNo);
 			$.ajax({
@@ -127,21 +137,34 @@ span:hover:before {
 				}),
 				dataType : 'json',
 				success : $(function() {
-					history.go(0);
+				Swal.fire({
+								  title: '할 일을 삭제하시겠습니까?',
+								  text: "회원님이 등록한 할 일의 완료가 모두 삭제됩니다",
+								  type: 'warning',
+								  showCancelButton: true,
+								  confirmButtonColor: '#3085d6',
+								  cancelButtonColor: '#d33',
+								  confirmButtonText: '네 삭제할래요!',
+								  cancelButtonText: '아니요 뚱인데요!',
+					}).then((result)=>{
+						if (result.value) {
+						    Swal.fire(
+						      '삭제되었습니다',
+						      '완료된 할 일도 모두 삭제되었습니다',
+						      'info')}
+						      console.log(deleteToDoNo);
+								$('.list-group.list-group-flush.'+deleteToDoNo).remove();
+						})
+						
+					})
 				})
-			})
-		})
-	});
-	// ///////////////////////////////////// 할 일 완료(현재)////////////////////////////////////////
-	$(function() {
-		$(".btn.btn-primary.btn-fab.btn-fab-mini.completebtn").click(function() {
+			});
+		/////////////////////////////////////// 할 일 완료(현재)////////////////////////////////////////
+		$(document).on('click',".btn.btn-primary.btn-fab.btn-fab-mini.completebtn", function() {
 			var ctodono = $(this).data("ctodono");
-			var Now = new Date();
-			var NowTime = Now.getFullYear();
-			NowTime += '-' + Now.getMonth() + 1;
-			NowTime += '-' + Now.getDate();
+			var cpdate = $(this).data("cpdate");
 			console.log(ctodono);
-			console.log(NowTime);
+			console.log(cpdate);
 			$.ajax({
 				url : "/todoRest/updateToDoComplete",
 				method : 'POST',
@@ -151,22 +174,19 @@ span:hover:before {
 				},
 				data : JSON.stringify({
 					toDoNo : ctodono,
-					toDoCompleteDate : NowTime
+					toDoCompleteDate : cpdate
 				}),
 				dataType : 'json',
-				success : $(function() {
-					console.log($('.ctodoDetail'+ctodono).text());
+				success : function(data) {
+					console.log(data);
 					$('.ctodoDetail'+ctodono).html($('.ctodoDetail'+ctodono).text().strike());
-					$('.completebtn.'+ctodono).attr('class','btn btn-success btn-fab btn-fab-mini completeDelbtn '+ctodono);
+					$('.completebtn.'+ctodono).attr('class','btn btn-success btn-fab btn-fab-mini completeDelbtn '+data);
 					$('.ctodoDetail'+ctodono).attr('class','dtodoDetail'+ctodono);
-					completeDelToDo();
-				})
+				}
 			})
 		})
-	
-	// /////////////////////////////////할 일 완료 취소/////////////////////////////////////////
-	function completeDelToDo() {
-		$(".btn.btn-success.btn-fab.btn-fab-mini.completeDelbtn").click(function() {
+		///////////////////////////////////할 일 완료 취소/////////////////////////////////////////
+		$(document).on('click',".btn.btn-success.btn-fab.btn-fab-mini.completeDelbtn", function() {
 			var dctodono = $(this).data("dctodono");
 			var ctodono = $(this).data("ctodono");
 			console.log(dctodono);
@@ -182,34 +202,28 @@ span:hover:before {
 				}),
 				dataType : 'json',
 				success : $(function() {
-					console.log($('.dtodoDetail'+ctodono).html());
-					console.log($('.dtodoDetail'+ctodono).html().replace(/<(\/strike|strike)([^>]*)>/gi,""));
 					 $('.dtodoDetail'+ctodono).html($('.dtodoDetail'+ctodono).html().replace(/<(\/strike|strike)([^>]*)>/gi,"")); 
-					$('.completeDelbtn.'+ctodono).attr('class','btn btn-primary btn-fab btn-fab-mini completebtn '+ctodono);
+					$('.completeDelbtn.'+dctodono).attr('class','btn btn-primary btn-fab btn-fab-mini completebtn '+ctodono);
 				})
 			})
 		})
-	}
-	});
-	//////////////////////////////////////////////////effect////////////////////////////////////////////////////
-	$(function() {
-		$(".list-group.list-group-flush").hover(function() {
+		//////////////////////////////////////////////////effect////////////////////////////////////////////////////
+		/* $(document).on('mouseenter',".list-group.list-group-flush", function() {
 			var todoNo = $(this).data("todono");
-			$(".no" + todoNo).show();
-		}, function() {
+			$(".no" + todoNo).show();	
+		});
+		$(document).on('mouseleave',".list-group.list-group-flush",function() {
 			var todoNo = $(this).data("todono");
 			$(".no" + todoNo).hide();
-		});
-	})
-	$(function() {
-		$("#search").on(
-				"click",
-				function() {
-					$(".currentdateform").attr("method", "POST").attr("action",
-							"/todo/getToDoList").submit();
-				})
-	})
+		}); */
+		//////////////////////////////////////////////날짜 이동//////////////////////////////////////////////////////
+		$(document).on('click',"#search", function() {
+			$(".currentdateform").attr("method", "POST").attr("action","/todo/getToDoList").submit();
+		})
+	});///onready
 </script>
+<style type="text/css">
+</style>
 </head>
 
 <body class="index-page sidebar-collapse">
@@ -316,7 +330,7 @@ span:hover:before {
 										</div>
 									</div>
 									<input type="hidden" class="form-control" name="toDoNo" id="updateToDoNo">
-									<input type="text" class="form-control" id="updateToDoDetail"
+									<input type="text" class="form-control 4" id="updateToDoDetail"
 										name="toDoDetail" value="">
 								</div>
 							</div>
@@ -327,7 +341,7 @@ span:hover:before {
 											<i class="material-icons">calendar_today</i>
 										</div>
 									</div>
-									<input type="text" class="form-control" name="toDoStartDate"
+									<input type="text" class="form-control 5" name="toDoStartDate"
 										data-format="Y-m-d" data-large-mode="true"
 										data-init-set="false" id="dd3" value="">
 									<script>
@@ -342,7 +356,7 @@ span:hover:before {
 											<i class="material-icons">flag</i>
 										</div>
 									</div>
-									<input type="text" class="form-control" name="toDoEndDate"
+									<input type="text" class="form-control 6" name="toDoEndDate"
 										data-format="Y-m-d" data-large-mode="true"
 										data-init-set="false" id="dd4" value="">
 									<script>
@@ -372,7 +386,7 @@ span:hover:before {
         <div class="col-md-8 ml-auto mr-auto">
           <div class="brand">
             <h2 class="title">ToDo List</h2>
-            <h3 class="title">자신의 매일을 관리하세요</h3>
+            <h3 class="title">자신의 하루하루를 관리하세요</h3>
           </div>
         </div>
       </div>
@@ -403,8 +417,7 @@ span:hover:before {
 							<div class="row">
 							<div class="col-md-8">
 									<input type="text" class="form-control" name="toDoStartDate"
-										value="${displaydate}" data-format="Y-m-d" data-large-mode="true"
-										data-init-set="false" id="dd5"  style="border-radius: 2px;">
+										value="${displaydate}" data-format="Y-m-d" id="dd5" data-large-only="true" style="border-radius: 2px;">
 										</div>
 										<div class="col-md-4">
 									<button
@@ -424,19 +437,22 @@ span:hover:before {
 				</div>
 				<div class="card-body">
 					<c:forEach items="${todolist}" var="todo">
-						<ul class="list-group list-group-flush"
+						<ul class="list-group list-group-flush  ${todo.toDoNo}"
 							data-todono="${todo.toDoNo}">
 							<li class="list-group-item">
 							<c:if test="${todo.toDoCompleteNo  eq 0}">
 									<button aria-label="Left Align"
 										class="btn btn-primary btn-fab btn-fab-mini completebtn ${todo.toDoNo}"
-										data-ctodono="${todo.toDoNo}" type="button">
+										data-ctodono="${todo.toDoNo}" 
+										data-dctodono="${todo.toDoCompleteNo}"
+										data-cpdate="${targetDate}"
+										type="button">
 										<i class="material-icons">check</i>
 									</button>
 								</c:if> 
 								<c:if test="${todo.toDoCompleteNo  ne 0}">
 									<button aria-label="Left Align"
-										class="btn btn-success btn-fab btn-fab-mini completeDelbtn ${todo.toDoNo}"
+										class="btn btn-success btn-fab btn-fab-mini completeDelbtn ${todo.toDoCompleteNo}"
 										data-ctodono="${todo.toDoNo}"
 										data-dctodono="${todo.toDoCompleteNo}" type="button">
 										<i class="material-icons">check</i>
@@ -448,7 +464,7 @@ span:hover:before {
 								<c:if test="${todo.toDoCompleteNo  ne 0}">
 									<div class="dtodoDetail${todo.toDoNo}"><strike>${todo.toDoDetail}</strike></div>
 								</c:if>
-								<div class="no${todo.toDoNo} hide" style="margin-left: 50px;">
+								<div class="no${todo.toDoNo}" style="margin-left: 50px;">
 									<input class="todoNo" type="hidden" value="${todo.toDoNo}">
 									<button aria-label="Left Align"
 										class="btn btn-primary btn-fab btn-fab-mini updateViewbtn"

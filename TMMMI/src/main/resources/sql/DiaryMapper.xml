@@ -56,22 +56,28 @@
 	<select  id="getDiaryList"  parameterType="map"	resultMap="DiarySelectMap">
 	  	SELECT *
 	  	FROM (	SELECT inner_table.* , ROWNUM AS row_seq
-	  					FROM		(	SELECT diary_no , user_category_no, diary_title, diary_date
+	  					FROM		(	SELECT diary_no ,user_no, user_category_no, diary_title, diary_date
 											FROM diary
 											<where>
-												user_no=#{userNo}
+												user_no=#{userNo}																							
+												<if test="search.searchKeyword !='' and search.searchKeyword!=null">
+												and (diary_title like '%'||#{search.searchKeyword}||'%' or diary_detail like '%'||#{search.searchKeyword}||'%')
+												</if>											
 											</where>											
 											ORDER BY diary_no) inner_table
 						WHERE ROWNUM &lt;= #{search.endRowNum} )
 		WHERE row_seq BETWEEN #{search.startRowNum} AND #{search.endRowNum} 
 	 </select>
 	
-	<select  id="getTotalCount"  parameterType="int"	 resultType="int">
+	<select  id="getTotalCount"  parameterType="map"	 resultType="int">
 	  	SELECT COUNT(*)
-	  	FROM(	SELECT diary_no , user_category_no, diary_title, diary_date
+	  	FROM(	SELECT diary_no , user_no, user_category_no, diary_title, diary_date
 											FROM diary
 											<where>
-												user_no=#{userNo}
+												user_no=#{userNo}												
+												<if test="search.searchKeyword !='' and search.searchKeyword!=null">
+												and (diary_title like '%'||#{search.searchKeyword}||'%' or diary_detail like '%'||#{search.searchKeyword}||'%')
+												</if>											
 											</where>
 						) countTable						
 	 </select>

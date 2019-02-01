@@ -78,11 +78,41 @@ public class FAQRestController {
 		
 	}
 	
-	@RequestMapping( value="json/getFAQList/")
-	public ModelAndView  getFAQList(@RequestBody Search search, 
+	@RequestMapping( value="json/getFAQSearchList/" )
+	public ModelAndView  getFAQSearchList(@RequestBody Search search, 
 																HttpSession session) throws Exception{
 		
-		System.out.println("json/FAQ/getFAQList : GET/POST");
+		System.out.println("json/FAQ/getFAQSearchList : POST");
+			
+		if(search.getCurrentPage() ==0 ){
+			search.setCurrentPage(1);
+		}
+		search.setPageSize(pageSize);
+		
+		if(search.getSearchKeyword() != null) {
+			search.setSearchCondition("0");
+		}
+		
+		Map<String, Object> map = faqService.getFAQList(search);
+		Page resultPage = new Page(search.getCurrentPage(),  ((Integer)map.get("totalCount")).intValue(), pageUnit, pageSize);
+		
+		ModelAndView modelAndView = new ModelAndView();
+		modelAndView.addObject("list", map.get("list"));
+		System.out.println("map.get::::" +map.get("list"));
+		modelAndView.addObject("resultPage", resultPage);
+		modelAndView.addObject("search", search);
+		
+		int userNo = (int)session.getAttribute("userNo");
+		modelAndView.addObject("role", userService.getUser(userNo).getRole());
+		modelAndView.setViewName("/FAQ/FAQTable.jsp");
+		return modelAndView;
+	}
+	
+	@RequestMapping( value="json/getFAQList/{currentPage}")
+	public ModelAndView  getFAQList(@ModelAttribute Search search, 
+																HttpSession session) throws Exception{
+		
+		System.out.println("json/FAQ/getFAQList : GET");
 			
 		if(search.getCurrentPage() ==0 ){
 			search.setCurrentPage(1);

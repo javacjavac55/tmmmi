@@ -8,23 +8,7 @@
 <head>
 <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0, shrink-to-fit=no' name='viewport' />
 
-<script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>	    
-    <script type="text/javascript">
-    
-	$(function() {			 
-			$("button:contains('수정하기')" ).on("click" , function() { 
-				var faqNo =$(this).data("param1");
-				self.location = "/faq/updateFAQ?faqNo="+faqNo;
-			 });
-			
-			$("button:contains('삭제하기')" ).on("click" , function() {
-				var faqNo =$(this).data("param2");
-				$("form").attr("method" , "GET").attr("action" , "/faq/deleteFAQ?faqNo="+faqNo).submit();
-			 });
-			
-			
-	 	});
-	</script>    
+       
 </head>
 <form>
 <table class="table">	
@@ -65,13 +49,15 @@
 					<td style="padding:0.7%;"></td>
 					<td style="padding:0.7%;"></td>
 					<td class="detail" style="padding:0.7%;">${faq.FAQDetail} 
-						<%-- <button class="btn btn-primary btn-round btn-sm" style="left: 95%;" data-param1="${faq.FAQNo}">수정하기</button>
-						<button class="btn btn-primary btn-round btn-sm" style="left: 95%;" data-param2="${faq.FAQNo}">삭제하기</button> --%>
+						<c:if test="${role == 0}">
+							<button type="button"  class="btn btn-primary btn-round btn-sm" style="left: 95%;" data-param1="${faq.FAQNo}">수정하기</button>
+							<button type="button"  class="btn btn-primary btn-round btn-sm" style="left: 95%;" data-param2="${faq.FAQNo}">삭제하기</button>
+						</c:if>
 					</td>
 					<td style="padding:0.7%;"></td>
 				</tr>
 			</c:forEach>
-			</table>
-			
-			<jsp:include page="../common/pageNavigator3.jsp"/>
-</form>
+			</table>			
+			</form>
+			<jsp:include page="../common/pageNavigator.jsp"/>
+</html>
