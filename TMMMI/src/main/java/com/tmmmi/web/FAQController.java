@@ -88,10 +88,10 @@ public class FAQController {
 		modelAndView.addObject("search", search);
 		
 		int userNo = (int)session.getAttribute("userNo");
+		System.out.println(userNo);
 		modelAndView.addObject("role", userService.getUser(userNo).getRole());
-		
+		System.out.println(userService.getUser(userNo).getRole());
 		modelAndView.setViewName("/FAQ/listFAQ.jsp");
-		System.out.println("³¡");
 		return modelAndView;
 	}
 	

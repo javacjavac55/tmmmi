@@ -3,7 +3,6 @@
 
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
-
 <!DOCTYPE html>
 <html lang="ko">
 
@@ -21,30 +20,18 @@
 	    
     <script type="text/javascript">
     
-	$(function() {	
-			var currentPage=$("#currentPage").val();
-			
-			 $(".title").on("click",function(){	
-				var faqNo=$(this).data("param1");
-				$(".hide"+faqNo).toggleClass("show");
-	        }); 
-			 
-			$("#qna").on("click",function(){	
-				self.location = "/qna/getQNAList";
-		    });
-
-			$(".btn-primary").on("click",function(){	//검색
-				fncGetList();
-		    }); 	
-	 	});
- 	
-	    function fncGetList(searchKeyword) {
-			alert("여기인가")
-			
+	    //////////////////////////////// 검색
+	    $(function() {	
+	    	$( "button:contains('검색')" ).on("click" , function() {
+	    		//alert("검색")
+				fncGetSearchList();
+			})
+	    });
+	    
+	    function fncGetSearchList(searchKeyword) {
 			var searchKeyword = $("#searchKeyword").val();
-			console.log(searchKeyword)
 			$.ajax({
-	    			url:"/faqRest/json/getFAQList/",
+	    			url:"/faqRest/json/getFAQSearchList/",
 	    			method:"POST",
 					headers : {
 						"Accept" : "application/json",
@@ -54,14 +41,61 @@
 						searchKeyword : $("#searchKeyword").val()
 					}),
 					success : function(data) {
-					console.log(data)
+					/* console.log(data) */
 					$('#table').html(data);
 					}
 			});
-		
 		}
 	    
-	    function fncJsonGetList(currentPage) {
+		//////////////////////////////// 1:1문의로 이동
+	    $(function() {	
+	    	$("#qna").on("click",function(){	
+	    		//alert("1:1문의로 이동")
+				self.location = "/qna/getQNAList";
+		    });
+	    });
+    
+		//////////////////////////////// 수정
+	    $(function() {	
+	    	$( "button:contains('수정하기')" ).on("click" , function() {
+	    		//alert("수정")
+	    		var faqNo =$(this).data("param1");
+				//console.log(faqNo)
+				self.location = "/faq/updateFAQ?faqNo="+faqNo;
+			})
+	    });
+		
+		//////////////////////////////// 삭제
+	    $(function() {	
+	    	$( "button:contains('삭제하기')" ).on("click" , function() {
+	    		//alert("삭제")
+	    		var faqNo =$(this).data("param2");
+				//console.log(faqNo)
+				self.location = "/faq/deleteFAQ?faqNo="+faqNo;
+			})
+	    });
+		
+		//////////////////////////////// 글쓰기
+	    $(function() {	
+	    	$( "button:contains('글쓰기')" ).on("click" , function() {
+	    		//alert("글쓰기")
+				self.location = "/faq/addFAQ";
+			})
+	    });
+
+		$(function() {	
+			
+			 /* $(".title").on("click",function(){	
+				var faqNo=$(this).data("param1");
+				$(".hide"+faqNo).toggleClass("show");
+	        });  */
+	
+			 
+	 	});
+ 	
+	    
+		//////////////////////////////// 페이지 네비게이터
+	    function fncGetList(currentPage) {
 	    	$.ajax({
 	    			url:"/faqRest/json/getFAQList/" +currentPage,
 	    			method:"GET",
@@ -70,29 +104,50 @@
 						"Content-Type" : "application/json"
 					},
 					success : function(data) {
-					console.log(data)
+					console.log(data) 
 					$('#table').html(data);
 					}
 			});
 	    }
-	    
-	
-	
+	    $(document).ready(function() {
+	    	 
+	    	// 기존 css에서 플로팅 배너 위치(top)값을 가져와 저장한다.
+	    	var floatPosition = parseInt($("#floatdiv").css('top'));
+	    	// 250px 이런식으로 가져오므로 여기서 숫자만 가져온다. parseInt( 값 );
+	     
+	    	$(window).scroll(function() {
+	    		// 현재 스크롤 위치를 가져온다.
+	    		var scrollTop = $(window).scrollTop();
+	    		var newPosition = scrollTop + floatPosition + "px";
+	     
+	    		/* 애니메이션 없이 바로 따라감
+	    		 $("#floatMenu").css('top', newPosition);
+	    		 */
+	     
+	    		$("#floatdiv").stop().animate({
+	    			"top" : newPosition
+	    		}, 500);
+	     
+	    	}).scroll();
+	     
+	    });
 	</script>
 
 	<style>
-			.title{cursor:pointer;}
+			.title {
+				cursor:pointer;
+			}
 			
 			/* 이미지확대 */
-			.rounded{ 
-			  transform: scale(1);
-			  -webkit-transform: scale(1);
-			  -moz-transform: scale(1);
-			  -ms-transform: scale(1);
-			  -o-transform: scale(1);
-			  transition: all ease-in-out;		 
+			.rounded { 
+				transform: scale(1);
+				-webkit-transform: scale(1);
+				-moz-transform: scale(1);
+		    	-ms-transform: scale(1);
+		  		-o-transform: scale(1);
+		  		transition: all ease-in-out;		 
 			}
-			.rounded:hover{
+			.rounded:hover {
 			  transform: scale(1.05); /*이미지 hover 했을경우 transform: scale() 값을 키워 확대*/
 			  -webkit-transform: scale(1.05);
 			  -moz-transform: scale(1.05);
@@ -105,6 +160,17 @@
 				/* -webkit-transition: all .28s ease-in-out; */
 				transition: all .1s ease-in-out;
 			} 
+			
+			 #floatdiv {
+	position: absolute;
+	width: 320px;
+	height: 200px;
+	right: 50px;
+	top: 50px;
+	background-color: #606060;
+	color: #fff;
+}
+
 		 	
 	</style>
     
@@ -129,7 +195,7 @@
     <div class="section section-basic">
       <div class="container">
 		 	
-
+		<embed  id="floatdiv" src="/widget/getWeather3.jsp"></embed>
 		 	<span>Home/FAQ</span>
 		 	<h2 style="margin-top:-0.3%">고객센터</h2>
 		 			 	
@@ -155,7 +221,9 @@
 			<br/><br/><br/><br/><br/><br/>
 			
 			<div class="row" style="margin-top:1.6%; text-align:center">
-
+				<img src="/images/weather/photo.jpg" style="margin-left:19%; position: relative;" class="rounded float-left" >		
+				 <img src="/images/weather/photo.jpg" style="margin-left:1.6%;" class="rounded float-right" >
+				  
 			</div>
 			<div class="row" style="margin-top:1.6%; text-align:center">
 				  <img src="/images/weather/photo.jpg" style="margin-left:19%;" class="rounded float-left" >
@@ -180,6 +248,12 @@
 		    
 		    <div id="table">
 				<jsp:include page="../FAQ/FAQTable.jsp"/>
+			</div>
+			
+			<div>
+				<c:if test="${role == 0}">
+					<button type="button"  class="btn btn-primary btn-round btn-sm" style="left: 95%;">글쓰기</button>
+				</c:if>
 			</div>
 		
 		
