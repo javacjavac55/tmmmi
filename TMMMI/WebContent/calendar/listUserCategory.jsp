@@ -21,7 +21,50 @@
 <title>listUserCategory</title>
 <script type="text/javascript" src="/javascript/colorPicker/farbtastic.js"></script>
 <link rel="stylesheet" href="/css/colorPicker/farbtastic.css" type="text/css" />
+
+<script src ="https://unpkg.com/sweetalert/dist/sweetalert.min.js" ></script >
 <script>
+	function addUserCategory(){
+		$.ajax({
+			url : "/calendarRest/addUserCategory",
+			method : "POST",
+			data: JSON.stringify({
+				userCategoryName:$("#userCategoryName").val(),
+				userCategoryColor:$("#userCategoryColor").val()
+			}),
+			dataType: "json",
+			headers : {
+				"Accept" : "application/json",
+				"Content-Type" : "application/json"
+			},
+			success : function(JSONData, status) {
+				if (JSONData != -1) {
+					swal({
+						title : "등록 완료 " , 
+						text: "카테고리를 성공적으로 등록했습니다" , 
+						icon : "success" , 
+					}).then((value) => {
+						$('.user-category-item').last().after(
+								'<div class="user-category-item">'+
+								'<button class="btn btn-fab btn-round dot" id="userCategoryInfo'+JSONData+'"'+
+								'data-param1="'+JSONData+
+								'" data-param2="'+$('#userCategoryName').val()+
+								'" data-param3="'+$('#userCategoryColor').val()+
+								'" style="background-color:'+$("#userCategoryColor").val()+'"></button><br/><span>'+
+								$('#userCategoryName').val()+'</span></div>');
+					});
+				} else {
+					swal({
+						title : "등록 오류" , 
+						text: "같은 이름과 색상의 카테고리는 등록하실 수 없습니다. 다른 이름과 색상을 선택해주세요" , 
+						icon : "error" , 
+					}).then((value) => {
+					});
+				}
+			}
+		});	
+	};
+	
 	function updateUserCategory(){
 		alert("수정");
 		
@@ -43,9 +86,29 @@
 				"Content-Type" : "application/json"
 			},
 			success : function(JSONData, status) {
-				console.log(JSONData);
-				$('#userCategoryInfo'+$("#userCategoryNo").val()).html("<span class='dot' data-param1='"+$('#userCategoryNo').val()+"' data-param2='"+$('#userCategoryName').val()+"' data-param3='"+$('#userCategoryColor').val()+"' style='background-color:"+$('#userCategoryColor').val()+"'></span> "+$('#userCategoryName').val());
-				
+				if (JSONData != -1) {
+					swal({
+						title : "수정 완료 " , 
+						text: "카테고리를 성공적으로 수정했습니다" , 
+						icon : "success" , 
+					}).then((value) => {
+						$('#userCategoryInfo'+$("#userCategoryNo").val()).parent().html(
+								'<div class="user-category-item">'+
+								'<button class="btn btn-fab btn-round dot" id="userCategoryInfo'+$("#userCategoryNo").val()+'"'+
+								'data-param1="'+$("#userCategoryNo").val()+
+								'" data-param2="'+$('#userCategoryName').val()+
+								'" data-param3="'+$('#userCategoryColor').val()+
+								'" style="background-color:'+$("#userCategoryColor").val()+'"></button><br/><span>'+
+								$('#userCategoryName').val()+'</span></div>');
+					});
+				} else {
+					swal({
+						title : "수정 오류" , 
+						text: "같은 이름과 색상의 카테고리는 등록하실 수 없습니다. 다른 이름과 색상을 선택해주세요" , 
+						icon : "error" , 
+					}).then((value) => {
+					});
+				}
 			}
 		});	
 	};
@@ -71,8 +134,14 @@
 				"Content-Type" : "application/json"
 			},
 			success : function(JSONData, status) {
-				console.log(JSONData);
-				$('#userCategoryInfo'+$("#userCategoryNo").val()).remove();
+				swal({
+					title : "삭제 완료 " , 
+					text: "카테고리를 성공적으로 삭제했습니다" , 
+					icon : "success" , 
+				}).then((value) => {
+					$('#userCategoryInfo'+$("#userCategoryNo").val()).parent().remove();
+					$('#cancelBtn').click();
+				});
 			}
 		});	
 	};
@@ -81,7 +150,7 @@
 		var f = $.farbtastic('#picker');
 	    f.linkTo($('#userCategoryColor'));
 	    
-	    $('.dot').on("click", function(){
+	    $(document).on("click", '.dot', function(){
 	    	var userCategoryNo = $(this).data("param1");
 	    	var userCategoryName = $(this).data("param2");
 	    	var userCategoryColor = $(this).data("param3");
@@ -89,8 +158,12 @@
 	    	$('#userCategoryNo').val(userCategoryNo);
 	    	$('#userCategoryName').val(userCategoryName);
 	    	$('#userCategoryColor').val(userCategoryColor);
+	    	f.setColor(userCategoryColor);
 	    	
-			$('#updateForm').attr("style","display:block;");
+	    	$('#updateBtn').attr("style","display:inline-block;");
+		    $('#deleteBtn').attr("style","display:inline-block;");
+		    $('#submitBtn').attr("style","display:none;");
+		    $('.form-title').text('카테고리 수정');
 		});
 	    
 	    $('.dot').each(function(){
@@ -98,18 +171,31 @@
 			$(this).attr("style","background-color:"+userCategoryColor);
 		});
 	    
+	    $('#updateBtn').attr("style","display:none;");
+	    $('#deleteBtn').attr("style","display:none;");
+	    
+	    $('#submitBtn').on("click",function(){
+	    	addUserCategory();
+	    })
+	    
 	    $('#updateBtn').on("click",function(){
-	    	$('#updateForm').attr("style","display:none;");
 	    	updateUserCategory();
 	    })
 	    
-	     $('#deleteBtn').on("click",function(){
-	    	$('#updateForm').attr("style","display:none;");
+	    $('#deleteBtn').on("click",function(){
 	    	deleteUserCategory();
 	    })
 	    
 	    $('#cancelBtn').on("click",function(){
-	    	$('#updateForm').attr("style","display:none;");
+	    	$('#userCategoryName').val('');
+	    	$('#userCategoryColor').val('#eac1f0');
+	    	f.setColor('#eac1f0');
+	    	
+	    	$('#updateBtn').attr("style","display:none;");
+		    $('#deleteBtn').attr("style","display:none;");
+		    $('#submitBtn').attr("style","display:inline-block;");
+		    
+		    $('.form-title').text('카테고리 등록');
 	    })
 	})
 </script>
@@ -121,43 +207,29 @@
 	  display: inline-block;
 	}
 	
-	.form-popup {
-	  display: none;
-	  position: fixed;
-	  bottom: 0;
-	  right: 15px;
-	  border: 3px solid #f1f1f1;
-	  z-index: 9;
+	.category-list-area {
+		text-align: center;
+		justify-content: center;
+		vertical-align: middle;
+		border: 1px solid;
+		border-color: #d5d5d5;
+		margin: 1em 0;
 	}
 	
-	.form-container {
-	  max-width: 300px;
-	  padding: 10px;
-	  background-color: white;
+	.color-picker-wrapper {
+		width: 100%;
+		margin: 3em 0;
+		text-align: center;
 	}
 	
-	.form-container input[type=text] {
-	  width: 60%;
-	  padding: 15px;
-	  margin: 5px 0 22px 0;
-	  border: none;
-	  background: #f1f1f1;
+	#picker {
+		display: inline-block;
 	}
 	
-	.form-container input[type=text]:focus {
-	  background-color: #ddd;
-	  outline: none;
-	}
-	
-	.form-container .btn {
-	  background-color: #4CAF50;
-	  color: white;
-	  padding: 16px 20px;
-	  border: none;
-	  cursor: pointer;
-	  width: 100%;
-	  margin-bottom:10px;
-	  opacity: 0.8;
+	.user-category-item {
+		display: inline-block;
+		width: 70px;
+		height: 70px;
 	}
 </style>
 </head>
@@ -180,56 +252,66 @@
 			<div class="container">
 				<div class="row">
 					<div class="col-md-6 ml-auto mr-auto">
-						<div class="profile">
-							<form>
-								<div class="description text-center">
-									<div class="form-group bmd-form-group">
-										<label for="userId" class="bmd-label-static">Id</label>
-										<input autocomplete="off" type="text" oninput="checkId()" class="form-control" id="userId" name="userId" placeholder="아이디"/>
-								  		<span id="joinhelpBlock" class="help-block"></span>
+						<div class="profile category-list-area">
+							<c:if test="${! empty userCategoryList}">
+								<c:set var="i" value="0" />
+								<c:forEach var="userCategory" items="${userCategoryList}">
+									<c:set var="i" value="${ i+1 }" />
+									<div class="user-category-item">
+										<button class="btn btn-fab btn-round dot" id="userCategoryInfo${ userCategory.userCategoryNo }"
+											data-param1="${ userCategory.userCategoryNo }" data-param2="${ userCategory.userCategoryName }" data-param3="${ userCategory.userCategoryColor }"></button><br/>
+										<span>${ userCategory.userCategoryName }</span>
 									</div>
-								</div>
-							  
-								<div class="description text-center">
-									<div class="form-group bmd-form-group">
-										<label for="password" class="bmd-label-static">Password</label>
-										<input type="password" class="form-control" id="password" name="password" placeholder="비밀번호">
-									</div>
-								</div>
-								
-								<div align="center">
-									<button type="button" class="btn btn-primary"  >가입</button>
-							        <a class="btn btn-danger btn" href="#" role="button">취소</a>
-								</div>
-							</form>
+									<%-- <div id="userCategoryInfo${ userCategory.userCategoryNo }"><span class="dot" data-param1="${ userCategory.userCategoryNo }" data-param2="${ userCategory.userCategoryName }" data-param3="${ userCategory.userCategoryColor }"></span> ${ userCategory.userCategoryName } </div> --%>
+								</c:forEach>
+							</c:if>
+							<c:if test="${empty userCategoryList}">
+								<p>
+									<span>등록된 카테고리가 없습니다</span>
+								</p>
+							</c:if>
 						</div>
 					</div>
 				</div>
-				<c:set var="i" value="0" />
-				<c:forEach var="userCategory" items="${userCategoryList}">
-					<c:set var="i" value="${ i+1 }" />
-					<div id="userCategoryInfo${ userCategory.userCategoryNo }"><span class="dot" data-param1="${ userCategory.userCategoryNo }" data-param2="${ userCategory.userCategoryName }" data-param3="${ userCategory.userCategoryColor }"></span> ${ userCategory.userCategoryName } </div>
-				</c:forEach>
-				
-				<div class="form-popup" id="updateForm">
-				  <form class="form-container">
-				    <h1>Update</h1>
-				    <div id="picker"></div>
-				    <input type="hidden" id="userCategoryNo" name="userCategoryNo" value="" required/>
-				
-				    <label for="userCategoryName"><b>카테고리 이름: </b></label>
-				    <input type="text" id="userCategoryName" name="userCategoryName" value="" required>
-				
-				    <label for="userCategoryColor"><b>카테고리 색상: </b></label>
-				    <input type="text" id="userCategoryColor" name="userCategoryColor" value="" required>
-				
-				    <button type="button" id="updateBtn">수정</button>
-				    <button type="button" id="deleteBtn">삭제</button>
-				    <button type="button" id="cancelBtn">취소</button>
-				  </form>
+				<div class="row">
+					<div class="col-md-6 ml-auto mr-auto">
+						<div class="profile">
+							
+							<div class="color-picker-wrapper">
+								<div id="picker"></div>
+							</div>
+							
+							<header>
+								<h4 class="form-title">카테고리 등록</h4><br/>
+							</header>
+							
+							<div class="description text-center">
+								<div class="form-group bmd-form-group">
+									<label for="userCategoryName" class="bmd-label-static">카테고리 이름</label>
+									<input autocomplete="off" type="text" class="form-control" id="userCategoryName" name="userCategoryName" placeholder="Name"/>
+								</div>
+							</div>
+						  
+							<div class="description text-center">
+								<div class="form-group bmd-form-group">
+									<label for="userCategoryColor" class="bmd-label-static">카테고리 색상</label>
+									<input autocomplete="off" type="text" class="form-control" id="userCategoryColor" name="userCategoryColor" placeholder="Color" value="#eac1f0" readonly>
+								</div>
+								<input type="hidden" id="userCategoryNo" name="userCategoryNo" value=""/>
+							</div>
+							
+							<div align="center">
+								<button type="button" class="btn btn-primary" id="submitBtn">등록</button>
+								<button type="button" class="btn btn-warning" id="updateBtn">수정</button>
+								<button type="button" class="btn btn-danger" id="deleteBtn">삭제</button>
+								<button type="button" class="btn btn-default" id="cancelBtn">취소</button>
+							</div>
+						</div>
+					</div>
 				</div>
 			</div>
 		</div>
 	</div>
+	<jsp:include page="/common/footer.jsp"></jsp:include>
 </body>
 </html>

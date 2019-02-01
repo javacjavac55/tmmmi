@@ -57,7 +57,7 @@
 		<div id="picker"></div>
 		<div><label for="userCategoryName">카테고리 이름: </label><input id="userCategoryName" name="userCategoryName"></input></div>
 		<br/>
-		<div><label for="userCategoryColor">카테고리 색상: </label><input id="userCategoryColor" name="userCategoryColor" value="#000000"></input></div>
+		<div><label for="userCategoryColor">카테고리 색상: </label><input id="userCategoryColor" name="userCategoryColor" value="#9c27b0"></input></div>
 		<br/>
 		<div id="result"></div>
 		<button id="submitBtn" type="button">추가</button>
