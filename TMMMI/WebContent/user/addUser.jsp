@@ -230,7 +230,7 @@
 <body class="index-page sidebar-collapse">
 <!-- sideMenu.jsp Ãß°¡ -->
 <jsp:include page="/common/toolbar2.jsp"></jsp:include>
-<div class="page-header header-filter clear-filter" data-parallax="true" style="background-image: url('/images/userSetting/ ${userSetting.image}')">
+<div class="page-header header-filter clear-filter" data-parallax="true" style="background-image: url('/images/userSetting/79574.ngsversion.1422286298641.adapt.1900.1.jpg')">
   <div class="container">
     <div class="row">
       <div class="col-md-8 ml-auto mr-auto">

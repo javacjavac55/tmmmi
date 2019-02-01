@@ -105,10 +105,14 @@ public class QNAController {
 		}
 		search.setPageSize(pageSize);
 		
+		if(search.getSearchKeyword() != null) {
+			search.setSearchCondition("0");
+		}
+		
 		Map<String, Object> map;
 		ModelAndView modelAndView = new ModelAndView();
 		
-		//admin�� userNo 0�쑝濡� 怨좎젙�빐�넃�쓬
+		//admin
 		if(role == 0) {
 			map = qnaService.getAdminQNAList(search);
 		}else {

@@ -51,6 +51,11 @@
 								FROM faq
 								<where>
 								faq_delete_check = 1
+								<if test="searchCondition != null">
+									<if test="searchCondition == 0 and searchKeyword !='' ">
+									 	AND faq_title LIKE '%'||#{searchKeyword}||'%' OR faq_detail LIKE '%'||#{searchKeyword}||'%'
+									</if>
+								</if>
 								</where>
 								) countTable						
 	 </select>

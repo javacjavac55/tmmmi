@@ -175,6 +175,8 @@
 						</nav>
 						<!-- PageNavigation 선택 페이지 값을 보내는 부분 -->
 
+							<jsp:include page="../common/pageNavigator.jsp" />
+						</div>
 					</div>
 				</div>
 

@@ -25,19 +25,20 @@ public class ContentKeywordDaoImpl extends ContentDaoAdaptor {
 		System.out.println(this.getClass());
     }
 	
-	public List<Object> getKeywordFirst(ContentSetting contentSetting, int index){
+	public List<Object> getContentUserKeywordFirstList(ContentSetting contentSetting, int index){
 		
 		StringBuilder sb;
-	    String clientId = "8UnBF2q3kdzG36xN7kVj";//¾ÖÇÃ¸®ÄÉÀÌ¼Ç Å¬¶óÀÌ¾ðÆ® ¾ÆÀÌµð°ª";
-	    String clientSecret = "LJxxFFhxEN";//¾ÖÇÃ¸®ÄÉÀÌ¼Ç Å¬¶óÀÌ¾ðÆ® ½ÃÅ©¸´°ª";
-	    int display =  8; //È­¸é¿¡ º¸¿©ÁÙ °³¼ö
-        String userKeyword = contentSetting.getUserSearch1(); //»ç¿ëÀÚ¿¡°Ô ¹Þ¾Æ¿Â Å°¿öµå
+	    String clientId = "8UnBF2q3kdzG36xN7kVj";
+	    String clientSecret = "LJxxFFhxEN";
+	    int display =  8;
+        String userKeyword = contentSetting.getUserSearch1();
+        System.out.println(userKeyword);
         List<Object> result = new ArrayList<Object>();
         
         try {
 	        /*String text = URLEncoder.encode("\""+contentSetting.getUserSearch1()+"|"+contentSetting.getUserSearch2()+"|"+contentSetting.getUserSearch3()+"\"", "UTF-8");*/
         	String text = URLEncoder.encode(userKeyword, "UTF-8");
-	        String apiURL = "https://openapi.naver.com/v1/search/blog?query="+ text+"&display="+display;// json °á°ú
+	        String apiURL = "https://openapi.naver.com/v1/search/blog?query="+ text+"&display="+display;// json ï¿½ï¿½ï¿½
 	        URL url = new URL(apiURL);
 	        HttpURLConnection con = (HttpURLConnection)url.openConnection();
 	        con.setRequestMethod("GET");
@@ -45,11 +46,11 @@ public class ContentKeywordDaoImpl extends ContentDaoAdaptor {
 	        con.setRequestProperty("X-Naver-Client-Secret", clientSecret);
 	        int responseCode = con.getResponseCode();
 	        BufferedReader br;
-	        if(responseCode==200) { // Á¤»ó È£Ãâ
-	            br = new BufferedReader(new InputStreamReader(con.getInputStream()));
+	        if(responseCode==200) { // ï¿½ï¿½ï¿½ï¿½ È£ï¿½ï¿½
+	            br = new BufferedReader(new InputStreamReader(con.getInputStream(), "UTF-8"));
 	            //userKeyword.add(br);
-	        } else {  // ¿¡·¯ ¹ß»ý
-	        	br = new BufferedReader(new InputStreamReader(con.getErrorStream()));
+	        } else {  // ï¿½ï¿½ï¿½ï¿½ ï¿½ß»ï¿½
+	        	br = new BufferedReader(new InputStreamReader(con.getErrorStream(), "UTF-8"));
 	        }
             sb = new StringBuilder();
             String line;
@@ -64,15 +65,15 @@ public class ContentKeywordDaoImpl extends ContentDaoAdaptor {
             json = sb.toString();
             
             JSONParser parser=new JSONParser();
-            JSONObject items =(JSONObject)parser.parse(json); //jsonµ¥ÀÌÅÍÁß item[ ] »©¿À±â
-            JSONArray arr = (JSONArray)items.get("items"); //array ÇÊ¿ä
-          
+            JSONObject items =(JSONObject)parser.parse(json); //jsonï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ item[ ] ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+            JSONArray arr = (JSONArray)items.get("items"); //array ï¿½Ê¿ï¿½
+            System.out.println(arr);
             for(int i =0; i<arr.size() ; i++) {
             	JSONObject tmp = (JSONObject)arr.get(i);
             	
-            	String title = (String)tmp.get("title"); //Á¦¸ñ
-            	String link = (String)tmp.get("link"); //¸µÅ©
-            	String description = (String)tmp.get("description");//³»¿ë
+            	String title = (String)tmp.get("title"); //ï¿½ï¿½ï¿½ï¿½
+            	String link = (String)tmp.get("link"); //ï¿½ï¿½Å©
+            	String description = (String)tmp.get("description");//ï¿½ï¿½ï¿½ï¿½
             	
             	ContentUserKeyword contentUserKeyword = new ContentUserKeyword();
             	contentUserKeyword.setKeywordTitle(title);
@@ -93,10 +94,10 @@ public class ContentKeywordDaoImpl extends ContentDaoAdaptor {
 		String apiKey = "AIzaSyBLiKbxA8GhogX362LoIoNnCaVmIvesAFU"; //api key
 		String userVideo = contentSetting.getUserVideo1();
 		System.out.println(userVideo);
-		String q = URLEncoder.encode(userVideo, "UTF-8"); //°Ë»öÇÒ Å°¿öµå
-		String maxResults = "8"; //°¡Á®¿Ã µ¿¿µ»ó ¼ö
-		String order = "date"; //rating·©Å·¼øÀ¸·Î 
-												//date ÃÖ½Å¼øÀ¸·Î
+		String q = URLEncoder.encode(userVideo, "UTF-8"); //ï¿½Ë»ï¿½ï¿½ï¿½ Å°ï¿½ï¿½ï¿½ï¿½
+		String maxResults = "8"; //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½
+		String order = "date"; //ratingï¿½ï¿½Å·ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ 
+												//date ï¿½Ö½Å¼ï¿½ï¿½ï¿½ï¿½ï¿½
 		
 		List<Object> result =new ArrayList<Object>();
 	
@@ -122,21 +123,21 @@ public class ContentKeywordDaoImpl extends ContentDaoAdaptor {
 	        json = sb.toString();
 	        
 	        JSONParser parser=new JSONParser();
-	        JSONObject items =(JSONObject)parser.parse(json); //jsonµ¥ÀÌÅÍÁß item[ ] »©¿À±â
-	        JSONArray arr = (JSONArray)items.get("items"); //array ÇÊ¿ä
+	        JSONObject items =(JSONObject)parser.parse(json); //jsonï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ item[ ] ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+	        JSONArray arr = (JSONArray)items.get("items"); //array ï¿½Ê¿ï¿½
 	       System.out.println(arr);
 	        
 	        for(int i =0; i<arr.size() ; i++) {
             	JSONObject tmp = (JSONObject)arr.get(i);
 	        	
             	JSONObject snippet = (JSONObject)tmp.get("snippet");
-	        	String title = (String)snippet.get("title"); //Á¦¸ñ
-	        	String description = (String)snippet.get("description"); //¼³¸í
-	        	String channelTitle = (String)snippet.get("channelTitle"); //Ã¤³ÎÀÌ¸§
+	        	String title = (String)snippet.get("title"); //ï¿½ï¿½ï¿½ï¿½
+	        	String description = (String)snippet.get("description"); //ï¿½ï¿½ï¿½ï¿½
+	        	String channelTitle = (String)snippet.get("channelTitle"); //Ã¤ï¿½ï¿½ï¿½Ì¸ï¿½
 	        	
-	        	//ÀÌ¹ÌÁö ¾È¾¸ (½Ã¹«·è¤Ð_¤Ð)
+	        	//ï¿½Ì¹ï¿½ï¿½ï¿½ ï¿½È¾ï¿½ (ï¿½Ã¹ï¿½ï¿½ï¿½ï¿½_ï¿½ï¿½)
 	        	//JSONObject high = (JSONObject) ((JSONObject) (snippet.get("thumbnails"))).get("high");
-	        	//String image = (String)high.get("url"); //½æ³×ÀÏ
+	        	//String image = (String)high.get("url"); //ï¿½ï¿½ï¿½ï¿½ï¿½
    	
 	        	String videoId = (String) ((JSONObject)tmp.get("id")).get("videoId");
 	        	
