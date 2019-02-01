@@ -45,8 +45,9 @@ public class DiaryServiceImpl implements DiaryService {
 	@Override
 	public Map<String, Object> getDiaryList(Search search, int userNo)throws Exception {
 		// TODO Auto-generated method stub
+		
 		List<Diary> list=diaryDao.getDiaryList(search, userNo);
-		int totalCount = diaryDao.getTotalCount(userNo);
+		int totalCount = diaryDao.getTotalCount(search, userNo);
 		System.out.println("totalcount:"+totalCount);
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("list", list);

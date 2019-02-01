@@ -29,29 +29,35 @@
 	
 <style>
 .content-sport {
-	width: 200px;
+	width: 80px;
+	height: 210px;
 }
 
 img {
-	width: 200px;
-	height: 200px;
+	width: 300px;
+	height:200px;
 }
 </style>
 </head>
 <body>
 	<section class="carousel" style="background-color: #1d1d1d;">
-		<div class="reel" style="overflow: visible; transform: translate(-1285px, 0px);">
+		<div class="reel"
+			style="overflow: visible; transform: translate(-1285px, 0px);">
 			<c:forEach var="sport" items="${contentSport}">
-				<article class="content-sport">
+				<article class="content-sport" style="padding-top:5px;">
 					<div class="sport">
-						<a href="#">
-						<img class="thumbnail" src="${sport.sportThumbnail}">
-						</a>
+						<a href="#"> <img class="thumbnail"
+							src="${sport.sportThumbnail}">
+						</a> 
+					</div>
+					<div style="height:64px;">
 						${sport.sportTitle}
-					<br />
-					<button class="content-model-btn" type="button" data-content="${sport.sportLink}">더보기</button>
-					</div>				
+					</div>
+					<div>
+						<button class="content-model-btn" type="button" data-content="${sport.sportLink}">더보기</button>
+					</div>
 				</article>
+				
 			</c:forEach>
 
 		</div>

@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import org.codehaus.jackson.annotate.JsonProperty;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.factory.annotation.Value;
@@ -95,7 +96,8 @@ public class DiaryController {
 		
 	}
 	@RequestMapping(value="listDiary")
-	public ModelAndView getDiaryList(@ModelAttribute("search") Search search , @ModelAttribute("Diary") Diary diary, HttpServletRequest request, HttpSession session)throws Exception{
+	public ModelAndView getDiaryList(@ModelAttribute("search") Search search , HttpSession session)throws Exception{
+		
 		
 		
 		int userNo = ((int)session.getAttribute("userNo"));
@@ -106,12 +108,14 @@ public class DiaryController {
 		}
 		search.setPageSize(pageSize);
 		
+		System.out.println("dkdkdkkdkdk");
 		// Business logic 수행
 		Map<String , Object> map=diaryService.getDiaryList(search, userNo);
 		
 		Page resultPage = new Page( search.getCurrentPage(), ((Integer)map.get("totalCount")).intValue(), pageUnit, pageSize);
 		System.out.println(resultPage);
-		
+
+		System.out.println("dkdkdkkdkdk2");
 		ModelAndView modelAndView = new ModelAndView();
 		modelAndView.addObject("list", map.get("list"));
 		modelAndView.addObject("resultPage", resultPage);
@@ -234,17 +238,19 @@ public class DiaryController {
 	        response.setContentType("text/html;charset=utf-8");
 	 
 	        try{
-	 
+	        	boolean uploadFinish = false;
 	            String fileName = System.currentTimeMillis() + "." +upload.getOriginalFilename().split("\\.")[1];
 	            byte[] bytes = upload.getBytes();
 	            String uploadPath = "C:\\Users\\Bit\\git\\tmmmi\\TMMMI\\WebContent\\resources\\images\\diaryImage\\" + fileName;//저장경로
-	 
-	            out = new FileOutputStream(new File(uploadPath));
+	            
+	            File file = new File(uploadPath);
+	            out = new FileOutputStream(file);
 	            out.write(bytes);
+	            
 	            String callback = request.getParameter("CKEditorFuncNum");
 	 
 	            printWriter = response.getWriter();
-	            String fileUrl = "http://192.168.0.53:8080/images/diaryImage/" + fileName;//url경로
+	            String fileUrl = "http://192.168.0.13:8080/images/diaryImage/" + fileName;//url경로
 	 
 	           printWriter.println("<script type='text/javascript'>window.parent.CKEDITOR.tools.callFunction("+1+ ",'"+fileUrl+ "',''"+ ");\n</script>");
 	            //printWriter.write("{\"uploaded\": 1,\"fileName\": \""+fileName+"\", \"url \" :"+"\"http://192.168.0.53:8080/images/diaryImage/"+fileName+"\"}");
