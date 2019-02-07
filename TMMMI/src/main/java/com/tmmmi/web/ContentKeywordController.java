@@ -68,16 +68,27 @@ public class ContentKeywordController {
 		return modelAndView;
 	}
 	
-	@RequestMapping(value="getUserVideoList", method=RequestMethod.GET)
-	public ModelAndView getUserVideoList(HttpSession session) throws Exception{
-		System.out.println("getUserVideoList : GET");
+	@RequestMapping(value="getUserVideoListFirst", method=RequestMethod.GET)
+	public ModelAndView getUserVideoListFirst(HttpSession session) throws Exception{
+		System.out.println("getUserVideoListFirst : GET");
 		
 		int userNo = (int)session.getAttribute("userNo");	
 		
 		ModelAndView modelAndView = new ModelAndView();
 		modelAndView.addObject("userVideoFirstList", contentUserKeywordService.getContentUserKeywordVideoFirstList(contentSettingService.getContentSetting(userNo), 0));
+		modelAndView.setViewName("/content/userVideoContentFirst.jsp");
+		return modelAndView;
+	}
+	
+	@RequestMapping(value="getUserVideoListSecond", method=RequestMethod.GET)
+	public ModelAndView getUserVideoListSecond(HttpSession session) throws Exception{
+		System.out.println("getUserVideoListSecond : GET");
+		
+		int userNo = (int)session.getAttribute("userNo");	
+		
+		ModelAndView modelAndView = new ModelAndView();
 		modelAndView.addObject("userVideoSecondList", contentUserKeywordService.getContentUserKeywordVideoSecondList(contentSettingService.getContentSetting(userNo), 0));
-		modelAndView.setViewName("/content/contentUserVideo.jsp");
+		modelAndView.setViewName("/content/userVideoContentSecond.jsp");
 		return modelAndView;
 	}
 	

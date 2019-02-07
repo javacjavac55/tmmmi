@@ -6,9 +6,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.ModelAndView;
 
 import com.tmmmi.service.user.GoogleService;
 import com.tmmmi.service.user.NaverService;
@@ -155,6 +158,29 @@ public class SNSLoginController {
 		System.out.println("session==> " + session.getAttribute("userNo"));
 
 		return "forward:/common/TopMenu.jsp";
+	}
+	
+	@RequestMapping(value="searchUserId", method=RequestMethod.GET)
+	@ResponseBody
+	public ModelAndView searchUserId() {
+		ModelAndView modelAndView = new ModelAndView();
+		modelAndView.setViewName("/user/searchUserId.jsp");
+		return modelAndView;
+	}
+	
+	@RequestMapping(value="searchUserId", method=RequestMethod.POST)
+	@ResponseBody
+	public String searchUserId(@RequestBody User user) {
+		
+		System.out.println("/userRest/searchUserId");
+		System.out.println(user);
+		User searchUser = userService.searchUserId(user);
+		String userId = searchUser.getUserId();
+		String returnUserId = userId.substring(0, userId.length()-3);
+		
+		System.out.println("³¡");
+		
+		return returnUserId	;
 	}
 
 }
