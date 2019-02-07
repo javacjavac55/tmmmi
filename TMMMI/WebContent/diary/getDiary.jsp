@@ -65,7 +65,7 @@
 								<div class="form-group" align="left">
 									<label for="userCategoryNo" class="col-sm-offset-1 col-sm-1 control-label text-center"></label>
 									<div class="col-sm-12" >
-										<strong>카테고리 : </strong>학교									
+										<strong>카테고리 : </strong>${userCategory.userCategoryName}								
 									</div>
 								</div>
 								<div class="progress progress-line-primary">

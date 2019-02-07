@@ -8,9 +8,7 @@
 
 <head>
 <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0, shrink-to-fit=no' name='viewport' />
-<!--  Fonts and icons -->
-<link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Roboto+Slab:400,700|Material+Icons" />
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css">
+
 <!-- CSS Files -->
 <link href="/css/template/material-kit.css" rel="stylesheet" />
 
@@ -20,47 +18,47 @@
 	    
     <script type="text/javascript">
     
-	////////////////////////////////FAQ로 이동
-    $(function() {	
-    	$("#faq").on("click",function(){	
-    		//alert("FAQ로 이동")
-			self.location = "/faq/getFAQList";
+		////////////////////////////////FAQ로 이동
+	    $(function() {	
+	    	$("#faq").on("click",function(){	
+	    		//alert("FAQ로 이동")
+				self.location = "/faq/getFAQList";
+		    });
 	    });
-    });
-	
-	////////////////////////////////문의글 작성페이지로 이동
-    $(function() {	
-    	$( "button:contains('1:1 문의하기')" ).on("click" , function() {
-    		//alert("문의글 작성페이지로 이동")
-    		self.location = "/qna/addQNA";
+		
+		////////////////////////////////문의글 작성페이지로 이동
+	    $(function() {	
+	    	$( "button:contains('1:1 문의하기')" ).on("click" , function() {
+	    		//alert("문의글 작성페이지로 이동")
+	    		self.location = "/qna/addQNA";
+		    });
 	    });
-    });
-	
-	////////////////////////////////get QNA로 이동
-    $(function() {	
-    	$(".QNAtitle" ).on("click" , function() {
-    		//alert("get QNA")
-    		var qnaNo =$(this).data("param1");
-    		//console.log(qnaNo)
-			self.location = "/qna/getQNA?qnaNo="+qnaNo;
+		
+		////////////////////////////////get QNA로 이동
+	    $(function() {	
+	    	$(".QNAtitle" ).on("click" , function() {
+	    		//alert("get QNA")
+	    		var qnaNo =$(this).data("param1");
+	    		//console.log(qnaNo)
+				self.location = "/qna/getQNA?qnaNo="+qnaNo;
+		    });
 	    });
-    });
-	
-	////////////////////////////////페이지 네비게이터
-    function fncGetList(currentPage) {
-    	$.ajax({
-    			url:"/qnaRest/json/getQNAList/" +currentPage,
-    			method:"GET",
-				headers : {
-					"Accept" : "application/json",
-					"Content-Type" : "application/json"
-				},
-				success : function(data) {
-				console.log("abc"+data);
-				$('#table').html(data);
-				}
-		});
-    }
+		
+		////////////////////////////////페이지 네비게이터
+	    function fncGetList(currentPage) {
+	    	$.ajax({
+	    			url:"/qnaRest/json/getQNAList/" +currentPage,
+	    			method:"GET",
+					headers : {
+						"Accept" : "application/json",
+						"Content-Type" : "application/json"
+					},
+					success : function(data) {
+					console.log("abc"+data);
+					$('#table').html(data);
+					}
+			});
+	    }
 	
 </script>
 

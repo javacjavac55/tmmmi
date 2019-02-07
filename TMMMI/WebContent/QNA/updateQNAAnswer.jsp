@@ -1,4 +1,3 @@
-
 <%@ page contentType="text/html; charset=EUC-KR" %>
 <%@ page pageEncoding="EUC-KR"%>
 
@@ -8,11 +7,9 @@
 <html lang="ko">
 
 <head>
-	<meta charset="EUC-KR">
-	<title> updateFAQ </title>
-	
-	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-	
+	<meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0, shrink-to-fit=no' name='viewport' />
+	<title> updateQNAAnswer </title>
+		
 	<!--  Fonts and icons -->
 	<link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Roboto+Slab:400,700|Material+Icons" />
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css">
@@ -50,30 +47,22 @@
 		  font-size: 12px;
 		  border: 3px solid';
 		}
-		
-		.form-control{
-		 padding-left : 10px;
-		}
 	</style>
+
 	<script type="text/javascript">
 	
-		////////////////////////////////수정하기
+		////////////////////////////////문의하기
 		$(function() {	
 			$("button:contains('수정하기')" ).on("click" , function() {
+	
+				/* var detail = $("textarea[name='QNAAnswerDetail']").val();
+				/* var detail = $("textarea[name='QNADetail']").val(); */
 				
-				var faqNo = $(this).data("param1");
-				
-				var name=$("input[name='FAQTitle']").val();
-				var detail = $("textarea[name='FAQDetail']").val();
-					
-				if(name == null || name.length<1){
-					swal("제목은 반드시 입력하여야 합니다!", "얼른 입력해주세요");
+				/* if(detail == null || detail.length<1){
+					alert("내용은 반드시 입력하여야 합니다.");
 					return;
-				}
-				 if(detail == null || detail.length<1){
-					 swal("내용은 반드시 입력하여야 합니다!", "얼른 입력해주세요");
-					return;
-				}
+				}  */
+				 
 				 swal("수정완료 하시겠습니까?", {
 					 buttons: true,
 					 value: true,
@@ -81,10 +70,10 @@
 						if (result === true) {
 							swal({
 								title : "수정완료 " , 
-								text: "리스트 페이지로 이동합니다! " , 
+								text: "답변 페이지로 이동합니다! " , 
 								icon : "success" , 
 							}).then((value) => {
-								$("form").attr("method" , "POST").attr("action" ,"/faq/updateFAQ?faqNo="+faqNo).submit();
+								$("form").attr("method" , "POST").attr("action", "/qna/addQNAAnswer").submit();
 							});
 					      }
 					}, function (dismiss) { });
@@ -102,61 +91,40 @@
 </head>
 <body class="index-page sidebar-collapse">
 <form>
+<input type="hidden" name="QNANo" value="${qna.QNANo}" />
 
-<jsp:include page="/common/toolbar2.jsp"></jsp:include>
-  <div class="page-header header-filter clear-filter" style="height:55vh; background-image: url('/images/weather/4016924c4eb809d80e5ac60ad0703088.jpg');">
-    <div class="container">
-      <div class="row">
-        <div class="col-md-8 ml-auto mr-auto">
-          <div class="brand">
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>  
+	<jsp:include page="/common/toolbar2.jsp"></jsp:include>
+	  <div class="page-header header-filter clear-filter" style="height:55vh; background-image: url('/images/weather/4016924c4eb809d80e5ac60ad0703088.jpg');">
+	    <div class="container">
+	      <div class="row">
+	        <div class="col-md-8 ml-auto mr-auto">
+	          <div class="brand">
+	          </div>
+	        </div>
+	      </div>
+	    </div>
+	  </div>
 	
 	<div class="main main-raised">
-	   <div class="section section-basic">
-	     <div class="container">
-	     
-		<div class="col-md-10 ml-auto mr-auto">
-			<div class="form-group row">
-				<div class="col-md-6">
-			    	<label style="color:#9c27b0!important">카테고리</label>
-				    <select class="form-control selectpicker" data-style="btn btn-link" name ="FAQCategory">
-				      <option value="0" >회원 정보</option>
-					  <option value="1" >일정 관리</option>
-					  <option value="2" >컨텐츠 설정</option>
-					  <option value="3" >다이어리/스크랩</option>
-				    </select>
-			    </div>
-				<div class="form-group col-md-6" style="margin-top: 0.67%;">
-				    <label style="color:#9c27b0!important; margin-left: 3.5%;">작성 날짜</label>
-				    <input type="text" class="form-control" name="FAQDate" value="${faq.FAQDate}" readonly  style="background-color:rgb(0,0,0,0);">
+    	<div class="section section-basic">
+      		<div class="container">
+      
+			<div class="col-md-10 ml-auto mr-auto">
+				<div class="form-group">
+				    <textarea id="ckeditor" name="QNAAnswerDetail" style="display: none;">${qna.QNAAnswerDetail}</textarea>
 				</div>
-		 	</div>
-		 
-		 <div class="form-group">
-			<label>글 제목</label>
-			<input type="text" class="form-control"  name="FAQTitle" value="${faq.FAQTitle}">
+				
+				<div align="center">
+					<button type="button" class="btn btn-primary btn-round btn-sm" >수정하기</button>
+			        <button type="button" class="btn btn-default btn-round btn-sm">취소</button>
+				</div>
+			</div>
+			</div>
 		</div>
-			
-		<div class="form-group">
-		    <label>글 내용</label>
-		    <textarea id="ckeditor" name="FAQDetail" style="display: none;">${faq.FAQDetail}</textarea>
-		</div>
-		 	
-		<div align="center">
-			<button type="button" class="btn btn-primary btn-round btn-sm"  data-param1="${faq.FAQNo}">수정하기</button>
-		    <button type="button" class="btn btn-default btn-round btn-sm">취소</button>
-		</div>
-		
-		</div>			
-		</div>
-      </div>
-     </div>
-  </form>
-  <jsp:include page="/common/footer.jsp"></jsp:include>
+	</div>
+
+</form>
+<jsp:include page="/common/footer.jsp"></jsp:include>
   
   <script>
 		CKEDITOR.replace('ckeditor', {//해당 이름으로 된 textarea에 에디터를 적용
@@ -164,7 +132,7 @@
 			removePlugins: 'image', */
 			width : '100%',
 			height : '350PX',
-			filebrowserImageUploadUrl : '/faq/imageFAQ'
+			filebrowserImageUploadUrl : '/qna/imageQNA'
 		});
 
 		CKEDITOR.on('dialogDefinition', function(ev) {

@@ -48,6 +48,10 @@
 		  font-size: 12px;
 		  border: 3px solid';
 		}
+		
+		.form-control{
+		 padding-left : 10px;
+		}
 	</style>
 
 	<script type="text/javascript" >
@@ -140,8 +144,8 @@
 			<br/>
 			
 			<div align="center">
-				<button type="button" class="btn btn-primary" >작성하기</button>
-		        <button type="button" class="btn btn-default">취소</button>
+				<button type="button" class="btn btn-primary btn-round btn-sm" >작성하기</button>
+		        <button type="button" class="btn btn-default btn-round btn-sm">취소</button>
 			</div>
 			
 	 	</div>

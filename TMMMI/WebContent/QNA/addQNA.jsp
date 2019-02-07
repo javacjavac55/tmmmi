@@ -48,6 +48,10 @@
 		  font-size: 12px;
 		  border: 3px solid';
 		}
+		
+		.form-control{
+		 padding-left : 10px;
+		}
 	</style>
 
 	<script type="text/javascript">
@@ -60,7 +64,7 @@
 				/* var detail = $("textarea[name='QNADetail']").val(); */
 				
 				if(name == null || name.length<1){
-					alert("제목은 반드시 입력하여야 합니다.");
+					swal("제목은 반드시 입력하여야 합니다!", "얼른 입력해주세요");
 					return;
 				}
 				 /* if(detail == null || detail.length<1){
@@ -144,8 +148,8 @@
 			<br/>
 			
 			<div align="center">
-				<button type="button" class="btn btn-primary" >문의하기</button>
-		        <button type="button" class="btn btn-default">취소</button>
+				<button type="button" class="btn btn-primary btn-round btn-sm" >문의하기</button>
+		        <button type="button" class="btn btn-default btn-round btn-sm">취소</button>
 			</div>
 			
 	 	</div>

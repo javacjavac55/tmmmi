@@ -12,6 +12,7 @@ import org.springframework.stereotype.Repository;
 import com.tmmmi.common.Search;
 import com.tmmmi.service.diary.DiaryDao;
 import com.tmmmi.service.domain.Diary;
+import com.tmmmi.service.domain.UserCategory;
 
 @Repository("diaryDaoImpl")
 public class DiaryDaoImpl implements DiaryDao {
@@ -59,6 +60,7 @@ public class DiaryDaoImpl implements DiaryDao {
 				detail = "<img"+detail+">";
 			}
 			else {
+				detail = "<img src=/images/diaryImage/1235.PNG>";
 				//<img src= /diary/imageDiary/ 312321.j[g]>
 			}
 			System.out.println("이미지파일"+ detail);
@@ -67,8 +69,7 @@ public class DiaryDaoImpl implements DiaryDao {
 			
 			image.setDiaryDetail(detail);
 			//
-		}
-		
+		}		
 		
 		return re;
 	}

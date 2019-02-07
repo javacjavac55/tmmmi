@@ -48,4 +48,10 @@ public class UserCategoryDaoImpl implements UserCategoryDao {
 	public int deleteUserCategory(UserCategory userCategory) {
 		return sqlSession.delete("UserCategoryMapper.deleteUserCategory", userCategory);
 	}
+
+	@Override
+	public UserCategory getUserCategoryByNo(int userCategoryNo) {
+		// TODO Auto-generated method stub
+		return sqlSession.selectOne("UserCategoryMapper.getUserCategoryByNo", userCategoryNo);
+	}
 }

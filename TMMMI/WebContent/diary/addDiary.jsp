@@ -149,13 +149,19 @@
 									</div>
 								</div>								
 								
+								
 								<div class="form-group" align="left">
-									<label for="userCategoryNo" class="col-sm-offset-1 col-sm-1 control-label text-center"></label>
+									<label for="userCategoryNo" class="col-sm-offset-3 col-sm-3 control-label text-left">카테고리 선택</label>
 									<div class="col-sm-4">
-										<input type="text" name="userCategoryNo" class="form-control" placeholder="유저 카테고리" />
-									</div>
+										<select class="form-control" name="userCategoryNo" >
+											<c:forEach var="userCategory" items="${userCategory}">
+												<c:set var="i" value="${i+1}" />
+										    		<option value="${userCategory.userCategoryNo}" >${userCategory.userCategoryName}</option>
+										    </c:forEach>
+									    </select>
+								    </div>
 								</div>
-
+								
 								<div class="form-group" align="left">
 									<label for="diaryTitle" class="col-sm-offset-1 col-sm-1 control-label text-center"></label>
 									<div class="col-sm-4">

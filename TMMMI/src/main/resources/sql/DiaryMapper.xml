@@ -9,6 +9,8 @@
 		<result property="diaryNo" column="diary_no" jdbcType="NUMERIC" />
 		<result property="userNo" column="user_no" jdbcType="NUMERIC" />
 		<result property="userCategoryNo" column="user_category_no" jdbcType="NUMERIC" />
+		<result property="userCategoryName" column="user_category_name" jdbcType="VARCHAR" />
+		<result property="userCategoryColor" column="user_category_color" jdbcType="VARCHAR" />
 		<result property="diaryTitle" column="diary_title" jdbcType="VARCHAR" />
 		<result property="diaryDetail" column="diary_detail" jdbcType="VARCHAR" />
 		<result property="diaryDate" column="diary_date" jdbcType="DATE" />				
@@ -56,12 +58,13 @@
 	<select  id="getDiaryList"  parameterType="map"	resultMap="DiarySelectMap">
 	  	SELECT *
 	  	FROM (	SELECT inner_table.* , ROWNUM AS row_seq
-	  					FROM		(	SELECT diary_no ,user_no, user_category_no, diary_title, diary_detail, diary_date
-											FROM diary
+	  					FROM		(	SELECT d.diary_no ,d.user_no, d.user_category_no, d.diary_title, d.diary_detail, d.diary_date, u.user_category_name, u.user_category_color
+											FROM diary d, user_category u
 											<where>
-												user_no=#{userNo}																							
+												d.user_category_no=u.user_category_no and
+												d.user_no=#{userNo}																							
 												<if test="search.searchKeyword !='' and search.searchKeyword!=null">
-												and (diary_title like '%'||#{search.searchKeyword}||'%' or diary_detail like '%'||#{search.searchKeyword}||'%')
+												and (d.diary_title like '%'||#{search.searchKeyword}||'%' or d.diary_detail like '%'||#{search.searchKeyword}||'%')
 												</if>											
 											</where>											
 											ORDER BY diary_no) inner_table
@@ -71,12 +74,13 @@
 	
 	<select  id="getTotalCount"  parameterType="map"	 resultType="int">
 	  	SELECT COUNT(*)
-	  	FROM(	SELECT diary_no , user_no, user_category_no, diary_title, diary_detail, diary_date
-											FROM diary
+	  	FROM(	SELECT d.diary_no , d.user_no, d.user_category_no, d.diary_title, d.diary_detail, d.diary_date, u.user_category_name, u.user_category_color
+											FROM diary d, user_category u
 											<where>
-												user_no=#{userNo}												
-												<if test="search.searchKeyword !='' and search.searchKeyword!=null">
-												and (diary_title like '%'||#{search.searchKeyword}||'%' or diary_detail like '%'||#{search.searchKeyword}||'%')
+												d.user_category_no=u.user_category_no and												
+												d.user_no=#{userNo}													
+												<if test="search.searchKeyword !='' and search.searchKeyword!=null">												
+												and (d.diary_title like '%'||#{search.searchKeyword}||'%' or d.diary_detail like '%'||#{search.searchKeyword}||'%')
 												</if>											
 											</where>
 						) countTable						

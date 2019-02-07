@@ -1,4 +1,4 @@
-"gy"$"$"<%@ page language="java" contentType="text/html; charset=EUC-KR"
+<%@ page language="java" contentType="text/html; charset=EUC-KR"
 	pageEncoding="EUC-KR"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
@@ -168,13 +168,17 @@ div#columns small a {
 
 /*하나 선택했을 때 나머지 흐리게 하는거  */
 div#columns:hover figure:not(:hover) {
-	opacity: 0.7;
+	opacity: 0.8;
 }
 
 /*현재 상황에서 안먹힘  */
 @media screen and (max-width: 750px) { 
   #columns { column-gap: 0px; }
   #columns figure { width: 100%; }
+}
+
+img {
+	width: 300px;
 }
 </style>
 </head>
@@ -261,10 +265,12 @@ div#columns:hover figure:not(:hover) {
 									<c:forEach var="diary" items="${list}">
 										<c:set var="i" value="${ i+1 }" />
 										
-			 								<figure id=getDiary data-param1="${diary.diaryNo}" style="cursor:pointer"> 
-												${diary.diaryDetail}
+			 								<figure id=getDiary data-param1="${diary.diaryNo}" style="cursor:pointer">
+			 									<div style="width:285px;"> 
+													${diary.diaryDetail}
+												</div>
 													<figcaption>
-														${diary.diaryTitle}
+														[${diary.userCategoryName }]${diary.diaryTitle}
 													</figcaption>
 											 </figure>
 										

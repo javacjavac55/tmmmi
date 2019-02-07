@@ -262,24 +262,25 @@ public class ContentShoppingDaoImpl extends ContentDaoAdaptor {
 	        	String description = (String)snippet.get("description"); //설명
 	        	String channelTitle = (String)snippet.get("channelTitle"); //채널이름
 	        	
-	        	//이미지 안씀 (시무룩ㅠ_ㅠ)
-	        	//JSONObject high = (JSONObject) ((JSONObject) (snippet.get("thumbnails"))).get("high");
-	        	//String image = (String)high.get("url"); //썸네일
+	        	
+	        	JSONObject high = (JSONObject) ((JSONObject) (snippet.get("thumbnails"))).get("high");
+	        	String image = (String)high.get("url"); //썸네일
    	
 	        	String videoId = (String) ((JSONObject)tmp.get("id")).get("videoId");
 	        	
 	        	/*System.out.println(title);
 	        	System.out.println(description);
 	        	System.out.println(image);
-	        	System.out.println(channelTitle);*/
-	        	System.out.println(videoId);
+	        	System.out.println(channelTitle);
+	        	System.out.println(videoId);*/
 	        	
 	        	ContentShopping contentShopping = new ContentShopping();
 	        	contentShopping.setShoppingVideoTitle(title);
 	        	contentShopping.setShoppingVideoDetail(description);
 	        	contentShopping.setShoppingVideoChannel(channelTitle);
-	        	//contentShopping.setShoppingVideoThumbnail(image);
+	        	contentShopping.setShoppingVideoThumbnail(image);
 	        	contentShopping.setShoppingVideoId("http://www.youtube.com/embed/"+videoId);
+	        	contentShopping.setReviewNo(i);
 	        	result.add(contentShopping);
 	        }
 		}catch (Exception e) {

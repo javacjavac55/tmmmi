@@ -1,7 +1,9 @@
 package com.tmmmi.web;
 
 import java.util.Map;
+import java.util.Properties;
 
+import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
@@ -120,7 +122,6 @@ public class UserController {
 	public ModelAndView getUserList(@ModelAttribute("search") Search search , @ModelAttribute("user") User user , HttpServletRequest request) throws Exception {
 		
 		System.out.println("/user/getUserList: GET");
-		
 		if(search.getCurrentPage() ==0 ){
 			search.setCurrentPage(1);
 		}

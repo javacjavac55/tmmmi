@@ -24,7 +24,7 @@
         <div class="col-md-8 ml-auto mr-auto">
           <div class="brand">
             <h2 class="title">TMMMI</h2>
-            <h3>Too Much, Memorable, My Information </h3>
+            <h3 class="title">Too Much, Memorable, My Information </h3>
           </div>
         </div>
       </div>
