@@ -42,7 +42,7 @@ public class DiaryDaoImpl implements DiaryDao {
 	@Override
 	public List<Diary> getDiaryList(Search search, int userNo) {
 		// TODO Auto-generated method stub
-		Map<String, Object> map= new HashMap<String, Object>();
+		Map<String, Object> map=new HashMap<String, Object>();
 		map.put("search", search);
 		map.put("userNo", userNo);
 		
@@ -62,8 +62,15 @@ public class DiaryDaoImpl implements DiaryDao {
 	}
 	
 	@Override
-	public int getTotalCount(int userNo) throws Exception{
-		return sqlSession.selectOne("DiaryMapper.getTotalCount", userNo);
+	public int getTotalCount(Search search, int userNo) throws Exception{
+		
+		Map<String, Object> map=new HashMap<String, Object>();
+		map.put("search", search);
+		map.put("userNo", userNo);
+		
+		return sqlSession.selectOne("DiaryMapper.getTotalCount", map);
+		
+		
 	}
 
 }

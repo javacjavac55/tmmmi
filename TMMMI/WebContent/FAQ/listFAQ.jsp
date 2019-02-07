@@ -23,11 +23,11 @@
 	    //////////////////////////////// 검색
 	    $(function() {	
 	    	$( "button:contains('검색')" ).on("click" , function() {
-	    		//alert("검색")
+	    		alert("검색")
 				fncGetSearchList();
 			})
 	    });
-	    
+	    	    
 	    function fncGetSearchList(searchKeyword) {
 			var searchKeyword = $("#searchKeyword").val();
 			$.ajax({
@@ -46,7 +46,7 @@
 					}
 			});
 		}
-	    
+	   
 		//////////////////////////////// 1:1문의로 이동
 	    $(function() {	
 	    	$("#qna").on("click",function(){	
@@ -82,17 +82,6 @@
 				self.location = "/faq/addFAQ";
 			})
 	    });
-
-		$(function() {	
-			
-			 /* $(".title").on("click",function(){	
-				var faqNo=$(this).data("param1");
-				$(".hide"+faqNo).toggleClass("show");
-	        });  */
-	
-			 
-	 	});
- 	
 	    
 		//////////////////////////////// 페이지 네비게이터
 	    function fncGetList(currentPage) {
@@ -109,8 +98,8 @@
 					}
 			});
 	    }
-	    $(document).ready(function() {
-	    	 
+	   
+		$(document).ready(function() {	    	 
 	    	// 기존 css에서 플로팅 배너 위치(top)값을 가져와 저장한다.
 	    	var floatPosition = parseInt($("#floatdiv").css('top'));
 	    	// 250px 이런식으로 가져오므로 여기서 숫자만 가져온다. parseInt( 값 );
@@ -119,17 +108,11 @@
 	    		// 현재 스크롤 위치를 가져온다.
 	    		var scrollTop = $(window).scrollTop();
 	    		var newPosition = scrollTop + floatPosition + "px";
-	     
-	    		/* 애니메이션 없이 바로 따라감
-	    		 $("#floatMenu").css('top', newPosition);
-	    		 */
-	     
+
 	    		$("#floatdiv").stop().animate({
 	    			"top" : newPosition
 	    		}, 500);
-	     
 	    	}).scroll();
-	     
 	    });
 	</script>
 
@@ -161,15 +144,16 @@
 				transition: all .1s ease-in-out;
 			} 
 			
-			 #floatdiv {
-	position: absolute;
-	width: 320px;
-	height: 200px;
-	right: 50px;
-	top: 50px;
-	background-color: #606060;
-	color: #fff;
-}
+			/* 배너 */
+		 	#floatdiv {
+				position: absolute;
+				width: 320px;
+				height: 200px;
+				right: 50px;
+				top: 50px;
+				background-color: #606060;
+				color: #fff;
+			}
 
 		 	
 	</style>
@@ -194,8 +178,10 @@
   <div class="main main-raised">
     <div class="section section-basic">
       <div class="container">
-		 	
-		<embed  id="floatdiv" src="/widget/getWeather3.jsp"></embed>
+      
+		 <!-- 배너 -->
+		<embed  id="floatdiv" src="/widget/getWeather.jsp"></embed>
+		
 		 	<span>Home/FAQ</span>
 		 	<h2 style="margin-top:-0.3%">고객센터</h2>
 		 			 	
@@ -239,7 +225,7 @@
 			    <a class="nav-link active" >FAQ</a>
 			  </li>
 			  <li class="nav-item" style="cursor:pointer;">
-			    <a class="nav-link" id="qna" data-toggle="tooltip" data-placement="right" title="QNA로 이동합니다">1:1 QNA</a>
+			    <a class="nav-link" id="qna" data-toggle="tooltip" data-placement="right" title="QNA로 이동합니다" onMouseover="this.style.color='#9124a3';" onMouseout="this.style.color='black';">1:1 QNA</a>
 			  </li>
 			</ul>
 			<hr style="margin-top:0.1%;">

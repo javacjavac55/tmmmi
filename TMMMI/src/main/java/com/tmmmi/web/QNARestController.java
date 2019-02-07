@@ -45,37 +45,7 @@ public class QNARestController {
 	
 	@Value("#{commonProperties['pageSize']}")
 	int pageSize;
-	
-	/*@RequestMapping(value="imageFAQ", method=RequestMethod.POST, produces="text/plain;charset=UTF-8")
-	public void profileUpload(MultipartFile file, HttpServletRequest request, HttpServletResponse response) throws Exception{
-		System.out.println("실행");
-		response.setContentType("text/html;charset=utf-8");
-		PrintWriter out = response.getWriter();
-		
-		String realFolder = request.getSession().getServletContext().getRealPath("C:\\Users\\Bit\\git\\tmmmi\\TMMMI\\WebContent\\resources\\images\\diaryImage");
-		String realFolder = "C:\\Users\\Bit\\git\\tmmmi\\TMMMI\\WebContent\\resources\\images\\FAQImage";
-		
-		
-		String orgFilename = file.getOriginalFilename();
-		String strFilename = System.currentTimeMillis()+"."+file.getOriginalFilename().split("\\.")[1];
-		
-		System.out.println("원본 파일명 : "+ orgFilename);
-		System.out.println("저장할 파일명: "+ strFilename);
-		
-		String filepath = realFolder + "\\"+strFilename;
-		System.out.println("파일경로 : "+filepath);
-		
-		File f = new File(filepath);
-		
-		if (!f.exists()) {
-			f.mkdirs();
-		}
-		file.transferTo(f);
-		out.println("/images/FAQImage/"+strFilename);
-		out.close();
-		
-	}*/
-	
+
 	@RequestMapping( value="json/getQNASearchList/" )
 	public ModelAndView  getQNASearchList(@RequestBody Search search, 
 																HttpSession session) throws Exception{

@@ -3,7 +3,7 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
-<title>내 정보 보기</title>
+<title>회원 리스트</title>
 <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0, shrink-to-fit=no' name='viewport' />
 <!--     Fonts and icons     -->
 <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Roboto+Slab:400,700|Material+Icons" />
@@ -20,18 +20,20 @@
 <script type="text/javascript">
 	function fncGetList(currentPage){
 		$("#currentPage").val(currentPage)
+		console.log(currentPage);
 		$("form").attr("method" , "POST").attr("action" , "/user/getUserList").submit();
 	}
 </script>
 </head>
 <body class="index-page sidebar-collapse">
+<form>
 	<jsp:include page="/common/toolbar2.jsp"></jsp:include>
 	<div class="page-header header-filter clear-filter" data-parallax="true" style="background-image: url('/images/userSetting/ ${userSetting.image}')">
 		<div class="container">
 			<div class="row">
 				<div class="col-md-8 ml-auto mr-auto">
 					<div class="brand">
-						<h2 class="title">My Page</h2>
+						<h2 class="title">User List</h2>
 					</div>
 				</div>
 			</div>
@@ -105,6 +107,7 @@
 			</div>
 		</div>
 	</div>
+	</form>
 <jsp:include page="/common/footer.jsp"></jsp:include>
 </body>
 </html>

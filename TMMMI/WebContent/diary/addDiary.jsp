@@ -1,19 +1,20 @@
 
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-	pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="ko">
 <head>
 <title>Tmmmi</title>
-<meta
-	content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0, shrink-to-fit=no'
-	name='viewport' />
+<meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0, shrink-to-fit=no' name='viewport' />
+<meta charset="utf-8">
 <!--  Fonts and icons -->
-<link rel="stylesheet" type="text/css"
-	href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Roboto+Slab:400,700|Material+Icons" />
-<link rel="stylesheet"
-	href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css">
+<link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Roboto+Slab:400,700|Material+Icons" />
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css">
+
+<!-- jQuery -->
+<script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+<script	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
 <!-- CSS Files -->
 <link href="/css/template/material-kit.css" rel="stylesheet" />
@@ -21,28 +22,17 @@
 <!-- CSS Just for demo purpose, don't include it in your project -->
 <link href="/css/template/demo.css" rel="stylesheet" />
 
-<!-- jQuery -->
-<script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
-<script	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-
-
-<!-- <!-- summernote -->
-<!-- 
-<script
-	src="http://netdna.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.js"></script>
-<link href="/css/summernote/summernote.css" rel="stylesheet">
-<script src="/javascript/summernote/summernote.js"></script> -->
-
-
 <!--ckeditor  -->
 <!-- <script src="/ckeditor/ckeditor.js"></script> -->
 <script src="//cdn.ckeditor.com/4.7.3/full/ckeditor.js"></script>
 
-<!-- ∑Œµ˘ -->
+<!-- Î°úÎî© -->
 <!-- <link rel="stylesheet" href="/css/summernote/loading.css"> -->
 <!-- <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script> -->
 <!-- <script src="/javascript/summernote/loading.js"></script> -->
 
+<!-- <link href="/css/summernote/summernote.css" rel="stylesheet"> -->
+<!-- <script src="/javascript/summernote/summernote.js"></script> -->
 
 <script type="text/javascript">
 	/* function postForm() {
@@ -50,10 +40,10 @@
 	} */
 	/* function fncLoading(){
 		  $(".loading").fakeLoader({
-		    timeToHide:3000, // ∑Œµ˘¡ﬂø° ∞…∏Æ¥¬ Ω√∞£, 1000¿∫ 1√ 
-		    bgColor:"#2ecc71", // πË∞Êªˆ
-		    spinner:"spinner2" // ∑Œµ˘¡ﬂ¿∏∑Œ ø¯«œ¥¬ ∑Œµ˘¿ÃπÃ¡ˆ≈∏¿‘
-	})};  */
+		    timeToHide:3000, // Î°úÎî©Ï§ëÏóê Í±∏Î¶¨Îäî ÏãúÍ∞Ñ, 1000ÏùÄ 1Ï¥à
+		    bgColor:"#2ecc71", // Î∞∞Í≤ΩÏÉâ
+		    spinner:"spinner2" // Î°úÎî©Ï§ëÏúºÎ°ú ÏõêÌïòÎäî Î°úÎî©Ïù¥ÎØ∏ÏßÄÌÉÄÏûÖ
+	})}; */
 
 	/* var $note = null;
 	$(document).ready(function() {
@@ -95,8 +85,8 @@
 			}
 
 		});
-		/* $('textarea[name="Contents"]').html($('.summernote').code()); */
-	//});
+		 $('textarea[name="Contents"]').html($('.summernote').code()); 
+	}); */
 	/* function senFIle(file, el){
 		var form_data = new FormData();
 		form_data.append('file', file)
@@ -111,17 +101,17 @@
 	}
 
 	$(function() {
-		//==> DOM Object GET 3∞°¡ˆ πÊπ˝ ==> 1. $(tagName) : 2.(#id) : 3.$(.className)
-		//==> 1 ∞˙ 3 πÊπ˝ ¡∂«’ : $("tagName.className:filter«‘ºˆ") ªÁøÎ«‘.	
+		//==> DOM Object GET 3Í∞ÄÏßÄ Î∞©Î≤ï ==> 1. $(tagName) : 2.(#id) : 3.$(.className)
+		//==> 1 Í≥º 3 Î∞©Î≤ï Ï°∞Ìï© : $("tagName.className:filterÌï®Ïàò") ÏÇ¨Ïö©Ìï®.	
 		$("button.btn.btn-primary").on("click", function() {
 			//Debug..
-			//alert(  $( "td.ct_btn01:contains('»Æ¿Œ')" ).html() );
+			//alert(  $( "td.ct_btn01:contains('ÌôïÏù∏')" ).html() );
 			fncAddDiary();
 		});
 
 		$("a.btn.btn-primary").on("click", function() {
 			//Debug..
-			//alert(  $( "td.ct_btn01:contains('√ﬂ∞°µÓ∑œ')" ).html() );
+			//alert(  $( "td.ct_btn01:contains('Ï∂îÍ∞ÄÎì±Î°ù')" ).html() );
 			history.go(-1);
 		});
 	});
@@ -154,7 +144,7 @@
 							
 								<div class="form-group" align="left">
 									<label for="userCategoryNo" class="col-sm-offset-1 col-sm-1 control-label text-center"></label>
-									<h3>¥Ÿ¿ÃæÓ∏Æ∏¶ µÓ∑œ«ÿ¡÷ººø‰</h3>	
+									<h3>Îã§Ïù¥Ïñ¥Î¶¨Î•º Îì±Î°ùÌï¥Ï£ºÏÑ∏Ïöî</h3>	
 									<div class="col-sm-4">
 																		
 									</div>
@@ -163,14 +153,14 @@
 								<div class="form-group" align="left">
 									<label for="userCategoryNo" class="col-sm-offset-1 col-sm-1 control-label text-center"></label>
 									<div class="col-sm-4">
-										<input type="text" name="userCategoryNo" class="form-control" placeholder="¿Ø¿˙ ƒ´≈◊∞Ì∏Æ" />
+										<input type="text" name="userCategoryNo" class="form-control" placeholder="Ïú†Ï†Ä Ïπ¥ÌÖåÍ≥†Î¶¨" />
 									</div>
 								</div>
 
 								<div class="form-group" align="left">
 									<label for="diaryTitle" class="col-sm-offset-1 col-sm-1 control-label text-center"></label>
 									<div class="col-sm-4">
-										<input type="text" name="diaryTitle" class="form-control" placeholder="¡¶∏Ò" />
+										<input type="text" name="diaryTitle" class="form-control" placeholder="Ï†úÎ™©" />
 									</div>
 								</div>
 								
@@ -183,8 +173,8 @@
 
 								<div class="form-group">
 									<div class="col-sm-offset-4  col-sm-4 text-center">
-										<button type="button" class="btn btn-primary">µÓ∑œ</button>
-										<a class="btn btn-primary" href="#" role="button">√Îº“</a>
+										<button type="button" class="btn btn-primary">Îì±Î°ù</button>
+										<a class="btn btn-primary" href="#" role="button">Ï∑®ÏÜå</a>
 									</div>
 								</div>
 							</form>
@@ -198,29 +188,27 @@
 	<%-- <jsp:include page="/common/footer.jsp"></jsp:include> --%>
 	<jsp:include page="/common/footer.jsp"></jsp:include>
 	<script>
-		$(function() {
+		CKEDITOR.replace('ckeditor', {//Ìï¥Îãπ Ïù¥Î¶ÑÏúºÎ°ú Îêú textareaÏóê ÏóêÎîîÌÑ∞Î•º Ï†ÅÏö©
+			/* extraPlugins: 'autoembed,embedsemantic,image2,uploadimage,uploadfile',
+			removePlugins: 'image', */
+			width : '100%',
+			height : '700PX',
+			filebrowserImageUploadUrl : '/diary/imageDiary'
+		});
 
-			CKEDITOR.replace('ckeditor', {//«ÿ¥Á ¿Ã∏ß¿∏∑Œ µ» textareaø° ø°µ≈Õ∏¶ ¿˚øÎ
-				width : '100%',
-				height : '700PX',
-				filebrowserImageUploadUrl : '/diary/imageDiary?type=image'
+		CKEDITOR.on('dialogDefinition', function(ev) {
+			var dialogName = ev.data.name;
+			var dialogDefinition = ev.data.definition;
 
-			});
-
-			CKEDITOR.on('dialogDefinition', function(ev) {
-				var dialogName = ev.data.name;
-				var dialogDefinition = ev.data.definition;
-
-				switch (dialogName) {
-				case 'image': //Image Properties dialog
-					//dialogDefinition.removeContents('info');
-					dialogDefinition.removeContents('Link');
-					dialogDefinition.removeContents('advanced');
-					break;
-				}
-			});
-
+			switch (dialogName) {
+			case 'image': //Image Properties dialog
+				//dialogDefinition.removeContents('info');
+				dialogDefinition.removeContents('Link');
+				dialogDefinition.removeContents('advanced');
+				break;
+			}
 		});
 	</script>
+	
 </body>
 </html>

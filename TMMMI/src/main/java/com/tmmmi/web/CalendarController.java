@@ -70,7 +70,7 @@ public class CalendarController {
 		System.out.println("getUserCategoryList userCategoryList:"+userCategoryList);
 		ModelAndView modelAndView = new ModelAndView();
 		modelAndView.addObject("userCategoryList", userCategoryList);
-		modelAndView.setViewName("redirect:/calendar/listUserCategory.jsp");
+		modelAndView.setViewName("/calendar/listUserCategory.jsp");
 		
 		return modelAndView;
 	}

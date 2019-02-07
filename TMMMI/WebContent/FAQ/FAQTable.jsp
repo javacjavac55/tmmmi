@@ -57,8 +57,7 @@
 					<td style="padding:0.7%;"></td>
 				</tr>
 			</c:forEach>
-			</table>
-			
+			</table>			
+			</form>
 			<jsp:include page="../common/pageNavigator.jsp"/>
-</form>
 </html>

@@ -17,5 +17,5 @@ public interface DiaryDao {
 	
 	public void deleteDiary(int diaryNo) throws Exception;
 	
-	public int getTotalCount(int userNo)throws Exception;
+	public int getTotalCount(Search search, int userNo)throws Exception;
 }

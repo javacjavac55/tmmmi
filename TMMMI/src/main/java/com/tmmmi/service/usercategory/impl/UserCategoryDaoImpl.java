@@ -28,6 +28,11 @@ public class UserCategoryDaoImpl implements UserCategoryDao {
 	public int addUserCategory(UserCategory userCategory) {
 		return sqlSession.insert("UserCategoryMapper.addUserCategory", userCategory);
 	}
+	
+	@Override
+	public UserCategory getUserCategory(UserCategory userCategory) {
+		return sqlSession.selectOne("UserCategoryMapper.getUserCategory", userCategory);
+	}
 
 	@Override
 	public List<UserCategory> getUserCategoryList(int userNo) {

@@ -7,11 +7,14 @@ import java.io.InputStreamReader;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.net.URLConnection;
+import java.net.URLEncoder;
 
+import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 @Controller
@@ -22,10 +25,10 @@ public class WeatherController {
 		// TODO Auto-generated constructor stub
 		System.out.println(this.getClass());
 	}
-	
+
 	@ResponseBody
 	@RequestMapping(value="getWeather" )
-	public JSONObject getWeather() throws Exception{
+	public JSONObject getWeather(@RequestParam("city") String city) throws Exception{
 		System.out.println("/weather/getWeather : GET/POST");
 		
 		URL url; //URL 주소 객체
@@ -33,7 +36,7 @@ public class WeatherController {
         InputStream is; //URL접속에서 내용을 읽기 위한 Stream
         InputStreamReader isr;
         BufferedReader br;
-        String city = "Seoul"; //기본값은 서울로 
+        //String city = "Seoul"; //기본값은 서울로 
 	
          //URL객체를 생성, 해당 URL로 접속
          url = new  URL("http://api.openweathermap.org/data/2.5/weather?q="+city+"&units=metric&APPID=9375e1f400fff57aed0637c39dced0cb");
@@ -66,17 +69,59 @@ public class WeatherController {
          */
            
         JSONParser parser=new JSONParser();
-        JSONObject jsonResult = (JSONObject)(JSONObject)parser.parse(json);
+        JSONObject jsonResult = (JSONObject)parser.parse(json);
         System.out.println(jsonResult);
-        
-        /*  JSONObject temp1=(JSONObject)parser.parse(json);
-          // 키가 “main”인 값이 다시 JSON 오브젝트이고 해당 오브젝트의 “temp” 키 출력
-          JSONObject temp2=(JSONObject)temp1.get("main");
-          System.out.println("온도관련쪽 파싱됐을까? : " +temp2);*/
 			
 		return jsonResult;
 	}
-
-
 	
+	@ResponseBody
+	@RequestMapping(value="getDust" )
+	public JSONObject getDust(@RequestParam("city") String city) throws Exception{
+		System.out.println("/weather/getDust : GET/POST");
+		
+		URL url; //URL 주소 객체
+        URLConnection connection; //URL접속을 가지는 객체
+        InputStream is; //URL접속에서 내용을 읽기 위한 Stream
+        InputStreamReader isr;
+        BufferedReader br;
+        city = "서울"; //기본값은 서울로 
+        
+        if(city.equals("Seoul")) {
+        	city = "서울";
+        }else  if(city.equals("Incheon")) {
+        	city = "인천";
+        } if(city.equals("Busan")) {
+        	city = "부산";
+        }
+        String text = URLEncoder.encode(city, "UTF-8");
+         //URL객체를 생성, 해당 URL로 접속
+         url = new  URL("http://openapi.airkorea.or.kr/openapi/services/rest/ArpltnInforInqireSvc/getCtprvnRltmMesureDnsty?pageNo=1&numOfRows=10&"
+         		+ "ServiceKey=gzJ78KxXzknVhzu8fVpuBWAQZSCxZ%2BJ2o7hmQpr9Y8XBIsW7OLyiJ32xuAxqKEYxpirljL%2BOgLRT8uOzsaaYbQ%3D%3D&ver=1.3&"
+         		+ "_returnType=json&sidoName="+text);
+         connection = url.openConnection();
+         //내용을 읽어오기위한 InputStream객체를 생성
+         is = connection.getInputStream();
+         isr = new InputStreamReader(is,"UTF-8");
+         br = new BufferedReader(isr);
+             
+         String result = null;
+         String json=""; // JSON 결과를 String 생성
+            
+         while(true){
+         	result = br.readLine();
+         	if(result == null){
+               	break;
+            }
+               json=result;  // JSON 결과 저장
+         }
+            
+        //System.out.println("미세먼지 json값: "+json);	
+
+        JSONParser parser=new JSONParser();
+        JSONObject jsonResult = (JSONObject)parser.parse(json);
+        System.out.println("jsonResult: "+jsonResult);	
+        
+		return jsonResult;
+	}
 }
