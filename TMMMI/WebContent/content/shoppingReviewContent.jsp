@@ -26,6 +26,20 @@
 		<link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Roboto+Slab:400,700|Material+Icons" />
 		
 		<script type="text/javascript">
+		
+		$(function(){
+			$("embed").on("click", function(){
+				var no = $(this).data("no");
+				var link = $(this).data("link");
+				console.log(no)
+				console.log(link)
+				
+				$('#review'+no).append("<embed src=link></embed>");
+				<embed src="http://www.youtube.com/embed/duOSXXzvt4M"></embed>
+				
+				$('#review'+no).attr('style','display:block;');
+			});	
+		})
 			
 		</script>
 		<style>
@@ -68,18 +82,21 @@
 		<div class="reel" style="overflow: visible; transform: translate(-1285px, 0px); ">
 			<!-- items : 받아올 배열이름 var=내부에서 사용할변수 -->
 			<c:forEach var="contentReviewShopping" items="${shoppingContentReviewList}">				
-				<article style="width: 600px; height: 480px;;">
-					<div style="margin-top:12px;">
+				<article style="width: 600px; height: 430px; ">
+					<div style="margin-top: 2.5%; max-width:540px; max-height: 290px;  overflow: hidden; margin-left: 1.5%;">
 						<!-- theme=light 밝은색 설정 modestbranding=1 유튜브 로고 없애기 showinfo=0 타이틀 표시 안하기-->
-						<embed src="${contentReviewShopping.shoppingVideoId}?theme=light&modestbranding=1&showinfo=0"  width="560" height="315"></embed>
+						<embed src="${contentReviewShopping.shoppingVideoThumbnail}" style="width:100%; height:100%; margin-top: -11%; cursor:pointer;"data-no="${contentReviewShopping.reviewNo}" data-link='${contentReviewShopping.shoppingVideoId}'></embed>
 					</div>
-					<h4 style="margin-top: 10px;"class="titleShopping">${contentReviewShopping.shoppingVideoTitle}</h4>
+					<h4 style="margin-top:10px; margin-left: 3%;"class="titleShopping">${contentReviewShopping.shoppingVideoTitle}</h4>
 					<p class="detail" >
 						${contentReviewShopping.shoppingVideoDetail} 
 					</p>
 					<p class="channel" style="font-size:18px; text-align:left; margin-left: 18px; margin-top: -15px;">
 						${contentReviewShopping.shoppingVideoChannel} 
 					</p>
+					
+					<div class="movie-trailer-preview" id="review${contentReviewShopping.reviewNo}">
+					</div>
 				</article>
 			</c:forEach>
 		</div>

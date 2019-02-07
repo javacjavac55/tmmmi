@@ -3,11 +3,19 @@ package com.tmmmi.service.domain;
 public class ContentShopping {
 	
 	private int sectionNo;
+	private int reviewNo;
 	private String shoppingTitle;
 	private String shoppingLink;
 	private int shoppingPrice;
 	private String shoppingThumbnail;
 	private String shoppingVideoTitle;
+	
+	public int getReviewNo() {
+		return reviewNo;
+	}
+	public void setReviewNo(int reviewNo) {
+		this.reviewNo = reviewNo;
+	}
 	private String shoppingVideoDetail;
 	private String shoppingVideoThumbnail;
 	private String shoppingVideoChannel;

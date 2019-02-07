@@ -49,6 +49,10 @@
 		  font-size: 12px;
 		  border: 3px solid';
 		}
+		.form-control{
+ 			padding-left : 10px;
+ 		}
+
 	</style>
 
 	<script type="text/javascript">
@@ -77,7 +81,7 @@
 						if (result === true) {
 							swal({
 								title : "수정완료 " , 
-								text: "리스트 페이지로 이동합니다! " , 
+								text: "질문 페이지로 이동합니다! " , 
 								icon : "success" , 
 							}).then((value) => {
 								$("form").attr("method" , "POST").attr("action", "/qna/updateQNA").submit();
@@ -146,8 +150,8 @@
 		</div>
 		 	
 		<div align="center">
-			<button type="button" class="btn btn-primary"  data-param1="${qna.QNANo}">수정하기</button>
-		    <button type="button" class="btn btn-default">취소</button>
+			<button type="button" class="btn btn-primary btn-round btn-sm"  data-param1="${qna.QNANo}">수정하기</button>
+		    <button type="button" class="btn btn-default btn-round btn-sm">취소</button>
 		</div>
 		
 		</div>			

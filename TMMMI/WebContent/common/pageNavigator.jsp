@@ -12,7 +12,7 @@
 <div class="container text-center">
 		 
 		<nav>
-		  <ul class="pagination" style="margin-left:35%">
+		  <ul class="pagination justify-content-center" >
 		  
 		  	<!--  <<== ÁÂÃø nav -->
 		  	<c:if test="${ resultPage.currentPage <= resultPage.pageUnit }">

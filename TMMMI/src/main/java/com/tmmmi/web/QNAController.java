@@ -191,7 +191,7 @@ public class QNAController {
 		
 		ModelAndView modelAndView = new ModelAndView();
 		modelAndView.addObject("qna", qna);
-		modelAndView.setViewName("/QNA/addQNAAnswer.jsp");
+		modelAndView.setViewName("/QNA/updateQNAAnswer.jsp");
 		return modelAndView;
 	}
 	
