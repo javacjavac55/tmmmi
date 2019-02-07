@@ -3,15 +3,12 @@
 
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <head>
-<!-- CSS Files -->
-<<<<<<< HEAD
-    <link href="/css/template/material-kit.css" rel="stylesheet" />
+
 </head>
 =======
     <link href="/css/template/material-kit.css" rel="stylesheet" />
     <link href="/css/template/demo.css" rel="stylesheet" />
 
->>>>>>> refs/remotes/origin/master
  
 <div class="container text-center">
 		 
