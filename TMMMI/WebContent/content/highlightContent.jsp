@@ -8,37 +8,25 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport"
 	content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
-
-<link href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css"
-	rel="stylesheet">
-<link
-	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
-	rel="stylesheet">
-<link
-	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css"
-	rel="stylesheet">
+	
+<!-- Carousel CSS -->
 <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
-<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-<script
-	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-<link rel="stylesheet" href=/css/template/main.css>
-<link rel="stylesheet" href="assets/css/main.css" />
-
-
-
-<style>
-#giyong {
-	width: 200px;
-}
-
-img {
-	width: 200px;
-	height: 200px;
-}
-</style>
+<link rel="stylesheet" href="/css/scroll/main_sport.css">
+<noscript><link rel="stylesheet" href="/css/scroll/noscript.css" /></noscript>
 </head>
 <body>
-
+<section class="carousel">
+	<div><span class="section-title">하이라이트</span></div>
+	<div class="reel" style="overflow: visible; transform: translate(-1285px, 0px);">
+		<c:forEach var="sport" items="${contentSport}">
+			<article class="content-sport">
+				<a href="#" class="image">
+					<img src="${sport.sportThumbnail}" data-no="${sport.sportNo}" data-link='${sport.sportVideo}' />
+				</a>
+			</article>
+		</c:forEach>
+	</div>
+</section>
 	<section style="padding: 10%;"> <header class="major">
 	<h2>하이라이트<h2>
 	</header>

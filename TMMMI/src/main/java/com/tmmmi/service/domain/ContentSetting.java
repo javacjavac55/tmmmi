@@ -535,8 +535,8 @@ public class ContentSetting {
 		Map<Integer, String> map = new HashMap<Integer, String>();
 		
 		for (Field field:this.getClass().getDeclaredFields()) {
-			if (field.getType().equals(Integer.TYPE)) {
-				map.put(field.getInt(field), field.getName());
+			if (!field.getName().contains("No") && field.getType().equals(Integer.TYPE)) {
+				map.put((Integer)field.get(this), field.getName());
 			}
 		}
 		return map;

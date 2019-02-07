@@ -321,8 +321,8 @@ public class ContentMovieDaoImpl extends ContentDaoAdaptor {
 					case "출연":
 						//actor
 						String[] actor = e.nextElementSibling().text().split(",");
-						if (actor.length>3) {
-							contentMovie.setMovieActor(actor[0]+","+actor[1]+","+actor[2]+" 외");
+						if (actor.length>2) {
+							contentMovie.setMovieActor(actor[0]+","+actor[1]+" 외");
 						} else {
 							contentMovie.setMovieActor(e.nextElementSibling().text());
 						}

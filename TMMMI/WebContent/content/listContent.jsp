@@ -153,30 +153,7 @@ function fncAddScrap() {
 	
 </head>
 <body>
-<!-- Movie -->
-<iframe id="movieBoxOffice" class="movie" src="/contentMovie/getContentMovieBoxOffice"></iframe>
-<iframe id="movieNew" class="movie" src="/contentMovie/getContentMovieNew"></iframe>
-<iframe id="movieUpcoming" class="movie" src="/contentMovie/getContentMovieUpcoming"></iframe>
-<iframe id="movieReview" class="movie" src="/contentMovie/getContentMovieReview"></iframe>
-<iframe id="movieTrailer" class="movie-trailer" src="/contentMovie/getContentMovieTrailer"></iframe>
-
-<!-- Sport -->
-<iframe id="kSoccer" src="/contentSport/getContentKsoccerList"></iframe>
-<iframe id="wSoccer" src="/contentSport/getContentWsoccerList"></iframe>
-<iframe id="kBaseball" src="/contentSport/getContentKbaseballList"></iframe>
-<iframe id="wBaseball" src="/contentSport/getContentWbaseballList"></iframe>
-<iframe id="basketball" src="/contentSport/getContentBasketballList"></iframe>
-<iframe id="general" src="/contentSport/getContentGeneralList"></iframe>
-
-<!-- Tasty -->
-<iframe id="tasty" src="/contentTasty/getContentTastyList"></iframe>
-
-<!-- Shopping -->
-<iframe id="shoppingFirst" src="/contentShopping/getShoppingListFirst"></iframe>
-<iframe id="shoppingSecond" src="/contentShopping/getShoppingListSecond"></iframe>
-<iframe id="shoppingThird" src="/contentShopping/getShoppingListThird"></iframe>
-<iframe id="shoppingReview" src="/contentShopping/getShoppingReviewList"></iframe>
-
+${contentHtml}
 <button class="content-modal-btn" type="button" data-toggle="modal" data-target="#myFullsizeModal" style="display:none"></button>
 <div class="modal fade" id="myFullsizeModal" tabindex="-1" role="dialog" aria-labelledby="myFullsizeModalLabel" aria-hidden="true">
   <div class="modal-dialog modal-fullsize">

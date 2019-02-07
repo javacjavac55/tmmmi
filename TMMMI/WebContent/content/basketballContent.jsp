@@ -4,86 +4,34 @@
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <!DOCTYPE html>
 <html>
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=EUC-KR">
-<title>basketball</title>
-
-<!-- Material Kit CSS -->
-<link href="/css/template/material-kit.min.css?v=2.0.5" rel="stylesheet" />
-<!-- Carousel CSS -->
-<link rel="stylesheet" href="/css/scroll/main.css">
-<noscript>
-	<link rel="stylesheet" href="/css/scroll/noscript.css" />
-</noscript>
-
-<!-- Material Kit JS -->
-<script src="/javascript/template/core/jquery.min.js"
-	type="text/javascript"></script>
-<script src="/javascript/template/core/popper.min.js"
-	type="text/javascript"></script>
-<script src="/javascript/template/core/bootstrap-material-design.min.js"
-	type="text/javascript"></script>
-<script async defer src="https://buttons.github.io/buttons.js"></script>
-<script src="/javascript/template/material-kit.js?v=2.0.5"
-	type="text/javascript"></script>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=EUC-KR">
+		<title>basketball</title>
 	
-<style>
-.content-sport {
-	width: 80px;
-	height: 210px;
-}
-
-img {
-	width: 300px;
-	height:200px;
-}
-</style>
-</head>
+		<!-- Carousel CSS -->
+		<script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+		<link rel="stylesheet" href="/css/scroll/main_sport.css">
+		<noscript><link rel="stylesheet" href="/css/scroll/noscript.css" /></noscript>
+	</head>
 <body>
-	<section class="carousel" style="background-color: #1d1d1d;">
-		<div class="reel"
-			style="overflow: visible; transform: translate(-1285px, 0px);">
+	<section class="carousel">
+		<div><span class="section-title">농구</span></div>
+		<div class="reel" style="overflow: visible; transform: translate(-1285px, 0px);">
 			<c:forEach var="sport" items="${contentSport}">
-				<article class="content-sport" style="padding-top:5px;">
+				<article class="content-sport">
 					<div class="sport">
-						<a href="#"> <img class="thumbnail"
-							src="${sport.sportThumbnail}">
-						</a>
-						
-						
-					
+						<a href="#"><img class="sport-thumbnail" src="${sport.sportThumbnail}"></a>
 					</div>
-					<div style="height:64px;">
+					<div class="sport-title">
 						${sport.sportTitle}
 					</div>
 					<div>
-						<button class="content-model-btn" type="button" data-content="${sport.sportLink}">더보기</button>
+						<button class="content-model-btn sport-btn" type="button" data-content="${sport.sportLink}">더보기</button>
 					</div>
 				</article>
-				
 			</c:forEach>
-
 		</div>
 	</section>
-	<!-- <div class="modal fade" id="myFullsizeModal" tabindex="-1" role="dialog" aria-labelledby="myFullsizeModalLabel" aria-hidden="true">
-	  <div class="modal-dialog modal-fullsize">
-	    <div class="modal-content modal-fullsize">
-		      <div class="modal-header">
-		        <h5 class="modal-title" id="exampleModalLongTitle">영화 더 보기</h5>
-		        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-		          <span aria-hidden="true">&times;</span>
-		        </button>
-		      </div>
-		      <div class="modal-body">
-		        
-		      </div>
-		      <div class="modal-footer">
-		        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-		        <button type="button" class="btn btn-primary">Save changes</button>
-		      </div>
-		    </div>
-		  </div>
-	  </div> -->
 	<input type="hidden" id="basketballInput" value="" />
 	<!-- Carousel JS -->
 	<script src="/javascript/scroll/jquery.dropotron.min.js"></script>
