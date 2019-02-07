@@ -3,6 +3,7 @@ package com.tmmmi.web;
 import java.text.SimpleDateFormat;
 import java.time.Year;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
@@ -80,8 +81,10 @@ public class ToDoController {
 		todomap.put("userNo", userNo);
 		todomap.put("targetDate", targetDate);
 		System.out.println(todomap);
-		SimpleDateFormat mSimpleDateFormat2 = new SimpleDateFormat ( "yyyy년 MM월 dd일");
-		String displaydate = mSimpleDateFormat2.format(new Date());
+		
+		//내일 날짜 계산
+		Map<String, Object> nextToDoMap = new HashMap<String, Object>();
+		todomap.put("userNo", userNo);
 		
 		//Business Logic
 		List<ToDo> todolist = toDoService.getToDoList(todomap);
@@ -89,7 +92,6 @@ public class ToDoController {
 		System.out.println("todolist"+todolist);
 		modelAndView.setViewName("/todo/listToDo.jsp");
 		modelAndView.addObject("todolist",todolist);
-		modelAndView.addObject("displaydate", displaydate);
 		System.out.println(modelAndView);
 		return modelAndView;
 		}
@@ -106,24 +108,26 @@ public class ToDoController {
 		Map<String, Object> todomap = new HashMap<String, Object>();
 		todomap.put("userNo", userNo);
 		todomap.put("targetDate", targetDate1);
-		System.out.println(todomap);
+		
+		//내일날짜계산
+		/*Map<String, Object> nextToDoMap = new HashMap<String, Object>();
+		todomap.put("userNo", userNo);
+		todomap.put("targetDate", targetDate1);*/
 		
 		//Business Logic
 		List<ToDo> todolist = toDoService.getToDoList(todomap);
+		/*List<ToDo>nextlist=toDoService.getToDoList(nextToDoMap);*/
 		ModelAndView modelAndView = new ModelAndView();
 		System.out.println("todolist"+todolist);
 		SimpleDateFormat mSimpleDateFormat2 = new SimpleDateFormat ( "yyyy-MM-dd");
 		Date tDate = mSimpleDateFormat2.parse(dayinput.split("=")[1]);
 		System.out.println(tDate);
-		SimpleDateFormat mSimpleDateFormat3 = new SimpleDateFormat ( "yyyy년 MM월 dd일");
-		String displaydate = mSimpleDateFormat3.format(tDate);
-		
-		System.out.println("displayDate : "+displaydate);
 		
 		modelAndView.setViewName("/todo/listToDo.jsp");
 		modelAndView.addObject("targetDate", targetDate1);
 		modelAndView.addObject("todolist",todolist);
-		modelAndView.addObject("displaydate", displaydate);
+		/*modelAndView.addObject("nextlist",nextlist);*/
+		modelAndView.addObject("displaydate", tDate);
 		System.out.println(modelAndView);
 		return modelAndView;
 		}
