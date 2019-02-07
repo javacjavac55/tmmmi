@@ -113,20 +113,6 @@ public class UserRestController {
 		return buffer.toString();
 	}
 	
-	@RequestMapping(value="userRest/searchUserId", method=RequestMethod.POST)
-	@ResponseBody
-	public String searchUserId(@RequestBody User user) {
-		
-		System.out.println("/userRest/searchUserId");
-		System.out.println(user);
-		User searchUser = userService.searchUserId(user);
-		String userId = searchUser.getUserId();
-		String returnUserId = userId.substring(0, userId.length()-3);
-		
-		System.out.println("끝");
-		
-		return returnUserId	;
-	}
 	/*@RequestMapping(value="userRest/authNum", method=RequestMethod.POST)
 	public void authNum(@RequestBody Map<String, Object> map,
 			

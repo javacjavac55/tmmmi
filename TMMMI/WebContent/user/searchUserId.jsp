@@ -42,7 +42,7 @@
 			}
 			
 		    $.ajax({
-	            url : "/userRest/searchUserId",
+	            url : "/SNSLogin/searchUserId",
 	            method : "POST",
 	            data : JSON.stringify(
 	            	{

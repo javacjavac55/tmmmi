@@ -98,7 +98,7 @@
 		 	<hr style="margin-bottom:-0.1%;">
 			<ul class="nav justify-content-center" >
 			  <li class="nav-item">
-			    <a class="nav-link active"  id="faq" style="cursor:pointer;" data-toggle="tooltip" data-placement="left" title="FAQ로 이동합니다">FAQ</a>
+			    <a class="nav-link active"  id="faq" style="cursor:pointer;" data-toggle="tooltip" data-placement="left" title="FAQ로 이동합니다" onMouseover="this.style.color='#9124a3';" onMouseout="this.style.color='black';">FAQ</a>
 			  </li>
 			  <li class="nav-item">
 			    <a class="nav-link"  >1:1 QNA</a>

@@ -7,16 +7,15 @@
 <html lang="ko">
 
 <head>
-	<meta charset="UTF-8">
+	<meta charset="UTF-8" name="viewport" content="width=device-width, initial-scale=1.0" />
 	<title> getWeather </title>
+	
+	<script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" ></script>
 	
 	<!--  ///////////////////////// Bootstrap, jQuery CDN ////////////////////////// -->
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" >
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" >
-	
-	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-	<script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
-	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" ></script>
 	
 	<!-- weather icon -->
 	<script src="https://rawgithub.com/darkskyapp/skycons/master/skycons.js"></script>
@@ -28,11 +27,28 @@
 	<link rel="stylesheet" href="/css/template/main.css">
 	
 	<script type="text/javascript">
-		$(function() {	
-
+	
+		////////////////////////////////도시선택
+	    $(function() {	
+	    	$( ".form-control" ).change( function() {	
+	    		var city = $(this).val();
+	    		console.log(city)
+	    		getWeather();
+	    		getDust();
+	    	});
+	    });
+	    
+		$(function() {				
+			getWeather();	
+			getDust();
+	 	});
+		
+		function getWeather() {	
+			var city = $( ".form-control" ).val();
+			
 			$.ajax({
-		        url: "/weather/getWeather",
-		       dataType: "json",
+		        url: "/weather/getWeather?city="+city,
+		        dataType: "json",
 		        type: "GET",
 		        headers : {
 					"Accept" : "application/json",
@@ -40,6 +56,8 @@
 				}, 
 		        success: function(Data) {
 		      		console.log("Data 확인 : ", Data);
+		      		
+		      		$(".main").html(Data); 
 		      		
 		      		var name = Data.name //도시이름
 		      		var weather = Data.weather[0].main; //날씨
@@ -122,7 +140,31 @@
 			      	
 			 	} //success end
 		    }); //ajax end
-	 	});
+	    
+		}
+		
+		function getDust() {	
+			var city = $( ".form-control" ).val();
+			
+			$.ajax({
+		        url: "/weather/getDust?city="+city,
+		        dataType: "json",
+		        type: "GET",
+		        headers : {
+					"Accept" : "application/json",
+					"Content-Type" : "application/json"
+				}, 
+		        success: function(Data) {
+		      		/* console.log("Data 확인(Dust) : ", Data); */
+		      		
+		      		var dust = Data.list[0].pm10Value;
+		      		console.log(dust);
+		      		
+		      		$(".dust").html(Data); 
+		        }
+			});
+		}
+		
 	</script>
 	
 <style>
@@ -172,12 +214,20 @@
 </head>
 
 <body>
+<form>
+		<div>
+			<select class="form-control" name="city" style="color:white; background-color:black; border-color:black; width:25%;">
+			  <option value="Seoul" >Seoul</option>
+			  <option value="Incheon" >Incheon</option>
+			  <option value="Busan" >Busan</option>
+			</select>
+		</div>
 		<figure>
-				<p style="line-height: 10%;">Seoul</p>
 				<div class="main">
 				</div>
+				<div class="dust"></div>
 		</figure>
-
+</form>
 
 </body>
 </html>

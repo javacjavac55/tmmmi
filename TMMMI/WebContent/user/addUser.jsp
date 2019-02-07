@@ -236,6 +236,7 @@
       <div class="col-md-8 ml-auto mr-auto">
         <div class="brand">
           <h2 class="title">Join Page</h2>
+          <h3 class="title">TMMMI와 함께 하루를 시작해보세요.</h3>
         </div>
       </div>
     </div>

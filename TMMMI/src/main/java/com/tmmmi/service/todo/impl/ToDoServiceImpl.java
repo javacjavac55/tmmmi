@@ -78,8 +78,9 @@ public class ToDoServiceImpl implements ToDoService {
 	}
 
 	@Override
-	public void getToDoWordCloud() {
-		// TODO Auto-generated method stub
-		
+	public List<ToDo> getToDoWordCloud(Map<String, Object> todomap) throws Exception {
+		System.out.println("getToDoWordCloudDao");
+		List<ToDo>todoWordCloud = toDoDao.getWordCloud(todomap);
+		return todoWordCloud;
 	}
 }

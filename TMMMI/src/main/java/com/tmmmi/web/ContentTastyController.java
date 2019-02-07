@@ -26,8 +26,8 @@ public class ContentTastyController {
 	@Qualifier("contentSettingServiceImpl")
 	private ContentSettingService contentSettingService;
 	
-	@RequestMapping(value="/contentTastyList", method=RequestMethod.GET)
-	public ModelAndView getContentList(HttpSession session)throws Exception {
+	@RequestMapping(value="/getContentTastyList", method=RequestMethod.GET)
+	public ModelAndView getContentTastyList(HttpSession session)throws Exception {
 		
 		int userNo = (int) session.getAttribute("userNo");
 		List<Object> contentList = contentTastyService.getContentTastyList(contentSettingService.getContentSetting(userNo), 0);

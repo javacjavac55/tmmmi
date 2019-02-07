@@ -90,8 +90,10 @@ public class ToDoDaoImpl implements ToDoDao {
 	}
 
 	@Override
-	public void getWordCloud() {
-		// TODO Auto-generated method stub
-		
+	public List<ToDo> getWordCloud(Map<String, Object> todomap) throws Exception {
+		System.out.println("getWordCloudDao");
+		System.out.println(todomap);
+		System.out.println(sqlSession.selectList("TodoMapper.getWordList", todomap));
+		return sqlSession.selectList("TodoMapper.getWordList", todomap);
 	}
 }

@@ -2,10 +2,12 @@ package com.tmmmi.web;
 
 import java.text.SimpleDateFormat;
 import java.time.Year;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.StringTokenizer;
 
 import javax.servlet.http.HttpSession;
 
@@ -155,6 +157,73 @@ public class ToDoController {
 		modelAndView.addObject("todoMonth",todoMonth);
 		return modelAndView;
 	}
-	public void getToDoWordCloud() {}
+	@RequestMapping(value="/getToDoWordCloud", method=RequestMethod.GET)
+	public ModelAndView getToDoWordCloud(HttpSession session) throws Exception {
+	
+	int userNo = (int)session.getAttribute("userNo");
+	int wordCount = 0;
+	//현재 년도 계산
+	int year = Year.now().getValue();
+	String transYear = Integer.toString(year);
+	String startDate = transYear+"-01-01";
+	String lastDate= transYear+"-12-31";
+	java.sql.Date startDate1 = java.sql.Date.valueOf(startDate);
+	java.sql.Date lastDate1 = java.sql.Date.valueOf(lastDate);
+	
+	Map<String, Object> todomap = new HashMap<String, Object>();
+	todomap.put("userNo", userNo);
+	todomap.put("startDate", startDate1);
+	todomap.put("lastDate", lastDate1);
+	System.out.println("todomap:"+todomap);
+	
+	//Business Logic
+	List<ToDo> getWordList = toDoService.getToDoWordCloud(todomap);
+	List<Words> wordList = new ArrayList<Words>();
+	for (int i = 0; i < getWordList.size(); i++) {
+		/*StringTokenizer st = new StringTokenizer(getWordList.get(i).getToDoDetail());
+		while(st.hasMoreTokens()) { 
+			//while문으로 단어 개수만큼 돌리는거당. 이 경우에는 4번이 돎. (for문을 사용해도 오킹)
+			String token = st.nextToken(); //토큰을 하나씩 꺼내오는 중
+			System.out.println(token); //꺼내온 토큰 출력
+			wordCount = st.countTokens();
+	        System.out.println("단어의 개수: " + wordCount);
+		}*/
+	Words words = new Words();
+	words.setText(getWordList.get(i).getToDoDetail());
+	words.setWeight(wordCount);
+	wordList.add(words);
+	}
+	System.out.println(wordList);
+	ModelAndView modelAndView = new ModelAndView();
+	modelAndView.setViewName("/todo/getToDoWordCloud.jsp");
+	modelAndView.addObject("wordList", wordList);
+	return modelAndView;
+	}
+	
+}
+
+class Words {
+	///Field
+	private String text;
+	private int weight;
+	///Constructor
+	public Words() {
+	}
+	public String getText() {
+		return text;
+	}
+	public void setText(String text) {
+		this.text = text;
+	}
+	public int getWeight() {
+		return weight;
+	}
+	public void setWeight(int weight) {
+		this.weight = weight;
+	}
+	@Override
+	public String toString() {
+		return "{text:'" + text + "', weight:" + weight + "}";
+	}
 	
 }

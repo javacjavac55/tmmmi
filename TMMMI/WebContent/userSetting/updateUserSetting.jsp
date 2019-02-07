@@ -113,7 +113,7 @@ $(function(){
 							</div>
 							<br/>
 							<div>
-								<input type="file" name="file" class="form-control" maxLength="13" /><br/><br/>
+								<input type="file" name="file" class="inputFileHidden" maxLength="13" /><br/><br/>
 							</div>
 							<div class="form-group bmd-form-group">
 								<label class="bmd-label-static">Menu Font Color</label>

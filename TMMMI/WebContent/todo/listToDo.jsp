@@ -8,14 +8,14 @@
   <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0, shrink-to-fit=no' name='viewport' />
   <!--  Fonts and icons -->
   <!-- CSS Files -->
-	<link href="/css/template/material-kit.css" rel="stylesheet" />
-  <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Roboto+Slab:400,700|Material+Icons" />
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css">
-  <!-- CSS Just for demo purpose, don't include it in your project -->
-  <link href="/css/template/demo.css" rel="stylesheet" />
-  <!-- jQuery -->
-  <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" ></script>
+<link href="/css/template/material-kit.css" rel="stylesheet" />
+<link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Roboto+Slab:400,700|Material+Icons" />
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css">
+<!-- CSS Just for demo purpose, don't include it in your project -->
+<link href="/css/template/demo.css" rel="stylesheet" />
+<!-- jQuery -->
+<script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" ></script>
   <!-- Templete CSS -->
 <link href="/css/template/material-kit.min.css?v=2.0.5" rel="stylesheet" />
 <!--   Core JS Files   -->
@@ -41,6 +41,8 @@
 <!-- sweetAlert -->
 <script src ="https://unpkg.com/sweetalert/dist/sweetalert.min.js" ></script >
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@8"></script>
+<!-- CSS Just for demo purpose, don't include it in your project -->
+<link href="/css/template/demo.css" rel="stylesheet" />
 <!-- Style CSS-->
 <style type="text/css">
 button, h3 {
@@ -319,8 +321,6 @@ span:hover:before {
 				</div>
 				<div class="modal-body">
 					<form class="updateform" method="" action="">
-						<p class="description text-center">용기있는 사람은 모두 약속을 지키는 사람이다
-							-코르네이유-</p>
 						<div class="card-body">
 							<div class="form-group bmd-form-group">
 								<div class="input-group">
@@ -363,6 +363,8 @@ span:hover:before {
 										$('#dd4').dateDropper();
 									</script>
 								</div>
+								<p class="description text-center">용기있는 사람은 모두 약속을 지키는 사람이다
+							-코르네이유-</p>
 							</div>
 						</div>
 					</form>
@@ -380,7 +382,7 @@ span:hover:before {
 	<!-- 수정 모달 끝 -->
 	
 <jsp:include page="/common/toolbar2.jsp"></jsp:include>
-  <div class="page-header header-filter clear-filter purple-filter" data-parallax="true" style="height:60vh; background-image:url(/images/todoimage/nightstar.jpg)">
+  <div class="page-header header-filter clear-filter" data-parallax="true" style="background-image: url('/images/userSetting/ ${userSetting.image}')">
     <div class="container">
       <div class="row">
         <div class="col-md-8 ml-auto mr-auto">

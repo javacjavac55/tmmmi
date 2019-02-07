@@ -6,9 +6,6 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
 
-import com.tmmmi.service.domain.User;
-
-
 /*
  * FileName : LogonCheckInterceptor.java
  *  ㅇ Controller 호출전 interceptor 를 통해 선처리/후처리/완료처리를 수행
@@ -30,24 +27,22 @@ public class LogonCheckInterceptor extends HandlerInterceptorAdapter {
 	}
 	
 	///Method
-	public boolean preHandle(	HttpServletRequest request,
-														HttpServletResponse response, 
-														Object handler) throws Exception {
+	public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
 		
 		System.out.println("\n[ LogonCheckInterceptor start........]");
 		
 		//==> 로그인 유무확인
 		HttpSession session = request.getSession(true);
-		User user = (User)session.getAttribute("user");
+		String userNo = String.valueOf(session.getAttribute("userNo"));
+		System.out.println("userNo : "+userNo);
 
-		//==> 로그인한 회원이라면...
-		if(   user != null   )  {
-			//==> 로그인 상태에서 접근 불가 URI
+		if( session.getAttribute("userNo") != null )  {
+			System.out.println("userNo 있음");
 			String uri = request.getRequestURI();
 			
 			if(		uri.indexOf("addUser") != -1 ||	uri.indexOf("login") != -1 		|| 
 					uri.indexOf("checkDuplication") != -1 ){
-				request.getRequestDispatcher("/index.jsp").forward(request, response);
+				request.getRequestDispatcher("topMenu").forward(request, response);
 				System.out.println("[ 로그인 상태.. 로그인 후 불필요 한 요구.... ]");
 				System.out.println("[ LogonCheckInterceptor end........]\n");
 				return false;
@@ -57,7 +52,7 @@ public class LogonCheckInterceptor extends HandlerInterceptorAdapter {
 			System.out.println("[ LogonCheckInterceptor end........]\n");
 			return true;
 		}else{ //==> 미 로그인한 화원이라면...
-			//==> 로그인 시도 중.....
+			System.out.println("userNo 없음");
 			String uri = request.getRequestURI();
 			
 			if(		uri.indexOf("addUser") != -1 ||	uri.indexOf("login") != -1 		|| 
@@ -67,7 +62,7 @@ public class LogonCheckInterceptor extends HandlerInterceptorAdapter {
 				return true;
 			}
 			
-			request.getRequestDispatcher("/index.jsp").forward(request, response);
+			response.sendRedirect(request.getContextPath()+"../index.jsp");
 			System.out.println("[ 로그인 이전 ... ]");
 			System.out.println("[ LogonCheckInterceptor end........]\n");
 			return false;

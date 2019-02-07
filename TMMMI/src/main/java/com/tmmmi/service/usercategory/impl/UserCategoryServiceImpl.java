@@ -26,7 +26,14 @@ public class UserCategoryServiceImpl implements UserCategoryService {
 
 	@Override
 	public int addUserCategory(UserCategory userCategory) {
-		return userCategoryDao.addUserCategory(userCategory);
+		if (userCategoryDao.getUserCategory(userCategory) != null) {
+			return -1;
+		}
+		if (userCategoryDao.addUserCategory(userCategory) == 1) {
+			return userCategoryDao.getUserCategory(userCategory).getUserCategoryNo();
+		} else {
+			return -1;
+		}
 	}
 
 	@Override
@@ -41,7 +48,14 @@ public class UserCategoryServiceImpl implements UserCategoryService {
 
 	@Override
 	public int updateUserCategory(UserCategory userCategory) {
-		return userCategoryDao.updateUserCategory(userCategory);
+		if (userCategoryDao.getUserCategory(userCategory) != null) {
+			return -1;
+		}
+		if (userCategoryDao.updateUserCategory(userCategory) == 1) {
+			return 1;
+		} else {
+			return -1;
+		}
 	}
 
 	@Override
