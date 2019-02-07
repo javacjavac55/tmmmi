@@ -1,5 +1,9 @@
 package com.tmmmi.service.domain;
 
+import java.lang.reflect.Field;
+import java.util.HashMap;
+import java.util.Map;
+
 public class ContentSetting {
 	
 	private int userNo;
@@ -8,27 +12,33 @@ public class ContentSetting {
 	private int shoppingKeywordNo;
 	private int sortSectionNo;
 	
-	private int boxOfficeTop10;
-	private int romanceComedy;
-	private int action;
-	private int horrorThriller;
-	private int animation;
-	private int fantasySF;
+	private int movieBoxOffice;
+	private int movieNew;
+	private int movieUpcoming;
+	private int movieReview;
+	private int movieTrailer;
 	
 	private int soccer;
 	private int overseaSoccer;
 	private int baseball;
 	private int overseaBaseball;
 	private int basketball;
-	private int overseaBasketball;
 	private int sportGeneral;
 	private int sportHighlight;
 	
-	private int koreanFood;
-	private int chineseFood;
-	private int japaneseFood;
-	private int foreignFood;
-	private int dessert;
+	private int showTastyKeyword;
+	
+	private int showShoppingSearch1;
+	private int showShoppingSearch2;
+	private int showShoppingSearch3;
+	private int showShoppingReview;
+	
+	private int showUserSearch1;
+	private int showUserSearch2;
+	private int showUserSearch3;
+	private int showUserVideo1;
+	private int showUserVideo2;
+	
 	private String tastyKeyword;
 	
 	private String shoppingSearch1;
@@ -42,19 +52,8 @@ public class ContentSetting {
 	private String userVideo1;
 	private String userVideo2;
 	
-	private int showShoppingSearch1;
-	private int showShoppingSearch2;
-	private int showShoppingSearch3;
-	private int showShoppingReview;
-	
-	private int showUserSearch1;
-	private int showUserSearch2;
-	private int showUserSearch3;
-	private int showUserVideo1;
-	private int showUserVideo2;
-
 	public ContentSetting() {
-		// TODO Auto-generated constructor stub
+		super();
 	}
 
 	public int getUserNo() {
@@ -97,52 +96,44 @@ public class ContentSetting {
 		this.sortSectionNo = sortSectionNo;
 	}
 
-	public int getBoxOfficeTop10() {
-		return boxOfficeTop10;
+	public int getMovieBoxOffice() {
+		return movieBoxOffice;
 	}
 
-	public void setBoxOfficeTop10(int boxOfficeTop10) {
-		this.boxOfficeTop10 = boxOfficeTop10;
+	public void setMovieBoxOffice(int movieBoxOffice) {
+		this.movieBoxOffice = movieBoxOffice;
 	}
 
-	public int getRomanceComedy() {
-		return romanceComedy;
+	public int getMovieNew() {
+		return movieNew;
 	}
 
-	public void setRomanceComedy(int romanceComedy) {
-		this.romanceComedy = romanceComedy;
+	public void setMovieNew(int movieNew) {
+		this.movieNew = movieNew;
 	}
 
-	public int getAction() {
-		return action;
+	public int getMovieUpcoming() {
+		return movieUpcoming;
 	}
 
-	public void setAction(int action) {
-		this.action = action;
+	public void setMovieUpcoming(int movieUpcoming) {
+		this.movieUpcoming = movieUpcoming;
 	}
 
-	public int getHorrorThriller() {
-		return horrorThriller;
+	public int getMovieReview() {
+		return movieReview;
 	}
 
-	public void setHorrorThriller(int horrorThriller) {
-		this.horrorThriller = horrorThriller;
+	public void setMovieReview(int movieReview) {
+		this.movieReview = movieReview;
 	}
 
-	public int getAnimation() {
-		return animation;
+	public int getMovieTrailer() {
+		return movieTrailer;
 	}
 
-	public void setAnimation(int animation) {
-		this.animation = animation;
-	}
-
-	public int getFantasySF() {
-		return fantasySF;
-	}
-
-	public void setFantasySF(int fantasySF) {
-		this.fantasySF = fantasySF;
+	public void setMovieTrailer(int movieTrailer) {
+		this.movieTrailer = movieTrailer;
 	}
 
 	public int getSoccer() {
@@ -185,14 +176,6 @@ public class ContentSetting {
 		this.basketball = basketball;
 	}
 
-	public int getOverseaBasketball() {
-		return overseaBasketball;
-	}
-
-	public void setOverseaBasketball(int overseaBasketball) {
-		this.overseaBasketball = overseaBasketball;
-	}
-
 	public int getSportGeneral() {
 		return sportGeneral;
 	}
@@ -209,44 +192,84 @@ public class ContentSetting {
 		this.sportHighlight = sportHighlight;
 	}
 
-	public int getKoreanFood() {
-		return koreanFood;
+	public int getShowTastyKeyword() {
+		return showTastyKeyword;
 	}
 
-	public void setKoreanFood(int koreanFood) {
-		this.koreanFood = koreanFood;
+	public void setShowTastyKeyword(int showTastyKeyword) {
+		this.showTastyKeyword = showTastyKeyword;
 	}
 
-	public int getChineseFood() {
-		return chineseFood;
+	public int getShowShoppingSearch1() {
+		return showShoppingSearch1;
 	}
 
-	public void setChineseFood(int chineseFood) {
-		this.chineseFood = chineseFood;
+	public void setShowShoppingSearch1(int showShoppingSearch1) {
+		this.showShoppingSearch1 = showShoppingSearch1;
 	}
 
-	public int getJapaneseFood() {
-		return japaneseFood;
+	public int getShowShoppingSearch2() {
+		return showShoppingSearch2;
 	}
 
-	public void setJapaneseFood(int japaneseFood) {
-		this.japaneseFood = japaneseFood;
+	public void setShowShoppingSearch2(int showShoppingSearch2) {
+		this.showShoppingSearch2 = showShoppingSearch2;
 	}
 
-	public int getForeignFood() {
-		return foreignFood;
+	public int getShowShoppingSearch3() {
+		return showShoppingSearch3;
 	}
 
-	public void setForeignFood(int foreignFood) {
-		this.foreignFood = foreignFood;
+	public void setShowShoppingSearch3(int showShoppingSearch3) {
+		this.showShoppingSearch3 = showShoppingSearch3;
 	}
 
-	public int getDessert() {
-		return dessert;
+	public int getShowShoppingReview() {
+		return showShoppingReview;
 	}
 
-	public void setDessert(int dessert) {
-		this.dessert = dessert;
+	public void setShowShoppingReview(int showShoppingReview) {
+		this.showShoppingReview = showShoppingReview;
+	}
+
+	public int getShowUserSearch1() {
+		return showUserSearch1;
+	}
+
+	public void setShowUserSearch1(int showUserSearch1) {
+		this.showUserSearch1 = showUserSearch1;
+	}
+
+	public int getShowUserSearch2() {
+		return showUserSearch2;
+	}
+
+	public void setShowUserSearch2(int showUserSearch2) {
+		this.showUserSearch2 = showUserSearch2;
+	}
+
+	public int getShowUserSearch3() {
+		return showUserSearch3;
+	}
+
+	public void setShowUserSearch3(int showUserSearch3) {
+		this.showUserSearch3 = showUserSearch3;
+	}
+
+	public int getShowUserVideo1() {
+		return showUserVideo1;
+	}
+
+	public void setShowUserVideo1(int showUserVideo1) {
+		this.showUserVideo1 = showUserVideo1;
+	}
+
+	public int getShowUserVideo2() {
+		return showUserVideo2;
+	}
+
+	public void setShowUserVideo2(int showUserVideo2) {
+		this.showUserVideo2 = showUserVideo2;
 	}
 
 	public String getTastyKeyword() {
@@ -329,120 +352,39 @@ public class ContentSetting {
 		this.userVideo2 = userVideo2;
 	}
 
-	public int getShowShoppingSearch1() {
-		return showShoppingSearch1;
-	}
-
-	public void setShowShoppingSearch1(int showShoppingSearch1) {
-		this.showShoppingSearch1 = showShoppingSearch1;
-	}
-
-	public int getShowShoppingSearch2() {
-		return showShoppingSearch2;
-	}
-
-	public void setShowShoppingSearch2(int showShoppingSearch2) {
-		this.showShoppingSearch2 = showShoppingSearch2;
-	}
-
-	public int getShowShoppingSearch3() {
-		return showShoppingSearch3;
-	}
-
-	public void setShowShoppingSearch3(int showShoppingSearch3) {
-		this.showShoppingSearch3 = showShoppingSearch3;
-	}
-
-	public int getShowShoppingReview() {
-		return showShoppingReview;
-	}
-
-	public void setShowShoppingReview(int showShoppingReview) {
-		this.showShoppingReview = showShoppingReview;
-	}
-
-	public int getShowUserSearch1() {
-		return showUserSearch1;
-	}
-
-	public void setShowUserSearch1(int showUserSearch1) {
-		this.showUserSearch1 = showUserSearch1;
-	}
-
-	public int getShowUserSearch2() {
-		return showUserSearch2;
-	}
-
-	public void setShowUserSearch2(int showUserSearch2) {
-		this.showUserSearch2 = showUserSearch2;
-	}
-
-	public int getShowUserSearch3() {
-		return showUserSearch3;
-	}
-
-	public void setShowUserSearch3(int showUserSearch3) {
-		this.showUserSearch3 = showUserSearch3;
-	}
-
-	public int getShowUserVideo1() {
-		return showUserVideo1;
-	}
-
-	public void setShowUserVideo1(int showUserVideo1) {
-		this.showUserVideo1 = showUserVideo1;
-	}
-
-	public int getShowUserVideo2() {
-		return showUserVideo2;
-	}
-
-	public void setShowUserVideo2(int showUserVideo2) {
-		this.showUserVideo2 = showUserVideo2;
-	}
-
 	@Override
 	public String toString() {
 		return "ContentSetting [userNo=" + userNo + ", contentSettingNo=" + contentSettingNo + ", userKeywordNo="
 				+ userKeywordNo + ", shoppingKeywordNo=" + shoppingKeywordNo + ", sortSectionNo=" + sortSectionNo
-				+ ", boxOfficeTop10=" + boxOfficeTop10 + ", romanceComedy=" + romanceComedy + ", action=" + action
-				+ ", horrorThriller=" + horrorThriller + ", animation=" + animation + ", fantasySF=" + fantasySF
-				+ ", soccer=" + soccer + ", overseaSoccer=" + overseaSoccer + ", baseball=" + baseball
-				+ ", overseaBaseball=" + overseaBaseball + ", basketball=" + basketball + ", overseaBasketball="
-				+ overseaBasketball + ", sportGeneral=" + sportGeneral + ", sportHighlight=" + sportHighlight
-				+ ", koreanFood=" + koreanFood + ", chineseFood=" + chineseFood + ", japaneseFood=" + japaneseFood
-				+ ", foreignFood=" + foreignFood + ", dessert=" + dessert + ", tastyKeyword=" + tastyKeyword
-				+ ", shoppingSearch1=" + shoppingSearch1 + ", shoppingSearch2=" + shoppingSearch2 + ", shoppingSearch3="
-				+ shoppingSearch3 + ", shoppingReview=" + shoppingReview + ", userSearch1=" + userSearch1
-				+ ", userSearch2=" + userSearch2 + ", userSearch3=" + userSearch3 + ", userVideo1=" + userVideo1
-				+ ", userVideo2=" + userVideo2 + ", showShoppingSearch1=" + showShoppingSearch1
+				+ ", movieBoxOffice=" + movieBoxOffice + ", movieNew=" + movieNew + ", movieUpcoming=" + movieUpcoming
+				+ ", movieReview=" + movieReview + ", movieTrailer=" + movieTrailer + ", soccer=" + soccer
+				+ ", overseaSoccer=" + overseaSoccer + ", baseball=" + baseball + ", overseaBaseball=" + overseaBaseball
+				+ ", basketball=" + basketball + ", sportGeneral=" + sportGeneral + ", sportHighlight=" + sportHighlight
+				+ ", showTastyKeyword=" + showTastyKeyword + ", showShoppingSearch1=" + showShoppingSearch1
 				+ ", showShoppingSearch2=" + showShoppingSearch2 + ", showShoppingSearch3=" + showShoppingSearch3
 				+ ", showShoppingReview=" + showShoppingReview + ", showUserSearch1=" + showUserSearch1
 				+ ", showUserSearch2=" + showUserSearch2 + ", showUserSearch3=" + showUserSearch3 + ", showUserVideo1="
-				+ showUserVideo1 + ", showUserVideo2=" + showUserVideo2 + "]";
+				+ showUserVideo1 + ", showUserVideo2=" + showUserVideo2 + ", tastyKeyword=" + tastyKeyword
+				+ ", shoppingSearch1=" + shoppingSearch1 + ", shoppingSearch2=" + shoppingSearch2 + ", shoppingSearch3="
+				+ shoppingSearch3 + ", shoppingReview=" + shoppingReview + ", userSearch1=" + userSearch1
+				+ ", userSearch2=" + userSearch2 + ", userSearch3=" + userSearch3 + ", userVideo1=" + userVideo1
+				+ ", userVideo2=" + userVideo2 + "]";
 	}
 
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + action;
-		result = prime * result + animation;
 		result = prime * result + baseball;
 		result = prime * result + basketball;
-		result = prime * result + boxOfficeTop10;
-		result = prime * result + chineseFood;
 		result = prime * result + contentSettingNo;
-		result = prime * result + dessert;
-		result = prime * result + fantasySF;
-		result = prime * result + foreignFood;
-		result = prime * result + horrorThriller;
-		result = prime * result + japaneseFood;
-		result = prime * result + koreanFood;
+		result = prime * result + movieBoxOffice;
+		result = prime * result + movieNew;
+		result = prime * result + movieReview;
+		result = prime * result + movieTrailer;
+		result = prime * result + movieUpcoming;
 		result = prime * result + overseaBaseball;
-		result = prime * result + overseaBasketball;
 		result = prime * result + overseaSoccer;
-		result = prime * result + romanceComedy;
 		result = prime * result + shoppingKeywordNo;
 		result = prime * result + ((shoppingReview == null) ? 0 : shoppingReview.hashCode());
 		result = prime * result + ((shoppingSearch1 == null) ? 0 : shoppingSearch1.hashCode());
@@ -452,6 +394,7 @@ public class ContentSetting {
 		result = prime * result + showShoppingSearch1;
 		result = prime * result + showShoppingSearch2;
 		result = prime * result + showShoppingSearch3;
+		result = prime * result + showTastyKeyword;
 		result = prime * result + showUserSearch1;
 		result = prime * result + showUserSearch2;
 		result = prime * result + showUserSearch3;
@@ -478,42 +421,28 @@ public class ContentSetting {
 			return true;
 		if (obj == null)
 			return false;
-		if (getClass() != obj.getClass())
+		if (!(obj instanceof ContentSetting))
 			return false;
 		ContentSetting other = (ContentSetting) obj;
-		if (action != other.action)
-			return false;
-		if (animation != other.animation)
-			return false;
 		if (baseball != other.baseball)
 			return false;
 		if (basketball != other.basketball)
 			return false;
-		if (boxOfficeTop10 != other.boxOfficeTop10)
-			return false;
-		if (chineseFood != other.chineseFood)
-			return false;
 		if (contentSettingNo != other.contentSettingNo)
 			return false;
-		if (dessert != other.dessert)
+		if (movieBoxOffice != other.movieBoxOffice)
 			return false;
-		if (fantasySF != other.fantasySF)
+		if (movieNew != other.movieNew)
 			return false;
-		if (foreignFood != other.foreignFood)
+		if (movieReview != other.movieReview)
 			return false;
-		if (horrorThriller != other.horrorThriller)
+		if (movieTrailer != other.movieTrailer)
 			return false;
-		if (japaneseFood != other.japaneseFood)
-			return false;
-		if (koreanFood != other.koreanFood)
+		if (movieUpcoming != other.movieUpcoming)
 			return false;
 		if (overseaBaseball != other.overseaBaseball)
 			return false;
-		if (overseaBasketball != other.overseaBasketball)
-			return false;
 		if (overseaSoccer != other.overseaSoccer)
-			return false;
-		if (romanceComedy != other.romanceComedy)
 			return false;
 		if (shoppingKeywordNo != other.shoppingKeywordNo)
 			return false;
@@ -544,6 +473,8 @@ public class ContentSetting {
 		if (showShoppingSearch2 != other.showShoppingSearch2)
 			return false;
 		if (showShoppingSearch3 != other.showShoppingSearch3)
+			return false;
+		if (showTastyKeyword != other.showTastyKeyword)
 			return false;
 		if (showUserSearch1 != other.showUserSearch1)
 			return false;
@@ -599,5 +530,15 @@ public class ContentSetting {
 			return false;
 		return true;
 	}
-
+	
+	public Map<Integer, String> getContentSettingMap() throws IllegalArgumentException, IllegalAccessException {
+		Map<Integer, String> map = new HashMap<Integer, String>();
+		
+		for (Field field:this.getClass().getDeclaredFields()) {
+			if (field.getType().equals(Integer.TYPE)) {
+				map.put(field.getInt(field), field.getName());
+			}
+		}
+		return map;
+	}
 }

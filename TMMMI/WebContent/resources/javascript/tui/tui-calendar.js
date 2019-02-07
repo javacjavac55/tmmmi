@@ -6853,6 +6853,12 @@ Base.prototype.updateSchedule = function(schedule, options) {
     if (options.category) {
     	schedule.set('category', options.category);
     }
+    
+    console.log("check: ",options.recurrenceRule);
+    if (options.recurrenceRule == '0' || !options.recurrenceRule){
+    	options.recurrenceRule = '';
+    }
+    schedule.set('recurrenceRule', options.recurrenceRule);
 
     this._removeFromMatrix(schedule);
     this._addToMatrix(schedule);
@@ -6917,9 +6923,7 @@ Base.prototype._removeFromMatrix = function(schedule) {
  * @returns {Schedule} The instance of Schedule that added.
  */
 Base.prototype.addSchedule = function(schedule, silent) {
-	//console.log("더하기: ",schedule);
     this.schedules.add(schedule);
-    //console.log("더하기 결과: ",this.schedules);
     this._addToMatrix(schedule);
 
     if (!silent) {

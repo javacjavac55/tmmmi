@@ -70,6 +70,7 @@ body {
   border-bottom: 1px solid #bbb;
   padding: 16px;
   font-size: 10px;
+  background-color: #FFFFFF;
 }
 
 #lnb {
@@ -79,6 +80,7 @@ body {
   bottom: 0;
   border-right: 1px solid #d5d5d5;
   padding: 12px 10px;
+  background-color: #FFFFFF;
 }
 
 #right {
@@ -87,6 +89,7 @@ body {
   top: 49px;
   right: 0;
   bottom: 0;
+  background-color: #FFFFFF;
 }
 
 #lnb label {
@@ -102,10 +105,10 @@ body {
 .lnb-new-schedule-btn {
   height: 100%;
   font-size: 14px;
-  background-color: #ff6618;
+  background-color: #9c27b0;
   color: #ffffff;
   border: 0;
-  border-radius: 25px;
+  border-radius: 5px;
   padding: 10px 20px;
   font-weight: bold;
 }
@@ -113,10 +116,10 @@ body {
 .lnb-new-schedule-btn:hover {
   height: 100%;
   font-size: 14px;
-  background-color: #e55b15;
+  background-color: #9c27b0;
   color: #ffffff;
   border: 0;
-  border-radius: 25px;
+  border-radius: 5px;
   padding: 10px 20px;
   font-weight: bold;
 }
@@ -124,10 +127,10 @@ body {
 .lnb-new-schedule-btn:active {
   height: 100%;
   font-size: 14px;
-  background-color: #d95614;
+  background-color: #9c27b0;
   color: #ffffff;
   border: 0;
-  border-radius: 25px;
+  border-radius: 5px;
   padding: 10px 20px;
   font-weight: bold;
 }
@@ -162,6 +165,7 @@ body {
 
 #menu {
   padding: 16px;
+  background-color: #FFFFFF;
 }
 
 #dropdownMenu-calendarType {

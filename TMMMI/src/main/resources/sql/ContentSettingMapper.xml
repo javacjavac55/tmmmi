@@ -14,27 +14,32 @@
 		<result property="shoppingKeywordNo" 	column="shopping_keyword_no"		jdbcType="NUMERIC"/>
 		<result property="sortSectionNo" 		column="sort_section_no" 			jdbcType="NUMERIC"/>
 		
-		<result property="boxOfficeTop10" 		column="show_boxoffice_top_10" 		jdbcType="NUMERIC"/>
-		<result property="romanceComedy" 		column="show_romance_comedy" 		jdbcType="NUMERIC"/>
-		<result property="action" 				column="show_action" 				jdbcType="NUMERIC"/>
-		<result property="horrorThriller" 		column="show_horror_thriller" 		jdbcType="NUMERIC"/>
-		<result property="animation" 			column="show_animation" 			jdbcType="NUMERIC"/>
-		<result property="fantasySF" 			column="show_fantasy_sf" 			jdbcType="NUMERIC"/>
+		<result property="movieBoxOffice" 		column="show_movie_boxoffice" 		jdbcType="NUMERIC"/>
+		<result property="movieNew" 			column="show_movie_new" 			jdbcType="NUMERIC"/>
+		<result property="movieUpcoming" 		column="show_movie_upcoming" 		jdbcType="NUMERIC"/>
+		<result property="movieReview" 			column="show_movie_review" 			jdbcType="NUMERIC"/>
+		<result property="movieTrailer" 		column="show_movie_trailer" 		jdbcType="NUMERIC"/>
 		
 		<result property="soccer" 				column="show_soccer" 				jdbcType="NUMERIC"/>
 		<result property="overseaSoccer" 		column="show_oversea_soccer" 		jdbcType="NUMERIC"/>
 		<result property="baseball"				column="show_baseball" 				jdbcType="NUMERIC"/>
 		<result property="overseaBaseball" 		column="show_oversea_baseball" 		jdbcType="NUMERIC"/>
 		<result property="basketball" 			column="show_basketball" 			jdbcType="NUMERIC"/>
-		<result property="overseaBasketball" 	column="show_oversea_basketball" 	jdbcType="NUMERIC"/>
 		<result property="sportGeneral" 		column="show_sport_general" 		jdbcType="NUMERIC"/>
 		<result property="sportHighlight" 		column="show_sport_highlight" 		jdbcType="NUMERIC"/>
 		
-		<result property="koreanFood" 			column="show_korean_food" 			jdbcType="NUMERIC"/>
-		<result property="chineseFood" 			column="show_chinese_food" 			jdbcType="NUMERIC"/>
-		<result property="japaneseFood" 		column="show_japanese_food" 		jdbcType="NUMERIC"/>
-		<result property="foreignFood" 			column="show_foreign_food" 			jdbcType="NUMERIC"/>
-		<result property="dessert" 				column="show_dessert" 				jdbcType="NUMERIC"/>
+		<result property="showTastyKeyword" 	column="show_tasty_keyword" 		jdbcType="NUMERIC"/>
+		
+		<result property="showShoppingSearch1" 	column="show_shopping_search_1" 	jdbcType="NUMERIC"/>
+		<result property="showShoppingSearch2" 	column="show_shopping_search_2" 	jdbcType="NUMERIC"/>
+		<result property="showShoppingSearch3" 	column="show_shopping_search_3" 	jdbcType="NUMERIC"/>
+		<result property="showShoppingReview" 	column="show_shopping_review" 		jdbcType="NUMERIC"/>
+
+		<result property="showUserSearch1" 		column="show_user_search_1" 		jdbcType="NUMERIC"/>
+		<result property="showUserSearch2" 		column="show_user_search_2" 		jdbcType="NUMERIC"/>
+		<result property="showUserSearch3" 		column="show_user_search_3" 		jdbcType="NUMERIC"/>
+		<result property="showUserVideo1" 		column="show_user_video_1" 			jdbcType="NUMERIC"/>
+		<result property="showUserVideo2" 		column="show_user_video_2" 			jdbcType="NUMERIC"/>
 		
 		<result property="shoppingSearch1" 		column="shopping_search_1"			jdbcType="VARCHAR"/>
 		<result property="shoppingSearch2" 		column="shopping_search_2" 			jdbcType="VARCHAR"/>
@@ -47,16 +52,6 @@
 		<result property="userVideo1" 			column="user_video_1" 				jdbcType="VARCHAR"/>
 		<result property="userVideo2" 			column="user_video_2" 				jdbcType="VARCHAR"/>
 		
-		<result property="showShoppingSearch1" 	column="show_shopping_search_1" 	jdbcType="NUMERIC"/>
-		<result property="showShoppingSearch2" 	column="show_shopping_search_2" 	jdbcType="NUMERIC"/>
-		<result property="showShoppingSearch3" 	column="show_shopping_search_3" 	jdbcType="NUMERIC"/>
-		<result property="showShoppingReview" 	column="show_shopping_review" 		jdbcType="NUMERIC"/>
-
-		<result property="showUserSearch1" 		column="show_user_search_1" 		jdbcType="NUMERIC"/>
-		<result property="showUserSearch2" 		column="show_user_search_2" 		jdbcType="NUMERIC"/>
-		<result property="showUserSearch3" 		column="show_user_search_3" 		jdbcType="NUMERIC"/>
-		<result property="showUserVideo1" 		column="show_user_video_1" 			jdbcType="NUMERIC"/>
-		<result property="showUserVideo2" 		column="show_user_video_2" 			jdbcType="NUMERIC"/>
 	</resultMap>
 	
 	<!-- SQL : INSERT(content_setting) -->
@@ -93,17 +88,16 @@
 	<!-- SQL : INSERT(sort_section) -->
 	<insert id="addSortSection" parameterType="int">
 		INSERT
-		INTO sort_section(sort_section_no, show_boxoffice_top_10, show_romance_comedy, show_horror_thriller, 
-							show_fantasy_sf, show_action, show_animation, show_soccer, show_oversea_soccer,
-							show_baseball, show_oversea_baseball, show_basketball, show_oversea_basketball,
-							show_sport_general, show_sport_highlight, show_korean_food, 
-							show_japanese_food, show_chinese_food, show_foreign_food, show_dessert,
+		INTO sort_section(sort_section_no, show_movie_boxoffice, show_movie_new, show_movie_upcoming, 
+							show_movie_review, show_movie_trailer, show_soccer, show_oversea_soccer,
+							show_baseball, show_oversea_baseball, show_basketball,
+							show_sport_general, show_sport_highlight, show_tasty_keyword,
 							show_shopping_search_1, show_shopping_search_2, show_shopping_search_3,
 							show_shopping_review,  show_user_search_1, show_user_search_2, show_user_search_3,
 							show_user_video_1, show_user_video_2)
 		VALUES(
 			(SELECT sort_section_no FROM content_setting WHERE user_no = #{value}),
-			1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28
+			1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22
 		)
 	</insert>
 	
@@ -155,25 +149,19 @@
 	<update id="updateSortSection" parameterType="com.tmmmi.service.domain.ContentSetting">
 		UPDATE sort_section
 		<set>
-			show_boxoffice_top_10 = #{boxOfficeTop10:NUMERIC},
-			show_romance_comedy = #{romanceComedy:NUMERIC},
-			show_horror_thriller = #{horrorThriller:NUMERIC},
-			show_fantasy_sf = #{fantasySF:NUMERIC},
-			show_action = #{action:NUMERIC},
-			show_animation  = #{animation:NUMERIC},
+			show_movie_boxoffice = #{movieBoxOffice:NUMERIC},
+			show_movie_new = #{movieNew:NUMERIC},
+			show_movie_upcoming = #{movieUpcoming:NUMERIC},
+			show_movie_review = #{movieReview:NUMERIC},
+			show_movie_trailer = #{movieTrailer:NUMERIC},
 			show_soccer = #{soccer:NUMERIC},
 			show_oversea_soccer = #{overseaSoccer:NUMERIC},
 			show_baseball = #{baseball:NUMERIC},
 			show_oversea_baseball = #{overseaBaseball:NUMERIC},
 			show_basketball = #{basketball:NUMERIC},
-			show_oversea_basketball = #{overseaBasketball:NUMERIC},
 			show_sport_general = #{sportGeneral:NUMERIC},
 			show_sport_highlight = #{sportHighlight:NUMERIC},
-			show_korean_food = #{koreanFood:NUMERIC},
-			show_japanese_food = #{japaneseFood:NUMERIC},
-			show_chinese_food = #{chineseFood:NUMERIC},
-			show_foreign_food = #{foreignFood:NUMERIC},
-			show_dessert = #{dessert:NUMERIC},
+			show_tasty_keyword = #{showTastyKeyword:NUMERIC},
 			show_shopping_search_1 = #{showShoppingSearch1:NUMERIC},
 			show_shopping_search_2 =  #{showShoppingSearch2:NUMERIC},
 			show_shopping_search_3 = #{showShoppingSearch3:NUMERIC},

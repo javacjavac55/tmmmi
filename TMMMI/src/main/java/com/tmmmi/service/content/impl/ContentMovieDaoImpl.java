@@ -12,6 +12,7 @@ import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 import org.springframework.stereotype.Repository;
+import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.tmmmi.service.domain.ContentMovie;
@@ -53,7 +54,7 @@ public class ContentMovieDaoImpl extends ContentDaoAdaptor {
 				
 				//video
 				doc2 = Jsoup.connect(movie.getElementsContainingText("예고편").attr("href")).header("User-Agent", "Mozilla/5.0").get();
-				contentMovie.setMovieVideo(doc2.select(".video_ar").html().replaceAll("src=\"/movie","src=\"https://movie.naver.com/movie").replaceAll("playerSize=...x...", "playerSize=800x600").replaceAll("height=\"480\"", "height=\"600\""));
+				contentMovie.setMovieVideo(doc2.select(".video_ar").html().replaceAll("src=\"/movie","src=\"https://movie.naver.com/movie").replaceAll("playerSize=...x...", "playerSize=712x518").replaceAll("height=\"480\"", "height=\"518\""));
 				
 				result.add(contentMovie);
 			}
@@ -78,7 +79,6 @@ public class ContentMovieDaoImpl extends ContentDaoAdaptor {
 			for (int i=start;i<end;i++) {
 				Element movie = movies.get(i);
 				ContentMovie contentMovie = new ContentMovie();
-				
 				
 				//thumbnail
 				contentMovie.setMovieThumbnail(movie.getElementsByTag("img").attr("src").split("\\?type=")[0]);
@@ -109,8 +109,8 @@ public class ContentMovieDaoImpl extends ContentDaoAdaptor {
 					case "출연":
 						//actor
 						String[] actor = e.nextElementSibling().text().split(",");
-						if (actor.length>3) {
-							contentMovie.setMovieActor(actor[0]+","+actor[1]+","+actor[2]+" 외");
+						if (actor.length>2) {
+							contentMovie.setMovieActor(actor[0]+","+actor[1]+" 외");
 						} else {
 							contentMovie.setMovieActor(e.nextElementSibling().text());
 						}
@@ -120,7 +120,7 @@ public class ContentMovieDaoImpl extends ContentDaoAdaptor {
 				}
 				//rating + reserve rating
 				String[] info2 = movie.select(".star_t1 .num").text().split(" ");
-				contentMovie.setMovieRating(BigDecimal.valueOf(Double.parseDouble(info2[0])*10).setScale(3, RoundingMode.HALF_UP).doubleValue()+"");
+				contentMovie.setMovieRating(/*BigDecimal.valueOf(Double.parseDouble(info2[0])*10).setScale(3, RoundingMode.HALF_UP).doubleValue()+""*/info2[0]);
 				if (info2.length>1) {
 					contentMovie.setMovieReserveRate(info2[1]+"%");
 				}
@@ -130,7 +130,7 @@ public class ContentMovieDaoImpl extends ContentDaoAdaptor {
 				
 				//video
 				innerDoc = Jsoup.connect("http://movie.naver.com"+movie.select(".item2").attr("href")).header("User-Agent", "Mozilla/5.0").get();
-				contentMovie.setMovieVideo(innerDoc.select(".video_ar").html().replaceAll("src=\"/movie","src=\"https://movie.naver.com/movie").replaceAll("playerSize=...x...", "playerSize=800x600").replaceAll("height=\"480\"", "height=\"600\""));
+				contentMovie.setMovieVideo(innerDoc.select(".video_ar").html().replaceAll("src=\"/movie","src=\"https://movie.naver.com/movie").replaceAll("playerSize=...x...", "playerSize=712x518").replaceAll("height=\"480\"", "height=\"518\""));
 				
 				//link
 				contentMovie.setMovieLink("https://movie.naver.com"+movie.getElementsByAttributeValueContaining("href", ".nhn?code=").attr("href"));
@@ -161,6 +161,11 @@ public class ContentMovieDaoImpl extends ContentDaoAdaptor {
 			for (int i = start; i < end; i++) {
 				Element movie = movies.get(i);
 				System.out.println(movie.text());
+				
+				if (movie.select(".ico_rating_18").size() > 0) {
+					continue;
+				}
+				
 				ContentMovie contentMovie = new ContentMovie();
 
 				// thumbnail
@@ -191,8 +196,8 @@ public class ContentMovieDaoImpl extends ContentDaoAdaptor {
 					case "출연":
 						// actor
 						String[] actor = e.nextElementSibling().text().split(",");
-						if (actor.length > 3) {
-							contentMovie.setMovieActor(actor[0] + "," + actor[1] + "," + actor[2] + " 외");
+						if (actor.length > 2) {
+							contentMovie.setMovieActor(actor[0] + "," + actor[1] + " 외");
 						} else {
 							contentMovie.setMovieActor(e.nextElementSibling().text());
 						}
@@ -207,8 +212,8 @@ public class ContentMovieDaoImpl extends ContentDaoAdaptor {
 							.header("User-Agent", "Mozilla/5.0").get();
 					contentMovie.setMovieVideo(innerDoc.select(".video_ar").html()
 							.replaceAll("src=\"/movie", "src=\"https://movie.naver.com/movie")
-							.replaceAll("playerSize=...x...", "playerSize=800x600")
-							.replaceAll("height=\"480\"", "height=\"600\""));
+							.replaceAll("playerSize=...x...", "playerSize=712x518")
+							.replaceAll("height=\"480\"", "height=\"518\""));
 				}
 				
 				// link
@@ -251,7 +256,7 @@ public class ContentMovieDaoImpl extends ContentDaoAdaptor {
 				
 				//movieReviewLink
 				List<String> tmp = movie.select(".info a").eachAttr("href");
-				tmp.replaceAll(s -> "https://movie.naver.com"+s);
+				tmp.replaceAll(s -> "https://movie.naver.com"+s+"&order=#tab");
 				contentMovie.setMovieReviewLink(tmp);
 				
 				result.add(contentMovie);
@@ -271,9 +276,28 @@ public class ContentMovieDaoImpl extends ContentDaoAdaptor {
 			Document doc2 = null;
 			
 			Elements trailers = ((Elements) doc.select(".lst_detail_t1 li"));
-			System.out.println(trailers);
+			
+			Pattern p = Pattern.compile("\\[(.*?)\\]");
 			for (Element movie:trailers) {
+				
+				if (movie.select(".ico_rating_18").size() > 0) {
+					continue;
+				}
+				
 				ContentMovie contentMovie = new ContentMovie();
+				
+				if (!movie.select(".tit > a").text().contains("예고편")) {
+					continue;
+				}
+
+				//movieTitle
+				Matcher m = p.matcher(movie.select(".tit > a").text());
+				if (m.find()) {
+					contentMovie.setMovieTitle(m.group(1));
+				} else {
+					continue;
+				}
+				
 				
 				for (Element e : movie.select(".info_txt1 dt")) {
 					switch (e.text()) {
@@ -307,21 +331,18 @@ public class ContentMovieDaoImpl extends ContentDaoAdaptor {
 						
 				}
 				
-				//movieTitle
-				contentMovie.setMovieTitle(movie.select(".tit > a").text());
-				
 				//movieThumbnail
 				contentMovie.setMovieThumbnail(movie.select(".thumb2 img").attr("src"));
 				
 				//movieLink
-				contentMovie.setMovieLink("https://movie.naver.com"+movie.select(".btn_area > a").attr("href"));
+				contentMovie.setMovieLink("https://movie.naver.com"+movie.select(".btn_area > .btn_view_info").attr("href"));
 				
 				//movieNo
 				contentMovie.setMovieNo(Integer.parseInt(movie.select(".btn_area > a").attr("href").split("code=")[1]));
 				
 				//movieVideo
 				doc2 = Jsoup.connect("https://movie.naver.com"+movie.select(".tit > a").attr("href")).header("User-Agent", "Mozilla/5.0").get();
-				contentMovie.setMovieVideo(doc2.select(".video_ar").html().replaceAll("src=\"/movie","src=\"https://movie.naver.com/movie").replaceAll("playerSize=...x...", "playerSize=800x600").replaceAll("height=\"480\"", "height=\"600\""));
+				contentMovie.setMovieVideo(doc2.select(".video_ar").html().replaceAll("src=\"/movie","src=\"https://movie.naver.com/movie").replaceAll("playerSize=...x...", "playerSize=600x540").replaceAll("width=\"100%\"", "width=\"600\"").replaceAll("height=\"480\"", "height=\"540\""));
 				result.add(contentMovie);
 			}
 		} catch (Exception e) {

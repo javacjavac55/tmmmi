@@ -2162,6 +2162,7 @@ body.homepage.is-preload #header:after {
 	overflow: hidden;
 	padding: 2em 0 2em 0;
 	margin-bottom: 0;
+	background-color: #eee;
 }
 
 .carousel .forward, .carousel .backward {
@@ -2243,33 +2244,35 @@ body.homepage.is-preload #header:after {
 
 .carousel article {
 	display: inline-block;
-	width: 824px !important;
-	height: 600px !important;
+	width: 712px !important;
+    height: 518px !important;
 	background: #fff;
 	text-align: center;
 	margin: 0 2em 0 0;
 	white-space: normal;
 	opacity: 1.0;
-	-moz-transition: opacity 0.75s ease-in-out;
-	-webkit-transition: opacity 0.75s ease-in-out;
-	-ms-transition: opacity 0.75s ease-in-out;
-	transition: opacity 0.75s ease-in-out;
+	-moz-transition: opacity 0.35s ease-in-out;
+	-webkit-transition: opacity 0.35s ease-in-out;
+	-ms-transition: opacity 0.35s ease-in-out;
+	transition: opacity 0.35s ease-in-out;
 	position: relative;
+	box-shadow: 3px 3px 20px 3px #999;
+    border-radius: 0.4rem;
 }
 
 .carousel .content-movie-trailer {
 	display: inline-block;
 	width: 600px !important;
-	height: 600px !important;
+	height: 540px !important;
 	background: #fff;
 	text-align: center;
 	margin: 0 2em 0 0;
 	white-space: normal;
 	opacity: 1.0;
-	-moz-transition: opacity 0.75s ease-in-out;
-	-webkit-transition: opacity 0.75s ease-in-out;
-	-ms-transition: opacity 0.75s ease-in-out;
-	transition: opacity 0.75s ease-in-out;
+	-moz-transition: opacity 0.35s ease-in-out;
+	-webkit-transition: opacity 0.35s ease-in-out;
+	-ms-transition: opacity 0.35s ease-in-out;
+	transition: opacity 0.35s ease-in-out;
 	position: relative;
 }
 
@@ -2697,6 +2700,78 @@ body.homepage.is-preload #header:after {
 	}
 }
 
+.carousel article p {
+	text-align: center;
+}
+
+.carousel article header {
+	text-align: center;
+	width: 50%;
+	display: inline-block !important;
+	float:right;
+	vertical-align:top;
+}
+
+.section-title {
+	position: relative;
+    vertical-align: top;
+    display: inline-block;
+    height: 50px;
+    margin-left: 1.3em;
+    margin-bottom: 0.5em;
+    font-size: xx-large;
+    color: #1d1d1d;
+}
+
+.movie {
+	height: 540px;
+}
+
+.poster {
+	position: relative;
+	top: 0;
+	width: 356px !important;
+    height: 518px !important;
+	display: inline-block !important;
+	float:left;
+	border-top-left-radius: 0.4rem;
+    border-bottom-left-radius: 0.4rem;
+}
+
+.movie-title {
+	margin: 10px 10px 20px 10px;
+    font-size: larger;
+    width: 47% !important;
+    padding: 0.3em;
+    border-radius: 0.15em;
+    font-weight: 550;
+}
+
+.movie-info {
+	text-align: left;
+}
+
+.movie .field {
+	font-weight: normal;
+    color: white;
+    background: #483949;
+    display: inline-block;
+    width: 97px !important;
+    padding: 0 10px 0 10px;
+    border-radius: 2px;
+    border: 0;
+    margin: 0 0.2em 0.3em 0.5em;
+    height: auto;
+    box-sizing: content-box;
+    text-align: center;
+    vertical-align: top;
+}
+
+.movie .detail {
+	display: inline-block;
+    width: 30%;
+}
+
 .star-ratings-css {
 	unicode-bidi: bidi-override;
 	color: #c5c5c5;
@@ -2727,36 +2802,120 @@ body.homepage.is-preload #header:after {
 	display: inline;
 }
 
-.poster {
-	position: relative;
-	top: 0;
-	width: 421px !important;
-	height: 600px !important;
-	display: inline-block !important;
-	float:left;
+.movie-preview-btn {
+	margin: 10px;
+    font-size: larger;
+    padding: 0.3em;
+    border-radius: 0.15em;
+    font-weight: 550;
+    position: absolute;
+    bottom: 0px;
+    right: 50%;
+    width: 50px;
+    height: 50px;
+	opacity: 0.3;
+	background-color: #ffffff;
+	background-image: url("https://img.icons8.com/material-rounded/100/000000/cinema-.png");
+	background-repeat: no-repeat;	
+	background-size: contain;
 }
 
-.carousel article p {
-	text-align: center;
-}
-
-.carousel article header {
-	text-align: center;
-	width: 50%;
-	display: inline-block !important;
-	float:right;
-	vertical-align:top;
-}
-
-.movie {
-	height: 600px;
+.movie-preview-btn:hover {
+	opacity: 1;
+	background-color: #ffffff;
+	background-image: url("https://img.icons8.com/material-rounded/100/000000/cinema-.png");
+	background-repeat: no-repeat;	
+	background-size: contain;
 }
 
 .movie-preview {
 	position:absolute;
-	width:824px;
+	width:712px;
 	top:0px;
 	left:0px;
+	z-index:5;
+	display:none;
+}
+
+.movie-preview-close-btn {
+	position: absolute;
+    top: 10px;
+    right: 10px;
+    height: 25px;
+    width: 25px;
+    z-index: 5;
+    cursor: pointer;
+	background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAABHNCSVQICAgIfAhkiAAAAAlwSFlzAAABfAAAAXwBsrqMZwAAABl0RVh0U29mdHdhcmUAd3d3Lmlua3NjYXBlLm9yZ5vuPBoAAADKSURBVEiJ7ZTRCoJAEEWHvkCppLT//4yCHqJSMBRK+5bq9NBEgwitbr5UFxZ0nT0HdByRf34zwBo4AFOH2gjYAMsugh2PlED0Bl5q7baLIABSPVgDSUtNApy1JgUCZ4GRZAo4W4k33IDCpgRYGHgGhL3gRjIDTgo86npez7zgRjIFCl4pXDpMRGTk6LiJyNXcX3TPP8AEyFteUQ6MfeExUJluCRsfvgLmH4ObZ6H5Tyog7gOvFbBv63MviUJhwFGx4jHAhhl2/3xX7nHZjmOoiqB8AAAAAElFTkSuQmCC");
+}
+
+
+/* review */
+.movie-review {
+	font-weight: bold;
+	font-size: large;
+	color: #5b5b5b;
+	width: 46%;
+    margin-left: 52%;
+}
+
+.movie-review-title {
+	border: solid;
+	border-width: 3px;
+	margin-bottom: 15px;
+}
+
+.movie-review-link {
+	cursor: pointer;
+}
+
+.movie .review-field {
+	font-weight: normal;
+    color: white;
+    background: #483949;
+    display: inline-block;
+    width: 100% !important;
+    border-radius: 2px;
+    border: 0;
+    height: auto;
+    box-sizing: content-box;
+    text-align: center;
+    vertical-align: top;
+}
+
+/* trailer */
+.trailer-title {
+	margin: 10px;
+    font-size: larger;
+    width: 93% !important;
+    padding: 0.3em;
+    border-radius: 0.15em;
+    font-weight: 550;
+}
+
+.movie-trailer-info {
+	text-align: left;
+	line-height: 180%;
+}
+
+.movie .trailer-field {
+	font-weight: normal;
+    color: white;
+    background: #483949;
+    display: inline-block;
+    width: 60px !important;
+    padding: 0 10px 0 10px;
+    border-radius: 2px;
+    border: 0;
+    margin: 0 0.2em 0.3em 1em;
+    height: auto;
+    box-sizing: content-box;
+    text-align: center;
+    vertical-align: top;
+}
+
+.movie-trailer-preview {
+	position:absolute;
+	top:0px;
 	z-index:5;
 	display:none;
 }
@@ -2764,48 +2923,8 @@ body.homepage.is-preload #header:after {
 .videoThmb {
 	position: relative;
 	top: 0;
-	width: 500px !important;
-	height: 348px !important;
+	width: 560px !important;
+	height: 315px !important;
 	display: inline-block !important;
-}
-
-.movie .field {
-	font-weight: normal;
-	color: white;
-	background: #483949;
-	width: 130px !important;
-	padding: 0 10px 0 10px;
-	border-radius: 2px;
-	border: 0;
-	margin-top: 10px;
-	margin-left: 3%;
-	height: auto;
-	box-sizing: content-box;
-	text-align: center;
-	vertical-align: top;
-}
-
-.movie-info {
-	text-align: left;
-}
-
-.movie-title {
-	font-weight: bold;
-	font-size: large;
-	color: black;
-	font-family: 'Noto Sans KR', sans-serif;
-}
-
-.movie-review {
-	font-weight: bold;
-	font-size: large;
-	color: black;
-	width: 40%;
-	margin-left: 55%;
-}
-
-.movie-review-title {
-	border: solid;
-	border-width: 3px;
-	margin-bottom: 15px;
+	margin-top: 20px;
 }

@@ -12,6 +12,7 @@
     <link rel="stylesheet" type="text/css" href="/css/tui/tui-calendar.css" />
     <link rel="stylesheet" type="text/css" href="/css/tui/default.css"></link>
     <link rel="stylesheet" type="text/css" href="/css/tui/icons.css"></link>
+    <script src ="https://unpkg.com/sweetalert/dist/sweetalert.min.js" ></script >
 </head>
 <body>
     <div id="top">
@@ -21,6 +22,8 @@
         <div class="lnb-new-schedule">
             <button id="btn-new-schedule" type="button" class="btn btn-default btn-block lnb-new-schedule-btn" data-toggle="modal">
                 	일정 등록</button>
+            <button id="btn-new-category" type="button" class="btn btn-default btn-block lnb-new-schedule-btn">
+			카테고리 등록</button>
         </div>
         <div id="lnb-calendars" class="lnb-calendars">
             <div>
@@ -141,7 +144,9 @@
 			} else {
 				schedule.category = 'time';
 			} 
-			
+			if(schedule.recurrenceRule == 0){
+				schedule.recurrenceRule = '';
+			}
 			schedule.start = new Date(schedule.start*=1);
 			schedule.end = new Date(schedule.end*=1); 
 			return schedule;
@@ -199,8 +204,13 @@
 					"Content-Type" : "application/json"
 				},
 				success : function(JSONData, status) {
-					console.log(JSONData);
-					alert("등록 완료");
+					swal({
+						title : "등록 완료 " , 
+						text: "일정을 성공적으로 등록했습니다" , 
+						icon : "success" , 
+					}).then((value) => {
+						
+					});
 				}
 			});
 		}
@@ -233,8 +243,13 @@
 					"Content-Type" : "application/json"
 				},
 				success : function(JSONData, status) {
-					console.log(JSONData);
-					alert("수정 완료");
+					swal({
+						title : "수정 완료 " , 
+						text: "일정을 성공적으로 수정했습니다" , 
+						icon : "success" , 
+					}).then((value) => {
+						
+					});
 				}
 			});
 		}
@@ -255,13 +270,22 @@
 					"Content-Type" : "application/json"
 				},
 				success : function(JSONData, status) {
-					console.log(JSONData);
-					alert("삭제 완료");
+					swal({
+						title : "삭제 완료 " , 
+						text: "일정을 성공적으로 삭제했습니다" , 
+						icon : "success" , 
+					}).then((value) => {
+						
+					});
 				}
 			});
 		}
 		
 		$(function(){
+			$('#btn-new-category').on('click', function(){
+				$(self).attr('location','getUserCategoryList');
+			});
+			
 			$('.tui-full-calendar-floating-layer.tui-view-14').on("change", function(){
 				$('.tui-full-calendar-popup-section-item.tui-full-calendar-section-allday').on("click",function(){
 					if (!$('#tui-full-calendar-schedule-allday').is(":checked") && $('#tui-full-calendar-schedule-milestone').is(":checked")) {
@@ -277,5 +301,6 @@
 			});
 		})
     </script>
+    <jsp:include page="/common/mainMenu.jsp"/>
 </body>
 </html>

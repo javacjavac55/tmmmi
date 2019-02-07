@@ -28,7 +28,7 @@
 		<main>
 			<div class="message">To see the menu, please view on a larger screen.</div>
 			<div class="content content--fixed">
-				<button class="menu-trigger">+ Menu</button>
+				<button class="menu-trigger"><img src="/images/mainMenu/menu.png"/></button>
 			</div>
 			<nav class="grim">
 				<div class="grim__item">

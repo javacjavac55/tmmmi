@@ -197,6 +197,10 @@
 		    
 		    $('.form-title').text('카테고리 등록');
 	    })
+	    
+	    $('#calendar').on('click', function(){
+			$(self).attr('location','getCalendarMonth');
+		});
 	})
 </script>
 <style>
@@ -305,6 +309,7 @@
 								<button type="button" class="btn btn-warning" id="updateBtn">수정</button>
 								<button type="button" class="btn btn-danger" id="deleteBtn">삭제</button>
 								<button type="button" class="btn btn-default" id="cancelBtn">취소</button>
+								<button type="button" class="btn btn-info" id="calendar">일정 달력 보기</button>
 							</div>
 						</div>
 					</div>

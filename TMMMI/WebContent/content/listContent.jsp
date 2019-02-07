@@ -6,9 +6,10 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=EUC-KR">
 <title>메인 컨텐츠</title>
+<link href="/css/template/material-kit.min.css?v=2.0.5" rel="stylesheet" />
 <style>
 body {
-	background-color: #1d1d1d;
+	background-color: #eee;
 }
 iframe {
 	width: 100%;
@@ -17,24 +18,32 @@ iframe {
 	border: none;
 }
 
+.movie{
+	height: 664px;
+}
+
+.movie-trailer {
+	height: 686px;
+}
+
 .modal-dialog.modal-fullsize {
   width: 900px !important;
   height: 100%;
   margin: 3% 10%;
   padding: 0;
 }
+
 .modal-content.modal-fullsize {
-  height: auto;
+  height: 87%;
   width: 1500px !important;
   border-radius: 0; 
 }
 
 .modal-body iframe {
 	width: 100%;
-    height: 33em;
+    height: 43em;
 }
 </style>
-<link href="/css/template/material-kit.min.css?v=2.0.5" rel="stylesheet" />
 <script src="/javascript/template/core/jquery.min.js" type="text/javascript"></script>
 <script src="/javascript/template/core/popper.min.js" type="text/javascript"></script>
 <script src="/javascript/template/core/bootstrap-material-design.min.js" type="text/javascript"></script>
@@ -60,6 +69,20 @@ $(function(){
 		$($('#movieUpcoming').contents().find('.content-model-btn')).on('click', function(){
 			var content = $('#movieUpcoming').contents().find('#movieUpcomingInput').val();
 			  
+			$('.modal-body').html('<iframe class="content-modal" src="'+content+'" />');
+			$('.content-modal-btn').click();
+		});
+		
+		$($('#movieReview').contents().find('.content-model-btn')).on('click', function(){
+			var content = $('#movieReview').contents().find('#movieReviewInput').val();
+			
+			$('.modal-body').html('<iframe class="content-modal" src="'+content+'" />');
+			$('.content-modal-btn').click();
+		});
+		
+		$($('#movieReview').contents().find('.movie-review-link')).on('click', function(){
+			var content = $('#movieReview').contents().find('#movieReviewInput').val();
+			
 			$('.modal-body').html('<iframe class="content-modal" src="'+content+'" />');
 			$('.content-modal-btn').click();
 		});
@@ -130,23 +153,29 @@ function fncAddScrap() {
 	
 </head>
 <body>
-<iframe id="movieBoxOffice" src="/contentMovie/getContentMovieBoxOffice"></iframe>
-<iframe id="movieNew" src="/contentMovie/getContentMovieNew"></iframe>
-<iframe id="movieUpcoming" src="/contentMovie/getContentMovieUpcoming"></iframe>
-<iframe id="movieReview" src="/contentMovie/getContentMovieReview"></iframe>
-<iframe id="movieTrailer" src="/contentMovie/getContentMovieTrailer"></iframe>
+<!-- Movie -->
+<iframe id="movieBoxOffice" class="movie" src="/contentMovie/getContentMovieBoxOffice"></iframe>
+<iframe id="movieNew" class="movie" src="/contentMovie/getContentMovieNew"></iframe>
+<iframe id="movieUpcoming" class="movie" src="/contentMovie/getContentMovieUpcoming"></iframe>
+<iframe id="movieReview" class="movie" src="/contentMovie/getContentMovieReview"></iframe>
+<iframe id="movieTrailer" class="movie-trailer" src="/contentMovie/getContentMovieTrailer"></iframe>
 
-<iframe src="/contentShopping/getShoppingListFirst"></iframe>
-<iframe src="/contentShopping/getShoppingListSecond"></iframe>
-<iframe src="/contentShopping/getShoppingListThird"></iframe>
-<iframe src="/contentShopping/getShoppingReviewList"></iframe>
-
+<!-- Sport -->
 <iframe id="kSoccer" src="/contentSport/getContentKsoccerList"></iframe>
 <iframe id="wSoccer" src="/contentSport/getContentWsoccerList"></iframe>
 <iframe id="kBaseball" src="/contentSport/getContentKbaseballList"></iframe>
 <iframe id="wBaseball" src="/contentSport/getContentWbaseballList"></iframe>
 <iframe id="basketball" src="/contentSport/getContentBasketballList"></iframe>
 <iframe id="general" src="/contentSport/getContentGeneralList"></iframe>
+
+<!-- Tasty -->
+<iframe id="tasty" src="/contentTasty/getContentTastyList"></iframe>
+
+<!-- Shopping -->
+<iframe id="shoppingFirst" src="/contentShopping/getShoppingListFirst"></iframe>
+<iframe id="shoppingSecond" src="/contentShopping/getShoppingListSecond"></iframe>
+<iframe id="shoppingThird" src="/contentShopping/getShoppingListThird"></iframe>
+<iframe id="shoppingReview" src="/contentShopping/getShoppingReviewList"></iframe>
 
 <button class="content-modal-btn" type="button" data-toggle="modal" data-target="#myFullsizeModal" style="display:none"></button>
 <div class="modal fade" id="myFullsizeModal" tabindex="-1" role="dialog" aria-labelledby="myFullsizeModalLabel" aria-hidden="true">

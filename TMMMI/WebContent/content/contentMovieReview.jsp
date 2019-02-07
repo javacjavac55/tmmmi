@@ -6,23 +6,16 @@
 <html>
 	<head>
 		<meta http-equiv="Content-Type" content="text/html; charset=EUC-KR">
-		<title>contentMovieUpcomingMovie</title>
+		<title>Review</title>
 		
-		<!-- Material Kit CSS -->
-		<link href="/css/template/material-kit.min.css?v=2.0.5" rel="stylesheet" />
-		<!-- Carousel CSS -->
+		<!-- Carousel -->
+		<script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
 		<link rel="stylesheet" href="/css/scroll/main_movie.css">
 		<noscript><link rel="stylesheet" href="/css/scroll/noscript.css" /></noscript>
-		
-		<!-- Material Kit JS -->
-		<script src="/javascript/template/core/jquery.min.js" type="text/javascript"></script>
-		<script src="/javascript/template/core/popper.min.js" type="text/javascript"></script>
-		<script src="/javascript/template/core/bootstrap-material-design.min.js" type="text/javascript"></script>
-		<script async defer src="https://buttons.github.io/buttons.js"></script>
-		<script src="/javascript/template/material-kit.js?v=2.0.5" type="text/javascript"></script>
 	</head>
 <body>
-	<section class="carousel" style="background-color:#1d1d1d;">
+	<section class="carousel">
+		<div><span class="section-title">영화 리뷰</span></div>
 		<div class="reel" style="overflow: visible; transform: translate(-1285px, 0px);">
 			<c:forEach var="contentMovie" items="${contentMovieReviewList}">
 				<article class="content-movie">
@@ -30,11 +23,13 @@
 						<a href="#">
 							<img class="poster" src="${contentMovie.movieThumbnail}">
 						</a>
+						<button class="content-model-btn movie-title" type="button" data-content="${contentMovie.movieLink}">${contentMovie.movieTitle}</button><br/>
 						<c:set var="movieIndex" value="0" />
 						<c:forEach var="review" items="${contentMovie.movieReviewTitle}">
 							<div class="movie-review">
+								<span class="review-field">리뷰 ${movieIndex + 1}</span><br/>
 								<div class="movie-review-title">
-									<a href="${contentMovie.movieReviewLink[movieIndex]}"><span>${contentMovie.movieReviewTitle[movieIndex]}</span></a><br/>										
+									<span class="movie-review-link" data-content="${contentMovie.movieReviewLink[movieIndex]}">${contentMovie.movieReviewTitle[movieIndex]}</span><br/>										
 								</div>
 							</div>
 							<c:set var="movieIndex" value="${movieIndex + 1}"/>
@@ -44,7 +39,7 @@
 			</c:forEach>
 		</div>
 	</section>
-	
+	<input type="hidden" id="movieReviewInput" value=""/>
 	<!-- Carousel JS -->
 	<script src="/javascript/scroll/jquery.dropotron.min.js"></script>
 	<script src="/javascript/scroll/jquery.scrolly.min.js"></script>
@@ -55,8 +50,14 @@
 	<script src="/javascript/scroll/main.js"></script>
 	<script>
 		$(function(){
-			$(".movie-preview").on("click", function(){
-				$(".movie-preview-wrapper").attr("style","display:block;")
+			$(".movie-review-link").on("click", function(){
+				var content = $(this).data("content");
+				$('#movieReviewInput').val(content);
+			});
+			
+			$(".content-model-btn").on("click", function(){
+				var content = $(this).data("content");
+				$('#movieReviewInput').val(content);
 			});
 		})
 	</script>

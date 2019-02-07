@@ -12,7 +12,7 @@
 
 			// Carousels
 				carousels: {
-					speed: 4,
+					speed: 10,
 					fadeIn: true,
 					fadeDelay: 250
 				},
@@ -205,10 +205,10 @@
 
 					$t._update();
 
-					$window.on('resize', function() {
+					/*$window.on('resize', function() {
 						reelWidth = $reel[0].scrollWidth;
 						$t._update();
-					}).trigger('resize');
+					}).trigger('resize');*/
 
 				});
 

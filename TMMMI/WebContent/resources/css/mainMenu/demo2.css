@@ -36,6 +36,12 @@
 	display: none;
 }
 
+.menu-trigger img {
+	width:3%;
+	height:3%;
+	float:left;
+}
+
 .grim {
 	display: none;
 }
