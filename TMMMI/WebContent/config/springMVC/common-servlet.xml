@@ -43,6 +43,9 @@
 			<mvc:exclude-mapping path="/userRest/*"/>
 			<mvc:exclude-mapping path="/calendarRest/*"/>
 			<mvc:exclude-mapping path="/SNSLogin/*"/>
+			<mvc:exclude-mapping path="/SNSLogin/*"/>
+			<mvc:exclude-mapping path="/calendarRest/*"/>
+			<mvc:exclude-mapping path="/userRest/*"/>
 			<mvc:exclude-mapping path="/css/**"/>
 			<mvc:exclude-mapping path="/font/**"/>
 			<mvc:exclude-mapping path="/images/**"/>

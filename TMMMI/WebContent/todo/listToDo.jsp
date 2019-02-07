@@ -63,6 +63,18 @@ span:hover:before {
 .hide {
 	display: none;
 }
+.todaylist{
+border-style: solid;
+border-width: thin 10px;
+border-right: 12px dotted;
+border-radius: 0.2rem;
+}
+.tomorrowlist{
+border-style: solid;
+border-width: thin 10px;
+border-left: 12px dotted;
+border-radius: 0.2rem;
+}
 </style>
 <script>
 	$(function() {
@@ -229,158 +241,8 @@ span:hover:before {
 </head>
 
 <body class="index-page sidebar-collapse">
-<!-- 등록 모달 -->
-	<div class="modal fade" id="todomodal" role="" tabindex="-1">
-		<div class="modal-dialog" role="document">
-			<div class="modal-content">
-				<div class="card card-plain">
-					<div class="modal-header">
-						<div class="card-header card-header-text card-header-primary">
-							<button aria-hidden="true" class="close" data-dismiss="modal"
-								type="button">
-								<i class="material-icons">clear</i>
-							</button>
-							<h4 class="card-title">Add ToDo</h4>
-						</div>
-					</div>
-				</div>
-				<div class="modal-body">
-					<form class="addform" action="" id="addToDo">
-						<p class="description text-center">용기있는 사람은 모두 약속을 지키는 사람이다
-							-코르네이유-</p>
-						<div class="card-body">
-							<div class="form-group bmd-form-group">
-								<div class="input-group">
-									<div class="input-group-prepend">
-										<div class="input-group-text">
-											<i class="material-icons">create</i>
-										</div>
-									</div>
-									<input type="text" class="form-control 1" id="addToDoDetail"
-										name="toDoDetail" placeholder="할 일을 입력해주세요">
-								</div>
-							</div>
-							<div class="form-group bmd-form-group">
-								<div class="input-group">
-									<div class="input-group-prepend">
-										<div class="input-group-text">
-											<i class="material-icons">calendar_today</i>
-										</div>
-									</div>
-									<input type="text" class="form-control 2" name="toDoStartDate"
-										data-format="Y-m-d" data-large-mode="true" id="dd1">
-									<script>
-										$('#dd1').dateDropper();
-									</script>
-								</div>
-							</div>
-							<div class="form-group bmd-form-group">
-								<div class="input-group">
-									<div class="input-group-prepend">
-										<div class="input-group-text">
-											<i class="material-icons">flag</i>
-										</div>
-									</div>
-									<input type="text" class="form-control 3" name="toDoEndDate"
-										data-format="Y-m-d" data-large-mode="true"
-										data-init-set="false" id="dd2">
-									<script>
-										$('#dd2').dateDropper();
-									</script>
-								</div>
-							</div>
-						</div>
-					</form>
-				</div>
-				<div class="modal-footer">
-					<button class="btn btn-secondary" data-dismiss="modal"
-						type="button">취소</button>
-					<button class="btn btn-primary" id="addToDobtn" type="submit">등록</button>
-				</div>
-			</div>
-			<!-- /.modal-content -->
-		</div>
-		<!-- /.modal-dialog -->
-	</div>
-	<!-- 등록 모달 끝 -->
-
-	<!--수정 모달 -->
-	<div class="modal fade" id="updatetodomodal" role="" tabindex="-1">
-		<div class="modal-dialog" role="document">
-			<div class="modal-content">
-				<div class="card card-plain">
-					<div class="modal-header">
-						<div class="card-header card-header-text card-header-primary">
-							<button aria-hidden="true" class="close" data-dismiss="modal"
-								type="button">
-								<i class="material-icons">clear</i>
-							</button>
-							<h4 class="card-title">Update ToDo</h4>
-						</div>
-					</div>
-				</div>
-				<div class="modal-body">
-					<form class="updateform" method="" action="">
-						<div class="card-body">
-							<div class="form-group bmd-form-group">
-								<div class="input-group">
-									<div class="input-group-prepend">
-										<div class="input-group-text">
-											<i class="material-icons">create</i>
-										</div>
-									</div>
-									<input type="hidden" class="form-control" name="toDoNo" id="updateToDoNo">
-									<input type="text" class="form-control 4" id="updateToDoDetail"
-										name="toDoDetail" value="">
-								</div>
-							</div>
-							<div class="form-group bmd-form-group">
-								<div class="input-group">
-									<div class="input-group-prepend">
-										<div class="input-group-text">
-											<i class="material-icons">calendar_today</i>
-										</div>
-									</div>
-									<input type="text" class="form-control 5" name="toDoStartDate"
-										data-format="Y-m-d" data-large-mode="true"
-										data-init-set="false" id="dd3" value="">
-									<script>
-										$('#dd3').dateDropper();
-									</script>
-								</div>
-							</div>
-							<div class="form-group bmd-form-group">
-								<div class="input-group">
-									<div class="input-group-prepend">
-										<div class="input-group-text">
-											<i class="material-icons">flag</i>
-										</div>
-									</div>
-									<input type="text" class="form-control 6" name="toDoEndDate"
-										data-format="Y-m-d" data-large-mode="true"
-										data-init-set="false" id="dd4" value="">
-									<script>
-										$('#dd4').dateDropper();
-									</script>
-								</div>
-								<p class="description text-center">용기있는 사람은 모두 약속을 지키는 사람이다
-							-코르네이유-</p>
-							</div>
-						</div>
-					</form>
-				</div>
-				<div class="modal-footer">
-					<button class="btn btn-secondary" data-dismiss="modal"
-						type="button">취소</button>
-					<button class="btn btn-primary" id="updateToDobtn" type="submit">수정</button>
-				</div>
-			</div>
-			<!-- /.modal-content -->
-		</div>
-		<!-- /.modal-dialog -->
-	</div>
-	<!-- 수정 모달 끝 -->
-	
+	<!-- 등록&수정 모달 -->
+   <jsp:include page="/todo/addToDo.jsp"></jsp:include>
 <jsp:include page="/common/toolbar2.jsp"></jsp:include>
   <div class="page-header header-filter clear-filter" data-parallax="true" style="background-image: url('/images/userSetting/ ${userSetting.image}')">
     <div class="container">
@@ -388,7 +250,7 @@ span:hover:before {
         <div class="col-md-8 ml-auto mr-auto">
           <div class="brand">
             <h2 class="title">ToDo List</h2>
-            <h3 class="title">자신의 하루하루를 관리하세요</h3>
+            <h3 class="title">Take care of yourself</h3>
           </div>
         </div>
       </div>
@@ -396,48 +258,45 @@ span:hover:before {
   </div>
   <div class="main main-raised">
     <div class="section section-basic">
-      <div class="container">
 	<!-- 할 일 리스트 -->
 	<div class="container">
-		<div class="form-group"></div>
 		<div class="list">
-			<div class="card">
-				<div class="card-header card-header-text card-header-primary">
-					<div class="card-text">
-						<div class="row">
-							<div class="col-md-6">
-								<h3 class="card-title">
-									Today's Promise
-									<button class="btn btn-warning btn-fab btn-fab-mini btn-round"
-										data-target="#todomodal" data-toggle="modal" style="">
-										<i class="material-icons">add</i>
-									</button>
-								</h3>
+			<form class="currentdateform" action="">
+				<div class="form-group" style="margin-left:80%;">
+				<div class="row">
+						<div class="col-md-6">
+						<input type="text" class="form-control" name="toDoStartDate"
+							value="${displaydate}" data-format="Y-m-d" id="dd5" data-large-only="true" style="background-color:#ffffff;font-size: large;">
 							</div>
-							<form class="currentdateform" action="">
-							<div class="form-group" style="margin:0px; padding:10px;">
-							<div class="row">
-							<div class="col-md-8">
-									<input type="text" class="form-control" name="toDoStartDate"
-										value="${displaydate}" data-format="Y-m-d" id="dd5" data-large-only="true" style="border-radius: 2px;">
-										</div>
-										<div class="col-md-4">
-									<button
-										class="btn btn-warning btn-fab btn-fab-mini btn-round search"
-										id="search" type="submit">
-										<i class="material-icons">search</i>
-									</button>
-									</div>
-									<script>
-										$('#dd5').dateDropper();
-									</script>
-									</div>
-								</div>
-							</form>
+							<div class="col-md-2">
+						<button
+							class="btn btn-warning btn-fab btn-fab-mini btn-round search"
+							id="search" type="submit">
+							<i class="material-icons">search</i>
+						</button>
 						</div>
+						<script>
+							$('#dd5').dateDropper();
+						</script>
 					</div>
+					</div>
+				</form>
+				
+			<div class="row">
+				<div class="col-md-6">
+					<h3 >오늘의 할 일
+						<button class="btn btn-warning btn-fab btn-fab-mini btn-round"
+							data-target="#todomodal" data-toggle="modal" style="">
+							<i class="material-icons">add</i>
+						</button>
+					</h3>
 				</div>
-				<div class="card-body">
+				<div class="col-md-6">
+				<h3>내일의 할 일</h3>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-6 todaylist" style="min-height:700px;">
 					<c:forEach items="${todolist}" var="todo">
 						<ul class="list-group list-group-flush  ${todo.toDoNo}"
 							data-todono="${todo.toDoNo}">
@@ -483,16 +342,43 @@ span:hover:before {
 										<i class="material-icons">clear</i>
 									</button>
 								</div>
-								</li>
+							</li>
 						</ul>
 					</c:forEach>
+				</div>
+				<div class="col-md-6 tomorrowlist">
+					<c:forEach items="${nextlist}" var="todo">
+						<ul class="list-group list-group-flush  ${todo.toDoNo}"
+							data-todono="${todo.toDoNo}">
+							<li class="list-group-item">
+							<c:if test="${todo.toDoCompleteNo  eq 0}">
+									<button aria-label="Left Align"
+										class="btn btn-primary btn-fab btn-fab-mini completebtn ${todo.toDoNo}"
+										data-ctodono="${todo.toDoNo}" 
+										data-dctodono="${todo.toDoCompleteNo}"
+										data-cpdate="${targetDate}"
+										type="button">
+										<i class="material-icons">check</i>
+									</button>
+								</c:if> 
+								<c:if test="${todo.toDoCompleteNo  ne 0}">
+									<button aria-label="Left Align"
+										class="btn btn-success btn-fab btn-fab-mini completeDelbtn ${todo.toDoCompleteNo}"
+										data-ctodono="${todo.toDoNo}"
+										data-dctodono="${todo.toDoCompleteNo}" type="button">
+										<i class="material-icons">check</i>
+									</button>
+									</c:if> 
+								<div class="ctodoDetail${todo.toDoNo}">${todo.toDoDetail}</div>
+							</li>
+						</ul>
+					</c:forEach>
+				</div>
+				</div>
 				</div>
 			</div>
 		</div>
 	</div>
-      </div>
-    </div>
-  </div>
   <jsp:include page="/common/footer.jsp"></jsp:include>
 </body>
 </html>

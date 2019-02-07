@@ -118,8 +118,8 @@ $(function(){
 							<div class="form-group bmd-form-group">
 								<label class="bmd-label-static">Menu Font Color</label>
 								<div id="picker"></div>
-								<div><label style="width:195px;" for="color1">현재 메뉴 폰트 색상:</label><input type="text" id="color1" name="color1" class="colorwell" value="${userSetting.menuFontColor }" /></div>
-								<div><label style="width:195px;" for="menuFontColor">변경할 메뉴 폰트 색상:</label><input type="text" id="menuFontColor" name="menuFontColor" class="colorwell" value="" /></div>
+								<div><label style="width:195px;" for="color1">현재 메뉴 폰트 색상:</label><input type="text" id="color1" name="color1" class="colorwell" value="${userSetting.menuFontColor}" /></div>
+								<div><label style="width:195px;" for="menuFontColor">변경할 메뉴 폰트 색상:</label><input type="text" id="menuFontColor" name="menuFontColor" class="colorwell" value=" " /></div>
 							</div>
 						</div>
 						<div class="row">

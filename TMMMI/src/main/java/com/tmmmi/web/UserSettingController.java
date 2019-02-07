@@ -76,7 +76,7 @@ public class UserSettingController {
 		session.setAttribute("userSetting", userSettingService.getUserSetting((int)session.getAttribute("userNo")));
 		
 		ModelAndView modelAndView = new ModelAndView();
-		modelAndView.setViewName("/userSetting/getUserSetting.jsp");
+		modelAndView.setViewName("redirect:/userSetting/getUserSetting");
 		
 		return modelAndView;
 	}
