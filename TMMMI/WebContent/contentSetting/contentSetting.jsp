@@ -65,6 +65,11 @@
  	
  	<!-- li 변경 이벤트 -->
  	<script type="text/javascript">
+ 	function capitalize(s)
+ 	{
+ 	    return s[0].toUpperCase() + s.slice(1);
+ 	}
+ 	
  	$(function(){
  		$(document).ready(function(){
  	 	    $(".box").change(function(){
@@ -81,11 +86,12 @@
  	 	    
  	 	  	$("input[type=text]").on("change", function(){
  	 	  		var id = $(this).attr('id').replace("Check", "");
- 	 	  		console.log(id);
+ 	 	  		var id2 = capitalize(id);
+ 	 	  		console.log(id2);
 				if ($(this).val() == '') {
-					$('#'+id+'Check').remove();
+					$('#show'+id2).remove();
 				} else {
-					$('li').last().after('<li id=\''+id+'\'class="ui-state-default ui-sortable-handle">'+$(this).val()+'</li>');
+					$('li').last().after('<li id=\'show'+id2+'\'class="ui-state-default ui-sortable-handle">'+$(this).val()+'</li>');
 				}
 			});
  	 	});
@@ -161,12 +167,11 @@
 			<div style="float:right; width:100%; margin: 0 auto;" class="col-sm-7">
 				<hr width="98%" color="#f56a6a"/>
 				<div class="col-sm-2"><h4>영화</h4></div>
-				<div class="col-sm-2"><input type="checkbox" class="box" id="boxOfficeTop10Check" value="박스오피스" ${ ! empty contentSetting.boxOfficeTop10 && contentSetting.boxOfficeTop10 >= 1 ? "checked" : "" }><label for="boxOfficeTop10Check">박스오피스</label></div>
-				<div class="col-sm-2"><input type="checkbox" class="box" id="romanceComedyCheck" value="로맨스/코미디" ${ ! empty contentSetting.romanceComedy && contentSetting.romanceComedy >= 1 ? "checked" : "" }><label for="romanceComedyCheck">로맨스/코미디</label></div>
-				<div class="col-sm-2"><input type="checkbox" class="box" id="actionCheck" value="액션" ${ ! empty contentSetting.action && contentSetting.action >= 1 ? "checked" : "" }><label for="actionCheck">액션</label></div>
-				<div class="col-sm-2"><input type="checkbox" class="box" id="horrorThrillerCheck" value="호러/스릴러" ${ ! empty contentSetting.horrorThriller && contentSetting.horrorThriller >= 1 ? "checked" : "" }><label for="horrorThrillerCheck">호러/스릴러</label></div>
-				<div class="col-sm-2"><input type="checkbox" class="box" id="animationCheck" value="애니메이션" ${ ! empty contentSetting.animation && contentSetting.animation >= 1 ? "checked" : "" }><label for="animationCheck">애니메이션</label></div>
-				<div class="col-sm-2"><input type="checkbox" class="box" id="fantasySFCheck" value="판타지/SF" ${ ! empty contentSetting.fantasySF && contentSetting.fantasySF >= 1 ? "checked" : "" }><label for="fantasySFCheck">판타지</label></div> 
+				<div class="col-sm-2"><input type="checkbox" class="box" id="movieBoxOfficeCheck" value="박스 오피스" ${ ! empty contentSetting.movieBoxOffice && contentSetting.movieBoxOffice >= 1 ? "checked" : "" }><label for="movieBoxOfficeCheck">박스 오피스</label></div>
+				<div class="col-sm-2"><input type="checkbox" class="box" id="movieNewCheck" value="현재 상영영화" ${ ! empty contentSetting.movieNew && contentSetting.movieNew >= 1 ? "checked" : "" }><label for="movieNewCheck">현재 상영영화</label></div>
+				<div class="col-sm-2"><input type="checkbox" class="box" id="movieUpcomingCheck" value="개봉 예정영화" ${ ! empty contentSetting.movieUpcoming && contentSetting.movieUpcoming >= 1 ? "checked" : "" }><label for="movieUpcomingCheck">개봉 예정영화</label></div>
+				<div class="col-sm-2"><input type="checkbox" class="box" id="movieReviewCheck" value="영화 리뷰" ${ ! empty contentSetting.movieReview && contentSetting.movieReview >= 1 ? "checked" : "" }><label for="movieReviewCheck">영화 리뷰</label></div>
+				<div class="col-sm-2"><input type="checkbox" class="box" id="movieTrailerCheck" value="영화 예고편" ${ ! empty contentSetting.movieTrailer && contentSetting.movieTrailer >= 1 ? "checked" : "" }><label for="movieTrailerCheck">영화 예고편</label></div>
 				<hr width="98%" />
 			</div>
 			<div style="float:right; width:100%; margin: 0 auto;" class="col-sm-13">
@@ -175,8 +180,7 @@
 				<div class="col-sm-2"><input type="checkbox" class="box" id="overseaSoccerCheck" value="해외 축구" ${ ! empty contentSetting.overseaSoccer && contentSetting.overseaSoccer >= 1 ? "checked" : "" }><label for="overseaSoccerCheck">해외 축구</label></div>
 				<div class="col-sm-2"><input type="checkbox" class="box" id="baseballCheck" value="국내 야구" ${ ! empty contentSetting.baseball && contentSetting.baseball >= 1 ? "checked" : "" }><label for="baseballCheck">국내 야구</label></div>
 				<div class="col-sm-2"><input type="checkbox" class="box" id="overseaBaseballCheck" value="해외 야구" ${ ! empty contentSetting.overseaBaseball && contentSetting.overseaBaseball >= 1 ? "checked" : "" }><label for="overseaBaseballCheck">해외 야구</label></div>
-				<div class="col-sm-2"><input type="checkbox" class="box" id="basketballCheck" value="국내 농구" ${ ! empty contentSetting.basketball && contentSetting.basketball >= 1 ? "checked" : "" }><label for="basketballCheck">국내 농구</label></div>
-				<div class="col-sm-2"><input type="checkbox" class="box" id="overseaBasketballCheck" value="해외 농구" ${ ! empty contentSetting.overseaBasketball && contentSetting.overseaBasketball >= 1 ? "checked" : "" }><label for="overseaBasketballCheck">해외 농구</label></div>
+				<div class="col-sm-2"><input type="checkbox" class="box" id="basketballCheck" value="농구" ${ ! empty contentSetting.basketball && contentSetting.basketball >= 1 ? "checked" : "" }><label for="basketballCheck">농구</label></div>
 				<div class="col-sm-2"><input type="checkbox" class="box" id="sportGeneralCheck" value="스포츠 일반" ${ ! empty contentSetting.sportGeneral && contentSetting.sportGeneral >= 1 ? "checked" : "" }><label for="sportGeneralCheck">스포츠 일반</label></div>
 				<div class="col-sm-2"><input type="checkbox" class="box" id="sportHighlightCheck" value="하이라이트" ${ ! empty contentSetting.sportHighlight && contentSetting.sportHighlight >= 1 ? "checked" : "" }><label for="sportHighlightCheck">하이라이트</label></div>
 				<hr width="98%" />
@@ -211,27 +215,21 @@
 		<div class="container" style="margin: 0 2px 0 0;">
 		<div style="margin: 0 auto;" class="col-sm-12">
 			<ul id="sortable">
-			  <c:if test="${ ! empty contentSetting.boxOfficeTop10 && contentSetting.boxOfficeTop10 >=1 }"><li id="boxOfficeTop10" class="ui-state-default">박스오피스</li></c:if>
-			  <c:if test="${ ! empty contentSetting.romanceComedy && contentSetting.romanceComedy >=1 }"><li id="romanceComedy"  class="ui-state-default">로맨스/코미디</li></c:if>
-			  <c:if test="${ ! empty contentSetting.action && contentSetting.action >=1 }"><li id="action"  class="ui-state-default">액션</li></c:if>
-			  <c:if test="${ ! empty contentSetting.horrorThriller && contentSetting.horrorThriller >=1 }"><li id="horrorThriller"  class="ui-state-default">호러/스릴러</li></c:if>
-			  <c:if test="${ ! empty contentSetting.animation && contentSetting.animation >=1 }"><li id="animation"  class="ui-state-default">애니메이션</li></c:if>
-			  <c:if test="${ ! empty contentSetting.fantasySF && contentSetting.fantasySF >=1 }"><li id="fantasySF"  class="ui-state-default">판타지/SF</li></c:if>
+			  <c:if test="${ ! empty contentSetting.movieBoxOffice && contentSetting.movieBoxOffice >=1 }"><li id="movieBoxOffice" class="ui-state-default">박스 오피스</li></c:if>
+			  <c:if test="${ ! empty contentSetting.movieNew && contentSetting.movieNew >=1 }"><li id="movieNew"  class="ui-state-default">현재 상영영화</li></c:if>
+			  <c:if test="${ ! empty contentSetting.movieUpcoming && contentSetting.movieUpcoming >=1 }"><li id="movieUpcoming"  class="ui-state-default">개봉 예정영화</li></c:if>
+			  <c:if test="${ ! empty contentSetting.movieReview && contentSetting.movieReview >=1 }"><li id="movieReview"  class="ui-state-default">영화 리뷰</li></c:if>
+			  <c:if test="${ ! empty contentSetting.movieTrailer && contentSetting.movieTrailer >=1 }"><li id="movieTrailer"  class="ui-state-default">영화 예고편</li></c:if>
 			 
 			  <c:if test="${ ! empty contentSetting.soccer && contentSetting.soccer >=1 }"><li id="soccer"  class="ui-state-default">국내 축구</li></c:if>
 			  <c:if test="${ ! empty contentSetting.overseaSoccer && contentSetting.overseaSoccer >=1 }"><li id="overseaSoccer"  class="ui-state-default">해외 축구</li></c:if>
 			  <c:if test="${ ! empty contentSetting.baseball && contentSetting.baseball >=1 }"><li id="baseball"  class="ui-state-default">국내 야구</li></c:if>
 			  <c:if test="${ ! empty contentSetting.overseaBaseball && contentSetting.overseaBaseball >=1 }"><li id="overseaBaseball"  class="ui-state-default">해외 야구</li></c:if>
-			  <c:if test="${ ! empty contentSetting.basketball && contentSetting.basketball >=1 }"><li id="basketball"  class="ui-state-default">국내 농구</li></c:if>
-			  <c:if test="${ ! empty contentSetting.overseaBasketball && contentSetting.overseaBasketball >=1 }"><li id="overseaBasketball"  class="ui-state-default">해외 농구</li></c:if>
+			  <c:if test="${ ! empty contentSetting.basketball && contentSetting.basketball >=1 }"><li id="basketball"  class="ui-state-default">농구</li></c:if>
 			  <c:if test="${ ! empty contentSetting.sportGeneral && contentSetting.sportGeneral >=1 }"><li id="sportGeneral"  class="ui-state-default">스포츠 일반</li></c:if>
 			  <c:if test="${ ! empty contentSetting.sportHighlight && contentSetting.sportHighlight >=1 }"><li id="sportHighlight"  class="ui-state-default">하이라이트</li></c:if>
 			  
-			  <c:if test="${ ! empty contentSetting.koreanFood && contentSetting.koreanFood >=1 }"><li id="koreanFood" class="ui-state-default">한식</li></c:if>
-			  <c:if test="${ ! empty contentSetting.chineseFood && contentSetting.chineseFood >=1 }"><li id="chineseFood"  class="ui-state-default">중식</li></c:if>
-			  <c:if test="${ ! empty contentSetting.japaneseFood && contentSetting.japaneseFood >=1 }"><li id="japaneseFood"  class="ui-state-default">일식</li></c:if>
-			  <c:if test="${ ! empty contentSetting.foreignFood && contentSetting.foreignFood >=1 }"><li id="foreignFood"  class="ui-state-default">양식</li></c:if>
-			  <c:if test="${ ! empty contentSetting.dessert && contentSetting.dessert >=1 }"><li id="dessert"  class="ui-state-default">디저트</li></c:if>
+			  <c:if test="${ ! empty contentSetting.tastyKeyword && contentSetting.showTastyKeyword >=1 }"><li id="showTastyKeyword" class="ui-state-default">${contentSetting.tastyKeyword }</li></c:if>
 			 
 			  <c:if test="${ ! empty contentSetting.shoppingSearch1 && contentSetting.showShoppingSearch1 >=1 }"><li id="showShoppingSearch1"  class="ui-state-default">${contentSetting.shoppingSearch1}</li></c:if>
 			  <c:if test="${ ! empty contentSetting.shoppingSearch2 && contentSetting.showShoppingSearch2 >=1 }"><li id="showShoppingSearch2"  class="ui-state-default">${contentSetting.shoppingSearch2}</li></c:if>
@@ -248,8 +246,8 @@
 		</div>
 		<div class="col-sm-12">
 			<br/>
-			<a class="button" href="#" role="button">이&nbsp;전</a>
-			<button type="button" class="button primary" ><span id="p1" style="font-size:20px">수&nbsp;정</span></button><br/><br/>
+			<a class="button small" href="#" role="button"><span id="p1" style="font-size:20px">이&nbsp;전</span></a>
+			<button type="button" class="button primary small" ><span id="p1" style="font-size:20px">수&nbsp;정</span></button><br/><br/>
 		</div>
 	</form>
 </div>
