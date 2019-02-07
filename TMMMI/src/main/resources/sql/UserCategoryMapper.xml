@@ -29,6 +29,12 @@
 	 	WHERE user_no = #{userNo} AND user_category_name = #{userCategoryName} AND user_category_color = #{userCategoryColor} 
 	 </select>
 	 
+	 <select  id="getUserCategoryByNo"  parameterType="com.tmmmi.service.domain.UserCategory"	resultMap="userCategorySelectMap">
+	 	SELECT *
+	 	FROM user_category
+	 	WHERE user_category_no = #{userCategoryNo} 
+	 </select>
+	 
 	 <select  id="getUserCategoryList"  parameterType="java.lang.Integer"	resultMap="userCategorySelectMap">
 	 	SELECT *
 	 	FROM user_category

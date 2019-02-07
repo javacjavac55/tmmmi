@@ -233,7 +233,7 @@
 									value="${diary.diaryNo}" /> --%>
 									</td>
 									<td align="left">${ i }</td>
-									<td align="left">${diary.userCategoryNo}</td>
+									<td align="left">${diary.userCategoryName}</td>
 									<td align="left" data-param2="${diary.diaryNo}" style="cursor:pointer">${diary.diaryTitle}</td>
 									<td align="left">${diary.diaryDate}</td>
 								</tr>

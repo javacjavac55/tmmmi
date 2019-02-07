@@ -10,4 +10,5 @@ public interface UserCategoryDao {
 	public List<UserCategory> getUserCategoryList(int userNo);
 	public int updateUserCategory(UserCategory userCategory);
 	public int deleteUserCategory(UserCategory userCategory);
+	public UserCategory getUserCategoryByNo(int userCategoryNo);
 }

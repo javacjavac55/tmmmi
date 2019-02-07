@@ -9,7 +9,9 @@ public class Diary {
 	private int userCategoryNo;
 	private String diaryTitle;
 	private String diaryDetail;
-	private Date diaryDate;
+	private Date diaryDate;	
+	private String userCategoryName; 
+	private String userCategoryColor;
 	
 	public Diary() {
 		// TODO Auto-generated constructor stub
@@ -32,6 +34,7 @@ public class Diary {
 	}
 
 	public int getUserCategoryNo() {
+		
 		return userCategoryNo;
 	}
 
@@ -62,11 +65,32 @@ public class Diary {
 	public void setDiaryDate(Date diaryDate) {
 		this.diaryDate = diaryDate;
 	}
+	
+	public String getUserCategoryName() {
+		return userCategoryName;
+	}
+
+	public void setUserCategoryName(String userCategoryName) {
+		this.userCategoryName = userCategoryName;
+	}
+	
+	public String getUserCategoryColor() {
+		return userCategoryColor;
+	}
+
+	public void setUserCategoryColor(String userCategoryColor) {
+		this.userCategoryColor = userCategoryColor;
+	}
 
 	@Override
 	public String toString() {
 		return "Diary [diaryNo=" + diaryNo + ", userNo=" + userNo + ", userCategoryNo=" + userCategoryNo
-				+ ", diaryTitle=" + diaryTitle + ", diaryDetail=" + diaryDetail + ", diaryDate=" + diaryDate + "]";
+				+ ", diaryTitle=" + diaryTitle + ", diaryDetail=" + diaryDetail + ", diaryDate=" + diaryDate
+				+ ", userCategoryName=" + userCategoryName + ", userCategoryColor=" + userCategoryColor + "]";
 	}
+
+	
+
+	
 
 }

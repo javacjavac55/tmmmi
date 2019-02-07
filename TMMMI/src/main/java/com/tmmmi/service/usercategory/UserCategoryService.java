@@ -10,5 +10,6 @@ public interface UserCategoryService {
 	public List<UserCategory> getInterestCategoryList();
 	public int updateUserCategory(UserCategory userCategory);
 	public int deleteUserCategory(UserCategory userCategory);
+	public UserCategory getUserCategoryByNo(int userCategoryNo);
 	
 }

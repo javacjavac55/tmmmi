@@ -62,4 +62,10 @@ public class UserCategoryServiceImpl implements UserCategoryService {
 	public int deleteUserCategory(UserCategory userCategory) {
 		return userCategoryDao.deleteUserCategory(userCategory);
 	}
+
+	@Override
+	public UserCategory getUserCategoryByNo(int userCategoryNo) {
+		// TODO Auto-generated method stub
+		return userCategoryDao.getUserCategoryByNo(userCategoryNo);
+	}
 }
