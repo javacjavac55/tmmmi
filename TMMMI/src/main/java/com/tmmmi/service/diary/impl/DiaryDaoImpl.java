@@ -46,7 +46,31 @@ public class DiaryDaoImpl implements DiaryDao {
 		map.put("search", search);
 		map.put("userNo", userNo);
 		
-		return sqlSession.selectList("DiaryMapper.getDiaryList", map);
+		List<Diary> re= sqlSession.selectList("DiaryMapper.getDiaryList", map);
+		
+		for(Diary image: re) {
+			//
+			
+			String detail = image.getDiaryDetail();
+			System.out.println("다이어리 내용"+image.getDiaryDetail());
+			
+			if(detail.contains("img")==true) {
+				detail = detail.split("alt=\"\"")[1].split("style")[0];
+				detail = "<img"+detail+">";
+			}
+			else {
+				//<img src= /diary/imageDiary/ 312321.j[g]>
+			}
+			System.out.println("이미지파일"+ detail);
+			
+			System.out.println("이미지파일origin"+ detail);
+			
+			image.setDiaryDetail(detail);
+			//
+		}
+		
+		
+		return re;
 	}
 
 	@Override

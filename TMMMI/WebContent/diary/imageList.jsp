@@ -1,4 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
+"gy"$"$"<%@ page language="java" contentType="text/html; charset=EUC-KR"
 	pageEncoding="EUC-KR"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
@@ -93,8 +93,8 @@
 			location.replace('/diary/addDiary');
 		});
 
-		$(".getDetail td:nth-child(4)").on("click", function() {
-			var diaryNo = $(this).data('param2');
+		$("#getDiary").on("click", function() {
+			var diaryNo = $(this).data('param1');
 			console.log("아아아");
 			self.location = "/diary/getDiary?diaryNo=" + diaryNo;
 		});
@@ -104,14 +104,79 @@
 			//alert(  $( "td.ct_btn01:contains('검색')" ).html() );
 			fncGetList(1);
 		});
-		
-		$("#imageList").on("click", function(){
-			var currentPage =$(this).data('param1');
-			location.replace('/diary/imageList?currentPage='+currentPage);
-		})
 
 	});
 </script>
+<style>
+	@font-face{font-family:'Calluna';
+ src:url('https://s3-us-west-2.amazonaws.com/s.cdpn.io/4273/callunasansregular-webfont.woff') format('woff');
+}
+body {
+	background: url(//subtlepatterns.com/patterns/scribble_light.png);
+  font-family: Calluna, Arial, sans-serif;
+  min-height: 1000px;
+}
+#columns {
+	column-width: 320px;
+	column-gap: 15px;
+  width: 90%;
+	max-width: 1100px;
+	margin: 50px auto;
+}
+
+div#columns figure {
+	background: #fefefe;
+	border: 2px solid #fcfcfc;
+	border-radius: 15px;
+	box-shadow: 0 1px 2px rgba(34, 25, 25, 0.4);
+	margin: 0 2px 15px;
+	padding: 15px;
+	padding-bottom: 10px;
+	transition: opacity .4s ease-in-out;
+  display: inline-block;
+  column-break-inside: avoid;
+}
+
+div#columns figure img {
+	width: 100%; height: auto;
+	border-bottom: 1px solid #ccc;
+	padding-bottom: 15px;
+	margin-bottom: 5px;
+}
+
+/*텍스트  */
+div#columns figure figcaption {
+  font-size: .9rem;
+	color: #444;
+  line-height: 1.5;
+}
+
+/*현재 상황에서 안먹하ㅣㅁ */
+div#columns small { 
+  font-size: 1rem;
+  float: right; 
+  text-transform: uppercase;
+  color: #aaa;
+} 
+
+/*현재 상황에서 안먹힘  */
+div#columns small a { 
+  color: #666; 
+  text-decoration: none; 
+  transition: .4s color;
+}
+
+/*하나 선택했을 때 나머지 흐리게 하는거  */
+div#columns:hover figure:not(:hover) {
+	opacity: 0.7;
+}
+
+/*현재 상황에서 안먹힘  */
+@media screen and (max-width: 750px) { 
+  #columns { column-gap: 0px; }
+  #columns figure { width: 100%; }
+}
+</style>
 </head>
 <body class="index-page sidebar-collapse">
 	<jsp:include page="/common/toolbar2.jsp"></jsp:include>
@@ -192,58 +257,23 @@
 
 				<!--  table Start /////////////////////////////////////-->
 				<form name="deleteForm">
-					<table class="table table-hover table-striped">
+								<div id="columns">
+									<c:forEach var="diary" items="${list}">
+										<c:set var="i" value="${ i+1 }" />
+										
+			 								<figure id=getDiary data-param1="${diary.diaryNo}" style="cursor:pointer"> 
+												${diary.diaryDetail}
+													<figcaption>
+														${diary.diaryTitle}
+													</figcaption>
+											 </figure>
+										
 
-						<thead>
-							<tr>
-								<th align="center">
-									<div class="form-check">
-										<label class="form-check-label"> <input id="allCheck"
-											name="allCheck" class="form-check-input" type="checkbox"
-											onclick="fncAllchk();" /> 전체선택 <span class="form-check-sign">
-												<span class="check"></span>
-										</span>
-										</label>
-									</div> <!-- 
-              <input id="allCheck" name="allCheck"
-								type="checkbox" onclick="fncAllchk();" />전체선택 -->
-								</th>
-								<th align="left">No</th>
-								<th align="left">카테고리</th>
-								<th align="left">다이어리 제목</th>
-								<th align="left">작성 날짜</th>
-							</tr>
-						</thead>
+									</c:forEach>
+								</div>			
 
-						<tbody>
-
-							<c:set var="i" value="0" />
-							<c:forEach var="diary" items="${list}">
-								<c:set var="i" value="${ i+1 }" />
-								<tr class="getDetail">
-									<td align="left">
-										<div class="form-check">
-											<label class="form-check-label"> <input
-												name="deleteDiary" class="form-check-input" type="checkbox"
-												value="${diary.diaryNo}" /> <span class="form-check-sign">
-													<span class="check"></span>
-											</span>
-											</label>
-										</div> <%-- <input name="deleteDiary" type="checkbox"
-									value="${diary.diaryNo}" /> --%>
-									</td>
-									<td align="left">${ i }</td>
-									<td align="left">${diary.userCategoryNo}</td>
-									<td align="left" data-param2="${diary.diaryNo}" style="cursor:pointer">${diary.diaryTitle}</td>
-									<td align="left">${diary.diaryDate}</td>
-								</tr>
-							</c:forEach>
-
-						</tbody>
-
-					</table>
-					<!--  table End /////////////////////////////////////-->
-					<div class="form-group">
+						<!--  table End /////////////////////////////////////-->
+						<!-- <div class="form-group">
 						<div class="col-sm-offset-4  col-sm-4 text-left"
 							style="float: left;">
 							<button type="button" name="delete" class="btn btn-primary"
@@ -254,15 +284,9 @@
 							<button type="button" name="add" class="btn btn-primary"
 								id="addDiary" onclick="fncAddDiary();">글쓰기</button>
 						</div>
-						<div class="col-sm-offset-4  col-sm-4 text-right"
-							style="float: right;">
-							<button type="button" name="imageList" class="btn btn-primary"
-								id="imageList" data-param1="${search.currentPage}">이미지형식으로보기</button>
-						</div>
-					</div>
-
+					</div> -->
 				</form>
-				<jsp:include page="../common/pageNavigator.jsp" />
+				<%-- <jsp:include page="../common/pageNavigator.jsp" /> --%>
 			</div>
 		</div>
 	</div>

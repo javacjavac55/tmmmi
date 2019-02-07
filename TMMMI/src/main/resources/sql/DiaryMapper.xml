@@ -56,7 +56,7 @@
 	<select  id="getDiaryList"  parameterType="map"	resultMap="DiarySelectMap">
 	  	SELECT *
 	  	FROM (	SELECT inner_table.* , ROWNUM AS row_seq
-	  					FROM		(	SELECT diary_no ,user_no, user_category_no, diary_title, diary_date
+	  					FROM		(	SELECT diary_no ,user_no, user_category_no, diary_title, diary_detail, diary_date
 											FROM diary
 											<where>
 												user_no=#{userNo}																							
@@ -71,7 +71,7 @@
 	
 	<select  id="getTotalCount"  parameterType="map"	 resultType="int">
 	  	SELECT COUNT(*)
-	  	FROM(	SELECT diary_no , user_no, user_category_no, diary_title, diary_date
+	  	FROM(	SELECT diary_no , user_no, user_category_no, diary_title, diary_detail, diary_date
 											FROM diary
 											<where>
 												user_no=#{userNo}												

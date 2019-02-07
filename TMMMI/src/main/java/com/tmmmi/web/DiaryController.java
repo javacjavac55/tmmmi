@@ -101,8 +101,22 @@ public class DiaryController {
 		
 		
 		int userNo = ((int)session.getAttribute("userNo"));
+		//
+		/*Diary diary = new Diary();
+		diary= diaryService.getDiary(diaryNo);
+		String detail = diary.getDiaryDetail();
+		System.out.println("다이어리 내용"+diary.getDiaryDetail());
 		
+		if(detail.contains("img")==true) {
+			detail = detail.split("<img")[1].split("style")[0];
+		}
+		System.out.println("이미지파일"+ detail);
+		detail = "<img"+detail+">";
+		System.out.println("이미지파일origin"+ detail);
 		
+		diary.setDiaryDetail(detail);
+		//
+*/		
 		if(search.getCurrentPage() ==0 ){
 			search.setCurrentPage(1);
 		}
@@ -116,11 +130,36 @@ public class DiaryController {
 		System.out.println(resultPage);
 
 		System.out.println("dkdkdkkdkdk2");
+		
 		ModelAndView modelAndView = new ModelAndView();
 		modelAndView.addObject("list", map.get("list"));
 		modelAndView.addObject("resultPage", resultPage);
 		modelAndView.addObject("search", search);
 		modelAndView.setViewName("/diary/listDiary.jsp");
+		
+		return modelAndView;
+	}
+	@RequestMapping(value="imageList", method=RequestMethod.GET)
+	public ModelAndView imageList(@ModelAttribute("search") Search search , HttpSession session)throws Exception{
+		
+		int userNo = ((int)session.getAttribute("userNo"));
+		
+		if(search.getCurrentPage() ==0 ){
+			search.setCurrentPage(1);
+		}
+		search.setPageSize(pageSize);		
+		
+		// Business logic 수행
+		Map<String , Object> map=diaryService.getDiaryList(search, userNo);
+		
+		Page resultPage = new Page( search.getCurrentPage(), ((Integer)map.get("totalCount")).intValue(), pageUnit, pageSize);
+		System.out.println(resultPage);
+		
+		ModelAndView modelAndView = new ModelAndView();
+		modelAndView.addObject("list", map.get("list"));
+		modelAndView.addObject("resultPage", resultPage);
+		modelAndView.addObject("search", search);
+		modelAndView.setViewName("/diary/imageList.jsp");
 		
 		return modelAndView;
 	}
@@ -250,7 +289,7 @@ public class DiaryController {
 	            String callback = request.getParameter("CKEditorFuncNum");
 	 
 	            printWriter = response.getWriter();
-	            String fileUrl = "http://192.168.0.13:8080/images/diaryImage/" + fileName;//url경로
+	            String fileUrl = "http://127.0.0.1:8080/images/diaryImage/" + fileName;//url경로
 	 
 	           printWriter.println("<script type='text/javascript'>window.parent.CKEDITOR.tools.callFunction("+1+ ",'"+fileUrl+ "',''"+ ");\n</script>");
 	            //printWriter.write("{\"uploaded\": 1,\"fileName\": \""+fileName+"\", \"url \" :"+"\"http://192.168.0.53:8080/images/diaryImage/"+fileName+"\"}");
