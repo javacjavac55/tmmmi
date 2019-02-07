@@ -1,13 +1,12 @@
 
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=EUC-KR"
+	pageEncoding="EUC-KR"%>
 <!DOCTYPE html>
 <html lang="ko">
 <head>
 <title>Tmmmi</title>
 <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0, shrink-to-fit=no' name='viewport' />
-<meta charset="utf-8">
 <!--  Fonts and icons -->
 <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Roboto+Slab:400,700|Material+Icons" />
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css">
@@ -26,7 +25,7 @@
 <!-- <script src="/ckeditor/ckeditor.js"></script> -->
 <script src="//cdn.ckeditor.com/4.7.3/full/ckeditor.js"></script>
 
-<!-- ë¡œë”© -->
+<!-- ·Îµù -->
 <!-- <link rel="stylesheet" href="/css/summernote/loading.css"> -->
 <!-- <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script> -->
 <!-- <script src="/javascript/summernote/loading.js"></script> -->
@@ -40,9 +39,9 @@
 	} */
 	/* function fncLoading(){
 		  $(".loading").fakeLoader({
-		    timeToHide:3000, // ë¡œë”©ì¤‘ì— ê±¸ë¦¬ëŠ” ì‹œê°„, 1000ì€ 1ì´ˆ
-		    bgColor:"#2ecc71", // ë°°ê²½ìƒ‰
-		    spinner:"spinner2" // ë¡œë”©ì¤‘ìœ¼ë¡œ ì›í•˜ëŠ” ë¡œë”©ì´ë¯¸ì§€íƒ€ì…
+		    timeToHide:3000, // ·ÎµùÁß¿¡ °É¸®´Â ½Ã°£, 1000Àº 1ÃÊ
+		    bgColor:"#2ecc71", // ¹è°æ»ö
+		    spinner:"spinner2" // ·ÎµùÁßÀ¸·Î ¿øÇÏ´Â ·ÎµùÀÌ¹ÌÁöÅ¸ÀÔ
 	})}; */
 
 	/* var $note = null;
@@ -101,17 +100,17 @@
 	}
 
 	$(function() {
-		//==> DOM Object GET 3ê°€ì§€ ë°©ë²• ==> 1. $(tagName) : 2.(#id) : 3.$(.className)
-		//==> 1 ê³¼ 3 ë°©ë²• ì¡°í•© : $("tagName.className:filterí•¨ìˆ˜") ì‚¬ìš©í•¨.	
+		//==> DOM Object GET 3°¡Áö ¹æ¹ı ==> 1. $(tagName) : 2.(#id) : 3.$(.className)
+		//==> 1 °ú 3 ¹æ¹ı Á¶ÇÕ : $("tagName.className:filterÇÔ¼ö") »ç¿ëÇÔ.	
 		$("button.btn.btn-primary").on("click", function() {
 			//Debug..
-			//alert(  $( "td.ct_btn01:contains('í™•ì¸')" ).html() );
+			//alert(  $( "td.ct_btn01:contains('È®ÀÎ')" ).html() );
 			fncAddDiary();
 		});
 
 		$("a.btn.btn-primary").on("click", function() {
 			//Debug..
-			//alert(  $( "td.ct_btn01:contains('ì¶”ê°€ë“±ë¡')" ).html() );
+			//alert(  $( "td.ct_btn01:contains('Ãß°¡µî·Ï')" ).html() );
 			history.go(-1);
 		});
 	});
@@ -144,7 +143,7 @@
 							
 								<div class="form-group" align="left">
 									<label for="userCategoryNo" class="col-sm-offset-1 col-sm-1 control-label text-center"></label>
-									<h3>ë‹¤ì´ì–´ë¦¬ë¥¼ ë“±ë¡í•´ì£¼ì„¸ìš”</h3>	
+									<h3>´ÙÀÌ¾î¸®¸¦ µî·ÏÇØÁÖ¼¼¿ä</h3>	
 									<div class="col-sm-4">
 																		
 									</div>
@@ -153,14 +152,14 @@
 								<div class="form-group" align="left">
 									<label for="userCategoryNo" class="col-sm-offset-1 col-sm-1 control-label text-center"></label>
 									<div class="col-sm-4">
-										<input type="text" name="userCategoryNo" class="form-control" placeholder="ìœ ì € ì¹´í…Œê³ ë¦¬" />
+										<input type="text" name="userCategoryNo" class="form-control" placeholder="À¯Àú Ä«Å×°í¸®" />
 									</div>
 								</div>
 
 								<div class="form-group" align="left">
 									<label for="diaryTitle" class="col-sm-offset-1 col-sm-1 control-label text-center"></label>
 									<div class="col-sm-4">
-										<input type="text" name="diaryTitle" class="form-control" placeholder="ì œëª©" />
+										<input type="text" name="diaryTitle" class="form-control" placeholder="Á¦¸ñ" />
 									</div>
 								</div>
 								
@@ -173,8 +172,8 @@
 
 								<div class="form-group">
 									<div class="col-sm-offset-4  col-sm-4 text-center">
-										<button type="button" class="btn btn-primary">ë“±ë¡</button>
-										<a class="btn btn-primary" href="#" role="button">ì·¨ì†Œ</a>
+										<button type="button" class="btn btn-primary">µî·Ï</button>
+										<a class="btn btn-primary" href="#" role="button">Ãë¼Ò</a>
 									</div>
 								</div>
 							</form>
@@ -188,7 +187,7 @@
 	<%-- <jsp:include page="/common/footer.jsp"></jsp:include> --%>
 	<jsp:include page="/common/footer.jsp"></jsp:include>
 	<script>
-		CKEDITOR.replace('ckeditor', {//í•´ë‹¹ ì´ë¦„ìœ¼ë¡œ ëœ textareaì— ì—ë””í„°ë¥¼ ì ìš©
+		CKEDITOR.replace('ckeditor', {//ÇØ´ç ÀÌ¸§À¸·Î µÈ textarea¿¡ ¿¡µğÅÍ¸¦ Àû¿ë
 			/* extraPlugins: 'autoembed,embedsemantic,image2,uploadimage,uploadfile',
 			removePlugins: 'image', */
 			width : '100%',

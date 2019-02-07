@@ -108,4 +108,11 @@
 			WHERE m.month = md.todo_count_date(+)
 			ORDER BY m.month
 		</select>
+		
+		<select id="getWordList" parameterType="map" resultMap="TodoSelectMap">
+		SELECT todo_detail
+		FROM todo
+		WHERE user_no = #{userNo}
+		AND  todo_start_date BETWEEN #{startDate} AND #{lastDate}
+		</select>
 </mapper>

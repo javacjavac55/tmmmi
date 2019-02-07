@@ -5,7 +5,7 @@
 <html>
 	<head>
 		<meta http-equiv="Content-Type" content="text/html; charset=EUC-KR">
-		<title>ShoppingReviewContent</title>
+		<title>userVideoContent</title>
 		
 		<script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
 		
@@ -67,18 +67,18 @@
 	<section class="carousel" style="background-color:#1d1d1d;">
 		<div class="reel" style="overflow: visible; transform: translate(-1285px, 0px); ">
 			<!-- items : 받아올 배열이름 var=내부에서 사용할변수 -->
-			<c:forEach var="contentReviewShopping" items="${shoppingContentReviewList}">				
+			<c:forEach var="contentUserVideo" items="${userVideoFirstList}">				
 				<article style="width: 600px; height: 480px;;">
 					<div style="margin-top:12px;">
 						<!-- theme=light 밝은색 설정 modestbranding=1 유튜브 로고 없애기 showinfo=0 타이틀 표시 안하기-->
-						<embed src="${contentReviewShopping.shoppingVideoId}?theme=light&modestbranding=1&showinfo=0"  width="560" height="315"></embed>
+						<embed src="${contentUserVideo.keywordVideoId}?theme=light&modestbranding=1&showinfo=0"  width="560" height="315"></embed>
 					</div>
-					<h4 style="margin-top: 10px;"class="titleShopping">${contentReviewShopping.shoppingVideoTitle}</h4>
+					<h4 style="margin-top: 10px;"class="titleShopping">${contentUserVideo.keywordTitle}</h4>
 					<p class="detail" >
-						${contentReviewShopping.shoppingVideoDetail} 
+						${contentUserVideo.keywordDescription} 
 					</p>
 					<p class="channel" style="font-size:18px; text-align:left; margin-left: 18px; margin-top: -15px;">
-						${contentReviewShopping.shoppingVideoChannel} 
+						${contentUserVideo.keywordVideo} 
 					</p>
 				</article>
 			</c:forEach>

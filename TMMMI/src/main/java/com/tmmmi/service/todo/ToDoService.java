@@ -16,5 +16,6 @@ public interface ToDoService {
 	public ToDo getToDo(ToDo toDo) throws Exception;
 	public void getToDoDayGraph(Map<String, Object> todomap) throws Exception;
 	public List<ToDo> getToDoMonthGraph(Map<String, Object> todomap) throws Exception;
-	public void getToDoWordCloud();
+	public List<ToDo> getToDoWordCloud(Map<String, Object> todomap) throws Exception;
+	
 }

@@ -88,7 +88,7 @@
 					    }else if (icon === '04') {
 					    	$(".main").append("<canvas id='cloudy' width='82' height='82' ></canvas>"+"<span class='temp'>"+temp+"º</span> <span class='temp_m'>"+tempMin+"º/"+tempMax+"º</span><p class='info'>미세먼지 : 100 나쁨</p>");
 					    }else if (icon === '09') {
-					    	$(".main").append("<canvas id='sleety' width='82' height='82' ></canvas>"+"<span class='temp'>"+temp+"º</span> <span class='temp_m'>"+tempMin+"º/"+tempMax+"º</span><p class='info'>미세먼지 : 100 나쁨</p>");
+					    	$(".main").append("<canvas id='sleety' width='82' height='82' ></canvas>"+"<span class='temp'>"+temp+"º</span> <span class='temp_m'>"+tempMin+"º/"+tempMax+"º</span><p class='info'>미세먼지 : 99 나쁨</p>");
 					    }else if (icon === '10') {
 					    	$(".main").append("<canvas id='rain' width='82' height='82' ></canvas>"+"<span class='temp'>"+temp+"˚</span> <span class='temp_m'>"+tempMin+"º/"+tempMax+"º</span><p class='info'>미세먼지 : 100 나쁨</p>");
 					    }else if (icon === '11') {
@@ -99,7 +99,7 @@
 						}else if (icon === '50') {
 			      			$(".main").append("<canvas id='fog' width='82' height='82' ></canvas>"+"<span class='temp'>"+temp+"˚</span><br>"+
 			      			"<span class='temp_m'>"+tempMin+"˚ / "+tempMax+"˚</span><span class='info'>"+" 미세먼지 : 113 나쁨</span>");
-				      	}	
+				      	}
 		      		}
 			      	
 			      	var icons = new Skycons({"color":"white"}),

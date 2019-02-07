@@ -191,12 +191,18 @@ public class UserController {
 		return modelAndView;
 	}
 	
+	@RequestMapping(value="topMenu")
+	public String topMenu() throws Exception{
+		return "redirect:/common/TopMenu.jsp";
+	}
+	
 	@RequestMapping(value="logout", method=RequestMethod.GET)
 	public ModelAndView logout( HttpSession session ) throws Exception {
 		System.out.println("/user/logout : GET");
 		session.invalidate();
 		ModelAndView modelAndView = new ModelAndView();
-		modelAndView.setViewName("redirect:/user/login.jsp");
+		modelAndView.setViewName("redirect:/index.jsp");
+		
 		return modelAndView;
 	}
 	

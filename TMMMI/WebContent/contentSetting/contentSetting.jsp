@@ -81,8 +81,9 @@
  	 	    
  	 	  	$("input[type=text]").on("change", function(){
  	 	  		var id = $(this).attr('id').replace("Check", "");
-				if ($(this).val() == '' || $("input[name='tastyKeyword']")) {
-					$('#'+id).remove();
+ 	 	  		console.log(id);
+				if ($(this).val() == '') {
+					$('#'+id+'Check').remove();
 				} else {
 					$('li').last().after('<li id=\''+id+'\'class="ui-state-default ui-sortable-handle">'+$(this).val()+'</li>');
 				}
@@ -109,20 +110,6 @@
  	<!-- Rest -->
  	<script type="text/javascript">
  	function fncUpdateContentSetting(){
- 		/* var result = [];
-	    $('.ui-state-default.ui-sortable-handle').each(function(index){
-	    	result.push($( this ).attr("id")+":"+(index+1));
-	    });
-	    result.push('tastyKeyword'+":"+$("input[name='tastyKeyword']").val());
-	    result.push('shoppingSearch1'+":"+$("input[name='shoppingSearch1']").val());
-	    result.push('showShoppingSearch2'+":"+$("input[name='shoppingSearch2']").val());
-	    result.push('showShoppingSearch3'+":"+$("input[name='shoppingSearch3']").val());
-	    result.push('showShoppingReview'+":"+$("input[name='shoppingReview']").val());
-	    result.push('showUserSearch1'+":"+$("input[name='userSearch1']").val());
-	    result.push('showUserSearch2'+":"+$("input[name='userSearch2']").val());
-	    result.push('showUserSearch3'+":"+$("input[name='userSearch3']").val());
-	    result.push('showUserVideo1'+":"+$("input[name='userVideo1']").val());
-	    result.push('showUserVideo2'+":"+$("input[name='userVideo2']").val()); */
 	    
 	    var result = '{';
 	    $('.ui-state-default.ui-sortable-handle').each(function(index){
@@ -197,11 +184,6 @@
 			
 			<div style="float:right; width:100%; margin: 0 auto;" class="col-sm-8">
 				<div class="col-sm-2"><h4>맛집</h4></div>
-				<div class="col-sm-2"><input type="checkbox" class="box" id="koreanFoodCheck" value="한식" ${ ! empty contentSetting.koreanFood && contentSetting.koreanFood >= 1 ? "checked" : "" }><label for="koreanFoodCheck">한식</label></div>
-				<div class="col-sm-2"><input type="checkbox" class="box" id="chineseFoodCheck" value="중식" ${ ! empty contentSetting.chineseFood && contentSetting.chineseFood >= 1 ? "checked" : "" }><label for="chineseFoodCheck">중식</label></div>
-				<div class="col-sm-2"><input type="checkbox" class="box" id="japaneseFoodCheck" value="일식" ${ ! empty contentSetting.japaneseFood && contentSetting.japaneseFood >= 1 ? "checked" : "" }><label for="japaneseFoodCheck">일식</label></div>
-				<div class="col-sm-2"><input type="checkbox" class="box" id="foreignFoodCheck" value="양식" ${ ! empty contentSetting.foreignFood && contentSetting.foreignFood >= 1 ? "checked" : "" }><label for="foreignFoodCheck">양식</label></div>
-				<div class="col-sm-2"><input type="checkbox" class="box" id="dessertCheck" value="디저트" ${ ! empty contentSetting.dessert && contentSetting.dessert >= 1 ? "checked" : "" }><label for="dessertCheck">디저트</label></div>
 				<div class="col-sm-2"><input type="text" name="tastyKeyword" id="tastyKeywordCheck"  value="${contentSetting.tastyKeyword }"><label for="tastyKeywordCheck" align="center">맛집 키워드</label></div>
 				<hr width="98%" />
 			</div>
@@ -251,16 +233,16 @@
 			  <c:if test="${ ! empty contentSetting.foreignFood && contentSetting.foreignFood >=1 }"><li id="foreignFood"  class="ui-state-default">양식</li></c:if>
 			  <c:if test="${ ! empty contentSetting.dessert && contentSetting.dessert >=1 }"><li id="dessert"  class="ui-state-default">디저트</li></c:if>
 			 
-			  <c:if test="${ ! empty contentSetting.shoppingSearch1 && contentSetting.showShoppingSearch1 >=1 }"><li id="showShoppingSearch1"  class="ui-state-default">쇼핑 키워드1</li></c:if>
-			  <c:if test="${ ! empty contentSetting.shoppingSearch2 && contentSetting.showShoppingSearch2 >=1 }"><li id="showShoppingSearch2"  class="ui-state-default">쇼핑 키워드2</li></c:if>
-			  <c:if test="${ ! empty contentSetting.shoppingSearch3 && contentSetting.showShoppingSearch3 >=1 }"><li id="showShoppingSearch3"  class="ui-state-default">쇼핑 키워드3</li></c:if>
-			  <c:if test="${ ! empty contentSetting.shoppingReview && contentSetting.showShoppingReview >=1 }"><li id="showShoppingReview"  class="ui-state-default">리뷰 키워드</li></c:if>
+			  <c:if test="${ ! empty contentSetting.shoppingSearch1 && contentSetting.showShoppingSearch1 >=1 }"><li id="showShoppingSearch1"  class="ui-state-default">${contentSetting.shoppingSearch1}</li></c:if>
+			  <c:if test="${ ! empty contentSetting.shoppingSearch2 && contentSetting.showShoppingSearch2 >=1 }"><li id="showShoppingSearch2"  class="ui-state-default">${contentSetting.shoppingSearch2}</li></c:if>
+			  <c:if test="${ ! empty contentSetting.shoppingSearch3 && contentSetting.showShoppingSearch3 >=1 }"><li id="showShoppingSearch3"  class="ui-state-default">${contentSetting.shoppingSearch3}</li></c:if>
+			  <c:if test="${ ! empty contentSetting.shoppingReview && contentSetting.showShoppingReview >=1 }"><li id="showShoppingReview"  class="ui-state-default">${contentSetting.shoppingReview}</li></c:if>
 			  
-			  <c:if test="${ ! empty contentSetting.userSearch1 && contentSetting.showUserSearch1 >=1 }"><li id="showUserSearch1"  class="ui-state-default">사용자 키워드1</li></c:if>
-			  <c:if test="${ ! empty contentSetting.userSearch2 && contentSetting.showUserSearch2 >=1 }"><li id="showUserSearch2"  class="ui-state-default">사용자 키워드2</li></c:if>
-			  <c:if test="${ ! empty contentSetting.userSearch3 && contentSetting.showUserSearch3 >=1 }"><li id="showUserSearch3"  class="ui-state-default">사용자 키워드3</li></c:if>
-			  <c:if test="${ ! empty contentSetting.userVideo1 && contentSetting.showUserVideo1 >=1 }"><li id="showUserVideo1"  class="ui-state-default">동영상 키워드1</li></c:if>
-			  <c:if test="${ ! empty contentSetting.userVideo2 && contentSetting.showUserVideo2 >=1 }"><li id="showUserVideo2"  class="ui-state-default">동영상 키워드2</li></c:if>
+			  <c:if test="${ ! empty contentSetting.userSearch1 && contentSetting.showUserSearch1 >=1 }"><li id="showUserSearch1"  class="ui-state-default">${contentSetting.userSearch1}</li></c:if>
+			  <c:if test="${ ! empty contentSetting.userSearch2 && contentSetting.showUserSearch2 >=1 }"><li id="showUserSearch2"  class="ui-state-default">${contentSetting.userSearch2}</li></c:if>
+			  <c:if test="${ ! empty contentSetting.userSearch3 && contentSetting.showUserSearch3 >=1 }"><li id="showUserSearch3"  class="ui-state-default">${contentSetting.userSearch2}</li></c:if>
+			  <c:if test="${ ! empty contentSetting.userVideo1 && contentSetting.showUserVideo1 >=1 }"><li id="showUserVideo1"  class="ui-state-default">${contentSetting.userVideo1}</li></c:if>
+			  <c:if test="${ ! empty contentSetting.userVideo2 && contentSetting.showUserVideo2 >=1 }"><li id="showUserVideo2"  class="ui-state-default">${contentSetting.userVideo2}</li></c:if>
 			</ul>
 		</div>
 		</div>

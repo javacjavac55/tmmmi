@@ -9,16 +9,19 @@
 	<meta charset="EUC-KR">
 	<title> getQNA </title>
 	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 	
-	<!--  ///////////////////////// Bootstrap, jQuery CDN ////////////////////////// -->
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" >
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" >
+	<!--  Fonts and icons -->
+	<link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Roboto+Slab:400,700|Material+Icons" />
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css">
+	
+	<!-- CSS Files -->
+	<link href="/css/template/material-kit.css" rel="stylesheet" />
+	
+	<!-- jQuery -->
 	<script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" ></script>
-	
-	<!-- template -->
-	<link rel="stylesheet" href="/css/template/main.css">
-	
+
 	<!--  ///////////////////////// CSS ////////////////////////// -->
 	<style>
  		.row {
@@ -30,7 +33,6 @@
 	
 	$(function() {
 
-		
 		$( ".btn-pink:contains('수정하기')" ).on("click" , function() {
 			var qnaNo = $(this).data("param1");
 			self.location = "/qna/updateQNA?qnaNo="+qnaNo;
@@ -58,81 +60,81 @@
 	</script>
 	
 </head>
-<body>
+<body class="index-page sidebar-collapse">
 	<form name ="getQNA" >
-		<div class="container" >
-		
-		<div class="page-header">
-			<h2>1:1문의내역</h2>
-		</div>
-		
-		<div class="row">
-			<div class="col-md-1">
-				<button type="button" class="btn btn-default;">카테고리</button>
-			</div>
-		    <div class="col-md-2">
-				<div class=" dropdown" style="background-color:rgb(0,0,0,0);">
+	<jsp:include page="/common/toolbar2.jsp"></jsp:include>
+	  <div class="page-header header-filter clear-filter" style="height:55vh; background-image: url('/images/weather/4016924c4eb809d80e5ac60ad0703088.jpg');">
+	    <div class="container">
+	      <div class="row">
+	        <div class="col-md-8 ml-auto mr-auto">
+	          <div class="brand">
+	          </div>
+	        </div>
+	      </div>
+	    </div>
+	  </div> 
+	  
+	  <div class="main main-raised">
+	   <div class="section section-basic">
+	     <div class="container">
+	      
+		<div class="col-md-10 ml-auto mr-auto">
+			<div class="form-group row">
+				<div class="col-md-6">
+			    	<label style="color:#9c27b0!important">카테고리</label>
 					<c:if test="${qna.QNACategory ==0}">
-			 			<button type="button" class="btn btn-default;" style="background-color:rgb(0,0,0,0);" >회원정보</button>
-			 		</c:if>
-			 		<c:if test="${qna.QNACategory ==1}">
-			 			<button type="button" class="btn btn-default;" style="background-color:rgb(0,0,0,0);" >일정</button>
-			 		</c:if>
-			 		<c:if test="${qna.QNACategory ==2}">
-			 			<button type="button" class="btn btn-default;" style="background-color:rgb(0,0,0,0);" >컨텐츠 설정</button>
-			 		</c:if>
-			 		<c:if test="${qna.QNACategory ==3}">
-			 			<button type="button" class="btn btn-default;" style="background-color:rgb(0,0,0,0);" >다이어리</button>
-			 		</c:if>
-			 		<c:if test="${qna.QNACategory ==4}">
-			 			<button type="button" class="btn btn-default;" style="background-color:rgb(0,0,0,0);" >스크랩</button>
-			 		</c:if>
-				</div>
-			</div>
-			<c:if test="${role == 1}">
-				<div class="col-md-1">
-					<button type="button" class="btn btn-default;">회원아이디</button>
-				</div>
-				<div class="col-md-2" >
-					<button type="button" class="btn btn-default;" style="background-color:rgb(0,0,0,0);" >${writerUserId}</button>
-				</div>
-			</c:if>
-			<c:if test="${role == 0}">
-				<div class="col-md-1">
-					<button type="button" class="btn btn-default;">회원 아이디</button>
-				</div>
-				<div class="col-md-2" >
-					<button type="button" class="btn btn-default;" style="background-color:rgb(0,0,0,0);" >${writerUserId}</button>
-				</div>
-			</c:if>
-			<div class="col-md-1">
-					<button type="button" class="btn btn-default;">작성날짜</button>
-				</div>
-			<div class="col-md-2" >
-				<button type="button" class="btn btn-default;" style="background-color:rgb(0,0,0,0);">${qna.QNADate}</button>
-			</div>
-		</div>
-		
-		<div class="row">
-			<div class="col-md-1">
-				<button type="button" class="btn btn-default;">글 제목</button>
-			</div>
-			<div class="col-md-5">
-				 <button type="button" class="btn btn-default;" style="background-color:rgb(0,0,0,0);">${qna.QNATitle}</button>
-			</div>
-			<div class="col-md-1">
-				<button type="button" class="btn btn-default;">답변 현황</button>
-			</div>
-			<div class="col-md-2">
-				<div>
-					<c:if test="${qna.QNAAnswerCheck == 0}">
-						<button type="button" class="btn btn-default;" style="background-color:rgb(0,0,0,0);">미완료</button>
-					</c:if><c:if test="${qna.QNAAnswerCheck == 1}">
-						<button type="button" class="btn btn-default;" style="background-color:rgb(0,0,0,0);">완료</button>
+				 	  <input type="text" class="form-control"  value="회원정보" readonly  style="background-color:rgb(0,0,0,0);">
 					</c:if>
+					<c:if test="${qna.QNACategory ==1}">
+				 	  <input type="text" class="form-control"  value="일정" readonly  style="background-color:rgb(0,0,0,0);">
+					</c:if>
+					<c:if test="${qna.QNACategory ==2}">
+				 	  <input type="text" class="form-control"  value="컨텐츠 설정" readonly  style="background-color:rgb(0,0,0,0);">
+					</c:if>
+					<c:if test="${qna.QNACategory ==3}">
+				 	  <input type="text" class="form-control"  value="다이어리" readonly  style="background-color:rgb(0,0,0,0);">
+					</c:if>
+					<c:if test="${qna.QNACategory ==4}">
+				 	  <input type="text" class="form-control"  value="스크랩" readonly  style="background-color:rgb(0,0,0,0);">
+					</c:if>
+			    </div>
+				<div class="form-group col-md-6" >
+				    <label style="color:#9c27b0!important;">작성 날짜</label>
+				    <input type="text" class="form-control" name="QNADate" value="${qna.QNADate}" readonly  style="background-color:rgb(0,0,0,0);">
 				</div>
+		 	</div>
+		 	
+		 	<div class="form-group row">
+				<div class="col-md-4">
+			    	<label style="color:#9c27b0!important;">회원 아이디</label>
+				    <input type="text" class="form-control" value="${writerUserId}" readonly  style="background-color:rgb(0,0,0,0);">
+			    </div>
+				<div class="form-group col-md-4">
+				    <label style="color:#9c27b0!important;">회원 닉네임</label>
+				    <input type="text" class="form-control" value="" readonly  style="background-color:rgb(0,0,0,0);">
+				</div>
+				<div class="form-group col-md-4">
+				    <label style="color:#9c27b0!important;">답변 현황</label>
+				    <c:if test="${qna.QNAAnswerCheck == 0}">
+				    	<input type="text" class="form-control" value="미완료" readonly  style="background-color:rgb(0,0,0,0);">
+				    </c:if>
+				    <c:if test="${qna.QNAAnswerCheck == 1}">
+				    	<input type="text" class="form-control" value="완료" readonly  style="background-color:rgb(0,0,0,0);">
+				    </c:if>
+				</div>
+		 	</div>
+		 	
+		 	<div class="form-group">
+				<label style="color:#9c27b0!important;">글 제목</label>
+				<input type="text" class="form-control"  name="QNATitle" value="${qna.QNATitle}">
 			</div>
-		</div>
+			
+			<div class="form-group">
+				<label style="color:#9c27b0!important;">내용</label>
+				<textarea class="form-control" rows="13" name="QNADetail" style="resize: none"  readonly="readonly">${qna.QNADetail}</textarea>
+			</div>
+	
+
 	
 		<div class="row" >
 			<div class="col-md-1">
@@ -194,6 +196,9 @@
 			</c:if>
 		</div>
 		</div>
+		</div>
+		</div>
+</div>
 	</form>
 </body>
 </html>

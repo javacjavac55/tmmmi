@@ -18,7 +18,10 @@
 
 <!-- CSS Files -->
 <link href="/css/template/material-kit.css" rel="stylesheet" />
-<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+<link rel="stylesheet"
+	href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+	integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
+	crossorigin="anonymous">
 
 
 <!-- CSS Just for demo purpose, don't include it in your project -->
@@ -26,7 +29,8 @@
 
 <!-- jQuery -->
 <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
-<script	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<script
+	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
 
 <script type="text/javascript">
@@ -34,8 +38,6 @@
 	function fncGetList(currentPage) {
 		/* document.getElementById("currentPage").value = currentPage; */
 		$("#currentPage").val(currentPage);
-		alert(currentPage);
-		alert($("#currentPage").val());
 		/* document.detailForm.submit(); */
 		$('[name="detailForm"]').attr("method", "POST").attr("action",
 				"/diary/listDiary").submit();
@@ -92,16 +94,21 @@
 		});
 
 		$(".getDetail td:nth-child(4)").on("click", function() {
-			var diaryNo = $(this).data('param1');
+			var diaryNo = $(this).data('param2');
 			console.log("아아아");
 			self.location = "/diary/getDiary?diaryNo=" + diaryNo;
 		});
+
+		$('#search').on("click", function() {
+			//Debug..
+			//alert(  $( "td.ct_btn01:contains('검색')" ).html() );
+			fncGetList(1);
+		});
 		
-		 $( '#search' ).on("click" , function() {
-				//Debug..
-				//alert(  $( "td.ct_btn01:contains('검색')" ).html() );
-				fncGetList(1);
-			});
+		$("#imageList").on("click", function(){
+			var currentPage =$(this).data('param1');
+			location.replace('/diary/imageList?currentPage='+currentPage);
+		})
 
 	});
 </script>
@@ -144,7 +151,7 @@
 								<div class="col-md-6 text-left">
 									<p class="text-primary">전체 ${resultPage.totalCount} 건수, 현재
 										${resultPage.currentPage} 페이지</p>
-									
+
 								</div>
 
 								<div class="col-md-4"></div>
@@ -152,92 +159,113 @@
 								<div class="col-md-6 text-right"></div>
 							</div>
 							<nav class="navbar navbar-expand-lg bg-primary">
-								<div class="container">
+							<div class="container">
 								<form name="detailForm" class="form-inline ml-auto">
 									<div class="form-group has-white bmd-form-group">
-																		
-										
-											<!-- <label class="sr-only" for="searchKeyword">검색어</label> 
-											 --><input type="text" class="form-control" id="searchKeyword"
-												name="searchKeyword" placeholder="제목+내용"
-												value="${! empty search.searchKeyword ? search.searchKeyword : '' }">
-													<input type="hidden" id="currentPage" name="currentPage" value="" />
-											
+
+
+										<!-- <label class="sr-only" for="searchKeyword">검색어</label> 
+											 -->
+										<input type="text" class="form-control" id="searchKeyword"
+											name="searchKeyword" placeholder="제목+내용"
+											value="${! empty search.searchKeyword ? search.searchKeyword : '' }">
+										<input type="hidden" id="currentPage" name="currentPage"
+											value="" />
+
 									</div>
 									<button type="button"
-												class="btn btn-white btn-raised btn-fab btn-round" id="search">
-												<i class="material-icons" >search</i>
-											</button>
-										
-										
+										class="btn btn-white btn-raised btn-fab btn-round" id="search">
+										<i class="material-icons">search</i>
+									</button>
+
+
 								</form>
 							</div>
-						</nav>
-						<!-- PageNavigation 선택 페이지 값을 보내는 부분 -->
-
-							<jsp:include page="../common/pageNavigator.jsp" />
+							</nav>
 						</div>
 					</div>
+
 				</div>
+				<!-- table 위쪽 검색 Start /////////////////////////////////////-->
 
-			</div>
-			<!-- table 위쪽 검색 Start /////////////////////////////////////-->
+				<!-- 디테일폼 끝 -->
 
-			<!-- 디테일폼 끝 -->
+				<!--  table Start /////////////////////////////////////-->
+				<form name="deleteForm">
+					<table class="table table-hover table-striped">
 
-			<!--  table Start /////////////////////////////////////-->
-			<form name="deleteForm">
-				<table class="table table-hover table-striped">
-
-					<thead>
-						<tr>
-							<th align="center"><input id="allCheck" name="allCheck"
-								type="checkbox" onclick="fncAllchk();" />전체선택</th>
-							<th align="left">No</th>
-							<th align="left">카테고리</th>
-							<th align="left">다이어리 제목</th>
-							<th align="left">작성 날짜</th>
-						</tr>
-					</thead>
-
-					<tbody>
-
-						<c:set var="i" value="0" />
-						<c:forEach var="diary" items="${list}">
-							<c:set var="i" value="${ i+1 }" />
-							<tr class="getDetail">
-								<td align="left"><input name="deleteDiary" type="checkbox"
-									value="${diary.diaryNo}" /></td>
-								<td align="left">${ i }</td>
-								<td align="left">${diary.userCategoryNo}</td>
-								<td align="left" data-param1="${diary.diaryNo}">${diary.diaryTitle}</td>
-								<td align="left">${diary.diaryDate }</td>
+						<thead>
+							<tr>
+								<th align="center">
+									<div class="form-check">
+										<label class="form-check-label"> <input id="allCheck"
+											name="allCheck" class="form-check-input" type="checkbox"
+											onclick="fncAllchk();" /> 전체선택 <span class="form-check-sign">
+												<span class="check"></span>
+										</span>
+										</label>
+									</div> <!-- 
+              <input id="allCheck" name="allCheck"
+								type="checkbox" onclick="fncAllchk();" />전체선택 -->
+								</th>
+								<th align="left">No</th>
+								<th align="left">카테고리</th>
+								<th align="left">다이어리 제목</th>
+								<th align="left">작성 날짜</th>
 							</tr>
-						</c:forEach>
+						</thead>
 
-					</tbody>
+						<tbody>
 
-				</table>
-				<!--  table End /////////////////////////////////////-->
-				<div class="form-group">
-					<div class="col-sm-offset-4  col-sm-4 text-left"
-						style="float: left;">
-						<button type="button" name="delete" class="btn btn-primary"
-							onclick="fncDeleteDiary();">삭제</button>
+							<c:set var="i" value="0" />
+							<c:forEach var="diary" items="${list}">
+								<c:set var="i" value="${ i+1 }" />
+								<tr class="getDetail">
+									<td align="left">
+										<div class="form-check">
+											<label class="form-check-label"> <input
+												name="deleteDiary" class="form-check-input" type="checkbox"
+												value="${diary.diaryNo}" /> <span class="form-check-sign">
+													<span class="check"></span>
+											</span>
+											</label>
+										</div> <%-- <input name="deleteDiary" type="checkbox"
+									value="${diary.diaryNo}" /> --%>
+									</td>
+									<td align="left">${ i }</td>
+									<td align="left">${diary.userCategoryNo}</td>
+									<td align="left" data-param2="${diary.diaryNo}" style="cursor:pointer">${diary.diaryTitle}</td>
+									<td align="left">${diary.diaryDate}</td>
+								</tr>
+							</c:forEach>
+
+						</tbody>
+
+					</table>
+					<!--  table End /////////////////////////////////////-->
+					<div class="form-group">
+						<div class="col-sm-offset-4  col-sm-4 text-left"
+							style="float: left;">
+							<button type="button" name="delete" class="btn btn-primary"
+								onclick="fncDeleteDiary();">삭제</button>
+						</div>
+						<div class="col-sm-offset-4  col-sm-4 text-right"
+							style="float: right;">
+							<button type="button" name="add" class="btn btn-primary"
+								id="addDiary" onclick="fncAddDiary();">글쓰기</button>
+						</div>
+						<div class="col-sm-offset-4  col-sm-4 text-right"
+							style="float: right;">
+							<button type="button" name="imageList" class="btn btn-primary"
+								id="imageList" data-param1="${search.currentPage}">이미지형식으로보기</button>
+						</div>
 					</div>
-					<div class="col-sm-offset-4  col-sm-4 text-right"
-						style="float: right;">
-						<button type="button" name="add" class="btn btn-primary"
-							id="addDiary" onclick="fncAddDiary();">글쓰기</button>
-					</div>
-				</div>
 
-			</form>
-			<jsp:include page="../common/pageNavigator.jsp" />
+				</form>
+				<jsp:include page="../common/pageNavigator.jsp" />
+			</div>
 		</div>
 	</div>
-	</div>
-
 
 
 
@@ -245,6 +273,6 @@
 	<!-- PageNavigation Start... -->
 
 	<jsp:include page="/common/footer.jsp"></jsp:include>
-  
+
 </body>
 </html>

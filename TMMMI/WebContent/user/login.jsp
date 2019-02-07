@@ -58,6 +58,15 @@
 			$("form").attr("method","POST").attr("action","/user/login").attr("target","_parent").submit();
 		};
 	</script>
+	
+	<!-- 버튼 이벤트 -->
+	<script type="text/javascript">
+		$( function() {
+			$("span:contains('아이디')").on("click" , function() {
+				self.location = "/SNSLogin/searchUserId"
+			});
+		});
+	</script>
 </head>
 
 <body class="login-page sidebar-collapse">
