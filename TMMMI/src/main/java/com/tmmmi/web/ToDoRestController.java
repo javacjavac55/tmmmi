@@ -39,22 +39,24 @@ public class ToDoRestController {
 		System.out.println("/deleteToDo 완료");
 	}
 	@RequestMapping(value="/updateToDoComplete", method=RequestMethod.POST)
-	public int updateToDoComplete(@RequestBody ToDo toDo) throws Exception{
+	public ToDo updateToDoComplete(@RequestBody ToDo toDo) throws Exception{
 		System.out.println("/updateToDoComplete 접근");
 		System.out.println(toDo);
 		toDoService.updateToDoComplete(toDo);
 		ToDo reToDo = toDoService.getToDo(toDo);
-		int toDoCompleteNo = reToDo.getToDoCompleteNo();
-		System.out.println(toDoCompleteNo);
+		System.out.println(reToDo);
 		System.out.println("/updateToDoComplete 완료");
-		return toDoCompleteNo;
+		return reToDo;
 	}
 	@RequestMapping(value="/deleteToDoComplete",method=RequestMethod.POST)
-	public void deleteToDoComplete(@RequestBody ToDo toDo) throws Exception{
+	public ToDo deleteToDoComplete(@RequestBody ToDo toDo) throws Exception{
 		System.out.println("/deleteToDoComplete 접근");
 		System.out.println(toDo);
 		toDoService.deleteToDoComplete(toDo);
+		ToDo reToDo = toDoService.getToDo(toDo);
+		System.out.println(reToDo);
 		System.out.println("/deleteToDoComplete 완료");
+		return reToDo;
 	}
 	
 	@RequestMapping(value="/getToDoMonthGraphPost",method=RequestMethod.POST)
