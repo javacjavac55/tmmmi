@@ -2,6 +2,8 @@
 	pageEncoding="EUC-KR"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -18,10 +20,6 @@
 
 <!-- CSS Files -->
 <link href="/css/template/material-kit.css" rel="stylesheet" />
-<link rel="stylesheet"
-	href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
-	integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
-	crossorigin="anonymous">
 
 
 <!-- CSS Just for demo purpose, don't include it in your project -->
@@ -32,8 +30,22 @@
 <script
 	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
+<!--툴팁  -->
+<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+<link rel="stylesheet" href="/resources/demos/style.css">
+<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 
 <script type="text/javascript">
+	/* 툴팁 */
+	$( function() {
+    	$( '.listDiary' ).tooltip();
+  	});
+	
+	$( function() {
+	    $( '.imageDiary' ).tooltip();
+	});
+	
 	/* 리스트 */
 	function fncGetList(currentPage) {
 		/* document.getElementById("currentPage").value = currentPage; */
@@ -115,9 +127,8 @@
 </head>
 <body class="index-page sidebar-collapse">
 	<jsp:include page="/common/toolbar2.jsp"></jsp:include>
-	<div class="page-header header-filter clear-filter"
-		data-parallax="true"
-		style="background-image: url('/images/userSetting/ ${userSetting.image}')">
+	<div class="page-header header-filter clear-filter"	data-parallax="true" style="background-image: url('/images/userSetting/ ${userSetting.image}')">
+		
 		<div class="container">
 			<div class="row">
 				<div class="col-md-8 ml-auto mr-auto">
@@ -149,19 +160,28 @@
 							<div class="row">
 
 								<div class="col-md-6 text-left">
-									<p class="text-primary">전체 ${resultPage.totalCount} 건수, 현재
-										${resultPage.currentPage} 페이지</p>
+									<p class="text-default">전체 글: ${resultPage.totalCount}</p>
 
 								</div>
+								<div class="col-md-6 text-right">
+									<div class="col-sm-offset-4  col-sm-4 text-right"
+							style="float: right;">
+							<%-- <button type="button" name="imageList" class="btn btn-primary"
+								id="imageList" data-param1="${search.currentPage}"> --%>
+										<a href='/diary/listDiary'><img src=/images/diaryImage/3213.PNG class="listDiary" style="width:30px; height:24px;" title="리스트 형식으로 보기"/></a>
+										<a href='/diary/imageList?currentPage=${search.currentPage}'><img src=/images/diaryImage/321312.PNG class="imageDiary" style="width:30px; height:24px;" title="썸네일 형식으로 보기"/></a>
+									</div>
 
+								</div>
+								
 								<div class="col-md-4"></div>
 
 								<div class="col-md-6 text-right"></div>
 							</div>
-							<nav class="navbar navbar-expand-lg bg-primary">
+							<nav class="navbar navbar-default navbar-expand-lg">
 							<div class="container">
 								<form name="detailForm" class="form-inline ml-auto">
-									<div class="form-group has-white bmd-form-group">
+									<div class="form-group bmd-form-group">
 
 
 										<!-- <label class="sr-only" for="searchKeyword">검색어</label> 
@@ -192,9 +212,9 @@
 
 				<!--  table Start /////////////////////////////////////-->
 				<form name="deleteForm">
-					<table class="table table-hover table-striped">
+					<table class="table table-hover">
 
-						<thead>
+						<thead style="box-shadow:1px 1px 1px 1px gray;">
 							<tr>
 								<th align="center">
 									<div class="form-check">
@@ -217,9 +237,9 @@
 
 						<tbody>
 
-							<c:set var="i" value="0" />
+							<c:set var="i" value="${fn:length(list)}" />
 							<c:forEach var="diary" items="${list}">
-								<c:set var="i" value="${ i+1 }" />
+								<c:set var="i" value="${ i-1 }" />
 								<tr class="getDetail">
 									<td align="left">
 										<div class="form-check">
@@ -232,7 +252,7 @@
 										</div> <%-- <input name="deleteDiary" type="checkbox"
 									value="${diary.diaryNo}" /> --%>
 									</td>
-									<td align="left">${ i }</td>
+									<td align="left">${ i+1 }</td>
 									<td align="left">${diary.userCategoryName}</td>
 									<td align="left" data-param2="${diary.diaryNo}" style="cursor:pointer">${diary.diaryTitle}</td>
 									<td align="left">${diary.diaryDate}</td>
@@ -254,11 +274,7 @@
 							<button type="button" name="add" class="btn btn-primary"
 								id="addDiary" onclick="fncAddDiary();">글쓰기</button>
 						</div>
-						<div class="col-sm-offset-4  col-sm-4 text-right"
-							style="float: right;">
-							<button type="button" name="imageList" class="btn btn-primary"
-								id="imageList" data-param1="${search.currentPage}">이미지형식으로보기</button>
-						</div>
+						
 					</div>
 
 				</form>

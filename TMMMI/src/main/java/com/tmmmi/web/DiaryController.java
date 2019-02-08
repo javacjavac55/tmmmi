@@ -171,12 +171,18 @@ public class DiaryController {
 	}
 	
 	@RequestMapping(value="updateDiary", method=RequestMethod.GET)
-	public ModelAndView updateDiary(@RequestParam("diaryNo")int diaryNo)throws Exception {
+	public ModelAndView updateDiary(@RequestParam("diaryNo")int diaryNo, HttpSession session)throws Exception {
 		System.out.println("/diary/updateDiary : GET");
+		
+		int userNo = ((int)session.getAttribute("userNo"));
+		System.out.println("userNO:"+userNo);
+		
+		List<UserCategory> userCategory= userCategoryService.getUserCategoryList(userNo);
 		Diary diary = diaryService.getDiary(diaryNo);
 		
 		ModelAndView modelAndView = new ModelAndView();
 		modelAndView.addObject("diary",diary);
+		modelAndView.addObject("userCategory", userCategory);
 		modelAndView.setViewName("/diary/updateDiary.jsp");
 		
 		return modelAndView;

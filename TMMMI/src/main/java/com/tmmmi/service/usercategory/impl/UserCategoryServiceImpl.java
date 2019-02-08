@@ -43,7 +43,7 @@ public class UserCategoryServiceImpl implements UserCategoryService {
 	
 	@Override
 	public List<UserCategory> getInterestCategoryList() {
-		return userCategoryDao.getUserCategoryList(43);
+		return userCategoryDao.getUserCategoryList(101);
 	}
 
 	@Override

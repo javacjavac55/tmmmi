@@ -34,6 +34,14 @@
 
 
 <script type="text/javascript">
+	/*툴팁  */
+	$( function() {
+    	$( '.listDiary' ).tooltip();
+  	});
+	
+	$( function() {
+	    $( '.imageDiary' ).tooltip();
+	});
 	/* 리스트 */
 	function fncGetList(currentPage) {
 		/* document.getElementById("currentPage").value = currentPage; */
@@ -93,9 +101,8 @@
 			location.replace('/diary/addDiary');
 		});
 
-		$("#getDiary").on("click", function() {
+		$(".getDetail").on("click", function() {
 			var diaryNo = $(this).data('param1');
-			console.log("아아아");
 			self.location = "/diary/getDiary?diaryNo=" + diaryNo;
 		});
 
@@ -218,21 +225,41 @@ img {
 							<div class="row">
 
 								<div class="col-md-6 text-left">
-									<p class="text-primary">전체 ${resultPage.totalCount} 건수, 현재
-										${resultPage.currentPage} 페이지</p>
+									<p class="text-default">전체 글:${resultPage.totalCount}</p>
 
 								</div>
+								<div class="col-md-6 text-right">
+									<div class="col-sm-offset-4  col-sm-4 text-right"
+							style="float: right;">
+							<%-- <button type="button" name="imageList" class="btn btn-primary"
+								id="imageList" data-param1="${search.currentPage}"> --%>										
+										<a href='/diary/listDiary'><img src=/images/diaryImage/3213.PNG class="listDiary" style="width:30px; height:24px;" title="리스트 형식으로 보기"/></a>
+										<a href='/diary/imageList?currentPage=${search.currentPage}'><img src=/images/diaryImage/321312.PNG class="imageDiary" style="width:30px; height:24px;" title="썸네일 형식으로 보기"/></a>
+									</div>
 
+								</div>
 								<div class="col-md-4"></div>
 
 								<div class="col-md-6 text-right"></div>
 							</div>
-							<nav class="navbar navbar-expand-lg bg-primary">
-							<div class="container">
+							<nav class="navbar navbar-default navbar-expand-lg">
+							<div class="container" style="position:relative">
 								<form name="detailForm" class="form-inline ml-auto">
-									<div class="form-group has-white bmd-form-group">
-
-
+								
+									<div class="navbar-translate text-left" style="float: left; position:absolute; left:0;">
+										<button type="button" name="add" class="btn btn-primary" id="addDiary" onclick="fncAddDiary();">글쓰기</button>
+									</div>
+									
+									<div class="collapse navbar-collapse">
+						                <ul class="navbar-nav">
+						                  <li class="nav-item active">                    
+						                  </li>
+						                  <li class="nav-item">                    
+						                  </li>
+						                </ul>
+            
+									</div>
+									<div class="form-group bmd-form-group">
 										<!-- <label class="sr-only" for="searchKeyword">검색어</label> 
 											 -->
 										<input type="text" class="form-control" id="searchKeyword"
@@ -265,8 +292,8 @@ img {
 									<c:forEach var="diary" items="${list}">
 										<c:set var="i" value="${ i+1 }" />
 										
-			 								<figure id=getDiary data-param1="${diary.diaryNo}" style="cursor:pointer">
-			 									<div style="width:285px;"> 
+			 								<figure style="cursor:pointer">
+			 									<div style="width:285px;" class="getDetail" data-param1="${diary.diaryNo}"> 
 													${diary.diaryDetail}
 												</div>
 													<figcaption>

@@ -60,7 +60,7 @@ public class DiaryDaoImpl implements DiaryDao {
 				detail = "<img"+detail+">";
 			}
 			else {
-				detail = "<img src=/images/diaryImage/1235.PNG>";
+				detail = "<img src=/images/diaryImage/49760081.jpg>";
 				//<img src= /diary/imageDiary/ 312321.j[g]>
 			}
 			System.out.println("이미지파일"+ detail);
