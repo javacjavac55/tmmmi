@@ -18,8 +18,10 @@
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 <!-- Material Kit CSS -->
 <link href="/css/template/material-kit.min.css?v=2.0.5" rel="stylesheet" />
+<link href="/css/template/demo.css" rel="stylesheet" />
 <!-- JQcloud JS -->
 <script src="/javascript/jqcloud/jqcloud.min.js" charset="utf-8"></script>
+
 <title>할 일 워드클라우드</title>
 <style>
 	#todocloud {
@@ -28,27 +30,49 @@
 	}
 </style>
 </head>
-<body>
-<div id="todocloud" class="todocloud">
-</div>
-<script>
-$(function () {
-	var words =${wordList};
-	/* var t;
-	var w;
-	console.log('${wordList}');
-	<c:forEach items="" var="words">
-	t = "${words.text}";
-	console.log(t);
-	w = "${words.weight}";
-	console.log(w);
-	var l = {text: t, weight: w};
-	words.push(l);
-	</c:forEach>
-	console.log(words); */
-$('#todocloud').jQCloud(words);
-console.log('words');
-});
-</script>
+<body class="index-page sidebar-collapse">
+
+<jsp:include page="/common/toolbar2.jsp"></jsp:include>
+  <div class="page-header header-filter" style="background-image: url('/images/template/bg2.jpg'); background-size: cover; background-position: top center;">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-8 ml-auto mr-auto">
+          <div class="brand">
+            <img src="/images/Logo/logo.png"/>
+            <h3 class="title">Too Much, Memorable, My Information </h3>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="main main-raised">
+    <div class="section section-basic">
+      <div class="container">
+		<div id="todocloud" class="todocloud">
+			</div>
+			<script>
+			$(function () {
+				var words =${wordList};
+				/* var t;
+				var w;
+				console.log('${wordList}');
+				<c:forEach items="" var="words">
+				t = "${words.text}";
+				console.log(t);
+				w = "${words.weight}";
+				console.log(w);
+				var l = {text: t, weight: w};
+				words.push(l);
+				</c:forEach>
+				console.log(words); */
+			$('#todocloud').jQCloud(words);
+			console.log('words');
+			});
+			</script>
+      </div>
+    </div>
+  </div>
+  <%-- <jsp:include page="/common/footer.jsp"></jsp:include> --%>
+  <jsp:include page="/common/footer.jsp"></jsp:include>
 </body>
 </html>

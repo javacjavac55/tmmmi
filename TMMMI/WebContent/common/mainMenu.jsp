@@ -110,7 +110,7 @@
 					<div class="grim__item-img grim__item-img--5" style="background-image: url(/images/mainMenu/5.jpg);"></div>
 					<a href="#content-6" class="grim__link grim__item-content">
 						<div class="grim__item-inner">
-							<h3 class="grim__item-title" data-link="/content/listContent.jsp">Content</h3>
+							<h3 class="grim__item-title" data-link="/content/getContentList">Content</h3>
 							<span class="grim__item-desc">Explore your limits</span>
 						</div>
 					</a>
