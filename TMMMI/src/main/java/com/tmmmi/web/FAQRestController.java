@@ -42,10 +42,10 @@ public class FAQRestController {
 		System.out.println(this.getClass());
 	}
 	
-	@Value("#{commonProperties['pageUnit']}")
+	@Value("#{commonProperties['userCenterPageUnit']}")
 	int pageUnit;
 	
-	@Value("#{commonProperties['pageSize']}")
+	@Value("#{commonProperties['userCenterPageSize']}")
 	int pageSize;
 	
 	@RequestMapping(value="imageFAQ", method=RequestMethod.POST, produces="text/plain;charset=UTF-8")

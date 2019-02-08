@@ -104,7 +104,7 @@
 									<span class="image">
 										<img src="/css/index/images/pic07.jpg" alt="" />
 									</span>
-									<a href="generic.html">
+									<a href="/faq/getFAQList">
 										<h2>FAQ</h2>
 										<div class="content">
 											<p>Frequent Asked Question</p>
@@ -115,10 +115,10 @@
 									<span class="image">
 										<img src="/css/index/images/pic08.jpg" alt="" />
 									</span>
-									<a href="generic.html">
+									<a href="/qna/getQNAList">
 										<h2>QNA</h2>
 										<div class="content">
-											<p>Question and answer</p>
+											<p>Question and Answer</p>
 										</div>
 									</a>
 								</article>

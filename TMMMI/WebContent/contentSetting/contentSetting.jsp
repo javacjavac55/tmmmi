@@ -146,7 +146,7 @@
 	    	},
 	    	success : function(Data){
 	    		alert('수정 되었습니다!');
-	    		window.location = '/content/listContent.jsp';
+	    		window.location = '/content/getContentList';
 	    	},
 	    	error : function(request, status, error ) {  
 

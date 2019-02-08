@@ -45,10 +45,10 @@ public class QNAController {
 		System.out.println(this.getClass());
 	}
 	
-	@Value("#{commonProperties['pageUnit']}")
+	@Value("#{commonProperties['userCenterPageUnit']}")
 	int pageUnit;
 	
-	@Value("#{commonProperties['pageSize']}")
+	@Value("#{commonProperties['userCenterPageSize']}")
 	int pageSize;
 	
 	@RequestMapping(value="addQNA", method=RequestMethod.GET )
