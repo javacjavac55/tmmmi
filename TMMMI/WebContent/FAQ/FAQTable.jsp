@@ -5,10 +5,17 @@
 <!DOCTYPE html>
 <html lang="ko">
 
+
 <head>
 <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0, shrink-to-fit=no' name='viewport' />
+<!-- jQuery -->
+<script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
-       
+  <script type="text/javascript">
+
+  </script>
+
 </head>
 <form>
 <table class="table">	
@@ -39,16 +46,17 @@
 						</c:if><c:if test="${faq.FAQCategory == 2}">
 							컨텐츠 설정
 						</c:if><c:if test="${faq.FAQCategory == 3}">
-							다이어리/스크랩
+							다이어리/할일
 						</c:if>
 					</td>
 					<td style="padding:0.7%;">${faq.FAQTitle}</td>
 					<td style="padding:0.7%;"></td>
 				</tr>
-				<tr class="hide${faq.FAQNo} hide" >
+				
+				<tr class="detail${faq.FAQNo} detail" >
 					<td style="padding:0.7%;"></td>
 					<td style="padding:0.7%;"></td>
-					<td class="detail" style="padding:0.7%;">${faq.FAQDetail} 
+					<td style="padding:0.7%;">${faq.FAQDetail} 
 						<c:if test="${role == 0}">
 							<button type="button"  class="btn btn-primary btn-round btn-sm" style="left: 95%;" data-param1="${faq.FAQNo}">수정하기</button>
 							<button type="button"  class="btn btn-primary btn-round btn-sm" style="left: 95%;" data-param2="${faq.FAQNo}">삭제하기</button>
@@ -56,6 +64,7 @@
 					</td>
 					<td style="padding:0.7%;"></td>
 				</tr>
+				
 			</c:forEach>
 			</table>			
 			</form>

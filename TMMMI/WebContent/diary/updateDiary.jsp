@@ -28,6 +28,19 @@
 <script src="//cdn.ckeditor.com/4.7.3/full/ckeditor.js"></script>
 
 <script type="text/javascript">
+	$(document).ready(function(){
+	
+		  $('#select option').each(function(){
+	
+		    if($(this).val()=="${diary.userCategoryName}"){
+	
+		      $(this).attr("selected","selected"); // attr적용안될경우 prop으로 
+	
+		    }
+	
+		  });
+	
+	});
 
 
 /* $(document).ready(function() {    	   		
@@ -70,7 +83,6 @@
     	});
   /* $('textarea[name="Contents"]').html($('.summernote').code());
 }); */
-	
 	function fncUpdateDiary(){	
 		$('form[name="updateDiary"]').attr("method" , "POST").attr("enctype","multipart/form-data").attr("action" , "/diary/updateDiary").submit();
 	}
@@ -136,32 +148,26 @@
 								</div>								
 								
 								<div class="form-group" align="left">
-									<label for="userCategoryNo" class="col-sm-offset-1 col-sm-1 control-label text-center"></label>
-									<div class="col-sm-3">
-										카테고리
+									<label for="userCategoryNo" class="col-sm-offset-3 col-sm-3 control-label text-left">카테고리 선택</label>
+									<div class="col-sm-4">
+										<select class="form-control" name="userCategoryNo" id="select">
+											<c:forEach var="userCategory" items="${userCategory}">
+												<c:set var="i" value="${i+1}" />
+										    		<option value="${userCategory.userCategoryNo}" >${userCategory.userCategoryName}</option>
+										    </c:forEach>
+									    </select>
+								    </div>
+								</div>							
+			 					
+			 					<div class="form-group" align="left">			 					
+									<label for="diaryTitle" class="col-sm-offset-1 col-sm-1 control-label text-left">제목</label>
+									<div class="col-sm-4">
+										<input type="text" name="diaryTitle" class="form-control" placeholder="${diary.diaryTitle}" value="${diary.diaryTitle}"/>
 									</div>
-									<div class="col-sm-3" >
-										<input type="text" name="userCategoryNo" class="form-control" value="${diary.userCategoryNo}" />
-									</div>
-								</div>
-								
-								
-              					
-								<div class="form-group" align="left" style="height:70px;">
-									<label for="diaryTitle" class="col-sm-offset-1 col-sm-1 control-label text-center"></label>
-									<span class="col-sm-3" style ="float:left;">
-										제목
-									</span>
-									<span class="col-sm-3" style ="float:right;">
+									<span class="col-sm-3 text-right" style ="float:right;">
 										작성날짜 : ${diary.diaryDate}
-									</span>
-									<div class="col-sm-6">
-										<input type="text" name="diaryTitle" class="form-control" style="font-weight:bold; font-size:2em;" value="${diary.diaryTitle}"/>							
-										
-									</div>
-									
+									</span>		
 								</div>
-			 
 								
               						
 								<div>

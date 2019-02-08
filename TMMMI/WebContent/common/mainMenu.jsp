@@ -49,7 +49,7 @@
 					<div class="grim__item-bg grim__item-bg--4"></div>
 					<a href="#content-3" class="grim__link grim__item-content">
 						<div class="grim__item-inner">
-							<h3 class="grim__item-title">QNA</h3>
+							<h3 class="grim__item-title" data-link="/qna/getQNAList">QNA</h3>
 						</div>
 					</a>
 				</div>
@@ -57,7 +57,7 @@
 					<div class="grim__item-bg grim__item-bg--6"></div>
 					<a href="#content-1" class="grim__link grim__item-content">
 						<div class="grim__item-inner">
-							<h3 class="grim__item-title">FAQ</h3>
+							<h3 class="grim__item-title" data-link="/faq/getFAQList">FAQ</h3>
 						</div>
 					</a>
 				</div>
@@ -66,7 +66,7 @@
 					<div class="grim__item-img grim__item-img--1" style="background-image: url(/images/mainMenu/1.jpg);"></div>
 					<a href="#content-2" class="grim__link grim__item-content">
 						<div class="grim__item-inner">
-							<h3 class="grim__item-title" data-link="/todo/getCalendarMonth/">To Do</h3>
+							<h3 class="grim__item-title" data-link="/todo/getToDoList">To Do</h3>
 							<span class="grim__item-desc">Lift your spirits</span>
 						</div>
 					</a>

@@ -118,10 +118,10 @@
 				 	  <input type="text" class="form-control giyong"  value="컨텐츠 설정" readonly  style="background-color:rgb(0,0,0,0);">
 					</c:if>
 					<c:if test="${qna.QNACategory ==3}">
-				 	  <input type="text" class="form-control giyong"  value="다이어리" readonly  style="background-color:rgb(0,0,0,0);">
+				 	  <input type="text" class="form-control giyong"  value="다이어리/할일" readonly  style="background-color:rgb(0,0,0,0);">
 					</c:if>
 					<c:if test="${qna.QNACategory ==4}">
-				 	  <input type="text" class="form-control giyong"  value="스크랩" readonly  style="background-color:rgb(0,0,0,0);">
+				 	  <input type="text" class="form-control giyong"  value="기타" readonly  style="background-color:rgb(0,0,0,0);">
 					</c:if>
 			    </div>
 				<div class="form-group col-md-6" >

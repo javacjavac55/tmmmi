@@ -63,13 +63,13 @@ span:hover:before {
 .hide {
 	display: none;
 }
-.todaylist{
+.todolist{
 border-style: solid;
 border-width: thin 10px;
 border-right: 12px dotted;
 border-radius: 0.2rem;
 }
-.tomorrowlist{
+.completelist{
 border-style: solid;
 border-width: thin 10px;
 border-left: 12px dotted;
@@ -152,29 +152,25 @@ border-radius: 0.2rem;
 				dataType : 'json',
 				success : $(function() {
 				Swal.fire({
-								  title: '할 일을 삭제하시겠습니까?',
-								  text: "회원님이 등록한 할 일의 완료가 모두 삭제됩니다",
-								  type: 'warning',
-								  showCancelButton: true,
-								  confirmButtonColor: '#3085d6',
-								  cancelButtonColor: '#d33',
-								  confirmButtonText: '네 삭제할래요!',
-								  cancelButtonText: '아니요 뚱인데요!',
-					}).then((result)=>{
+									 position: 'top-end',
+									  type: 'success',
+									  title: '할 일이 삭제되었습니다.',
+									  showConfirmButton: false,
+									  timer: 1500
+					})/* .then((result)=>{
 						if (result.value) {
 						    Swal.fire(
 						      '삭제되었습니다',
 						      '완료된 할 일도 모두 삭제되었습니다',
-						      'info')}
-						      console.log(deleteToDoNo);
-								$('.list-group.list-group-flush.'+deleteToDoNo).remove();
-						})
-						
+						      'info',
+						      
+						    )} 
+						})*/
 					})
 				})
 			});
 		/////////////////////////////////////// 할 일 완료(현재)////////////////////////////////////////
-		$(document).on('click',".btn.btn-primary.btn-fab.btn-fab-mini.completebtn", function() {
+		$(document).on('click',".completebtn", function() {
 			var ctodono = $(this).data("ctodono");
 			var cpdate = $(this).data("cpdate");
 			console.log(ctodono);
@@ -193,9 +189,18 @@ border-radius: 0.2rem;
 				dataType : 'json',
 				success : function(data) {
 					console.log(data);
-					$('.ctodoDetail'+ctodono).html($('.ctodoDetail'+ctodono).text().strike());
-					$('.completebtn.'+ctodono).attr('class','btn btn-success btn-fab btn-fab-mini completeDelbtn '+data);
-					$('.ctodoDetail'+ctodono).attr('class','dtodoDetail'+ctodono);
+					$('.completelist').append('<ul class="list-group list-group-flush  '+data.toDoNo+'>'
+																+'<li class="list-group-item completeitem">'
+																+'<button aria-label="Left Align" class="btn btn-success btn-fab btn-fab-mini completeDelbtn '+data.completeToDoNo+'  type="button">'
+																+'<i class="material-icons">check</i>'
+																+'</button>'
+																+'<div class="dtodoDetail'+data.toDoNo+'"><strike>'+data.toDoDetail+'</strike></div>'
+																+'</li>'
+																+'</ul>'
+																);
+					$('.list-group-flush.'+ctodono).remove();
+					/* $('.completebtn.'+ctodono).attr('class','btn btn-success btn-fab btn-fab-mini completeDelbtn '+data);
+					$('.ctodoDetail'+ctodono).attr('class','dtodoDetail'+ctodono); */
 				}
 			})
 		})
@@ -212,12 +217,35 @@ border-radius: 0.2rem;
 					"Content-Type" : "application/json"
 				},
 				data : JSON.stringify({
+					toDoNo : ctodono,
 					toDoCompleteNo : dctodono
 				}),
 				dataType : 'json',
-				success : $(function() {
-					 $('.dtodoDetail'+ctodono).html($('.dtodoDetail'+ctodono).html().replace(/<(\/strike|strike)([^>]*)>/gi,"")); 
-					$('.completeDelbtn.'+dctodono).attr('class','btn btn-primary btn-fab btn-fab-mini completebtn '+ctodono);
+				success : $(function(data) {
+						$('.todolist').append('<ul class="list-group list-group-flush '+data.toDoNo+'">'
+															+'<li class="list-group-item todoitem">'
+															+'<button aria-label="Left Align" class="btn btn-primary btn-fab btn-fab-mini completebtn '+data.toDoNo+'" type="button">'
+															+'<i class="material-icons">check</i>'
+															+'</button>'
+															+'<div class="ctodoDetail'+data.toDoNo+'">'+data.toDoDetail+'</div>'
+															+'<div class="no'+data.toDoNo+'" style="margin-left: 50px;">'
+															+'<input class="todoNo" type="hidden" value="'+data.toDoNo+'">'
+															+'<button aria-label="Left Align"'
+															+'class="btn btn-primary btn-fab btn-fab-mini updateViewbtn"'
+															+'data-target="#updatetodomodal"'
+															+'data-toggle="modal" type="button">'
+															+'<i class="material-icons">edit</i>'
+															+'</button>'
+															+'<button aria-label="Left Align" class="btn btn-primary btn-fab btn-fab-mini deletebtn" type="button">'
+															+'<i class="material-icons">clear</i>'
+															+'</button>'
+															+'</div>'
+															+'</li>'
+															+'</ul>'
+																);
+						$('.list-group-flush.'+dctodono).remove();
+					 /* $('.dtodoDetail'+data.toDoNo).html($('.dtodoDetail'+data.toDoNo).html().replace(/<(\/strike|strike)([^>]*)>/gi,""));  */
+					/* $('.completeDelbtn.'+dctodono).attr('class','btn btn-primary btn-fab btn-fab-mini completebtn '+ctodono); */
 				})
 			})
 		})
@@ -284,7 +312,7 @@ border-radius: 0.2rem;
 				
 			<div class="row">
 				<div class="col-md-6">
-					<h3 >오늘의 할 일
+					<h3 >나의 할 일
 						<button class="btn btn-warning btn-fab btn-fab-mini btn-round"
 							data-target="#todomodal" data-toggle="modal" style="">
 							<i class="material-icons">add</i>
@@ -292,16 +320,16 @@ border-radius: 0.2rem;
 					</h3>
 				</div>
 				<div class="col-md-6">
-				<h3>내일의 할 일</h3>
+				<h3>완료된 할 일</h3>
 				</div>
 			</div>
 			<div class="row">
-				<div class="col-md-6 todaylist" style="min-height:700px;">
+			<!-- 나의 할 일 -->
+				<div class="col-md-6 todolist" style="min-height:700px;">
 					<c:forEach items="${todolist}" var="todo">
-						<ul class="list-group list-group-flush  ${todo.toDoNo}"
-							data-todono="${todo.toDoNo}">
-							<li class="list-group-item">
-							<c:if test="${todo.toDoCompleteNo  eq 0}">
+					<c:if test="${todo.toDoCompleteNo  eq 0}">
+						<ul class="list-group list-group-flush  ${todo.toDoNo}">
+							<li class="list-group-item todoitem">
 									<button aria-label="Left Align"
 										class="btn btn-primary btn-fab btn-fab-mini completebtn ${todo.toDoNo}"
 										data-ctodono="${todo.toDoNo}" 
@@ -310,21 +338,7 @@ border-radius: 0.2rem;
 										type="button">
 										<i class="material-icons">check</i>
 									</button>
-								</c:if> 
-								<c:if test="${todo.toDoCompleteNo  ne 0}">
-									<button aria-label="Left Align"
-										class="btn btn-success btn-fab btn-fab-mini completeDelbtn ${todo.toDoCompleteNo}"
-										data-ctodono="${todo.toDoNo}"
-										data-dctodono="${todo.toDoCompleteNo}" type="button">
-										<i class="material-icons">check</i>
-									</button>
-								</c:if> 
-								 <c:if test="${todo.toDoCompleteNo eq 0}">
 										<div class="ctodoDetail${todo.toDoNo}">${todo.toDoDetail}</div>
-								</c:if>
-								<c:if test="${todo.toDoCompleteNo  ne 0}">
-									<div class="dtodoDetail${todo.toDoNo}"><strike>${todo.toDoDetail}</strike></div>
-								</c:if>
 								<div class="no${todo.toDoNo}" style="margin-left: 50px;">
 									<input class="todoNo" type="hidden" value="${todo.toDoNo}">
 									<button aria-label="Left Align"
@@ -344,34 +358,25 @@ border-radius: 0.2rem;
 								</div>
 							</li>
 						</ul>
+						</c:if>
 					</c:forEach>
 				</div>
-				<div class="col-md-6 tomorrowlist">
-					<c:forEach items="${nextlist}" var="todo">
-						<ul class="list-group list-group-flush  ${todo.toDoNo}"
-							data-todono="${todo.toDoNo}">
-							<li class="list-group-item">
-							<c:if test="${todo.toDoCompleteNo  eq 0}">
-									<button aria-label="Left Align"
-										class="btn btn-primary btn-fab btn-fab-mini completebtn ${todo.toDoNo}"
-										data-ctodono="${todo.toDoNo}" 
-										data-dctodono="${todo.toDoCompleteNo}"
-										data-cpdate="${targetDate}"
-										type="button">
-										<i class="material-icons">check</i>
-									</button>
-								</c:if> 
-								<c:if test="${todo.toDoCompleteNo  ne 0}">
-									<button aria-label="Left Align"
-										class="btn btn-success btn-fab btn-fab-mini completeDelbtn ${todo.toDoCompleteNo}"
-										data-ctodono="${todo.toDoNo}"
-										data-dctodono="${todo.toDoCompleteNo}" type="button">
-										<i class="material-icons">check</i>
-									</button>
-									</c:if> 
-								<div class="ctodoDetail${todo.toDoNo}">${todo.toDoDetail}</div>
+				<!-- 완료된 할 일 리스트 -->
+				<div class="col-md-6 completelist">
+					<c:forEach items="${todolist}" var="todo">
+					<c:if test="${todo.toDoCompleteNo  ne 0}">
+						<ul class="list-group list-group-flush  ${todo.toDoCompleteNo}" data-todono="${todo.toDoNo}">
+							<li class="list-group-item completeitem">
+								<button aria-label="Left Align"
+									class="btn btn-success btn-fab btn-fab-mini completeDelbtn ${todo.toDoCompleteNo}"
+									data-ctodono="${todo.toDoNo}"
+									data-dctodono="${todo.toDoCompleteNo}" type="button">
+									<i class="material-icons">check</i>
+								</button>
+								<div class="dtodoDetail${todo.toDoNo}"><strike>${todo.toDoDetail}</strike></div>
 							</li>
 						</ul>
+						</c:if>
 					</c:forEach>
 				</div>
 				</div>

@@ -21,7 +21,7 @@
 		    <c:if test="${ resultPage.currentPage > resultPage.pageUnit }">
 		    	<li class="page-item">
 		    </c:if>
-		      <a class="page-link" href="javascript:fncGetList('${ resultPage.currentPage-1}')"  tabindex="-1">Previous</a>
+		      <a class="page-link" href="javascript:fncGetList('${ resultPage.currentPage-1}')"  tabindex="-1">Prev</a>
 		    </li>
 		    
 		    <!--  °¡¿îµ¥ -->

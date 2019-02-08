@@ -29,11 +29,12 @@
 	<!-- SQL: SELECT -->
 	<select id="getDiary" parameterType="string" resultMap="DiarySelectMap">
 		SELECT
-		diary_no, user_Category_no, diary_title, diary_detail, diary_date
+		d.diary_no, d.user_Category_no, d.diary_title, d.diary_detail, d.diary_date, u.user_category_name
 		FROM
-		diary
+		diary d, user_category u
 		WHERE
-		diary_no= #{value}
+		d.user_category_no = u.user_category_no and
+		d.diary_no= #{value}
 	</select>
 	
 	<!-- SQL: UPDATE -->
@@ -67,7 +68,7 @@
 												and (d.diary_title like '%'||#{search.searchKeyword}||'%' or d.diary_detail like '%'||#{search.searchKeyword}||'%')
 												</if>											
 											</where>											
-											ORDER BY diary_no) inner_table
+											ORDER BY diary_date desc) inner_table
 						WHERE ROWNUM &lt;= #{search.endRowNum} )
 		WHERE row_seq BETWEEN #{search.startRowNum} AND #{search.endRowNum} 
 	 </select>
