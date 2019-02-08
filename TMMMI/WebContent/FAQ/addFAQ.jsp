@@ -127,7 +127,7 @@
 			      <option value="0" >회원 정보</option>
 				  <option value="1" >일정 관리</option>
 				  <option value="2" >컨텐츠 설정</option>
-				  <option value="3" >다이어리/스크랩</option>
+				  <option value="3" >다이어리/할일</option>
 			    </select>
 		 	</div>
 		 	
