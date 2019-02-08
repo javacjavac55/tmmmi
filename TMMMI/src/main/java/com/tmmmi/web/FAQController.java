@@ -45,10 +45,10 @@ public class FAQController {
 		System.out.println(this.getClass());
 	}
 	
-	@Value("#{commonProperties['pageUnit']}")
+	@Value("#{commonProperties['userCenterPageUnit']}")
 	int pageUnit;
 	
-	@Value("#{commonProperties['pageSize']}")
+	@Value("#{commonProperties['userCenterPageSize']}")
 	int pageSize;
 
 	
