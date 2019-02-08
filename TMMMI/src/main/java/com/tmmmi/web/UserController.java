@@ -184,11 +184,12 @@ public class UserController {
 		User dbUser = userService.getUserId(user.getUserId());
 		if(user.getPassword().equals(dbUser.getPassword())) {
 			session.setAttribute("userNo", dbUser.getUserNo());
+			session.setAttribute("userName", dbUser.getUserName());
 			session.setAttribute("userSetting", userSettingService.getUserSetting(dbUser.getUserNo()));
 		}
 		
 		ModelAndView modelAndView = new ModelAndView();
-		modelAndView.setViewName("redirect:/common/TopMenu.jsp");
+		modelAndView.setViewName("redirect:/common/loginIndex.jsp");
 		return modelAndView;
 	}
 	
