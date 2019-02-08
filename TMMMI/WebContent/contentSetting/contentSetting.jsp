@@ -152,7 +152,7 @@
 
             	console.log('code:'+request.status+'\n'+'message:'+request.responseText+'\n'+'error:'+error);
             	alert('수정 된 내용이 없습니다!');
-            	window.location = '/content/listContent.jsp';
+            	window.location = '/content/getContentList';
             }
 	    }) 
  	}
