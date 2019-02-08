@@ -52,7 +52,7 @@
 	
 	<!-- SQL : SELECT ONE(getUserId) -->
 	<select id="getUserId" parameterType="string" resultMap="userSelectMap">
-		SELECT user_no, user_id, password, role, userName
+		SELECT user_no, user_id, password, role, user_name
 		FROM users 
 		WHERE user_id = #{value}
 	</select>

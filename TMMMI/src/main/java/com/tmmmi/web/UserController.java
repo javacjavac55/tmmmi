@@ -195,7 +195,7 @@ public class UserController {
 	
 	@RequestMapping(value="topMenu")
 	public String topMenu() throws Exception{
-		return "redirect:/common/TopMenu.jsp";
+		return "redirect:/common/loginIndex.jsp";
 	}
 	
 	@RequestMapping(value="logout", method=RequestMethod.GET)

@@ -42,7 +42,7 @@ public class LogonCheckInterceptor extends HandlerInterceptorAdapter {
 			
 			if(		uri.indexOf("addUser") != -1 ||	uri.indexOf("login") != -1 		|| 
 					uri.indexOf("checkDuplication") != -1 ){
-				request.getRequestDispatcher("topMenu").forward(request, response);
+				response.sendRedirect(request.getContextPath()+"../user/topMenu");
 				System.out.println("[ 로그인 상태.. 로그인 후 불필요 한 요구.... ]");
 				System.out.println("[ LogonCheckInterceptor end........]\n");
 				return false;
