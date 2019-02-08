@@ -19,13 +19,14 @@
 	<!-- SQL : INSERT -->
 	<insert id="addUserSetting" parameterType="int">
 		INSERT
-		INTO user_setting(user_setting_no, user_no, main_color_mode_no, menu_font_color, show_scrap_alarm)
+		INTO user_setting(user_setting_no, user_no, main_color_mode_no, menu_font_color, show_scrap_alarm, image)
 		VALUES(
 			user_setting_no.nextval,
 			#{value},
 			0,
-			'#212529',
-			0
+			'#fafafa',
+			0,
+			'79574.ngsversion.1422286298641.adapt.1900.1.jpg'
 		)
 	</insert>
 	

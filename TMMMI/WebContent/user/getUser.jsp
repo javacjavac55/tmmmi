@@ -79,7 +79,6 @@
 
 							<div class="row">
 								<div class="col-md-12 text-center ">
-								<br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
 									<button type="button" class="btn btn-primary btn-round">회원정보수정</button>
 								</div>
 								<br/>

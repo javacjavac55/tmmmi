@@ -45,7 +45,7 @@
 						</c:if><c:if test="${qna.QNACategory == 2}">
 							컨텐츠 설정
 						</c:if><c:if test="${qna.QNACategory == 3}">
-							다이어리/스크랩
+							다이어리/할일
 						</c:if><c:if test="${qna.QNACategory == 4}">
 							기타
 						</c:if>

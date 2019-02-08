@@ -108,7 +108,7 @@
  	$( function() {
 		//==> DOM Object GET 3가지 방법 ==> 1. $(tagName) : 2.(#id) : 3.$(.className)
 		$("a[href='#' ]").on("click" , function() {
-			self.location = "/content/listContent.jsp"
+			self.location = "/content/getContentList"
 		});
 	});
  	</script>

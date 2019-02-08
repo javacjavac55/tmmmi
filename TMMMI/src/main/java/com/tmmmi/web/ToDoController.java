@@ -81,17 +81,14 @@ public class ToDoController {
 		todomap.put("userNo", userNo);
 		todomap.put("targetDate", targetDate);
 		System.out.println(todomap);
-		
-		//내일 날짜 계산
-		Map<String, Object> nextToDoMap = new HashMap<String, Object>();
-		todomap.put("userNo", userNo);
-		
+	
 		//Business Logic
 		List<ToDo> todolist = toDoService.getToDoList(todomap);
 		ModelAndView modelAndView = new ModelAndView();
 		System.out.println("todolist"+todolist);
 		modelAndView.setViewName("/todo/listToDo.jsp");
 		modelAndView.addObject("todolist",todolist);
+		modelAndView.addObject("targetDate",targetDate);
 		System.out.println(modelAndView);
 		return modelAndView;
 		}
@@ -109,11 +106,6 @@ public class ToDoController {
 		todomap.put("userNo", userNo);
 		todomap.put("targetDate", targetDate1);
 		
-		//내일날짜계산
-		/*Map<String, Object> nextToDoMap = new HashMap<String, Object>();
-		todomap.put("userNo", userNo);
-		todomap.put("targetDate", targetDate1);*/
-		
 		//Business Logic
 		List<ToDo> todolist = toDoService.getToDoList(todomap);
 		/*List<ToDo>nextlist=toDoService.getToDoList(nextToDoMap);*/
@@ -126,7 +118,6 @@ public class ToDoController {
 		modelAndView.setViewName("/todo/listToDo.jsp");
 		modelAndView.addObject("targetDate", targetDate1);
 		modelAndView.addObject("todolist",todolist);
-		/*modelAndView.addObject("nextlist",nextlist);*/
 		modelAndView.addObject("displaydate", tDate);
 		System.out.println(modelAndView);
 		return modelAndView;
