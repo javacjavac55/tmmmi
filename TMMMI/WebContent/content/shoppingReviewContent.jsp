@@ -29,13 +29,14 @@
 		
 		$(function(){
 			$("embed").on("click", function(){
+				alert(123)
 				var no = $(this).data("no");
 				var link = $(this).data("link");
 				console.log(no)
 				console.log(link)
 				
 				$('#review'+no).append("<embed src=link></embed>");
-				<embed src="http://www.youtube.com/embed/duOSXXzvt4M"></embed>
+				
 				
 				$('#review'+no).attr('style','display:block;');
 			});	
@@ -95,7 +96,7 @@
 						${contentReviewShopping.shoppingVideoChannel} 
 					</p>
 					
-					<div class="movie-trailer-preview" id="review${contentReviewShopping.reviewNo}">
+					<div id="review${contentReviewShopping.reviewNo}">
 					</div>
 				</article>
 			</c:forEach>
