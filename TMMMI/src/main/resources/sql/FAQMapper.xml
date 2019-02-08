@@ -38,7 +38,21 @@
 									<if test="searchCondition == 0 and searchKeyword !='' ">
 									 	AND faq_title LIKE '%'||#{searchKeyword}||'%' OR faq_detail LIKE '%'||#{searchKeyword}||'%'
 									</if>
+									<if test="searchCondition == 1">
+									 	AND user_center_category = 0
+									</if>
+									<if test="searchCondition == 2">
+									 	AND user_center_category = 1
+									</if>
+									<if test="searchCondition == 3">
+									 	AND user_center_category = 2
+									</if>
+									<if test="searchCondition == 4">
+									 	AND user_center_category = 3
+									</if>
 								</if>
+								
+							
 								</where>
 								ORDER BY faq_no DESC ) inner_table
 						WHERE ROWNUM &lt;= #{endRowNum} )

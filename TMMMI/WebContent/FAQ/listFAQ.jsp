@@ -42,7 +42,7 @@
 					}),
 					success : function(data) {
 					/* console.log(data) */
-					$('#table').html(data);
+						$('#table').html(data);
 					}
 			});
 		}
@@ -99,7 +99,9 @@
 			});
 	    }
 	   
+		////////////////////////////////배너
 		$(document).ready(function() {	    	 
+			
 	    	// 기존 css에서 플로팅 배너 위치(top)값을 가져와 저장한다.
 	    	var floatPosition = parseInt($("#floatdiv").css('top'));
 	    	// 250px 이런식으로 가져오므로 여기서 숫자만 가져온다. parseInt( 값 );
@@ -114,6 +116,60 @@
 	    		}, 500);
 	    	}).scroll();
 	    });
+		
+		
+		////////////////////////////////기본적으로 접혀있는상태
+		$(document).ready(function() {	    	 
+			$('.detail').slideToggle(1, function() {
+	    	 });
+		});
+		
+		////////////////////////////////누르면 펼쳐졌다 닫혔다
+	    $(function() {  		    	
+	    	$( ".title" ).on("click" , function() {
+	    		var faqNo=$(this).data("param1");
+	    		
+	    		if(  $('.detail'+faqNo).is(":visible") ){
+	    			$('.detail'+faqNo).slideUp(100);
+	            }else{
+	            	$('.detail'+faqNo).slideDown('fast');
+	            }
+			})
+	    });
+		
+		////////////////////////////////
+	    $(function() {	
+	    	$(".users").on("click",function(){	
+	    		//alert("1:1문의로 이동")
+				self.location = "/faq/getFAQList?searchCondition=1";
+		    });
+	    });
+		
+		////////////////////////////////
+	    $(function() {	
+	    	$(".calendar").on("click",function(){	
+	    		//alert("1:1문의로 이동")
+				self.location = "/faq/getFAQList?searchCondition=2";
+		    });
+	    });
+	    
+		////////////////////////////////
+	    $(function() {	
+	    	$(".content").on("click",function(){	
+	    		//alert("1:1문의로 이동")
+				self.location = "/faq/getFAQList?searchCondition=3";
+		    });
+	    });
+	    
+		////////////////////////////////
+	    $(function() {	
+	    	$(".diary").on("click",function(){	
+	    		//alert("1:1문의로 이동")
+				self.location = "/faq/getFAQList?searchCondition=4";
+		    });
+	    });
+
+
 	</script>
 
 	<style>
@@ -154,6 +210,7 @@
 				background-color: #606060;
 				color: #fff;
 			}
+		
 
 		 	
 	</style>
@@ -199,21 +256,21 @@
 					    <input type="text" class="form-control" name="searchKeyword" id="searchKeyword" value="${search.searchKeyword}">
 					</div>
 				</div>
-				<div class="col-md-1" style="margin-top:1%;">
+				<div class="col-md-1" style="margin-top:1.7%;">
 					<button type="button" class="btn btn-primary" name="searchCondition" value="0">검색</button>
 				</div>
 			</div>
 			
 			<br/><br/><br/><br/><br/><br/>
 			
-			<div class="row" style="margin-top:1.6%; text-align:center">
-				<img src="/images/weather/photo.jpg" style="margin-left:19%; position: relative;" class="rounded float-left" >		
-				 <img src="/images/weather/photo.jpg" style="margin-left:1.6%;" class="rounded float-right" >
+			<div class="row" style="text-align:center">
+				<img src="/images/weather/user.jpg" style="margin-left:19%; position: relative;" class="rounded float-left users" >		
+				<img src="/images/weather/calendar.jpg" style="margin-left:2.6%;" class="rounded float-right calendar" >
 				  
 			</div>
-			<div class="row" style="margin-top:1.6%; text-align:center">
-				  <img src="/images/weather/photo.jpg" style="margin-left:19%;" class="rounded float-left" >
-				  <img src="/images/weather/photo.jpg" style="margin-left:1.6%;" class="rounded float-right">
+			<div class="row" style="margin-top:2.6%; text-align:center">
+				  <img src="/images/weather/content.jpg" style="margin-left:19%;" class="rounded float-left content" >
+				  <img src="/images/weather/diary.jpg" style="margin-left:2.6%;" class="rounded float-right diary">
 			</div>
 			
 	
