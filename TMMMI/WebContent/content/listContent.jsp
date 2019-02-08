@@ -18,11 +18,11 @@ iframe {
 	border: none;
 }
 
-.movie{
+.normal-card{
 	height: 664px;
 }
 
-.movie-trailer {
+.wide-card {
 	height: 686px;
 }
 
@@ -131,6 +131,13 @@ $(function(){
 		
 		$($('#general').contents().find('.content-model-btn')).on('click', function(){
 			var content = $('#general').contents().find('#generalInput').val();
+			  
+			$('.modal-body').html('<iframe class="content-modal" src="'+content+'" />');
+			$('.content-modal-btn').click();
+		});
+		
+		$($('#tasty').contents().find('.content-model-btn')).on('click', function(){
+			var content = $('#tasty').contents().find('#tastyInput').val();
 			  
 			$('.modal-body').html('<iframe class="content-modal" src="'+content+'" />');
 			$('.content-modal-btn').click();

@@ -357,15 +357,16 @@ public class ContentSportDaoImpl extends ContentDaoAdaptor {
 			
 			ContentSport contentSport = new ContentSport();
 			
-			contentSport.setSportThumbnail(element.getElementsByTag("img").first().attr("src"));
+			contentSport.setSportThumbnail(element.getElementsByTag("img").first().attr("src").split("\\?type=")[0]);
 			contentSport.setSportTitle(element.getElementsByTag("img").first().attr("alt"));
 			
 			subAddress=element.attr("href");
 			fullAddress= firstAddress + subAddress;
 			
-			doc = Jsoup.connect(fullAddress).header("User-Agent", "Mozilla/5.0").get();
-			//System.out.println(doc.getElementsByAttributeValue("property", "og:video:url").attr("content"));
-			contentSport.setSportVideo(doc.getElementsByAttributeValue("property", "og:video:url").attr("content"));
+			doc = Jsoup.connect(fullAddress).header("User-Agent", "Mozilla/5.0").get();			
+			contentSport.setSportLink(fullAddress);
+			contentSport.setSportVideo("<iframe src='"+doc.getElementsByAttributeValue("property", "og:video:url").attr("content")+"' frameborder='no' scrolling='no' marginwidth='0' marginheight='0' WIDTH='600' HEIGHT='518' allow='autoplay' allowfullscreen></iframe>");
+			contentSport.setSportNo(doc.getElementsByAttributeValue("property", "naver:video:id").attr("content"));
 			
 			sportList.add(contentSport);
 		}

@@ -22,6 +22,8 @@ public class ContentTasty {
 	private String tastyAddress;
 	@JsonProperty("telephone")
 	private String tastyTel;
+	@JsonProperty("link")
+	private String tastyLink;
 	
 	///Constructor
 	public ContentTasty() {
@@ -91,11 +93,20 @@ public class ContentTasty {
 		this.tastyTel = tastyTel;
 	}
 
+	public String getTastyLink() {
+		return tastyLink;
+	}
+
+	public void setTastyLink(String tastyLink) {
+		this.tastyLink = tastyLink;
+	}
+
 	@Override
 	public String toString() {
 		return "ContentTasty [sectionNo=" + sectionNo + ", tastyTitle=" + tastyTitle + ", tastyRegDate=" + tastyRegDate
 				+ ", tastyLocationX=" + tastyLocationX + ", tastyLocationY=" + tastyLocationY + ", tastyMenu="
-				+ tastyMenu + ", tastyAddress=" + tastyAddress + ", tastyTel=" + tastyTel + "]";
+				+ tastyMenu + ", tastyAddress=" + tastyAddress + ", tastyTel=" + tastyTel + ", tastyLink=" + tastyLink
+				+ "]";
 	}
-	
+
 }

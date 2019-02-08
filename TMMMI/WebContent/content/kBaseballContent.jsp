@@ -20,7 +20,8 @@
 			<c:forEach var="sport" items="${contentSport}">
 				<article class="content-sport">
 					<div class="sport">
-						<a href="#"> <img class="sport-thumbnail" src="${sport.sportThumbnail}">
+						<a href="#"> 
+							<img class="sport-thumbnail" src="${sport.sportThumbnail}">
 						</a> 
 					</div>
 					<div class="sport-title">
@@ -35,25 +36,6 @@
 
 		</div>
 	</section>
-	<!-- <div class="modal fade" id="myFullsizeModal" tabindex="-1" role="dialog" aria-labelledby="myFullsizeModalLabel" aria-hidden="true">
-	  <div class="modal-dialog modal-fullsize">
-	    <div class="modal-content modal-fullsize">
-		      <div class="modal-header">
-		        <h5 class="modal-title" id="exampleModalLongTitle">영화 더 보기</h5>
-		        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-		          <span aria-hidden="true">&times;</span>
-		        </button>
-		      </div>
-		      <div class="modal-body">
-		        
-		      </div>
-		      <div class="modal-footer">
-		        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-		        <button type="button" class="btn btn-primary">Save changes</button>
-		      </div>
-		    </div>
-		  </div>
-	  </div> -->
 	<input type="hidden" id="kBaseballInput" value="" />
 	<!-- Carousel JS -->
 	<script src="/javascript/scroll/jquery.dropotron.min.js"></script>

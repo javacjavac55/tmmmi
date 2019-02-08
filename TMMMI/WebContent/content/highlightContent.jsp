@@ -14,34 +14,51 @@
 <link rel="stylesheet" href="/css/scroll/main_sport.css">
 <noscript><link rel="stylesheet" href="/css/scroll/noscript.css" /></noscript>
 </head>
-<body>
-<section class="carousel">
-	<div><span class="section-title">하이라이트</span></div>
-	<div class="reel" style="overflow: visible; transform: translate(-1285px, 0px);">
-		<c:forEach var="sport" items="${contentSport}">
-			<article class="content-sport">
-				<a href="#" class="image">
-					<img src="${sport.sportThumbnail}" data-no="${sport.sportNo}" data-link='${sport.sportVideo}' />
-				</a>
-			</article>
-		</c:forEach>
-	</div>
-</section>
-	<section style="padding: 10%;"> <header class="major">
-	<h2>하이라이트<h2>
-	</header>
-	<div class="posts" style="margin: 0 auto;">
-		<c:forEach var="sport" items="${contentSport}">
-			<article id="giyong"> <a href="#" class="image"><img
-				src="${sport.sportThumbnail}" alt="" /></a> <a
-				href="<iframe src='${sport.sportVideo}' frameborder='no' scrolling='no' marginwidth='0' marginheight='0' WIDTH='544' HEIGHT='306' allow='autoplay' allowfullscreen></iframe>" target="_blank">${sport.sportTitle}</a>
-			<br />
-			<ul class="actions" align="right">
-				<li><a href="${sport.sportVideo}" target="_blank"><button type="button">More</button></a></li>
-			</ul>
-			</article>
-		</c:forEach>
-	</div>
-	</section>
-</body>
+	<body>
+		<section class="carousel">
+			<div><span class="section-title">하이라이트</span></div>
+			<div class="reel" style="overflow: visible; transform: translate(-1285px, 0px);">
+				<c:forEach var="sport" items="${contentSport}">
+					<article class="content-sport-highlight">
+						<div class="sport">
+							<a href="#">
+								<img class="videoThmb" src="${sport.sportThumbnail}" data-no="${sport.sportNo}" data-link="${sport.sportVideo}" />
+							</a>
+						</div>
+						<div class="highlight-title">
+							${sport.sportTitle}
+						</div>
+						<div class="sport-highlight" id="sport-highlight-${sport.sportNo}">
+								
+						</div>	
+					</article>
+				</c:forEach>
+			</div>
+		</section>
+		<!-- Carousel JS -->
+		<script src="/javascript/scroll/jquery.dropotron.min.js"></script>
+		<script src="/javascript/scroll/jquery.scrolly.min.js"></script>
+		<script src="/javascript/scroll/jquery.scrollex.min.js"></script>
+		<script src="/javascript/scroll/browser.min.js"></script>
+		<script src="/javascript/scroll/breakpoints.min.js"></script>
+		<script src="/javascript/scroll/util.js"></script>
+		<script src="/javascript/scroll/main.js"></script>
+		<script>
+			$(function(){
+				$(".videoThmb").on("click", function(){
+					var no = $(this).data("no");
+					var link = $(this).data("link");
+					$('#sport-highlight-'+no).html(link+'<div class="sport-highlight-close-btn" data-no="'+no+'"></div>');
+					
+					$(".sport-highlight-close-btn").on("click", function(){
+						var no = $(this).data("no");
+						$('#sport-highlight-'+no).html('');
+						$('#sport-highlight-'+no).attr('style','display:none;');
+					});
+					
+					$('#sport-highlight-'+no).attr('style','display:block;');
+				});
+			})
+		</script>
+	</body>
 </html>

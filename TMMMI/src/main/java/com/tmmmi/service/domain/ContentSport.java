@@ -3,7 +3,7 @@ package com.tmmmi.service.domain;
 public class ContentSport {
 	
 	private int sectionNo;
-	private int sportNo;
+	private String sportNo;
 	private String sportTitle;
 	private String sportLink;
 	private String sportThumbnail;
@@ -21,11 +21,11 @@ public class ContentSport {
 		this.sectionNo = sectionNo;
 	}
 
-	public int getSportNo() {
+	public String getSportNo() {
 		return sportNo;
 	}
 
-	public void setSportNo(int sportNo) {
+	public void setSportNo(String sportNo) {
 		this.sportNo = sportNo;
 	}
 
