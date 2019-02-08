@@ -44,6 +44,7 @@
 						text: "카테고리를 성공적으로 등록했습니다" , 
 						icon : "success" , 
 					}).then((value) => {
+						if ($('.user-category-item').length){
 						$('.user-category-item').last().after(
 								'<div class="user-category-item">'+
 								'<button class="btn btn-fab btn-round dot" id="userCategoryInfo'+JSONData+'"'+
@@ -52,6 +53,17 @@
 								'" data-param3="'+$('#userCategoryColor').val()+
 								'" style="background-color:'+$("#userCategoryColor").val()+'"></button><br/><span>'+
 								$('#userCategoryName').val()+'</span></div>');
+						} else {
+							$('.profile.category-list-area').html('');
+							$('.profile.category-list-area').html(
+									'<div class="user-category-item">'+
+									'<button class="btn btn-fab btn-round dot" id="userCategoryInfo'+JSONData+'"'+
+									'data-param1="'+JSONData+
+									'" data-param2="'+$('#userCategoryName').val()+
+									'" data-param3="'+$('#userCategoryColor').val()+
+									'" style="background-color:'+$("#userCategoryColor").val()+'"></button><br/><span>'+
+									$('#userCategoryName').val()+'</span></div>');
+						}
 					});
 				} else {
 					swal({
@@ -65,9 +77,7 @@
 		});	
 	};
 	
-	function updateUserCategory(){
-		alert("수정");
-		
+	function updateUserCategory(){		
 		console.log($("#userCategoryNo").val());
     	console.log($("#userCategoryName").val());
     	console.log($("#userCategoryColor").val());
@@ -114,8 +124,6 @@
 	};
 	
 	function deleteUserCategory(){
-		alert("삭제");
-		
 		console.log($("#userCategoryNo").val());
     	console.log($("#userCategoryName").val());
     	console.log($("#userCategoryColor").val());
@@ -141,6 +149,7 @@
 				}).then((value) => {
 					$('#userCategoryInfo'+$("#userCategoryNo").val()).parent().remove();
 					$('#cancelBtn').click();
+					$('.profile.category-list-area').html('<p><span>등록된 카테고리가 없습니다</span></p>');
 				});
 			}
 		});	

@@ -14,7 +14,7 @@
 <link href="/css/template/material-kit.min.css?v=2.0.5" rel="stylesheet" />
 <!--   Core JS Files   -->
 <script src="/javascript/template/core/jquery.min.js" type="text/javascript"></script>
-<script src="/javascript/template/core/popper.min.js" type="text/javascript"></script>
+<!-- <script src="/javascript/template/core/popper.min.js" type="text/javascript"></script> -->
 <script src="/javascript/template/core/bootstrap-material-design.min.js" type="text/javascript"></script>
 <!--momentJS  -->
 <script src="/javascript/moment/moment.js" type="text/javascript"></script>
