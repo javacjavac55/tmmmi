@@ -65,6 +65,10 @@ public class ToDoServiceImpl implements ToDoService {
 		return toDoDao.getToDo(toDo);
 	}
 	@Override
+	public ToDo getToDoOne(ToDo toDo) throws Exception{
+		return toDoDao.getToDoOne(toDo);
+	}
+	@Override
 	public void getToDoDayGraph(Map<String, Object> todomap) throws Exception {
 		
 	}

@@ -24,6 +24,15 @@
 		$("form").attr("method" , "POST").attr("action" , "/user/getUserList").submit();
 	}
 </script>
+
+<!-- 버튼 이벤트 -->
+<script type="text/javascript">
+	$(function() {
+		$(document).on('click', 'button.btn.btn-primary', function() {
+			self.location = "/user/withdraw"
+		});
+	})
+</script>
 </head>
 <body class="index-page sidebar-collapse">
 <form>
@@ -94,7 +103,7 @@
 												</c:choose>
 											</td>
 											<td align="center">${user.withdrawDate}</td>
-											<td align="center">수정</td>
+											<td align="center"><button type="button" class="btn btn-primary btn-round">수정</button></td>
 										</tr>
 									</c:forEach>
 									</tbody>

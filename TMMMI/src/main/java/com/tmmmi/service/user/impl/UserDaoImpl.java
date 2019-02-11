@@ -47,7 +47,13 @@ public class UserDaoImpl implements UserDao {
 	
 	@Override
 	public User getUserId(String userId) throws Exception {
-		return sqlSession.selectOne("UserMapper.getUserId", userId);
+		User user = new User();
+		if(sqlSession.selectOne("UserMapper.getUserId", userId) == null) {
+			user.setUserId("no");
+			return user;
+		}else {
+			return sqlSession.selectOne("UserMapper.getUserId", userId);
+		}
 	}
 
 	@Override
@@ -75,8 +81,8 @@ public class UserDaoImpl implements UserDao {
 		return sqlSession.selectOne("UserMapper.searchUserId", user);
 	}
 	@Override
-	public User searchUserPw(User user) {
-		return sqlSession.selectOne("UserMapper.searchUserPw", user);
+	public void searchUserPw(User user) {
+		sqlSession.selectOne("UserMapper.searchUserPw", user);
 	}
 	
 	@Override

@@ -95,9 +95,9 @@ public class UserController {
 		if(user.getAuthNum().equals(((String)session.getAttribute("authNum")))){
 			user.setEmailCheck(1);
 			userService.updateUser(user);
-			modelAndView.setViewName("/user/login.jsp");
+			modelAndView.setViewName("/user/index.jsp");
 		}else {
-			modelAndView.setViewName("/user/addUser.jsp");
+			modelAndView.setViewName("/user/addSNSUser.jsp");
 		}
 		
 		return modelAndView;
@@ -181,21 +181,19 @@ public class UserController {
 	@RequestMapping(value="login", method=RequestMethod.POST)
 	public ModelAndView login(@ModelAttribute("user") User user, HttpSession session) throws Exception {
 		System.out.println("/user/login : POST");
+		ModelAndView modelAndView = new ModelAndView();
+		
 		User dbUser = userService.getUserId(user.getUserId());
 		if(user.getPassword().equals(dbUser.getPassword())) {
 			session.setAttribute("userNo", dbUser.getUserNo());
 			session.setAttribute("userName", dbUser.getUserName());
 			session.setAttribute("userSetting", userSettingService.getUserSetting(dbUser.getUserNo()));
+			modelAndView.setViewName("redirect:/common/loginIndex.jsp");
+		}else {
+			modelAndView.setViewName("redirect:../index.jsp");
 		}
 		
-		ModelAndView modelAndView = new ModelAndView();
-		modelAndView.setViewName("redirect:/common/loginIndex.jsp");
 		return modelAndView;
-	}
-	
-	@RequestMapping(value="topMenu")
-	public String topMenu() throws Exception{
-		return "redirect:/common/loginIndex.jsp";
 	}
 	
 	@RequestMapping(value="logout", method=RequestMethod.GET)
@@ -204,14 +202,6 @@ public class UserController {
 		session.invalidate();
 		ModelAndView modelAndView = new ModelAndView();
 		modelAndView.setViewName("redirect:/index.jsp");
-		
-		return modelAndView;
-	}
-	
-	@RequestMapping(value="menu", method=RequestMethod.POST)
-	public ModelAndView menu() throws Exception{
-		ModelAndView modelAndView = new ModelAndView();
-		modelAndView.setViewName("redirect:/common/TopMenu.jsp");
 		
 		return modelAndView;
 	}

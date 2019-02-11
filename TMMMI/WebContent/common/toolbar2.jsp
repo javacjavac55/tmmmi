@@ -17,7 +17,7 @@
   <nav class="navbar navbar-transparent navbar-color-on-scroll fixed-top navbar-expand-lg" color-on-scroll="100" id="sectionsNav">
     <div class="container">
       <div class="navbar-translate">
-       <a class="navbar-brand" href="/common/loginIndex.jsp">TMMMI</a>
+       <a class="navbar-brand" href="../index.jsp">TMMMI</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" aria-expanded="false" aria-label="Toggle navigation">
           <span class="sr-only">Toggle navigation</span>
           <span class="navbar-toggler-icon"></span>
@@ -74,7 +74,7 @@
             <a href="#" class="dropdown-toggle nav-link" data-toggle="dropdown">My page</a>
             <div class="dropdown-menu dropdown-with-icons">
             	<a href="/user/getUser" class="dropdown-item">내 정보 보기</a>
-            	<c:if test="${userNo eq 0 }"><a href="/user/getUserList" class="dropdown-item">회원 리스트</a></c:if>
+            	<c:if test="${userNo eq 101 }"><a href="/user/getUserList" class="dropdown-item">회원 리스트</a></c:if>
             </div>
           </li>
           

@@ -12,27 +12,22 @@
 	
 	<script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" ></script>
-	
-	<!--  ///////////////////////// Bootstrap, jQuery CDN ////////////////////////// -->
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" >
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" >
-	
+
 	<!-- weather icon -->
 	<script src="https://rawgithub.com/darkskyapp/skycons/master/skycons.js"></script>
 	
-	<!-- font -->
-   	<link href="https://fonts.googleapis.com/css?family=Nanum+Gothic:400,700,800&amp;subset=korean" rel="stylesheet">
-   
-   	<!-- template -->
-	<link rel="stylesheet" href="/css/template/main.css">
-	
+
 	<script type="text/javascript">
 	
+		////////////////////////////////페이지 로딩화면
+		$(window).on('load', function(){
+		     $('.loading').hide();  
+		});
+
 		////////////////////////////////도시선택
 	    $(function() {	
 	    	$( ".form-control" ).change( function() {	
 	    		var city = $(this).val();
-	    		console.log(city)
 	    		getWeather();
 	    		getDust();
 	    	});
@@ -55,7 +50,7 @@
 					"Content-Type" : "application/json"
 				}, 
 		        success: function(Data) {
-		      		console.log("Data 확인 : ", Data);
+		      		//console.log("Data 확인 : ", Data);
 		      		
 		      		$(".main").html(Data); 
 		      		
@@ -120,7 +115,7 @@
 				      	}
 		      		}
 			      	
-			      	var icons = new Skycons({"color":"white"}),
+			      	var icons = new Skycons({"color":"black"}),
 		      	    list = [
 		      	      "clear-day",
 		      	      "clear-night",
@@ -158,27 +153,23 @@
 		      		/* console.log("Data 확인(Dust) : ", Data); */
 		      		
 		      		var dust = Data.list[0].pm10Value;
-		      		console.log(dust);
+		      		//console.log(dust);
 		      		
 		      		$(".dust").html(Data); 
 		        }
 			});
 		}
 		
+		
 	</script>
 	
 <style>
 
 		body {
-			background: black;
 		}
 	
 		figure {
-		
-			color:white;
-			/* background-image: url('/images/weather/widgetBackground.jpg'); */
-			
-			/* background: #8b99a7; */
+			color:black;
 		}
 		
 		p {
@@ -206,7 +197,26 @@
 			font-size:17px;
 			line-height:30%;
 			font-family: "Nanum Gothic", sans-serif;
+		}
 		
+		.loading {
+			 width: 100%;  
+			 height: 100%;  
+			 top: 0px;
+			 left: 0px;
+			 position: fixed;  
+			 display: block;  
+			 opacity: 0.7;  
+			 background-color: #fff;  
+			 z-index: 99;  
+			 text-align: center; 
+		} 
+			  
+		#loading-image {  
+			 position: absolute;  
+			 top: 50%;  
+			 left: 50%; 
+			 z-index: 100; 
 		}
 		 
 </style>
@@ -215,6 +225,10 @@
 
 <body>
 <form>
+		<div id="loading" class="loading">
+			<img id="loading-image" src="/images/weather/loading.gif" alt="Loading..." />
+		</div>
+
 		<div>
 			<select class="form-control" name="city" style="color:white; background-color:black; border-color:black; width:25%;">
 			  <option value="Seoul" >Seoul</option>
