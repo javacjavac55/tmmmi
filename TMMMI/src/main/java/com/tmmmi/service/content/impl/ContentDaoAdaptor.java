@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.tmmmi.service.content.ContentDao;
 import com.tmmmi.service.domain.ContentSetting;
+import com.tmmmi.service.domain.ContentSport;
 
 public abstract class ContentDaoAdaptor implements ContentDao {
 	//movie
@@ -75,6 +76,11 @@ public abstract class ContentDaoAdaptor implements ContentDao {
 	
 	@Override
 	public List<Object> getContentHighlightList(ContentSetting contentSetting, int index) throws Exception{
+		return null;
+	}
+	
+	@Override
+	public ContentSport getContentHighlightVideo(ContentSport contentSport) throws Exception {
 		return null;
 	}
 

@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 
 import com.tmmmi.service.content.ContentDao;
 import com.tmmmi.service.domain.ContentSetting;
+import com.tmmmi.service.domain.ContentSport;
 
 @Service("contentSportServiceImpl")
 public class ContentSportServiceImpl extends ContentServiceAdaptor {	
@@ -59,6 +60,11 @@ public class ContentSportServiceImpl extends ContentServiceAdaptor {
 	@Override
 	public List<Object> getContentHighlightList(ContentSetting contentSetting, int index)throws Exception{
 		return contentSportDao.getContentHighlightList(contentSetting, index);
+	}
+	
+	@Override
+	public ContentSport getContentHighlightVideo(ContentSport contentSport) throws Exception {
+		return contentSportDao.getContentHighlightVideo(contentSport);
 	}
 	
 	/*//Method

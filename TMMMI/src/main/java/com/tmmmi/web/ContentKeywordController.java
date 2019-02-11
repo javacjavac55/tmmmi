@@ -12,6 +12,7 @@ import org.springframework.web.servlet.ModelAndView;
 import com.tmmmi.service.content.ContentService;
 import com.tmmmi.service.content.impl.ContentKeywordServiceImpl;
 import com.tmmmi.service.contentsetting.ContentSettingService;
+import com.tmmmi.service.usersetting.UserSettingService;
 
 @Controller
 @RequestMapping("/contentKeyword/*")
@@ -25,6 +26,10 @@ public class ContentKeywordController {
 	@Qualifier("contentKeywordServiceImpl")
 	private ContentService contentUserKeywordService;
 	
+	@Autowired
+	@Qualifier("userSettingServiceImpl")
+	private UserSettingService userSettingService;
+	
 	public ContentKeywordController() {
 		// TODO Auto-generated constructor stub
 	}
@@ -37,6 +42,8 @@ public class ContentKeywordController {
 		
 		ModelAndView modelAndView = new ModelAndView();
 		modelAndView.addObject("userKeywordFirstList", contentUserKeywordService.getContentUserKeywordFirstList(contentSettingService.getContentSetting(userNo), 0));
+		modelAndView.addObject("bgColor", (userSettingService.getUserSetting(userNo).getMainColorModeNo()==0)?"#000000":"#FFFFFF");
+		modelAndView.addObject("fontColor", (userSettingService.getUserSetting(userNo).getMainColorModeNo()==0)?"#FFFFFF":"#000000");
 		modelAndView.setViewName("/content/userKeywordContentFirst.jsp");
 		
 		return modelAndView;
@@ -50,6 +57,8 @@ public class ContentKeywordController {
 		
 		ModelAndView modelAndView = new ModelAndView();
 		modelAndView.addObject("userKeywordSecondList", contentUserKeywordService.getContentUserKeywordSecondList(contentSettingService.getContentSetting(userNo), 0));
+		modelAndView.addObject("bgColor", (userSettingService.getUserSetting(userNo).getMainColorModeNo()==0)?"#000000":"#FFFFFF");
+		modelAndView.addObject("fontColor", (userSettingService.getUserSetting(userNo).getMainColorModeNo()==0)?"#FFFFFF":"#000000");
 		modelAndView.setViewName("/content/userKeywordContentSecond.jsp");
 		
 		return modelAndView;
@@ -63,6 +72,8 @@ public class ContentKeywordController {
 		
 		ModelAndView modelAndView = new ModelAndView();
 		modelAndView.addObject("userKeywordThirdList", contentUserKeywordService.getContentUserKeywordThirdList(contentSettingService.getContentSetting(userNo), 0));
+		modelAndView.addObject("bgColor", (userSettingService.getUserSetting(userNo).getMainColorModeNo()==0)?"#000000":"#FFFFFF");
+		modelAndView.addObject("fontColor", (userSettingService.getUserSetting(userNo).getMainColorModeNo()==0)?"#FFFFFF":"#000000");
 		modelAndView.setViewName("/content/userKeywordContentThird.jsp");
 		
 		return modelAndView;
@@ -76,6 +87,8 @@ public class ContentKeywordController {
 		
 		ModelAndView modelAndView = new ModelAndView();
 		modelAndView.addObject("userVideoFirstList", contentUserKeywordService.getContentUserKeywordVideoFirstList(contentSettingService.getContentSetting(userNo), 0));
+		modelAndView.addObject("bgColor", (userSettingService.getUserSetting(userNo).getMainColorModeNo()==0)?"#000000":"#FFFFFF");
+		modelAndView.addObject("fontColor", (userSettingService.getUserSetting(userNo).getMainColorModeNo()==0)?"#FFFFFF":"#000000");
 		modelAndView.setViewName("/content/userVideoContentFirst.jsp");
 		return modelAndView;
 	}
@@ -88,6 +101,8 @@ public class ContentKeywordController {
 		
 		ModelAndView modelAndView = new ModelAndView();
 		modelAndView.addObject("userVideoSecondList", contentUserKeywordService.getContentUserKeywordVideoSecondList(contentSettingService.getContentSetting(userNo), 0));
+		modelAndView.addObject("bgColor", (userSettingService.getUserSetting(userNo).getMainColorModeNo()==0)?"#000000":"#FFFFFF");
+		modelAndView.addObject("fontColor", (userSettingService.getUserSetting(userNo).getMainColorModeNo()==0)?"#FFFFFF":"#000000");
 		modelAndView.setViewName("/content/userVideoContentSecond.jsp");
 		return modelAndView;
 	}

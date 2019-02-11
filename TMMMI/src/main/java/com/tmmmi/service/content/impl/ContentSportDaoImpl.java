@@ -341,9 +341,9 @@ public class ContentSportDaoImpl extends ContentDaoAdaptor {
 		String address = "https://tv.naver.com/spotvmaster/clips";
 		int start = 0;
 		int end = 5 + (index * 5);
-		String firstAddress = "https://tv.naver.com";
+		/*String firstAddress = "https://tv.naver.com";
 		String subAddress = "";
-		String fullAddress = "";
+		String fullAddress = "";*/
 		
 		System.out.println("");
 		Document doc = Jsoup.connect(address).header("User-Agent", "Mozilla/5.0").get();
@@ -359,14 +359,15 @@ public class ContentSportDaoImpl extends ContentDaoAdaptor {
 			
 			contentSport.setSportThumbnail(element.getElementsByTag("img").first().attr("src").split("\\?type=")[0]);
 			contentSport.setSportTitle(element.getElementsByTag("img").first().attr("alt"));
+			contentSport.setSportNo(element.attr("href").replace("/v/", ""));
 			
-			subAddress=element.attr("href");
+			/*subAddress=element.attr("href");
 			fullAddress= firstAddress + subAddress;
 			
 			doc = Jsoup.connect(fullAddress).header("User-Agent", "Mozilla/5.0").get();			
 			contentSport.setSportLink(fullAddress);
 			contentSport.setSportVideo("<iframe src='"+doc.getElementsByAttributeValue("property", "og:video:url").attr("content")+"' frameborder='no' scrolling='no' marginwidth='0' marginheight='0' WIDTH='600' HEIGHT='518' allow='autoplay' allowfullscreen></iframe>");
-			contentSport.setSportNo(doc.getElementsByAttributeValue("property", "naver:video:id").attr("content"));
+			contentSport.setSportNo(doc.getElementsByAttributeValue("property", "naver:video:id").attr("content"));*/
 			
 			sportList.add(contentSport);
 		}
@@ -375,6 +376,12 @@ public class ContentSportDaoImpl extends ContentDaoAdaptor {
 		return sportList;
 	}
 	
+	@Override
+	public ContentSport getContentHighlightVideo(ContentSport contentSport) throws Exception {
+		Document doc = Jsoup.connect("https://tv.naver.com/v/"+contentSport.getSportNo()).header("User-Agent", "Mozilla/5.0").get();
+		contentSport.setSportVideo("<iframe src='"+doc.getElementsByAttributeValue("property", "og:video:url").attr("content")+"' frameborder='no' scrolling='no' marginwidth='0' marginheight='0' WIDTH='600' HEIGHT='518' allow='autoplay' allowfullscreen></iframe>");
 		
+		return contentSport;
+	}	
 	
 }

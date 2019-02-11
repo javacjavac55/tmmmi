@@ -13,7 +13,7 @@
 		<noscript><link rel="stylesheet" href="/css/scroll/noscript.css" /></noscript>
 		<script type="text/javascript">
 			window.onload = function() {
-				var divs = document.querySelectorAll('article > div > a');
+				var divs = document.querySelectorAll('article > div > a > div');
 				  for (var i = 0; i < divs.length; ++i) {
 				    var div = divs[i];
 				    var divAspect = div.offsetHeight / div.offsetWidth;
@@ -36,6 +36,15 @@
 				  }
 			};
 		</script>
+		<style>
+			.carousel {
+				background-color: ${bgColor};
+			}
+			
+			.section-title {
+				color: ${fontColor};
+			}
+		</style>
 	</head>
 <body>
 	
@@ -46,7 +55,9 @@
 				<article class="content-shopping">
 					<div class="shopping">
 						<a href="#"> 
-							<img class="shopping-thumbnail" src="${contentShopping.shoppingThumbnail}">
+							<div class="shopping-thumbnail-wrap">
+								<img class="shopping-thumbnail" src="${contentShopping.shoppingThumbnail}">
+							</div>
 						</a>
 						<div class="shopping-info">
 							<span class="field">ªÛ«∞</span> <span class="detail">${contentShopping.shoppingTitle}</span>

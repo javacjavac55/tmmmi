@@ -12,6 +12,7 @@ import org.springframework.web.servlet.ModelAndView;
 import com.tmmmi.service.content.ContentService;
 import com.tmmmi.service.contentsetting.ContentSettingService;
 import com.tmmmi.service.user.UserService;
+import com.tmmmi.service.usersetting.UserSettingService;
 
 @Controller
 @RequestMapping("/contentShopping/*")
@@ -25,6 +26,10 @@ public class ContentShoppingController {
 	@Qualifier("contentShoppingServiceImpl")
 	private ContentService shoppingContentService;
 	
+	@Autowired
+	@Qualifier("userSettingServiceImpl")
+	private UserSettingService userSettingService;
+	
 	public ContentShoppingController() {
 		// TODO Auto-generated constructor stub
 	}
@@ -37,6 +42,8 @@ public class ContentShoppingController {
 		
 		ModelAndView modelAndView = new ModelAndView();
 		modelAndView.addObject("shoppingContentFirstList", shoppingContentService.getContentShoppingFirstList(contentSettingService.getContentSetting(userNo), 0));
+		modelAndView.addObject("bgColor", (userSettingService.getUserSetting(userNo).getMainColorModeNo()==0)?"#000000":"#FFFFFF");
+		modelAndView.addObject("fontColor", (userSettingService.getUserSetting(userNo).getMainColorModeNo()==0)?"#FFFFFF":"#000000");
 		modelAndView.setViewName("/content/shoppingContentFirst.jsp");
 		return modelAndView;
 	}
@@ -49,6 +56,8 @@ public class ContentShoppingController {
 		
 		ModelAndView modelAndView = new ModelAndView();
 		modelAndView.addObject("shoppingContentSecondList", shoppingContentService.getContentShoppingSecondList(contentSettingService.getContentSetting(userNo), 0));
+		modelAndView.addObject("bgColor", (userSettingService.getUserSetting(userNo).getMainColorModeNo()==0)?"#000000":"#FFFFFF");
+		modelAndView.addObject("fontColor", (userSettingService.getUserSetting(userNo).getMainColorModeNo()==0)?"#FFFFFF":"#000000");
 		modelAndView.setViewName("/content/shoppingContentSecond.jsp");
 		return modelAndView;
 	}
@@ -61,6 +70,8 @@ public class ContentShoppingController {
 		
 		ModelAndView modelAndView = new ModelAndView();
 		modelAndView.addObject("shoppingContentThirdList", shoppingContentService.getContentShoppingThirdList(contentSettingService.getContentSetting(userNo), 0));
+		modelAndView.addObject("bgColor", (userSettingService.getUserSetting(userNo).getMainColorModeNo()==0)?"#000000":"#FFFFFF");
+		modelAndView.addObject("fontColor", (userSettingService.getUserSetting(userNo).getMainColorModeNo()==0)?"#FFFFFF":"#000000");
 		modelAndView.setViewName("/content/shoppingContentThird.jsp");
 		return modelAndView;
 	}
@@ -73,6 +84,8 @@ public class ContentShoppingController {
 		
 		ModelAndView modelAndView = new ModelAndView();
 		modelAndView.addObject("shoppingContentReviewList", shoppingContentService.getContentShoppingReviewList(contentSettingService.getContentSetting(userNo), 0));
+		modelAndView.addObject("bgColor", (userSettingService.getUserSetting(userNo).getMainColorModeNo()==0)?"#000000":"#FFFFFF");
+		modelAndView.addObject("fontColor", (userSettingService.getUserSetting(userNo).getMainColorModeNo()==0)?"#FFFFFF":"#000000");
 		modelAndView.setViewName("/content/shoppingReviewContent.jsp");
 		return modelAndView;
 	}

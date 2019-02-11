@@ -12,11 +12,59 @@
     <link rel="stylesheet" type="text/css" href="/css/tui/tui-calendar.css" />
     <link rel="stylesheet" type="text/css" href="/css/tui/default.css"></link>
     <link rel="stylesheet" type="text/css" href="/css/tui/icons.css"></link>
-    <script src ="https://unpkg.com/sweetalert/dist/sweetalert.min.js" ></script >
+    <script src ="https://unpkg.com/sweetalert/dist/sweetalert.min.js" ></script>
+    
+    <!-- draggable -->
+    <style>
+    	#mydiv {
+		  position: absolute;
+		  z-index: 9;
+		  background-color: #ffffff;
+		  text-align: center;
+		  min-height: 40px;
+		  min-width: 300px;
+		  right: 0;
+		  box-shadow: 3px 3px 10px #aaaaaa;
+		}
+		
+		#mydivheader {
+		  padding: 2%;
+		  margin: 3%;
+		  cursor: move;
+		  z-index: 10;
+		  color: #000000;
+		  flex-wrap:wrap;
+		  font-size: larger;
+		  border-bottom: 1px solid #eeeeee;
+		}
+		
+		.schedule {
+			border: 1px solid;
+			display: inline-block;
+			width: 44%;
+			float: left;
+			margin: 0 0 5% 4%;
+		}
+		
+		.time {
+			display: block;
+			color: #ffffff;
+			font-size: large;
+			padding: 5% 0;
+		}
+		
+		.title {
+			display: block;
+			background-color: #ffffff;
+			font-size: medium;
+			padding: 5% 0;
+		}
+				
+	</style>
 </head>
 <body>
     <div id="top">
-        TMMMI
+		TMMMI
     </div>
     <div id="lnb">
         <div class="lnb-new-schedule">
@@ -108,6 +156,11 @@
         </div>
         <div id="calendar"></div>
     </div>
+    <div id="mydiv">
+	  <!-- Include a header DIV with the same name as the draggable DIV, followed by "header" -->
+	  <div id="mydivheader">오늘의 중요한 일정</div>
+	  <div id="imp-sch-container"></div>
+	</div>
     <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
     <script type="text/javascript" src="https://uicdn.toast.com/tui.code-snippet/latest/tui-code-snippet.min.js"></script>
@@ -135,9 +188,10 @@
 		
 		function fncAdjustScheduleValues(schedule){
 			schedule.isAllday = (schedule.isAllday!=0)?true:false;
+			schedule.isPending = (schedule.isPending!=0)?true:false;
 			schedule.state = (schedule.state!=0)?'D+Day':'D-Day';
 			if (schedule.category!=0) {
-				schedule.category = 'milestone';
+				schedule.category = /* 'milestone' */'time';
 			} else if (schedule.isAllday) {
 				schedule.category = 'allday';
 				
@@ -151,8 +205,9 @@
 			schedule.end = new Date(schedule.end*=1); 
 			return schedule;
 		}
-		console.log("${scheduleList}");
+		
 		var schedule;
+		var importantList=[];
 		<c:forEach var="schedule" items="${scheduleList}">
 			schedule = new ScheduleInfo();
 			schedule.id = "${schedule.scheduleNo}";
@@ -166,10 +221,13 @@
 			schedule.comingDuration = "${schedule.comingDuration}";
 			schedule.isAllday = "${schedule.isScheduleDDay}";
 			schedule.state = "${schedule.markDDay}";
-			schedule.category = "${schedule.isScheduleImportant}";
+			schedule.isPending = "${schedule.isScheduleImportant}";
 			schedule.recurrenceRule = "${schedule.scheduleAlarmTime}";
 			schedule = fncAdjustScheduleValues(schedule);
 			ScheduleList.push(schedule);
+			<c:if test="${schedule.isScheduleImportant!=0}">
+				importantList.push(schedule);
+			</c:if>
 		</c:forEach>
     </script>
     
@@ -195,7 +253,7 @@
 					comingDuration : schedule.comingDuration,
 					isScheduleDDay : (schedule.isAllDay?1:0),
 					markDDay : (schedule.state=='D-Day'?0:1),
-					isScheduleImportant : (schedule.category[0]=='milestone'?1:0),
+					isScheduleImportant : (schedule.isPending?1:0),
 					scheduleAlarmTime : schedule.recurrenceRule
 				}),
 				dataType: "json",
@@ -234,7 +292,7 @@
 					comingDuration : schedule.comingDuration,
 					isScheduleDDay : (schedule.isAllDay?1:0),
 					markDDay : (schedule.state=='D-Day'?0:1),
-					isScheduleImportant : (schedule.category && schedule.category[0]=='milestone'?1:0),
+					isScheduleImportant : (schedule.isPending?1:0),
 					scheduleAlarmTime : schedule.recurrenceRule
 				}),
 				dataType: "json",
@@ -301,6 +359,62 @@
 			});
 		})
     </script>
+    <script>
+    	$(function(){
+    		for(var i=0; i<importantList.length; i++) {
+    			console.log(importantList[i]);
+    			console.log(importantList[i].title, importantList[i].start.toString().split(" ")[4])
+    			$('#imp-sch-container').append('<div class="schedule" style="background-color:'+importantList[i].bgColor+'; border-color:'
+    					+importantList[i].bgColor+'"><span class="time">'
+    					+importantList[i].start.toString().split(" ")[4]+'</span><span class="title">'
+    					+importantList[i].title+'</span></div>')
+    		}
+    		
+    	})
+    	
+    	dragElement(document.getElementById("mydiv"));
+
+		function dragElement(elmnt) {
+		  var pos1 = 0, pos2 = 0, pos3 = 0, pos4 = 0;
+		  if (document.getElementById(elmnt.id + "header")) {
+		    // if present, the header is where you move the DIV from:
+		    document.getElementById(elmnt.id + "header").onmousedown = dragMouseDown;
+		  } else {
+		    // otherwise, move the DIV from anywhere inside the DIV: 
+		    elmnt.onmousedown = dragMouseDown;
+		  }
+
+		  function dragMouseDown(e) {
+		    e = e || window.event;
+		    e.preventDefault();
+		    // get the mouse cursor position at startup:
+		    pos3 = e.clientX;
+		    pos4 = e.clientY;
+		    document.onmouseup = closeDragElement;
+		    // call a function whenever the cursor moves:
+		    document.onmousemove = elementDrag;
+		  }
+
+		  function elementDrag(e) {
+		    e = e || window.event;
+		    e.preventDefault();
+		    // calculate the new cursor position:
+		    pos1 = pos3 - e.clientX;
+		    pos2 = pos4 - e.clientY;
+		    pos3 = e.clientX;
+		    pos4 = e.clientY;
+		    // set the element's new position:
+		    elmnt.style.top = (elmnt.offsetTop - pos2) + "px";
+		    elmnt.style.left = (elmnt.offsetLeft - pos1) + "px";
+		  }
+
+		  function closeDragElement() {
+		    // stop moving when mouse button is released:
+		    document.onmouseup = null;
+		    document.onmousemove = null;
+		  }
+		}
+	</script>
     <jsp:include page="/common/mainMenu.jsp"/>
 </body>
 </html>

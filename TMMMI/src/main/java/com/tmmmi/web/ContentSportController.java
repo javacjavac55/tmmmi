@@ -16,6 +16,7 @@ import com.tmmmi.service.content.ContentService;
 import com.tmmmi.service.contentsetting.ContentSettingService;
 import com.tmmmi.service.domain.ContentSetting;
 import com.tmmmi.service.domain.UserSetting;
+import com.tmmmi.service.usersetting.UserSettingService;
 
 @Controller
 @RequestMapping("/contentSport/*")
@@ -28,6 +29,10 @@ public class ContentSportController {
 	@Autowired
 	@Qualifier("contentSettingServiceImpl")
 	private ContentSettingService contentSettingService;
+	
+	@Autowired
+	@Qualifier("userSettingServiceImpl")
+	private UserSettingService userSettingService;
 	
 	public ContentSportController() {
 		// TODO Auto-generated constructor stub
@@ -55,11 +60,11 @@ public class ContentSportController {
 		System.out.println("contentSetting"+contentSetting);
 		
 		List<Object> sportList = contentSportService.getContentKsoccerList(contentSetting , 1);
-		
-		
-		
+				
 		ModelAndView modelAndView = new ModelAndView();
 		modelAndView.addObject("contentSport" , sportList);
+		modelAndView.addObject("bgColor", (userSettingService.getUserSetting(userNo).getMainColorModeNo()==0)?"#000000":"#FFFFFF");
+		modelAndView.addObject("fontColor", (userSettingService.getUserSetting(userNo).getMainColorModeNo()==0)?"#FFFFFF":"#000000");
 		modelAndView.setViewName("/content/kSoccerContent.jsp");
 		
 		return modelAndView;
@@ -82,6 +87,8 @@ public class ContentSportController {
 		
 		ModelAndView modelAndView = new ModelAndView();
 		modelAndView.addObject("contentSport" , sportList);
+		modelAndView.addObject("bgColor", (userSettingService.getUserSetting(userNo).getMainColorModeNo()==0)?"#000000":"#FFFFFF");
+		modelAndView.addObject("fontColor", (userSettingService.getUserSetting(userNo).getMainColorModeNo()==0)?"#FFFFFF":"#000000");
 		modelAndView.setViewName("/content/wSoccerContent.jsp");
 		
 		return modelAndView;
@@ -103,6 +110,8 @@ public class ContentSportController {
 		
 		ModelAndView modelAndView = new ModelAndView();
 		modelAndView.addObject("contentSport" , sportList);
+		modelAndView.addObject("bgColor", (userSettingService.getUserSetting(userNo).getMainColorModeNo()==0)?"#000000":"#FFFFFF");
+		modelAndView.addObject("fontColor", (userSettingService.getUserSetting(userNo).getMainColorModeNo()==0)?"#FFFFFF":"#000000");
 		modelAndView.setViewName("/content/kBaseballContent.jsp");
 		
 		return modelAndView;
@@ -124,6 +133,8 @@ public class ContentSportController {
 		
 		ModelAndView modelAndView = new ModelAndView();
 		modelAndView.addObject("contentSport" , sportList);
+		modelAndView.addObject("bgColor", (userSettingService.getUserSetting(userNo).getMainColorModeNo()==0)?"#000000":"#FFFFFF");
+		modelAndView.addObject("fontColor", (userSettingService.getUserSetting(userNo).getMainColorModeNo()==0)?"#FFFFFF":"#000000");
 		modelAndView.setViewName("/content/wBaseballContent.jsp");
 		
 		return modelAndView;
@@ -142,10 +153,10 @@ public class ContentSportController {
 		
 		List<Object> sportList = contentSportService.getContentBasketballList(contentSetting , 1);
 		
-		
-		
 		ModelAndView modelAndView = new ModelAndView();
 		modelAndView.addObject("contentSport" , sportList);
+		modelAndView.addObject("bgColor", (userSettingService.getUserSetting(userNo).getMainColorModeNo()==0)?"#000000":"#FFFFFF");
+		modelAndView.addObject("fontColor", (userSettingService.getUserSetting(userNo).getMainColorModeNo()==0)?"#FFFFFF":"#000000");
 		modelAndView.setViewName("/content/basketballContent.jsp");
 		
 		return modelAndView;
@@ -168,6 +179,8 @@ public class ContentSportController {
 		
 		ModelAndView modelAndView = new ModelAndView();
 		modelAndView.addObject("contentSport" , sportList);
+		modelAndView.addObject("bgColor", (userSettingService.getUserSetting(userNo).getMainColorModeNo()==0)?"#000000":"#FFFFFF");
+		modelAndView.addObject("fontColor", (userSettingService.getUserSetting(userNo).getMainColorModeNo()==0)?"#FFFFFF":"#000000");
 		modelAndView.setViewName("/content/generalContent.jsp");
 		
 		return modelAndView;
@@ -187,6 +200,8 @@ public class ContentSportController {
 		
 		ModelAndView modelAndView = new	 ModelAndView();
 		modelAndView.addObject("contentSport", sportList);
+		modelAndView.addObject("bgColor", (userSettingService.getUserSetting(userNo).getMainColorModeNo()==0)?"#000000":"#FFFFFF");
+		modelAndView.addObject("fontColor", (userSettingService.getUserSetting(userNo).getMainColorModeNo()==0)?"#FFFFFF":"#000000");
 		modelAndView.setViewName("/content/highlightContent.jsp");
 		
 		return modelAndView;

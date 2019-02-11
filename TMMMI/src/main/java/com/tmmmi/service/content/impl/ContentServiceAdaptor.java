@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.tmmmi.service.content.ContentService;
 import com.tmmmi.service.domain.ContentSetting;
+import com.tmmmi.service.domain.ContentSport;
 
 public abstract class ContentServiceAdaptor implements ContentService {
 	//movie
@@ -79,6 +80,11 @@ public abstract class ContentServiceAdaptor implements ContentService {
 		return null;
 	}
 	
+	@Override
+	public ContentSport getContentHighlightVideo(ContentSport contentSport) throws Exception {
+		return null;
+	}
+	
 	//tasty
 	public List<Object>getContentTastyList(ContentSetting contentSetting, int index)throws Exception{
 		return null;
@@ -132,4 +138,5 @@ public abstract class ContentServiceAdaptor implements ContentService {
 	public List<Object> getContentUserKeywordVideoSecondList(ContentSetting contentSetting, int index) throws Exception{
 		return null;
 	}
+	
 }
