@@ -10,12 +10,10 @@
 	<meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0, shrink-to-fit=no' name='viewport' />
 	<title> updateQNAAnswer </title>
 		
-	<!--  Fonts and icons -->
-	<link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Roboto+Slab:400,700|Material+Icons" />
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css">
-	
 	<!-- CSS Files -->
 	<link href="/css/template/material-kit.css" rel="stylesheet" />
+	<!-- CSS Just for demo purpose, don't include it in your project -->
+	<link href="/css/template/demo.css" rel="stylesheet" />
 	
 	<!-- jQuery -->
 	<script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
@@ -94,11 +92,13 @@
 <input type="hidden" name="QNANo" value="${qna.QNANo}" />
 
 	<jsp:include page="/common/toolbar2.jsp"></jsp:include>
-	  <div class="page-header header-filter clear-filter" style="height:55vh; background-image: url('/images/weather/4016924c4eb809d80e5ac60ad0703088.jpg');">
+	  <div class="page-header header-filter clear-filter" style="background-image: url('/images/weather/4016924c4eb809d80e5ac60ad0703088.jpg');">
 	    <div class="container">
 	      <div class="row">
 	        <div class="col-md-8 ml-auto mr-auto">
 	          <div class="brand">
+	          	<h2 class="title">QNA</h2>
+	          	<h3 style="margin-top:-3%" >Question and Answer</h3>
 	          </div>
 	        </div>
 	      </div>
@@ -119,11 +119,12 @@
 			        <button type="button" class="btn btn-default btn-round btn-sm">√Îº“</button>
 				</div>
 			</div>
-			</div>
+<br/><br/><br/><br/>
+		
 		</div>
-	</div>
-
-</form>
+      </div>
+    </div>
+  </form>
 <jsp:include page="/common/footer.jsp"></jsp:include>
   
   <script>

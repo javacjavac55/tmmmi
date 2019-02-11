@@ -8,28 +8,29 @@
 
 <head>
 <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0, shrink-to-fit=no' name='viewport' />
-<!--  Fonts and icons -->
-<link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Roboto+Slab:400,700|Material+Icons" />
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css">
+
 <!-- CSS Files -->
 <link href="/css/template/material-kit.css" rel="stylesheet" />
+<!-- CSS Just for demo purpose, don't include it in your project -->
+<link href="/css/template/demo.css" rel="stylesheet" />
 
 <!-- jQuery -->
 <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-	    
+
     <script type="text/javascript">
     
 	    //////////////////////////////// 검색
 	    $(function() {	
 	    	$( "button:contains('검색')" ).on("click" , function() {
-	    		alert("검색")
+	    		//alert("검색")
 				fncGetSearchList();
 			})
 	    });
-	    	    
+
 	    function fncGetSearchList(searchKeyword) {
 			var searchKeyword = $("#searchKeyword").val();
+			
 			$.ajax({
 	    			url:"/faqRest/json/getFAQSearchList/",
 	    			method:"POST",
@@ -46,6 +47,24 @@
 					}
 			});
 		}
+	    
+		////////////////////////////////top 버튼
+	    $(function() {
+	        $(window).scroll(function() {
+	            if ($(this).scrollTop() > 500) {
+	                $('#arrow').fadeIn();
+	            } else {
+	                $('#arrow').fadeOut();
+	            }
+	        });
+	        
+	        $("#arrow").click(function() {
+	            $('html, body').animate({
+	                scrollTop : 0
+	            }, 400);
+	            return false;
+	        });
+	    });
 	   
 		//////////////////////////////// 1:1문의로 이동
 	    $(function() {	
@@ -121,7 +140,7 @@
 		////////////////////////////////
 	    $(function() {	
 	    	$(".users").on("click",function(){	
-	    		//alert("1:1문의로 이동")
+	    		//alert("유저 카테고리만 보기")
 				self.location = "/faq/getFAQList?searchCondition=1";
 		    });
 	    });
@@ -149,8 +168,7 @@
 				self.location = "/faq/getFAQList?searchCondition=4";
 		    });
 	    });
-
-
+		
 	</script>
 
 	<style>
@@ -173,7 +191,9 @@
 			  -moz-transform: scale(1.05);
 			  -ms-transform: scale(1.05);
 			  -o-transform: scale(1.05);
+			   filter: brightness(70%); 
 			} 
+	
 			/* 속도조절 */
 			.rounded {
 				letter-spacing: 0;
@@ -185,14 +205,12 @@
 		 	#floatdiv {
 				position: absolute;
 				width: 320px;
-				height: 200px;
+				height: 320px;
 				right: 50px;
 				top: 50px;
-				background-color: #606060;
 				color: #fff;
-			}
+			}		
 		
-
 		 	
 	</style>
     
@@ -202,11 +220,13 @@
 <form>
 
 <jsp:include page="/common/toolbar2.jsp"></jsp:include>
-  <div class="page-header header-filter clear-filter" style="height:55vh; background-image: url('/images/weather/4016924c4eb809d80e5ac60ad0703088.jpg');">
+  <div class="page-header header-filter clear-filter" style="background-image: url('/images/weather/4016924c4eb809d80e5ac60ad0703088.jpg');">
     <div class="container">
       <div class="row">
         <div class="col-md-8 ml-auto mr-auto">
           <div class="brand">
+          	<h2 class="title">FAQ</h2>
+          	<h3 style="margin-top:-3%" >Frequent Asked Question</h3>
           </div>
         </div>
       </div>
@@ -218,15 +238,14 @@
       <div class="container">
       
 		 <!-- 배너 -->
-		<embed  id="floatdiv" src="/widget/getWeather.jsp"></embed>
+		<iframe id="floatdiv" src="/widget/getWeather.jsp" style="border-color: rgb(0,0,0,0);"></iframe>
 		
-		 	<span>Home/FAQ</span>
-		 	<h2 style="margin-top:-0.3%">고객센터</h2>
+		 	<span>Home / CustomerCenter</span>
 		 			 	
 		 	<br/><br/><br/><br/>
 		 	
 			<div class="row searchFAQ" style="margin:0 auto; " >
-				<div class="col-md-7" style="margin-left:15%; ">	
+				<div class="col-md-7" style="margin-left:14%; ">	
 					<label style="margin-left:20%">소중한 문의에 감사드리며, 성심성의껏 답변해드리겠습니다.</label>
 					<div class="input-group" >
 					    <div class="input-group-prepend">
@@ -234,24 +253,24 @@
 					        <i class="fa fa-group"></i>
 					      </span>
 					    </div>
-					    <input type="text" class="form-control" name="searchKeyword" id="searchKeyword" value="${search.searchKeyword}">
+					    <input type="text" class="form-control" name="searchKeyword" id="searchKeyword" value="${search.searchKeyword}" onKeyPress="if(event.keyCode=='13'){fncGetSearchList();return false; }">
 					</div>
 				</div>
 				<div class="col-md-1" style="margin-top:1.7%;">
-					<button type="button" class="btn btn-primary" name="searchCondition" value="0">검색</button>
+					<button type="button" class="btn btn-primary" name="searchCondition" value="0" >검색</button>
 				</div>
 			</div>
 			
 			<br/><br/><br/><br/><br/><br/>
 			
-			<div class="row" style="text-align:center">
-				<img src="/images/weather/user.jpg" style="margin-left:19%; position: relative;" class="rounded float-left users" >		
+			<div class="row click" style="text-align:center">
+				<img src="/images/weather/user.jpg" style="margin-left:19.5%; position: relative;" class="rounded float-left users" >
 				<img src="/images/weather/calendar.jpg" style="margin-left:2.6%;" class="rounded float-right calendar" >
 				  
 			</div>
 			<div class="row" style="margin-top:2.6%; text-align:center">
-				  <img src="/images/weather/content.jpg" style="margin-left:19%;" class="rounded float-left content" >
-				  <img src="/images/weather/diary.jpg" style="margin-left:2.6%;" class="rounded float-right diary">
+				  <img src="/images/weather/content.jpg" style="margin-left:19.5%; position: relative" class="rounded float-left content" >
+				  <img src="/images/weather/diary.jpg" style="margin-left:2.6%; position: relative" class="rounded float-right diary">
 			</div>
 			
 	
@@ -279,6 +298,10 @@
 					<button type="button"  class="btn btn-primary btn-round btn-sm" style="left: 95%;">글쓰기</button>
 				</c:if>
 			</div>
+			
+			<a style="cursor:pointer;" id="arrow"><!-- <img src="/images/common/top.png" style="width:3%"> -->
+				Back To Top
+			</a>
 		
 		
 			<br/><br/><br/><br/>

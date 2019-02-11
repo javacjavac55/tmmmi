@@ -11,12 +11,10 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 	
-	<!--  Fonts and icons -->
-	<link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Roboto+Slab:400,700|Material+Icons" />
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css">
-	
 	<!-- CSS Files -->
 	<link href="/css/template/material-kit.css" rel="stylesheet" />
+	<!-- CSS Just for demo purpose, don't include it in your project -->
+	<link href="/css/template/demo.css" rel="stylesheet" />
 	
 	<!-- jQuery -->
 	<script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
@@ -29,13 +27,6 @@
 			$( ".btn-primary:contains('수정하기')" ).on("click" , function() {
 				var qnaNo = $(this).data("param1");
 				self.location = "/qna/updateQNA?qnaNo="+qnaNo;
-			});
-		});
-		
-		////////////////////////////////취소
-		$(function() {
-			$( ".btn-default:contains('취소')" ).on("click" , function() {
-				self.location = "/qna/getQNAList";
 			});
 		});
 		
@@ -89,11 +80,13 @@
 <body class="index-page sidebar-collapse">
 	<form name ="getQNA" >
 	<jsp:include page="/common/toolbar2.jsp"></jsp:include>
-	  <div class="page-header header-filter clear-filter" style="height:55vh; background-image: url('/images/weather/4016924c4eb809d80e5ac60ad0703088.jpg');">
+	  <div class="page-header header-filter clear-filter" style="background-image: url('/images/weather/4016924c4eb809d80e5ac60ad0703088.jpg');">
 	    <div class="container">
 	      <div class="row">
 	        <div class="col-md-8 ml-auto mr-auto">
 	          <div class="brand">
+	          	<h2 class="title">QNA</h2>
+	          	<h3 style="margin-top:-3%" >Question and Answer</h3>
 	          </div>
 	        </div>
 	      </div>
@@ -112,7 +105,7 @@
 				 	  <input type="text" class="form-control giyong"  value="회원정보" readonly  style="background-color:rgb(0,0,0,0);">
 					</c:if>
 					<c:if test="${qna.QNACategory ==1}">
-				 	  <input type="text" class="form-control giyong"  value="일정" readonly  style="background-color:rgb(0,0,0,0);">
+				 	  <input type="text" class="form-control giyong"  value="일정 관리" readonly  style="background-color:rgb(0,0,0,0);">
 					</c:if>
 					<c:if test="${qna.QNACategory ==2}">
 				 	  <input type="text" class="form-control giyong"  value="컨텐츠 설정" readonly  style="background-color:rgb(0,0,0,0);">
@@ -195,7 +188,7 @@
 				<c:if test="${role == 1}">
 					<c:if test="${qna.QNAAnswerCheck == 0}">
 						<button type="button" class="btn btn-primary btn-round btn-sm"  data-param1="${qna.QNANo}">수정하기</button>
-		  				<button type="button" class="btn btn-default btn-round btn-sm">취소</button>
+		  				<button type="button" class="btn btn-default btn-round btn-sm">목록보기</button>
 					</c:if>
 				</c:if>
 			</div>
@@ -230,9 +223,11 @@
 			</c:if>
 		</div>
 		
-	</div>
-</div>
-</div>
-	</form>
+	<br/><br/><br/><br/>
+		
+		</div>
+      </div>
+    </div>
+  </form>
 </body>
 </html>
