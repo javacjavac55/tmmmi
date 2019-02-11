@@ -45,11 +45,25 @@
 											<i class="material-icons">calendar_today</i>
 										</div>
 									</div>
-									<input type="text" class="form-control 2" name="toDoStartDate"
-										data-format="Y-m-d" data-large-mode="true" id="dd1">
+									<input type="text" class="form-control 2" name="toDoStartDate" id="dd1" autocomplete="off">
 									<script>
-										$('#dd1').dateDropper();
-									</script>
+								    $("#dd1").datepicker(
+								        {
+								        	 firstDay: 1,
+								             dateFormat: "yy-mm-dd",
+								             defaultDate: "2019-03-01",
+								             monthNames: ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12'],
+								             monthNamesShort: ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12'],
+								             dayNames: ['일', '월', '화', '수', '목', '금', '토'],
+								             dayNamesShort: ['일', '월', '화', '수', '목', '금', '토'],
+								             dayNamesMin: ['일', '월', '화', '수', '목', '금', '토'],
+								             showMonthAfterYear: true,
+								             yearSuffix: '년',
+								             changeYear: true,
+								             changeMonth: true
+								        }
+								    );
+								</script>
 								</div>
 							</div>
 							<div class="form-group bmd-form-group">
@@ -59,11 +73,24 @@
 											<i class="material-icons">flag</i>
 										</div>
 									</div>
-									<input type="text" class="form-control 3" name="toDoEndDate"
-										data-format="Y-m-d" data-large-mode="true"
-										data-init-set="false" id="dd2">
+									<input type="text" class="form-control 3" name="toDoEndDate" id="dd2" autocomplete="off">
 									<script>
-										$('#dd2').dateDropper();
+									$("#dd2").datepicker(
+									        {
+									        	 firstDay: 1,
+									             dateFormat: "yy-mm-dd",
+									             defaultDate: "2019-03-01",
+									             monthNames: ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12'],
+									             monthNamesShort: ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12'],
+									             dayNames: ['일', '월', '화', '수', '목', '금', '토'],
+									             dayNamesShort: ['일', '월', '화', '수', '목', '금', '토'],
+									             dayNamesMin: ['일', '월', '화', '수', '목', '금', '토'],
+									             showMonthAfterYear: true,
+									             yearSuffix: '년',
+									             changeYear: true,
+									             changeMonth: true
+									        }
+									    );
 									</script>
 								</div>
 							</div>
@@ -118,11 +145,24 @@
 											<i class="material-icons">calendar_today</i>
 										</div>
 									</div>
-									<input type="text" class="form-control 5" name="toDoStartDate"
-										data-format="Y-m-d" data-large-mode="true"
-										data-init-set="false" id="dd3" value="">
+									<input type="text" class="form-control 5" name="toDoStartDate" id="dd3" value="" autocomplete="off">
 									<script>
-										$('#dd3').dateDropper();
+									$("#dd3").datepicker(
+									        {
+									        	 firstDay: 1,
+									             dateFormat: "yy-mm-dd",
+									             defaultDate: "2019-03-01",
+									             monthNames: ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12'],
+									             monthNamesShort: ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12'],
+									             dayNames: ['일', '월', '화', '수', '목', '금', '토'],
+									             dayNamesShort: ['일', '월', '화', '수', '목', '금', '토'],
+									             dayNamesMin: ['일', '월', '화', '수', '목', '금', '토'],
+									             showMonthAfterYear: true,
+									             yearSuffix: '년',
+									             changeYear: true,
+									             changeMonth: true
+									        }
+									    );
 									</script>
 								</div>
 							</div>
@@ -133,11 +173,24 @@
 											<i class="material-icons">flag</i>
 										</div>
 									</div>
-									<input type="text" class="form-control 6" name="toDoEndDate"
-										data-format="Y-m-d" data-large-mode="true"
-										data-init-set="false" id="dd4" value="">
+									<input type="text" class="form-control 6" name="toDoEndDate" id="dd4" value="" autocomplete="off">
 									<script>
-										$('#dd4').dateDropper();
+									$("#dd4").datepicker(
+									        {
+									        	 firstDay: 1,
+									             dateFormat: "yy-mm-dd",
+									             defaultDate: "2019-03-01",
+									             monthNames: ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12'],
+									             monthNamesShort: ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12'],
+									             dayNames: ['일', '월', '화', '수', '목', '금', '토'],
+									             dayNamesShort: ['일', '월', '화', '수', '목', '금', '토'],
+									             dayNamesMin: ['일', '월', '화', '수', '목', '금', '토'],
+									             showMonthAfterYear: true,
+									             yearSuffix: '년',
+									             changeYear: true,
+									             changeMonth: true
+									        }
+									    );
 									</script>
 								</div>
 								<p class="description text-center">용기있는 사람은 모두 약속을 지키는 사람이다

@@ -80,6 +80,23 @@ public class DiaryController {
 		return modelAndView;
 	}
 	
+	@RequestMapping(value="addImageDiary", method=RequestMethod.GET)
+	public ModelAndView addImageDiary(HttpSession session) throws Exception{
+		
+		int userNo = ((int)session.getAttribute("userNo"));
+		System.out.println("userNO:"+userNo);
+		System.out.println("/diary/addImageDiary : GET");
+		
+		List<UserCategory> userCategory= userCategoryService.getUserCategoryList(userNo);
+		System.out.println(userCategory);
+		
+		ModelAndView modelAndView = new ModelAndView();
+		modelAndView.addObject("userCategory" , userCategory);
+		modelAndView.setViewName("/diary/addImageDiary.jsp");
+		
+		return modelAndView;
+	}
+	
 	@RequestMapping(value="addDiary", method=RequestMethod.POST)
 	public ModelAndView addDiary(@ModelAttribute("diary") Diary diary, HttpSession session) throws Exception{
 		System.out.println("/diary/addDiary : POST");
@@ -90,6 +107,20 @@ public class DiaryController {
 		ModelAndView modelAndView = new ModelAndView();
 		modelAndView.addObject("diary", diary);
 		modelAndView.setViewName("redirect:/diary/listDiary");
+		
+		
+		return modelAndView;
+	}
+	@RequestMapping(value="addImageDiary", method=RequestMethod.POST)
+	public ModelAndView addImageDiary(@ModelAttribute("diary") Diary diary, HttpSession session) throws Exception{
+		System.out.println("/diary/addImageDiary : POST");
+		
+		int userNo = ((int)session.getAttribute("userNo"));		
+		diary.setUserNo(userNo);
+		diaryService.addDiary(diary);
+		ModelAndView modelAndView = new ModelAndView();
+		modelAndView.addObject("diary", diary);
+		modelAndView.setViewName("redirect:/diary/imageList");
 		
 		
 		return modelAndView;
@@ -145,7 +176,7 @@ public class DiaryController {
 		return modelAndView;
 	}
 	
-	@RequestMapping(value="imageList", method=RequestMethod.GET)
+	@RequestMapping(value="imageList")
 	public ModelAndView imageList(@ModelAttribute("search") Search search , HttpSession session)throws Exception{
 		
 		int userNo = ((int)session.getAttribute("userNo"));
@@ -211,10 +242,24 @@ public class DiaryController {
 		for (int i=0; i<arrIdx.length; i++) {
 			diaryService.deleteDiary(Integer.parseInt(arrIdx[i]));
 		}	
-		
 				
 		ModelAndView modelAndView = new ModelAndView();
 		modelAndView.setViewName("/diary/listDiary");
+		
+		return modelAndView;
+	}
+	@RequestMapping(value="deleteImage", method=RequestMethod.POST)
+	public ModelAndView deleteImage(@RequestParam("deleteImage") int diaryNo)  throws Exception{
+		
+		System.out.println("/diary/deleteImage");
+		System.out.println("다이어리 번호:"+diaryNo);
+		
+		
+		diaryService.deleteDiary(diaryNo);
+		System.out.println("dkdkdk");
+				
+		ModelAndView modelAndView = new ModelAndView();
+		modelAndView.setViewName("/diary/imageList");
 		
 		return modelAndView;
 	}
@@ -304,7 +349,7 @@ public class DiaryController {
 	            String callback = request.getParameter("CKEditorFuncNum");
 	 
 	            printWriter = response.getWriter();
-	            String fileUrl = "http://127.0.0.1:8080/images/diaryImage/" + fileName;//url경로
+	            String fileUrl = "/images/diaryImage/" + fileName;//url경로
 	 
 	           printWriter.println("<script type='text/javascript'>window.parent.CKEDITOR.tools.callFunction("+1+ ",'"+fileUrl+ "',''"+ ");\n</script>");
 	            //printWriter.write("{\"uploaded\": 1,\"fileName\": \""+fileName+"\", \"url \" :"+"\"http://192.168.0.53:8080/images/diaryImage/"+fileName+"\"}");

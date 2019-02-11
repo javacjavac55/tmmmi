@@ -31,7 +31,6 @@
 
 <!--툴팁  -->
 <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
-<link rel="stylesheet" href="/resources/demos/style.css">
 <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 
@@ -168,7 +167,7 @@
 							<%-- <button type="button" name="imageList" class="btn btn-primary"
 								id="imageList" data-param1="${search.currentPage}"> --%>
 										<a href='/diary/listDiary'><img src=/images/diaryImage/3213.PNG class="listDiary" style="width:30px; height:24px;" title="리스트 형식으로 보기"/></a>
-										<a href='/diary/imageList?currentPage=${search.currentPage}'><img src=/images/diaryImage/321312.PNG class="imageDiary" style="width:30px; height:24px;" title="썸네일 형식으로 보기"/></a>
+										<a href='/diary/imageList'><img src=/images/diaryImage/321312.PNG class="imageDiary" style="width:30px; height:24px;" title="썸네일 형식으로 보기"/></a>
 									</div>
 
 								</div>
@@ -201,10 +200,7 @@
 								</form>
 							</div>
 							</nav>
-						</div>
-					</div>
-
-				</div>
+					
 				<!-- table 위쪽 검색 Start /////////////////////////////////////-->
 
 				<!-- 디테일폼 끝 -->
@@ -281,7 +277,9 @@
 			</div>
 		</div>
 	</div>
-
+</div>
+</div>
+</div>
 
 
 	<!--  화면구성 div End /////////////////////////////////////-->

@@ -71,8 +71,14 @@ public class ToDoDaoImpl implements ToDoDao {
 	@Override
 	public ToDo getToDo(ToDo toDo) throws Exception {
 		System.out.println(this.getClass()+"Á¢±Ù");
-		System.out.println(toDo);
+		System.out.println("getToDo : "+toDo);
+		
 		return sqlSession.selectOne("TodoMapper.getTodo", toDo);
+	}
+	
+	@Override
+	public ToDo getToDoOne(ToDo toDo) throws Exception{
+		return sqlSession.selectOne("TodoMapper.getTodoOne", toDo);
 	}
 	
 	@Override

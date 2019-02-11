@@ -3,8 +3,6 @@
 <html>
 <head>
 <head>
-	<link rel="apple-touch-icon" sizes="76x76" href="./assets/img/apple-icon.png">
-	<link rel="icon" type="image/png" href="./assets/img/favicon.png">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
 	<title>Tmmmi</title>
 	<meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0, shrink-to-fit=no' name='viewport' />
@@ -21,6 +19,8 @@
   	<!-- styleSheet -->
 	<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
 	<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+	<!-- sweetalert -->
+	<script src ="https://unpkg.com/sweetalert/dist/sweetalert.min.js" ></script >
 	<!-- 버튼 이벤트 -->
 	<script type="text/javascript">
 		//============= "가입"  Event 연결 ================
@@ -39,6 +39,12 @@
 		//============="이메일 인증" Event 연결 ==============
 		$(function() {
 			$( "button.btn.btn-default" ).on("click" , function() {
+				swal({
+					  title: "이메일 전송 중",
+					  text: "잠시만 기다려 주세요!",
+					  icon: "warning",
+					  dangerMode: true,
+					})
 				fncEmailAuth();
 			});
 		});
@@ -58,37 +64,77 @@
 			var authNum=$("input[name=authNum]").val();
 			
 			if(id == null || id.length <5){
-				alert("아이디는 반드시 입력하셔야 합니다.");
+				swal({
+					  title: "가입 오류",
+					  text: "아이디는 반드시 입력하셔야 합니다.!",
+					  icon: "warning",
+					  dangerMode: true,
+					})
 				return;
 			}
 			if(pw == null || pw.length <1){
-				alert("패스워드는  반드시 입력하셔야 합니다.");
+				swal({
+					  title: "가입 오류",
+					  text: "패스워드는 반드시 입력하셔야 합니다.!",
+					  icon: "warning",
+					  dangerMode: true,
+					})
 				return;
 			}
 			if(pw_confirm == null || pw_confirm.length <1){
-				alert("패스워드 확인은  반드시 입력하셔야 합니다.");
+				swal({
+					  title: "가입 오류",
+					  text: "패스워드는 확인은 반드시 입력하셔야 합니다.!",
+					  icon: "warning",
+					  dangerMode: true,
+					})
 				return;
 			}
 			if(userName == null || userName.length <1){
-				alert("닉네임은  반드시 입력하셔야 합니다.");
+				swal({
+					  title: "가입 오류",
+					  text: "닉네임은  반드시 입력하셔야 합니다.!",
+					  icon: "warning",
+					  dangerMode: true,
+					})
 				return;
 			}
 			if(email == null || (email != "" && (email.indexOf('@') < 1 || email.indexOf('.') == -1))){
-				alert("이메일은 반드시 입력하셔야 합니다.");
+				swal({
+					  title: "가입 오류",
+					  text: "이메일은 반드시 입력하셔야 합니다.!",
+					  icon: "warning",
+					  dangerMode: true,
+					})
 				return;
 			}
 			if(authNum == null || authNum.length <5){
-				alert("인증번호는 반드시 입력하셔야 합니다.");
+				swal({
+					  title: "가입 오류",
+					  text: "인증번호는 반드시 입력하셔야 합니다.!",
+					  icon: "warning",
+					  dangerMode: true,
+					})
 				return;
 			}
 			
-			if( pw != pw_confirm ) {				
-				alert("비밀번호 확인이 일치하지 않습니다.");
+			if( pw != pw_confirm ) {
+				swal({
+					  title: "가입 오류",
+					  text: "비밀번호 확인이 일치하지 않습니다!",
+					  icon: "warning",
+					  dangerMode: true,
+					})
 				$("input:text[name='password2']").focus();
 				return;
 			}
-			
-			$("form").attr("method" , "POST").attr("action" , "/user/addUser").submit();
+			swal({
+				title : "가입 완료" , 
+				text: "회원가입을 완료하였습니다. Tmmmi를 이용해 보세요!" , 
+				icon : "success" , 
+			}).then((value)=>{
+				$("form").attr("method" , "POST").attr("action" , "/user/addUser").submit();
+			})
 		}
 	</script>
 	
@@ -107,7 +153,14 @@
 	            },
 	            success : function(JSONData, status){
 	            	var result = JSONData;
-	            	if(result){alert("해당 이메일로 코드를 보냈습니다. 코드를 입력해 주세요!");}
+	            	if(result){
+	            	swal({
+	    				title : "이메일 전송 완료" , 
+	    				text: "이메일로 인증번호를 전송하였습니다." , 
+	    				icon : "success" , 
+	    			});
+	            	
+	            	}
 	            }
 			});
 		}

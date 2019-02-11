@@ -156,8 +156,8 @@ public class UserServiceImpl implements UserService {
 	}
 	
 	@Override
-	public User searchUserPw(User user) {
-		return userDao.searchUserPw(user);
+	public void searchUserPw(User user) {
+		userDao.searchUserPw(user);
 	}
 
 }

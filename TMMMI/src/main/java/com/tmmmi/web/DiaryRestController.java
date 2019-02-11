@@ -7,26 +7,35 @@ import java.io.OutputStream;
 import java.io.PrintWriter;
 import java.net.InetAddress;
 import java.util.List;
+import java.util.Map;
 import java.util.UUID;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.util.MultiValueMap;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
+import org.springframework.web.servlet.ModelAndView;
 
 import com.sun.media.jfxmedia.logging.Logger;
+import com.tmmmi.common.Page;
+import com.tmmmi.common.Search;
 import com.tmmmi.service.diary.DiaryService;
+import com.tmmmi.service.domain.Diary;
 
-@Controller
+@RestController
 @RequestMapping("/diaryRest/*")
 public class DiaryRestController {
 
@@ -36,6 +45,36 @@ public class DiaryRestController {
 
 	public DiaryRestController() {
 		System.out.println(this.getClass());
+	}
+	
+	@Value("#{commonProperties['pageUnit']}")
+	//@Value("#{commonProperties['pageUnit'] ?: 3}")
+	int pageUnit;
+	
+	@Value("#{commonProperties['pageSize']}")
+	//@Value("#{commonProperties['pageSize'] ?: 2}")
+	int pageSize;
+	
+	
+	@RequestMapping(value = "imageList", method = RequestMethod.POST)
+	public Map imageList(@RequestBody(required=false) Search search, HttpSession session)throws Exception {
+		System.out.println("서치 :" +search);
+		int userNo = ((int)session.getAttribute("userNo"));
+
+		if(search.getCurrentPage() ==0 ){
+			search.setCurrentPage(1);
+		}
+		search.setPageSize(pageSize);		
+		// Business logic 수행
+		Map<String , Object> map=diaryService.getDiaryList(search, userNo);
+		Page resultPage = new Page( search.getCurrentPage(), ((Integer)map.get("totalCount")).intValue(), pageUnit, pageSize);
+		
+		System.out.println("결과페이지: "+resultPage);
+		map.put("list", map.get("list"));
+		map.put("resultPage", resultPage);		
+		map.put("search", search);
+		
+		return map;
 	}
 
 	/*@RequestMapping(value = "imageDiary", method = RequestMethod.POST, produces = "text/plain;charset=UTF-8")

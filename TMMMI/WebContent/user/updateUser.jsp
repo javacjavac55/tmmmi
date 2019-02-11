@@ -3,11 +3,8 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
-	<link rel="apple-touch-icon" sizes="76x76" href="./assets/img/apple-icon.png">
-	<link rel="icon" type="image/png" href="./assets/img/favicon.png">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
 	<title>Tmmmi</title>
-	<meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0, shrink-to-fit=no' name='viewport' />
 	<!--  Fonts and icons -->
 	<link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Roboto+Slab:400,700|Material+Icons" />
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css">
@@ -20,6 +17,9 @@
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" ></script>
   	<!-- styleSheet -->
 	<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+	<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+	<!-- sweetalert -->
+	<script src ="https://unpkg.com/sweetalert/dist/sweetalert.min.js" ></script >
 	
 	<!-- 버튼 이벤트 -->
 	<script type="text/javascript">
@@ -49,33 +49,61 @@
 			var emailCheck=$("input[name=emailCheck]").val();
 			
 			if(pw == null || pw.length <1){
-				alert("패스워드는  반드시 입력하셔야 합니다.");
+				swal({
+					  text: "패스워드는 반드시 입력하셔야 합니다.!",
+					  icon: "warning",
+					  dangerMode: true,
+					})
 				return;
 			}
 			if(pw_confirm == null || pw_confirm.length <1){
-				alert("패스워드 확인은  반드시 입력하셔야 합니다.");
+				swal({
+					  text: "패스워드는 확인은 반드시 입력하셔야 합니다.!",
+					  icon: "warning",
+					  dangerMode: true,
+					})
 				return;
 			}
 			if(userName == null || userName.length <1){
-				alert("닉네임은  반드시 입력하셔야 합니다.");
+				swal({
+					  text: "닉네임은  반드시 입력하셔야 합니다.!",
+					  icon: "warning",
+					  dangerMode: true,
+					})
 				return;
 			}
 			if(email == null || email.length <1){
-				alert("이메일은 반드시 입력하셔야 합니다.");
+				swal({
+					  text: "이메일은 반드시 입력하셔야 합니다.!",
+					  icon: "warning",
+					  dangerMode: true,
+					})
 				return;
 			}
 			if(emailCheck == null || emailCheck.length <1){
-				alert("이메일 인증을 완료 해야합니다.");
+				swal({
+					  text: "인증번호는 반드시 입력하셔야 합니다.!",
+					  icon: "warning",
+					  dangerMode: true,
+					})
 				return;
 			}
 			
 			if( pw != pw_confirm ) {				
-				alert("비밀번호 확인이 일치하지 않습니다.");
-				$("input:text[name='password2']").focus();
+				swal({
+					  text: "비밀번호 확인이 일치하지 않습니다!",
+					  icon: "warning",
+					  dangerMode: true,
+					})
 				return;
 			}
-				
-			$("form").attr("method" , "POST").attr("action", "/user/updateUser").submit();
+			swal({
+				title : "수정 완료" , 
+				text: "회원 정보 수정을 완료하였습니다. Tmmmi를 이용해 보세요!" , 
+				icon : "success" , 
+			}).then((value)=>{
+				$("form").attr("method" , "POST").attr("action", "/user/updateUser").submit();
+			})
 		}
 	</script>
 	
@@ -84,6 +112,12 @@
 		//============= "이메일 인증"  Event 연결 =============
 		 $(function() {
 			$( "button.btn.btn-default" ).on("click" , function() {
+				swal({
+					  title: "이메일 전송 중",
+					  text: "잠시만 기다려 주세요!",
+					  icon: "warning",
+					  dangerMode: true,
+					})
 				fncEmailAuth();
 			});
 		});
@@ -103,12 +137,28 @@
 	            	console.log("aaa");
 	            	var result = JSONData;
 	            	if(result){
-	            		console.log("ok");
-	            		alert("해당 이메일로 코드를 보냈습니다. 코드를 입력해 주세요!");
+	            		swal({
+		    				title : "이메일 전송 완료" , 
+		    				text: "이메일로 인증번호를 전송하였습니다." , 
+		    				icon : "success" , 
+		    			});
 	            	}
 	            }
 			});
 		}
+	</script>
+	
+	<!-- 달력 -->
+	<script type="text/javascript">
+		$(function(){
+			$("input[name='birthday']").datepicker( {
+				dateFormat: 'yy-mm-dd',
+				changeMonth: true,
+			    changeYear: true,
+			    minDate: '-150y',
+			    yearRange: 'c-100:c+10'
+			});
+		});
 	</script>
 </head>
 
@@ -169,7 +219,7 @@
 			<div class="description text-center">
 				<div class="form-group bmd-form-group">
 					<label for="userName" class="bmd-label-static">Birthday</label>
-					<input type="text" class="form-control" id="birthday" name="birthday" value="${user.birthday}" placeholder="변경회원이름">
+					<input type="text" class="form-control" id="birthday" name="birthday" value="${user.birthday}" placeholder="생일 입력">
 				</div>
 			</div>
 			  
@@ -184,7 +234,7 @@
 			<div class="description text-center">
 				<div class="form-group bmd-form-group">
 				<label for="ssn" class="bmd-label-static">E-mail confirm</label>
-					<input type="text" class="form-control" id="emailCheck" name="emailCheck" placeholder="코드 입력">
+					<input type="text" autocomplete="off" class="form-control" id="emailCheck" name="emailCheck" placeholder="코드 입력">
 				</div>
 			</div>
 			  

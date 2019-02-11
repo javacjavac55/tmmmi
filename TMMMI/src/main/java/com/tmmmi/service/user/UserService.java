@@ -16,5 +16,5 @@ public interface UserService {
 	public boolean checkDuplication(String userId) throws Exception;
 	public boolean emailCheckDuplication(String email);
 	public User searchUserId(User user);
-	public User searchUserPw(User user);
+	public void searchUserPw(User user);
 }

@@ -51,10 +51,10 @@ public class ToDoRestController {
 	@RequestMapping(value="/deleteToDoComplete",method=RequestMethod.POST)
 	public ToDo deleteToDoComplete(@RequestBody ToDo toDo) throws Exception{
 		System.out.println("/deleteToDoComplete 접근");
-		System.out.println(toDo);
+		System.out.println("aaa"+toDo);
 		toDoService.deleteToDoComplete(toDo);
-		ToDo reToDo = toDoService.getToDo(toDo);
-		System.out.println(reToDo);
+		ToDo reToDo = toDoService.getToDoOne(toDo);
+		System.out.println("reToDo : "+reToDo);
 		System.out.println("/deleteToDoComplete 완료");
 		return reToDo;
 	}

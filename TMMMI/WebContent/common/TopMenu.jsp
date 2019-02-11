@@ -23,7 +23,7 @@
       <div class="row">
         <div class="col-md-8 ml-auto mr-auto">
           <div class="brand">
-            <img src="/images/Logo/logo.png"/>
+            <img src="/images/Logo/logo2.png"/>
             <h3 class="title">Too Much, Memorable, My Information </h3>
           </div>
         </div>

@@ -11,17 +11,35 @@
 	<link href="https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300" rel="stylesheet">
 	<link href="https://fonts.googleapis.com/css?family=Do+Hyeon" rel="stylesheet">
 	<noscript><link rel="stylesheet" href="/css/index/assets/css/noscript.css" /></noscript>
+	<style type="text/css">
+		.tiles article > a{
+			color:#3a2a64;
+			background-color:#ffffff;
+		}
+		.tiles article > a:hover{
+			color: #f2849e !important;
+			background-color:#ffffff;
+		}
+		.tiles article.style1 > .image:before, .tiles article.style2 > .image:before, .tiles article.style3 > .image:before, .tiles article.style4 > .image:before,
+		.tiles article.style5 > .image:before, .tiles article.style6 > .image:before {;
+			background-color:#ffffff;
+		}
+		#header {
+			padding:4em 0 0.1em 0;
+		}
+	</style>
 </head>
 	<body class="is-preload">
-	<div>
-		<%-- ${userName }님 환영합니다. --%>
+	<div align="right">
+		<span style="font-family:'Do Hyeon'; margin:10px 10px 0 0;">${userName }님 환영합니다.</span>
+		<a href="/user/logout" style="font-family:'Do Hyeon';margin:10px 10px 0 0; color:#3a2a64">Logout</a>
 	</div>
 		<!-- Wrapper -->
 			<div id="wrapper">
 			<!-- Header -->
 				<header id="header">
 					<div class="inner" style="text-align:center;">
-						<img src="/images/Logo/logo.png" alt="" />
+						<img src="/images/Logo/logo2.png" alt=""  style="width:50%;"/>
 					</div>
 				</header>
 
@@ -30,16 +48,16 @@
 						<div class="inner">
 							<header style="text-align:center">
 								<br/>
-								<p style="color:#2b0548;">Too Much, Memorable, My Information</p>
 								<p style="font-family:'Do Hyeon'; font-size : x-large;">하루를 Tmmmi와 함께 시작해보세요.</p>
 							</header>
 							<section class="tiles">
-								<article class="style1">
+								<article class="style1" >
 									<span class="image">
-										<img src="/css/index/images/pic01.jpg" alt="" />
+										<img src="/css/index/images/loginIndex.png" alt="" />
 									</span>
 									<a href="/calendar/getCalendarMonth">
-										<h2>Calendar</h2>
+										<h2>Calendar</h2><br/>
+										<img src="/images/loginIndex/calendar.png" width="20%"/>
 										<div class="content">
 											<p>Schedule Management</p>
 										</div>
@@ -50,7 +68,8 @@
 										<img src="/css/index/images/pic02.jpg" alt="" />
 									</span>
 									<a href="/content/getContentList">
-										<h2>Content</h2>
+										<h2>Content</h2><br/>
+										<img src="/images/loginIndex/sharing-content.png" width="20%"/>
 										<div class="content">
 											<p>Collect Interest</p>
 										</div>
@@ -61,7 +80,8 @@
 										<img src="/css/index/images/pic03.jpg" alt="" />
 									</span>
 									<a href="/diary/listDiary">
-										<h2>Diary</h2>
+										<h2>Diary</h2><br/>
+										<img src="/images/loginIndex/diary.png" width="20%"/>
 										<div class="content">
 											<p>Leave an appreciation for the day</p>
 										</div>
@@ -72,7 +92,8 @@
 										<img src="/css/index/images/pic04.jpg" alt="" />
 									</span>
 									<a href="/calendar/getCalendarInterest">
-										<h2>Calendar Interest</h2>
+										<h2>Calendar Interest</h2><br/>
+										<img src="/images/loginIndex/sportcalendar.png" width="20%"/>
 										<div class="content">
 											<p>Movie Calendar & Sport Calendar</p>
 										</div>
@@ -83,7 +104,8 @@
 										<img src="/css/index/images/pic05.jpg" alt="" />
 									</span>
 									<a href="/user/getUser">
-										<h2>My page</h2>
+										<h2>My page</h2><br/>
+										<img src="/images/loginIndex/find-my-friend.png" width="20%"/>
 										<div class="content">
 											<p>Check my information</p>
 										</div>
@@ -94,7 +116,8 @@
 										<img src="/css/index/images/pic06.jpg" alt="" />
 									</span>
 									<a href="/todo/getToDoList">
-										<h2>To do</h2>
+										<h2>To do</h2><br/>
+										<img src="/images/loginIndex/checklist.png" width="20%"/>
 										<div class="content">
 											<p>Take care of the day's work</p>
 										</div>
@@ -105,7 +128,8 @@
 										<img src="/css/index/images/pic07.jpg" alt="" />
 									</span>
 									<a href="/faq/getFAQList">
-										<h2>FAQ</h2>
+										<h2>FAQ</h2><br/>
+										<img src="/images/loginIndex/conversation.png" width="20%" />
 										<div class="content">
 											<p>Frequent Asked Question</p>
 										</div>
@@ -116,7 +140,8 @@
 										<img src="/css/index/images/pic08.jpg" alt="" />
 									</span>
 									<a href="/qna/getQNAList">
-										<h2>QNA</h2>
+										<h2>QNA</h2><br/>
+										<img src="/images/loginIndex/qa.png" width="20%" />
 										<div class="content">
 											<p>Question and Answer</p>
 										</div>

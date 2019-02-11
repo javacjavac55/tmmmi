@@ -73,7 +73,7 @@ public class ToDoController {
 		
 		//현재 날짜 계산
 		SimpleDateFormat mSimpleDateFormat = new SimpleDateFormat ( "yyyy-MM-dd");
-		String mTime = mSimpleDateFormat.format( new Date());
+		String mTime = mSimpleDateFormat.format(new Date());
 		java.sql.Date targetDate = java.sql.Date.valueOf(mTime);
 		System.out.println ("targetDate : "+targetDate);
 		
@@ -84,11 +84,12 @@ public class ToDoController {
 	
 		//Business Logic
 		List<ToDo> todolist = toDoService.getToDoList(todomap);
+		//ModelAndView
 		ModelAndView modelAndView = new ModelAndView();
 		System.out.println("todolist"+todolist);
 		modelAndView.setViewName("/todo/listToDo.jsp");
 		modelAndView.addObject("todolist",todolist);
-		modelAndView.addObject("targetDate",targetDate);
+		modelAndView.addObject("targetDate",mTime);
 		System.out.println(modelAndView);
 		return modelAndView;
 		}
@@ -96,29 +97,20 @@ public class ToDoController {
 	@RequestMapping(value="/getToDoList", method=RequestMethod.POST)
 	public ModelAndView getToDoList(@RequestBody String dayinput, HttpSession session) throws Exception{
 		System.out.println("/getToDoListPOST 접근");
-		System.out.println(dayinput.split("=")[1]);
 		int userNo = (int)session.getAttribute("userNo");
-		
+		System.out.println(dayinput);
 		java.sql.Date targetDate1 = java.sql.Date.valueOf(dayinput.split("=")[1]);
-		System.out.println ("targetDate : "+targetDate1);
-		
+		//Business Logic
 		Map<String, Object> todomap = new HashMap<String, Object>();
 		todomap.put("userNo", userNo);
 		todomap.put("targetDate", targetDate1);
-		
-		//Business Logic
 		List<ToDo> todolist = toDoService.getToDoList(todomap);
-		/*List<ToDo>nextlist=toDoService.getToDoList(nextToDoMap);*/
+		String targetDate = dayinput.split("=")[1];
+		//ModelAndView
 		ModelAndView modelAndView = new ModelAndView();
-		System.out.println("todolist"+todolist);
-		SimpleDateFormat mSimpleDateFormat2 = new SimpleDateFormat ( "yyyy-MM-dd");
-		Date tDate = mSimpleDateFormat2.parse(dayinput.split("=")[1]);
-		System.out.println(tDate);
-		
 		modelAndView.setViewName("/todo/listToDo.jsp");
-		modelAndView.addObject("targetDate", targetDate1);
+		modelAndView.addObject("targetDate", targetDate);
 		modelAndView.addObject("todolist",todolist);
-		modelAndView.addObject("displaydate", tDate);
 		System.out.println(modelAndView);
 		return modelAndView;
 		}
@@ -148,7 +140,7 @@ public class ToDoController {
 		List<ToDo> todoMonth = toDoService.getToDoMonthGraph(todomap);
 		ModelAndView modelAndView = new ModelAndView();
 		System.out.println("todoMonth"+todoMonth);
-		modelAndView.setViewName("/todo/getToDoMonthGraph.jsp");
+		modelAndView.setViewName("/todo/getToDoLineGraph.jsp");
 		modelAndView.addObject("todoMonth",todoMonth);
 		return modelAndView;
 	}
