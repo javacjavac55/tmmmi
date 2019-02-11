@@ -15,6 +15,8 @@
 <!-- jQuery -->
 <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<!-- sweetalert -->
+<script src ="https://unpkg.com/sweetalert/dist/sweetalert.min.js" ></script >	
 	
 	<!-- 버튼 이벤트 -->
 	<script type="text/javascript">
@@ -32,17 +34,25 @@
 			var inEmail=$("input[name=email]").val();
 			
 			if(inUserName == null || inUserName.length <1){
-				alert("닉네임은  반드시 입력하셔야 합니다.");
+				swal({
+					  text: "닉네임은  반드시 입력하셔야 합니다.!",
+					  icon: "warning",
+					  dangerMode: true,
+					})
 				return;
 			}
 			
 			if(inEmail == null || inEmail.length <1){
-				alert("이메일은 반드시 입력하셔야 합니다.");
+				swal({
+					  text: "이메일은 반드시 입력하셔야 합니다.!",
+					  icon: "warning",
+					  dangerMode: true,
+					})
 				return;
 			}
 			
 		    $.ajax({
-	            url : "/SNSLogin/searchUserId",
+	            url : "/userRest/searchUserId",
 	            method : "POST",
 	            data : JSON.stringify(
 	            	{
@@ -57,13 +67,16 @@
 	            },
 	            success : function(Data){
 	            	var result = Data;
-            		alert('아이디는'+result+'*** 입니다.');
-            		window.location = '/user/login.jsp';
+	            	swal({
+	    				title : "아이디는"+result+"*** 입니다." , 
+	    				text: "아이디는 끝에 세자리 *처리 됩니다." , 
+	    				icon : "success" , 
+	    			}).then((value)=>{
+	    				window.location = '/user/login.jsp';
+	    			})
 	            },
 	            error : function(request, status, error ) {  
-
 	            	console.log('code:'+request.status+'\n'+'message:'+request.responseText+'\n'+'error:'+error);
-
 	            }
 			});
 		}
@@ -72,7 +85,7 @@
 </head>
 
 <body class="index-page sidebar-collapse">
-	<jsp:include page="/common/toolbar2.jsp"></jsp:include>
+	<jsp:include page="/common/toolbar.jsp"></jsp:include>
 	<div class="page-header header-filter clear-filter" data-parallax="true" style="background-image: url('/images/userSetting/moon-1527501_960_720.jpg')">
 		<div class="container">
 			<div class="row">

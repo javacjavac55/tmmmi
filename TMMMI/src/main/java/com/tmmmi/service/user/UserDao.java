@@ -15,5 +15,5 @@ public interface UserDao {
 	public User emailCheckDuplication(String email);
 	public int getTotalCount(Search search) throws Exception;
 	public User searchUserId(User user);
-	public User searchUserPw(User user);
+	public void searchUserPw(User user);
 }

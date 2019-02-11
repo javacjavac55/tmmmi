@@ -17,6 +17,7 @@ import com.tmmmi.service.user.GoogleService;
 import com.tmmmi.service.user.NaverService;
 import com.tmmmi.service.user.KakaoService;
 import com.tmmmi.service.user.UserService;
+import com.tmmmi.service.usersetting.UserSettingService;
 import com.tmmmi.service.domain.User;
 
 @Controller
@@ -26,6 +27,9 @@ public class SNSLoginController {
 	@Autowired
 	@Qualifier("userServiceImpl")
 	private UserService userService;
+	@Autowired
+	@Qualifier("userSettingServiceImpl")
+	private UserSettingService userSetting;
 	@Autowired
 	@Qualifier("naverServiceImpl")
 	private NaverService naverService;
@@ -78,8 +82,9 @@ public class SNSLoginController {
 		System.out.println("이메일 ==> " + user.getEmail());
 		
 		session.setAttribute("userNo", userService.getUserId(user.getUserId()).getUserNo());
-
-		return "forward:/common/TopMenu.jsp";
+		session.setAttribute("userName", userService.getUserId(user.getUserId()).getUserName());
+		session.setAttribute("userSetting", userSetting.getUserSetting(userService.getUserId(user.getUserId()).getUserNo()));
+		return "forward:/user/snsLogin.jsp";
 	}
 	
 	@RequestMapping(value = "googleLoginRequest", method = { RequestMethod.GET, RequestMethod.POST })
@@ -111,8 +116,10 @@ public class SNSLoginController {
 		}
 		
 		session.setAttribute("userNo", userService.getUserId(user.getUserId()).getUserNo());
-
-		return "forward:/common/topMenu.jsp";
+		session.setAttribute("userName", userService.getUserId(user.getUserId()).getUserName());
+		session.setAttribute("userSetting", userSetting.getUserSetting(userService.getUserId(user.getUserId()).getUserNo()));
+		
+		return "forward:/user/snsLogin.jsp";
 	}
 	
 	@RequestMapping(value = "kakaoLoginRequest", method = { RequestMethod.GET, RequestMethod.POST })
@@ -150,37 +157,20 @@ public class SNSLoginController {
 			}
 			
 			return "forward:/user/snsAddUser.jsp";
+			
 		} else{
 			session.setAttribute("userNo", userService.getUserId(user.getUserId()).getUserNo());
 			System.out.println("카카오 계정으로 로그인");
+			
+			if(userService.getUserId(user.getUserId()).getUserName() == null) {
+				System.out.println("닉네임 없음");
+				return "forward:/user/snsLogin.jsp";
+			}else {
+				System.out.println("닉네임 있음");
+				session.setAttribute("userName", userService.getUserId(user.getUserId()).getUserName());
+				session.setAttribute("userSetting", userSetting.getUserSetting(userService.getUserId(user.getUserId()).getUserNo())); 
+				return "forward:/user/snsLogin.jsp";
+			}
 		}
-		
-		System.out.println("session==> " + session.getAttribute("userNo"));
-
-		return "forward:/common/TopMenu.jsp";
 	}
-	
-	@RequestMapping(value="searchUserId", method=RequestMethod.GET)
-	@ResponseBody
-	public ModelAndView searchUserId() {
-		ModelAndView modelAndView = new ModelAndView();
-		modelAndView.setViewName("/user/searchUserId.jsp");
-		return modelAndView;
-	}
-	
-	@RequestMapping(value="searchUserId", method=RequestMethod.POST)
-	@ResponseBody
-	public String searchUserId(@RequestBody User user) {
-		
-		System.out.println("/userRest/searchUserId");
-		System.out.println(user);
-		User searchUser = userService.searchUserId(user);
-		String userId = searchUser.getUserId();
-		String returnUserId = userId.substring(0, userId.length()-3);
-		
-		System.out.println("끝");
-		
-		return returnUserId	;
-	}
-
 }

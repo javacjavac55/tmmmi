@@ -63,9 +63,19 @@
 	<script type="text/javascript">
 		$( function() {
 			$("span:contains('아이디')").on("click" , function() {
-				self.location = "/SNSLogin/searchUserId"
+				self.location = "/userRest/searchUserId"
+			});
+			
+			$("span:contains('비밀번호')").on("click" , function() {
+				self.location = "/userRest/searchUserPw"
 			});
 		});
+	</script>
+	
+	<script language="JavaScript">
+	function openNewWindow(window) { 
+		open (window,"Mail","toolbar=no, location=no, directories=no, status=no, menubar=no, scrollbars=no, resizable=no, width=550, height=500"); 
+	}
 	</script>
 </head>
 
@@ -80,9 +90,9 @@
                 <h4 class="card-title">Login</h4>
               </div>
               <div style="text-align : center;">
-             	<a href="/SNSLogin/kakaoLoginRequest" id="kakaoLogin"><img src="/images/loginImage/kakaolink_btn_small_ov.png"  width="45px" id="kakaoLogin" /></a>
-              	<a href="/SNSLogin/googleLoginRequest" id="googleLogin"><img src="/images/loginImage/googleg_standard_color_128dp.png"  width="40px" id="googleLogin" style="margin : 0 20px 0 20px"/></a>
-              	<a href="/SNSLogin/naverLoginRequest" id="naverLogin"><img src="/images/loginImage/naverLogin.PNG"  width="50px" id="naverLogin" /></a><br/>
+             	<a href="javascript:openNewWindow('/SNSLogin/kakaoLoginRequest')" id="kakaoLogin"><img src="/images/loginImage/kakaolink_btn_small_ov.png"  width="45px" id="kakaoLogin" /></a>
+              	<a href="javascript:openNewWindow('/SNSLogin/googleLoginRequest')" id="googleLogin"><img src="/images/loginImage/googleg_standard_color_128dp.png"  width="40px" id="googleLogin" style="margin : 0 20px 0 20px"/></a>
+              	<a href="javascript:openNewWindow('/SNSLogin/naverLoginRequest')" id="naverLogin"><img src="/images/loginImage/naverLogin.PNG"  width="50px" id="naverLogin" /></a><br/>
               </div>
               <div class="card-body">
                 <div class="input-group">
