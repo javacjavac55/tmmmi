@@ -60,7 +60,7 @@
     <div class="section section-basic">
       <div class="container">
 	<div class="container">
-		<div class="row ">
+		<div class="row" style="margin-bottom: 3%;">
 			<ul class="controlbtn">
 				<li>
 					<button type="button" class="btn btn-info btn-fab btn-round" style="margin-top : 20px; margin-right : 10px;">
@@ -88,7 +88,7 @@
 			</ul>
 		</div>
 
-		<canvas id="myChart" style="position: relative; height: 70vh; width: 50vw;"></canvas>
+		<canvas id="myChart" style="position: relative; height: 50vh; width: 50vw;"></canvas>
 	</div>
 
 	<script type="text/javascript">
@@ -140,17 +140,17 @@
                         	  console.log(JSONData);
                         	  var newList = [];
                         	  $.each(JSONData, function (i) {
-                        	  toDoMonthChart.data.datasets.forEach((dataset) => {
+                        		  myDoughnutChart.data.datasets.forEach((dataset) => {
                       	        dataset.data.pop();
                       	    	});
                         	 })
                         	$.each(JSONData, function (i) {
                         	  newList.push(JSONData[i].toDoCount);
-                        	  toDoMonthChart.data.datasets.forEach((dataset) => {
+                        	  myDoughnutChart.data.datasets.forEach((dataset) => {
                         	        dataset.data.push(JSONData[i].toDoCount);
                         	        console.log(dataset);
                         	    });
-                        	  toDoMonthChart.update();
+                        	  myDoughnutChart.update();
                         	  })
                           }
                       })
@@ -163,12 +163,12 @@
 			</c:forEach>
 
 			var ctx = $('#myChart');
-			var toDoMonthChart = new Chart(ctx, {
-				type : 'bar',
+			var myDoughnutChart = new Chart(ctx, {
+				type : 'doughnut',
 				data : {
 					labels : [ "1월", "2월", "3월", "4월", "5월", "6월", "7월", "8월",
 							"9월", "10월", "11월", "12월" ],
-					datasets : [ {
+					datasets : [{
 						label : '# of Votes',
 						data : counts,
 						backgroundColor : [ 'rgba(189,8,28 ,0.5)',
@@ -178,37 +178,12 @@
 								'rgba(0,180,137 ,0.5)',
 								'rgba(76,117,163 ,0.5)',
 								'rgba(0,175,240 ,0.5)', 'rgba(0,132,255 ,0.5)',
-								'rgba(0,126,229 ,0.5)', 'rgba(65,0,147 ,0.5)'
-
-						],
-						borderColor : [ 'rgba(189,8,28 ,1)',
-								'rgba(235,73,36 ,1)', 'rgba(255,87,0 ,1)',
-								'rgba(255,170,0 ,1)', 'rgba(245,125,0 ,1)',
-								'rgba(37,211,102 ,1)', 'rgba(0,180,137 ,1)',
-								'rgba(76,117,163 ,1)', 'rgba(0,175,240 ,1)',
-								'rgba(0,132,255 ,1)', 'rgba(0,126,229 ,1)',
-								'rgba(65,0,147 ,1)' ],
-						borderWidth : 1
+								'rgba(0,126,229 ,0.5)', 'rgba(65,0,147 ,0.5)']
 					} ]
 				},
-				options : {
-					scales : {
-						yAxes : [ {
-							scaleLabel : {
-								display : true,
-								labelString : '월 별 성취도 개수'
-							},
-							ticks : {
-								beginAtZero : true
-							}
-						} ],
-						xAxes : [ {
-							scaleLabel : {
-								display : true,
-								labelString : '월 별 완료 그래프'
-							}
-						} ]
-					}
+				options: {
+			        showAllTooltips: true,
+			        responsive: true
 				}
 			})
 		});

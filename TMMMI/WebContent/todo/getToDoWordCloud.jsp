@@ -10,7 +10,6 @@
 <link rel="stylesheet" href="/css/jqcloud/jqcloud.min.css">
 <!-- Material Kit JS -->
 <script src="/javascript/template/core/jquery.min.js" type="text/javascript"></script>
-<script src="/javascript/template/core/popper.min.js" type="text/javascript"></script>
 <script src="/javascript/template/core/bootstrap-material-design.min.js" type="text/javascript"></script>
 <script async defer src="https://buttons.github.io/buttons.js"></script>
 <script src="/javascript/template/material-kit.js?v=2.0.5" type="text/javascript"></script>
