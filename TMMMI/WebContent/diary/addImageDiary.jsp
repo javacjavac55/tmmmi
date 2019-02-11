@@ -97,8 +97,7 @@
 
 	function fncAddDiary() {
 		var title=$("input[name='diaryTitle']").val();
-		document.getElementById('#ckeditor').value
-		//var detail=$("textarea[name='diaryDetail']").attr('value');
+		var detail=$("textarea[name='diaryDetail']").attr('value');
 		var userCategoryNo = $("select[name='userCategoryNo']").val();
 		
 		if(userCategoryNo =="¾øÀ½"){
@@ -196,7 +195,7 @@
 								<div>
 									<label for="diaryDetail" class="col-sm-offset-1 col-sm-3 control-label text-center"></label>
 									<div class="col-sm-12" align="center">
-										<textarea id="ckeditor" name="diaryDetail" style="display: none;"></textarea>
+										<textarea id="ckeditor" class="diaryDetail" name="diaryDetail" style="display: none;"></textarea>
 									</div>
 								</div>
 

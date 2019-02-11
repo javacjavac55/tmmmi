@@ -31,89 +31,6 @@
 <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
 <script
 	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-
-
-<script type="text/javascript">
-	/*툴팁  */
-	$( function() {
-    	$( '.listDiary' ).tooltip();
-  	});
-	
-	$( function() {
-	    $( '.imageDiary' ).tooltip();
-	});
-	/* 리스트 */
-	function fncGetList(currentPage) {
-		/* document.getElementById("currentPage").value = currentPage; */
-		$("#currentPage").val(currentPage);
-		/* document.detailForm.submit(); */
-		$('[name="detailForm"]').attr("method", "POST").attr("action",
-				"/diary/listDiary").submit();
-	}
-
-	/* 전체 선택 */
-	function fncAllchk() {
-		if ($("#allCheck").is(':checked')) {
-			$("input[name=deleteDiary]").prop("checked", true);
-		} else {
-			$("input[name=deleteDiary]").prop("checked", false);
-		}
-	}
-
-	/* 삭제 */
-	function fncDeleteDiary() {
-		/* var userid = "";
-		var diaryChk = document.getElementsByName("diaryNo");
-		var chked = false;
-		var indexid = false;
-		for(i=0; i < memberChk.length; i++){
-		 if(diaryChk[i].checked){
-		  if(indexid){
-		    userid = userid + '-';
-		  }
-		  userid = userid + diaryChk[i].value;
-		  indexid = true;
-		 }
-		}
-		if(!indexid){
-		 alert("삭제할 다이어리 체크해 주세요");
-		 return; 
-		document.userForm.delUserid.value = userid;       
-		// 체크된 사용자 아이디를 '-'로 묶은 userid 를  document.userForm.delUserid 의 value로 저장
-		var agree=confirm("삭제 하시겠습니까?");
-		   if (agree){
-		 document.userForm.execute.value = "userDel";
-		   document.userForm.submit();
-		   } 
-		} */
-		var agree = confirm("삭제 하시겠습니까?");
-		if (agree == true) {
-			$('[name="deleteForm"]').attr("method", "POST").attr("action",
-					"/diary/deleteDiary").submit();
-		}
-		if (agree == false) {
-			return false;
-		}
-	}
-
-	$(function() {
-		$("#addDiary").on("click", function() {
-			location.replace('/diary/addDiary');
-		});
-
-		$(".getDetail").on("click", function() {
-			var diaryNo = $(this).data('param1');
-			self.location = "/diary/getDiary?diaryNo=" + diaryNo;
-		});
-
-		$('#search').on("click", function() {
-			//Debug..
-			//alert(  $( "td.ct_btn01:contains('검색')" ).html() );
-			fncGetList(1);
-		});
-
-	});
-</script>
 <style>
 	@font-face{font-family:'Calluna';
  src:url('https://s3-us-west-2.amazonaws.com/s.cdpn.io/4273/callunasansregular-webfont.woff') format('woff');
@@ -188,22 +105,168 @@ img {
 	width: 300px;
 }
 </style>
+
+<script type="text/javascript">
+/*무한스크롤  */
+  $(function(){
+	  var currentPage = ${search.currentPage};
+		console.log(currentPage);
+	  $(window).scroll(function(){		
+			if($(window).scrollTop() == $(document).height() - $(window).height()){
+				++currentPage;
+				console.log("스크롤 인식");
+				console.log(currentPage);
+
+				 var data = {currentPage:currentPage, searchKeyword:$("#searchKeyword").val()}
+				 
+				 $.ajax({
+						type: 'POST',
+						url : '/diaryRest/imageList',
+						contentType: 'application/json',
+						dataType : 'json',
+						data: JSON.stringify(data),			
+						success: function(data){
+							console.log("success");
+							var list = data['list'];
+							var str = "";
+							if(list != null){
+								$(list).each(function(){
+									console.log(this);									
+									str += "<figure class='card' style='cursor:pointer;' >"	 									
+										+		"<button type='button' id='close' class='close' data-param2='"+this.diaryNo+"' style="+"'opacity:0;'"+">"
+										+			"<span aria-hidden='true'>"
+										+				"<i class='material-icons'>clear</i>"
+										+			"</span>"
+										+		"</button>"
+										+ 		"<div style="+"'width:100%;'"+" class="+"'getDetail'"+" data-param1='"+this.diaryNo+"'>"
+										+			this.diaryDetail
+										+		"</div>"
+										+		"<figcaption>"
+										+			"["+this.diaryNo+"]"+"["+this.userCategoryName+"]"+this.diaryTitle
+										+		"</figcaption>"
+										+	"</figure>"
+								});
+								$('figure').last().after(str);
+							}
+							else{
+								alert("마지막 페이지 입니다.");
+							}
+						}
+
+					});
+				 }						 
+			}) 
+		})
+	
+ 
+		/* 
+		var lastScrollTop =0;
+		var currentScrollTop = $(window).scrollTop();
+		
+		if( currentScrollTop - lastScrolltop >0){
+			lastScrollTop = currentScrollTop;
+		}else{
+			lastScrollTop = currentScrollTop;
+		}
+		
+		 */
+		
+ 
+	/*툴팁  */
+	$( function() {
+    	$( '.listDiary' ).tooltip();
+  	});
+	
+	$( function() {
+	    $( '.imageDiary' ).tooltip();
+	});
+	/* 리스트 */
+	function fncGetList(currentPage) {
+		/* document.getElementById("currentPage").value = currentPage; */
+		$("#currentPage").val(currentPage);
+		/* document.detailForm.submit(); */
+		$('[name="detailForm"]').attr("method", "POST").attr("enctype","multipart/form-data").attr("action",
+				"/diary/imageDiary").submit();
+	}
+	/* function deleteOnMouseOver(){		
+		close.style.display="block";
+	}
+	
+	function deleteOnMouseOut(){		
+		close.style.display="none";
+	} */
+	/* 전체 선택 */
+	function fncAllchk() {
+		if ($("#allCheck").is(':checked')) {
+			$("input[name=deleteDiary]").prop("checked", true);
+		} else {
+			$("input[name=deleteDiary]").prop("checked", false);
+		}
+	}
+	
+
+	$(function() {
+		
+		$(document).on("mouseover",".card", function() {
+			console.log($(this).children());
+			$(this).children().attr('style','opacity:1;');
+		});
+		
+		$(document).on("mouseleave",".card", function() {
+			console.log($(this).children());
+			$(this).children().first().attr('style','opacity:0;');
+		});
+
+		$(document).on("click",".getDetail", function() {
+			var diaryNo = $(this).data('param1');
+			self.location = "/diary/getDiary?diaryNo="+diaryNo;
+		});
+
+		$(document).on("click","#search", function() {
+			//Debug..
+			//alert(  $( "td.ct_btn01:contains('검색')" ).html() );
+			fncGetList(1);
+		});
+		
+		$("#addDiary").on("click", function() {
+			location.replace('/diary/addImageDiary');
+		});
+		
+
+
+		/* 삭제 */
+		$(".close").on("click", function() {
+			var diaryNo2 = $(this).data('param2');
+			
+			var agree = confirm("삭제 하시겠습니까?"+diaryNo2);
+			if (agree == true) {
+				$('#diaryNo').val(diaryNo2);
+				$('[name="deleteImageForm"]').attr("method", "POST").attr("action","/diary/deleteImage").submit();
+			}
+			if (agree == false) {
+				return false;
+			}
+			
+		});
+
+	});
+</script>
+
 </head>
 <body class="index-page sidebar-collapse">
 	<jsp:include page="/common/toolbar2.jsp"></jsp:include>
-	<div class="page-header header-filter clear-filter"
-		data-parallax="true"
-		style="background-image: url('/images/userSetting/ ${userSetting.image}')">
-		<div class="container">
-			<div class="row">
-				<div class="col-md-8 ml-auto mr-auto">
-					<div class="brand">
-						<h2 class="title">Diary</h2>
+		<div class="page-header header-filter clear-filter" data-parallax="true" style="background-image: url('/images/userSetting/ ${userSetting.image}')">
+			
+			<div class="container">
+				<div class="row">
+					<div class="col-md-8 ml-auto mr-auto">
+						<div class="brand">
+							<h2 class="title">Diary</h2>
+						</div>
 					</div>
 				</div>
 			</div>
 		</div>
-	</div>
 	<div class="main main-raised">
 		<div class="section section-basic">
 			<div class="container">
@@ -234,7 +297,7 @@ img {
 							<%-- <button type="button" name="imageList" class="btn btn-primary"
 								id="imageList" data-param1="${search.currentPage}"> --%>										
 										<a href='/diary/listDiary'><img src=/images/diaryImage/3213.PNG class="listDiary" style="width:30px; height:24px;" title="리스트 형식으로 보기"/></a>
-										<a href='/diary/imageList?currentPage=${search.currentPage}'><img src=/images/diaryImage/321312.PNG class="imageDiary" style="width:30px; height:24px;" title="썸네일 형식으로 보기"/></a>
+										<a href='/diary/imageList'><img src=/images/diaryImage/321312.PNG class="imageDiary" style="width:30px; height:24px;" title="썸네일 형식으로 보기"/></a>
 									</div>
 
 								</div>
@@ -243,68 +306,70 @@ img {
 								<div class="col-md-6 text-right"></div>
 							</div>
 							<nav class="navbar navbar-default navbar-expand-lg">
-							<div class="container" style="position:relative">
-								<form name="detailForm" class="form-inline ml-auto">
-								
-									<div class="navbar-translate text-left" style="float: left; position:absolute; left:0;">
-										<button type="button" name="add" class="btn btn-primary" id="addDiary" onclick="fncAddDiary();">글쓰기</button>
-									</div>
+								<div class="container" style="position:relative">
+									<form name="detailForm" class="form-inline ml-auto">
 									
-									<div class="collapse navbar-collapse">
-						                <ul class="navbar-nav">
-						                  <li class="nav-item active">                    
-						                  </li>
-						                  <li class="nav-item">                    
-						                  </li>
-						                </ul>
-            
-									</div>
-									<div class="form-group bmd-form-group">
-										<!-- <label class="sr-only" for="searchKeyword">검색어</label> 
-											 -->
-										<input type="text" class="form-control" id="searchKeyword"
-											name="searchKeyword" placeholder="제목+내용"
-											value="${! empty search.searchKeyword ? search.searchKeyword : '' }">
-										<input type="hidden" id="currentPage" name="currentPage"
-											value="" />
-
-									</div>
-									<button type="button"
-										class="btn btn-white btn-raised btn-fab btn-round" id="search">
-										<i class="material-icons">search</i>
-									</button>
-
-
-								</form>
-							</div>
+										<div class="navbar-translate text-left" style="float: left; position:absolute; left:0;">
+											<button type="button" name="add" class="btn btn-primary" id="addDiary" onclick="fncAddDiary();">글쓰기</button>
+										</div>
+										
+										<div class="collapse navbar-collapse">
+							                <ul class="navbar-nav">
+							                  <li class="nav-item active">                    
+							                  </li>
+							                  <li class="nav-item">                    
+							                  </li>
+							                </ul>
+	            
+										</div>
+										<div class="form-group bmd-form-group">
+											<!-- <label class="sr-only" for="searchKeyword">검색어</label> 
+												 -->
+											<input type="text" class="form-control" id="searchKeyword"
+												name="searchKeyword" placeholder="제목+내용"
+												value="${! empty search.searchKeyword ? search.searchKeyword : '' }">
+											<input type="hidden" id="currentPage" name="currentPage"
+												value="" />
+	
+										</div>
+										<button type="button"
+											class="btn btn-white btn-raised btn-fab btn-round" id="search">
+											<i class="material-icons">search</i>
+										</button>
+	
+	
+									</form>
+								</div>
 							</nav>
-						</div>
-					</div>
-
-				</div>
 				<!-- table 위쪽 검색 Start /////////////////////////////////////-->
 
 				<!-- 디테일폼 끝 -->
 
 				<!--  table Start /////////////////////////////////////-->
-				<form name="deleteForm">
+							<form name="deleteImageForm">
+								<input type="hidden" id="diaryNo" name="deleteImage" value="" />
+			 						
 								<div id="columns">
 									<c:forEach var="diary" items="${list}">
 										<c:set var="i" value="${ i+1 }" />
 										
-			 								<figure style="cursor:pointer">
-			 									<div style="width:285px;" class="getDetail" data-param1="${diary.diaryNo}"> 
+			 								<figure class="card" style="cursor:pointer;" >
+			 									<button type="button" id="close" class="close" data-param2="${diary.diaryNo}" style="opacity:0;">
+				 									<span aria-hidden="true">
+				 										<i class="material-icons">clear</i>
+				 									</span>
+			 									</button>
+			 									<div style="width:100%;" class="getDetail" data-param1="${diary.diaryNo}">			 												 									
 													${diary.diaryDetail}
 												</div>
-													<figcaption>
-														[${diary.userCategoryName }]${diary.diaryTitle}
-													</figcaption>
+												<figcaption>
+													[${diary.diaryNo}][${diary.userCategoryName}]${diary.diaryTitle}
+												</figcaption>
 											 </figure>
 										
 
 									</c:forEach>
-								</div>			
-
+								</div>	
 						<!--  table End /////////////////////////////////////-->
 						<!-- <div class="form-group">
 						<div class="col-sm-offset-4  col-sm-4 text-left"
@@ -318,13 +383,14 @@ img {
 								id="addDiary" onclick="fncAddDiary();">글쓰기</button>
 						</div>
 					</div> -->
-				</form>
+							</form>
 				<%-- <jsp:include page="../common/pageNavigator.jsp" /> --%>
+						</div>
+					</div>
+				</div>
 			</div>
 		</div>
 	</div>
-
-
 
 	<!--  화면구성 div End /////////////////////////////////////-->
 	<!-- PageNavigation Start... -->
