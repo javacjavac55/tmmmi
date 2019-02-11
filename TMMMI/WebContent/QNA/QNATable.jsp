@@ -41,7 +41,7 @@
 						<c:if test="${qna.QNACategory == 0}">
 							회원정보
 						</c:if><c:if test="${qna.QNACategory == 1}">
-							일정
+							일정 관리
 						</c:if><c:if test="${qna.QNACategory == 2}">
 							컨텐츠 설정
 						</c:if><c:if test="${qna.QNACategory == 3}">

@@ -1,8 +1,13 @@
 package com.tmmmi.web;
 
+import java.util.Map;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
+import org.codehaus.jackson.map.util.JSONPObject;
+import org.json.simple.JSONObject;
+import org.json.simple.parser.JSONParser;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -37,12 +42,14 @@ public class UserRestController {
 	@Qualifier("contentSettingServiceImpl")
 	private ContentSettingService contentSettingService;
 	
+	private JSONParser parser;
+	
 	///Constructor
 	public UserRestController() {
 		System.out.println(this.getClass());
 	}
 	
-	///Method
+	///Method	
 	@RequestMapping( value="userRest/checkDuplication", method=RequestMethod.POST )
 	public boolean checkDuplication(@RequestBody String userId ) throws Exception{
 		userId = userId.replaceAll("\"", "");
@@ -101,6 +108,64 @@ public class UserRestController {
 		return result;
 	}
 	
+	@RequestMapping(value="searchUserId", method=RequestMethod.GET)
+	@ResponseBody
+	public ModelAndView searchUserId() {
+		ModelAndView modelAndView = new ModelAndView();
+		modelAndView.setViewName("/user/searchUserId.jsp");
+		return modelAndView;
+	}
+	
+	@RequestMapping(value="searchUserId", method=RequestMethod.POST)
+	@ResponseBody
+	public String searchUserId(@RequestBody User user) {
+		
+		System.out.println("/userRest/searchUserId");
+		System.out.println(user);
+		User searchUser = userService.searchUserId(user);
+		String userId = searchUser.getUserId();
+		String returnUserId = userId.substring(0, userId.length()-3);
+		
+		System.out.println("끝");
+		
+		return returnUserId	;
+	}
+	@RequestMapping(value="searchUserPw", method=RequestMethod.GET)
+	@ResponseBody
+	public ModelAndView searchUserPw() {
+		ModelAndView modelAndView = new ModelAndView();
+		modelAndView.setViewName("/user/searchUserPw.jsp");
+		return modelAndView;
+	}
+	
+	@RequestMapping(value="searchUserPw", method=RequestMethod.POST)
+	@ResponseBody
+	public int searchUserPw(@RequestBody User user, HttpServletRequest request, HttpSession session) throws Exception{
+		
+		System.out.println("/userRest/searchUserPw:POST");
+
+		
+		String authNum = "";
+		authNum = RandomNum();
+
+		System.out.println("email==>" + user.getEmail());
+		System.out.println("authNum==> " + authNum);
+
+		User dbUser = userService.getUserId(user.getUserId());
+		System.out.println("User"+user);
+		System.out.println("dbUser"+dbUser);
+		
+		if(user.getUserId().equals(dbUser.getUserId()) && user.getEmail().equals(dbUser.getEmail())) {
+			
+			user.setPassword(authNum);
+			userService.sendMail(user.getEmail(), authNum);
+			userService.searchUserPw(user);
+			
+			return 1;
+		}else {
+			return 0;
+		}
+	}
 	// 난수생성
 	public String RandomNum() {
 
@@ -111,6 +176,13 @@ public class UserRestController {
 
 		}
 		return buffer.toString();
+	}
+	
+	@RequestMapping(value="withdraw", method=RequestMethod.POST)
+	public int withdraw(@ModelAttribute("user") User user, HttpSession session) {
+		System.out.println("/user/withdraw : POST");
+		
+		return 1;
 	}
 	
 	/*@RequestMapping(value="userRest/authNum", method=RequestMethod.POST)

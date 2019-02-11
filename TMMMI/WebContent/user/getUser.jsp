@@ -15,6 +15,8 @@
 <!-- jQuery -->
 <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<!-- sweetalert -->
+<script src ="https://unpkg.com/sweetalert/dist/sweetalert.min.js" ></script >
 <!-- style -->
 <style type="text/css">
 	.page-header .title, .page-header>.container { color : ${userSetting.menuFontColor}; }
@@ -29,6 +31,57 @@
 			self.location = "/user/updateUser"
 		});
 	})
+	
+	$(function() {
+		$( "button.btn.btn-danger" ).on("click" , function() {
+			swal({
+				  title: "탈퇴 확인",
+				  text: "정말 탈퇴하실건가요?",
+				  icon: "warning",
+				  buttons: true,
+				  dangerMode: true,
+				})
+				.then((willDelete) => {
+				  if (willDelete) {
+				    swal("다시 한 번 생각해주세요! 복구가 불가능합니다.", {
+				      icon: "warning",
+				      dangerMode: true
+				    }).then((value)=>{
+				    	fncWithdraw();
+					})
+				  } else {           
+				    swal("Tmmmi가 좀 더 열심히 할게요!");
+				  }
+				});
+		});
+	})
+</script>
+
+<script type="text/javascript">
+	function fncWithdraw(){
+		var inUserId=$("input[name=userId]").val();
+		$.ajax({
+			url : "/userRest/withdraw",
+			method : "POST",
+			data : JSON.stringify(inUserId),
+			dataType : "json",
+			headers : {
+            	"Accept" : "application/json",
+				"Content-Type" : "application/json"
+            },
+            success : function(JSONData, status){
+            	var result = JSONData;
+            	if(result == 1){
+            	swal({
+    				title : "탈퇴 완료" ,
+    				text : "Tmmmi가 생각나신다면 언제든 돌아와주세요.!",
+    				icon : "success" , 
+    			});
+            	
+            	}
+            }
+		})
+	}
 </script>
 
 </head>
@@ -79,7 +132,8 @@
 
 							<div class="row">
 								<div class="col-md-12 text-center ">
-									<button type="button" class="btn btn-primary btn-round">회원정보수정</button>
+									<button type="button" class="btn btn-danger btn-round">탈퇴</button>
+									<button type="button" class="btn btn-primary btn-round">수정</button>
 								</div>
 								<br/>
 							</div>

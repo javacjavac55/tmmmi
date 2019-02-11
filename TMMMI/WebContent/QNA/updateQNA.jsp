@@ -12,12 +12,10 @@
 	
 	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 	
-	<!--  Fonts and icons -->
-	<link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Roboto+Slab:400,700|Material+Icons" />
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css">
-	
 	<!-- CSS Files -->
 	<link href="/css/template/material-kit.css" rel="stylesheet" />
+	<!-- CSS Just for demo purpose, don't include it in your project -->
+	<link href="/css/template/demo.css" rel="stylesheet" />
 	
 	<!-- jQuery -->
 	<script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
@@ -94,7 +92,12 @@
 		////////////////////////////////취소
 		$(function() {
 			$( ".btn-default:contains('취소')" ).on("click" , function() {
-				history.go(-1);
+				swal("취소하시겠습니까?", {
+					 buttons: true,
+					 value: true,
+					}).then((result)=>{
+						history.go(-1);
+					}, function (dismiss) { });
 			});
 		});
 	
@@ -106,11 +109,13 @@
 <input type="hidden" name="QNANo" value="${qna.QNANo}" />
 
 <jsp:include page="/common/toolbar2.jsp"></jsp:include>
-  <div class="page-header header-filter clear-filter" style="height:55vh; background-image: url('/images/weather/4016924c4eb809d80e5ac60ad0703088.jpg');">
+  <div class="page-header header-filter clear-filter" style="background-image: url('/images/weather/4016924c4eb809d80e5ac60ad0703088.jpg');">
     <div class="container">
       <div class="row">
         <div class="col-md-8 ml-auto mr-auto">
           <div class="brand">
+          	<h2 class="title">QNA</h2>
+	          	<h3 style="margin-top:-3%" >Question and Answer</h3>
           </div>
         </div>
       </div>
@@ -126,11 +131,11 @@
 				<div class="col-md-6">
 			    	<label style="color:#9c27b0!important">카테고리</label>
 				    <select class="form-control selectpicker" data-style="btn btn-link" name ="QNACategory">
-				      <option value="0" >회원 정보</option>
-					  <option value="1" >일정 관리</option>
-					  <option value="2" >컨텐츠 설정</option>
-					  <option value="3" >다이어리/할일</option>
-					  <option value="4" >기타</option>
+				      <option value="0"  ${qna.QNACategory ==0 ? "selected" : "" }>회원 정보</option>
+					  <option value="1"  ${qna.QNACategory ==1 ? "selected" : "" }>일정 관리</option>
+					  <option value="2"  ${qna.QNACategory ==2 ? "selected" : "" }>컨텐츠 설정</option>
+					  <option value="3"  ${qna.QNACategory ==3 ? "selected" : "" }>다이어리/할일</option>
+					  <option value="4"  ${qna.QNACategory ==4 ? "selected" : "" }>기타</option>
 				    </select>
 			    </div>
 				<div class="form-group col-md-6" style="margin-top: 0.67%;">
@@ -155,9 +160,11 @@
 		</div>
 		
 		</div>			
+		<br/><br/><br/><br/>
+		
 		</div>
       </div>
-     </div>
+    </div>
   </form>
   <jsp:include page="/common/footer.jsp"></jsp:include>
   

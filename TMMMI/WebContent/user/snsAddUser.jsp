@@ -21,6 +21,8 @@
   	<!-- styleSheet -->
 	<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
 	<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+	<!-- sweetalert -->
+	<script src ="https://unpkg.com/sweetalert/dist/sweetalert.min.js" ></script >
 	
 	<!-- 버튼 이벤트 -->
 	<script type="text/javascript">
@@ -56,7 +58,11 @@
 			var authNum=$("input[name=authNum]").val();
 
 			if(userName == null || userName.length <1){
-				alert("닉네임은  반드시 입력하셔야 합니다.");
+				swal({
+					  text: "닉네임은  반드시 입력하셔야 합니다.!",
+					  icon: "warning",
+					  dangerMode: true,
+					})
 				return;
 			}
 			if(email == null || (email != "" && (email.indexOf('@') < 1 || email.indexOf('.') == -1))){

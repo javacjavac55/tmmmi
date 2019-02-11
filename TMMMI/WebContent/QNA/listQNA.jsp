@@ -11,6 +11,8 @@
 
 <!-- CSS Files -->
 <link href="/css/template/material-kit.css" rel="stylesheet" />
+<!-- CSS Just for demo purpose, don't include it in your project -->
+<link href="/css/template/demo.css" rel="stylesheet" />
 
 <!-- jQuery -->
 <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
@@ -60,13 +62,13 @@
 			});
 	    }
 	
+	
 </script>
 
 <style>
 		.QNAtitle {
 			cursor:pointer;
 		}
-		/* .finish{background-color: whitesmoke} */
 </style>
 
 </head>
@@ -75,11 +77,13 @@
 <form>
 
 <jsp:include page="/common/toolbar2.jsp"></jsp:include>
-  <div class="page-header header-filter clear-filter" style="height:55vh; background-image: url('/images/weather/4016924c4eb809d80e5ac60ad0703088.jpg');">
+  <div class="page-header header-filter clear-filter" style="background-image: url('/images/weather/4016924c4eb809d80e5ac60ad0703088.jpg');">
     <div class="container">
       <div class="row">
         <div class="col-md-8 ml-auto mr-auto">
           <div class="brand">
+          <h2 class="title">QNA</h2>
+          	<h3 style="margin-top:-3%" >Question and Answer</h3>
           </div>
         </div>
       </div>
@@ -88,35 +92,36 @@
 
 	<div class="main main-raised">
     	<div class="section section-basic">
-      	<div class="container">
+      		<div class="container">
       	
-      	<span>Home/QNA</span>
-		 	<h2 style="margin-top:-0.3%">고객센터</h2>
-		 	
-		 	<hr style="margin-bottom:-0.1%;">
-			<ul class="nav justify-content-center" >
-			  <li class="nav-item">
-			    <a class="nav-link active"  id="faq" style="cursor:pointer;" data-toggle="tooltip" data-placement="left" title="FAQ로 이동합니다" onMouseover="this.style.color='#9124a3';" onMouseout="this.style.color='black';">FAQ</a>
-			  </li>
-			  <li class="nav-item">
-			    <a class="nav-link"  >1:1 QNA</a>
-			  </li>
-			</ul>
-			<hr style="margin-top:0.1%;">
-		 	
-		 	<div id="table">
-				<jsp:include page="../QNA/QNATable.jsp"/>
-			</div>
-		 			 	
-		<button type="button"  class="btn btn-primary btn-round btn-sm" style="left: 95%;">1:1 문의하기</button>
-		
-      </div>
+	      	<span>Home / CustomerCenter</span> <br><br>
+			 	
+			 	<hr style="margin-bottom:-0.1%;">
+				<ul class="nav justify-content-center" >
+				  <li class="nav-item">
+				    <a class="nav-link active"  id="faq" style="cursor:pointer;" data-toggle="tooltip" data-placement="left" title="FAQ로 이동합니다" onMouseover="this.style.color='#9124a3';" onMouseout="this.style.color='black';">FAQ</a>
+				  </li>
+				  <li class="nav-item">
+				    <a class="nav-link"  >1:1 QNA</a>
+				  </li>
+				</ul>
+				<hr style="margin-top:0.1%;">
+			 	
+			 	<div id="table">
+					<jsp:include page="../QNA/QNATable.jsp"/>
+				</div>
+			 			 	
+			<button type="button"  class="btn btn-primary btn-round btn-sm" style="left: 95%;">1:1 문의하기</button>
+			
+			
+	      <br/><br/><br/><br/>
+      
+      </div>      
     </div>
   </div>
-  
   </form>
   <jsp:include page="/common/footer.jsp"></jsp:include>
 </body>
-</html>
+
 
 </html>

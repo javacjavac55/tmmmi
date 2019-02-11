@@ -52,7 +52,7 @@
 	
 	<!-- SQL : SELECT ONE(getUserId) -->
 	<select id="getUserId" parameterType="string" resultMap="userSelectMap">
-		SELECT user_no, user_id, password, role, user_name
+		SELECT user_no, user_id, password, role, user_name, email
 		FROM users 
 		WHERE user_id = #{value}
 	</select>
@@ -71,12 +71,14 @@
 		WHERE user_name = #{userName} AND email = #{email}
 	</select>
 	
-	<!-- SQL : SELECT ONE(searchUserPw) -->
-	<select id="searchUserPw" parameterType="com.tmmmi.service.domain.User">
-		SELECT password
-		FROM users
+	<!-- SQL : UPDATE Password -->
+	<update id="searchUserPw" parameterType="com.tmmmi.service.domain.User">
+		UPDATE users
+		<set>
+		password=#{password}
+		</set>
 		WHERE user_id = #{userId} AND email = #{email}
-	</select>
+	</update>
 		
 	<!-- SQL : UPDATE -->
 	<update id="updateUser" parameterType="com.tmmmi.service.domain.User">

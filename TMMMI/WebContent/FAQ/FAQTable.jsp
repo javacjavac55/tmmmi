@@ -13,24 +13,24 @@
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
   <script type="text/javascript">
-	////////////////////////////////기본적으로 접혀있는상태
+		////////////////////////////////기본적으로 접혀있는상태
 		$(document).ready(function() {	    	 
 			$('.detail').slideToggle(1, function() {
 	  	 });
 		});
 		
 		////////////////////////////////누르면 펼쳐졌다 닫혔다
-	  $(function() {  		    	
-	  	$( ".title" ).on("click" , function() {
-	  		var faqNo=$(this).data("param1");
-	  		
-	  		if(  $('.detail'+faqNo).is(":visible") ){
-	  			$('.detail'+faqNo).slideUp(100);
-	          }else{
-	          	$('.detail'+faqNo).slideDown('fast');
-	          }
-			})
-	  });
+		  $(function() {  		    	
+		  	$( ".title" ).on("click" , function() {
+		  		var faqNo=$(this).data("param1");
+		  		
+		  		if(  $('.detail'+faqNo).is(":visible") ){
+		  			$('.detail'+faqNo).slideUp(100);
+		          }else{
+		          	$('.detail'+faqNo).slideDown('fast');
+		          }
+				})
+		  });
   </script>
 
 </head>

@@ -67,7 +67,7 @@
 					<a href="#content-2" class="grim__link grim__item-content">
 						<div class="grim__item-inner">
 							<h3 class="grim__item-title" data-link="/todo/getToDoList">To Do</h3>
-							<span class="grim__item-desc">Lift your spirits</span>
+							<span class="grim__item-desc" data-link="/todo/getToDoList">Lift your spirits</span>
 						</div>
 					</a>
 					<div class="grim__item-bg grim__item-bg-cover grim__item-bg--6"></div>
@@ -78,7 +78,7 @@
 					<a href="#content-3" class="grim__link grim__item-content">
 						<div class="grim__item-inner">
 							<h3 class="grim__item-title" data-link="/user/getUser/">My Page</h3>
-							<span class="grim__item-desc">Find yourself</span>
+							<span class="grim__item-desc" data-link="/user/getUser/">Find yourself</span>
 						</div>
 					</a>
 					<div class="grim__item-bg grim__item-bg-cover grim__item-bg--7"></div>
@@ -89,7 +89,7 @@
 					<a href="#content-4" class="grim__link grim__item-content">
 						<div class="grim__item-inner">
 							<h3 class="grim__item-title" data-link="/diary/listDiary/">Diary</h3>
-							<span class="grim__item-desc">Uncover beauty</span>
+							<span class="grim__item-desc" data-link="/diary/listDiary/">Uncover beauty</span>
 						</div>
 					</a>
 					<div class="grim__item-bg grim__item-bg-cover grim__item-bg--8"></div>
@@ -100,7 +100,7 @@
 					<a href="#content-5" class="grim__link grim__item-content">
 						<div class="grim__item-inner">
 							<h3 class="grim__item-title" data-link="/calendar/getCalendarMonth/">Calendar</h3>
-							<span class="grim__item-desc">Feel nature</span>
+							<span class="grim__item-desc" data-link="/calendar/getCalendarMonth/">Feel nature</span>
 						</div>
 					</a>
 					<div class="grim__item-bg grim__item-bg-cover grim__item-bg--9"></div>
@@ -111,7 +111,7 @@
 					<a href="#content-6" class="grim__link grim__item-content">
 						<div class="grim__item-inner">
 							<h3 class="grim__item-title" data-link="/content/getContentList">Content</h3>
-							<span class="grim__item-desc">Explore your limits</span>
+							<span class="grim__item-desc" data-link="/content/getContentList">Explore your limits</span>
 						</div>
 					</a>
 					<div class="grim__item-bg grim__item-bg-cover grim__item-bg--10"></div>
