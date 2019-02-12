@@ -24,8 +24,12 @@
 <!-- jQuery -->
 <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
 <script	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
 <!--ck editor  -->
 <script src="//cdn.ckeditor.com/4.7.3/full/ckeditor.js"></script>
+
+<!--sweet alert -->
+<script src ="https://unpkg.com/sweetalert/dist/sweetalert.min.js" ></script >
 
 <script type="text/javascript">
 	$(document).ready(function(){
@@ -84,7 +88,43 @@
   /* $('textarea[name="Contents"]').html($('.summernote').code());
 }); */
 	function fncUpdateDiary(){	
+	var title=$("input[name='diaryTitle']").val();
+	//document.getElementById('#ckeditor').value
+	//var detail=$("textarea[name='diaryDetail']").attr('value');
+	var userCategoryNo = $("select[name='userCategoryNo']").val();
+	
+	if(userCategoryNo =="없음"){
+		swal({
+			  title: "오류",
+			  text: "카테고리를 선택해주세요.",
+			  icon: "warning",
+			  dangerMode: true,
+			})
+		return;
+	}
+	if(title == null || title ==""){
+		swal({
+			  title: "오류",
+			  text: "제목을 입력해주세요.",
+			  icon: "warning",
+			  dangerMode: true,
+			})
+		return;
+	}
+	/* if(detail == null || detail ==""){
+		alert("내용을 입력해주세요.");
+		return;
+	} */
+	
+	swal({
+		title : "수정 완료" , 
+		text: "다이어리가 수정되었습니다. 다이어리를 관리해보세요!" , 
+		icon : "success" , 
+	}).then((value)=>{
 		$('form[name="updateDiary"]').attr("method" , "POST").attr("enctype","multipart/form-data").attr("action" , "/diary/updateDiary").submit();
+	});
+	
+		
 	}
 	
 	

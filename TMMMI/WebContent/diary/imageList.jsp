@@ -29,8 +29,11 @@
 
 <!-- jQuery -->
 <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
-<script
-	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+<!--sweet alert -->
+<script src ="https://unpkg.com/sweetalert/dist/sweetalert.min.js" ></script >
+
 <style>
 	@font-face{font-family:'Calluna';
  src:url('https://s3-us-west-2.amazonaws.com/s.cdpn.io/4273/callunasansregular-webfont.woff') format('woff');
@@ -142,7 +145,7 @@ img {
 										+			this.diaryDetail
 										+		"</div>"
 										+		"<figcaption>"
-										+			"["+this.diaryNo+"]"+"["+this.userCategoryName+"]"+this.diaryTitle
+										+			/* "["+this.diaryNo+"]"+ */"["+this.userCategoryName+"]"+this.diaryTitle
 										+		"</figcaption>"
 										+	"</figure>"
 								});
@@ -185,8 +188,8 @@ img {
 		/* document.getElementById("currentPage").value = currentPage; */
 		$("#currentPage").val(currentPage);
 		/* document.detailForm.submit(); */
-		$('[name="detailForm"]').attr("method", "POST").attr("enctype","multipart/form-data").attr("action",
-				"/diary/imageDiary").submit();
+		$('[name="detailForm"]').attr("method", "POST").attr("action",
+				"/diary/imageList").submit();
 	}
 	/* function deleteOnMouseOver(){		
 		close.style.display="block";
@@ -222,9 +225,7 @@ img {
 			self.location = "/diary/getDiary?diaryNo="+diaryNo;
 		});
 
-		$(document).on("click","#search", function() {
-			//Debug..
-			//alert(  $( "td.ct_btn01:contains('검색')" ).html() );
+		$('#search').on("click", function() {			
 			fncGetList(1);
 		});
 		
@@ -235,17 +236,35 @@ img {
 
 
 		/* 삭제 */
-		$(".close").on("click", function() {
+		$(document).on("click",".close", function() {
 			var diaryNo2 = $(this).data('param2');
-			
-			var agree = confirm("삭제 하시겠습니까?"+diaryNo2);
+			$('#diaryNo').val(diaryNo2);
+			swal({
+				  title: "삭제 하시겠습니까?",
+				  text: "삭제하면 파일을 복구할 수 없습니다.",
+				  icon: "warning",
+				  buttons: true,
+				  dangerMode: true,
+				})
+				.then((willDelete) => {
+				  if (willDelete) {					  
+				    swal("삭제되었습니다.", {
+				      icon: "success",
+				    }).then((value)=>{				    	
+				    	$('[name="deleteImageForm"]').attr("method", "POST").attr("action","/diary/deleteImage").submit();
+				    });
+				  } else {
+				    swal("취소되었습니다.");
+				  }
+				});
+			/* var agree = confirm("삭제 하시겠습니까?"+diaryNo2);
 			if (agree == true) {
 				$('#diaryNo').val(diaryNo2);
 				$('[name="deleteImageForm"]').attr("method", "POST").attr("action","/diary/deleteImage").submit();
 			}
 			if (agree == false) {
 				return false;
-			}
+			} */
 			
 		});
 
@@ -307,38 +326,31 @@ img {
 							</div>
 							<nav class="navbar navbar-default navbar-expand-lg">
 								<div class="container" style="position:relative">
-									<form name="detailForm" class="form-inline ml-auto">
+									
 									
 										<div class="navbar-translate text-left" style="float: left; position:absolute; left:0;">
 											<button type="button" name="add" class="btn btn-primary" id="addDiary" onclick="fncAddDiary();">글쓰기</button>
 										</div>
-										
-										<div class="collapse navbar-collapse">
-							                <ul class="navbar-nav">
-							                  <li class="nav-item active">                    
-							                  </li>
-							                  <li class="nav-item">                    
-							                  </li>
-							                </ul>
-	            
-										</div>
-										<div class="form-group bmd-form-group">
-											<!-- <label class="sr-only" for="searchKeyword">검색어</label> 
-												 -->
-											<input type="text" class="form-control" id="searchKeyword"
-												name="searchKeyword" placeholder="제목+내용"
-												value="${! empty search.searchKeyword ? search.searchKeyword : '' }">
-											<input type="hidden" id="currentPage" name="currentPage"
-												value="" />
-	
-										</div>
-										<button type="button"
-											class="btn btn-white btn-raised btn-fab btn-round" id="search">
-											<i class="material-icons">search</i>
-										</button>
-	
-	
-									</form>
+									<form name="detailForm" class="form-inline ml-auto">
+									<div class="form-group bmd-form-group">
+
+
+										<!-- <label class="sr-only" for="searchKeyword">검색어</label> 
+											 -->
+										<input type="text" class="form-control" id="searchKeyword"
+											name="searchKeyword" placeholder="제목+내용"
+											value="${! empty search.searchKeyword ? search.searchKeyword : '' }">
+										<input type="hidden" id="currentPage" name="currentPage"
+											value="" />
+
+									</div>
+									<button type="button"
+										class="btn btn-white btn-raised btn-fab btn-round" id="search">
+										<i class="material-icons">search</i>
+									</button>
+
+
+								</form>
 								</div>
 							</nav>
 				<!-- table 위쪽 검색 Start /////////////////////////////////////-->
@@ -363,7 +375,7 @@ img {
 													${diary.diaryDetail}
 												</div>
 												<figcaption>
-													[${diary.diaryNo}][${diary.userCategoryName}]${diary.diaryTitle}
+													<%-- [${diary.diaryNo}] --%>[${diary.userCategoryName}]${diary.diaryTitle}
 												</figcaption>
 											 </figure>
 										
