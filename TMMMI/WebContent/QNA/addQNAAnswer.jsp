@@ -57,13 +57,12 @@
 		$(function() {	
 			$("button:contains('답변달기')" ).on("click" , function() {
 	
-				/* var detail = $("textarea[name='QNAAnswerDetail']").val();
-				/* var detail = $("textarea[name='QNADetail']").val(); */
+				var detail = CKEDITOR.instances.ckeditor.getData();
 				
-				/* if(detail == null || detail.length<1){
-					alert("내용은 반드시 입력하여야 합니다.");
+				if(detail == null || detail.length<10){
+					 swal("내용은 10자이상 입력하여야 합니다!", "얼른 입력해주세요");
 					return;
-				}  */
+				}
 				 
 				 swal("작성완료 하시겠습니까?", {
 					 buttons: true,

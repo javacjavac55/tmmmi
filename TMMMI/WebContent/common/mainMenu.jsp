@@ -77,8 +77,8 @@
 					<div class="grim__item-img grim__item-img--2" style="background-image: url(/images/mainMenu/2.jpg);"></div>
 					<a href="#content-3" class="grim__link grim__item-content">
 						<div class="grim__item-inner">
-							<h3 class="grim__item-title" data-link="/user/getUser/">My Page</h3>
-							<span class="grim__item-desc" data-link="/user/getUser/">Find yourself</span>
+							<h3 class="grim__item-title" data-link="/user/getUser">My Page</h3>
+							<span class="grim__item-desc" data-link="/user/getUser">Find yourself</span>
 						</div>
 					</a>
 					<div class="grim__item-bg grim__item-bg-cover grim__item-bg--7"></div>

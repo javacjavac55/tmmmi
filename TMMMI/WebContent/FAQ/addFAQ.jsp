@@ -57,16 +57,16 @@
 	$(function() {
 		 $( ".btn-primary:contains('작성하기')" ).on("click" , function() {
 			var name=$("input[name='FAQTitle']").val();
-			/* var detail = $("textarea[name='FAQDetail']").val(); */
+			var detail = CKEDITOR.instances.ckeditor.getData();
 				
 			if(name == null || name.length<1){
 				swal("제목은 반드시 입력하여야 합니다!", "얼른 입력해주세요");
 				return;
 			}
-			 /* if(detail == null || detail.length<1){
-				 swal("내용은 반드시 입력하여야 합니다!", "얼른 입력해주세요");
+			if(detail == null || detail.length<10){
+				 swal("내용은 10자이상 입력하여야 합니다!", "얼른 입력해주세요");
 				return;
-			} */
+			}
 			 swal("작성완료 하시겠습니까?", {
 				 buttons: true,
 				 value: true,
