@@ -4,6 +4,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <html>
+<title>TMMMI</title>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=EUC-KR">
 

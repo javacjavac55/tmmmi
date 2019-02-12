@@ -13,6 +13,15 @@
 		<script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
 		<link rel="stylesheet" href="/css/scroll/main_tasty.css">
 		<noscript><link rel="stylesheet" href="/css/scroll/noscript.css" /></noscript>
+		<style>
+			.carousel {
+				background-color: ${bgColor};
+			}
+			
+			.section-title {
+				color: ${fontColor};
+			}
+		</style>
 	</head>
 <body>
 	<section class="carousel">

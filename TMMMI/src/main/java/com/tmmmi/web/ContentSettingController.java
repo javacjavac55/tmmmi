@@ -1,5 +1,10 @@
 package com.tmmmi.web;
 
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Properties;
+
+import javax.annotation.Resource;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,6 +26,9 @@ public class ContentSettingController {
 	@Qualifier("contentSettingServiceImpl")
 	private ContentSettingService contentSettingService;
 	
+	@Resource(name="contentProperties")
+	private Properties contentProperties;
+	
 	///Constructor
 	public ContentSettingController() {
 		System.out.println(this.getClass());
@@ -28,13 +36,35 @@ public class ContentSettingController {
 	
 	///Method
 	@RequestMapping(value="getContentSetting", method=RequestMethod.GET)
-	public ModelAndView getContentSetting(HttpSession session) {
+	public ModelAndView getContentSetting(HttpSession session) throws IllegalArgumentException, IllegalAccessException {
 		System.out.println("/contentSetting/getContentSetting : GET");
 		int userNo = (int)session.getAttribute("userNo");
 		ContentSetting contentSetting = contentSettingService.getContentSetting(userNo);
 		
+		StringBuilder sb = new StringBuilder();
+		Map<Integer,String> sortSection = contentSettingService.getContentSetting(userNo).getContentSettingMap();
+		for (Integer key:sortSection.keySet()) {
+			if (!key.equals(0)) {
+				System.out.println("name:"+sortSection.get(key));
+				System.out.println("html:"+contentProperties.get(sortSection.get(key)));
+				sb.append(contentProperties.get("setting_"+sortSection.get(key)));
+			}
+		}
+		
+		String contentHtml = sb.toString().replaceAll("#@tasty@#", contentSetting.getTastyKeyword())
+											.replaceAll("#@shopping1@#", contentSetting.getShoppingSearch1())
+											.replaceAll("#@shopping2@#", contentSetting.getShoppingSearch2())
+											.replaceAll("#@shopping3@#", contentSetting.getShoppingSearch3())
+											.replaceAll("#@shopping4@#", contentSetting.getShoppingReview())
+											.replaceAll("#@user1@#", contentSetting.getUserSearch1())
+											.replaceAll("#@user2@#", contentSetting.getUserSearch2())
+											.replaceAll("#@user3@#", contentSetting.getUserSearch3())
+											.replaceAll("#@user4@#", contentSetting.getUserVideo1())
+											.replaceAll("#@user5@#", contentSetting.getUserVideo2());
+		
 		ModelAndView modelAndView = new ModelAndView();
 		modelAndView.addObject("contentSetting", contentSetting);
+		modelAndView.addObject("contentHtml", contentHtml);
 		modelAndView.setViewName("/contentSetting/contentSetting.jsp");
 		
 		return modelAndView;

@@ -2794,3 +2794,23 @@ body.homepage.is-preload #header:after {
 	border-radius: 0.15em;
 	font-size: large;
 }
+
+.play-btn {
+	position: absolute;
+    top: 27%;
+    left: 44%;
+    z-index: 5;
+    width: 70px;
+    height: 70px;
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-image: url(https://img.icons8.com/material-rounded/100/000000/circled-play.png);
+    background-color: white;
+    border-radius: 35px;
+    opacity: 0.5;
+}
+
+.play-btn:hover {
+	background-color: #ff0000;
+	opacity: 1;
+}

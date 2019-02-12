@@ -57,7 +57,7 @@ public class DiaryDaoImpl implements DiaryDao {
 			
 			if(detail.contains("img")==true) {
 				detail = detail.split("alt=\"\"")[1].split("style")[0];
-				detail = "<img"+detail+">";
+				detail = "<img"+detail+" style=\"width:100%\">";
 			}
 			else {
 				detail = "<img src=/images/diaryImage/49760081.jpg>";

@@ -56,9 +56,16 @@
 				FROM todo_complete tc, 
 					(SELECT t.todo_no, t.user_no, t.todo_detail, t.todo_start_date, t.todo_end_date
 						FROM todo t
-						WHERE t.todo_no = #{toDoNo}) td
+						WHERE t.todo_no = #{toDoNo})td
 				WHERE td.todo_no = tc.todo_no(+)
-				AND tc.todo_complete_date = #{toDoCompleteDate}
+				<if test="toDoCompleteDate != null">
+				AND tc.todo_complete_date = #{toDoCompleteDate}</if>
+		</select>
+		
+		<select id="getTodoOne" parameterType="com.tmmmi.service.domain.ToDo" resultMap="TodoSelectMap">
+			SELECT *
+				FROM todo
+				WHERE todo_no = #{toDoNo}
 		</select>
 		
 		<select id="getTodoList" parameterType="map" resultMap="TodoSelectMap">

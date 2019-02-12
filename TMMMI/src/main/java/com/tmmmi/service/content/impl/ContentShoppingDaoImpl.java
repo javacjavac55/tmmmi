@@ -279,8 +279,8 @@ public class ContentShoppingDaoImpl extends ContentDaoAdaptor {
 	        	contentShopping.setShoppingVideoDetail(description);
 	        	contentShopping.setShoppingVideoChannel(channelTitle);
 	        	contentShopping.setShoppingVideoThumbnail(image);
-	        	contentShopping.setShoppingVideoId("http://www.youtube.com/embed/"+videoId);
-	        	contentShopping.setReviewNo(i);
+	        	contentShopping.setShoppingVideoId("<iframe width=\"600\" height=\"518\" src=\"http://www.youtube.com/embed/"+videoId+"\" frameborder=\"0\" allow=\"accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture\" allowfullscreen></iframe>");
+	        	contentShopping.setReviewNo(videoId);
 	        	result.add(contentShopping);
 	        }
 		}catch (Exception e) {

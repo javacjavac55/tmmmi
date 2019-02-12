@@ -3,6 +3,7 @@ package com.tmmmi.service.content;
 import java.util.List;
 
 import com.tmmmi.service.domain.ContentSetting;
+import com.tmmmi.service.domain.ContentSport;
 
 public interface ContentService {
 	//movie
@@ -31,6 +32,8 @@ public interface ContentService {
 	
 	public List<Object> getContentHighlightList(ContentSetting contentSetting, int index) throws Exception;
 	
+	public ContentSport getContentHighlightVideo(ContentSport sport) throws Exception;
+	
 	//tasty
 	public List<Object> getContentTastyList(ContentSetting contentSetting, int index)throws Exception;
 	
@@ -53,4 +56,5 @@ public interface ContentService {
 	public List<Object> getContentUserKeywordVideoFirstList(ContentSetting contentSetting, int index) throws Exception;
 	
 	public List<Object> getContentUserKeywordVideoSecondList(ContentSetting contentSetting, int index) throws Exception;
+
 }

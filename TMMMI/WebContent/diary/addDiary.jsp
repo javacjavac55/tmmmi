@@ -25,6 +25,9 @@
 <!-- <script src="/ckeditor/ckeditor.js"></script> -->
 <script src="//cdn.ckeditor.com/4.7.3/full/ckeditor.js"></script>
 
+<!--sweet alert -->
+<script src ="https://unpkg.com/sweetalert/dist/sweetalert.min.js" ></script >
+
 <!-- 로딩 -->
 <!-- <link rel="stylesheet" href="/css/summernote/loading.css"> -->
 <!-- <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script> -->
@@ -93,6 +96,26 @@
 	} */
 
 	function fncAddDiary() {
+		var title=$("input[name='diaryTitle']").val();
+		document.getElementById('#ckeditor').value
+		//var detail=$("textarea[name='diaryDetail']").attr('value');
+		var userCategoryNo = $("select[name='userCategoryNo']").val();
+		
+		if(userCategoryNo =="없음"){
+			swal("카테고리를 선택해주세요.");
+			return;
+		}
+		if(title == null || title ==""){
+			swal("제목을 입력해주세요.");
+			return;
+		}
+		/* if(detail == null || detail ==""){
+			alert("내용을 입력해주세요.");
+			return;
+		} */
+		
+		 
+		
 		document.addDiary.submit();
 		$('form[name="addDiary"]').attr("method", "POST").attr("enctype",
 				"multipart/form-data").attr("action", "/diary/addDiary")
@@ -154,6 +177,7 @@
 									<label for="userCategoryNo" class="col-sm-offset-3 col-sm-3 control-label text-left">카테고리 선택</label>
 									<div class="col-sm-4">
 										<select class="form-control" name="userCategoryNo" >
+													<option selected="selected" value="없음">선택</option>
 											<c:forEach var="userCategory" items="${userCategory}">
 												<c:set var="i" value="${i+1}" />
 										    		<option value="${userCategory.userCategoryNo}" >${userCategory.userCategoryName}</option>

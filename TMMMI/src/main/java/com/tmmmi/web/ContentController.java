@@ -25,8 +25,6 @@ public class ContentController {
 	@Resource(name="contentProperties")
 	private Properties contentProperties;
 	
-	private Map<String, String> htmlMap;
-	
 	///Constructor
 	public ContentController() {
 		System.out.println(this.getClass());
@@ -35,16 +33,11 @@ public class ContentController {
 	
 	@RequestMapping(value="getContentList", method=RequestMethod.GET)
 	public ModelAndView getContentList(HttpSession session) throws Exception {
-		System.out.println(contentProperties);
-		if (contentProperties == null) {
-			createProperties();
-		}
 		
 		int userNo = (int)session.getAttribute("userNo");
 		
 		StringBuilder sb = new StringBuilder();
 		Map<Integer,String> sortSection = contentSettingService.getContentSetting(userNo).getContentSettingMap();
-		System.out.println("123456: "+ sortSection.keySet());
 		for (Integer key:sortSection.keySet()) {
 			if (!key.equals(0)) {
 				System.out.println("name:"+sortSection.get(key));
@@ -59,48 +52,5 @@ public class ContentController {
 		modelAndView.setViewName("/content/listContent.jsp");
 		
 		return modelAndView;
-	}
-	
-	private void createProperties() {
-		htmlMap = new HashMap<String, String>();
-		
-		if (contentProperties != null) {
-		
-			//Movie
-			htmlMap.put("movieBoxOffice", contentProperties.getProperty("movieBoxOffice"));
-			htmlMap.put("movieNew", contentProperties.getProperty("movieNew"));
-			htmlMap.put("movieUpcoming", contentProperties.getProperty("movieUpcoming"));
-			htmlMap.put("movieReview", contentProperties.getProperty("movieReview"));
-			htmlMap.put("movieTrailer", contentProperties.getProperty("movieTrailer"));
-			
-			//Sport
-			htmlMap.put("soccer", contentProperties.getProperty("soccer"));
-			htmlMap.put("overseaSoccer", contentProperties.getProperty("overseaSoccer"));
-			htmlMap.put("baseball", contentProperties.getProperty("baseball"));
-			htmlMap.put("overseaBaseball", contentProperties.getProperty("overseaBaseball"));
-			htmlMap.put("basketball", contentProperties.getProperty("basketball"));
-			htmlMap.put("sportGeneral", contentProperties.getProperty("sportGeneral"));
-			htmlMap.put("sportHighlight", contentProperties.getProperty("sportHighlight"));
-			
-			//Tasty
-			htmlMap.put("showTastyKeyword", contentProperties.getProperty("showTastyKeyword"));
-			
-			//Shopping
-			htmlMap.put("showShoppingSearch1", contentProperties.getProperty("showShoppingSearch1"));
-			htmlMap.put("showShoppingSearch2", contentProperties.getProperty("showShoppingSearch2"));
-			htmlMap.put("showShoppingSearch3", contentProperties.getProperty("showShoppingSearch3"));
-			htmlMap.put("showShoppingReview", contentProperties.getProperty("showShoppingReview"));
-			
-			//Keyword
-			htmlMap.put("showUserSearch1", contentProperties.getProperty("showUserSearch1"));
-			htmlMap.put("showUserSearch2", contentProperties.getProperty("showUserSearch2"));
-			htmlMap.put("showUserSearch3", contentProperties.getProperty("showUserSearch3"));
-			htmlMap.put("showUserVideo1", contentProperties.getProperty("showUserVideo1"));
-			htmlMap.put("showUserVideo2", contentProperties.getProperty("showUserVideo2"));
-			
-			System.out.println("value set:" + htmlMap);
-		} else {
-			System.out.println("property null");
-		}
 	}
 }

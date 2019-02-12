@@ -13,6 +13,15 @@
 <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
 <link rel="stylesheet" href="/css/scroll/main_sport.css">
 <noscript><link rel="stylesheet" href="/css/scroll/noscript.css" /></noscript>
+<style>
+	.carousel {
+		background-color: ${bgColor};
+	}
+	
+	.section-title {
+		color: ${fontColor};
+	}
+</style>
 </head>
 	<body>
 		<section class="carousel">
@@ -24,6 +33,7 @@
 							<a href="#">
 								<img class="videoThmb" src="${sport.sportThumbnail}" data-no="${sport.sportNo}" data-link="${sport.sportVideo}" />
 							</a>
+							<div class="play-btn"></div>
 						</div>
 						<div class="highlight-title">
 							${sport.sportTitle}
@@ -45,18 +55,33 @@
 		<script src="/javascript/scroll/main.js"></script>
 		<script>
 			$(function(){
-				$(".videoThmb").on("click", function(){
-					var no = $(this).data("no");
-					var link = $(this).data("link");
-					$('#sport-highlight-'+no).html(link+'<div class="sport-highlight-close-btn" data-no="'+no+'"></div>');
+				$(".play-btn").on("click", function(){
+					var no = $(this).prev().children().data("no");
 					
-					$(".sport-highlight-close-btn").on("click", function(){
-						var no = $(this).data("no");
-						$('#sport-highlight-'+no).html('');
-						$('#sport-highlight-'+no).attr('style','display:none;');
-					});
-					
-					$('#sport-highlight-'+no).attr('style','display:block;');
+					$.ajax({
+						url : "/contentRest/getContentHighlightVideo",
+						method : "POST",
+						data: JSON.stringify({
+							sportNo:no,
+						}),
+						dataType: "json",
+						headers : {
+							"Accept" : "application/json",
+							"Content-Type" : "application/json"
+						},
+						success : function(JSONData, status) {
+							var link = JSONData.sportVideo;
+							$('#sport-highlight-'+no).html(link+'<div class="sport-highlight-close-btn" data-no="'+no+'"></div>');
+							
+							$(".sport-highlight-close-btn").on("click", function(){
+								var no = $(this).data("no");
+								$('#sport-highlight-'+no).html('');
+								$('#sport-highlight-'+no).attr('style','display:none;');
+							});
+							
+							$('#sport-highlight-'+no).attr('style','display:block;');
+						}
+					});	
 				});
 			})
 		</script>

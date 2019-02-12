@@ -20,6 +20,8 @@
 	<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
 	<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 	<link rel="stylesheet" href="/css/template/main.css">
+	
+	<script src ="https://unpkg.com/sweetalert/dist/sweetalert.min.js" ></script >
 		
 	<!-- sortable style -->
 	<style>
@@ -91,6 +93,7 @@
 				if ($(this).val() == '') {
 					$('#show'+id2).remove();
 				} else {
+					$('#show'+id2).remove();
 					$('li').last().after('<li id=\'show'+id2+'\'class="ui-state-default ui-sortable-handle">'+$(this).val()+'</li>');
 				}
 			});
@@ -145,8 +148,13 @@
 				'Content-Type' : 'application/json'
 	    	},
 	    	success : function(Data){
-	    		alert('수정 되었습니다!');
-	    		window.location = '/content/getContentList';
+	    		swal({
+					title : "수정 완료 " , 
+					text: "컨텐츠 설정을 성공적으로 수정했습니다" , 
+					icon : "success" , 
+				}).then((value) => {
+					window.parent.fucCloseModal();
+				});
 	    	},
 	    	error : function(request, status, error ) {  
 
@@ -215,38 +223,12 @@
 		<div class="container" style="margin: 0 2px 0 0;">
 		<div style="margin: 0 auto;" class="col-sm-12">
 			<ul id="sortable">
-			  <c:if test="${ ! empty contentSetting.movieBoxOffice && contentSetting.movieBoxOffice >=1 }"><li id="movieBoxOffice" class="ui-state-default">박스 오피스</li></c:if>
-			  <c:if test="${ ! empty contentSetting.movieNew && contentSetting.movieNew >=1 }"><li id="movieNew"  class="ui-state-default">현재 상영영화</li></c:if>
-			  <c:if test="${ ! empty contentSetting.movieUpcoming && contentSetting.movieUpcoming >=1 }"><li id="movieUpcoming"  class="ui-state-default">개봉 예정영화</li></c:if>
-			  <c:if test="${ ! empty contentSetting.movieReview && contentSetting.movieReview >=1 }"><li id="movieReview"  class="ui-state-default">영화 리뷰</li></c:if>
-			  <c:if test="${ ! empty contentSetting.movieTrailer && contentSetting.movieTrailer >=1 }"><li id="movieTrailer"  class="ui-state-default">영화 예고편</li></c:if>
-			 
-			  <c:if test="${ ! empty contentSetting.soccer && contentSetting.soccer >=1 }"><li id="soccer"  class="ui-state-default">국내 축구</li></c:if>
-			  <c:if test="${ ! empty contentSetting.overseaSoccer && contentSetting.overseaSoccer >=1 }"><li id="overseaSoccer"  class="ui-state-default">해외 축구</li></c:if>
-			  <c:if test="${ ! empty contentSetting.baseball && contentSetting.baseball >=1 }"><li id="baseball"  class="ui-state-default">국내 야구</li></c:if>
-			  <c:if test="${ ! empty contentSetting.overseaBaseball && contentSetting.overseaBaseball >=1 }"><li id="overseaBaseball"  class="ui-state-default">해외 야구</li></c:if>
-			  <c:if test="${ ! empty contentSetting.basketball && contentSetting.basketball >=1 }"><li id="basketball"  class="ui-state-default">농구</li></c:if>
-			  <c:if test="${ ! empty contentSetting.sportGeneral && contentSetting.sportGeneral >=1 }"><li id="sportGeneral"  class="ui-state-default">스포츠 일반</li></c:if>
-			  <c:if test="${ ! empty contentSetting.sportHighlight && contentSetting.sportHighlight >=1 }"><li id="sportHighlight"  class="ui-state-default">하이라이트</li></c:if>
-			  
-			  <c:if test="${ ! empty contentSetting.tastyKeyword && contentSetting.showTastyKeyword >=1 }"><li id="showTastyKeyword" class="ui-state-default">${contentSetting.tastyKeyword }</li></c:if>
-			 
-			  <c:if test="${ ! empty contentSetting.shoppingSearch1 && contentSetting.showShoppingSearch1 >=1 }"><li id="showShoppingSearch1"  class="ui-state-default">${contentSetting.shoppingSearch1}</li></c:if>
-			  <c:if test="${ ! empty contentSetting.shoppingSearch2 && contentSetting.showShoppingSearch2 >=1 }"><li id="showShoppingSearch2"  class="ui-state-default">${contentSetting.shoppingSearch2}</li></c:if>
-			  <c:if test="${ ! empty contentSetting.shoppingSearch3 && contentSetting.showShoppingSearch3 >=1 }"><li id="showShoppingSearch3"  class="ui-state-default">${contentSetting.shoppingSearch3}</li></c:if>
-			  <c:if test="${ ! empty contentSetting.shoppingReview && contentSetting.showShoppingReview >=1 }"><li id="showShoppingReview"  class="ui-state-default">${contentSetting.shoppingReview}</li></c:if>
-			  
-			  <c:if test="${ ! empty contentSetting.userSearch1 && contentSetting.showUserSearch1 >=1 }"><li id="showUserSearch1"  class="ui-state-default">${contentSetting.userSearch1}</li></c:if>
-			  <c:if test="${ ! empty contentSetting.userSearch2 && contentSetting.showUserSearch2 >=1 }"><li id="showUserSearch2"  class="ui-state-default">${contentSetting.userSearch2}</li></c:if>
-			  <c:if test="${ ! empty contentSetting.userSearch3 && contentSetting.showUserSearch3 >=1 }"><li id="showUserSearch3"  class="ui-state-default">${contentSetting.userSearch2}</li></c:if>
-			  <c:if test="${ ! empty contentSetting.userVideo1 && contentSetting.showUserVideo1 >=1 }"><li id="showUserVideo1"  class="ui-state-default">${contentSetting.userVideo1}</li></c:if>
-			  <c:if test="${ ! empty contentSetting.userVideo2 && contentSetting.showUserVideo2 >=1 }"><li id="showUserVideo2"  class="ui-state-default">${contentSetting.userVideo2}</li></c:if>
+			  ${contentHtml}
 			</ul>
 		</div>
 		</div>
 		<div class="col-sm-12">
 			<br/>
-			<a class="button small" href="#" role="button"><span id="p1" style="font-size:20px">이&nbsp;전</span></a>
 			<button type="button" class="button primary small" ><span id="p1" style="font-size:20px">수&nbsp;정</span></button><br/><br/>
 		</div>
 	</form>

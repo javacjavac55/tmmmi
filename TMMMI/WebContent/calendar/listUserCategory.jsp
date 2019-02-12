@@ -64,6 +64,7 @@
 									'" style="background-color:'+$("#userCategoryColor").val()+'"></button><br/><span>'+
 									$('#userCategoryName').val()+'</span></div>');
 						}
+						$('#cancelBtn').click();
 					});
 				} else {
 					swal({

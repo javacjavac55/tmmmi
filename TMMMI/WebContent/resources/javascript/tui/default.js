@@ -16,11 +16,8 @@
         useCreationPopup: useCreationPopup,
         useDetailPopup: useDetailPopup,
         calendars: CalendarList,
-        taskView: ['milestone'],
+        taskView: false,
         template: {
-            milestone: function(model) {
-                return '<span style="background-color: ' + model.bgColor + '">' + model.title + '</span>';
-            },
             allday: function(schedule) {
                 return getTimeTemplate(schedule, true);
             },
@@ -52,7 +49,6 @@
             e.schedule.start = e.start;
             e.schedule.end = e.end;
             fncUpdateSchedule(e.schedule);
-            console.log("123: ",cal);
             cal.updateSchedule(e.schedule.id, e.schedule.calendarId, e.schedule);
         },
         'beforeDeleteSchedule': function(e) {
@@ -219,7 +215,7 @@
 					schedule.comingDuration = item.comingDuration;
 					schedule.isAllday = item.isScheduleDDay;
 					schedule.state = item.markDDay;
-					schedule.category = item.isScheduleImportant;
+					schedule.isPending = item.isScheduleImportant;
 					schedule.recurrenceRule = item.scheduleAlarmTime;
 					schedule = fncAdjustScheduleValues(schedule);
 					ScheduleList.push(schedule);
@@ -313,7 +309,7 @@
             goingDuration: scheduleData.goingDuration,
             comingDuration: scheduleData.comingDuration,
             state: scheduleData.state,
-            category: scheduleData.category,
+            isPending: scheduleData.isPending,
             recurrenceRule: scheduleData.recurrenceRule
         };
         if (calendar) {
@@ -435,8 +431,8 @@
             html.push(moment(cal.getDate().getTime()).format('YYYY.MM.DD'));
             //updateRenderRange
             var quotient = Math.floor(cal.getDate().getTime()/86400000);
-            renderRangeStart = quotient*86400000;
-            renderRangeEnd = ((quotient+1)*86400000-1);
+            renderRangeStart = quotient*86400000-32400000;
+            renderRangeEnd = ((quotient+1)*86400000-32400001);
         } else if (viewName === 'month' &&
             (!options.month.visibleWeeksCount || options.month.visibleWeeksCount > 4)) {
             html.push(moment(cal.getDate().getTime()).format('YYYY.MM'));

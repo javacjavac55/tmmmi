@@ -12,6 +12,15 @@
 		<script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
 		<link rel="stylesheet" href="/css/scroll/main_movie.css">
 		<noscript><link rel="stylesheet" href="/css/scroll/noscript.css" /></noscript>
+		<style>
+			.carousel {
+				background-color: ${bgColor};
+			}
+			
+			.section-title {
+				color: ${fontColor};
+			}
+		</style>
 	</head>
 <body>
 	<section class="carousel">
@@ -23,6 +32,7 @@
 						<a href="#">
 							<img class="videoThmb" src="${contentMovie.movieThumbnail}" data-no="${contentMovie.movieNo}" data-link='${contentMovie.movieVideo}'>
 						</a>
+						<div class="play-btn"></div>
 						<button class="content-model-btn trailer-title" type="button" data-content="${contentMovie.movieLink}">${contentMovie.movieTitle}</button><br/>
 						<div class="movie-trailer-info">
 							<span class="trailer-field">∞≥∫¿¿œ</span>  <span>${contentMovie.movieOpenDate}</span> <span class="trailer-field">¿Â∏£</span> <span>${contentMovie.movieGenre}</span><br/>	
@@ -48,9 +58,9 @@
 	<script src="/javascript/scroll/main.js"></script>
 	<script>
 		$(function(){
-			$(".videoThmb").on("click", function(){
-				var no = $(this).data("no");
-				var link = $(this).data("link");
+			$(".play-btn").on("click", function(){
+				var no = $(this).prev().children().data("no");
+				var link = $(this).prev().children().data("link");
 				$('#movie-preview-'+no).html(link+'<div class="movie-preview-close-btn" data-no="'+no+'"></div>');
 				
 				$(".movie-preview-close-btn").on("click", function(){

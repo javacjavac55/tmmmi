@@ -51,7 +51,8 @@
 	 	FROM schedule
 	 	WHERE user_no = #{userNo}
 	 	AND (schedule_start_date BETWEEN #{startDate} AND #{endDate}
-	 	OR schedule_end_date BETWEEN #{startDate} AND #{endDate})
+	 	OR schedule_end_date BETWEEN #{startDate} AND #{endDate}
+	 	<![CDATA[OR (schedule_start_date<=#{startDate} AND #{endDate}<=schedule_end_date))]]>
 	 	AND schedule_delete_check = 0
 	 </select>
 	 

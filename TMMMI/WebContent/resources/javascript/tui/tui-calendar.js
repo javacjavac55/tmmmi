@@ -19055,7 +19055,7 @@ ScheduleCreationPopup.prototype._onClickSaveSchedule = function(target) {
     var start, end, calendarId;
     var goingDuration, comingDuration;
     var state, category, recurrenceRule;
-    
+    var isPending;
 
     if (!domutil.hasClass(target, className) && !domutil.closest(target, '.' + className)) {
         return false;
@@ -19081,7 +19081,8 @@ ScheduleCreationPopup.prototype._onClickSaveSchedule = function(target) {
     var isMilestone = domutil.get(cssPrefix + 'schedule-milestone').checked;
     console.log("isMilestone: "+isMilestone);
     if(isMilestone) {
-    	category = 'milestone';
+    	category = /*'milestone'*/'time';
+    	isPending = true;
     } else if (isAllDay) {
     	category = 'allday';
     } else {
@@ -19129,7 +19130,8 @@ ScheduleCreationPopup.prototype._onClickSaveSchedule = function(target) {
                 comingDuration: comingDuration.value,
                 state: state.innerText, 
                 category: category, 
-                recurrenceRule: recurrenceRule.value
+                recurrenceRule: recurrenceRule.value,
+                isPending: isPending
             },
             start: start,
             end: end,
@@ -19154,7 +19156,8 @@ ScheduleCreationPopup.prototype._onClickSaveSchedule = function(target) {
             comingDuration: comingDuration.value,
             state: state.innerText, 
             category: category, 
-            recurrenceRule: recurrenceRule.value
+            recurrenceRule: recurrenceRule.value,
+            isPending: isPending
         });
     }
 
@@ -19211,6 +19214,7 @@ ScheduleCreationPopup.prototype._makeEditModeData = function(viewModel) {
     var goingDuration, comingDuration;
     var state, category, recurrenceRule;
     var calendars = this.calendars;
+    var isPending;
 
     var id = schedule.id;
     title = schedule.title;
@@ -19223,6 +19227,7 @@ ScheduleCreationPopup.prototype._makeEditModeData = function(viewModel) {
     comingDuration = schedule.comingDuration=='0'?'':schedule.comingDuration;
     state = schedule.state;
     recurrenceRule = schedule.recurrenceRule;
+    isPending = schedule.isPending;
 
     viewModel.selectedCal = this._selectedCal = common.find(this.calendars, function(cal) {
         return cal.id === viewModel.schedule.calendarId;
@@ -19230,7 +19235,7 @@ ScheduleCreationPopup.prototype._makeEditModeData = function(viewModel) {
     
     var isMilestone = (schedule.category == 'milestone');
     if(isMilestone) {
-        category = 'milestone';
+        category = /*'milestone'*/'time';
     } else if (isAllDay) {
         category = 'allday';
     } else {
@@ -19255,7 +19260,8 @@ ScheduleCreationPopup.prototype._makeEditModeData = function(viewModel) {
         comingDuration: comingDuration,
         state: state, 
         category: category, 
-        recurrenceRule: recurrenceRule
+        recurrenceRule: recurrenceRule,
+        isPending: isPending
     };
 };
 //여기까지
@@ -20973,8 +20979,9 @@ module.exports = (Handlebars['default'] || Handlebars).template({"1":function(co
 },"compiler":[7,">= 4.0.0"],"main":function(container,depth0,helpers,partials,data) {
     var stack1, helper, alias1=depth0 != null ? depth0 : (container.nullContext || {}), alias2=helpers.helperMissing, alias3="function", alias4=container.escapeExpression, alias5=container.lambda;
     var milestoneCheck = false;
-    console.log(depth0.category);
-    
+    console.log("what:",depth0);
+    console.log(depth0);
+    		
     if (typeof depth0.category!=='undefined' && depth0.category[0] === 'milestone') {
     	console.log(typeof depth0.category!=='undefined');
         console.log(depth0.category[0] === 'milestone');
@@ -21258,7 +21265,7 @@ module.exports = (Handlebars['default'] || Handlebars).template({"1":function(co
     + alias4(((helper = (helper = helpers.CSS_PREFIX || (depth0 != null ? depth0.CSS_PREFIX : depth0)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"CSS_PREFIX","hash":{},"data":data}) : helper)))
     /*+ "checkbox-square "+(milestoneCheck)? 'checked':''+"\""*/
     + "checkbox-square \""
-    + ((stack1 = helpers["if"].call(alias1,(depth0 != null ? milestoneCheck : depth0),{"name":"if","hash":{},"fn":container.program(7, data, 0),"inverse":container.noop,"data":data})) != null ? stack1 : "")
+    + ((stack1 = helpers["if"].call(alias1,(depth0 != null ? depth0.isPending : depth0),{"name":"if","hash":{},"fn":container.program(7, data, 0),"inverse":container.noop,"data":data})) != null ? stack1 : "")
     + "></input>\n                <span class=\""
     + alias4(((helper = (helper = helpers.CSS_PREFIX || (depth0 != null ? depth0.CSS_PREFIX : depth0)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"CSS_PREFIX","hash":{},"data":data}) : helper)))
     + "icon "
@@ -21376,7 +21383,9 @@ module.exports = (Handlebars['default'] || Handlebars).template({"1":function(co
     + "</span></div>";
 },"7":function(container,depth0,helpers,partials,data) {
     var helper, alias1=depth0 != null ? depth0 : (container.nullContext || {}), alias2=helpers.helperMissing, alias3="function", alias4=container.escapeExpression;
-
+    if (depth0.schedule.isAllDay==false){
+    	return '';
+    }
   return "<div class=\""
     + alias4(((helper = (helper = helpers.CSS_PREFIX || (depth0 != null ? depth0.CSS_PREFIX : depth0)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"CSS_PREFIX","hash":{},"data":data}) : helper)))
     + "popup-detail-item\"><span class=\""
