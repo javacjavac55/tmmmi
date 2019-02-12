@@ -8,53 +8,53 @@
 <title>∏ﬁ¿Œ ƒ¡≈Ÿ√˜</title>
 <link href="/css/template/material-kit.min.css?v=2.0.5" rel="stylesheet" />
 <style>
-body {
-	background-color: #eee;
-}
-iframe {
-	width: 100%;
-	display: block;
-	border: none;
-}
-
-#content-setting {
-	width: 39px;
-    height: 39px;
-    position: fixed;
-    bottom: 70px;
-    left: 25px;
-    background-image: url("data:image/png;base64,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");
-	background-size: contain;
-    background-color: white;
-    border-radius: 2px;
-    cursor: pointer;
-}
-
-.normal-card{
-	height: 664px;
-}
-
-.wide-card {
-	height: 686px;
-}
-
-.modal-dialog.modal-fullsize {
-  width: 900px !important;
-  height: 100%;
-  margin: 3% 10%;
-  padding: 0;
-}
-
-.modal-content.modal-fullsize {
-  height: 87%;
-  width: 1500px !important;
-  border-radius: 0; 
-}
-
-.modal-body iframe {
-	width: 100%;
-    height: 43em;
-}
+	body {
+		background-color: #eee;
+	}
+	iframe {
+		width: 100%;
+		display: block;
+		border: none;
+	}
+	
+	#content-setting {
+		width: 39px;
+	    height: 39px;
+	    position: fixed;
+	    bottom: 70px;
+	    left: 25px;
+	    background-image: url("data:image/png;base64,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");
+		background-size: contain;
+	    background-color: white;
+	    border-radius: 2px;
+	    cursor: pointer;
+	}
+	
+	.normal-card{
+		height: 664px;
+	}
+	
+	.wide-card {
+		height: 686px;
+	}
+	
+	.modal-dialog.modal-fullsize {
+	  width: 900px !important;
+	  height: 100%;
+	  margin: 3% 10%;
+	  padding: 0;
+	}
+	
+	.modal-content.modal-fullsize {
+	  height: 87%;
+	  width: 1500px !important;
+	  border-radius: 0; 
+	}
+	
+	.modal-body iframe {
+		width: 100%;
+	    height: 43em;
+	}
 </style>
 <script src="/javascript/template/core/jquery.min.js" type="text/javascript"></script>
 <script src="/javascript/template/core/popper.min.js" type="text/javascript"></script>
@@ -155,24 +155,69 @@ $(function(){
 			$('.content-modal-btn').click();
 		});
 		
+		$($('#shoppingFirst').contents().find('.content-model-btn')).on('click', function(){
+			var content = $('#shoppingFirst').contents().find('#shoppingFirstInput').val();
+			  
+			$('.modal-body').html('<iframe class="content-modal" src="'+content+'" />');
+			$('.content-modal-btn').click();
+		});
+		
+		$($('#shoppingSecond').contents().find('.content-model-btn')).on('click', function(){
+			var content = $('#shoppingSecond').contents().find('#shoppingSecondInput').val();
+			  
+			$('.modal-body').html('<iframe class="content-modal" src="'+content+'" />');
+			$('.content-modal-btn').click();
+		});
+		
+		$($('#shoppingThird').contents().find('.content-model-btn')).on('click', function(){
+			var content = $('#shoppingThird').contents().find('#shoppingThirdInput').val();
+			  
+			$('.modal-body').html('<iframe class="content-modal" src="'+content+'" />');
+			$('.content-modal-btn').click();
+		});
+		
 		$('#addScrap').on('click', function(){
 			fncAddScrap();
 		});
 		
 		$('#content-setting').on('click', function(){
-			console.log('123');
 			$('.modal-body').html('<iframe class="content-modal" src="/contentSetting/getContentSetting"> </iframe>'); 
 			$('.content-modal-btn').click();
 		});
 	};
+	
+	$('#addScrap').on('click', function() {
+		console.log('start');
+		console.log('link',$('.content-modal').attr('src'));
+		$.ajax({
+			url : "/scrapRest/addScrap",
+			method : "POST",
+			data: JSON.stringify({
+				sectionNo:1,
+				scrapLink: $('.content-modal').attr('src')
+			}),
+			dataType: "json",
+			headers : {
+				"Accept" : "application/json",
+				"Content-Type" : "application/json"
+			},
+			success : function(JSONData, status) {
+				console.log('success');
+			}, 
+			error: function(error) {
+				console.log(error)
+			}
+		});
+		console.log('end');
+	});
 });
 
 
 function fncAddScrap() {
-	document.addScrap.submit();
+	/* document.addScrap.submit();
 	$('form[name="addScrap"]').attr("method", "POST").attr("enctype",
 			"multipart/form-data").attr("action", "/scrap/addScrap")
-			.submit();
+			.submit(); */
 }
 
 function fucCloseModal(){
@@ -194,16 +239,12 @@ ${contentHtml}
 	      <div class="modal-header">
 	        <h5 class="modal-title" id="exampleModalLongTitle"></h5>
 	          <span aria-hidden="true">&times;</span>
-	        </button>
 	      </div>
-	      <form name="addScrap" class="form-horizontal">
-	      <div class="modal-body">	        
-	      </div>
+	      <div class="modal-body"></div>
 	      <div class="modal-footer">
-	        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-	        <button type="button" class="btn btn-primary" id="addScrap">Save changes</button>
+	        <button type="button" class="btn btn-secondary" data-dismiss="modal">¥›±‚</button>
+	        <button type="button" class="btn btn-primary" id="addScrap">Ω∫≈©∑¶ «œ±‚</button>
 	      </div>
-	      </form>
 	    </div>
 	  </div>
   </div>

@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Repository;
 
+import com.tmmmi.service.domain.DDay;
 import com.tmmmi.service.domain.Schedule;
 import com.tmmmi.service.schedule.ScheduleDao;
 
@@ -48,15 +49,24 @@ public class ScheduleDaoImpl implements ScheduleDao {
 	}
 
 	@Override
-	public void getFrequentScheduleList() {
-		// TODO Auto-generated method stub
+	public List<DDay> getDDayScheduleList(Map<String,Object> map) {
+		List<DDay> result = sqlSession.selectList("ScheduleMapper.getDDayScheduleList", map);
 		
+		for (DDay dDay:result) {
+			dDay.setTargetDateStart((long)map.get("startDate"));
+			if (dDay.getMarkDDay().equals("0")) {
+				dDay.setMarkDDay("D-");
+			} else {
+				dDay.setMarkDDay("D+");
+			}
+			dDay.setCount(Math.abs(Math.toIntExact((dDay.getdDayStart()-(long)map.get("startDate"))/86400000)));
+		}
+		return result;
 	}
 
 	@Override
-	public void getImportantScheduleList() {
-		// TODO Auto-generated method stub
-		
+	public List<Schedule> getImportantScheduleList(Map<String,Object> map) {
+		return sqlSession.selectList("ScheduleMapper.getImportantScheduleList", map);
 	}
 
 }

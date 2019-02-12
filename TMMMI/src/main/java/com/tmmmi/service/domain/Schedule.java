@@ -7,6 +7,7 @@ public class Schedule {
 	private int scheduleNo;
 	private int userNo;
 	private int userCategoryNo;
+	private String userCategoryColor;
 	private String scheduleTitle;
 	private String scheduleDetail;
 	private String scheduleLocation;
@@ -45,6 +46,14 @@ public class Schedule {
 
 	public void setUserCategoryNo(int userCategoryNo) {
 		this.userCategoryNo = userCategoryNo;
+	}
+
+	public String getUserCategoryColor() {
+		return userCategoryColor;
+	}
+
+	public void setUserCategoryColor(String userCategoryColor) {
+		this.userCategoryColor = userCategoryColor;
 	}
 
 	public String getScheduleTitle() {
@@ -137,37 +146,11 @@ public class Schedule {
 
 	@Override
 	public String toString() {
-		StringBuilder builder = new StringBuilder();
-		builder.append("Schedule [scheduleNo=");
-		builder.append(scheduleNo);
-		builder.append(", userNo=");
-		builder.append(userNo);
-		builder.append(", userCategoryNo=");
-		builder.append(userCategoryNo);
-		builder.append(", scheduleTitle=");
-		builder.append(scheduleTitle);
-		builder.append(", scheduleDetail=");
-		builder.append(scheduleDetail);
-		builder.append(", scheduleLocation=");
-		builder.append(scheduleLocation);
-		builder.append(", scheduleStartDate=");
-		builder.append(scheduleStartDate);
-		builder.append(", scheduleEndDate=");
-		builder.append(scheduleEndDate);
-		builder.append(", goingDuration=");
-		builder.append(goingDuration);
-		builder.append(", comingDuration=");
-		builder.append(comingDuration);
-		builder.append(", isScheduleDDay=");
-		builder.append(isScheduleDDay);
-		builder.append(", markDDay=");
-		builder.append(markDDay);
-		builder.append(", isScheduleImportant=");
-		builder.append(isScheduleImportant);
-		builder.append(", scheduleAlarmTime=");
-		builder.append(scheduleAlarmTime);
-		builder.append("]");
-		return builder.toString();
+		return "Schedule [scheduleNo=" + scheduleNo + ", userNo=" + userNo + ", userCategoryNo=" + userCategoryNo
+				+ ", userCategoryColor=" + userCategoryColor + ", scheduleTitle=" + scheduleTitle + ", scheduleDetail="
+				+ scheduleDetail + ", scheduleLocation=" + scheduleLocation + ", scheduleStartDate=" + scheduleStartDate
+				+ ", scheduleEndDate=" + scheduleEndDate + ", goingDuration=" + goingDuration + ", comingDuration="
+				+ comingDuration + ", isScheduleDDay=" + isScheduleDDay + ", markDDay=" + markDDay
+				+ ", isScheduleImportant=" + isScheduleImportant + ", scheduleAlarmTime=" + scheduleAlarmTime + "]";
 	}
-		
 }

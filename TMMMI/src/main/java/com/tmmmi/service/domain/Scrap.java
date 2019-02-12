@@ -11,6 +11,7 @@ public class Scrap {
 	private String scrapDetail;
 	private Date scrapDate;
 	private int scrapCheck;
+	private String scrapLink;
 
 	public Scrap() {
 		// TODO Auto-generated constructor stub
@@ -70,6 +71,21 @@ public class Scrap {
 
 	public void setScrapCheck(int scrapCheck) {
 		this.scrapCheck = scrapCheck;
+	}
+
+	public String getScrapLink() {
+		return scrapLink;
+	}
+
+	public void setScrapLink(String scrapLink) {
+		this.scrapLink = scrapLink;
+	}
+
+	@Override
+	public String toString() {
+		return "{scrapNo:" + scrapNo + ", userNo:" + userNo + ", sectionNo:" + sectionNo + ", scrapTitle:"
+				+ scrapTitle + ", scrapDetail:" + scrapDetail + ", scrapDate:" + scrapDate + ", scrapCheck:"
+				+ scrapCheck + ", scrapLink:" + scrapLink + "}";
 	}
 	
 }

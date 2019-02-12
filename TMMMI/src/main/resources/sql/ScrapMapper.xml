@@ -19,7 +19,7 @@
 	<insert id="addScrap" parameterType="com.tmmmi.service.domain.Scrap">
 		INSERT
 		INTO	
-		diary(scrap_no, user_no, scrap_category, scrap_title, scrap_detail, scrap_date)	
+		scrap(scrap_no, user_no, scrap_category, scrap_title, scrap_detail, scrap_date)	
 		
 		VALUES (scrap_no.nextval, #{userNo}, #{sectionNo},
 				 #{scrapTitle}, #{scrapDetail}, SYSDATE)

@@ -1,23 +1,20 @@
 package com.tmmmi.service.domain;
 
-import java.sql.Date;
-
 public class DDay {
 	
-	///Field
 	private int userNo;
-	private int dDayNo;
+	private int scheduleNo;
+	private String userCategoryColor;
+	private long targetDateStart;
+	private long dDayStart;
 	private String dDayTitle;
-	private Date dDayDate;
-	private boolean showDPlusDay;
-	private boolean showDMinusDay;
+	private String markDDay;
+	private int count;
 	
-	///Constructor
 	public DDay() {
-		// TODO Auto-generated constructor stub
+		super();
 	}
-	
-	///Get/Set Method
+
 	public int getUserNo() {
 		return userNo;
 	}
@@ -26,12 +23,28 @@ public class DDay {
 		this.userNo = userNo;
 	}
 
-	public int getdDayNo() {
-		return dDayNo;
+	public int getScheduleNo() {
+		return scheduleNo;
 	}
 
-	public void setdDayNo(int dDayNo) {
-		this.dDayNo = dDayNo;
+	public void setScheduleNo(int scheduleNo) {
+		this.scheduleNo = scheduleNo;
+	}
+
+	public String getUserCategoryColor() {
+		return userCategoryColor;
+	}
+
+	public void setUserCategoryColor(String userCategoryColor) {
+		this.userCategoryColor = userCategoryColor;
+	}
+
+	public long getTargetDateStart() {
+		return targetDateStart;
+	}
+
+	public void setTargetDateStart(long targetDateStart) {
+		this.targetDateStart = targetDateStart;
 	}
 
 	public String getdDayTitle() {
@@ -42,28 +55,34 @@ public class DDay {
 		this.dDayTitle = dDayTitle;
 	}
 
-	public Date getdDayDate() {
-		return dDayDate;
+	public String getMarkDDay() {
+		return markDDay;
 	}
 
-	public void setdDayDate(Date dDayDate) {
-		this.dDayDate = dDayDate;
+	public void setMarkDDay(String markDDay) {
+		this.markDDay = markDDay;
 	}
 
-	public boolean isShowDPlusDay() {
-		return showDPlusDay;
+	public int getCount() {
+		return count;
 	}
 
-	public void setShowDPlusDay(boolean showDPlusDay) {
-		this.showDPlusDay = showDPlusDay;
+	public void setCount(int count) {
+		this.count = count;
 	}
 
-	public boolean isShowDMinusDay() {
-		return showDMinusDay;
+	@Override
+	public String toString() {
+		return "DDay [userNo=" + userNo + ", scheduleNo=" + scheduleNo + ", userCategoryColor=" + userCategoryColor
+				+ ", targetDateStart=" + targetDateStart + ", dDayTitle=" + dDayTitle + ", markDDay=" + markDDay
+				+ ", count=" + count + "]";
 	}
 
-	public void setShowDMinusDay(boolean showDMinusDay) {
-		this.showDMinusDay = showDMinusDay;
+	public long getdDayStart() {
+		return dDayStart;
 	}
-	
+
+	public void setdDayStart(long dDayStart) {
+		this.dDayStart = dDayStart;
+	}
 }

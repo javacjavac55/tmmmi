@@ -77,7 +77,6 @@
                     success: function (JSONData) {
                         $.each(JSONData, function (i) {
                             var list = JSONData[i];
-                            console.log(JSONData[i].title);
                             var trmapx = JSONData[i].mapx;
                             var trmapy = JSONData[i].mapy;
                             var naverCoord = naver

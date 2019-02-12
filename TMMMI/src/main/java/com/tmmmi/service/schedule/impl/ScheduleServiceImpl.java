@@ -1,6 +1,5 @@
 package com.tmmmi.service.schedule.impl;
 
-import java.sql.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -9,10 +8,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
+import com.tmmmi.service.domain.DDay;
 import com.tmmmi.service.domain.Schedule;
 import com.tmmmi.service.schedule.ScheduleDao;
 import com.tmmmi.service.schedule.ScheduleService;
-import com.tmmmi.service.usercategory.UserCategoryDao;
 
 @Service("scheduleServiceImpl")
 public class ScheduleServiceImpl implements ScheduleService {
@@ -53,15 +52,21 @@ public class ScheduleServiceImpl implements ScheduleService {
 	}
 
 	@Override
-	public void getFrequentScheduleList() {
-		// TODO Auto-generated method stub
-		
+	public List<DDay> getDDayScheduleList(int userNo, long startDate, long endDate) {
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("userNo", userNo);
+		map.put("startDate", startDate);
+		map.put("endDate", endDate);
+		return scheduleDao.getDDayScheduleList(map);
 	}
 
 	@Override
-	public void getImportantScheduleList() {
-		// TODO Auto-generated method stub
-		
+	public List<Schedule> getImportantScheduleList(int userNo, long startDate, long endDate) {
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("userNo", userNo);
+		map.put("startDate", startDate);
+		map.put("endDate", endDate);
+		return scheduleDao.getImportantScheduleList(map);
 	}
 
 }

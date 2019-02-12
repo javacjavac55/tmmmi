@@ -28,9 +28,8 @@ public class ScrapDaoImpl implements ScrapDao {
 	}
 
 	@Override
-	public void addScrap(Scrap scrap) {
-		// TODO Auto-generated method stub
-		sqlSession.insert("ScrapMapper.addScrap", scrap);	
+	public int addScrap(Scrap scrap) {
+		return sqlSession.insert("ScrapMapper.addScrap", scrap);	
 	}
 
 	@Override

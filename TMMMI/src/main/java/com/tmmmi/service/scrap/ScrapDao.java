@@ -6,7 +6,7 @@ import com.tmmmi.common.Search;
 import com.tmmmi.service.domain.Scrap;
 
 public interface ScrapDao {
-	public void addScrap(Scrap scrap) throws Exception;
+	public int addScrap(Scrap scrap) throws Exception;
 	
 	public Scrap getScrap(int scrapNo) throws Exception;
 	

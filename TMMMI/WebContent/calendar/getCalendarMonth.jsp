@@ -15,51 +15,37 @@
     <script src ="https://unpkg.com/sweetalert/dist/sweetalert.min.js" ></script>
     
     <!-- draggable -->
-    <style>
-    	#mydiv {
-		  position: absolute;
-		  z-index: 9;
-		  background-color: #ffffff;
-		  text-align: center;
-		  min-height: 40px;
-		  min-width: 300px;
-		  right: 0;
-		  box-shadow: 3px 3px 10px #aaaaaa;
-		}
-		
-		#mydivheader {
-		  padding: 2%;
-		  margin: 3%;
-		  cursor: move;
-		  z-index: 10;
-		  color: #000000;
-		  flex-wrap:wrap;
-		  font-size: larger;
-		  border-bottom: 1px solid #eeeeee;
-		}
-		
+    <style>		
 		.schedule {
-			border: 1px solid;
+			border: 2px solid;
 			display: inline-block;
-			width: 44%;
-			float: left;
-			margin: 0 0 5% 4%;
+			width: 94%;
+			margin: 2% 3%;
+			padding: 0 !important;
+			text-align: center;
+			border-top-left-radius: 10px;
+    		border-top-right-radius: 10px;
 		}
 		
 		.time {
 			display: block;
 			color: #ffffff;
-			font-size: large;
-			padding: 5% 0;
 		}
 		
 		.title {
 			display: block;
 			background-color: #ffffff;
-			font-size: medium;
-			padding: 5% 0;
+    		width: 99.5%;
 		}
-				
+		
+		.important {
+			margin: 0 1%;
+		}
+		
+		#dday-container, #imp-sch-container {
+			border-top-left-radius: 13px;
+    		border-top-right-radius: 13px;
+		}
 	</style>
 </head>
 <body>
@@ -153,14 +139,12 @@
                 </button>
             </span>
             <span id="renderRange" class="render-range"></span>
+            <div id="imp_dday" style="display:contents;">
+            	<c:import url="/calendar/getImportantDday"/>
+            </div>            
         </div>
         <div id="calendar"></div>
     </div>
-    <div id="mydiv">
-	  <!-- Include a header DIV with the same name as the draggable DIV, followed by "header" -->
-	  <div id="mydivheader">오늘의 중요한 일정</div>
-	  <div id="imp-sch-container"></div>
-	</div>
     <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
     <script type="text/javascript" src="https://uicdn.toast.com/tui.code-snippet/latest/tui-code-snippet.min.js"></script>
@@ -207,7 +191,6 @@
 		}
 		
 		var schedule;
-		var importantList=[];
 		<c:forEach var="schedule" items="${scheduleList}">
 			schedule = new ScheduleInfo();
 			schedule.id = "${schedule.scheduleNo}";
@@ -225,9 +208,6 @@
 			schedule.recurrenceRule = "${schedule.scheduleAlarmTime}";
 			schedule = fncAdjustScheduleValues(schedule);
 			ScheduleList.push(schedule);
-			<c:if test="${schedule.isScheduleImportant!=0}">
-				importantList.push(schedule);
-			</c:if>
 		</c:forEach>
     </script>
     
@@ -267,7 +247,7 @@
 						text: "일정을 성공적으로 등록했습니다" , 
 						icon : "success" , 
 					}).then((value) => {
-						
+						fncGenerate();
 					});
 				}
 			});
@@ -306,7 +286,7 @@
 						text: "일정을 성공적으로 수정했습니다" , 
 						icon : "success" , 
 					}).then((value) => {
-						
+						fncGenerate();
 					});
 				}
 			});
@@ -333,8 +313,25 @@
 						text: "일정을 성공적으로 삭제했습니다" , 
 						icon : "success" , 
 					}).then((value) => {
-						
+						fncGenerate();
 					});
+				}
+			});
+		}
+		
+		function fncGenerate() {
+			$('#imp_dday').html('');
+
+			$.ajax({
+				url : "/calendar/getImportantDday",
+				method : "GET",
+				dataType: "text",
+				headers : {
+					"Accept" : "application/json",
+					"Content-Type" : "application/json"
+				},
+				success : function(JSONData, status) {
+					$('#imp_dday').html(JSONData);
 				}
 			});
 		}
@@ -359,62 +356,6 @@
 			});
 		})
     </script>
-    <script>
-    	$(function(){
-    		for(var i=0; i<importantList.length; i++) {
-    			console.log(importantList[i]);
-    			console.log(importantList[i].title, importantList[i].start.toString().split(" ")[4])
-    			$('#imp-sch-container').append('<div class="schedule" style="background-color:'+importantList[i].bgColor+'; border-color:'
-    					+importantList[i].bgColor+'"><span class="time">'
-    					+importantList[i].start.toString().split(" ")[4]+'</span><span class="title">'
-    					+importantList[i].title+'</span></div>')
-    		}
-    		
-    	})
-    	
-    	dragElement(document.getElementById("mydiv"));
-
-		function dragElement(elmnt) {
-		  var pos1 = 0, pos2 = 0, pos3 = 0, pos4 = 0;
-		  if (document.getElementById(elmnt.id + "header")) {
-		    // if present, the header is where you move the DIV from:
-		    document.getElementById(elmnt.id + "header").onmousedown = dragMouseDown;
-		  } else {
-		    // otherwise, move the DIV from anywhere inside the DIV: 
-		    elmnt.onmousedown = dragMouseDown;
-		  }
-
-		  function dragMouseDown(e) {
-		    e = e || window.event;
-		    e.preventDefault();
-		    // get the mouse cursor position at startup:
-		    pos3 = e.clientX;
-		    pos4 = e.clientY;
-		    document.onmouseup = closeDragElement;
-		    // call a function whenever the cursor moves:
-		    document.onmousemove = elementDrag;
-		  }
-
-		  function elementDrag(e) {
-		    e = e || window.event;
-		    e.preventDefault();
-		    // calculate the new cursor position:
-		    pos1 = pos3 - e.clientX;
-		    pos2 = pos4 - e.clientY;
-		    pos3 = e.clientX;
-		    pos4 = e.clientY;
-		    // set the element's new position:
-		    elmnt.style.top = (elmnt.offsetTop - pos2) + "px";
-		    elmnt.style.left = (elmnt.offsetLeft - pos1) + "px";
-		  }
-
-		  function closeDragElement() {
-		    // stop moving when mouse button is released:
-		    document.onmouseup = null;
-		    document.onmousemove = null;
-		  }
-		}
-	</script>
     <jsp:include page="/common/mainMenu.jsp"/>
 </body>
 </html>

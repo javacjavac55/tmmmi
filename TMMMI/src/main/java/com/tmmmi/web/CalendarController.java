@@ -17,6 +17,7 @@ import com.tmmmi.service.calendarmovie.CalendarMovieService;
 import com.tmmmi.service.calendarsetting.CalendarSettingService;
 import com.tmmmi.service.calendarsport.CalendarSportService;
 import com.tmmmi.service.dday.DDayService;
+import com.tmmmi.service.domain.DDay;
 import com.tmmmi.service.domain.Schedule;
 import com.tmmmi.service.domain.UserCategory;
 import com.tmmmi.service.schedule.ScheduleService;
@@ -86,13 +87,20 @@ public class CalendarController {
 		//set startDate, endDate with current month
 		ModelAndView modelAndView = new ModelAndView();
 		
-		long startDate = 0;
-		long endDate = 0;
 		Calendar calendar = Calendar.getInstance();
 		calendar.set(Calendar.DATE, 1);
-		startDate = calendar.getTime().getTime();
+		calendar.set(Calendar.HOUR_OF_DAY, 0);
+	    calendar.set(Calendar.MINUTE, 0);
+	    calendar.set(Calendar.SECOND, 0);
+	    calendar.set(Calendar.MILLISECOND, 0);
+		long startDate = calendar.getTimeInMillis();
+		
 		calendar.set(Calendar.DATE, calendar.getActualMaximum(Calendar.DAY_OF_MONTH));
-		endDate = calendar.getTime().getTime();
+		calendar.set(Calendar.HOUR_OF_DAY, 23);
+	    calendar.set(Calendar.MINUTE, 59);
+	    calendar.set(Calendar.SECOND, 59);
+	    calendar.set(Calendar.MILLISECOND, 999);
+		long endDate = calendar.getTimeInMillis();
 		
 		System.out.println("startDate: "+startDate);
 		System.out.println("endDate: "+endDate);
@@ -108,14 +116,44 @@ public class CalendarController {
 		}
 		
 		List<Schedule> scheduleList = scheduleService.getScheduleList(userNo,startDate,endDate);
+		
 		modelAndView.addObject("userCategoryList", userCategoryList);
-		System.out.println(scheduleList.size());
-		System.out.println(scheduleList);
 		modelAndView.addObject("scheduleList", scheduleList);
 		modelAndView.setViewName("/calendar/getCalendarMonth.jsp");
 		
 		return modelAndView;
 	}
+	
+	@RequestMapping(value="getImportantDday", method=RequestMethod.GET)
+	public ModelAndView getImportantDday(HttpSession session) {
+		ModelAndView modelAndView = new ModelAndView();
+		
+		Calendar calendar = Calendar.getInstance();
+		calendar.set(Calendar.HOUR_OF_DAY, 0);
+	    calendar.set(Calendar.MINUTE, 0);
+	    calendar.set(Calendar.SECOND, 0);
+	    calendar.set(Calendar.MILLISECOND, 0);
+	    long startToday = calendar.getTimeInMillis();
+		calendar.set(Calendar.HOUR_OF_DAY, 23);
+	    calendar.set(Calendar.MINUTE, 59);
+	    calendar.set(Calendar.SECOND, 59);
+	    calendar.set(Calendar.MILLISECOND, 999);
+		long endToday = calendar.getTimeInMillis();
+		
+		int userNo = (int)session.getAttribute("userNo");
+		
+		List<Schedule> importantScheduleList = scheduleService.getImportantScheduleList(userNo,startToday,endToday);
+		List<DDay> dDayScheduleList = scheduleService.getDDayScheduleList(userNo,startToday,endToday);
+
+		System.out.println("startToday: "+startToday);
+		System.out.println("endToday: "+endToday);
+		modelAndView.addObject("importantScheduleList",importantScheduleList);
+		modelAndView.addObject("dDayScheduleList",dDayScheduleList);
+		modelAndView.setViewName("/calendar/importantDDay.jsp");
+		
+		return modelAndView;
+	}
+	
 	public void getCalendarWeek() {}
 	public void getCalendarDay() {}
 	

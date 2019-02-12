@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 
 import com.tmmmi.common.Search;
 import com.tmmmi.service.domain.Scrap;
+import com.tmmmi.service.scrap.ScrapCrawlDao;
 import com.tmmmi.service.scrap.ScrapDao;
 import com.tmmmi.service.scrap.ScrapService;
 
@@ -20,15 +21,19 @@ public class ScrapServiceImpl implements ScrapService {
 	@Qualifier("scrapDaoImpl")
 	private ScrapDao scrapDao;
 	
+	@Autowired
+	@Qualifier("scrapCrawlDaoImpl")
+	private ScrapCrawlDao scrapCrawlDao;
+	
 	public ScrapServiceImpl() {
 		// TODO Auto-generated constructor stub
 		System.out.println(this.getClass());
 	}
 
 	@Override
-	public void addScrap(Scrap scrap)throws Exception {
-		// TODO Auto-generated method stub
-		scrapDao.addScrap(scrap);
+	public int addScrap(Scrap scrap)throws Exception {
+		scrapCrawlDao.crawlScrap(scrap);
+		return scrapDao.addScrap(scrap);
 	}
 
 	@Override

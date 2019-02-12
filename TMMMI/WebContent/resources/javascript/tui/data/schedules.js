@@ -33,7 +33,7 @@ function ScheduleInfo() {
 
     //일정 알람 시간
     this.recurrenceRule = '';
-    
+    this.bgColor = '';
 }
 
 function generateTime(schedule, renderStart, renderEnd) {

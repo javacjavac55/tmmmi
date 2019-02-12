@@ -24,6 +24,7 @@
 		<mapper resource="sql/DiaryMapper.xml"/>
 		<mapper resource="sql/FAQMapper.xml"/>
 		<mapper resource="sql/QNAMapper.xml"/>
+		<mapper resource="sql/ScrapMapper.xml"/>
 	</mappers>
 
 </configuration>

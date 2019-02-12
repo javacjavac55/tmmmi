@@ -61,9 +61,9 @@ public class ScrapController {
 		return modelAndView;		
 	}
 	
-	@RequestMapping(value="listScrap")
-	public ModelAndView getScrapList(@ModelAttribute("search") Search search, @ModelAttribute("Diary") Diary diary, HttpServletRequest request, HttpSession session)throws Exception{
-		int userNo = 111;
+	@RequestMapping(value="getScrapList")
+	public ModelAndView getScrapList(@ModelAttribute("search") Search search, @ModelAttribute("Scrap") Scrap scrap, HttpSession session)throws Exception{
+		int userNo = (int)session.getAttribute("userNo");
 		
 		if(search.getCurrentPage() ==0 ){
 			search.setCurrentPage(1);

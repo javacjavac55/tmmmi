@@ -7,7 +7,7 @@ import com.tmmmi.service.domain.Scrap;
 
 public interface ScrapService {
 	
-	public void addScrap(Scrap scrap) throws Exception;
+	public int addScrap(Scrap scrap) throws Exception;
 	
 	public Scrap getScrap(int scrapNo)throws Exception;
 	

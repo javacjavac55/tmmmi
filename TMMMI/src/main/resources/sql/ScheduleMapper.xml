@@ -10,6 +10,7 @@
 		<result property="scheduleNo"			column="schedule_no"			jdbcType="NUMERIC" />
 		<result property="userNo"				column="user_no"				jdbcType="NUMERIC" />
 		<result property="userCategoryNo"		column="user_category_no"		jdbcType="NUMERIC" />
+		<result property="userCategoryColor"	column="user_category_color" 	jdbcType="VARCHAR" />
 		<result property="scheduleTitle"		column="schedule_title"			jdbcType="VARCHAR" />
 		<result property="scheduleDetail"		column="schedule_detail" 		jdbcType="VARCHAR" />
 		<result property="scheduleLocation"		column="schedule_location" 		jdbcType="VARCHAR" />
@@ -21,6 +22,15 @@
 		<result property="markDDay"				column="mark_dday"				jdbcType="NUMERIC" />
 		<result property="isScheduleImportant"	column="schedule_important" 	jdbcType="NUMERIC" />
 		<result property="scheduleAlarmTime"	column="schedule_alarm_time" 	jdbcType="NUMERIC" />
+	</resultMap>
+	
+	<resultMap id="ddaySelectMap" type="com.tmmmi.service.domain.DDay">
+		<result property="scheduleNo"			column="schedule_no"			jdbcType="NUMERIC" />
+		<result property="userNo"				column="user_no"				jdbcType="NUMERIC" />
+		<result property="userCategoryColor"	column="user_category_color" 	jdbcType="VARCHAR" />
+		<result property="dDayTitle"			column="schedule_title"			jdbcType="VARCHAR" />
+		<result property="dDayStart"			column="schedule_start_date" 	jdbcType="DATE" />
+		<result property="markDDay"				column="mark_dday"				jdbcType="NUMERIC" />
 	</resultMap>
 	
 	<insert id="addSchedule" parameterType="com.tmmmi.service.domain.Schedule">
@@ -46,7 +56,7 @@
 				)
 	 </insert>
 	 
-	 <select  id="getScheduleList"  parameterType="map"	resultMap="scheduleSelectMap">
+	 <select id="getScheduleList"  parameterType="map"	resultMap="scheduleSelectMap">
 	 	SELECT *
 	 	FROM schedule
 	 	WHERE user_no = #{userNo}
@@ -54,6 +64,28 @@
 	 	OR schedule_end_date BETWEEN #{startDate} AND #{endDate}
 	 	<![CDATA[OR (schedule_start_date<=#{startDate} AND #{endDate}<=schedule_end_date))]]>
 	 	AND schedule_delete_check = 0
+	 </select>
+	 
+	 <select id="getImportantScheduleList"  parameterType="map"	resultMap="scheduleSelectMap">
+	 	SELECT s.*, u.user_category_color
+	 	FROM schedule s, user_category u
+	 	WHERE s.user_no = #{userNo}
+	 	AND s.user_category_no = u.user_category_no
+	 	AND (s.schedule_start_date BETWEEN #{startDate} AND #{endDate}
+	 	OR s.schedule_end_date BETWEEN #{startDate} AND #{endDate}
+	 	<![CDATA[OR (s.schedule_start_date<=#{startDate} AND #{endDate}<=s.schedule_end_date))]]>
+	 	AND s.schedule_delete_check = 0
+	 	AND s.schedule_important = 1
+	 </select>
+	 
+	 <select id="getDDayScheduleList"  parameterType="map"	resultMap="ddaySelectMap">
+	 	SELECT s.*, u.user_category_color
+	 	FROM schedule s, user_category u
+	 	WHERE s.user_no = #{userNo}
+	 	AND s.user_category_no = u.user_category_no
+	 	AND s.schedule_dday = 1
+	 	<![CDATA[AND ((s.mark_dday = 1 AND s.schedule_start_date <= #{startDate})OR (s.mark_dday = 0 AND s.schedule_start_date BETWEEN #{startDate} AND (#{startDate}+259200000)))]]>
+	 	AND s.schedule_delete_check = 0
 	 </select>
 	 
 	 <update id="updateSchedule" parameterType="com.tmmmi.service.domain.Schedule" >
