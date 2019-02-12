@@ -29,7 +29,8 @@
 <script type="text/javascript">
 	$(function() {
 		$(document).on('click', 'button.btn.btn-primary', function() {
-			self.location = "/user/withdraw"
+			var userNo = $(this).data('param');
+			self.location = "/user/updateUserAdmin/"+userNo;
 		});
 	})
 </script>
@@ -57,25 +58,37 @@
 				
 							<!-- table 위쪽 검색 시작-->
 							<div class="row">
-								<div class="col-md- text-left">
+								<div class="col-md-6 text-left">
 									<p class="text-primary">
 										전체  ${resultPage.totalCount} 건수, 현재 ${resultPage.currentPage}  페이지
 									</p>
 									<input type="hidden" id="currentPage" name="currentPage" value=""/>
-								</div>		    
+								</div>
 							</div>
-							
+							<nav class="navbar navbar-default navbar-expand-lg" style="float:right;">
+								<div class="container">
+									<form name="detailForm" class="form-inline ml-auto">
+										<div class="form-group bmd-form-group" style="align-content: right;">
+											<input type="text" class="form-control" id="searchKeyword" name="searchKeyword" placeholder="제목+내용" value="${! empty search.searchKeyword ? search.searchKeyword : '' }">
+											<input type="hidden" id="currentPage" name="currentPage"  value="" />
+										</div>
+										<button type="button" class="btn btn-white btn-raised btn-fab btn-round" id="search">
+											<i class="material-icons">search</i>
+										</button>
+									 </form>
+								</div>
+							</nav>
 							<!-- table 시작 -->
-							<table class="table table-hover table-striped" >   
-								<thead>
+							<table class="table table-hover" >   
+								<thead style="box-shadow:1px 1px 1px 1px gray;">
 									<tr>
-										<th align="center">No</th>
-										<th align="center" >회원 번호</th>
-										<th align="center">회원 아이디</th>            
-										<th align="center">SNS</th>
-										<th align="center">탈퇴</th>
-										<th aling="center">탈퇴날짜</th>
-										<th align="center">수정</th>
+										<th style="text-align: -webkit-center;">No</th>
+										<th style="text-align: -webkit-center;">회원 번호</th>
+										<th style="text-align: -webkit-center;">회원 아이디</th>            
+										<th style="text-align: -webkit-center;">SNS</th>
+										<th style="text-align: -webkit-center;">탈퇴</th>
+										<th style="text-align: -webkit-center;">탈퇴날짜</th>
+										<th style="text-align: -webkit-center;">수정</th>
 									</tr>
 								</thead>
 								<tbody>
@@ -83,11 +96,11 @@
 									<c:forEach var="user" items="${list}">
 									<c:set var="i" value="${ i+1 }" />
 										<tr>
-											<td align="center">${ i }</td>
-											<td align="center">${user.userNo}</td>
-											<td align="center">${user.userId}</td>
+											<td align="center" style="padding:25px;">${ i }</td>
+											<td align="center" style="padding:25px;">${user.userNo}</td>
+											<td align="center" style="padding:25px;">${user.userId}</td>
 											<!-- snsName -->
-											<td align="center">
+											<td align="center" style="padding:25px;">
 												<c:choose>
 													<c:when test="${user.snsName eq 1}">카카오</c:when>
 													<c:when test="${user.snsName eq 2}">네이버</c:when>
@@ -98,12 +111,16 @@
 											<!-- 탈퇴 여부 -->
 											<td align="center">
 												<c:choose>
-													<c:when test="${user.withdrawCheck eq 1 }">탈퇴</c:when>
-													<c:otherwise>X</c:otherwise>
+													<c:when test="${user.withdrawCheck eq 1 }">
+														<button type="button" class="btn btn-warning btn-round">복구</button>
+													</c:when> 
+													<c:otherwise>
+														<button type="button" class="btn btn-info btn-round">탈퇴</button>
+													</c:otherwise>
 												</c:choose>
 											</td>
-											<td align="center">${user.withdrawDate}</td>
-											<td align="center"><button type="button" class="btn btn-primary btn-round">수정</button></td>
+											<td align="center" style="padding:25px;">${user.withdrawDate}</td>
+											<td align="center"><button type="button" class="btn btn-primary btn-round" data-param="${user.userNo }">수정</button></td>
 										</tr>
 									</c:forEach>
 									</tbody>

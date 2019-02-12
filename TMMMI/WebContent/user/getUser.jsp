@@ -76,6 +76,8 @@
     				title : "탈퇴 완료" ,
     				text : "Tmmmi가 생각나신다면 언제든 돌아와주세요.!",
     				icon : "success" , 
+    			}).then((value)=>{
+    				window.location = '../index.jsp';
     			});
             	
             	}
