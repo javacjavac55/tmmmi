@@ -140,7 +140,7 @@ public class ToDoController {
 		List<ToDo> todoMonth = toDoService.getToDoMonthGraph(todomap);
 		ModelAndView modelAndView = new ModelAndView();
 		System.out.println("todoMonth"+todoMonth);
-		modelAndView.setViewName("/todo/getToDoLineGraph.jsp");
+		modelAndView.setViewName("/todo/getToDoMonthGraph.jsp");
 		modelAndView.addObject("todoMonth",todoMonth);
 		return modelAndView;
 	}

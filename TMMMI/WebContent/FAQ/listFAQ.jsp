@@ -290,7 +290,7 @@
 			<br/>
 		    
 		    <div id="table">
-				<jsp:include page="../FAQ/FAQTable.jsp"/>
+				<jsp:include page="/FAQ/FAQTable.jsp"/>
 			</div>
 			
 			<div>
