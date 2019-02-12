@@ -15,7 +15,7 @@
 		전체  ${resultPage.totalCount} 건수, 현재 ${resultPage.currentPage} 페이지
 	</div>
 	
-	<table class="table">	
+	<table class="table table-hover">	
 			<colgroup>
                <col style="width:10%;">
                <col style="width:15%;">

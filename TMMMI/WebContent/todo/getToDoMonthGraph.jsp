@@ -15,7 +15,6 @@
 <link href="/css/template/material-kit.min.css?v=2.0.5" rel="stylesheet" />
 <!--   Core JS Files   -->
 <script src="/javascript/template/core/jquery.min.js" type="text/javascript"></script>
-<!-- <script src="/javascript/template/core/popper.min.js" type="text/javascript"></script> -->
 <script src="/javascript/template/core/bootstrap-material-design.min.js" type="text/javascript"></script>
 <!--momentJS  -->
 <script src="/javascript/moment/moment.js" type="text/javascript"></script>
@@ -44,13 +43,13 @@
 </head>
 <body class="index-page sidebar-collapse">
 <jsp:include page="/common/toolbar2.jsp"></jsp:include>
-<div class="page-header header-filter clear-filter" data-parallax="true" style="background-image: url('/images/userSetting/ ${userSetting.image}')">
+  <div class="page-header header-filter clear-filter" data-parallax="true" style="background-image: url('/images/userSetting/ ${userSetting.image}')">
     <div class="container">
       <div class="row">
         <div class="col-md-8 ml-auto mr-auto">
           <div class="brand">
-            <h2 class="title">TMMMI</h2>
-            <h3>Too Much, Memorable, My Information </h3>
+            <h2 class="title">ToDo Graph </h2>
+            <h3 class="title">Dreams come true </h3>
           </div>
         </div>
       </div>
@@ -58,42 +57,44 @@
   </div>
   <div class="main main-raised">
     <div class="section section-basic">
-      <div class="container">
-	<div class="container">
-		<div class="row ">
-			<ul class="controlbtn">
-				<li>
-					<button type="button" class="btn btn-info btn-fab btn-round" style="margin-top : 20px; margin-right : 10px;">
-						<i class="material-icons">first_page</i>
-					</button>
-				</li>
-				<li>
-					<button type="button" class="btn btn-info btn-fab btn-round" style="margin-top : 20px; margin-right : 10px;">
-						<i class="material-icons">chevron_left</i>
-					</button>
-				</li>
-				<li>
-					<h3 id="currentyear"></h3>
-				</li>
-				<li>
-					<button type="button" class="btn btn-info btn-fab btn-round" style="margin-top : 20px; margin-left : 10px;">
-						<i class="material-icons">chevron_right</i>
-					</button>	
-				</li>
-				<li>
-					<button type="button" class="btn btn-info btn-fab btn-round" style="margin-top : 20px; margin-left : 10px;">
-						<i class="material-icons">last_page</i>
-					</button>
-				</li>
-			</ul>
-		</div>
-
-		<canvas id="myChart" style="position: relative; height: 70vh; width: 50vw;"></canvas>
-	</div>
-
-	<script type="text/javascript">
-		$(function() {
-			var currentyear = moment().format("YYYY");
+      <div class="container"> 
+	      <div class="row" style="margin-bottom: 3%;">
+				<ul class="controlbtn">
+					<li>
+						<button type="button" class="btn btn-info btn-fab btn-round" style="margin-top : 20px; margin-right : 10px;">
+							<i class="material-icons">first_page</i>
+						</button>
+					</li>
+					<li>
+						<button type="button" class="btn btn-info btn-fab btn-round" style="margin-top : 20px; margin-right : 10px;">
+							<i class="material-icons">chevron_left</i>
+						</button>
+					</li>
+					<li>
+						<h3 id="currentyear"></h3>
+					</li>
+					<li>
+						<button type="button" class="btn btn-info btn-fab btn-round" style="margin-top : 20px; margin-left : 10px;">
+							<i class="material-icons">chevron_right</i>
+						</button>	
+					</li>
+					<li>
+						<button type="button" class="btn btn-info btn-fab btn-round" style="margin-top : 20px; margin-left : 10px;">
+							<i class="material-icons">last_page</i>
+						</button>
+					</li>
+					<li class="col-md-3">
+						<select class="form-control selectpicker" data-style="btn btn-link">
+							 <option value="0" >막대 그래프</option>
+							 <option value="1" >점선 그래프</option>
+							 <option value="2" >원형 그래프</option>
+						</select>
+					</li>
+				</ul>
+			</div>
+      <script type="text/javascript">
+      $(function() {
+      var currentyear = moment().format("YYYY");
 			var y;
 			$("#currentyear").text(currentyear+"년 성취도 그래프");
 			var changeyear = moment();
@@ -119,14 +120,13 @@
 				 $("#currentyear").text(y+"년 성취도 그래프");
 			 })
 			 
-			 $("i:contains('first_page')").on("click", function () {
+			 $(document).on("click","i:contains('first_page')",  function () {
 				 changeyear = changeyear.add(-10, 'year')
 				 y = changeyear.format("YYYY");
 				 console.log(y);
 				 $("#currentyear").text(y+"년 성취도 그래프");
 			 })
 			 $(".btn.btn-info").on("click", function () {
-				 
 			  $.ajax({
                           url: "/todoRest/getToDoMonthGraphPost",
                           method: 'POST',
@@ -140,7 +140,7 @@
                         	  console.log(JSONData);
                         	  var newList = [];
                         	  $.each(JSONData, function (i) {
-                        	  toDoMonthChart.data.datasets.forEach((dataset) => {
+                        		  toDoMonthChart.data.datasets.forEach((dataset) => {
                       	        dataset.data.pop();
                       	    	});
                         	 })
@@ -152,18 +152,19 @@
                         	    });
                         	  toDoMonthChart.update();
                         	  })
-                          }
-                      })
-			 })
+                          }//success end
+                      })//ajax end
+			 }) //button onclick end
+			 //////////////////////////////차트 시작 //////////////////////////////////
 			var counts = [];
 			var c;
-			<c:forEach items="${todoMonth}" var="count">
-			c = "${count.toDoCount}";
-			counts.push(c);
-			</c:forEach>
-
+				<c:forEach items="${todoMonth}" var="count">
+					c = "${count.toDoCount}";
+					counts.push(c);
+				</c:forEach>
 			var ctx = $('#myChart');
-			var toDoMonthChart = new Chart(ctx, {
+			///////////////////////////막대 그래프////////////////////////////////////
+			var toDoMonthBarChart = new Chart(ctx, {
 				type : 'bar',
 				data : {
 					labels : [ "1월", "2월", "3월", "4월", "5월", "6월", "7월", "8월",
@@ -179,7 +180,6 @@
 								'rgba(76,117,163 ,0.5)',
 								'rgba(0,175,240 ,0.5)', 'rgba(0,132,255 ,0.5)',
 								'rgba(0,126,229 ,0.5)', 'rgba(65,0,147 ,0.5)'
-
 						],
 						borderColor : [ 'rgba(189,8,28 ,1)',
 								'rgba(235,73,36 ,1)', 'rgba(255,87,0 ,1)',
@@ -211,11 +211,64 @@
 					}
 				}
 			})
-		});
-	</script>
-	</div>
+			/////////////////////////////////////점선 그래프////////////////////////////////
+			var toDoMonthLineChart = new Chart(ctx, {
+				type : 'line',
+				data : {
+					labels : [ "1월", "2월", "3월", "4월", "5월", "6월", "7월", "8월",
+							"9월", "10월", "11월", "12월" ],
+					datasets : [ {
+						data : counts,
+						label: "",
+						backgroundColor: "rgba(235,73,36 ,0.4)",
+					} ]
+				},
+				 options : {
+					scales : {
+						yAxes : [ {
+							scaleLabel : {
+								display : true,
+								labelString : '월 별 성취도 개수'
+							}
+						} ],
+						xAxes : [ {
+							scaleLabel : {
+								display : true,
+								labelString : '월 별 완료 그래프'
+							}
+						} ]
+					}
+				}
+			})
+			//////////////////////////////////원형 그래프////////////////////////////////////
+			var toDoMonthChart = new Chart(ctx, {
+				type : 'doughnut',
+				data : {
+					labels : [ "1월", "2월", "3월", "4월", "5월", "6월", "7월", "8월",
+							"9월", "10월", "11월", "12월" ],
+					datasets : [ {
+						label : '# of Votes',
+						data : counts,
+						backgroundColor : [ 'rgba(189,8,28 ,0.5)',
+								'rgba(235,73,36 ,0.5)', 'rgba(255,87,0 ,0.5)',
+								'rgba(255,170,0 ,0.5)', 'rgba(245,125,0 ,0.5)',
+								'rgba(37,211,102 ,0.5)',
+								'rgba(0,180,137 ,0.5)',
+								'rgba(76,117,163 ,0.5)',
+								'rgba(0,175,240 ,0.5)', 'rgba(0,132,255 ,0.5)',
+								'rgba(0,126,229 ,0.5)', 'rgba(65,0,147 ,0.5)' ]
+					} ]
+				},
+				options : {
+					showAllTooltips : true,
+					responsive : true
+				}
+			})
+     	 })
+      </script>
+      <canvas id="myChart" style="position: relative; height: 70vh; width: 50vw;"></canvas>
+		</div>
+      </div>
     </div>
-  </div>
-	<jsp:include page="/common/footer.jsp"></jsp:include>
-</body>
+<jsp:include page="/common/footer.jsp"></jsp:include> 
 </html>

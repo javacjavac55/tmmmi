@@ -19,24 +19,40 @@
 
 	<script type="text/javascript">
 	
-		////////////////////////////////페이지 로딩화면
-		$(window).on('load', function(){
-		     $('.loading').hide();  
+		
+		$(document).ready(function () { 
+			getDust();
+			getWeather();
+			/* setTimeout(function() { $('.loading').hide() },800);			 */
 		});
 
 		////////////////////////////////도시선택
 	    $(function() {	
-	    	$( ".form-control" ).change( function() {	
+	    	$( ".form-control" ).change( function() {
 	    		var city = $(this).val();
-	    		getWeather();
 	    		getDust();
+				getWeather();
 	    	});
 	    });
 	    
-		$(function() {				
-			getWeather();	
-			getDust();
-	 	});
+		function getDust() {	
+			var city = $( ".form-control" ).val();
+			
+			$.ajax({
+		        url: "/weather/getDust?city="+city,
+		        dataType: "text",
+		        type: "GET",
+		        headers : {
+					"Accept" : "application/json",
+					"Content-Type" : "application/json"
+				}, 
+		        success: function(Data) {
+		      		console.log("Data 확인(Dust) : ", Data); 
+		     
+		      		$(".dust").html(Data);
+		        }
+			});
+		}
 		
 		function getWeather() {	
 			var city = $( ".form-control" ).val();
@@ -71,47 +87,47 @@
 		      		
 		      		if(weather2 == null){
 				      	if (icon === '01') {
-				      		$(".main").append("<canvas id='clear-day' width='82' height='82' ></canvas>"+"<span class='temp'>"+temp+"º</span> <span class='temp_m'>"+tempMin+"º/"+tempMax+"º</span><p class='info'>미세먼지 : 100 나쁨</p>");
+				      		$(".main").append("<canvas id='clear-day' width='82' height='82' ></canvas>"+"<span class='temp'>"+temp+"º</span> <span class='temp_m'>"+tempMin+"º/"+tempMax+"º</span>");
 					    }else if (icon === '02') {
-					    	$(".main").append("<canvas id='partly-cloudy-day' width='82' height='82' ></canvas>"+"<span class='temp'>"+temp+"º</span> <span class='temp_m'>"+tempMin+"º/"+tempMax+"º</span><p class='info'>미세먼지 : 100 나쁨</p>");
+					    	$(".main").append("<canvas id='partly-cloudy-day' width='82' height='82' ></canvas>"+"<span class='temp'>"+temp+"º</span> <span class='temp_m'>"+tempMin+"º/"+tempMax+"º</span>");
 					    }else if (icon === '03') {
-					    	$(".main").append("<canvas id='cloudy' width='82' height='82' ></canvas>"+"<span class='temp'>"+temp+"º</span> <span class='temp_m'>"+tempMin+"º/"+tempMax+"º</span><p class='info'>미세먼지 : 100 나쁨</p>");
+					    	$(".main").append("<canvas id='cloudy' width='82' height='82' ></canvas>"+"<span class='temp'>"+temp+"º</span> <span class='temp_m'>"+tempMin+"º/"+tempMax+"º</span>");
 					    }else if (icon === '04') {
-					    	$(".main").append("<canvas id='cloudy' width='82' height='82' ></canvas>"+"<span class='temp'>"+temp+"º</span> <span class='temp_m'>"+tempMin+"º/"+tempMax+"º</span><p class='info'>미세먼지 : 100 나쁨</p>");
+					    	$(".main").append("<canvas id='cloudy' width='82' height='82' ></canvas>"+"<span class='temp'>"+temp+"º</span> <span class='temp_m'>"+tempMin+"º/"+tempMax+"º</span>");
 					    }else if (icon === '09') {
-					    	$(".main").append("<canvas id='sleety' width='82' height='82' ></canvas>"+"<span class='temp'>"+temp+"º</span> <span class='temp_m'>"+tempMin+"º/"+tempMax+"º</span><p class='info'>미세먼지 : 100 나쁨</p>");
+					    	$(".main").append("<canvas id='sleety' width='82' height='82' ></canvas>"+"<span class='temp'>"+temp+"º</span> <span class='temp_m'>"+tempMin+"º/"+tempMax+"º</span>");
 					    }else if (icon === '10') {
-					    	$(".main").append("<canvas id='rain' width='82' height='82' ></canvas>"+"<span class='temp'>"+temp+"˚</span> <span class='temp_m'>"+tempMin+"º/"+tempMax+"º</span><p class='info'>미세먼지 : 100 나쁨</p>");
+					    	$(".main").append("<canvas id='rain' width='82' height='82' ></canvas>"+"<span class='temp'>"+temp+"˚</span> <span class='temp_m'>"+tempMin+"º/"+tempMax+"º</span>>");
 					    }else if (icon === '11') {
-					    	$(".main").append("<canvas id='rain' width='82' height='82' ></canvas>"+"<span class='temp'>"+temp+"º</span> <span class='temp_m'>"+tempMin+"º/"+tempMax+"º</span><p class='info'>미세먼지 : 100 나쁨</p>");
+					    	$(".main").append("<canvas id='rain' width='82' height='82' ></canvas>"+"<span class='temp'>"+temp+"º</span> <span class='temp_m'>"+tempMin+"º/"+tempMax+"º</span>");
 					    }else if (icon === '13') {
 					    	$(".main").append("<canvas id='snow' width='82' height='82' ></canvas>"+"<span class='temp'>"+temp+"º</span><br>"+
-					      			"<span class='temp_m'>"+tempMin+"º/"+tempMax+"º</span><span class='info'>"+" 미세먼지 : 113 나쁨</span>");
+					      			"<span class='temp_m'>"+tempMin+"º/"+tempMax+"º</span>");
 						}else if (icon === '50') {
 			      			$(".main").append("<canvas id='fog' width='82' height='82' ></canvas>"+"<span class='temp'>"+temp+"˚</span><br>"+
-			      			"<span class='temp_m'>"+tempMin+"˚ / "+tempMax+"˚</span><span class='info'>"+" 미세먼지 : 113 나쁨</span>");
+			      			"<span class='temp_m'>"+tempMin+"˚ / "+tempMax+"˚</span>");
 				      	}
 		      		}if(weather2 != null){
 		      			if (icon === '01') {
-				      		$(".main").append("<canvas id='clear-day' width='82' height='82' ></canvas>"+"<span class='temp'>"+temp+"º</span> <span class='temp_m'>"+tempMin+"º/"+tempMax+"º</span><p class='info'>미세먼지 : 100 나쁨</p>");
+				      		$(".main").append("<canvas id='clear-day' width='82' height='82' ></canvas>"+"<span class='temp'>"+temp+"º</span> <span class='temp_m'>"+tempMin+"º/"+tempMax+"º</span>");
 					    }else if (icon === '02') {
-					    	$(".main").append("<canvas id='partly-cloudy-day' width='82' height='82' ></canvas>"+"<span class='temp'>"+temp+"º</span> <span class='temp_m'>"+tempMin+"º/"+tempMax+"º</span><p class='info'>미세먼지 : 100 나쁨</p>");
+					    	$(".main").append("<canvas id='partly-cloudy-day' width='82' height='82' ></canvas>"+"<span class='temp'>"+temp+"º</span> <span class='temp_m'>"+tempMin+"º/"+tempMax+"º</span>");
 					    }else if (icon === '03') {
-					    	$(".main").append("<canvas id='cloudy' width='82' height='82' ></canvas>"+"<span class='temp'>"+temp+"º</span> <span class='temp_m'>"+tempMin+"º/"+tempMax+"º</span><p class='info'>미세먼지 : 100 나쁨</p>");
+					    	$(".main").append("<canvas id='cloudy' width='82' height='82' ></canvas>"+"<span class='temp'>"+temp+"º</span> <span class='temp_m'>"+tempMin+"º/"+tempMax+"º</span>");
 					    }else if (icon === '04') {
-					    	$(".main").append("<canvas id='cloudy' width='82' height='82' ></canvas>"+"<span class='temp'>"+temp+"º</span> <span class='temp_m'>"+tempMin+"º/"+tempMax+"º</span><p class='info'>미세먼지 : 100 나쁨</p>");
+					    	$(".main").append("<canvas id='cloudy' width='82' height='82' ></canvas>"+"<span class='temp'>"+temp+"º</span> <span class='temp_m'>"+tempMin+"º/"+tempMax+"º</span>");
 					    }else if (icon === '09') {
-					    	$(".main").append("<canvas id='sleety' width='82' height='82' ></canvas>"+"<span class='temp'>"+temp+"º</span> <span class='temp_m'>"+tempMin+"º/"+tempMax+"º</span><p class='info'>미세먼지 : 99 나쁨</p>");
+					    	$(".main").append("<canvas id='sleety' width='82' height='82' ></canvas>"+"<span class='temp'>"+temp+"º</span> <span class='temp_m'>"+tempMin+"º/"+tempMax+"º</span>");
 					    }else if (icon === '10') {
-					    	$(".main").append("<canvas id='rain' width='82' height='82' ></canvas>"+"<span class='temp'>"+temp+"˚</span> <span class='temp_m'>"+tempMin+"º/"+tempMax+"º</span><p class='info'>미세먼지 : 100 나쁨</p>");
+					    	$(".main").append("<canvas id='rain' width='82' height='82' ></canvas>"+"<span class='temp'>"+temp+"˚</span> <span class='temp_m'>"+tempMin+"º/"+tempMax+"º</span>");
 					    }else if (icon === '11') {
-					    	$(".main").append("<canvas id='rain' width='82' height='82' ></canvas>"+"<span class='temp'>"+temp+"º</span> <span class='temp_m'>"+tempMin+"º/"+tempMax+"º</span><p class='info'>미세먼지 : 100 나쁨</p>");
+					    	$(".main").append("<canvas id='rain' width='82' height='82' ></canvas>"+"<span class='temp'>"+temp+"º</span> <span class='temp_m'>"+tempMin+"º/"+tempMax+"º</span>");
 					    }else if (icon === '13') {
 					    	$(".main").append("<canvas id='snow' width='82' height='82' ></canvas>"+"<span class='temp'>"+temp+"º</span><br>"+
-					      			"<span class='temp_m'>"+tempMin+"º/"+tempMax+"º</span><span class='info'>"+" 미세먼지 : 113 나쁨</span>");
+					      			"<span class='temp_m'>"+tempMin+"º/"+tempMax+"º</span>");
 						}else if (icon === '50') {
 			      			$(".main").append("<canvas id='fog' width='82' height='82' ></canvas>"+"<span class='temp'>"+temp+"˚</span><br>"+
-			      			"<span class='temp_m'>"+tempMin+"˚ / "+tempMax+"˚</span><span class='info'>"+" 미세먼지 : 113 나쁨</span>");
+			      			"<span class='temp_m'>"+tempMin+"˚ / "+tempMax+"˚</span>");
 				      	}
 		      		}
 			      	
@@ -136,30 +152,7 @@
 			 	} //success end
 		    }); //ajax end
 	    
-		}
-		
-		function getDust() {	
-			var city = $( ".form-control" ).val();
-			
-			$.ajax({
-		        url: "/weather/getDust?city="+city,
-		        dataType: "json",
-		        type: "GET",
-		        headers : {
-					"Accept" : "application/json",
-					"Content-Type" : "application/json"
-				}, 
-		        success: function(Data) {
-		      		/* console.log("Data 확인(Dust) : ", Data); */
-		      		
-		      		var dust = Data.list[0].pm10Value;
-		      		//console.log(dust);
-		      		
-		      		$(".dust").html(Data); 
-		        }
-			});
-		}
-		
+		}	
 		
 	</script>
 	
@@ -206,7 +199,7 @@
 			 left: 0px;
 			 position: fixed;  
 			 display: block;  
-			 opacity: 0.7;  
+			 opacity: 1;  
 			 background-color: #fff;  
 			 z-index: 99;  
 			 text-align: center; 
@@ -225,14 +218,16 @@
 
 <body>
 <form>
-		<div id="loading" class="loading">
+		<!-- <div id="loading" class="loading">
 			<img id="loading-image" src="/images/weather/loading.gif" alt="Loading..." />
-		</div>
+		</div> -->
 
 		<div>
 			<select class="form-control" name="city" style="color:white; background-color:black; border-color:black; width:25%;">
 			  <option value="Seoul" >Seoul</option>
 			  <option value="Incheon" >Incheon</option>
+			  <option value="Gwangju" >Gwangju</option>
+			  <option value="Daejeon" >Daejeon</option>
 			  <option value="Busan" >Busan</option>
 			</select>
 		</div>

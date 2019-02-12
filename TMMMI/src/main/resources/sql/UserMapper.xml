@@ -19,7 +19,7 @@
 		<result property="snsName"						column="sns_name"						jdbcType="NUMERIC"/>
 		<result property="role"							column="role"							jdbcType="NUMERIC"/>
 		<result property="withdrawCheck"				column="withdraw_check"					jdbcType="NUMERIC"/>
-		<result property="withdrawDate"					column="withdrqs_date"					jdbcType="DATE"/>
+		<result property="withdrawDate"					column="withdraw_date"					jdbcType="DATE"/>
 	</resultMap>		
 	
 	<!-- SQL : INSERT -->
@@ -52,7 +52,7 @@
 	
 	<!-- SQL : SELECT ONE(getUserId) -->
 	<select id="getUserId" parameterType="string" resultMap="userSelectMap">
-		SELECT user_no, user_id, password, role, user_name, email
+		SELECT user_no, user_id, password, role, user_name, email, withdraw_check
 		FROM users 
 		WHERE user_id = #{value}
 	</select>

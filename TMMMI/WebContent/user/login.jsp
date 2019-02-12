@@ -14,8 +14,10 @@
   <!-- CSS Just for demo purpose, don't include it in your project -->
   <link href="/css/template/demo.css" rel="stylesheet" />
   <!-- jQuery -->
-	<script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
-	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" ></script>
+  <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" ></script>
+  <!-- sweetalert -->
+  <script src ="https://unpkg.com/sweetalert/dist/sweetalert.min.js" ></script >
   <!-- Style -->
   <style type="text/css">
   	#yeong{
@@ -55,7 +57,56 @@
 				return;
 			}
 			
-			$("form").attr("method","POST").attr("action","/user/login").attr("target","_parent").submit();
+			$.ajax({
+				url : "/userRest/login",
+				method : "POST",
+				data : JSON.stringify(
+					{
+						'userId' : id,
+						'password' : pw
+					}		
+				),
+				dataType : 'text',
+				headers : {
+	            	"Accept" : "application/json",
+					"Content-Type" : "application/json"
+	            },
+	            success : function(JSONData, status){
+
+	            	var result = JSONData;
+	            	console.log(result);
+	            	
+	            	if(result == -1){
+	            		swal({
+		    				title : "탈퇴 회원" , 
+		    				text: "탈퇴한 회원 입니다." , 
+		    				icon : "warning" , 
+		    			});
+	            	}else if(result == 0){
+	            		swal({
+		    				title : "관리자 모드" , 
+		    				text: "회원 관리를 할 수 있습니다." , 
+		    				icon : "success" , 
+		    			}).then((value)=>{
+		    				window.location = '../index.jsp';
+		    			})
+	            	}else if(result == 1){
+	            		swal({
+		    				title : "회원 확인" , 
+		    				text: "로그인 되셨습니다." , 
+		    				icon : "success" , 
+		    			}).then((value)=>{
+		    				window.location = '../index.jsp';
+		    			})
+	            	}else{
+	            		swal({
+		    				title : "다시 입력" , 
+		    				text: "아이디나 비밀번호가 틀렸습니다." , 
+		    				icon : "success" , 
+		    			})
+	            	}
+	            }
+			});
 		};
 	</script>
 	
@@ -71,7 +122,9 @@
 			});
 		});
 	</script>
+
 	
+	<!-- 팝업창 -->
 	<script language="JavaScript">
 	function openNewWindow(window) { 
 		open (window,"Mail","toolbar=no, location=no, directories=no, status=no, menubar=no, scrollbars=no, resizable=no, width=550, height=500"); 

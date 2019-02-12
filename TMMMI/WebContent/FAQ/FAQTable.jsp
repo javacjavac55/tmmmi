@@ -35,7 +35,7 @@
 
 </head>
 <form>
-<table class="table">	
+<table class="table table-hover ">	
 			<colgroup>
                <col style="width:10%;">
                <col style="width:15%;">

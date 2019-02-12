@@ -54,23 +54,40 @@
 
 			var userName=$("input[name='userName']").val();
 			var birthday=$("input[name='birthday']").val();
-			var email=$("input[name=email]").val();
-			var authNum=$("input[name=authNum]").val();
+			var email=$('#email').val();
+			var authNum=$("input[name='authNum']").val();
 
 			if(userName == null || userName.length <1){
 				swal({
-					  text: "닉네임은  반드시 입력하셔야 합니다.!",
+					  text: "닉네임은 반드시 입력하셔야 합니다.!",
+					  icon: "warning",
+					  dangerMode: true,
+					})
+				return;
+			}
+			if(birthday == null || birthday.length <1){
+				swal({
+					  text: "생일은 반드시 입력하셔야 합니다.!",
 					  icon: "warning",
 					  dangerMode: true,
 					})
 				return;
 			}
 			if(email == null || (email != "" && (email.indexOf('@') < 1 || email.indexOf('.') == -1))){
-				alert("이메일은 반드시 입력하셔야 합니다.");
+				swal({
+					  text: "이메일은 반드시 입력하셔야 합니다.!",
+					  icon: "warning",
+					  dangerMode: true,
+					})
 				return;
 			}
 			if(authNum == null || authNum.length <5){
-				alert("인증번호는 반드시 입력하셔야 합니다.");
+				swal({
+					  text: "인증번호는 반드시 입력하셔야 합니다.!",
+					  icon: "warning",
+					  dangerMode: true,
+					})
+					 
 				return;
 			}
 			
@@ -216,7 +233,7 @@
 <body class="index-page sidebar-collapse">
 <!-- sideMenu.jsp 추가 -->
 <jsp:include page="/common/toolbar2.jsp"></jsp:include>
- 	<div class="page-header header-filter clear-filter" data-parallax="true" style="background-image: url('/images/userSetting/ ${userSetting.image}')">
+ 	<div class="page-header header-filter clear-filter" data-parallax="true" style="background-image: url('/images/userSetting/201803230806542197_6_20180323080704381.jpg')">
     <div class="container">
       <div class="row">
         <div class="col-md-8 ml-auto mr-auto">

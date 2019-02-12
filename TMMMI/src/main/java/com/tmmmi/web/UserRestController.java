@@ -179,10 +179,38 @@ public class UserRestController {
 	}
 	
 	@RequestMapping(value="withdraw", method=RequestMethod.POST)
-	public int withdraw(@ModelAttribute("user") User user, HttpSession session) {
+	public int withdraw(@ModelAttribute("user") User user, HttpSession session) throws Exception{
 		System.out.println("/user/withdraw : POST");
+		user.setUserNo((int)session.getAttribute("userNo"));
+		user.setWithdrawCheck(1);
+		userService.withdrawUser(user);
+		session.invalidate();
 		
 		return 1;
+	}
+	
+	@RequestMapping(value="login", method=RequestMethod.POST)
+	public int login(@RequestBody User user, HttpSession session) throws Exception {
+		System.out.println("/userRest/login : POST");
+		System.out.println("user : "+user);
+		
+		User dbUser = userService.getUserId(user.getUserId());
+		System.out.println("dbUser : "+ dbUser);
+		if(user.getPassword().equals(dbUser.getPassword()) && dbUser.getWithdrawCheck() != 1) {
+			session.setAttribute("userNo", dbUser.getUserNo());
+			session.setAttribute("userName", dbUser.getUserName());
+			session.setAttribute("userSetting", userSettingService.getUserSetting(dbUser.getUserNo()));
+			if(dbUser.getRole() == 1) {
+				return 1;
+			}else {
+				return 0;
+			}
+			
+		}else if(dbUser.getWithdrawCheck() == 1){
+			return -1;
+		}else {
+			return 2;
+		}
 	}
 	
 	/*@RequestMapping(value="userRest/authNum", method=RequestMethod.POST)
