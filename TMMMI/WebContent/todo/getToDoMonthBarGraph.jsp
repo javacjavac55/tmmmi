@@ -14,29 +14,48 @@
 		$(function() {
 			var counts = [];
 			var c;
-			<c:forEach items="${todoMonth}" var="count">
-			c = "${count.toDoCount}";
-			counts.push(c);
-			</c:forEach>
-			console.log(counts);
+				<c:forEach items="${todoMonth}" var="count">
+					c = "${count.toDoCount}";
+					counts.push(c);
+				</c:forEach>
 			var ctx = $('#myChart');
 			var toDoMonthChart = new Chart(ctx, {
-				type : 'line',
+				type : 'bar',
 				data : {
 					labels : [ "1월", "2월", "3월", "4월", "5월", "6월", "7월", "8월",
 							"9월", "10월", "11월", "12월" ],
 					datasets : [ {
+						label : '# of Votes',
 						data : counts,
-						label: "",
-						backgroundColor: "rgba(235,73,36 ,0.4)",
+						backgroundColor : [ 'rgba(189,8,28 ,0.5)',
+								'rgba(235,73,36 ,0.5)', 'rgba(255,87,0 ,0.5)',
+								'rgba(255,170,0 ,0.5)', 'rgba(245,125,0 ,0.5)',
+								'rgba(37,211,102 ,0.5)',
+								'rgba(0,180,137 ,0.5)',
+								'rgba(76,117,163 ,0.5)',
+								'rgba(0,175,240 ,0.5)', 'rgba(0,132,255 ,0.5)',
+								'rgba(0,126,229 ,0.5)', 'rgba(65,0,147 ,0.5)'
+
+						],
+						borderColor : [ 'rgba(189,8,28 ,1)',
+								'rgba(235,73,36 ,1)', 'rgba(255,87,0 ,1)',
+								'rgba(255,170,0 ,1)', 'rgba(245,125,0 ,1)',
+								'rgba(37,211,102 ,1)', 'rgba(0,180,137 ,1)',
+								'rgba(76,117,163 ,1)', 'rgba(0,175,240 ,1)',
+								'rgba(0,132,255 ,1)', 'rgba(0,126,229 ,1)',
+								'rgba(65,0,147 ,1)' ],
+						borderWidth : 1
 					} ]
 				},
-				 options : {
+				options : {
 					scales : {
 						yAxes : [ {
 							scaleLabel : {
 								display : true,
 								labelString : '월 별 성취도 개수'
+							},
+							ticks : {
+								beginAtZero : true
 							}
 						} ],
 						xAxes : [ {
