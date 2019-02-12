@@ -160,8 +160,6 @@ public class DiaryController {
 		}
 		search.setPageSize(pageSize);
 		
-		System.out.println("dkdkdkkdkdk");
-		// Business logic 수행
 		Map<String , Object> map=diaryService.getDiaryList(search, userNo);
 		
 		Page resultPage = new Page( search.getCurrentPage(), ((Integer)map.get("totalCount")).intValue(), pageUnit, pageSize);
@@ -186,7 +184,6 @@ public class DiaryController {
 		}
 		search.setPageSize(pageSize);		
 		
-		// Business logic 수행
 		Map<String , Object> map=diaryService.getDiaryList(search, userNo);
 		
 		Page resultPage = new Page( search.getCurrentPage(), ((Integer)map.get("totalCount")).intValue(), pageUnit, pageSize);
@@ -349,12 +346,20 @@ public class DiaryController {
 	            String callback = request.getParameter("CKEditorFuncNum");
 	 
 	            printWriter = response.getWriter();
-	            String fileUrl = "/images/diaryImage/" + fileName;//url경로
-	 
-	           printWriter.println("<script type='text/javascript'>window.parent.CKEDITOR.tools.callFunction("+1+ ",'"+fileUrl+ "',''"+ ");\n</script>");
+	            String fileUrl = "/images/diaryImage/" + fileName;//url경로	            
+	            
+	            printWriter.println("<script type='text/javascript'>window.parent.CKEDITOR.tools.callFunction("+1+ ",'"+fileUrl+ "',''"+ ");\n</script>");
 	            //printWriter.write("{\"uploaded\": 1,\"fileName\": \""+fileName+"\", \"url \" :"+"\"http://192.168.0.53:8080/images/diaryImage/"+fileName+"\"}");
 	            printWriter.flush();
-	 
+	            
+	            
+	            if (file.isFile()) {
+	            	System.out.println("파일이 있습니다.");
+	            	System.out.println(file.getCanonicalPath().toString());
+	            }else {
+	            	System.out.println("파일이 없습니다.");
+	            }
+	           
 	        }catch(IOException e){
 	            e.printStackTrace();
 	        } finally {
@@ -369,7 +374,8 @@ public class DiaryController {
 	                e.printStackTrace();
 	            }
 	        }
-	 
+	        
+	        
 	        return;
 	    }
 }

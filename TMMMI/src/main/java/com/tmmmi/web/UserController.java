@@ -12,8 +12,10 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.tmmmi.common.Page;
@@ -165,6 +167,24 @@ public class UserController {
 		
 		ModelAndView modelAndView = new ModelAndView();
 		modelAndView.setViewName("redirect:/user/getUser?userNo="+user.getUserNo());
+		return modelAndView;
+	}
+	
+	@RequestMapping(value="updateUserAdmin/{userNo}", method=RequestMethod.GET)
+	public ModelAndView updateUserAdmin(@PathVariable("userNo") int userNo, HttpSession session ) throws Exception{
+		System.out.println("/user/updateUserAdmin/userNo : GET");
+		int adminNo = (int)session.getAttribute("userNo");
+		User admin = userService.getUser(adminNo);
+		
+		ModelAndView modelAndView = new ModelAndView();
+		
+		if(admin.getRole() == 0) {
+			User user = userService.getUser(userNo);
+			modelAndView.addObject("user", user);
+			modelAndView.setViewName("/user/updateUser.jsp");
+		}else {
+			modelAndView.setViewName("redirect:../../index.jsp");
+		}
 		return modelAndView;
 	}
 	

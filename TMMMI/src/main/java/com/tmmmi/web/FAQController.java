@@ -160,7 +160,7 @@ public class FAQController {
             String callback = request.getParameter("CKEditorFuncNum");
  
             printWriter = response.getWriter();
-            String fileUrl = "http://127.0.0.1:8080/images/FAQImage/" + fileName;//url경로
+            String fileUrl = "/images/FAQImage/" + fileName;//url경로
  
            printWriter.println("<script type='text/javascript'>window.parent.CKEDITOR.tools.callFunction("+1+ ",'"+fileUrl+ "',''"+ ");\n</script>");
             //printWriter.write("{\"uploaded\": 1,\"fileName\": \""+fileName+"\", \"url \" :"+"\"http://192.168.0.53:8080/images/diaryImage/"+fileName+"\"}");
@@ -182,5 +182,6 @@ public class FAQController {
         }
         return;
     }
+	
 	
 }

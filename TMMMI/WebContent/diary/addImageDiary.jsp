@@ -97,28 +97,45 @@
 
 	function fncAddDiary() {
 		var title=$("input[name='diaryTitle']").val();
-		var detail=$("textarea[name='diaryDetail']").attr('value');
+		var detail=CKEDITOR.instances.ckeditor.getData();
 		var userCategoryNo = $("select[name='userCategoryNo']").val();
 		
 		if(userCategoryNo =="없음"){
-			swal("카테고리를 선택해주세요.");
+			swal({
+				  title: "오류",
+				  text: "카테고리를 선택해주세요.",
+				  icon: "warning",
+				  dangerMode: true,
+				})
 			return;
 		}
 		if(title == null || title ==""){
-			swal("제목을 입력해주세요.");
+			swal({
+				  title: "오류",
+				  text: "제목을 입력해주세요.",
+				  icon: "warning",
+				  dangerMode: true,
+				})
 			return;
 		}
-		/* if(detail == null || detail ==""){
-			alert("내용을 입력해주세요.");
+		if(detail == null || detail ==""){
+			swal({
+				  title: "오류",
+				  text: "내용을 입력해주세요.",
+				  icon: "warning",
+				  dangerMode: true,
+				})
 			return;
-		} */
+		} 
 		
-		 
+		swal({
+			title : "등록 완료" , 
+			text: "다이어리가 등록되었습니다. 다이어리를 관리해보세요!" , 
+			icon : "success" , 
+		}).then((value)=>{
+			$('form[name="addDiary"]').attr("method", "POST").attr("enctype","multipart/form-data").attr("action", "/diary/addImageDiary").submit();
+		});
 		
-		document.addDiary.submit();
-		$('form[name="addDiary"]').attr("method", "POST").attr("enctype",
-				"multipart/form-data").attr("action", "/diary/addDiary")
-				.submit();
 	}
 
 	$(function() {
@@ -195,7 +212,7 @@
 								<div>
 									<label for="diaryDetail" class="col-sm-offset-1 col-sm-3 control-label text-center"></label>
 									<div class="col-sm-12" align="center">
-										<textarea id="ckeditor" class="diaryDetail" name="diaryDetail" style="display: none;"></textarea>
+										<textarea id="ckeditor" name="diaryDetail" style="display: none;"></textarea>
 									</div>
 								</div>
 
