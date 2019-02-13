@@ -18,19 +18,23 @@
 <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
+<link rel="stylesheet" href="/css/index/assets/css/main.css" />
+<link href="https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Do+Hyeon" rel="stylesheet">
+<noscript><link rel="stylesheet" href="/css/index/assets/css/noscript.css" /></noscript>
+
     <script type="text/javascript">
     
 	    //////////////////////////////// 검색
 	    $(function() {	
 	    	$( "button:contains('검색')" ).on("click" , function() {
-	    		//alert("검색")
 				fncGetSearchList();
 			})
 	    });
 
 	    function fncGetSearchList(searchKeyword) {
 			var searchKeyword = $("#searchKeyword").val();
-			
+
 			$.ajax({
 	    			url:"/faqRest/json/getFAQSearchList/",
 	    			method:"POST",
@@ -42,11 +46,27 @@
 						searchKeyword : $("#searchKeyword").val()
 					}),
 					success : function(data) {
-					/* console.log(data) */
+						/* console.log(data) */
 						$('#table').html(data);
 					}
 			});
 		}
+	    
+		////////////////////////////////페이지 네비게이터
+	    function fncGetList(currentPage) {
+	    	$.ajax({
+	    			url:"/faqRest/json/getFAQList/" +currentPage,
+	    			method:"GET",
+					headers : {
+						"Accept" : "application/json",
+						"Content-Type" : "application/json"
+					},
+					success : function(data) {
+					console.log(data) 
+					$('#table').html(data);
+					}
+			});
+	    }	
 	    
 		////////////////////////////////top 버튼
 	    $(function() {
@@ -101,22 +121,6 @@
 				self.location = "/faq/addFAQ";
 			})
 	    });
-	    
-		//////////////////////////////// 페이지 네비게이터
-	    function fncGetList(currentPage) {
-	    	$.ajax({
-	    			url:"/faqRest/json/getFAQList/" +currentPage,
-	    			method:"GET",
-					headers : {
-						"Accept" : "application/json",
-						"Content-Type" : "application/json"
-					},
-					success : function(data) {
-					console.log(data) 
-					$('#table').html(data);
-					}
-			});
-	    }
 	   
 		////////////////////////////////배너
 		$(document).ready(function() {	    	 
@@ -128,7 +132,8 @@
 	    	$(window).scroll(function() {
 	    		// 현재 스크롤 위치를 가져온다.
 	    		var scrollTop = $(window).scrollTop();
-	    		var newPosition = scrollTop + floatPosition + "px";
+	    		/* var newPosition = scrollTop + floatPosition + "px"; */
+	    		var newPosition = scrollTop;
 
 	    		$("#floatdiv").stop().animate({
 	    			"top" : newPosition
@@ -175,42 +180,34 @@
 			.title {
 				cursor:pointer;
 			}
-			
-			/* 이미지확대 */
-			.rounded { 
-				transform: scale(1);
-				-webkit-transform: scale(1);
-				-moz-transform: scale(1);
-		    	-ms-transform: scale(1);
-		  		-o-transform: scale(1);
-		  		transition: all ease-in-out;		 
-			}
-			.rounded:hover {
-			  transform: scale(1.05); /*이미지 hover 했을경우 transform: scale() 값을 키워 확대*/
-			  -webkit-transform: scale(1.05);
-			  -moz-transform: scale(1.05);
-			  -ms-transform: scale(1.05);
-			  -o-transform: scale(1.05);
-			   filter: brightness(70%); 
-			} 
 	
-			/* 속도조절 */
-			.rounded {
-				letter-spacing: 0;
-				/* -webkit-transition: all .28s ease-in-out; */
-				transition: all .1s ease-in-out;
-			} 
-			
 			/* 배너 */
 		 	#floatdiv {
 				position: absolute;
-				width: 320px;
-				height: 320px;
-				right: 50px;
-				top: 50px;
-				color: #fff;
+			    height: 360px;
+			    right:-20px;
+			    color: #fff;
 			}		
-		
+			
+			/* 가운데 이미지 */
+			.tiles article > a{
+				color:#3a2a64;
+				background-color:#ffffff;
+			}
+			.tiles article > a:hover{
+				color: #f2849e !important;
+				background-color:#ffffff;
+			}
+			.tiles article.style1 > .image:before, .tiles article.style2 > .image:before, .tiles article.style3 > .image:before, .tiles article.style4 > .image:before,
+			.tiles article.style5 > .image:before, .tiles article.style6 > .image:before {;
+				background-color:#ffffff;
+			}
+			
+			/* 버튼 색깔 강제 */
+			button{
+				color:white !important;
+			}
+
 		 	
 	</style>
     
@@ -238,15 +235,16 @@
       <div class="container">
       
 		 <!-- 배너 -->
-		<iframe id="floatdiv" src="/widget/getWeather.jsp" style="border-color: rgb(0,0,0,0);"></iframe>
+		<!-- <iframe id="floatdiv" src="/widget/getWeather.jsp" style="border-color: rgb(0,0,0,0);"></iframe> -->
 		
+		 	<img src="/images/common/star.png" width="2%"/>
 		 	<span>Home / CustomerCenter</span>
 		 			 	
 		 	<br/><br/><br/><br/>
 		 	
 			<div class="row searchFAQ" style="margin:0 auto; " >
 				<div class="col-md-7" style="margin-left:14%; ">	
-					<label style="margin-left:20%">소중한 문의에 감사드리며, 성심성의껏 답변해드리겠습니다.</label>
+					<label style="margin-left:27%">소중한 문의에 감사드리며, 성심성의껏 답변해드리겠습니다.</label>
 					<div class="input-group" >
 					    <div class="input-group-prepend">
 					      <span class="input-group-text">
@@ -257,24 +255,65 @@
 					</div>
 				</div>
 				<div class="col-md-1" style="margin-top:1.7%;">
-					<button type="button" class="btn btn-primary" name="searchCondition" value="0" >검색</button>
+					<button type="button" class="btn btn-primary" name="searchCondition" value="0"  style="font:white">검색</button>
 				</div>
 			</div>
 			
-			<br/><br/><br/><br/><br/><br/>
+			<br/>
 			
-			<div class="row click" style="text-align:center">
-				<img src="/images/weather/user.jpg" style="margin-left:19.5%; position: relative;" class="rounded float-left users" >
-				<img src="/images/weather/calendar.jpg" style="margin-left:2.6%;" class="rounded float-right calendar" >
-				  
-			</div>
-			<div class="row" style="margin-top:2.6%; text-align:center">
-				  <img src="/images/weather/content.jpg" style="margin-left:19.5%; position: relative" class="rounded float-left content" >
-				  <img src="/images/weather/diary.jpg" style="margin-left:2.6%; position: relative" class="rounded float-right diary">
-			</div>
+			<section class="tiles" style="cursor:pointer; margin-top: -30px;">
+				<article class="style5 users" style="width:243px;">
+					<span class="image">
+						<img src="/css/index/images/pic05.jpg" alt="" />
+					</span>
+					<a>
+						<h4>User</h4><br/>
+						<img src="/images/loginIndex/find-my-friend.png" width="20%"/>
+						<div class="content">
+							<p>Check my information</p>
+						</div>
+					</a>
+				</article>
+				<article class="style1 calendar" style="width:243px;">
+					<span class="image">
+						<img src="/css/index/images/loginIndex.png" alt="" />
+					</span>
+					<a>
+						<h4>Calendar</h4><br/>
+						<img src="/images/loginIndex/calendar.png" width="20%"/>
+						<div class="content">
+							<p>Schedule Management</p>
+						</div>
+					</a>
+				</article>
+				<article class="style2 content" style="width:243px;">
+					<span class="image">
+						<img src="/css/index/images/pic02.jpg" alt="" />
+					</span>
+					<a>
+						<h4>Content</h4><br/>
+						<img src="/images/loginIndex/sharing-content.png" width="20%"/>
+						<div class="content">
+							<p>Collect Interest</p>
+						</div>
+					</a>
+				</article>
+				<article class="style3 diary" style="width:243px;">
+					<span class="image">
+						<img src="/css/index/images/pic03.jpg" alt="" />
+					</span>
+					<a>
+						<h4>Diary</h4><br/>
+						<img src="/images/loginIndex/diary.png" width="20%"/>
+						<div class="content">
+							<p>Leave an appreciation for the day</p>
+						</div>
+					</a>
+				</article>		
+			</section>	
 			
 	
-			<br/><br/><br/>
+			<br/><br/>
 			
 			<hr style="margin-bottom:-0.1%;">
 			<ul class="nav justify-content-center" >
@@ -299,9 +338,7 @@
 				</c:if>
 			</div>
 			
-			<a style="cursor:pointer;" id="arrow"><!-- <img src="/images/common/top.png" style="width:3%"> -->
-				Back To Top
-			</a>
+			<a style="cursor:pointer;" id="arrow">	Back To Top</a>
 		
 		
 			<br/><br/><br/><br/>
