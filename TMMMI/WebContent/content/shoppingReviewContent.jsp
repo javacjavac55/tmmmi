@@ -19,6 +19,18 @@
 			.section-title {
 				color: ${fontColor};
 			}
+			
+			.scrap-btn {
+				position: absolute;
+			    top: -38px;
+			    right: 0;
+			    background-color: #123456;
+			    color: white;
+			    padding: 0 10px;
+			    border-radius: 5px;
+			    font-size: medium;
+			    cursor: pointer;
+			}
 		</style>
 	</head>
 <body>
@@ -46,7 +58,8 @@
 					</div>
 					<div class="shopping-review" id="shopping-review-${contentReviewShopping.reviewNo}">
 							
-					</div>	
+					</div>
+					<div class="scrap-btn">½ºÅ©·¦</div>	
 				</article>
 			</c:forEach>
 		</div>

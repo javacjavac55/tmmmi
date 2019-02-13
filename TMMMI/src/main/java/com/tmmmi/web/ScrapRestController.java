@@ -34,6 +34,13 @@ public class ScrapRestController {
 		System.out.println("result:"+scrapService.addScrap(scrap));
 	}
 	
+	@RequestMapping( value="addScrapLink", method=RequestMethod.POST )
+	public void addScrapLink(@RequestBody Scrap scrap, HttpSession session) throws Exception {
+		System.out.println(scrap.getSectionNo() + " : " + scrap.getScrapLink());
+		scrap.setUserNo((int)session.getAttribute("userNo"));
+		System.out.println("result:"+scrapService.addScrapLink(scrap));
+	}
+	
 	@RequestMapping(value="getScrap", method=RequestMethod.GET)
 	public Scrap getScrap(@RequestParam("scrapNo") int scrapNo)throws Exception {
 		System.out.println("/diary/getScrap: GET");			

@@ -9,43 +9,34 @@
 		<result property="scrapNo" column="scrap_no" jdbcType="NUMERIC" />
 		<result property="userNo" column="user_no" jdbcType="NUMERIC" />
 		<result property="sectionNo" column="scrap_category" jdbcType="NUMERIC" />
+		<result property="sectionName" column="scrap_category_name" jdbcType="VARCHAR" />
 		<result property="scrapTitle" column="scrap_title" jdbcType="VARCHAR" />
 		<result property="scrapDetail" column="scrap_detail" jdbcType="VARCHAR" />
 		<result property="scrapDate" column="scrap_date" jdbcType="DATE" />
 		<result property="scrapCheck" column="scrap_check" jdbcType="NUMERIC" />
+		<result property="scrapType" column="scrap_type" jdbcType="NUMERIC" />
 	</resultMap>
 
 	<!-- SQL: INSERT -->
 	<insert id="addScrap" parameterType="com.tmmmi.service.domain.Scrap">
 		INSERT
 		INTO	
-		scrap(scrap_no, user_no, scrap_category, scrap_title, scrap_detail, scrap_date)	
+		scrap(scrap_no, user_no, scrap_category, scrap_title, scrap_detail, scrap_date, scrap_type)	
 		
 		VALUES (scrap_no.nextval, #{userNo}, #{sectionNo},
-				 #{scrapTitle}, #{scrapDetail}, SYSDATE)
+				 #{scrapTitle}, #{scrapDetail}, SYSDATE, #{scrapType})
 	</insert>
 	
 	<!-- SQL: SELECT -->
 	<select id="getScrap" parameterType="string" resultMap="ScrapSelectMap">
 		SELECT
-		scrap_no, scrap_category, scrap_title, scrap_detail, scrap_date
+		scrap_no, scrap_category, scrap_title, scrap_detail, scrap_date, scrap_type
 		FROM
 		scrap
 		WHERE
 		scrap_no= #{value}
 	</select>
-	
-	<!-- SQL: UPDATE -->
-	<update id="updateScrap" parameterType="com.tmmmi.service.domain.Scrap">
-		UPDATE scrap
-		<set>
-			scrap_category = #{sectionNo},
-			scrap_title = #{scrapTitle},
-			scrap_detail = #{scrapDetail}	
-		</set>
-		WHERE scrap_no = #{scrapNo}
-	</update>
-	
+		
 	<!-- SQL: DELETE -->
 	<delete id="deleteScrap" parameterType="com.tmmmi.service.domain.Scrap">
 		DELETE
@@ -57,22 +48,22 @@
 	<select  id="getScrapList"  parameterType="map"	resultMap="ScrapSelectMap">
 	  	SELECT *
 	  	FROM (	SELECT inner_table.* , ROWNUM AS row_seq
-	  					FROM		(	SELECT scrap_no , scrap_category, scrap_title, scrap_date
-											FROM scrap
+	  					FROM		(	SELECT scrap_no , scrap_category, scrap_title, scrap_date, scrap_category_name, scrap_type
+											FROM scrap s, scrap_category c
 											<where>
-												user_no=#{userNo}
+												user_no=#{userNo} AND s.scrap_category = c.scrap_category_no
 											</where>											
-											ORDER BY scrap_no) inner_table
+											ORDER BY scrap_no DESC) inner_table
 						WHERE ROWNUM &lt;= #{search.endRowNum} )
 		WHERE row_seq BETWEEN #{search.startRowNum} AND #{search.endRowNum} 
 	 </select>
 	
 	<select  id="getTotalCount"  parameterType="int"	 resultType="int">
 	  	SELECT COUNT(*)
-	  	FROM(	SELECT scrap_no , scrap_category, scrap_title, scrap_date
-											FROM scrap
+	  	FROM(	SELECT scrap_no , scrap_category, scrap_title, scrap_date, scrap_category_name, scrap_type
+											FROM scrap s, scrap_category c
 											<where>
-												user_no=#{userNo}
+												user_no=#{userNo} AND s.scrap_category = c.scrap_category_no
 											</where>
 						) countTable						
 	 </select>

@@ -7,11 +7,13 @@ public class Scrap {
 	private int scrapNo;
 	private int userNo;
 	private int sectionNo;
+	private String sectionName;
 	private String scrapTitle;
 	private String scrapDetail;
 	private Date scrapDate;
 	private int scrapCheck;
 	private String scrapLink;
+	private int scrapType;
 
 	public Scrap() {
 		// TODO Auto-generated constructor stub
@@ -39,6 +41,14 @@ public class Scrap {
 
 	public void setSectionNo(int sectionNo) {
 		this.sectionNo = sectionNo;
+	}
+
+	public String getSectionName() {
+		return sectionName;
+	}
+
+	public void setSectionName(String sectionName) {
+		this.sectionName = sectionName;
 	}
 
 	public String getScrapTitle() {
@@ -81,11 +91,20 @@ public class Scrap {
 		this.scrapLink = scrapLink;
 	}
 
+	public int getScrapType() {
+		return scrapType;
+	}
+
+	public void setScrapType(int scrapType) {
+		this.scrapType = scrapType;
+	}
+
 	@Override
 	public String toString() {
-		return "{scrapNo:" + scrapNo + ", userNo:" + userNo + ", sectionNo:" + sectionNo + ", scrapTitle:"
-				+ scrapTitle + ", scrapDetail:" + scrapDetail + ", scrapDate:" + scrapDate + ", scrapCheck:"
-				+ scrapCheck + ", scrapLink:" + scrapLink + "}";
+		return "Scrap [scrapNo=" + scrapNo + ", userNo=" + userNo + ", sectionNo=" + sectionNo + ", sectionName="
+				+ sectionName + ", scrapTitle=" + scrapTitle + ", scrapDetail=" + scrapDetail + ", scrapDate="
+				+ scrapDate + ", scrapCheck=" + scrapCheck + ", scrapLink=" + scrapLink + ", scrapType=" + scrapType
+				+ "]";
 	}
-	
+
 }

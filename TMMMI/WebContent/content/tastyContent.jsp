@@ -21,6 +21,18 @@
 			.section-title {
 				color: ${fontColor};
 			}
+			
+			.scrap-btn {
+				position: absolute;
+			    top: -38px;
+			    right: 0;
+			    background-color: #123456;
+			    color: white;
+			    padding: 0 10px;
+			    border-radius: 5px;
+			    font-size: medium;
+			    cursor: pointer;
+			}
 		</style>
 	</head>
 <body>
@@ -34,10 +46,10 @@
 							<div id="map${contentTastyList.tastyLocationX}${contentTastyList.tastyLocationY}" class="tasty-map"></div>
 						</a> 
 						<c:if test="${! empty contentTastyList.tastyLink}">
-							<button class="content-model-btn tasty-btn" type="button" data-content="${contentTastyList.tastyLink}">${contentTastyList.tastyTitle}</button><br/>
+							<button class="content-model-btn tasty-btn tasty-tasty-title" type="button" data-content="${contentTastyList.tastyLink}">${contentTastyList.tastyTitle}</button><br/>
 						</c:if>
 						<c:if test="${empty contentTastyList.tastyLink}">
-							<div class="tasty-title">
+							<div class="tasty-title tasty-tasty-title">
 								${contentTastyList.tastyTitle}
 							</div>
 						</c:if>
@@ -50,6 +62,7 @@
 								<span class="field">주소</span> <span class="detail">${contentTastyList.tastyAddress}</span><br/>	
 							</c:if>
 						</div>
+						<div class="scrap-btn">스크랩</div>
 					</div>
 				</article>
 			</c:forEach>

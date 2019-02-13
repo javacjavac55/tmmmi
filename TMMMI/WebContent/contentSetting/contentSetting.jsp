@@ -78,7 +78,7 @@
  	 	        if($(this).is(":checked")){
  	 	        	var check = $(this).attr('id').replace("Check", "");
  	 	        	console.log("선택:"+check);
- 	 	        	$('li').last().after('<li id=\''+check+'\'class="ui-state-default">'+$(this).attr('value')+'</li>')
+ 	 	        	$('#sortable').append('<li id=\''+check+'\'class="ui-state-default ui-sortable-handle">'+$(this).attr('value')+'</li>');
  	 	        }else if(!($(this).is(":checked"))){
 	 	 	        var check = $(this).attr('id').replace("Check", "");
 	 	 	        console.log("삭제:"+check);
@@ -153,7 +153,7 @@
 					text: "컨텐츠 설정을 성공적으로 수정했습니다" , 
 					icon : "success" , 
 				}).then((value) => {
-					window.parent.fucCloseModal();
+					window.parent.fncCloseModal();
 				});
 	    	},
 	    	error : function(request, status, error ) {  

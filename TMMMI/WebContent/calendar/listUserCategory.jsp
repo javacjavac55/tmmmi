@@ -22,7 +22,7 @@
 <script type="text/javascript" src="/javascript/colorPicker/farbtastic.js"></script>
 <link rel="stylesheet" href="/css/colorPicker/farbtastic.css" type="text/css" />
 
-<script src ="https://unpkg.com/sweetalert/dist/sweetalert.min.js" ></script >
+<script src ="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 <script>
 	function addUserCategory(){
 		$.ajax({

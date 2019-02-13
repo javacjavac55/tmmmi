@@ -9,5 +9,7 @@ public interface ScrapCrawlDao {
 	public Scrap crawlScrap(Scrap scrap) throws IOException;
 	
 	public Scrap crawlMovieScrap(Scrap scrap) throws IOException;
+	
+	public Scrap crawlSportScrap(Scrap scrap) throws IOException;
 
 }

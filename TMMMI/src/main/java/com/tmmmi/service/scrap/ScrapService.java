@@ -9,6 +9,8 @@ public interface ScrapService {
 	
 	public int addScrap(Scrap scrap) throws Exception;
 	
+	public int addScrapLink(Scrap scrap) throws Exception;
+	
 	public Scrap getScrap(int scrapNo)throws Exception;
 	
 	public Map<String, Object> getScrapList(Search search, int userNo) throws Exception;

@@ -48,7 +48,7 @@
 	function fncGetList(currentPage) {
 		$("#currentPage").val(currentPage);
 		$('[name="detailForm"]').attr("method", "POST").attr("action",
-				"/scrap/listScrap").submit();
+				"/scrap/getScrapList").submit();
 	}
 
 	/* 전체 선택 */
@@ -85,13 +85,20 @@
 				},
 				success : function(JSONData, status) {
 					var data = JSON.parse(JSONData);
-					console.log('success1',data);
-					console.log('success2',data.scrapTitle);
 					$('#exampleModalLongTitle').text(data.scrapTitle);
-					$('.modal-body').html('<iframe frameborder="0" src=""></iframe>');
-					var iframe = $('iframe');
-					var context = iframe[0].contentDocument.write(data.scrapDetail);
-				    iframe[0].contentWindow.document.close();
+					
+					if (data.scrapType==0){	
+						console.log('0');
+						$('.modal-body').html('<iframe frameborder="0" src=""></iframe>');
+						var iframe = $('iframe');
+						var context = iframe[0].contentDocument.write(data.scrapDetail);
+					    iframe[0].contentWindow.document.close();
+						
+					} else {
+						console.log('data.sectionNo: ','/scrap/scrap'+data.sectionNo+'.jsp');
+						var iframe = $('iframe').attr('src','/scrap/scrap'+data.sectionNo+'.jsp?scrapNo=' + scrapNo);
+					}
+					
 					$('.content-modal-btn').click();
 				}, 
 				error: function(error) {
@@ -247,7 +254,7 @@
 										</div>
 									</td>
 									<td align="left">${ i+1 }</td>
-									<td align="left">${scrap.sectionNo}</td>
+									<td align="left">${scrap.sectionName}</td>
 									<td align="left" data-param2="${scrap.scrapNo}" style="cursor:pointer">${scrap.scrapTitle}</td>
 									<td align="left">${scrap.scrapDate}</td>
 								</tr>
@@ -286,10 +293,11 @@
 	          <span aria-hidden="true">&times;</span>
 	      </div>
 	      
-	      <div class="modal-body"></div>
+	      <div class="modal-body">
+	      	<iframe src=""></iframe>
+	      </div>
 	      <div class="modal-footer">
 	        <button type="button" class="btn btn-secondary" data-dismiss="modal">닫기</button>
-	        <button type="button" class="btn btn-primary" id="addScrap">스크랩 하기</button>
 	      </div>
 	    </div>
 	  </div>

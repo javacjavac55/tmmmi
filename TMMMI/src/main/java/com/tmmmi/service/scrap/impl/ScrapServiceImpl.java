@@ -35,6 +35,11 @@ public class ScrapServiceImpl implements ScrapService {
 		scrapCrawlDao.crawlScrap(scrap);
 		return scrapDao.addScrap(scrap);
 	}
+	
+	@Override
+	public int addScrapLink(Scrap scrap)throws Exception {
+		return scrapDao.addScrap(scrap);
+	}
 
 	@Override
 	public Scrap getScrap(int scrapNo) throws Exception {

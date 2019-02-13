@@ -61,148 +61,147 @@
 <script src="/javascript/template/core/bootstrap-material-design.min.js" type="text/javascript"></script>
 <script async defer src="https://buttons.github.io/buttons.js"></script>
 <script src="/javascript/template/material-kit.js?v=2.0.5" type="text/javascript"></script>
+<script src ="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 <script>
+function fncOpenModal(section, content, scrapBtnShow) {
+	if (scrapBtnShow) {
+		$('#addScrap').attr('data-section',section);
+		$('#addScrap').show();
+	} else {
+		$('#addScrap').attr('data-section','');
+		$('#addScrap').hide();
+	}
+	$('.modal-body').html('<iframe class="content-modal" src="'+content+'" />');
+	$('.content-modal-btn').click();
+}
 $(function(){
 	window.onload = function () {  //call when iframe is fully loaded
 		$($('#movieBoxOffice').contents().find('.content-model-btn')).on('click', function(){
 			var content = $('#movieBoxOffice').contents().find('#movieBoxOfficeInput').val();
-			  
-			$('.modal-body').html('<iframe class="content-modal" src="'+content+'" />');
-			$('.content-modal-btn').click();
+			fncOpenModal(1, content, true);
 		});
 		
 		$($('#movieNew').contents().find('.content-model-btn')).on('click', function(){
 			var content = $('#movieNew').contents().find('#movieNewInput').val();
-			  
-			$('.modal-body').html('<iframe class="content-modal" src="'+content+'" />');
-			$('.content-modal-btn').click();
+			fncOpenModal(1, content, true);
 		});
 		  
 		$($('#movieUpcoming').contents().find('.content-model-btn')).on('click', function(){
 			var content = $('#movieUpcoming').contents().find('#movieUpcomingInput').val();
-			  
-			$('.modal-body').html('<iframe class="content-modal" src="'+content+'" />');
-			$('.content-modal-btn').click();
+			fncOpenModal(1, content, true);
 		});
 		
 		$($('#movieReview').contents().find('.content-model-btn')).on('click', function(){
 			var content = $('#movieReview').contents().find('#movieReviewInput').val();
-			
-			$('.modal-body').html('<iframe class="content-modal" src="'+content+'" />');
-			$('.content-modal-btn').click();
+			fncOpenModal(1, content, true);
 		});
 		
 		$($('#movieReview').contents().find('.movie-review-link')).on('click', function(){
 			var content = $('#movieReview').contents().find('#movieReviewInput').val();
-			
-			$('.modal-body').html('<iframe class="content-modal" src="'+content+'" />');
-			$('.content-modal-btn').click();
+			fncOpenModal(1, content, true);
 		});
 		
 		$($('#movieTrailer').contents().find('.content-model-btn')).on('click', function(){
 			var content = $('#movieTrailer').contents().find('#movieTrailerInput').val();
-			
-			$('.modal-body').html('<iframe class="content-modal" src="'+content+'" />');
-			$('.content-modal-btn').click();
+			fncOpenModal(1, content, true);
+		});
+		
+		$($('#movieTrailer').contents().find('.scrap-btn')).on('click', function(){
+			fncScrapArticle(1, "[¿¹°íÆí] "+$(this).siblings('.movie').find('.trailer-title').text().trim(), $(this).closest('article').get(0).outerHTML)
 		});
 		
 		$($('#kSoccer').contents().find('.content-model-btn')).on('click', function(){
 			var content = $('#kSoccer').contents().find('#kSoccerInput').val();
-			  
-			$('.modal-body').html('<iframe class="content-modal" src="'+content+'" />');
-			$('.content-modal-btn').click();
+			fncOpenModal(2, content, true);
 		});
 		
 		$($('#wSoccer').contents().find('.content-model-btn')).on('click', function(){
 			var content = $('#wSoccer').contents().find('#wSoccerInput').val();
-			  
-			$('.modal-body').html('<iframe class="content-modal" src="'+content+'" />');
-			$('.content-modal-btn').click();
+			fncOpenModal(2, content, true);
 		});
 		
 		$($('#kBaseball').contents().find('.content-model-btn')).on('click', function(){
 			var content = $('#kBaseball').contents().find('#kBaseballInput').val();
-			  
-			$('.modal-body').html('<iframe class="content-modal" src="'+content+'" />');
-			$('.content-modal-btn').click();
+			fncOpenModal(2, content, true);
 		});
 		
 		$($('#wBaseball').contents().find('.content-model-btn')).on('click', function(){
 			var content = $('#wBaseball').contents().find('#wBaseballInput').val();
-			  
-			$('.modal-body').html('<iframe class="content-modal" src="'+content+'" />');
-			$('.content-modal-btn').click();
+			fncOpenModal(2, content, true);
 		});
 		
 		$($('#basketball').contents().find('.content-model-btn')).on('click', function(){
 			var content = $('#basketball').contents().find('#basketballInput').val();
-			  
-			$('.modal-body').html('<iframe class="content-modal" src="'+content+'" />');
-			$('.content-modal-btn').click();
+			fncOpenModal(2, content, true);
 		});
 		
 		$($('#general').contents().find('.content-model-btn')).on('click', function(){
 			var content = $('#general').contents().find('#generalInput').val();
-			  
-			$('.modal-body').html('<iframe class="content-modal" src="'+content+'" />');
-			$('.content-modal-btn').click();
+			fncOpenModal(2, content, true);
+		});
+		
+		$($('#highlight').contents().find('.scrap-btn')).on('click', function(){
+			fncScrapArticle(2, $(this).siblings('.highlight-title').text().trim(), $(this).closest('article').get(0).outerHTML)
 		});
 		
 		$($('#tasty').contents().find('.content-model-btn')).on('click', function(){
 			var content = $('#tasty').contents().find('#tastyInput').val();
-			  
-			$('.modal-body').html('<iframe class="content-modal" src="'+content+'" />');
-			$('.content-modal-btn').click();
+			fncOpenModal(3, content, true);
+		});
+		
+		$($('#tasty').contents().find('.scrap-btn')).on('click', function(){
+			fncScrapArticle(3, $(this).siblings('.tasty-tasty-title').text().trim(), $(this).closest('article').get(0).outerHTML)
 		});
 		
 		$($('#shoppingFirst').contents().find('.content-model-btn')).on('click', function(){
 			var content = $('#shoppingFirst').contents().find('#shoppingFirstInput').val();
-			  
-			$('.modal-body').html('<iframe class="content-modal" src="'+content+'" />');
-			$('.content-modal-btn').click();
+			fncOpenModal(4, content, true);
 		});
 		
 		$($('#shoppingSecond').contents().find('.content-model-btn')).on('click', function(){
 			var content = $('#shoppingSecond').contents().find('#shoppingSecondInput').val();
-			  
-			$('.modal-body').html('<iframe class="content-modal" src="'+content+'" />');
-			$('.content-modal-btn').click();
+			fncOpenModal(4, content, true);
 		});
 		
 		$($('#shoppingThird').contents().find('.content-model-btn')).on('click', function(){
 			var content = $('#shoppingThird').contents().find('#shoppingThirdInput').val();
-			  
-			$('.modal-body').html('<iframe class="content-modal" src="'+content+'" />');
-			$('.content-modal-btn').click();
+			fncOpenModal(4, content, true);
 		});
 		
-		$('#addScrap').on('click', function(){
-			fncAddScrap();
+		$($('#shoppingReview').contents().find('.scrap-btn')).on('click', function(){
+			fncScrapArticle(4, $(this).siblings('.shopping-review-title').text().trim(), $(this).closest('article').get(0).outerHTML)
 		});
-		
+				
 		$('#content-setting').on('click', function(){
-			$('.modal-body').html('<iframe class="content-modal" src="/contentSetting/getContentSetting"> </iframe>'); 
-			$('.content-modal-btn').click();
+			fncOpenModal(0, "/contentSetting/getContentSetting", false);
 		});
 	};
 	
 	$('#addScrap').on('click', function() {
+		var sectionNo = $(this).data('section');
 		console.log('start');
 		console.log('link',$('.content-modal').attr('src'));
 		$.ajax({
 			url : "/scrapRest/addScrap",
 			method : "POST",
 			data: JSON.stringify({
-				sectionNo:1,
-				scrapLink: $('.content-modal').attr('src')
+				sectionNo: sectionNo,
+				scrapLink: $('.content-modal').attr('src'),
+				scrapType: 0
 			}),
-			dataType: "json",
 			headers : {
 				"Accept" : "application/json",
 				"Content-Type" : "application/json"
 			},
 			success : function(JSONData, status) {
 				console.log('success');
+				swal({
+					title : "½ºÅ©·¦ ¿Ï·á " , 
+					text: "ÄÁÅÙÃ÷¸¦ ¼º°øÀûÀ¸·Î ½ºÅ©·¦ Çß½À´Ï´Ù" , 
+					icon : "success" , 
+				}).then((value) => {
+					$('.btn.btn-secondary').click();
+				});
 			}, 
 			error: function(error) {
 				console.log(error)
@@ -212,15 +211,37 @@ $(function(){
 	});
 });
 
-
-function fncAddScrap() {
-	/* document.addScrap.submit();
-	$('form[name="addScrap"]').attr("method", "POST").attr("enctype",
-			"multipart/form-data").attr("action", "/scrap/addScrap")
-			.submit(); */
+function fncScrapArticle(sectionNo, title, html) {
+	$.ajax({
+		url : "/scrapRest/addScrapLink",
+		method : "POST",
+		data: JSON.stringify({
+			sectionNo: sectionNo,
+			scrapTitle: title,
+			scrapDetail: html,
+			scrapType: 1
+		}),
+		headers : {
+			"Accept" : "application/json",
+			"Content-Type" : "application/json"
+		},
+		success : function(JSONData, status) {
+			console.log('success');
+			swal({
+				title : "½ºÅ©·¦ ¿Ï·á " , 
+				text: "ÄÁÅÙÃ÷¸¦ ¼º°øÀûÀ¸·Î ½ºÅ©·¦ Çß½À´Ï´Ù" , 
+				icon : "success" , 
+			}).then((value) => {
+				$('.btn.btn-secondary').click();
+			});
+		}, 
+		error: function(error) {
+			console.log(error)
+		}
+	});
 }
 
-function fucCloseModal(){
+function fncCloseModal(){
 	$('.btn.btn-secondary').click();
 	location.reload();
 }
@@ -243,7 +264,7 @@ ${contentHtml}
 	      <div class="modal-body"></div>
 	      <div class="modal-footer">
 	        <button type="button" class="btn btn-secondary" data-dismiss="modal">´Ý±â</button>
-	        <button type="button" class="btn btn-primary" id="addScrap">½ºÅ©·¦ ÇÏ±â</button>
+	        <button type="button" class="btn btn-primary" data-section="" id="addScrap">½ºÅ©·¦ ÇÏ±â</button>
 	      </div>
 	    </div>
 	  </div>

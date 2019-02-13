@@ -20,6 +20,18 @@
 			.section-title {
 				color: ${fontColor};
 			}
+			
+			.scrap-btn {
+				position: absolute;
+			    top: -38px;
+			    right: 0;
+			    background-color: #123456;
+			    color: white;
+			    padding: 0 10px;
+			    border-radius: 5px;
+			    font-size: medium;
+			    cursor: pointer;
+			}
 		</style>
 	</head>
 <body>
@@ -38,11 +50,12 @@
 							<span class="trailer-field">개봉일</span>  <span>${contentMovie.movieOpenDate}</span> <span class="trailer-field">장르</span> <span>${contentMovie.movieGenre}</span><br/>	
 							<span class="trailer-field">감독</span> <span>${contentMovie.movieDirector}</span><br/>
 							<span class="trailer-field">배우</span> <span>${contentMovie.movieActor}</span><br/>
-							</div>
 						</div>
+					</div>
 					<div class="movie-trailer-preview" id="movie-preview-${contentMovie.movieNo}">
 						
 					</div>
+					<div class="scrap-btn">스크랩</div>
 				</article>
 			</c:forEach>
 		</div>
