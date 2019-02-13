@@ -58,7 +58,7 @@
   <div class="main main-raised">
     <div class="section section-basic">
       <div class="container"> 
-	      <div class="row" style="margin-bottom: 3%;">
+	      <div class="row year" style="margin-bottom: 3%;">
 				<ul class="controlbtn">
 					<li>
 						<button type="button" class="btn btn-info btn-fab btn-round" style="margin-top : 20px; margin-right : 10px;">
@@ -83,13 +83,17 @@
 							<i class="material-icons">last_page</i>
 						</button>
 					</li>
-					<li class="col-md-3">
-						<select class="form-control selectpicker" data-style="btn btn-link">
-							 <option value="0" >막대 그래프</option>
-							 <option value="1" >점선 그래프</option>
-							 <option value="2" >원형 그래프</option>
+				</ul>
+			</div>
+			<div class="offset-10">
+				<ul>
+					<li class="col-md-10">
+						<select class="form-control selectpicker" data-style="btn btn-link" name ="FAQCategory">
+							 <option value="0" >&nbsp; &nbsp;Bar Graph</option>
+							 <option value="1" >&nbsp; &nbsp;Line Graph</option>
+							 <option value="2" >&nbsp; &nbsp;Pie Graph</option>
 						</select>
-					</li>
+						</li>
 				</ul>
 			</div>
       <script type="text/javascript">
@@ -164,7 +168,7 @@
 				</c:forEach>
 			var ctx = $('#myChart');
 			///////////////////////////막대 그래프////////////////////////////////////
-			var toDoMonthBarChart = new Chart(ctx, {
+			var toDoMonthChart = new Chart(ctx, {
 				type : 'bar',
 				data : {
 					labels : [ "1월", "2월", "3월", "4월", "5월", "6월", "7월", "8월",
@@ -211,62 +215,118 @@
 					}
 				}
 			})
-			/////////////////////////////////////점선 그래프////////////////////////////////
-			var toDoMonthLineChart = new Chart(ctx, {
-				type : 'line',
-				data : {
-					labels : [ "1월", "2월", "3월", "4월", "5월", "6월", "7월", "8월",
-							"9월", "10월", "11월", "12월" ],
-					datasets : [ {
-						data : counts,
-						label: "",
-						backgroundColor: "rgba(235,73,36 ,0.4)",
-					} ]
-				},
-				 options : {
-					scales : {
-						yAxes : [ {
-							scaleLabel : {
-								display : true,
-								labelString : '월 별 성취도 개수'
+			//////////////////////////////////////셀렉터/////////////////////////////////////////
+			$(".selectpicker").change(function(){
+			    var choice =  $(this).val();
+			    if(choice == '0'){
+			    	toDoMonthChart.destroy();
+			    	toDoMonthChart = new Chart(ctx, {
+						type : 'bar',
+						data : {
+							labels : [ "1월", "2월", "3월", "4월", "5월", "6월", "7월", "8월",
+									"9월", "10월", "11월", "12월" ],
+							datasets : [ {
+								label : '# of Votes',
+								data : counts,
+								backgroundColor : [ 'rgba(189,8,28 ,0.5)',
+										'rgba(235,73,36 ,0.5)', 'rgba(255,87,0 ,0.5)',
+										'rgba(255,170,0 ,0.5)', 'rgba(245,125,0 ,0.5)',
+										'rgba(37,211,102 ,0.5)',
+										'rgba(0,180,137 ,0.5)',
+										'rgba(76,117,163 ,0.5)',
+										'rgba(0,175,240 ,0.5)', 'rgba(0,132,255 ,0.5)',
+										'rgba(0,126,229 ,0.5)', 'rgba(65,0,147 ,0.5)'
+								],
+								borderColor : [ 'rgba(189,8,28 ,1)',
+										'rgba(235,73,36 ,1)', 'rgba(255,87,0 ,1)',
+										'rgba(255,170,0 ,1)', 'rgba(245,125,0 ,1)',
+										'rgba(37,211,102 ,1)', 'rgba(0,180,137 ,1)',
+										'rgba(76,117,163 ,1)', 'rgba(0,175,240 ,1)',
+										'rgba(0,132,255 ,1)', 'rgba(0,126,229 ,1)',
+										'rgba(65,0,147 ,1)' ],
+								borderWidth : 1
+							} ]
+						},
+						options : {
+							scales : {
+								yAxes : [ {
+									scaleLabel : {
+										display : true,
+										labelString : '월 별 성취도 개수'
+									},
+									ticks : {
+										beginAtZero : true
+									}
+								} ],
+								xAxes : [ {
+									scaleLabel : {
+										display : true,
+										labelString : '월 별 완료 그래프'
+									}
+								} ]
 							}
-						} ],
-						xAxes : [ {
-							scaleLabel : {
-								display : true,
-								labelString : '월 별 완료 그래프'
+						}
+					})
+			    }else if(choice == '1'){
+			    	toDoMonthChart.destroy();
+			    	toDoMonthChart = new Chart(ctx, {
+						type : 'line',
+						data : {
+							labels : [ "1월", "2월", "3월", "4월", "5월", "6월", "7월", "8월",
+									"9월", "10월", "11월", "12월" ],
+							datasets : [ {
+								data : counts,
+								label: "",
+								backgroundColor: "rgba(235,73,36 ,0.4)",
+							} ]
+						},
+						 options : {
+							scales : {
+								yAxes : [ {
+									scaleLabel : {
+										display : true,
+										labelString : '월 별 성취도 개수'
+									}
+								} ],
+								xAxes : [ {
+									scaleLabel : {
+										display : true,
+										labelString : '월 별 완료 그래프'
+									}
+								} ]
 							}
-						} ]
-					}
-				}
-			})
-			//////////////////////////////////원형 그래프////////////////////////////////////
-			var toDoMonthChart = new Chart(ctx, {
-				type : 'doughnut',
-				data : {
-					labels : [ "1월", "2월", "3월", "4월", "5월", "6월", "7월", "8월",
-							"9월", "10월", "11월", "12월" ],
-					datasets : [ {
-						label : '# of Votes',
-						data : counts,
-						backgroundColor : [ 'rgba(189,8,28 ,0.5)',
-								'rgba(235,73,36 ,0.5)', 'rgba(255,87,0 ,0.5)',
-								'rgba(255,170,0 ,0.5)', 'rgba(245,125,0 ,0.5)',
-								'rgba(37,211,102 ,0.5)',
-								'rgba(0,180,137 ,0.5)',
-								'rgba(76,117,163 ,0.5)',
-								'rgba(0,175,240 ,0.5)', 'rgba(0,132,255 ,0.5)',
-								'rgba(0,126,229 ,0.5)', 'rgba(65,0,147 ,0.5)' ]
-					} ]
-				},
-				options : {
-					showAllTooltips : true,
-					responsive : true
-				}
-			})
-     	 })
+						}
+					})
+			    }else  if(choice == '2'){
+			    	toDoMonthChart.destroy();
+			    	toDoMonthChart = new Chart(ctx, {
+						type : 'doughnut',
+						data : {
+							labels : [ "1월", "2월", "3월", "4월", "5월", "6월", "7월", "8월",
+									"9월", "10월", "11월", "12월" ],
+							datasets : [ {
+								label : '# of Votes',
+								data : counts,
+								backgroundColor : [ 'rgba(189,8,28 ,0.5)',
+										'rgba(235,73,36 ,0.5)', 'rgba(255,87,0 ,0.5)',
+										'rgba(255,170,0 ,0.5)', 'rgba(245,125,0 ,0.5)',
+										'rgba(37,211,102 ,0.5)',
+										'rgba(0,180,137 ,0.5)',
+										'rgba(76,117,163 ,0.5)',
+										'rgba(0,175,240 ,0.5)', 'rgba(0,132,255 ,0.5)',
+										'rgba(0,126,229 ,0.5)', 'rgba(65,0,147 ,0.5)' ]
+							} ]
+						},
+						options : {
+							showAllTooltips : true,
+							responsive : true
+						}
+			    })
+			    }
+      })
+      })
       </script>
-      <canvas id="myChart" style="position: relative; height: 70vh; width: 50vw;"></canvas>
+      <canvas id="myChart"></canvas>
 		</div>
       </div>
     </div>
