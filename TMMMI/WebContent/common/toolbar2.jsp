@@ -11,13 +11,18 @@
 	.page-header .title, .page-header>.container { color : ${userSetting.menuFontColor};}
 	.navbar .navbar-brand { color : ${userSetting.menuFontColor}; }
 	.navbar.navbar-transparent{ color : ${userSetting.menuFontColor};}
+	
+	/* 추가한 부분 */
+	.logo{ height:160%; margin-top: -9px; }
+	.nav-link{ margin-top: 10px; font-size:14px !important; }
+	
 </style>
 </head>
 <body>
   <nav class="navbar navbar-transparent navbar-color-on-scroll fixed-top navbar-expand-lg" color-on-scroll="100" id="sectionsNav">
     <div class="container">
       <div class="navbar-translate">
-       <a class="navbar-brand" href="../index.jsp">TMMMI</a>
+       <a class="navbar-brand" href="../index.jsp"><img src="/images/Logo/logoPurple.png" alt="" class="logo"></a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" aria-expanded="false" aria-label="Toggle navigation">
           <span class="sr-only">Toggle navigation</span>
           <span class="navbar-toggler-icon"></span>

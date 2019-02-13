@@ -17,6 +17,11 @@
 <!-- jQuery -->
 <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+<link rel="stylesheet" href="/css/index/assets/css/main.css" />
+<link href="https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Do+Hyeon" rel="stylesheet">
+<noscript><link rel="stylesheet" href="/css/index/assets/css/noscript.css" /></noscript>
 	    
     <script type="text/javascript">
     
@@ -61,13 +66,108 @@
 					}
 			});
 	    }
+		
+		////////////////////////////////top 버튼
+	    $(function() {
+	        $(window).scroll(function() {
+	            if ($(this).scrollTop() > 500) {
+	                $('#arrow').fadeIn();
+	            } else {
+	                $('#arrow').fadeOut();
+	            }
+	        });
+	        
+	        $("#arrow").click(function() {
+	            $('html, body').animate({
+	                scrollTop : 0
+	            }, 400);
+	            return false;
+	        });
+	    });
+		
+		////////////////////////////////배너
+		$(document).ready(function() {	    	 
+			
+	    	// 기존 css에서 플로팅 배너 위치(top)값을 가져와 저장한다.
+	    	var floatPosition = parseInt($("#floatdiv").css('top'));
+	    	// 250px 이런식으로 가져오므로 여기서 숫자만 가져온다. parseInt( 값 );
+	     
+	    	$(window).scroll(function() {
+	    		// 현재 스크롤 위치를 가져온다.
+	    		var scrollTop = $(window).scrollTop();
+	    		var newPosition = scrollTop + floatPosition + "px";
+
+	    		$("#floatdiv").stop().animate({
+	    			"top" : newPosition
+	    		}, 500);
+	    	}).scroll();
+	    });
 	
-	
+		
+		////////////////////////////////
+	    $(function() {	
+	    	$(".users").on("click",function(){	
+	    		//alert("유저 카테고리만 보기")
+				self.location = "/faq/getFAQList?searchCondition=1";
+		    });
+	    });
+		
+		////////////////////////////////
+	    $(function() {	
+	    	$(".calendar").on("click",function(){	
+	    		//alert("1:1문의로 이동")
+				self.location = "/faq/getFAQList?searchCondition=2";
+		    });
+	    });
+	    
+		////////////////////////////////
+	    $(function() {	
+	    	$(".content").on("click",function(){	
+	    		//alert("1:1문의로 이동")
+				self.location = "/faq/getFAQList?searchCondition=3";
+		    });
+	    });
+	    
+		////////////////////////////////
+	    $(function() {	
+	    	$(".diary").on("click",function(){	
+	    		//alert("1:1문의로 이동")
+				self.location = "/faq/getFAQList?searchCondition=4";
+		    });
+	    });
+		
 </script>
 
 <style>
+
 		.QNAtitle {
 			cursor:pointer;
+		}
+		
+		/* 배너 */
+	 	#floatdiv {
+			position: absolute;
+		    height: 360px;
+		    right:-20px;
+		    color: #fff;
+		}		
+		
+		/* 가운데 이미지 */
+		.tiles article > a{
+			color:#3a2a64;
+			background-color:#ffffff;
+		}
+		.tiles article > a:hover{
+			color: #f2849e !important;
+			background-color:#ffffff;
+		}
+		.tiles article.style1 > .image:before, .tiles article.style2 > .image:before, .tiles article.style3 > .image:before, .tiles article.style4 > .image:before,
+		.tiles article.style5 > .image:before, .tiles article.style6 > .image:before {;
+			background-color:#ffffff;
+		}
+		
+		button{
+			color:white !important;
 		}
 </style>
 
@@ -93,10 +193,68 @@
 	<div class="main main-raised">
     	<div class="section section-basic">
       		<div class="container">
-      	
+      		
+      		 <!-- 배너 -->
+			<!-- <iframe id="floatdiv" src="/widget/getWeather.jsp" style="border-color: rgb(0,0,0,0);"></iframe> -->
+		
+      		<img src="/images/common/star.png" width="2%"/>
 	      	<span>Home / CustomerCenter</span> <br><br>
 			 	
-			 	<hr style="margin-bottom:-0.1%;">
+			 	
+			 	<section class="tiles" style="cursor:pointer; margin-top: -30px;">
+					<article class="style5 users" style="width:243px;">
+						<span class="image">
+							<img src="/css/index/images/pic05.jpg" alt="" />
+						</span>
+						<a>
+							<h4>User</h4><br/>
+							<img src="/images/loginIndex/find-my-friend.png" width="20%"/>
+							<div class="content">
+								<p>Check my information</p>
+							</div>
+						</a>
+					</article>
+					<article class="style1 calendar" style="width:243px;">
+						<span class="image">
+							<img src="/css/index/images/loginIndex.png" alt="" />
+						</span>
+						<a>
+							<h4>Calendar</h4><br/>
+							<img src="/images/loginIndex/calendar.png" width="20%"/>
+							<div class="content">
+								<p>Schedule Management</p>
+							</div>
+						</a>
+					</article>
+					<article class="style2 content" style="width:243px;">
+						<span class="image">
+							<img src="/css/index/images/pic02.jpg" alt="" />
+						</span>
+						<a>
+							<h4>Content</h4><br/>
+							<img src="/images/loginIndex/sharing-content.png" width="20%"/>
+							<div class="content">
+								<p>Collect Interest</p>
+							</div>
+						</a>
+					</article>
+					<article class="style3 diary" style="width:243px;">
+						<span class="image">
+							<img src="/css/index/images/pic03.jpg" alt="" />
+						</span>
+						<a>
+							<h4>Diary</h4><br/>
+							<img src="/images/loginIndex/diary.png" width="20%"/>
+							<div class="content">
+								<p>Leave an appreciation for the day</p>
+							</div>
+						</a>
+					</article>		
+				</section>	
+				
+				<br/><br/>
+				
+				<hr style="margin-bottom:-0.1%;">
 				<ul class="nav justify-content-center" >
 				  <li class="nav-item">
 				    <a class="nav-link active"  id="faq" style="cursor:pointer;" data-toggle="tooltip" data-placement="left" title="FAQ로 이동합니다" onMouseover="this.style.color='#9124a3';" onMouseout="this.style.color='black';">FAQ</a>
@@ -106,14 +264,16 @@
 				  </li>
 				</ul>
 				<hr style="margin-top:0.1%;">
-			 	
+
+			
 			 	<div id="table">
 					<jsp:include page="../QNA/QNATable.jsp"/>
 				</div>
-			 			 	
-			<button type="button"  class="btn btn-primary btn-round btn-sm" style="left: 95%;">1:1 문의하기</button>
-			
-			
+			 	
+			 <div class="row"></div>		 	
+				<button type="button"  class="btn btn-primary btn-round btn-sm" style="left: 90%;">1:1 문의하기</button>
+				<a style="cursor:pointer;" id="arrow" >	Back To Top</a>
+			</div>	
 	      <br/><br/><br/><br/>
       
       </div>      
