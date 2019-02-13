@@ -87,7 +87,6 @@
 			user_name=#{userName:VARCHAR},
 			password=#{password:VARCHAR},
 			birthday=#{birthday:DATE},
-			role=#{role:NUMERIC},
 			email=#{email}
 		</set>
 		WHERE user_no=#{userNo}

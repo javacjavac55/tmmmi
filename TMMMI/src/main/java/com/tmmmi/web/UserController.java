@@ -161,8 +161,10 @@ public class UserController {
 		userService.updateUser(user);
 		
 		int sessionId=((int)session.getAttribute("userNo"));
+		
 		if(sessionId == (user.getUserNo())){
-			session.setAttribute("userNo", user.getUserNo());
+			session.removeAttribute("userName");
+			session.setAttribute("userName", user.getUserName());
 		}
 		
 		ModelAndView modelAndView = new ModelAndView();

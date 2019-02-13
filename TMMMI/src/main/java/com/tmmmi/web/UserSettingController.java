@@ -72,7 +72,7 @@ public class UserSettingController {
 		userSetting.setUserNo((int)session.getAttribute("userNo"));
 		
 		userSettingService.updateUserSetting(userSetting);
-		session.removeValue("userSetting");
+		session.removeAttribute("userSetting");
 		session.setAttribute("userSetting", userSettingService.getUserSetting((int)session.getAttribute("userNo")));
 		
 		ModelAndView modelAndView = new ModelAndView();

@@ -46,7 +46,7 @@
 			var userName=$("input[name='userName']").val();
 			var birthday=$("input[name='birthday']").val();
 			var email=$("input[name=email]").val();
-			var emailCheck=$("input[name=emailCheck]").val();
+			var emailCheck=$("input[name=authNum]").val();
 			
 			if(pw == null || pw.length <1){
 				swal({
@@ -148,6 +148,39 @@
 		}
 	</script>
 	
+	<!-- 이메일 인증번호 체크 -->
+	<script type="text/javascript">
+		function emailCheckDuplication(){
+			var inAuthNum =$("input[name=authNum]").val();
+			console.log(inAuthNum)
+			$.ajax({
+				url : "/userRest/authNumCheckDuplication",
+				method : "POST",
+				data : JSON.stringify(inAuthNum),
+				dataType : "JSON",
+				headers : {
+	            	"Accept" : "application/json",
+					"Content-Type" : "application/json"
+	            },
+	            success : function(JSONData, status){
+	            	var result = JSONData;
+	            	if(true){
+	            		if(result){
+		            		$('#help3').remove()
+		            		$($("#authNumHelpBlock").last().after('<strong class="text-success" id="help3">인증 완료되었습니다.</strong>'))
+		            	}else{
+		            		$('#help3').remove()
+		            		$($("#authNumHelpBlock").last().after('<strong class="text-danger" id="help3">인증번호를 다시 입력해주세요.</strong>'))
+		            	}
+	            	}else{
+	            		$('#help3').remove()
+	            		$($("#authNumHelpBlock").last().after('<strong class="text-danger" id="help3">인증번호를 입력해주세요.</strong>'))
+	            	}
+	            }
+			})
+		}
+	</script>
+	
 	<!-- 달력 -->
 	<script type="text/javascript">
 		$(function(){
@@ -233,9 +266,10 @@
 			  
 			<div class="description text-center">
 				<div class="form-group bmd-form-group">
-				<label for="ssn" class="bmd-label-static">E-mail confirm</label>
-					<input type="text" autocomplete="off" class="form-control" id="emailCheck" name="emailCheck" placeholder="코드 입력">
-				</div>
+			    <label for="emailCheck" class="bmd-label-static">E-mail Confirm</label>
+			    	<input type="text" autocomplete="off"  oninput="emailCheckDuplication()" class="form-control" id="authNum" name="authNum" placeholder="이메일로 전송된 코드 입력">
+			    	<span id="authNumHelpBlock" class="help-block"></span>
+			    </div>
 			</div>
 			  
 			<div class="description text-center">

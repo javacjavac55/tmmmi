@@ -59,6 +59,11 @@ public class UserServiceImpl implements UserService {
 	public void withdrawUser(User user) throws Exception{
 		userDao.withdrawUser(user);
 	}
+	
+	@Override
+	public void cancleUser(User user) throws Exception{
+		userDao.cancleUser(user);
+	}
 
 	@Override
 	public Map<String, Object> getUserList(Search search) throws Exception {
@@ -128,7 +133,7 @@ public class UserServiceImpl implements UserService {
 	public boolean checkDuplication(String userId) throws Exception {
 		boolean result = true;
 		User user = userDao.getUserId(userId);
-		if(user != null) {
+		if(user.getUserId().equals("no")) {
 			result = false;
 		}
 		return result;
