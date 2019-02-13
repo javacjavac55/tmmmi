@@ -24,6 +24,7 @@
 <!--ckeditor  -->
 <!-- <script src="/ckeditor/ckeditor.js"></script> -->
 <script src="//cdn.ckeditor.com/4.7.3/full/ckeditor.js"></script>
+<!-- <script type="text/javascript" src="/ckeditor/ckeditor.js"></script> -->
 
 <!--sweet alert -->
 <script src ="https://unpkg.com/sweetalert/dist/sweetalert.min.js" ></script >
@@ -94,7 +95,6 @@
 		form_data.append('file', file)
 		
 	} */
-
 	function fncAddDiary() {
 		var title=$("input[name='diaryTitle']").val();
 		var detail=CKEDITOR.instances.ckeditor.getData();
@@ -233,6 +233,7 @@
 	<%-- <jsp:include page="/common/footer.jsp"></jsp:include> --%>
 	<jsp:include page="/common/footer.jsp"></jsp:include>
 	<script>
+	
 		CKEDITOR.replace('ckeditor', {//해당 이름으로 된 textarea에 에디터를 적용
 			/* extraPlugins: 'autoembed,embedsemantic,image2,uploadimage,uploadfile',
 			removePlugins: 'image', */
