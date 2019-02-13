@@ -11,6 +11,7 @@ import org.json.simple.parser.JSONParser;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -55,7 +56,7 @@ public class UserRestController {
 		userId = userId.replaceAll("\"", "");
 		System.out.println("/userRest/checkDuplication : POST");
 		boolean result=userService.checkDuplication(userId);
-		System.out.println(result);
+		System.out.println("result"+result);
 		return result;	
 	}
 	
@@ -133,6 +134,7 @@ public class UserRestController {
 	@RequestMapping(value="searchUserPw", method=RequestMethod.GET)
 	@ResponseBody
 	public ModelAndView searchUserPw() {
+		System.out.println("userRest/searchUserPw : GET");
 		ModelAndView modelAndView = new ModelAndView();
 		modelAndView.setViewName("/user/searchUserPw.jsp");
 		return modelAndView;
@@ -142,8 +144,7 @@ public class UserRestController {
 	@ResponseBody
 	public int searchUserPw(@RequestBody User user, HttpServletRequest request, HttpSession session) throws Exception{
 		
-		System.out.println("/userRest/searchUserPw:POST");
-
+		System.out.println("/userRest/searchUserPw : POST");
 		
 		String authNum = "";
 		authNum = RandomNum();
@@ -180,13 +181,49 @@ public class UserRestController {
 	
 	@RequestMapping(value="withdraw", method=RequestMethod.POST)
 	public int withdraw(@ModelAttribute("user") User user, HttpSession session) throws Exception{
-		System.out.println("/user/withdraw : POST");
+		System.out.println("/userRest/withdraw : POST");
 		user.setUserNo((int)session.getAttribute("userNo"));
 		user.setWithdrawCheck(1);
 		userService.withdrawUser(user);
 		session.invalidate();
 		
 		return 1;
+	}
+	
+	@RequestMapping(value="withdrawAdmin", method=RequestMethod.POST)
+	public int withdrawAdmin(@RequestBody int userNo, HttpSession session) throws Exception{
+		
+		System.out.println("/userRest/withdrawAdmin : POST");
+		System.out.println("userNo"+userNo);
+		User user = new User();
+		user.setUserNo(userNo);
+		
+		if(userService.getUser((int)session.getAttribute("userNo")).getRole() == 0) {
+			user.setWithdrawCheck(1);
+			userService.withdrawUser(user);
+			
+			return userNo;
+		}else {
+			
+			return 0;
+		}
+	}
+	
+	@RequestMapping(value="withdrawCancle", method=RequestMethod.POST)
+	public int cancle(@RequestBody int userNo, HttpSession session) throws Exception{
+		
+		System.out.println("/userRest/cancle : POST");
+		
+		if(userService.getUser((int)session.getAttribute("userNo")).getRole() == 0) {
+			User user = new User();
+			user.setWithdrawCheck(0);
+			user.setUserNo(userNo);
+			userService.cancleUser(user);
+			
+			return userNo;
+		}else {
+			return 0;
+		}
 	}
 	
 	@RequestMapping(value="login", method=RequestMethod.POST)

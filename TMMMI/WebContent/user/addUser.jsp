@@ -218,11 +218,11 @@
 	            	console.log(result)
 	            	if(inputed.length > 4 && inputed.length <12){
 	            		if(result){
-		            		$('#help').remove()
-		            		$($("#joinhelpBlock").last().after('<strong class="text-success" id="help">가입 가능한 아이디입니다.</strong>'))
+	            	   		$('#help').remove()
+		            		$($("#joinhelpBlock").last().after('<strong class="text-danger" id="help">다른 아이디를 입력해주세요.</strong>'))
 		            	}else{
 		            		$('#help').remove()
-		            		$($("#joinhelpBlock").last().after('<strong class="text-danger" id="help">다른 아이디를 입력해주세요.</strong>'))
+		            		$($("#joinhelpBlock").last().after('<strong class="text-success" id="help">가입 가능한 아이디입니다.</strong>'))
 		            	}
 	            	}else{
 	            		$('#help').remove()

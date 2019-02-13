@@ -15,7 +15,8 @@
 <!-- jQuery -->
 <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-
+<!-- sweetalert -->
+<script src ="https://unpkg.com/sweetalert/dist/sweetalert.min.js" ></script >
 <!-- À¯Àú ¸®½ºÆ® -->
 <script type="text/javascript">
 	function fncGetList(currentPage){
@@ -32,7 +33,86 @@
 			var userNo = $(this).data('param');
 			self.location = "/user/updateUserAdmin/"+userNo;
 		});
+		
+		$(document).on('click', 'button.btn.btn-info', function(){
+			var userNo = $(this).data('withdraw');
+			fncWithdraw(userNo);
+		});
+		
+		$(document).on('click', 'button.btn.btn-warning', function(){
+			var userNo = $(this).data('withdrawcancle');
+			fncWithdrawCancle(userNo);
+		});
 	})
+</script>
+
+<!-- Ajax -->
+<script type="text/javascript">
+	function fncWithdraw(data){
+		var userNo = data;
+		$.ajax({
+			url : "/userRest/withdrawAdmin",
+			method : "POST",
+			data : JSON.stringify(userNo),
+			dataType : "json",
+			headers : {
+            	"Accept" : "application/json",
+				"Content-Type" : "application/json"
+            },
+            success : function(JSONData, status){
+            	var result = JSONData;
+            	if(result == 0){
+            		swal({
+	    				title : "Å»Åð ½ÇÆÐ",
+	    				icon : "warning",
+	    				buttons: true,
+	    			})
+            	}else{
+            		swal({
+	    				title : "Å»Åð ¿Ï·á",
+	    				icon : "success",
+	    				buttons: true,
+	    			}).then((value)=>{
+	    				$('#withdraw'+result).remove()
+				    	$($('#helf'+result).last().after('<button type="button" class="btn btn-warning btn-round" data-withdrawCancle="'+result+'" id="withdrawCancle'+result+'">º¹±¸</button>'))
+					})
+            	}
+            }
+		})
+	}
+	
+	function fncWithdrawCancle(data){
+		var userNo = data;
+		$.ajax({
+			url : "/userRest/withdrawCancle",
+			method : "POST",
+			data : JSON.stringify(userNo),
+			dataType : "json",
+			headers : {
+            	"Accept" : "application/json",
+				"Content-Type" : "application/json"
+            },
+            success : function(JSONData, status){
+            	var result = JSONData;
+            	if(result == 0){
+	            	swal({
+	    				title : "º¹±¸ ½ÇÆÐ",
+	    				icon : "warning",
+	    				buttons: true,
+	    			})
+            	}else{
+            		swal({
+	    				title : "º¹±¸ ¿Ï·á",
+	    				icon : "success",
+	    				buttons: true,
+	    			}).then((value)=>{
+	    				$('#withdrawCancle'+result).remove()
+				    	$($('#helf'+result).last().after('<button type="button" class="btn btn-info btn-round" data-withdraw="'+result+'" id="withdraw'+result+'">Å»Åð</button>'))
+					})
+            	}
+            }
+		})
+	}
 </script>
 </head>
 <body class="index-page sidebar-collapse">
@@ -108,19 +188,20 @@
 													<c:otherwise>X</c:otherwise>
 												</c:choose>
 											</td>
+											<td align="center" style="padding:25px;">${user.withdrawDate}</td>
 											<!-- Å»Åð ¿©ºÎ -->
 											<td align="center">
+												<span id="helf${user.userNo }"></span>
 												<c:choose>
 													<c:when test="${user.withdrawCheck eq 1 }">
-														<button type="button" class="btn btn-warning btn-round">º¹±¸</button>
+														<button type="button" class="btn btn-warning btn-round" id="withdrawCancle${user.userNo }" data-withdrawcancle="${user.userNo }">º¹±¸</button>
 													</c:when> 
 													<c:otherwise>
-														<button type="button" class="btn btn-info btn-round">Å»Åð</button>
+														<button type="button" class="btn btn-info btn-round" id="withdraw${user.userNo }" data-withdraw="${user.userNo }">Å»Åð</button>
 													</c:otherwise>
 												</c:choose>
 											</td>
-											<td align="center" style="padding:25px;">${user.withdrawDate}</td>
-											<td align="center"><button type="button" class="btn btn-primary btn-round" data-param="${user.userNo }">¼öÁ¤</button></td>
+											<td align="center"><button type="button" class="btn btn-primary btn-round" id="update${user.userNo }" data-param="${user.userNo }">¼öÁ¤</button></td>
 										</tr>
 									</c:forEach>
 									</tbody>

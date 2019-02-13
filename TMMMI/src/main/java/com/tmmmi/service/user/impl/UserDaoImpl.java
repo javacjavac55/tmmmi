@@ -77,6 +77,11 @@ public class UserDaoImpl implements UserDao {
 	}
 	
 	@Override
+	public void cancleUser(User user) throws Exception{
+		sqlSession.update("UserMapper.withdrawUser", user);
+	}
+	
+	@Override
 	public User searchUserId(User user) {
 		return sqlSession.selectOne("UserMapper.searchUserId", user);
 	}

@@ -352,8 +352,8 @@ public class DiaryController {
 	            //printWriter.write("{\"uploaded\": 1,\"fileName\": \""+fileName+"\", \"url \" :"+"\"http://192.168.0.53:8080/images/diaryImage/"+fileName+"\"}");
 	            printWriter.flush();
 	            
-	            
-	            if (file.isFile()) {
+	            // exists , isFile 둘다 파일이있다고 나옴
+	            if (file.exists()) {
 	            	System.out.println("파일이 있습니다.");
 	            	System.out.println(file.getCanonicalPath().toString());
 	            }else {

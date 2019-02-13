@@ -40,12 +40,12 @@ public class WeatherController {
         	city = "서울";
         }else  if(city.equals("Incheon")) {
         	city = "인천";
-        } if(city.equals("Busan")) {
-        	city = "부산";
-        }if(city.equals("Gwangju")) {
+        } if(city.equals("Gwangju")) {
         	city = "광주";
         }if(city.equals("Daejeon")) {
         	city = "대전";
+        }if(city.equals("Busan")) {
+        	city = "부산";
         }
         String text = URLEncoder.encode(city, "UTF-8");
          //URL객체를 생성, 해당 URL로 접속

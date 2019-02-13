@@ -135,7 +135,6 @@ public class FAQRestController {
 		int userNo = (int)session.getAttribute("userNo");
 		modelAndView.addObject("role", userService.getUser(userNo).getRole());
 		
-		System.out.println("\nÀÌÂë¿¡¼­±úÁö³ª???????????? \n");
 		modelAndView.setViewName("/FAQ/FAQTable.jsp");
 		return modelAndView;
 	}
