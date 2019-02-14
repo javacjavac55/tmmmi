@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 
 import com.tmmmi.service.content.ContentDao;
 import com.tmmmi.service.domain.ContentSetting;
+import com.tmmmi.service.domain.ContentShopping;
 
 @Service("contentShoppingServiceImpl")
 public class ContentShoppingServiceImpl extends ContentServiceAdaptor {	
@@ -25,19 +26,19 @@ public class ContentShoppingServiceImpl extends ContentServiceAdaptor {
 		System.out.println(this.getClass());
 	}
 	
-	public List<Object> getContentShoppingFirstList(ContentSetting contentSetting, int index) throws Exception{
+	public List<ContentShopping> getContentShoppingFirstList(ContentSetting contentSetting, int index) throws Exception{
 		return contentShoppingDao.getContentShoppingFirstList(contentSetting, index);
 	}
 	
-	public List<Object> getContentShoppingSecondList(ContentSetting contentSetting, int index) throws Exception{
+	public List<ContentShopping> getContentShoppingSecondList(ContentSetting contentSetting, int index) throws Exception{
 		return contentShoppingDao.getContentShoppingSecondList(contentSetting, index);
 	}
 	
-	public List<Object> getContentShoppingThirdList(ContentSetting contentSetting, int index) throws Exception{
+	public List<ContentShopping> getContentShoppingThirdList(ContentSetting contentSetting, int index) throws Exception{
 		return contentShoppingDao.getContentShoppingThirdList(contentSetting, index);
 	}
 	
-	public List<Object> getContentShoppingReviewList(ContentSetting contentSetting, int index) throws Exception{
+	public List<ContentShopping> getContentShoppingReviewList(ContentSetting contentSetting, int index) throws Exception{
 		return contentShoppingDao.getContentShoppingReviewList(contentSetting, index);
 	}
 	

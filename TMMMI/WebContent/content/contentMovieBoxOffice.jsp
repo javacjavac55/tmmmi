@@ -57,6 +57,7 @@
 	<script src="/javascript/scroll/breakpoints.min.js"></script>
 	<script src="/javascript/scroll/util.js"></script>
 	<script src="/javascript/scroll/main.js"></script>
+	<script src="/javascript/scroll/refresh.js"></script>
 	<script>
 		 $(function(){
 			$(".movie-preview-btn").on("click", function(){
@@ -76,6 +77,56 @@
 			 $('.content-model-btn').on('click', function(){
 				var content = $(this).data("content");
 				$('#movieBoxOfficeInput').val(content);
+			});
+			
+			var count = 0;
+			var more = true;
+			$(document).on('click', '.forward', function(){
+				count+=1;
+				
+				if (more) {
+					$.ajax({
+						url : "/contentMovieRest/getContentMovieBoxOffice?index="+count,
+						method : "GET",
+						dataType: "json",
+						headers : {
+							"Accept" : "application/json",
+							"Content-Type" : "application/json"
+						},
+						success : function(JSONData, status) {
+							console.log(JSONData);
+							if (JSONData.length==0) {
+								more = false;
+							} else {
+								JSONData.forEach(function (item, index, array) {
+									var video = '';
+									if (item.movieVideo) {
+										video = '<button class="movie-preview-btn" type="button" data-no="'+item.movieNo+'"' + " data-link='"+item.movieVideo+"'></button>";
+									}
+									$('.reel').append(
+											'<article class="content-movie">'+
+												'<div class="movie">'+
+													'<a href="#">'+
+														'<img class="poster" src="'+item.movieThumbnail+'">'+
+														video+	
+													'</a>'+
+													'<div class="movie-info">'+	
+														'<button class="content-model-btn movie-title" type="button" data-content="'+item.movieLink+'">'+item.movieTitle+'</button><br/>'+
+														'<span class="field">俺豪老</span>  <span class="detail">'+item.movieOpenDate+'</span><br/>'+
+														'<span class="field">老埃 包按荐</span> <span class="detail">'+item.movieDayAudience+'</span><br/>'+
+														'<span class="field">穿利 包按荐</span> <span class="detail">'+item.movieTotalAudience+'</span><br/>'+
+													'</div>'+	
+												'</div>'+
+												'<div class="movie-preview" id="movie-preview-'+item.movieNo+'">'+
+												'</div>'+	
+											'</article>'
+									);
+								});
+								refresh();
+							}
+						}
+					});
+				}
 			})
 		}) 
 	</script>

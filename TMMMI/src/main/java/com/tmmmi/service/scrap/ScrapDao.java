@@ -12,8 +12,6 @@ public interface ScrapDao {
 	
 	public List<Scrap> getScrapList(Search search, int userNo) throws Exception;
 	
-	public void updateScrap(Scrap scrap) throws Exception;
-	
 	public void deleteScrap(int scrapNo) throws Exception;
 	
 	public int getTotalCount(int userNo)throws Exception;

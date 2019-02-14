@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
 import com.tmmmi.service.content.ContentDao;
+import com.tmmmi.service.domain.ContentMovie;
 import com.tmmmi.service.domain.ContentSetting;
 
 @Service("contentMovieServiceImpl")
@@ -25,23 +26,23 @@ public class ContentMovieServiceImpl extends ContentServiceAdaptor {
 		System.out.println(this.getClass());
 	}
 	
-	public List<Object> getBoxOfficeList(ContentSetting contentSetting, int index) throws Exception {
-		return contentMovieDao.getBoxOfficeList(contentSetting, index);
+	public List<ContentMovie> getBoxOfficeList(int index) throws Exception {
+		return contentMovieDao.getBoxOfficeList(index);
 	}
 	
-	public List<Object> getNewMovieList(ContentSetting contentSetting, int index) throws Exception {
-		return contentMovieDao.getNewMovieList(contentSetting, index);
+	public List<ContentMovie> getNewMovieList(int index) throws Exception {
+		return contentMovieDao.getNewMovieList(index);
 	}
 	
-	public List<Object> getUpcomingMovieList(ContentSetting contentSetting, int index) throws Exception {
-		return contentMovieDao.getUpcomingMovieList(contentSetting, index);
+	public List<ContentMovie> getUpcomingMovieList(int index) throws Exception {
+		return contentMovieDao.getUpcomingMovieList(index);
 	}
 	
-	public List<Object> getMovieReviewList(ContentSetting contentSetting, int index) throws Exception {
-		return contentMovieDao.getMovieReviewList(contentSetting, index);
+	public List<ContentMovie> getMovieReviewList(int index) throws Exception {
+		return contentMovieDao.getMovieReviewList(index);
 	}
 	
-	public List<Object> getMovieTrailerList(ContentSetting contentSetting, int index) throws Exception {
-		return contentMovieDao.getMovieTrailerList(contentSetting, index);
+	public List<ContentMovie> getMovieTrailerList(int index) throws Exception {
+		return contentMovieDao.getMovieTrailerList(index);
 	}
 }

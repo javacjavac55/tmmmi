@@ -38,12 +38,13 @@
 	</select>
 		
 	<!-- SQL: DELETE -->
-	<delete id="deleteScrap" parameterType="com.tmmmi.service.domain.Scrap">
-		DELETE
-		FROM scrap
-		WHERE
-		scrap_no=#{scrapNo}
-	</delete>
+	<update id="deleteScrap" parameterType="int">
+	 	UPDATE scrap
+	 	<set>
+	 		scrap_delete_check = 1
+	 	</set>
+	 	WHERE scrap_no = #{value}
+	 </update>
 	
 	<select  id="getScrapList"  parameterType="map"	resultMap="ScrapSelectMap">
 	  	SELECT *
@@ -51,7 +52,7 @@
 	  					FROM		(	SELECT scrap_no , scrap_category, scrap_title, scrap_date, scrap_category_name, scrap_type
 											FROM scrap s, scrap_category c
 											<where>
-												user_no=#{userNo} AND s.scrap_category = c.scrap_category_no
+												user_no=#{userNo} AND s.scrap_category = c.scrap_category_no AND s.scrap_delete_check = 0
 											</where>											
 											ORDER BY scrap_no DESC) inner_table
 						WHERE ROWNUM &lt;= #{search.endRowNum} )
@@ -63,7 +64,7 @@
 	  	FROM(	SELECT scrap_no , scrap_category, scrap_title, scrap_date, scrap_category_name, scrap_type
 											FROM scrap s, scrap_category c
 											<where>
-												user_no=#{userNo} AND s.scrap_category = c.scrap_category_no
+												user_no=#{userNo} AND s.scrap_category = c.scrap_category_no AND s.scrap_delete_check = 0
 											</where>
 						) countTable						
 	 </select>

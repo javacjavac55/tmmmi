@@ -13,6 +13,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.tmmmi.service.content.ContentService;
 import com.tmmmi.service.contentsetting.ContentSettingService;
+import com.tmmmi.service.domain.ContentTasty;
 import com.tmmmi.service.usersetting.UserSettingService;
 
 @Controller
@@ -35,7 +36,7 @@ public class ContentTastyController {
 	public ModelAndView getContentTastyList(HttpSession session)throws Exception {
 		
 		int userNo = (int) session.getAttribute("userNo");
-		List<Object> contentList = contentTastyService.getContentTastyList(contentSettingService.getContentSetting(userNo), 0);
+		List<ContentTasty> contentList = contentTastyService.getContentTastyList(contentSettingService.getContentSetting(userNo), 0);
 		ModelAndView modelAndView = new ModelAndView();
 		modelAndView.addObject("contentTastyList", contentList);
 		modelAndView.addObject("bgColor", (userSettingService.getUserSetting(userNo).getMainColorModeNo()==0)?"#000000":"#FFFFFF");

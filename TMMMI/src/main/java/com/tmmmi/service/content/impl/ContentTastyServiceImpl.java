@@ -27,7 +27,7 @@ public class ContentTastyServiceImpl extends ContentServiceAdaptor {
 	}
 	
 	///Method
-	public List<Object> getContentTastyList(ContentSetting contentSetting, int index)throws Exception {
+	public List<ContentTasty> getContentTastyList(ContentSetting contentSetting, int index)throws Exception {
 		
 		return contentTastyDao.getContentTastyList(contentSetting, index);
 	}

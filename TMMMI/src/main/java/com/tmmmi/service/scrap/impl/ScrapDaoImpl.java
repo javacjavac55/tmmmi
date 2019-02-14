@@ -48,13 +48,7 @@ public class ScrapDaoImpl implements ScrapDao {
 		return sqlSession.selectList("ScrapMapper.getScrapList", map);
 		
 	}	
-
-	@Override
-	public void updateScrap(Scrap scrap) {
-		// TODO Auto-generated method stub
-		sqlSession.update("ScrapMapper.updateScrap", scrap);		
-	}
-
+	
 	@Override
 	public void deleteScrap(int scrapNo)throws Exception {
 		// TODO Auto-generated method stub
@@ -65,6 +59,5 @@ public class ScrapDaoImpl implements ScrapDao {
 	public int getTotalCount(int userNo) throws Exception{
 		return sqlSession.selectOne("ScrapMapper.getTotalCount", userNo);
 	}
-
 
 }

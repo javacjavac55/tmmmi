@@ -2,7 +2,6 @@ package com.tmmmi.web;
 
 import java.util.Map;
 
-import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,10 +16,8 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.tmmmi.common.Page;
 import com.tmmmi.common.Search;
-import com.tmmmi.service.domain.Diary;
 import com.tmmmi.service.domain.Scrap;
 import com.tmmmi.service.scrap.ScrapService;
-
 
 @Controller
 @RequestMapping("/scrap/*")
@@ -84,18 +81,7 @@ public class ScrapController {
 		
 		return modelAndView;
 	}
-	@RequestMapping(value="updateScrap", method=RequestMethod.POST)
-	public ModelAndView updateScrap(@RequestParam("scrapNo")int scrapNo)throws Exception {
-		System.out.println("/scrap/updateScrap : POST");
-		
-		Scrap scrap= scrapService.getScrap(scrapNo);
-		
-		ModelAndView modelAndView = new ModelAndView();
-		modelAndView.addObject("scrap",scrap);
-		modelAndView.setViewName("/scrap/updateScrap.jsp");
-		
-		return modelAndView;
-	}
+	
 	@RequestMapping(value="deleteScrap", method=RequestMethod.POST)
 	public ModelAndView deleteScrap(@RequestParam("deleteScrap") String scrapNo)  throws Exception{
 		
@@ -106,10 +92,9 @@ public class ScrapController {
 		for (int i=0; i<arrIdx.length; i++) {
 			scrapService.deleteScrap(Integer.parseInt(arrIdx[i]));
 		}	
-		
 				
 		ModelAndView modelAndView = new ModelAndView();
-		modelAndView.setViewName("/scrap/listScrap");
+		modelAndView.setViewName("/scrap/getScrapList");
 		
 		return modelAndView;
 	}

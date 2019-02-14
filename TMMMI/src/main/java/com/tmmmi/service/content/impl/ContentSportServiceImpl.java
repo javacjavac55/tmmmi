@@ -27,39 +27,39 @@ public class ContentSportServiceImpl extends ContentServiceAdaptor {
 	}
 	
 	@Override
-	public List<Object> getContentKsoccerList(ContentSetting contentSetting, int index) throws Exception {
+	public List<ContentSport> getContentKsoccerList(int index) throws Exception {
 		// TODO Auto-generated method stub
-		return contentSportDao.getContentKsoccerList(contentSetting, index);
+		return contentSportDao.getContentKsoccerList(index);
 	}
 	@Override
-	public List<Object> getContentWsoccerList(ContentSetting contentSetting, int index) throws Exception {
+	public List<ContentSport> getContentWsoccerList(int index) throws Exception {
 		// TODO Auto-generated method stub
-		return contentSportDao.getContentWsoccerList(contentSetting, index);	
+		return contentSportDao.getContentWsoccerList(index);	
 	}
 	@Override
-	public List<Object> getContentKbaseballList(ContentSetting contentSetting, int index) throws Exception {
+	public List<ContentSport> getContentKbaseballList(int index) throws Exception {
 		// TODO Auto-generated method stub
-		return contentSportDao.getContentKbaseballList(contentSetting, index);	
+		return contentSportDao.getContentKbaseballList(index);	
 	}
 	@Override
-	public List<Object> getContentWbaseballList(ContentSetting contentSetting, int index) throws Exception {
+	public List<ContentSport> getContentWbaseballList(int index) throws Exception {
 		// TODO Auto-generated method stub
-		return contentSportDao.getContentWbaseballList(contentSetting, index);	
+		return contentSportDao.getContentWbaseballList(index);	
 	}
 	@Override
-	public List<Object> getContentBasketballList(ContentSetting contentSetting, int index) throws Exception {
+	public List<ContentSport> getContentBasketballList(int index) throws Exception {
 		// TODO Auto-generated method stub
-		return contentSportDao.getContentBasketballList(contentSetting, index);	
+		return contentSportDao.getContentBasketballList(index);	
 	}
 	@Override
-	public List<Object> getContentGeneralList(ContentSetting contentSetting, int index) throws Exception {
+	public List<ContentSport> getContentGeneralList(int index) throws Exception {
 		// TODO Auto-generated method stub
-		return contentSportDao.getContentGeneralList(contentSetting, index);	
+		return contentSportDao.getContentGeneralList(index);	
 	}
 	
 	@Override
-	public List<Object> getContentHighlightList(ContentSetting contentSetting, int index)throws Exception{
-		return contentSportDao.getContentHighlightList(contentSetting, index);
+	public List<ContentSport> getContentHighlightList(int index)throws Exception{
+		return contentSportDao.getContentHighlightList(index);
 	}
 	
 	@Override

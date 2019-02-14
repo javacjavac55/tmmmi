@@ -2,58 +2,62 @@ package com.tmmmi.service.content;
 
 import java.util.List;
 
+import com.tmmmi.service.domain.ContentMovie;
 import com.tmmmi.service.domain.ContentSetting;
+import com.tmmmi.service.domain.ContentShopping;
 import com.tmmmi.service.domain.ContentSport;
+import com.tmmmi.service.domain.ContentTasty;
+import com.tmmmi.service.domain.ContentUserKeyword;
 
 public interface ContentDao {
 	//movie
-	public List<Object> getBoxOfficeList(ContentSetting contentSetting, int index) throws Exception;
+	public List<ContentMovie> getBoxOfficeList(int index) throws Exception;
 	
-	public List<Object> getNewMovieList(ContentSetting contentSetting, int index) throws Exception;
+	public List<ContentMovie> getNewMovieList(int index) throws Exception;
 	
-	public List<Object> getUpcomingMovieList(ContentSetting contentSetting, int index) throws Exception;
+	public List<ContentMovie> getUpcomingMovieList(int index) throws Exception;
 	
-	public List<Object> getMovieReviewList(ContentSetting contentSetting, int index) throws Exception;
+	public List<ContentMovie> getMovieReviewList(int index) throws Exception;
 	
-	public List<Object> getMovieTrailerList(ContentSetting contentSetting, int index) throws Exception;
+	public List<ContentMovie> getMovieTrailerList(int index) throws Exception;
 	
 	//sport
-	public List<Object> getContentKsoccerList(ContentSetting contentSetting , int index) throws Exception;
+	public List<ContentSport> getContentKsoccerList(int index) throws Exception;
 	
-	public List<Object> getContentWsoccerList(ContentSetting contentSetting , int index) throws Exception;
+	public List<ContentSport> getContentWsoccerList(int index) throws Exception;
 	
-	public List<Object> getContentKbaseballList(ContentSetting contentSetting , int index) throws Exception;
+	public List<ContentSport> getContentKbaseballList(int index) throws Exception;
 	
-	public List<Object> getContentWbaseballList(ContentSetting contentSetting , int index) throws Exception;
+	public List<ContentSport> getContentWbaseballList(int index) throws Exception;
 	
-	public List<Object> getContentBasketballList(ContentSetting contentSetting , int index) throws Exception;
+	public List<ContentSport> getContentBasketballList(int index) throws Exception;
 	
-	public List<Object> getContentGeneralList(ContentSetting contentSetting , int index) throws Exception;
+	public List<ContentSport> getContentGeneralList(int index) throws Exception;
 	
-	public List<Object> getContentHighlightList(ContentSetting contentSetting, int index) throws Exception;
+	public List<ContentSport> getContentHighlightList(int index) throws Exception;
 	
 	public ContentSport getContentHighlightVideo(ContentSport sport) throws Exception;
 	
 	//tasty
-	public List<Object> getContentTastyList(ContentSetting contentSetting, int index) throws Exception;
+	public List<ContentTasty> getContentTastyList(ContentSetting contentSetting, int index) throws Exception;
 	
 	//shopping
-	public List<Object> getContentShoppingFirstList(ContentSetting contentSetting, int index) throws Exception;
+	public List<ContentShopping> getContentShoppingFirstList(ContentSetting contentSetting, int index) throws Exception;
 	
-	public List<Object> getContentShoppingSecondList(ContentSetting contentSetting, int index) throws Exception;
+	public List<ContentShopping> getContentShoppingSecondList(ContentSetting contentSetting, int index) throws Exception;
 	
-	public List<Object> getContentShoppingThirdList(ContentSetting contentSetting, int index) throws Exception;
+	public List<ContentShopping> getContentShoppingThirdList(ContentSetting contentSetting, int index) throws Exception;
 	
-	public List<Object> getContentShoppingReviewList(ContentSetting contentSetting, int index) throws Exception;
+	public List<ContentShopping> getContentShoppingReviewList(ContentSetting contentSetting, int index) throws Exception;
 
 	//keyword
-	public List<Object> getContentUserKeywordFirstList(ContentSetting contentSetting, int index) throws Exception;
+	public List<ContentUserKeyword> getContentUserKeywordFirstList(ContentSetting contentSetting, int index) throws Exception;
 	
-	public List<Object> getContentUserKeywordSecondList(ContentSetting contentSetting, int index) throws Exception;
+	public List<ContentUserKeyword> getContentUserKeywordSecondList(ContentSetting contentSetting, int index) throws Exception;
 	
-	public List<Object> getContentUserKeywordThirdList(ContentSetting contentSetting, int index) throws Exception;
+	public List<ContentUserKeyword> getContentUserKeywordThirdList(ContentSetting contentSetting, int index) throws Exception;
 	
-	public List<Object> getContentUserKeywordVideoFirstList(ContentSetting contentSetting, int index) throws Exception;
+	public List<ContentUserKeyword> getContentUserKeywordVideoFirstList(ContentSetting contentSetting, int index) throws Exception;
 	
-	public List<Object> getContentUserKeywordVideoSecondList(ContentSetting contentSetting, int index) throws Exception;
+	public List<ContentUserKeyword> getContentUserKeywordVideoSecondList(ContentSetting contentSetting, int index) throws Exception;
 }
