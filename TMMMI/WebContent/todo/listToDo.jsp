@@ -30,14 +30,13 @@ button, h3 {
 .hide {
 	display: none;
 }
-.todolist{
-border-radius: 0.2rem;
+.list-group-flush{
+border : none;
+transition: 0.3s;
 }
-.completelist{
-/* border-style: solid;
-border-right: thin 10px; */
-border-left : 1px solid black
-border-radius: 0.2rem;
+.list-group-flush:hover{
+border : none;
+box-shadow: 5px 5px 20px purple;
 }
 </style>
 <script>
@@ -59,10 +58,16 @@ border-radius: 0.2rem;
 			alert("할 일의 종료 날짜는  반드시 입력하셔야 합니다.");
 			return;
 		}
-			$(".addform").attr("method", "POST").attr("action", "/todo/addToDo").submit();
-			
-		}
-	
+		$(function() {
+			swal({
+				title : "등록완료 " , 
+				text: "자신과의 약속을 모두 지키시길 바랍니다!" , 
+				icon : "success" , 
+			}).then((value) => {
+				$(".addform").attr("method", "POST").attr("action", "/todo/addToDo").submit();
+			});
+		})
+	}
 	$(function() {
 		targetdate = '${targetDate}';
 		$('#dd5').val(targetdate);
@@ -100,7 +105,15 @@ border-radius: 0.2rem;
 				alert("할 일의 종료 날짜는  반드시 입력하셔야 합니다.");
 				return;
 			}
-			$(".updateform").attr("method", "POST").attr("action","/todo/updateToDo").submit();
+			$(function() {
+				swal({
+					title : "수정완료 " , 
+					text: "수정이 완료되었습니다." , 
+					icon : "success" , 
+				}).then((value) => {
+					$(".updateform").attr("method", "POST").attr("action","/todo/updateToDo").submit();
+				});
+			})
 		});
 		////////////////////////////////////할 일 삭제/////////////////////////////////////////
 		$(document).on('click',".deletebtn", function() {
@@ -163,8 +176,7 @@ border-radius: 0.2rem;
 							+' data-dctododate="'+targetdate+'" type="button">' +'<i class="material-icons">check</i>'
 							+'</button>'+'<div class="dtodoDetail'+data.toDoNo+'"><strike>'+data.toDoDetail+'</strike></div>' +'</li>' +'</ul>');
 					$('.tl'+ctodono).remove();
-					/* $('.completebtn.'+ctodono).attr('class','btn btn-success btn-fab btn-fab-mini completeDelbtn '+data);
-					$('.ctodoDetail'+ctodono).attr('class','dtodoDetail'+ctodono); */
+					
 				}
 			})
 		})
@@ -219,8 +231,6 @@ border-radius: 0.2rem;
 															+'</li>'
 															+'</ul>');
 						$('.cl'+data.toDoNo).remove();
-					 /* $('.dtodoDetail'+data.toDoNo).html($('.dtodoDetail'+data.toDoNo).html().replace(/<(\/strike|strike)([^>]*)>/gi,""));  */
-					/* $('.completeDelbtn.'+dctodono).attr('class','btn btn-primary btn-fab btn-fab-mini completebtn '+ctodono); */
 				}
 			})
 		})
@@ -259,11 +269,12 @@ border-radius: 0.2rem;
 						<div class="col-md-6">
 						<input type="text" id="datepicker" class="form-control" name="targetDate" value="${targetDate}" autocomplete="off" style="font-size:large;"/>
 						<script>
+									var targetdate = '${targetDate}';
 								    $("#datepicker").datepicker(
 								        {
 								        	 firstDay: 1,
 								             dateFormat: "yy-mm-dd",
-								             defaultDate: "2019-03-01",
+								             defaultDate: targetdate,
 								             monthNames: ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12'],
 								             monthNamesShort: ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12'],
 								             dayNames: ['일', '월', '화', '수', '목', '금', '토'],
@@ -289,15 +300,15 @@ border-radius: 0.2rem;
 				
 			<div class="row">
 				<div class="col-md-6">
-					<h3 >나의 할 일
+					<h3 class="col-md-5 offset-0.5">나의 할 일
 						<button class="btn btn-warning btn-fab btn-fab-mini btn-round"
-							data-target="#todomodal" data-toggle="modal" style="">
+							data-target="#todomodal" data-toggle="modal" style="" >
 							<i class="material-icons">add</i>
 						</button>
 					</h3>
 				</div>
 				<div class="col-md-6">
-				<h3>완료된 할 일</h3>
+				<h3 class="col-md-5 offset-0.5">완료된 할 일</h3>
 				</div>
 			</div>
 			<div class="row">

@@ -89,9 +89,9 @@
 				<ul>
 					<li class="col-md-10">
 						<select class="form-control selectpicker" data-style="btn btn-link" name ="FAQCategory">
-							 <option value="0" >&nbsp; &nbsp;Bar Graph</option>
-							 <option value="1" >&nbsp; &nbsp;Line Graph</option>
-							 <option value="2" >&nbsp; &nbsp;Pie Graph</option>
+							 <option value="0" >&nbsp; &nbsp; Bar Graph</option>
+							 <option value="1" >&nbsp; &nbsp; Line Graph</option>
+							 <option value="2" >&nbsp; &nbsp; Pie Graph</option>
 						</select>
 						</li>
 				</ul>
@@ -281,21 +281,29 @@
 							} ]
 						},
 						 options : {
-							scales : {
-								yAxes : [ {
-									scaleLabel : {
-										display : true,
-										labelString : '월 별 성취도 개수'
-									}
-								} ],
-								xAxes : [ {
-									scaleLabel : {
-										display : true,
-										labelString : '월 별 완료 그래프'
-									}
-								} ]
-							}
-						}
+							 	tooltips: {
+							      mode: 'index',
+							      intersect: false,
+							    },
+								hover: {
+								      mode: 'nearest',
+								      intersect: true
+								    },
+								scales : {
+									yAxes : [ {
+										scaleLabel : {
+											display : true,
+											labelString : '월 별 성취도 개수'
+										}
+									} ],
+									xAxes : [ {
+										scaleLabel : {
+											display : true,
+											labelString : '월 별 완료 그래프'
+										}
+									} ]
+								}
+						}//option end
 					})
 			    }else  if(choice == '2'){
 			    	toDoMonthChart.destroy();

@@ -149,7 +149,7 @@
 </head>
 <body class="index-page sidebar-collapse">
    <jsp:include page="/common/toolbar2.jsp"></jsp:include>
-   <div class="page-header header-filter clear-filter" data-parallax="true" style="background-image: url('/images/usersetting/ ${usersetting.image}')">         
+   <div class="page-header header-filter clear-filter" data-parallax="true" style="background-image: url('/images/userSetting/ ${userSetting.image}')">         
       <div class="container">
          <div class="row">
             <div class="col-md-8 ml-auto mr-auto">
@@ -200,7 +200,7 @@
                            <div class="form-group bmd-form-group">
                               <!-- <label class="sr-only" for="searchKeyword">검색어</label> 
                                   -->
-                              <input type="text" class="form-control" id="searchKeyword" name="searchKeyword" placeholder="제목+내용" value="${! empty search.searchKeyword ? search.searchKeyword : '' }">
+                              <input type="text" class="form-control" id="searchKeyword" name="searchKeyword" placeholder="제목+내용" onKeyPress="if(event.keyCode=='13'){fncGetList(1)}" value="${! empty search.searchKeyword ? search.searchKeyword : '' }">
                               <input type="hidden" id="currentPage" name="currentPage" value="" />
                            </div>
                            <button type="button"
@@ -275,6 +275,8 @@
                </div>         
             </div>
          </div>
+         
+         <br><br>
       </div>
    </div>
    <jsp:include page="/common/footer.jsp"></jsp:include>
