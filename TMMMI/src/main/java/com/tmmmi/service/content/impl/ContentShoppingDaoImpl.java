@@ -27,14 +27,14 @@ public class ContentShoppingDaoImpl extends ContentDaoAdaptor {
 		System.out.println(this.getClass());
 	}
 	
-	public List<Object> getContentShoppingFirstList(ContentSetting contentSetting, int index) throws Exception {
+	public List<ContentShopping> getContentShoppingFirstList(ContentSetting contentSetting, int index) throws Exception {
 			StringBuffer sb;
 			String clientId = "rHBsMd5Tu_WOFtXexEQz"; //클라이언트 아이디
 	        String clientSecret = "95lxTYNVRV"; //클라이언트 시크릿
 	        int display =  8; //화면에 보여줄 개수
 	        String shoppingKeyword = contentSetting.getShoppingSearch1(); //사용자에게 받아온 키워드
 
-	        List<Object> result =new ArrayList<Object>();
+	        List<ContentShopping> result =new ArrayList<ContentShopping>();
 	        
 	        try {
 	        	String text = URLEncoder.encode(shoppingKeyword, "UTF-8");
@@ -90,7 +90,7 @@ public class ContentShoppingDaoImpl extends ContentDaoAdaptor {
 			return result;
 	    }
 	
-	public List<Object> getContentShoppingSecondList(ContentSetting contentSetting, int index) throws Exception {
+	public List<ContentShopping> getContentShoppingSecondList(ContentSetting contentSetting, int index) throws Exception {
 		StringBuffer sb;
 		String clientId = "rHBsMd5Tu_WOFtXexEQz"; //클라이언트 아이디
         String clientSecret = "95lxTYNVRV"; //클라이언트 시크릿
@@ -98,7 +98,7 @@ public class ContentShoppingDaoImpl extends ContentDaoAdaptor {
         String shoppingKeyword = contentSetting.getShoppingSearch2(); //사용자에게 받아온 키워드
      
         
-        List<Object> result =new ArrayList<Object>();
+        List<ContentShopping> result =new ArrayList<ContentShopping>();
         
         try {
         	String text = URLEncoder.encode(shoppingKeyword, "UTF-8");
@@ -154,14 +154,14 @@ public class ContentShoppingDaoImpl extends ContentDaoAdaptor {
 		return result;
     }
 	
-	public List<Object> getContentShoppingThirdList(ContentSetting contentSetting, int index) throws Exception {
+	public List<ContentShopping> getContentShoppingThirdList(ContentSetting contentSetting, int index) throws Exception {
 		StringBuffer sb;
 		String clientId = "rHBsMd5Tu_WOFtXexEQz"; //클라이언트 아이디
         String clientSecret = "95lxTYNVRV"; //클라이언트 시크릿
         int display =  8; //화면에 보여줄 개수
         String shoppingKeyword = contentSetting.getShoppingSearch3(); //사용자에게 받아온 키워드
         
-        List<Object> result =new ArrayList<Object>();
+        List<ContentShopping> result =new ArrayList<ContentShopping>();
         
         try {
         	String text = URLEncoder.encode(shoppingKeyword, "UTF-8");
@@ -217,7 +217,7 @@ public class ContentShoppingDaoImpl extends ContentDaoAdaptor {
 		return result;
     }
 	
-	public List<Object> getContentShoppingReviewList(ContentSetting contentSetting, int index) throws Exception {
+	public List<ContentShopping> getContentShoppingReviewList(ContentSetting contentSetting, int index) throws Exception {
 		String apiKey = "AIzaSyBLiKbxA8GhogX362LoIoNnCaVmIvesAFU"; //api key
 		String reviewKeyword = contentSetting.getShoppingReview();
 		System.out.println(reviewKeyword);
@@ -226,7 +226,7 @@ public class ContentShoppingDaoImpl extends ContentDaoAdaptor {
 		String order = "date"; //rating랭킹순으로 
 												//date 최신순으로
 		
-		List<Object> result =new ArrayList<Object>();
+		List<ContentShopping> result =new ArrayList<ContentShopping>();
 	
 		try {
 			String apiURL= "https://www.googleapis.com/youtube/v3/search?key="+apiKey+"&part=snippet&q="+q+

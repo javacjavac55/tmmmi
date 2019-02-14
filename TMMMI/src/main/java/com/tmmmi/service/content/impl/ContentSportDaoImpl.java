@@ -33,7 +33,7 @@ public class ContentSportDaoImpl extends ContentDaoAdaptor {
 		System.out.println(this.getClass());
 	}
 	
-	public List<Object> getContentKsoccerList(ContentSetting contentSetting, int index) throws Exception {
+	public List<ContentSport> getContentKsoccerList(int index) throws Exception {
 		String address = "https://sports.news.naver.com/kfootball/index.nhn";
 
 		int start = 0;
@@ -51,7 +51,7 @@ public class ContentSportDaoImpl extends ContentDaoAdaptor {
 		String subAddress = "";
 		String fullAddress = "";
 
-		List<Object> sportList = new ArrayList<Object>();
+		List<ContentSport> sportList = new ArrayList<ContentSport>();
 
 		for (int i = start; i < 5; i++) {
 			Element element = contents.get(i);
@@ -85,7 +85,7 @@ public class ContentSportDaoImpl extends ContentDaoAdaptor {
 	}
 	
 
-	public List<Object> getContentWsoccerList(ContentSetting contentSetting, int index) throws Exception {
+	public List<ContentSport> getContentWsoccerList(int index) throws Exception {
 		String address = "https://sports.news.naver.com/wfootball/index.nhn";
 
 		int start = 0;
@@ -103,7 +103,7 @@ public class ContentSportDaoImpl extends ContentDaoAdaptor {
 		String subAddress = "";
 		String fullAddress = "";
 
-		List<Object> sportList = new ArrayList<Object>();
+		List<ContentSport> sportList = new ArrayList<ContentSport>();
 
 		for (int i = start; i < 5; i++) {
 			Element element = contents.get(i);
@@ -135,7 +135,7 @@ public class ContentSportDaoImpl extends ContentDaoAdaptor {
 		return sportList;
 	}
 	
-	public List<Object> getContentKbaseballList(ContentSetting contentSetting, int index) throws Exception {
+	public List<ContentSport> getContentKbaseballList(int index) throws Exception {
 		String address = "https://sports.news.naver.com/kbaseball/index.nhn";
 
 		int start = 0;
@@ -153,7 +153,7 @@ public class ContentSportDaoImpl extends ContentDaoAdaptor {
 		String subAddress = "";
 		String fullAddress = "";
 
-		List<Object> sportList = new ArrayList<Object>();
+		List<ContentSport> sportList = new ArrayList<ContentSport>();
 
 		for (int i = start; i < 5; i++) {
 			Element element = contents.get(i);
@@ -185,7 +185,7 @@ public class ContentSportDaoImpl extends ContentDaoAdaptor {
 		return sportList;
 	}
 	
-	public List<Object> getContentWbaseballList(ContentSetting contentSetting, int index) throws Exception {
+	public List<ContentSport> getContentWbaseballList(int index) throws Exception {
 		String address = "https://sports.news.naver.com/wbaseball/index.nhn";
 
 		int start = 0;
@@ -203,7 +203,7 @@ public class ContentSportDaoImpl extends ContentDaoAdaptor {
 		String subAddress = "";
 		String fullAddress = "";
 
-		List<Object> sportList = new ArrayList<Object>();
+		List<ContentSport> sportList = new ArrayList<ContentSport>();
 
 		for (int i = start; i < 5; i++) {
 			Element element = contents.get(i);
@@ -235,7 +235,7 @@ public class ContentSportDaoImpl extends ContentDaoAdaptor {
 		return sportList;
 	}
 
-	public List<Object> getContentBasketballList(ContentSetting contentSetting, int index) throws Exception {
+	public List<ContentSport> getContentBasketballList(int index) throws Exception {
 		String address = "https://sports.news.naver.com/basketball/index.nhn";
 
 		int start = 0;
@@ -253,7 +253,7 @@ public class ContentSportDaoImpl extends ContentDaoAdaptor {
 		String subAddress = "";
 		String fullAddress = "";
 
-		List<Object> sportList = new ArrayList<Object>();
+		List<ContentSport> sportList = new ArrayList<ContentSport>();
 
 		for (int i = start; i < 5; i++) {
 			Element element = contents.get(i);
@@ -285,7 +285,7 @@ public class ContentSportDaoImpl extends ContentDaoAdaptor {
 		return sportList;
 	}
 
-	public List<Object> getContentGeneralList(ContentSetting contentSetting, int index) throws Exception {
+	public List<ContentSport> getContentGeneralList(int index) throws Exception {
 		String address = "https://sports.news.naver.com/general/index.nhn";
 
 		int start = 0;
@@ -303,7 +303,7 @@ public class ContentSportDaoImpl extends ContentDaoAdaptor {
 		String subAddress = "";
 		String fullAddress = "";
 
-		List<Object> sportList = new ArrayList<Object>();
+		List<ContentSport> sportList = new ArrayList<ContentSport>();
 
 		for (int i = start; i < 5; i++) {
 			Element element = contents.get(i);
@@ -336,7 +336,7 @@ public class ContentSportDaoImpl extends ContentDaoAdaptor {
 	}
 
 	@Override
-	public List<Object> getContentHighlightList(ContentSetting contentSetting, int index) throws Exception {
+	public List<ContentSport> getContentHighlightList(int index) throws Exception {
 		
 		String address = "https://tv.naver.com/spotvmaster/clips";
 		int start = 0;
@@ -348,7 +348,7 @@ public class ContentSportDaoImpl extends ContentDaoAdaptor {
 		System.out.println("");
 		Document doc = Jsoup.connect(address).header("User-Agent", "Mozilla/5.0").get();
 		
-		List<Object> sportList = new ArrayList<Object>();
+		List<ContentSport> sportList = new ArrayList<ContentSport>();
 		
 		Elements link = doc.select(".cds._MM_CARD > div > a");
 		

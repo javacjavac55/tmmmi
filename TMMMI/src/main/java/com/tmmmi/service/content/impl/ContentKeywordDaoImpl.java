@@ -25,7 +25,7 @@ public class ContentKeywordDaoImpl extends ContentDaoAdaptor {
 		System.out.println(this.getClass());
     }
 	
-	public List<Object> getContentUserKeywordFirstList(ContentSetting contentSetting, int index){
+	public List<ContentUserKeyword> getContentUserKeywordFirstList(ContentSetting contentSetting, int index){
 		
 		StringBuilder sb;
 	    String clientId = "8UnBF2q3kdzG36xN7kVj";
@@ -33,7 +33,7 @@ public class ContentKeywordDaoImpl extends ContentDaoAdaptor {
 	    int display =  8;
         String userKeyword = contentSetting.getUserSearch1();
         System.out.println(userKeyword);
-        List<Object> result = new ArrayList<Object>();
+        List<ContentUserKeyword> result = new ArrayList<ContentUserKeyword>();
         
         try {
 	        /*String text = URLEncoder.encode("\""+contentSetting.getUserSearch1()+"|"+contentSetting.getUserSearch2()+"|"+contentSetting.getUserSearch3()+"\"", "UTF-8");*/
@@ -89,7 +89,7 @@ public class ContentKeywordDaoImpl extends ContentDaoAdaptor {
 		return result;
 	}
 	
-	public List<Object> getContentUserKeywordSecondList(ContentSetting contentSetting, int index){
+	public List<ContentUserKeyword> getContentUserKeywordSecondList(ContentSetting contentSetting, int index){
 		
 		StringBuilder sb;
 	    String clientId = "8UnBF2q3kdzG36xN7kVj";
@@ -97,7 +97,7 @@ public class ContentKeywordDaoImpl extends ContentDaoAdaptor {
 	    int display =  8;
         String userKeyword = contentSetting.getUserSearch1();
         System.out.println(userKeyword);
-        List<Object> result = new ArrayList<Object>();
+        List<ContentUserKeyword> result = new ArrayList<ContentUserKeyword>();
         
         try {
 	        /*String text = URLEncoder.encode("\""+contentSetting.getUserSearch1()+"|"+contentSetting.getUserSearch2()+"|"+contentSetting.getUserSearch3()+"\"", "UTF-8");*/
@@ -153,7 +153,7 @@ public class ContentKeywordDaoImpl extends ContentDaoAdaptor {
 		return result;
 	}
 	
-	public List<Object> getContentUserKeywordThirdList(ContentSetting contentSetting, int index){
+	public List<ContentUserKeyword> getContentUserKeywordThirdList(ContentSetting contentSetting, int index){
 		
 		StringBuilder sb;
 	    String clientId = "8UnBF2q3kdzG36xN7kVj";
@@ -161,7 +161,7 @@ public class ContentKeywordDaoImpl extends ContentDaoAdaptor {
 	    int display =  8;
         String userKeyword = contentSetting.getUserSearch1();
         System.out.println(userKeyword);
-        List<Object> result = new ArrayList<Object>();
+        List<ContentUserKeyword> result = new ArrayList<ContentUserKeyword>();
         
         try {
 	        /*String text = URLEncoder.encode("\""+contentSetting.getUserSearch1()+"|"+contentSetting.getUserSearch2()+"|"+contentSetting.getUserSearch3()+"\"", "UTF-8");*/
@@ -217,7 +217,7 @@ public class ContentKeywordDaoImpl extends ContentDaoAdaptor {
 		return result;
 	}
 	
-	public List<Object> getContentUserKeywordVideoFirstList(ContentSetting contentSetting, int index) throws Exception {
+	public List<ContentUserKeyword> getContentUserKeywordVideoFirstList(ContentSetting contentSetting, int index) throws Exception {
 		
 		String apiKey = "AIzaSyBLiKbxA8GhogX362LoIoNnCaVmIvesAFU";
 		String userVideo = contentSetting.getUserVideo1();
@@ -226,7 +226,7 @@ public class ContentKeywordDaoImpl extends ContentDaoAdaptor {
 		String maxResults = "8";
 		String order = "date";
 		
-		List<Object> result =new ArrayList<Object>();
+		List<ContentUserKeyword> result =new ArrayList<ContentUserKeyword>();
 	
 		try {
 			String apiURL= "https://www.googleapis.com/youtube/v3/search?key="+apiKey+"&part=snippet&q="+q+
@@ -288,7 +288,7 @@ public class ContentKeywordDaoImpl extends ContentDaoAdaptor {
 			return result;
 	}
 	
-	public List<Object> getContentUserKeywordVideoSecondList(ContentSetting contentSetting, int index) throws Exception {
+	public List<ContentUserKeyword> getContentUserKeywordVideoSecondList(ContentSetting contentSetting, int index) throws Exception {
 		
 		String apiKey = "AIzaSyBLiKbxA8GhogX362LoIoNnCaVmIvesAFU";
 		String userVideo = contentSetting.getUserVideo1();
@@ -297,7 +297,7 @@ public class ContentKeywordDaoImpl extends ContentDaoAdaptor {
 		String maxResults = "8";
 		String order = "date";
 		
-		List<Object> result =new ArrayList<Object>();
+		List<ContentUserKeyword> result =new ArrayList<ContentUserKeyword>();
 	
 		try {
 			String apiURL= "https://www.googleapis.com/youtube/v3/search?key="+apiKey+"&part=snippet&q="+q+

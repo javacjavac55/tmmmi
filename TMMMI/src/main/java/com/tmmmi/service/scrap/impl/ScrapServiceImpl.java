@@ -64,12 +64,6 @@ public class ScrapServiceImpl implements ScrapService {
 	}
 
 	@Override
-	public void updateScrap(Scrap scrap)throws Exception {
-		// TODO Auto-generated method stub
-		scrapDao.updateScrap(scrap);
-	}
-
-	@Override
 	public void deleteScrap(int scrapNo) throws Exception{
 		// TODO Auto-generated method stub
 		scrapDao.deleteScrap(scrapNo);

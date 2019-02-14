@@ -34,6 +34,8 @@
 <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 
+<script src ="https://unpkg.com/sweetalert/dist/sweetalert.min.js" ></script >
+
 <script type="text/javascript">
 	/* 툴팁 */
 	$( function() {
@@ -62,14 +64,19 @@
 
 	/* 삭제 */
 	function fncDeleteScrap() {
-		var agree = confirm("삭제 하시겠습니까?");
-		if (agree == true) {
-			$('[name="deleteForm"]').attr("method", "POST").attr("action",
-					"/scrap/deleteScrap").submit();
-		}
-		if (agree == false) {
-			return false;
-		}
+		swal({
+			title: "삭제 확인",
+			text: "삭제 하시겠습니까?",
+			icon: "warning",
+			buttons: true,
+			dangerMode: true,
+		}).then((willDelete) => {
+			if (willDelete) {
+				$('[name="deleteForm"]').attr("method", "POST").attr("action", "/scrap/deleteScrap").submit()
+			} else {           
+			    
+			}
+		});
 	}
 
 	$(function() {
@@ -136,12 +143,15 @@
 		width: 100%;
 	    height: 43em;
 	}
+	
+	.container {
+		padding: 0 !important;
+	}
 </style>
 </head>
 <body class="index-page sidebar-collapse">
 	<jsp:include page="/common/toolbar2.jsp"></jsp:include>
 	<div class="page-header header-filter clear-filter"	data-parallax="true" style="background-image: url('/images/userSetting/ ${userSetting.image}')">
-		
 		<div class="container">
 			<div class="row">
 				<div class="col-md-8 ml-auto mr-auto">
@@ -160,149 +170,118 @@
 					<div id="wrapper">
 						<!-- Main -->
 						<div id="main">
-
-
 							<div class="form-group" align="left">
 								<label for="userCategoryNo"
 									class="col-sm-offset-1 col-sm-1 control-label text-center"></label>
 								<h3 class="title">My Scrap</h3>
 								<div class="col-sm-4"></div>
 							</div>
-
 							<!-- table 위쪽 검색 Start /////////////////////////////////////-->
 							<div class="row">
-
 								<div class="col-md-6 text-left">
-									<p class="text-default">전체 글: ${resultPage.totalCount}</p>
-
+									<p class="text-primary">
+										전체  ${resultPage.totalCount} 건수, 현재 ${resultPage.currentPage}  페이지
+									</p>
 								</div>
-								<div class="col-md-6 text-right">
-									<div class="col-sm-offset-4  col-sm-4 text-right"
-							style="float: right;">
-										<a href='/scrap/listScrap'><img src=/images/diaryImage/3213.PNG class="listScrap" style="width:30px; height:24px;" title="리스트 형식으로 보기"/></a>
-										<a href='/scrap/imageList'><img src=/images/diaryImage/321312.PNG class="imageScrap" style="width:30px; height:24px;" title="썸네일 형식으로 보기"/></a>
-									</div>
-
-								</div>
-								
-								<div class="col-md-4"></div>
-
-								<div class="col-md-6 text-right"></div>
 							</div>
-							<nav class="navbar navbar-default navbar-expand-lg">
-							<div class="container">
-								<form name="detailForm" class="form-inline ml-auto">
-									<div class="form-group bmd-form-group">
-										<input type="text" class="form-control" id="searchKeyword"
-											name="searchKeyword" placeholder="제목+내용"
-											value="${! empty search.searchKeyword ? search.searchKeyword : '' }">
-										<input type="hidden" id="currentPage" name="currentPage"
-											value="" />
-
-									</div>
-									<button type="button"
-										class="btn btn-white btn-raised btn-fab btn-round" id="search">
-										<i class="material-icons">search</i>
-									</button>
-
-
-								</form>
-							</div>
-							</nav>
-					
-				<!-- table 위쪽 검색 Start /////////////////////////////////////-->
-
-				<!-- 디테일폼 끝 -->
-
-				<!--  table Start /////////////////////////////////////-->
-				<form name="deleteForm">
-					<table class="table table-hover">
-
-						<thead style="box-shadow:1px 1px 1px 1px gray;">
-							<tr>
-								<th align="center">
-									<div class="form-check">
-										<label class="form-check-label"> <input id="allCheck"
-											name="allCheck" class="form-check-input" type="checkbox"
-											onclick="fncAllchk();" /> 전체선택 <span class="form-check-sign">
-												<span class="check"></span>
-										</span>
-										</label>
-									</div> 
-								</th>
-								<th align="left">No</th>
-								<th align="left">카테고리</th>
-								<th align="left">스크랩 제목</th>
-								<th align="left">작성 날짜</th>
-							</tr>
-						</thead>
-
-						<tbody>
-
-							<c:set var="i" value="${fn:length(list)}" />
-							<c:forEach var="scrap" items="${list}">
-								<c:set var="i" value="${ i-1 }" />
-								<tr class="getDetail">
-									<td align="left">
-										<div class="form-check">
-											<label class="form-check-label"> <input
-												name="deleteScrap" class="form-check-input" type="checkbox"
-												value="${scrap.scrapNo}" /> <span class="form-check-sign">
-													<span class="check"></span>
-											</span>
-											</label>
+							<nav class="navbar navbar-default navbar-expand-lg" style="float:right;">
+								<div class="container">
+									<form name="detailForm" class="form-inline ml-auto">
+										<div class="form-group bmd-form-group" style="align-content: right;">
+											<input type="text" class="form-control" id="searchKeyword" name="searchKeyword" placeholder="제목+내용" value="${! empty search.searchKeyword ? search.searchKeyword : '' }">
+											<input type="hidden" id="currentPage" name="currentPage"  value="" />
 										</div>
-									</td>
-									<td align="left">${ i+1 }</td>
-									<td align="left">${scrap.sectionName}</td>
-									<td align="left" data-param2="${scrap.scrapNo}" style="cursor:pointer">${scrap.scrapTitle}</td>
-									<td align="left">${scrap.scrapDate}</td>
-								</tr>
-							</c:forEach>
-
-						</tbody>
-
-					</table>
-					<!--  table End /////////////////////////////////////-->
-					<div class="form-group">
-						<div class="col-sm-offset-4  col-sm-4 text-left"
-							style="float: left;">
-							<button type="button" name="delete" class="btn btn-primary"
-								onclick="fncDeleteScrap();">삭제</button>
+										<button type="button" class="btn btn-white btn-raised btn-fab btn-round" id="search">
+											<i class="material-icons">search</i>
+										</button>
+									 </form>
+								</div>
+							</nav>
+							<form name="deleteForm">
+								<table class="table table-hover">
+									<thead style="box-shadow:1px 1px 1px 1px gray;">
+										<tr>
+											<th align="center">
+												<div class="form-check">
+													<label class="form-check-label"> <input id="allCheck"
+														name="allCheck" class="form-check-input" type="checkbox"
+														onclick="fncAllchk();" /> 전체선택 <span class="form-check-sign">
+															<span class="check"></span>
+													</span>
+													</label>
+												</div> 
+											</th>
+											<th align="left">No</th>
+											<th align="left">카테고리</th>
+											<th align="left">스크랩 제목</th>
+											<th align="left">작성 날짜</th>
+										</tr>
+									</thead>
+			
+									<tbody>
+			
+										<c:set var="i" value="${fn:length(list)}" />
+										<c:forEach var="scrap" items="${list}">
+											<c:set var="i" value="${ i-1 }" />
+											<tr class="getDetail">
+												<td align="left">
+													<div class="form-check">
+														<label class="form-check-label"> <input
+															name="deleteScrap" class="form-check-input" type="checkbox"
+															value="${scrap.scrapNo}" /> <span class="form-check-sign">
+																<span class="check"></span>
+														</span>
+														</label>
+													</div>
+												</td>
+												<td align="left">${ i+1 }</td>
+												<td align="left">${scrap.sectionName}</td>
+												<td align="left" data-param2="${scrap.scrapNo}" style="cursor:pointer">${scrap.scrapTitle}</td>
+												<td align="left">${scrap.scrapDate}</td>
+											</tr>
+										</c:forEach>
+			
+									</tbody>
+			
+								</table>
+							</form>
+							<!--  table End /////////////////////////////////////-->
+							<div class="form-group">
+								<div class="col-sm-offset-4  col-sm-4 text-left"
+									style="float: left;">
+									<button type="button" name="delete" class="btn btn-primary"
+										onclick="fncDeleteScrap();">삭제</button>
+								</div>
+								<div class="col-sm-offset-4  col-sm-4 text-right"
+									style="float: right;">
+								</div>
+							</div>
+							<jsp:include page="../common/pageNavigator.jsp" />
 						</div>
-						<div class="col-sm-offset-4  col-sm-4 text-right"
-							style="float: right;">
-						</div>
-						
 					</div>
-
-				</form>
-				<jsp:include page="../common/pageNavigator.jsp" />
+				</div>
 			</div>
 		</div>
 	</div>
-</div>
-</div>
-</div>
-<button class="content-modal-btn" type="button" data-toggle="modal" data-target="#myFullsizeModal" style="display:none"></button>
-<div class="modal fade" id="myFullsizeModal" tabindex="-1" role="dialog" aria-labelledby="myFullsizeModalLabel" aria-hidden="true">
-  <div class="modal-dialog modal-fullsize">
-    <div class="modal-content modal-fullsize">
-	      <div class="modal-header">
-	        <h5 class="modal-title" id="exampleModalLongTitle"></h5>
-	          <span aria-hidden="true">&times;</span>
-	      </div>
-	      
-	      <div class="modal-body">
-	      	<iframe src=""></iframe>
-	      </div>
-	      <div class="modal-footer">
-	        <button type="button" class="btn btn-secondary" data-dismiss="modal">닫기</button>
-	      </div>
-	    </div>
+	<button class="content-modal-btn" type="button" data-toggle="modal" data-target="#myFullsizeModal" style="display:none"></button>
+	<div class="modal fade" id="myFullsizeModal" tabindex="-1" role="dialog" aria-labelledby="myFullsizeModalLabel" aria-hidden="true">
+	  <div class="modal-dialog modal-fullsize">
+	    <div class="modal-content modal-fullsize">
+		      <div class="modal-header">
+		        <h5 class="modal-title" id="exampleModalLongTitle"></h5>
+		          <span aria-hidden="true">&times;</span>
+		      </div>
+		      
+		      <div class="modal-body">
+		      	<iframe src=""></iframe>
+		      </div>
+		      <div class="modal-footer">
+		        <button type="button" class="btn btn-secondary" data-dismiss="modal">닫기</button>
+		      </div>
+		    </div>
+		  </div>
 	  </div>
-  </div>
-  
+	  
 	<jsp:include page="/common/footer.jsp"></jsp:include>
 
 </body>

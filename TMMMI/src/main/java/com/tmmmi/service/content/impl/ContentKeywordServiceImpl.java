@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 
 import com.tmmmi.service.content.ContentDao;
 import com.tmmmi.service.domain.ContentSetting;
+import com.tmmmi.service.domain.ContentUserKeyword;
 
 @Service("contentKeywordServiceImpl")
 public class ContentKeywordServiceImpl extends ContentServiceAdaptor {	
@@ -26,23 +27,23 @@ public class ContentKeywordServiceImpl extends ContentServiceAdaptor {
 	}
 	
 	///Method
-	public List<Object> getContentUserKeywordFirstList(ContentSetting contentSetting, int index) throws Exception{
+	public List<ContentUserKeyword> getContentUserKeywordFirstList(ContentSetting contentSetting, int index) throws Exception{
 		return contentKeywordDao.getContentUserKeywordFirstList(contentSetting, index);
 	}
 	
-	public List<Object> getContentUserKeywordSecondList(ContentSetting contentSetting, int index) throws Exception{
+	public List<ContentUserKeyword> getContentUserKeywordSecondList(ContentSetting contentSetting, int index) throws Exception{
 		return contentKeywordDao.getContentUserKeywordSecondList(contentSetting, index);
 	}
 	
-	public List<Object> getContentUserKeywordThirdList(ContentSetting contentSetting, int index) throws Exception{
+	public List<ContentUserKeyword> getContentUserKeywordThirdList(ContentSetting contentSetting, int index) throws Exception{
 		return contentKeywordDao.getContentUserKeywordThirdList(contentSetting, index);
 	}
 	
-	public List<Object> getContentUserKeywordVideoFirstList(ContentSetting contentSetting, int index) throws Exception{
+	public List<ContentUserKeyword> getContentUserKeywordVideoFirstList(ContentSetting contentSetting, int index) throws Exception{
 		return contentKeywordDao.getContentUserKeywordVideoFirstList(contentSetting, index);
 	}
 	
-	public List<Object> getContentUserKeywordVideoSecondList(ContentSetting contentSetting, int index) throws Exception{
+	public List<ContentUserKeyword> getContentUserKeywordVideoSecondList(ContentSetting contentSetting, int index) throws Exception{
 		return contentKeywordDao.getContentUserKeywordVideoSecondList(contentSetting, index);
 	}
 	

@@ -25,8 +25,8 @@ public class ContentMovieDaoImpl extends ContentDaoAdaptor {
 		// TODO Auto-generated constructor stub
 	}
 	
-	public List<Object> getBoxOfficeList(ContentSetting contentSetting, int index) throws Exception {
-		List<Object> result = new ArrayList<Object>();
+	public List<ContentMovie> getBoxOfficeList(int index) throws Exception {
+		List<ContentMovie> result = new ArrayList<ContentMovie>();
 		try {
 			String thumbnailSize = "size=300x421";
 			String address = "https://search.naver.com/search.naver?where=nexearch&query=%EB%B0%95%EC%8A%A4%EC%98%A4%ED%94%BC%EC%8A%A4%EC%88%9C%EC%9C%84";
@@ -48,14 +48,17 @@ public class ContentMovieDaoImpl extends ContentDaoAdaptor {
 				matcher = pattern.matcher(movie.getElementsByAttributeValueContaining("href", ".nhn?code=").attr("href"));
 				if (matcher.find()) {
 					contentMovie.setMovieLink("https://movie.naver.com/movie/bi/mi/basic.nhn?code=" + matcher.group(1));
+					//no
+					contentMovie.setMovieNo(Integer.parseInt(matcher.group(1)));
+				} else {
+					continue;
 				}
-				//no
-				contentMovie.setMovieNo(Integer.parseInt(matcher.group(1)));
 				
 				//video
-				doc2 = Jsoup.connect(movie.getElementsContainingText("예고편").attr("href")).header("User-Agent", "Mozilla/5.0").get();
-				contentMovie.setMovieVideo(doc2.select(".video_ar").html().replaceAll("src=\"/movie","src=\"https://movie.naver.com/movie").replaceAll("playerSize=...x...", "playerSize=712x518").replaceAll("height=\"480\"", "height=\"518\""));
-				
+				if (movie.getElementsContainingText("예고편").size() > 0) {
+					doc2 = Jsoup.connect(movie.getElementsContainingText("예고편").attr("href")).header("User-Agent", "Mozilla/5.0").get();
+					contentMovie.setMovieVideo(doc2.select(".video_ar").html().replaceAll("src=\"/movie","src=\"https://movie.naver.com/movie").replaceAll("playerSize=...x...", "playerSize=712x518").replaceAll("height=\"480\"", "height=\"518\""));
+				}
 				result.add(contentMovie);
 			}
 		} catch (Exception e) {
@@ -64,8 +67,8 @@ public class ContentMovieDaoImpl extends ContentDaoAdaptor {
 		return result;
 	}
 	
-	public List<Object> getNewMovieList(ContentSetting contentSetting, int index) throws Exception {
-		List<Object> result = new ArrayList<Object>();
+	public List<ContentMovie> getNewMovieList(int index) throws Exception {
+		List<ContentMovie> result = new ArrayList<ContentMovie>();
 		try {
 			String address = "https://movie.naver.com/movie/running/current.nhn";
 			Document doc = Jsoup.connect(address).header("User-Agent", "Mozilla/5.0").get();
@@ -146,8 +149,8 @@ public class ContentMovieDaoImpl extends ContentDaoAdaptor {
 		return result;
 	}
 	
-	public List<Object> getUpcomingMovieList(ContentSetting contentSetting, int index) throws Exception {
-		List<Object> result = new ArrayList<Object>();
+	public List<ContentMovie> getUpcomingMovieList(int index) throws Exception {
+		List<ContentMovie> result = new ArrayList<ContentMovie>();
 		try {
 			String address = "https://movie.naver.com/movie/running/premovie.nhn";
 			Document doc = Jsoup.connect(address).header("User-Agent", "Mozilla/5.0").get();
@@ -232,8 +235,8 @@ public class ContentMovieDaoImpl extends ContentDaoAdaptor {
 		return result;
 	}
 	
-	public List<Object> getMovieReviewList(ContentSetting contentSetting, int index) throws Exception {
-		List<Object> result = new ArrayList<Object>();
+	public List<ContentMovie> getMovieReviewList(int index) throws Exception {
+		List<ContentMovie> result = new ArrayList<ContentMovie>();
 		try {
 			String address = "https://movie.naver.com/";
 			Document doc = Jsoup.connect(address).header("User-Agent", "Mozilla/5.0").get();
@@ -268,8 +271,8 @@ public class ContentMovieDaoImpl extends ContentDaoAdaptor {
 		return result;
 	}
 	
-	public List<Object> getMovieTrailerList(ContentSetting contentSetting, int index) throws Exception {
-		List<Object> result = new ArrayList<Object>();
+	public List<ContentMovie> getMovieTrailerList(int index) throws Exception {
+		List<ContentMovie> result = new ArrayList<ContentMovie>();
 		try {
 			String address = "https://movie.naver.com/movie/running/movieclip.nhn?subcategoryid=TRAILER&searchKeyword=&page="+(index+1);
 			Document doc = Jsoup.connect(address).header("User-Agent", "Mozilla/5.0").get();

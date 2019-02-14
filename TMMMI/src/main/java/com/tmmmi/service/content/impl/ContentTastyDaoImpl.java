@@ -22,11 +22,11 @@ public class ContentTastyDaoImpl extends ContentDaoAdaptor {
 	}
 
 	///Method
-	public List<Object> getContentTastyList(ContentSetting contentSetting, int index) {
+	public List<ContentTasty> getContentTastyList(ContentSetting contentSetting, int index) {
 
 		String clientId = "d9ROlDLvnXulcE2hxtAm";
         String clientSecret = "O4TGEmLBA4";
-        List<Object> tastyList = null;
+        List<ContentTasty> tastyList = null;
         try {
         	String text = URLEncoder.encode(contentSetting.getTastyKeyword()+" 맛집", "UTF-8");
             String apiURL = "https://openapi.naver.com/v1/search/local?query="+ text;

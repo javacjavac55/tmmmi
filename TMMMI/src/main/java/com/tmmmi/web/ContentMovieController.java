@@ -40,7 +40,7 @@ public class ContentMovieController {
 		int userNo = (int)session.getAttribute("userNo");
 		
 		ModelAndView modelAndView = new ModelAndView();
-		modelAndView.addObject("contentMovieBoxOfficeList", contentMovieService.getBoxOfficeList(null, 0));
+		modelAndView.addObject("contentMovieBoxOfficeList", contentMovieService.getBoxOfficeList(0));
 		modelAndView.addObject("bgColor", (userSettingService.getUserSetting(userNo).getMainColorModeNo()==0)?"#000000":"#FFFFFF");
 		modelAndView.addObject("fontColor", (userSettingService.getUserSetting(userNo).getMainColorModeNo()==0)?"#FFFFFF":"#000000");
 		modelAndView.setViewName("/content/contentMovieBoxOffice.jsp");
@@ -52,7 +52,7 @@ public class ContentMovieController {
 		int userNo = (int)session.getAttribute("userNo");
 		
 		ModelAndView modelAndView = new ModelAndView();
-		modelAndView.addObject("contentMovieNewMovieList", contentMovieService.getNewMovieList(null, 0));
+		modelAndView.addObject("contentMovieNewMovieList", contentMovieService.getNewMovieList(0));
 		modelAndView.addObject("bgColor", (userSettingService.getUserSetting(userNo).getMainColorModeNo()==0)?"#000000":"#FFFFFF");
 		modelAndView.addObject("fontColor", (userSettingService.getUserSetting(userNo).getMainColorModeNo()==0)?"#FFFFFF":"#000000");
 		modelAndView.setViewName("/content/contentMovieNewMovie.jsp");
@@ -64,7 +64,7 @@ public class ContentMovieController {
 		int userNo = (int)session.getAttribute("userNo");
 		
 		ModelAndView modelAndView = new ModelAndView();
-		modelAndView.addObject("contentMovieUpcomingMovieList", contentMovieService.getUpcomingMovieList(null, 0));
+		modelAndView.addObject("contentMovieUpcomingMovieList", contentMovieService.getUpcomingMovieList(0));
 		modelAndView.addObject("bgColor", (userSettingService.getUserSetting(userNo).getMainColorModeNo()==0)?"#000000":"#FFFFFF");
 		modelAndView.addObject("fontColor", (userSettingService.getUserSetting(userNo).getMainColorModeNo()==0)?"#FFFFFF":"#000000");
 		modelAndView.setViewName("/content/contentMovieUpcomingMovie.jsp");
@@ -76,7 +76,7 @@ public class ContentMovieController {
 		int userNo = (int)session.getAttribute("userNo");
 		
 		ModelAndView modelAndView = new ModelAndView();
-		modelAndView.addObject("contentMovieReviewList", contentMovieService.getMovieReviewList(null, 0));
+		modelAndView.addObject("contentMovieReviewList", contentMovieService.getMovieReviewList(0));
 		modelAndView.addObject("bgColor", (userSettingService.getUserSetting(userNo).getMainColorModeNo()==0)?"#000000":"#FFFFFF");
 		modelAndView.addObject("fontColor", (userSettingService.getUserSetting(userNo).getMainColorModeNo()==0)?"#FFFFFF":"#000000");
 		modelAndView.setViewName("/content/contentMovieReview.jsp");
@@ -88,7 +88,7 @@ public class ContentMovieController {
 		int userNo = (int)session.getAttribute("userNo");
 		
 		ModelAndView modelAndView = new ModelAndView();
-		modelAndView.addObject("contentMovieTrailerList", contentMovieService.getMovieTrailerList(null, 0));
+		modelAndView.addObject("contentMovieTrailerList", contentMovieService.getMovieTrailerList(0));
 		modelAndView.addObject("bgColor", (userSettingService.getUserSetting(userNo).getMainColorModeNo()==0)?"#000000":"#FFFFFF");
 		modelAndView.addObject("fontColor", (userSettingService.getUserSetting(userNo).getMainColorModeNo()==0)?"#FFFFFF":"#000000");
 		modelAndView.setViewName("/content/contentMovieTrailer.jsp");
