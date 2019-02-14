@@ -146,6 +146,27 @@ public class DiaryController {
 		
 		
 	}
+	
+	@RequestMapping(value="getImageDiary", method=RequestMethod.GET)
+	public ModelAndView getImageDiary(@RequestParam("diaryNo") int diaryNo, HttpSession session)throws Exception {
+		System.out.println("/diary/getDiary: GET");
+		
+		int userNo = ((int)session.getAttribute("userNo"));
+		
+		
+		
+		Diary diary = diaryService.getDiary(diaryNo);
+		UserCategory userCategory = userCategoryService.getUserCategoryByNo(diary.getUserCategoryNo());
+		
+		ModelAndView modelAndView = new ModelAndView();
+		modelAndView.addObject("diary", diary);
+		modelAndView.addObject("userCategory", userCategory);
+		modelAndView.setViewName("/diary/getImageDiary.jsp");
+		
+		return modelAndView;
+		
+		
+	}
 	@RequestMapping(value="listDiary")
 	public ModelAndView getDiaryList(@ModelAttribute("search") Search search , HttpSession session)throws Exception{
 			
@@ -170,6 +191,33 @@ public class DiaryController {
 		modelAndView.addObject("resultPage", resultPage);
 		modelAndView.addObject("search", search);
 		modelAndView.setViewName("/diary/listDiary.jsp");
+		
+		return modelAndView;
+	}
+	@RequestMapping(value="getListDiary")
+	public ModelAndView getListDiary(@ModelAttribute("search") Search search , HttpSession session)throws Exception{
+			
+		int userNo = ((int)session.getAttribute("userNo"));
+		
+		
+		//Diary diary = diaryService.getDiary(diaryNo);
+		//UserCategory userCategory = userCategoryService.getUserCategoryByNo(diary.getUserCategoryNo());
+		
+		if(search.getCurrentPage() ==0 ){
+			search.setCurrentPage(1);
+		}
+		search.setPageSize(pageSize);
+		
+		Map<String , Object> map=diaryService.getDiaryList(search, userNo);
+		
+		Page resultPage = new Page( search.getCurrentPage(), ((Integer)map.get("totalCount")).intValue(), pageUnit, pageSize);
+		System.out.println(resultPage);
+		
+		ModelAndView modelAndView = new ModelAndView();
+		modelAndView.addObject("list", map.get("list"));
+		modelAndView.addObject("resultPage", resultPage);
+		modelAndView.addObject("search", search);
+		modelAndView.setViewName("/diary/getListDiary.jsp");
 		
 		return modelAndView;
 	}
@@ -198,6 +246,29 @@ public class DiaryController {
 		return modelAndView;
 	}
 	
+	@RequestMapping(value="getImageList")
+	public ModelAndView getImageList(@ModelAttribute("search") Search search , HttpSession session)throws Exception{
+		
+		int userNo = ((int)session.getAttribute("userNo"));
+		
+		if(search.getCurrentPage() ==0 ){
+			search.setCurrentPage(1);
+		}
+		search.setPageSize(pageSize);		
+		
+		Map<String , Object> map=diaryService.getDiaryList(search, userNo);
+		
+		Page resultPage = new Page( search.getCurrentPage(), ((Integer)map.get("totalCount")).intValue(), pageUnit, pageSize);
+		System.out.println(resultPage);
+		
+		ModelAndView modelAndView = new ModelAndView();
+		modelAndView.addObject("list", map.get("list"));
+		modelAndView.addObject("resultPage", resultPage);
+		modelAndView.addObject("search", search);
+		modelAndView.setViewName("/diary/getImageList.jsp");
+		
+		return modelAndView;
+	}
 	@RequestMapping(value="updateDiary", method=RequestMethod.GET)
 	public ModelAndView updateDiary(@RequestParam("diaryNo")int diaryNo, HttpSession session)throws Exception {
 		System.out.println("/diary/updateDiary : GET");
@@ -216,6 +287,24 @@ public class DiaryController {
 		return modelAndView;
 	}
 	
+	@RequestMapping(value="updateImageDiary", method=RequestMethod.GET)
+	public ModelAndView updateImageDiary(@RequestParam("diaryNo")int diaryNo, HttpSession session)throws Exception {
+		System.out.println("/diary/updateDiary : GET");
+		
+		int userNo = ((int)session.getAttribute("userNo"));
+		System.out.println("userNO:"+userNo);
+		
+		List<UserCategory> userCategory= userCategoryService.getUserCategoryList(userNo);
+		Diary diary = diaryService.getDiary(diaryNo);
+		
+		ModelAndView modelAndView = new ModelAndView();
+		modelAndView.addObject("diary",diary);
+		modelAndView.addObject("userCategory", userCategory);
+		modelAndView.setViewName("/diary/updateImageDiary.jsp");
+		
+		return modelAndView;
+	}
+	
 	@RequestMapping(value="updateDiary", method=RequestMethod.POST)
 	public ModelAndView updateDiary(@ModelAttribute("diary") Diary diary) throws Exception{
 		System.out.println("/diary/updateDiary : POST");
@@ -225,6 +314,18 @@ public class DiaryController {
 		ModelAndView modelAndView = new ModelAndView();
 		modelAndView.addObject("diary", diary);
 		modelAndView.setViewName("redirect:/diary/getDiary?diaryNo="+diary.getDiaryNo());
+		
+		return modelAndView;
+	}
+	@RequestMapping(value="updateImageDiary", method=RequestMethod.POST)
+	public ModelAndView updateImageDiary(@ModelAttribute("diary") Diary diary) throws Exception{
+		System.out.println("/diary/updateDiary : POST");
+		
+		diaryService.updateDiary(diary);
+		
+		ModelAndView modelAndView = new ModelAndView();
+		modelAndView.addObject("diary", diary);
+		modelAndView.setViewName("redirect:/diary/getImageDiary?diaryNo="+diary.getDiaryNo());
 		
 		return modelAndView;
 	}
