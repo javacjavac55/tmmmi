@@ -24,7 +24,7 @@
 	
 		
 		$(document).ready(function () { 
-			getDust();
+			/* getDust(); */
 			getWeather();
 			/* setTimeout(function() { $('.loading').hide() },800);			 */
 		});
@@ -206,7 +206,7 @@
 		
 		.temp {
 		    font-size: 25px;
-		    margin-left: 45px;
+		    margin-left: 40px;
 		    margin-top: -165px;
 		    text-align: center;
 		    width: 50px;

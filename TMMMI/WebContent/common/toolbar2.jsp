@@ -14,15 +14,21 @@
 	
 	/* 추가한 부분 */
 	.logo{ height:160%; margin-top: -9px; }
-	.nav-link{ margin-top: 10px; font-size:14px !important; }
+	.nav-link{ margin-top: 10px; font-size:15px !important;}
+	ul li {	padding-left: 0em !important; margin-bottom: -1%;} /* 패딩은 FAQ,QNAQ때문에 꼭 넣어야함 */ 
+	 
 	
 </style>
 </head>
 <body>
-  <nav class="navbar navbar-transparent navbar-color-on-scroll fixed-top navbar-expand-lg" color-on-scroll="100" id="sectionsNav">
+  <nav class="navbar navbar-transparent navbar-color-on-scroll fixed-top navbar-expand-lg" color-on-scroll="100" id="sectionsNav"">
     <div class="container">
       <div class="navbar-translate">
-       <a class="navbar-brand" href="../index.jsp"><img src="/images/Logo/logoPurple.png" alt="" class="logo"></a>
+     	 <a class="navbar-brand" href="../index.jsp" style="font-size: 25px; font-weight: bold;">
+       		TMMMI
+       		<!-- 로고 이미지 -->
+       	<!-- <img src="/images/Logo/logoReset2.png" alt="" class="logo"> --> 	
+       </a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" aria-expanded="false" aria-label="Toggle navigation">
           <span class="sr-only">Toggle navigation</span>
           <span class="navbar-toggler-icon"></span>
@@ -34,7 +40,7 @@
         <ul class="navbar-nav ml-auto">
           
           <li class="dropdown nav-item">
-            <a href="#" class="dropdown-toggle nav-link" data-toggle="dropdown">Calendar</a>
+            <a href="#" class="dropdown-toggle nav-link" data-toggle="dropdown" >Calendar</a>
             <div class="dropdown-menu dropdown-with-icons">
             	<a href="/calendar/getCalendarMonth" class="dropdown-item">월 달력</a>
 				<a href="/calendar/getCalendarInterest" class="dropdown-item">관심사 달력</a>
