@@ -7,70 +7,44 @@
 		<meta http-equiv="Content-Type" content="text/html; charset=EUC-KR">
 		<title>userKeyword</title>
 		
-		<script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
-		
-		<!-- Material Kit CSS -->
-		<link href="/css/template/material-kit.min.css?v=2.0.5" rel="stylesheet" />
 		<!-- Carousel CSS -->
-		<link rel="stylesheet" href="/css/scroll/main.css">
+		<script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+		<link rel="stylesheet" href="/css/scroll/main_userSearch.css">
 		<noscript><link rel="stylesheet" href="/css/scroll/noscript.css" /></noscript>
-	
-		<!-- Material Kit JS -->
-		<script src="/javascript/template/core/jquery.min.js" type="text/javascript"></script>
-		<script src="/javascript/template/core/popper.min.js" type="text/javascript"></script>
-		<script src="/javascript/template/core/bootstrap-material-design.min.js" type="text/javascript"></script>
-		<script async defer src="https://buttons.github.io/buttons.js"></script>
-		<script src="/javascript/template/material-kit.js?v=2.0.5" type="text/javascript"></script>
 		
-		<!--     Fonts and icons     -->
-		<link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Roboto+Slab:400,700|Material+Icons" />
-		
-		
-<style>
-	.carousel article{
-		vertical-align : middle;
-		padding-top : 40px;
-		width: 356px;
-		height: 518px;
-		position : relative;
-		border-radius : 15px;
-		text-align : left;
-	}
-	#ganziGiyong{
-		position : absolute;
-		top : 300px;
-		left : 152px;
-	}
-	#giyong{
-		margin-top : 10em;
-	}
-</style>
-		
+		<style>
+			.carousel {
+				background-color: ${bgColor};
+			}
+			
+			.section-title {
+				color: ${fontColor};
+			}
+		</style>
 	</head>
 <body>
-	
-	<section class="carousel" style="background-color:#1d1d1d; vertical-align : middle">
+	<section class="carousel">
+		<div><span class="section-title">${userSearch}</span></div>
 		<div class="reel" style="overflow: visible; transform: translate(-1285px, 0px); ">
-			<!-- items : 받아올 배열이름 var=내부에서 사용할변수 -->
 			<c:forEach var="contentUserKeyword" items="${userKeywordFirstList}">				
-				<article>
-					${contentUserKeyword.keywordTitle }
-					${contentUserKeyword.keywordDescription}
-					<p>
-						<a href="${contentUserKeyword.keywordLink}" class="image featured">
-							<div id="ganziGiyong">
-								<button id="giyong"class="btn btn-primary btn-round btn-sm">
-								  <i class="material-icons" style="font-size:10px;">favorite</i> 보러가기
-								</button>
-							</div>
-						</a>
-					</p>
+				<article class="content-userSearch">
+					<div class="">
+						<div>
+							<div class="user-keyword-title">${contentUserKeyword.keywordTitle}</div>
+							<div class="quote-left">"</div>
+							<div><img src="${contentUserKeyword.keywordVideo}"></div>
+							<div class="user-keyword-detail">${contentUserKeyword.keywordDescription}</div>
+							<div class="quote-right">"</div>
+						</div>	
+						<div>
+							<button class="content-model-btn userKeyword-btn" type="button" data-content="${contentUserKeyword.keywordLink}">더보기</button>
+						</div>
+					</div>
 				</article>
 			</c:forEach>
 		</div>
 	</section>
-
-	
+	<input type="hidden" id="userSearchFirstInput" value="" />
 	<!-- Carousel JS -->
 	<script src="/javascript/scroll/jquery.dropotron.min.js"></script>
 	<script src="/javascript/scroll/jquery.scrolly.min.js"></script>
@@ -79,5 +53,13 @@
 	<script src="/javascript/scroll/breakpoints.min.js"></script>
 	<script src="/javascript/scroll/util.js"></script>
 	<script src="/javascript/scroll/main.js"></script>
+	<script>
+		$(function() {
+			$('.content-model-btn').on('click', function() {
+				var content = $(this).data("content");
+				$('#userSearchFirstInput').val(content);
+			})
+		})
+	</script>
 </body>
 </html>

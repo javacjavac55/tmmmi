@@ -41,6 +41,7 @@ public class ContentKeywordController {
 		int userNo = (int)session.getAttribute("userNo");
 		
 		ModelAndView modelAndView = new ModelAndView();
+		modelAndView.addObject("userSearch", contentSettingService.getContentSetting(userNo).getUserSearch1());
 		modelAndView.addObject("userKeywordFirstList", contentUserKeywordService.getContentUserKeywordFirstList(contentSettingService.getContentSetting(userNo), 0));
 		modelAndView.addObject("bgColor", (userSettingService.getUserSetting(userNo).getMainColorModeNo()==0)?"#000000":"#FFFFFF");
 		modelAndView.addObject("fontColor", (userSettingService.getUserSetting(userNo).getMainColorModeNo()==0)?"#FFFFFF":"#000000");
