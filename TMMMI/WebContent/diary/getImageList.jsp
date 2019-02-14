@@ -272,54 +272,26 @@ img {
 </script>
 
 </head>
-<body class="index-page sidebar-collapse">
-	<jsp:include page="/common/toolbar2.jsp"></jsp:include>
-		<div class="page-header header-filter clear-filter" data-parallax="true" style="background-image: url('/images/userSetting/ ${userSetting.image}')">
-			
-			<div class="container">
-				<div class="row">
-					<div class="col-md-8 ml-auto mr-auto">
-						<div class="brand">
-							<h2 class="title">Diary</h2>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-	<div class="main main-raised">
-		<div class="section section-basic">
-			<div class="container">
-				<div align="center">
-					<!-- Wrapper -->
-					<div id="wrapper">
-						<!-- Main -->
-						<div id="main">
 
-
-							<div class="form-group" align="left">
-								<label for="userCategoryNo"
-									class="col-sm-offset-1 col-sm-1 control-label text-center"></label>
-								<h3 class="title">My Diary</h3>
-								<div class="col-sm-4"></div>
-							</div>
 
 							<!-- table 위쪽 검색 Start /////////////////////////////////////-->
 							<div class="row">
 
 								<div class="col-md-6 text-left">
-									<p class="text-default">전체 글:${resultPage.totalCount}</p>
+									<p class="text-default"><%-- 전체 글: ${resultPage.totalCount} --%></p>
 
 								</div>
 								<div class="col-md-6 text-right">
 									<div class="col-sm-offset-4  col-sm-4 text-right"
 							style="float: right;">
 							<%-- <button type="button" name="imageList" class="btn btn-primary"
-								id="imageList" data-param1="${search.currentPage}"> --%>										
-										<a href='/diary/listDiary'><img src=/images/diaryImage/3213.PNG class="listDiary" style="width:30px; height:24px;" title="리스트 형식으로 보기"/></a>
-										<a href='/diary/imageList'><img src=/images/diaryImage/321312.PNG class="imageDiary" style="width:30px; height:24px;" title="썸네일 형식으로 보기"/></a>
+								id="imageList" data-param1="${search.currentPage}"> --%>
+										<!-- <a href='/diary/listDiary'><img src=/images/diaryImage/3213.PNG class="listDiary" style="width:30px; height:24px;" title="리스트 형식으로 보기"/></a>
+										<a href='/diary/imageList'><img src=/images/diaryImage/321312.PNG class="imageDiary" style="width:30px; height:24px;" title="썸네일 형식으로 보기"/></a> -->
 									</div>
 
 								</div>
+								
 								<div class="col-md-4"></div>
 
 								<div class="col-md-6 text-right"></div>
@@ -397,17 +369,11 @@ img {
 					</div> -->
 							</form>
 				<%-- <jsp:include page="../common/pageNavigator.jsp" /> --%>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
+						
 
 	<!--  화면구성 div End /////////////////////////////////////-->
 	<!-- PageNavigation Start... -->
 
-	<jsp:include page="/common/footer.jsp"></jsp:include>
 
 </body>
 </html>

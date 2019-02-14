@@ -11,10 +11,11 @@ import java.util.List;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
+import org.jsoup.Jsoup;
+import org.jsoup.nodes.Document;
 import org.springframework.stereotype.Repository;
 
 import com.tmmmi.service.domain.ContentSetting;
-import com.tmmmi.service.domain.ContentShopping;
 import com.tmmmi.service.domain.ContentUserKeyword;
 
 @Repository("contentKeywordDaoImpl")
@@ -77,7 +78,23 @@ public class ContentKeywordDaoImpl extends ContentDaoAdaptor {
             	
             	ContentUserKeyword contentUserKeyword = new ContentUserKeyword();
             	contentUserKeyword.setKeywordTitle(title);
-            	contentUserKeyword.setKeywordLink(link);
+            	contentUserKeyword.setKeywordLink(link.replaceAll("amp;", ""));
+            	System.out.println(link.replaceAll("amp;", ""));
+            	Document doc = Jsoup.connect(link.replaceAll("amp;", "")).header("User-Agent", "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/55.0.2883.87 Safari/537.36").get();
+            	System.out.println("iframe : "+doc.select("iframe").size());
+            	System.out.println("iframe 링크 :http://blog.naver.com/"+doc.select("iframe").attr("src"));
+            	Document docFrame = Jsoup.connect("http://blog.naver.com/"+doc.select("iframe").attr("src")).header("User-Referer", "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/55.0.2883.87 Safari/537.36").get();
+            	System.out.println("iframe tbody : " +docFrame.select("#printPost1").size());
+            	
+            	if(docFrame.select("#printPost1").select("img").size() == 1) {
+            		System.out.println("이미지가 없습니다");
+            		
+            	}else {
+            		System.out.println("야호");
+            		int count = (int)Math.abs(docFrame.select("#printPost1").select("img").size()/2);
+            		System.out.println("iframe image : " +docFrame.select("#printPost1").select("img").get(count-1).attr("src"));
+            		contentUserKeyword.setKeywordVideo(docFrame.select("#printPost1").select("img").get(count-1).attr("src"));
+            	}
             	contentUserKeyword.setKeywordDescription(description);
             	result.add(contentUserKeyword);
             }
