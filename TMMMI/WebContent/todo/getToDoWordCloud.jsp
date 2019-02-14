@@ -27,8 +27,8 @@
 <title>TMMMI</title>
 <style>
 	#todocloud {
-		height: 800px;
-		width: 800px;
+		height: 500px;
+		width: 500px;
 	}
 </style>
 </head>
@@ -54,19 +54,11 @@
 			<script>
 			$(function () {
 				var words =${wordList};
-				/* var t;
-				var w;
-				console.log('${wordList}');
-				<c:forEach items="" var="words">
-				t = "${words.text}";
-				console.log(t);
-				w = "${words.weight}";
-				console.log(w);
-				var l = {text: t, weight: w};
-				words.push(l);
-				</c:forEach>
-				console.log(words); */
-			$('#todocloud').jQCloud(words);
+				
+			$('#todocloud').jQCloud(words,{
+				autoResize : true,
+				colors: ["#800026", "#bd0026", "#e31a1c", "#fc4e2a", "#fd8d3c", "#feb24c", "#fed976", "#ffeda0", "#ffffcc"]
+			});
 			console.log('words');
 			});
 			</script>
