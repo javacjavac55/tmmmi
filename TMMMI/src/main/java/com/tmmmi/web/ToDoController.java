@@ -8,6 +8,7 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Random;
 import java.util.StringTokenizer;
 
 import javax.servlet.http.HttpSession;
@@ -121,6 +122,7 @@ public class ToDoController {
 	public ModelAndView getToDoMonthGraph(HttpSession session) throws Exception {
 		System.out.println("/getToDoMonthGraph 접근");
 		int userNo = (int)session.getAttribute("userNo");
+		Random randomWeight = new Random();
 		
 		//현재 날짜 계산
 		int year = Year.now().getValue();
@@ -138,17 +140,27 @@ public class ToDoController {
 		
 		//Business Logic
 		List<ToDo> todoMonth = toDoService.getToDoMonthGraph(todomap);
+		List<ToDo> getWordList = toDoService.getToDoWordCloud(todomap);
+		List<Words> wordList = new ArrayList<Words>();
+		for (int i = 0; i < getWordList.size(); i++) {
+			Words words = new Words();
+			words.setText(getWordList.get(i).getToDoDetail());
+			words.setWeight(randomWeight.nextInt(10));
+			wordList.add(words);
+		}
+		System.out.println(wordList);
 		ModelAndView modelAndView = new ModelAndView();
 		System.out.println("todoMonth"+todoMonth);
 		modelAndView.setViewName("/todo/getToDoMonthGraph.jsp");
 		modelAndView.addObject("todoMonth",todoMonth);
+		modelAndView.addObject("wordList", wordList);
 		return modelAndView;
 	}
 	@RequestMapping(value="/getToDoWordCloud", method=RequestMethod.GET)
 	public ModelAndView getToDoWordCloud(HttpSession session) throws Exception {
 	
 	int userNo = (int)session.getAttribute("userNo");
-	int wordCount = 0;
+	Random randomWeight = new Random();
 	//현재 년도 계산
 	int year = Year.now().getValue();
 	String transYear = Integer.toString(year);
@@ -167,18 +179,10 @@ public class ToDoController {
 	List<ToDo> getWordList = toDoService.getToDoWordCloud(todomap);
 	List<Words> wordList = new ArrayList<Words>();
 	for (int i = 0; i < getWordList.size(); i++) {
-		/*StringTokenizer st = new StringTokenizer(getWordList.get(i).getToDoDetail());
-		while(st.hasMoreTokens()) { 
-			//while문으로 단어 개수만큼 돌리는거당. 이 경우에는 4번이 돎. (for문을 사용해도 오킹)
-			String token = st.nextToken(); //토큰을 하나씩 꺼내오는 중
-			System.out.println(token); //꺼내온 토큰 출력
-			wordCount = st.countTokens();
-	        System.out.println("단어의 개수: " + wordCount);
-		}*/
-	Words words = new Words();
-	words.setText(getWordList.get(i).getToDoDetail());
-	words.setWeight(wordCount);
-	wordList.add(words);
+		Words words = new Words();
+		words.setText(getWordList.get(i).getToDoDetail());
+		words.setWeight(randomWeight.nextInt(10));
+		wordList.add(words);
 	}
 	System.out.println(wordList);
 	ModelAndView modelAndView = new ModelAndView();

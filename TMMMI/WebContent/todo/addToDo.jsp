@@ -4,7 +4,9 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=EUC-KR">
-<title>Insert title here</title>
+<script type="text/javascript">
+
+</script>
 </head>
 <body>
 <!-- 등록 모달 -->
@@ -45,13 +47,13 @@
 											<i class="material-icons">calendar_today</i>
 										</div>
 									</div>
-									<input type="text" class="form-control 2" name="toDoStartDate" id="dd1" autocomplete="off">
+									<input type="text" class="form-control 2" name="toDoStartDate" id="dd1" placeholder="시작 날짜를 입력해주세요" autocomplete="off">
 									<script>
 								    $("#dd1").datepicker(
 								        {
 								        	 firstDay: 1,
 								             dateFormat: "yy-mm-dd",
-								             defaultDate: "2019-03-01",
+								             defaultDate: targetdate,
 								             monthNames: ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12'],
 								             monthNamesShort: ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12'],
 								             dayNames: ['일', '월', '화', '수', '목', '금', '토'],
@@ -73,13 +75,13 @@
 											<i class="material-icons">flag</i>
 										</div>
 									</div>
-									<input type="text" class="form-control 3" name="toDoEndDate" id="dd2" autocomplete="off">
+									<input type="text" class="form-control 3" name="toDoEndDate" id="dd2" placeholder="종료 날짜를 입력해주세요" autocomplete="off">
 									<script>
 									$("#dd2").datepicker(
 									        {
 									        	 firstDay: 1,
 									             dateFormat: "yy-mm-dd",
-									             defaultDate: "2019-03-01",
+									             defaultDate: targetdate,
 									             monthNames: ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12'],
 									             monthNamesShort: ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12'],
 									             dayNames: ['일', '월', '화', '수', '목', '금', '토'],
@@ -88,9 +90,10 @@
 									             showMonthAfterYear: true,
 									             yearSuffix: '년',
 									             changeYear: true,
-									             changeMonth: true
+									             changeMonth: true,
+									             minDate:  '${startDate}'
 									        }
-									    );
+									        );
 									</script>
 								</div>
 							</div>
@@ -145,13 +148,12 @@
 											<i class="material-icons">calendar_today</i>
 										</div>
 									</div>
-									<input type="text" class="form-control 5" name="toDoStartDate" id="dd3" value="" autocomplete="off">
+									<input type="text" class="form-control 5" name="toDoStartDate" id="dd3" value="" placeholder="시작 날짜를 입력해주세요" autocomplete="off">
 									<script>
 									$("#dd3").datepicker(
 									        {
 									        	 firstDay: 1,
 									             dateFormat: "yy-mm-dd",
-									             defaultDate: "2019-03-01",
 									             monthNames: ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12'],
 									             monthNamesShort: ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12'],
 									             dayNames: ['일', '월', '화', '수', '목', '금', '토'],
@@ -173,13 +175,12 @@
 											<i class="material-icons">flag</i>
 										</div>
 									</div>
-									<input type="text" class="form-control 6" name="toDoEndDate" id="dd4" value="" autocomplete="off">
+									<input type="text" class="form-control 6" name="toDoEndDate" id="dd4" value="" placeholder="종료 날짜를 입력해주세요" autocomplete="off">
 									<script>
 									$("#dd4").datepicker(
 									        {
 									        	 firstDay: 1,
 									             dateFormat: "yy-mm-dd",
-									             defaultDate: "2019-03-01",
 									             monthNames: ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12'],
 									             monthNamesShort: ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12'],
 									             dayNames: ['일', '월', '화', '수', '목', '금', '토'],
@@ -188,7 +189,8 @@
 									             showMonthAfterYear: true,
 									             yearSuffix: '년',
 									             changeYear: true,
-									             changeMonth: true
+									             changeMonth: true,
+									             minDate: $('#dd3').val()
 									        }
 									    );
 									</script>

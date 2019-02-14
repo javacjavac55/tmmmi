@@ -61,7 +61,6 @@
             <div class="dropdown-menu dropdown-with-icons">
 				<a href="/todo/getToDoList" class="dropdown-item">할 일 리스트</a>
 				<a href="/todo/getToDoMonthGraph" class="dropdown-item">할 일 그래프</a>
-				<a href="/todo/getToDoWordCloud" class="dropdown-item">할 일 워드클라우드</a>
             </div>
           </li>
           

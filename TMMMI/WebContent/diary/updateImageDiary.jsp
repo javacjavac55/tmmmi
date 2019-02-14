@@ -121,7 +121,7 @@
 		text: "다이어리가 수정되었습니다. 다이어리를 관리해보세요!" , 
 		icon : "success" , 
 	}).then((value)=>{
-		$('form[name="updateDiary"]').attr("method" , "POST").attr("enctype","multipart/form-data").attr("action" , "/diary/updateDiary").submit();
+		$('form[name="updateImageDiary"]').attr("method" , "POST").attr("enctype","multipart/form-data").attr("action" , "/diary/updateImageDiary").submit();
 	});
 	
 		
@@ -136,7 +136,7 @@
 		});
 		 
 		$(function(){
-			$("#cancel").on("click" , function() {	
+			$("#cancel").on("click" , function() {		
 				history.go(-1);
 			});
 		});	
@@ -175,7 +175,7 @@
 						<!-- Main -->
 						<div id="main">
 							
-							<form name="updateDiary" class="form-horizontal">
+							<form name="updateImageDiary" class="form-horizontal">
 								<%--<input type="hidden" name="prodNo" value="<%= product.getProdNo()%>"/> --%> 
 								<input type="hidden" name="diaryNo" value="${diary.diaryNo}"/>
 								

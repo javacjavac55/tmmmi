@@ -29,11 +29,11 @@
 
 		$('#update').on("click", function() {
 			var diaryNo = $(this).data('param1');
-			self.location = "/diary/updateDiary?diaryNo=" + diaryNo;
+			self.location = "/diary/updateImageDiary?diaryNo=" + diaryNo;
 		});
 
 		$('#back').on("click", function() {
-			self.location = "/diary/listDiary";
+			self.location = "/diary/imageList";
 		});
 	});
 </script>
@@ -102,7 +102,7 @@
 									</div>
 								</div>
 						</div>	
-						<c:import url="/diary/getListDiary" />
+						<c:import url="/diary/getImageList" />
 					</div>
 				</div>
 			</div>
