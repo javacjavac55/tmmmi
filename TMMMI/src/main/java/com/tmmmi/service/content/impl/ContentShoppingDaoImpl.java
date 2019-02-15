@@ -32,13 +32,14 @@ public class ContentShoppingDaoImpl extends ContentDaoAdaptor {
 			String clientId = "rHBsMd5Tu_WOFtXexEQz"; //클라이언트 아이디
 	        String clientSecret = "95lxTYNVRV"; //클라이언트 시크릿
 	        int display =  8; //화면에 보여줄 개수
+	        int start = (index*display)+1;
 	        String shoppingKeyword = contentSetting.getShoppingSearch1(); //사용자에게 받아온 키워드
 
 	        List<ContentShopping> result =new ArrayList<ContentShopping>();
-	        
+	    	        
 	        try {
 	        	String text = URLEncoder.encode(shoppingKeyword, "UTF-8");
-	            String apiURL = "https://openapi.naver.com/v1/search/shop.json?query="+ text+"&display="+display;// json 
+	            String apiURL = "https://openapi.naver.com/v1/search/shop.json?query="+ text+"&display="+display+ "&start=" +start+"&sort=sim";// json 
 	            URL url = new URL(apiURL);
 	            HttpURLConnection con = (HttpURLConnection)url.openConnection();
 	            con.setRequestMethod("GET");
@@ -63,7 +64,7 @@ public class ContentShoppingDaoImpl extends ContentDaoAdaptor {
 	        
 	            String json = "";
 	            json = sb.toString();
-	            //System.out.println("json++++" +json);
+	           /* System.out.println("json++++" +json);*/
 	            
 	            JSONParser parser=new JSONParser();
 	            JSONObject items =(JSONObject)parser.parse(json); //json데이터중 item[ ] 빼오기
@@ -95,6 +96,7 @@ public class ContentShoppingDaoImpl extends ContentDaoAdaptor {
 		String clientId = "rHBsMd5Tu_WOFtXexEQz"; //클라이언트 아이디
         String clientSecret = "95lxTYNVRV"; //클라이언트 시크릿
         int display =  8; //화면에 보여줄 개수
+        int start = (index*display)+1;
         String shoppingKeyword = contentSetting.getShoppingSearch2(); //사용자에게 받아온 키워드
      
         
@@ -102,7 +104,7 @@ public class ContentShoppingDaoImpl extends ContentDaoAdaptor {
         
         try {
         	String text = URLEncoder.encode(shoppingKeyword, "UTF-8");
-            String apiURL = "https://openapi.naver.com/v1/search/shop.json?query="+ text+"&display="+display;// json 
+            String apiURL = "https://openapi.naver.com/v1/search/shop.json?query="+ text+"&display="+display+ "&start=" +start+"&sort=sim";// json
             URL url = new URL(apiURL);
             HttpURLConnection con = (HttpURLConnection)url.openConnection();
             con.setRequestMethod("GET");
@@ -159,13 +161,14 @@ public class ContentShoppingDaoImpl extends ContentDaoAdaptor {
 		String clientId = "rHBsMd5Tu_WOFtXexEQz"; //클라이언트 아이디
         String clientSecret = "95lxTYNVRV"; //클라이언트 시크릿
         int display =  8; //화면에 보여줄 개수
+        int start = (index*display)+1;
         String shoppingKeyword = contentSetting.getShoppingSearch3(); //사용자에게 받아온 키워드
         
         List<ContentShopping> result =new ArrayList<ContentShopping>();
         
         try {
         	String text = URLEncoder.encode(shoppingKeyword, "UTF-8");
-            String apiURL = "https://openapi.naver.com/v1/search/shop.json?query="+ text+"&display="+display;// json 
+            String apiURL = "https://openapi.naver.com/v1/search/shop.json?query="+ text+"&display="+display+ "&start=" +start+"&sort=sim";// json
             URL url = new URL(apiURL);
             HttpURLConnection con = (HttpURLConnection)url.openConnection();
             con.setRequestMethod("GET");
@@ -217,20 +220,24 @@ public class ContentShoppingDaoImpl extends ContentDaoAdaptor {
 		return result;
     }
 	
-	public List<ContentShopping> getContentShoppingReviewList(ContentSetting contentSetting, int index) throws Exception {
+	public List<ContentShopping> getContentShoppingReviewList(ContentSetting contentSetting, int index,  String pageToken) throws Exception {
+		
 		String apiKey = "AIzaSyBLiKbxA8GhogX362LoIoNnCaVmIvesAFU"; //api key
 		String reviewKeyword = contentSetting.getShoppingReview();
-		System.out.println(reviewKeyword);
 		String q = URLEncoder.encode(reviewKeyword+"하울", "UTF-8"); //검색할 키워드
 		String maxResults = "8"; //가져올 동영상 수
 		String order = "date"; //rating랭킹순으로 
 												//date 최신순으로
 		
+		if(index > 0) {
+			maxResults += "&pageToken="+pageToken;
+		}
+
 		List<ContentShopping> result =new ArrayList<ContentShopping>();
 	
 		try {
 			String apiURL= "https://www.googleapis.com/youtube/v3/search?key="+apiKey+"&part=snippet&q="+q+
-										"&maxResults="+maxResults;
+										"&maxResults="+maxResults+"&order=date";
 			
 			URL url = new URL(apiURL);
 			HttpURLConnection con = (HttpURLConnection)url.openConnection();
@@ -252,7 +259,9 @@ public class ContentShoppingDaoImpl extends ContentDaoAdaptor {
 	        JSONParser parser=new JSONParser();
 	        JSONObject items =(JSONObject)parser.parse(json); //json데이터중 item[ ] 빼오기
 	        JSONArray arr = (JSONArray)items.get("items"); //array 필요
-	       System.out.println(arr);
+	        System.out.println(arr);
+	        pageToken = (String)items.get("nextPageToken"); //다음페이지
+	     
 	        
 	        for(int i =0; i<arr.size() ; i++) {
             	JSONObject tmp = (JSONObject)arr.get(i);
@@ -261,8 +270,7 @@ public class ContentShoppingDaoImpl extends ContentDaoAdaptor {
 	        	String title = (String)snippet.get("title"); //제목
 	        	String description = (String)snippet.get("description"); //설명
 	        	String channelTitle = (String)snippet.get("channelTitle"); //채널이름
-	        	
-	        	
+	         	 	        	
 	        	JSONObject high = (JSONObject) ((JSONObject) (snippet.get("thumbnails"))).get("high");
 	        	String image = (String)high.get("url"); //썸네일
    	
@@ -281,7 +289,10 @@ public class ContentShoppingDaoImpl extends ContentDaoAdaptor {
 	        	contentShopping.setShoppingVideoThumbnail(image);
 	        	contentShopping.setShoppingVideoId("<iframe width=\"600\" height=\"518\" src=\"http://www.youtube.com/embed/"+videoId+"\" frameborder=\"0\" allow=\"accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture\" allowfullscreen></iframe>");
 	        	contentShopping.setReviewNo(videoId);
+	        	contentShopping.setShoppingVideoPageToken(pageToken);
+	        	contentShopping.setShoppingVideoPageTokenNo(index);
 	        	result.add(contentShopping);
+	        	System.out.println(contentShopping);
 	        }
 		}catch (Exception e) {
 			System.out.println(e);

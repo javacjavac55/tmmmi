@@ -113,7 +113,7 @@ public abstract class ContentServiceAdaptor implements ContentService {
 	}
 	
 	@Override
-	public List<ContentShopping> getContentShoppingReviewList(ContentSetting contentSetting, int index) throws Exception{
+	public List<ContentShopping> getContentShoppingReviewList(ContentSetting contentSetting, int index, String pageToken) throws Exception{
 		return null;
 	}
 
@@ -134,12 +134,12 @@ public abstract class ContentServiceAdaptor implements ContentService {
 	}
 	
 	@Override
-	public List<ContentUserKeyword> getContentUserKeywordVideoFirstList(ContentSetting contentSetting, int index) throws Exception{
+	public List<ContentUserKeyword> getContentUserKeywordVideoFirstList(ContentSetting contentSetting, int index, String pageToken) throws Exception{
 		return null;
 	}
 	
 	@Override
-	public List<ContentUserKeyword> getContentUserKeywordVideoSecondList(ContentSetting contentSetting, int index) throws Exception{
+	public List<ContentUserKeyword> getContentUserKeywordVideoSecondList(ContentSetting contentSetting, int index, String pageToken) throws Exception{
 		return null;
 	}
 	
