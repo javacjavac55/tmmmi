@@ -87,6 +87,7 @@ box-shadow: 5px 5px 20px purple;
 			$('#updateToDoDetail').val(detail);
 			$('#dd3').val(start);
 			$('#dd4').val(end);
+			$('#dd4').datepicker( "option", "minDate", start );
 			});
 		///////////////////////////////할 일 수정/////////////////////////////////////////
 		$(document).on('click',"#updateToDobtn:contains('수정')", function() {
@@ -237,6 +238,66 @@ box-shadow: 5px 5px 20px purple;
 		//////////////////////////////////////////////날짜 이동//////////////////////////////////////////////////////
 		$(document).on('click',"#search", function() {
 			$(".currentdateform").attr("method", "POST").attr("action","/todo/getToDoList").submit();
+		})
+		$( function() {
+			var dateFormat = "yy-mm-dd"
+			from = $("#dd1").datepicker(
+		        {
+		        	 firstDay: 1,
+		             dateFormat: "yy-mm-dd",
+		             defaultDate: targetdate,
+		             monthNames: ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12'],
+		             monthNamesShort: ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12'],
+		             dayNames: ['일', '월', '화', '수', '목', '금', '토'],
+		             dayNamesShort: ['일', '월', '화', '수', '목', '금', '토'],
+		             dayNamesMin: ['일', '월', '화', '수', '목', '금', '토'],
+		             showMonthAfterYear: true,
+		             yearSuffix: '년',
+		             changeYear: true,
+		             changeMonth: true
+		        }).on( "change", function() {
+		            to.datepicker( "option", "minDate", getDate( this ) );
+		        }),
+		        to = $("#dd2").datepicker(
+		        {
+		        	 firstDay: 1,
+		             dateFormat: "yy-mm-dd",
+		             monthNames: ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12'],
+		             monthNamesShort: ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12'],
+		             dayNames: ['일', '월', '화', '수', '목', '금', '토'],
+		             dayNamesShort: ['일', '월', '화', '수', '목', '금', '토'],
+		             dayNamesMin: ['일', '월', '화', '수', '목', '금', '토'],
+		             showMonthAfterYear: true,
+		             yearSuffix: '년',
+		             changeYear: true,
+		             changeMonth: true,
+		        }).on( "change", function() {
+		            from.datepicker( "option", "maxDate", getDate( this ) );
+		        });
+			function getDate( element ) {
+			      var date;
+			      try {
+			        date = $.datepicker.parseDate( dateFormat, element.value );
+			      } catch( error ) {
+			        date = null;
+			      }
+			      return date;
+			    }
+		})
+		$( function() {
+			$("#dd4").datepicker({
+			        	 firstDay: 1,
+			             dateFormat: "yy-mm-dd",
+			             monthNames: ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12'],
+			             monthNamesShort: ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12'],
+			             dayNames: ['일', '월', '화', '수', '목', '금', '토'],
+			             dayNamesShort: ['일', '월', '화', '수', '목', '금', '토'],
+			             dayNamesMin: ['일', '월', '화', '수', '목', '금', '토'],
+			             showMonthAfterYear: true,
+			             yearSuffix: '년',
+			             changeYear: true,
+			             changeMonth: true
+			        });
 		})
 	});///onready
 </script>

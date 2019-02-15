@@ -32,9 +32,10 @@ public class ContentTastyRestController {
 		System.out.println(this.getClass());
 	}
 	@RequestMapping(value="/restContentTastyList", method=RequestMethod.GET)
-	public List<ContentTasty> getContentList(HttpSession session)throws Exception {
-		
+	public List<ContentTasty> getContentList(HttpSession session, int index)throws Exception {
 		int userNo = (int) session.getAttribute("userNo");
-		return contentTastyService.getContentTastyList(contentSettingService.getContentSetting(userNo), 0);
+		System.out.println(index);
+		System.out.println("aaa:"+contentTastyService.getContentTastyList(contentSettingService.getContentSetting(userNo), index));
+		return contentTastyService.getContentTastyList(contentSettingService.getContentSetting(userNo), index);
 	}
 }

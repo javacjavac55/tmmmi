@@ -13,6 +13,8 @@ public class ContentShopping {
 	private String shoppingVideoThumbnail;
 	private String shoppingVideoChannel;
 	private String shoppingVideoId;
+	private String shoppingVideoPageToken;
+	private int shoppingVideoPageTokenNo;
 	
 	public ContentShopping() {
 		super();
@@ -106,13 +108,32 @@ public class ContentShopping {
 		this.shoppingVideoId = shoppingVideoId;
 	}
 
+	public String getShoppingVideoPageToken() {
+		return shoppingVideoPageToken;
+	}
+
+	public void setShoppingVideoPageToken(String shoppingVideoPageToken) {
+		this.shoppingVideoPageToken = shoppingVideoPageToken;
+	}
+
+	public int getShoppingVideoPageTokenNo() {
+		return shoppingVideoPageTokenNo;
+	}
+
+	public void setShoppingVideoPageTokenNo(int shoppingVideoPageTokenNo) {
+		this.shoppingVideoPageTokenNo = shoppingVideoPageTokenNo;
+	}
+
 	@Override
 	public String toString() {
 		return "ContentShopping [sectionNo=" + sectionNo + ", reviewNo=" + reviewNo + ", shoppingTitle=" + shoppingTitle
 				+ ", shoppingLink=" + shoppingLink + ", shoppingPrice=" + shoppingPrice + ", shoppingThumbnail="
 				+ shoppingThumbnail + ", shoppingVideoTitle=" + shoppingVideoTitle + ", shoppingVideoDetail="
 				+ shoppingVideoDetail + ", shoppingVideoThumbnail=" + shoppingVideoThumbnail + ", shoppingVideoChannel="
-				+ shoppingVideoChannel + ", shoppingVideoId=" + shoppingVideoId + "]";
+				+ shoppingVideoChannel + ", shoppingVideoId=" + shoppingVideoId + ", shoppingVideoPageToken="
+				+ shoppingVideoPageToken + ", shoppingVideoPageTokenNo=" + shoppingVideoPageTokenNo + "]";
 	}
+
+	
 	
 }

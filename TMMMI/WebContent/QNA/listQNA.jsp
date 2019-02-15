@@ -14,9 +14,17 @@
 <!-- CSS Just for demo purpose, don't include it in your project -->
 <link href="/css/template/demo.css" rel="stylesheet" />
 
+<!--  Fonts and icons -->
+<link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Roboto+Slab:400,700|Material+Icons" />
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css">
+
 <!-- jQuery -->
 <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+<!-- styleSheet -->
+<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 
 <link rel="stylesheet" href="/css/index/assets/css/main.css" />
 <link href="https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300" rel="stylesheet">
@@ -177,7 +185,7 @@
 <form>
 
 <jsp:include page="/common/toolbar2.jsp"></jsp:include>
-  <div class="page-header header-filter clear-filter" style="background-image: url('/images/weather/4016924c4eb809d80e5ac60ad0703088.jpg');">
+  <div class="page-header header-filter clear-filter" style="background-image: url('/images/userSetting/ ${userSetting.image}')">
     <div class="container">
       <div class="row">
         <div class="col-md-8 ml-auto mr-auto">
@@ -195,11 +203,14 @@
       		<div class="container">
       		
       		 <!-- ¹è³Ê -->
-			<!-- <iframe id="floatdiv" src="/widget/getWeather.jsp" style="border-color: rgb(0,0,0,0);"></iframe> -->
+			<iframe id="floatdiv" src="/widget/getWeather.jsp" style="border-color: rgb(0,0,0,0);"></iframe>
 		
-      		<img src="/images/common/star.png" width="2%"/>
-	      	<span>Home / CustomerCenter</span> <br><br>
+			<div style="margin-top: -35px;">
+      			<img src="/images/common/star.png" width="2%"/>
+	      		<span>Home / CustomerCenter</span> <br><br>
+	      	</div>
 			 	
+			 	<br><br>
 			 	
 			 	<section class="tiles" style="cursor:pointer; margin-top: -30px;">
 					<article class="style5 users" style="width:243px;">
@@ -263,7 +274,7 @@
 				    <a class="nav-link"  >1:1 QNA</a>
 				  </li>
 				</ul>
-				<hr style="margin-top:0.1%;">
+				<hr style="margin-top:1%;">
 
 			
 			 	<div id="table">

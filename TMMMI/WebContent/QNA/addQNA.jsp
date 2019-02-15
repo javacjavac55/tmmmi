@@ -24,6 +24,7 @@
 	<!--ckeditor  -->
 	<!-- <script src="/ckeditor/ckeditor.js"></script> -->
 	<script src="//cdn.ckeditor.com/4.7.3/full/ckeditor.js"></script>
+
   	
 	<!--  ///////////////////////// CSS ////////////////////////// -->
 	<style>
@@ -96,6 +97,20 @@
 					}, function (dismiss) { });
 			});
 	    });
+		
+	    $(function() {	
+	    	function goX(){
+	    		 var f = document.form1;
+	    		 var v = f.aa.value;
+	    		 
+	    		 if(v==”1″)
+	    		  document.execCommand(‘Stop’);
+	    		 else
+	    		  document.execCommand(‘Refresh’);
+	    		}
+	    });
+	    
+	    
 	</script>
 	
 </head>
@@ -138,10 +153,16 @@
 				</div>
 		 	</div>
 		 	
+		 	<div>
+		 	<input type=text name=”aa” value=””>
+				<img src="/images/QNAImage/tmmmi.gif" rel:animated_src="/images/QNAImage/tmmmi.gif" width="150" height="150" rel:auto_play="1" rel:rubbable="1"  onclick=”goX();/>
+			</div>
+			
 		 	<div class="form-group">
 			    <label>글 제목</label>
-			    <input type="text" class="form-control"  name="QNATitle" >
+			    <input type="text" class="form-control"  name="QNATitle" id="title">
 			</div>
+			
 			
 			<div class="form-group">
 			    <label>글 내용</label>

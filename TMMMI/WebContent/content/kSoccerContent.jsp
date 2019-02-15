@@ -73,11 +73,55 @@
 	<script src="/javascript/scroll/breakpoints.min.js"></script>
 	<script src="/javascript/scroll/util.js"></script>
 	<script src="/javascript/scroll/main.js"></script>
+	<script src="/javascript/scroll/refresh.js"></script>
 	<script>
 		$(function() {
-			$('.content-model-btn').on('click', function() {
+			$(document).on('click','.content-model-btn',function() {
 				var content = $(this).data("content");
 				$('#kSoccerInput').val(content);
+			})
+			
+			var count = 0;
+			var more = true;
+			$(document).on('click', '.forward', function(){
+				count+=1;
+				
+				if (more) {
+					$.ajax({
+						url : "/contentSportRest/getContentKsoccerList?index="+count,
+						method : "GET",
+						dataType: "json",
+						headers : {
+							"Accept" : "application/json",
+							"Content-Type" : "application/json"
+						},
+						success : function(JSONData, status) {
+							console.log(JSONData);
+							if (JSONData.length==0) {
+								more = false;
+							} else {
+								JSONData.forEach(function (item, index, array) {
+									$('.reel').append(
+											'<article class="content-sport" style="padding-top:5px;">'+
+												'<div class="sport">'+
+													'<a href="#">'+
+														'<img class="sport-thumbnail" src="'+item.sportThumbnail+'">'+	
+													'</a>'+
+												'</div>'+
+												'<div class="sport-title">'+	
+													item.sportTitle+
+												'</div>'+	
+												'<div>'+
+												'<button class="content-model-btn sport-btn" type="button" data-content="'+item.sportLink+'">'+'´õº¸±â</button>'+
+												'</div>'+	
+											'</article>'
+									);
+								});
+								refresh();
+							}
+						}
+					});
+				}
 			})
 		})
 	</script>

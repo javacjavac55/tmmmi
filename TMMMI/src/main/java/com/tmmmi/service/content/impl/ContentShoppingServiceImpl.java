@@ -38,8 +38,9 @@ public class ContentShoppingServiceImpl extends ContentServiceAdaptor {
 		return contentShoppingDao.getContentShoppingThirdList(contentSetting, index);
 	}
 	
-	public List<ContentShopping> getContentShoppingReviewList(ContentSetting contentSetting, int index) throws Exception{
-		return contentShoppingDao.getContentShoppingReviewList(contentSetting, index);
+	public List<ContentShopping> getContentShoppingReviewList(ContentSetting contentSetting, int index, String pageToken) throws Exception{
+		System.out.println(pageToken);
+		return contentShoppingDao.getContentShoppingReviewList(contentSetting, index, pageToken);
 	}
 	
 }

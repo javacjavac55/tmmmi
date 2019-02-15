@@ -35,7 +35,8 @@
 		$(function() {
 			//==> DOM Object GET 3가지 방법 ==> 1. $(tagName) : 2.(#id) : 3.$(.className)
 			$("a[href='#' ]").on("click" , function() {
-				$("form")[0].reset();
+				/* $("form")[0].reset(); */
+				history.go(-1);
 			});
 		});
 		
@@ -166,14 +167,14 @@
 	            	var result = JSONData;
 	            	if(true){
 	            		if(result){
-		            		$('#help3').remove()
+		            		$('#help3').remove();
 		            		$($("#authNumHelpBlock").last().after('<strong class="text-success" id="help3">인증 완료되었습니다.</strong>'))
 		            	}else{
-		            		$('#help3').remove()
+		            		$('#help3').remove();
 		            		$($("#authNumHelpBlock").last().after('<strong class="text-danger" id="help3">인증번호를 다시 입력해주세요.</strong>'))
 		            	}
 	            	}else{
-	            		$('#help3').remove()
+	            		$('#help3').remove();
 	            		$($("#authNumHelpBlock").last().after('<strong class="text-danger" id="help3">인증번호를 입력해주세요.</strong>'))
 	            	}
 	            }
@@ -194,6 +195,20 @@
 		});
 	</script>
 </head>
+
+	<!-- 비밀번호 위아래 일치 확인 -->
+	<script type="text/javascript">
+		$(function(){
+			$('#password2').keyup(function(){
+				if($(this).val() != $('#password').val().substr(0,$(this).val().length)){
+					$('#help').remove()
+					$($("#password2").last().after('<strong class="text-danger" id="help">패스워드가 일치하지 않습니다.</strong>'))
+				}else{
+            		$('#help').remove();
+				}
+			});
+		});
+	</script>
 
 <body class="index-page sidebar-collapse">
 <!-- sideMenu.jsp 추가 -->
@@ -279,6 +294,8 @@
 				</div>
 			</div>
 		</form>
+		<br>
+		
       </div>
       </div>
       </div>

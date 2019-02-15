@@ -32,14 +32,19 @@ public class ContentKeywordDaoImpl extends ContentDaoAdaptor {
 	    String clientId = "8UnBF2q3kdzG36xN7kVj";
 	    String clientSecret = "LJxxFFhxEN";
 	    int display =  8;
+	    int start = (index*8)+1;
         String userKeyword = contentSetting.getUserSearch1();
-        System.out.println(userKeyword);
+        System.out.println("index : "+index);
         List<ContentUserKeyword> result = new ArrayList<ContentUserKeyword>();
         
         try {
+        	if(start==0) {
+        		start = 1;
+        	}
+        	System.out.println(start);
 	        /*String text = URLEncoder.encode("\""+contentSetting.getUserSearch1()+"|"+contentSetting.getUserSearch2()+"|"+contentSetting.getUserSearch3()+"\"", "UTF-8");*/
         	String text = URLEncoder.encode(userKeyword, "UTF-8");
-	        String apiURL = "https://openapi.naver.com/v1/search/blog?query="+ text+"&display="+display;// json ���
+	        String apiURL = "https://openapi.naver.com/v1/search/blog?query="+ text+"&display="+display+"&start="+start+"&sort=date";// json ���
 	        URL url = new URL(apiURL);
 	        HttpURLConnection con = (HttpURLConnection)url.openConnection();
 	        con.setRequestMethod("GET");
@@ -79,20 +84,22 @@ public class ContentKeywordDaoImpl extends ContentDaoAdaptor {
             	ContentUserKeyword contentUserKeyword = new ContentUserKeyword();
             	contentUserKeyword.setKeywordTitle(title);
             	contentUserKeyword.setKeywordLink(link.replaceAll("amp;", ""));
-            	System.out.println(link.replaceAll("amp;", ""));
-            	Document doc = Jsoup.connect(link.replaceAll("amp;", "")).header("User-Agent", "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/55.0.2883.87 Safari/537.36").get();
-            	System.out.println("iframe : "+doc.select("iframe").size());
-            	System.out.println("iframe 링크 :http://blog.naver.com/"+doc.select("iframe").attr("src"));
-            	Document docFrame = Jsoup.connect("http://blog.naver.com/"+doc.select("iframe").attr("src")).header("User-Referer", "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/55.0.2883.87 Safari/537.36").get();
-            	System.out.println("iframe tbody : " +docFrame.select("#printPost1").size());
+            	/*System.out.println(link.replaceAll("amp;", ""));*/
+            	Document doc = Jsoup.connect(link.replaceAll("amp;", "")).header("User-Agent", "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/55.0.2883.87 Safari/537.36")
+            															 .header("Referer", "https://www.naver.com").get();
+            	
+            	/*System.out.println("iframe : "+doc.select("iframe").size());
+            	System.out.println("iframe 링크 :http://blog.naver.com/"+doc.select("iframe").attr("src"));*/
+            	Document docFrame = Jsoup.connect("http://blog.naver.com/"+doc.select("iframe").attr("src")).header("User-Referer", "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/55.0.2883.87 Safari/537.36")
+            																								.header("Referer", "https://www.naver.com").get();
+            	/*System.out.println("iframe tbody : " +docFrame.select("#printPost1").size());*/
             	
             	if(docFrame.select("#printPost1").select("img").size() == 1) {
             		System.out.println("이미지가 없습니다");
             		
             	}else {
-            		System.out.println("야호");
             		int count = (int)Math.abs(docFrame.select("#printPost1").select("img").size()/2);
-            		System.out.println("iframe image : " +docFrame.select("#printPost1").select("img").get(count-1).attr("src"));
+            		/*System.out.println("iframe image : " +docFrame.select("#printPost1").select("img").get(count-1).attr("src"));*/
             		contentUserKeyword.setKeywordVideo(docFrame.select("#printPost1").select("img").get(count-1).attr("src"));
             	}
             	contentUserKeyword.setKeywordDescription(description);
@@ -112,14 +119,19 @@ public class ContentKeywordDaoImpl extends ContentDaoAdaptor {
 	    String clientId = "8UnBF2q3kdzG36xN7kVj";
 	    String clientSecret = "LJxxFFhxEN";
 	    int display =  8;
-        String userKeyword = contentSetting.getUserSearch1();
+	    int start = (index*8)+1;
+        String userKeyword = contentSetting.getUserSearch2();
         System.out.println(userKeyword);
         List<ContentUserKeyword> result = new ArrayList<ContentUserKeyword>();
         
         try {
+        	if(start==0) {
+        		start = 1;
+        	}
+        	System.out.println(start);
 	        /*String text = URLEncoder.encode("\""+contentSetting.getUserSearch1()+"|"+contentSetting.getUserSearch2()+"|"+contentSetting.getUserSearch3()+"\"", "UTF-8");*/
         	String text = URLEncoder.encode(userKeyword, "UTF-8");
-	        String apiURL = "https://openapi.naver.com/v1/search/blog?query="+ text+"&display="+display;// json ���
+	        String apiURL = "https://openapi.naver.com/v1/search/blog?query="+ text+"&display="+display+"&start="+start+"&sort=date";// json ���
 	        URL url = new URL(apiURL);
 	        HttpURLConnection con = (HttpURLConnection)url.openConnection();
 	        con.setRequestMethod("GET");
@@ -158,7 +170,24 @@ public class ContentKeywordDaoImpl extends ContentDaoAdaptor {
             	
             	ContentUserKeyword contentUserKeyword = new ContentUserKeyword();
             	contentUserKeyword.setKeywordTitle(title);
-            	contentUserKeyword.setKeywordLink(link);
+            	contentUserKeyword.setKeywordLink(link.replaceAll("amp;", ""));
+            	/*System.out.println(link.replaceAll("amp;", ""));*/
+            	Document doc = Jsoup.connect(link.replaceAll("amp;", "")).header("User-Agent", "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/55.0.2883.87 Safari/537.36")
+            															 .header("Referer", "https://www.naver.com").get();
+            	
+            	/*System.out.println("iframe : "+doc.select("iframe").size());
+            	System.out.println("iframe 링크 :http://blog.naver.com/"+doc.select("iframe").attr("src"));*/
+            	Document docFrame = Jsoup.connect("http://blog.naver.com/"+doc.select("iframe").attr("src")).header("User-Referer", "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/55.0.2883.87 Safari/537.36")
+            																								.header("Referer", "https://www.naver.com").get();
+            	/*System.out.println("iframe tbody : " +docFrame.select("#printPost1").size());*/
+            	
+            	if(docFrame.select("#printPost1").select("img").size() == 1) {
+            		System.out.println("이미지가 없습니다");
+            	}else {
+            		int count = (int)Math.abs(docFrame.select("#printPost1").select("img").size()/2);
+            		/*System.out.println("iframe image : " +docFrame.select("#printPost1").select("img").get(count-1).attr("src"));*/
+            		contentUserKeyword.setKeywordVideo(docFrame.select("#printPost1").select("img").get(count-1).attr("src"));
+            	}
             	contentUserKeyword.setKeywordDescription(description);
             	result.add(contentUserKeyword);
             }
@@ -176,14 +205,19 @@ public class ContentKeywordDaoImpl extends ContentDaoAdaptor {
 	    String clientId = "8UnBF2q3kdzG36xN7kVj";
 	    String clientSecret = "LJxxFFhxEN";
 	    int display =  8;
-        String userKeyword = contentSetting.getUserSearch1();
-        System.out.println(userKeyword);
+	    int start = (index*8)+1;
+        String userKeyword = contentSetting.getUserSearch3();
+        System.out.println("index : "+index);
         List<ContentUserKeyword> result = new ArrayList<ContentUserKeyword>();
         
         try {
+        	if(start==0) {
+        		start = 1;
+        	}
+        	System.out.println(start);
 	        /*String text = URLEncoder.encode("\""+contentSetting.getUserSearch1()+"|"+contentSetting.getUserSearch2()+"|"+contentSetting.getUserSearch3()+"\"", "UTF-8");*/
         	String text = URLEncoder.encode(userKeyword, "UTF-8");
-	        String apiURL = "https://openapi.naver.com/v1/search/blog?query="+ text+"&display="+display;// json ���
+	        String apiURL = "https://openapi.naver.com/v1/search/blog?query="+ text+"&display="+display+"&start="+start+"&sort=date";// json ���
 	        URL url = new URL(apiURL);
 	        HttpURLConnection con = (HttpURLConnection)url.openConnection();
 	        con.setRequestMethod("GET");
@@ -222,7 +256,25 @@ public class ContentKeywordDaoImpl extends ContentDaoAdaptor {
             	
             	ContentUserKeyword contentUserKeyword = new ContentUserKeyword();
             	contentUserKeyword.setKeywordTitle(title);
-            	contentUserKeyword.setKeywordLink(link);
+            	contentUserKeyword.setKeywordLink((link.replaceAll("amp;", "")).replaceAll("&amp;", ""));
+            	/*System.out.println(link.replaceAll("amp;", ""));*/
+            	Document doc = Jsoup.connect(link.replaceAll("amp;", "")).header("User-Agent", "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/55.0.2883.87 Safari/537.36")
+            															 .header("Referer", "https://www.naver.com").get();
+            	
+            	/*System.out.println("iframe : "+doc.select("iframe").size());
+            	System.out.println("iframe 링크 :http://blog.naver.com/"+doc.select("iframe").attr("src"));*/
+            	Document docFrame = Jsoup.connect("http://blog.naver.com/"+doc.select("iframe").attr("src")).header("User-Referer", "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/55.0.2883.87 Safari/537.36")
+            																								.header("Referer", "https://www.naver.com").get();
+            	/*System.out.println("iframe tbody : " +docFrame.select("#printPost1").size());*/
+            	
+            	if(docFrame.select("#printPost1").select("img").size() == 1) {
+            		System.out.println("이미지가 없습니다");
+            		
+            	}else {
+            		int count = (int)Math.abs(docFrame.select("#printPost1").select("img").size()/2);
+            		/*System.out.println("iframe image : " +docFrame.select("#printPost1").select("img").get(count-1).attr("src"));*/
+            		contentUserKeyword.setKeywordVideo(docFrame.select("#printPost1").select("img").get(count-1).attr("src"));
+            	}
             	contentUserKeyword.setKeywordDescription(description);
             	result.add(contentUserKeyword);
             }
@@ -241,13 +293,13 @@ public class ContentKeywordDaoImpl extends ContentDaoAdaptor {
 		System.out.println(userVideo);
 		String q = URLEncoder.encode(userVideo, "UTF-8");
 		String maxResults = "8";
-		String order = "date";
+		int page = index+1;
 		
 		List<ContentUserKeyword> result =new ArrayList<ContentUserKeyword>();
 	
 		try {
 			String apiURL= "https://www.googleapis.com/youtube/v3/search?key="+apiKey+"&part=snippet&q="+q+
-										"&maxResults="+maxResults;
+										"&maxResults="+maxResults+"&pageToken=CBAQAA";
 			
 			URL url = new URL(apiURL);
 			HttpURLConnection con = (HttpURLConnection)url.openConnection();
