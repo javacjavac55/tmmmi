@@ -45,7 +45,8 @@
 				  if (willDelete) {
 				    swal("다시 한 번 생각해주세요! 복구가 불가능합니다.", {
 				      icon: "warning",
-				      dangerMode: true
+				      dangerMode: true,
+				      buttons: true,
 				    }).then((value)=>{
 				    	fncWithdraw();
 					})
@@ -143,6 +144,8 @@
 					</div>
 				</div>
 			</div>
+			
+			<br><br>
 		</div>
 	</div>
 	<jsp:include page="/common/footer.jsp"></jsp:include>

@@ -9,6 +9,10 @@
 <head>
 <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0, shrink-to-fit=no' name='viewport' />
 
+<!--  Fonts and icons -->
+<link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Roboto+Slab:400,700|Material+Icons" />
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css">
+
 <!-- CSS Files -->
 <link href="/css/template/material-kit.css" rel="stylesheet" />
 <!-- CSS Just for demo purpose, don't include it in your project -->
@@ -18,6 +22,11 @@
 <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
+<!-- styleSheet -->
+<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+
+<!-- loginIndex에서 따온거 -->
 <link rel="stylesheet" href="/css/index/assets/css/main.css" />
 <link href="https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css?family=Do+Hyeon" rel="stylesheet">
@@ -207,7 +216,7 @@
 			button{
 				color:white !important;
 			}
-
+		
 		 	
 	</style>
     
@@ -217,7 +226,7 @@
 <form>
 
 <jsp:include page="/common/toolbar2.jsp"></jsp:include>
-  <div class="page-header header-filter clear-filter" style="background-image: url('/images/weather/4016924c4eb809d80e5ac60ad0703088.jpg');">
+  <div class="page-header header-filter clear-filter" style="background-image: url('/images/userSetting/ ${userSetting.image}')">
     <div class="container">
       <div class="row">
         <div class="col-md-8 ml-auto mr-auto">
@@ -235,8 +244,8 @@
       <div class="container">
       
 		 <!-- 배너 -->
-		<!-- <iframe id="floatdiv" src="/widget/getWeather.jsp" style="border-color: rgb(0,0,0,0);"></iframe> -->
-		
+		<iframe id="floatdiv" src="/widget/getWeather.jsp" style="border-color: rgb(0,0,0,0);"></iframe>
+	
 		 	<img src="/images/common/star.png" width="2%"/>
 		 	<span>Home / CustomerCenter</span>
 		 			 	
@@ -324,7 +333,7 @@
 			    <a class="nav-link" id="qna" data-toggle="tooltip" data-placement="right" title="QNA로 이동합니다" onMouseover="this.style.color='#9124a3';" onMouseout="this.style.color='black';">1:1 QNA</a>
 			  </li>
 			</ul>
-			<hr style="margin-top:0.1%;">
+			<hr style="margin-top:1%;">
 		
 			<br/>
 		    

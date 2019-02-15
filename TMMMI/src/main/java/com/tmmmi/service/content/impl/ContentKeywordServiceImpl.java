@@ -39,12 +39,12 @@ public class ContentKeywordServiceImpl extends ContentServiceAdaptor {
 		return contentKeywordDao.getContentUserKeywordThirdList(contentSetting, index);
 	}
 	
-	public List<ContentUserKeyword> getContentUserKeywordVideoFirstList(ContentSetting contentSetting, int index) throws Exception{
-		return contentKeywordDao.getContentUserKeywordVideoFirstList(contentSetting, index);
+	public List<ContentUserKeyword> getContentUserKeywordVideoFirstList(ContentSetting contentSetting, int index, String pageToken) throws Exception{
+		return contentKeywordDao.getContentUserKeywordVideoFirstList(contentSetting, index, pageToken);
 	}
 	
-	public List<ContentUserKeyword> getContentUserKeywordVideoSecondList(ContentSetting contentSetting, int index) throws Exception{
-		return contentKeywordDao.getContentUserKeywordVideoSecondList(contentSetting, index);
+	public List<ContentUserKeyword> getContentUserKeywordVideoSecondList(ContentSetting contentSetting, int index, String pageToken) throws Exception{
+		return contentKeywordDao.getContentUserKeywordVideoSecondList(contentSetting, index, pageToken);
 	}
 	
 }

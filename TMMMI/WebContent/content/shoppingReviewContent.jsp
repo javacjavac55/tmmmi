@@ -57,6 +57,8 @@
 						<span>${contentReviewShopping.shoppingVideoDetail}</span> 
 					</div>
 					<div class="shopping-review" id="shopping-review-${contentReviewShopping.reviewNo}">
+					
+					<input type="hidden" value="${contentReviewShopping.shoppingVideoPageToken}" class="pageToken">
 							
 					</div>
 					<div class="scrap-btn">½ºÅ©·¦</div>	
@@ -72,6 +74,7 @@
 	<script src="/javascript/scroll/breakpoints.min.js"></script>
 	<script src="/javascript/scroll/util.js"></script>
 	<script src="/javascript/scroll/main.js"></script>
+	<script src="/javascript/scroll/refresh.js"></script>
 	<script>
 		$(function(){
 			$(".play-btn").on("click", function(){
@@ -88,7 +91,75 @@
 				
 				$('#shopping-review-'+no).attr('style','display:block;');
 			});
-		})
-	</script>
-</body>
-</html>
+		});
+			
+		$(function(){				
+				var count = 0;
+				var more = true;
+							
+				$(document).on('click', '.forward', function(){			
+					count+=1;
+					var pageToken = $(".pageToken").val();
+					console.log(pageToken)
+								
+					if (more) {
+						if(count>1){
+							pageToken = $(".pageToken"+(count-1)).val();
+							console.log(pageToken)
+						}
+						$.ajax({
+							url : "/contentShoppingRest/getContentShoppingReviewList?index="+count+"&pageToken="+pageToken,
+							method : "GET",
+							dataType: "json",
+							headers : {
+								"Accept" : "application/json",
+								"Content-Type" : "application/json"
+							},
+							success : function(JSONData, status) {
+								console.log(JSONData);
+								if (JSONData.length==0) {
+									more = false;
+								} else {
+									JSONData.forEach(function (item, index, array) {
+															
+										$('.reel').append(
+												
+												'<article class="content-shopping-review">'+
+													'<div class="shopping">'+
+														'<a href="#">'+
+															'<div class="shopping-videoThmb-wrap">'+
+																'<img class="shopping-videoThmb" src="'+ item.shoppingVideoThumbnail+ '" data-no="'+item.reviewNo+'" data-link='+item.shoppingVideoId+' />'+
+															'</div>'+
+														'</a>'+
+														'<div class="play-btn"></div>'+
+													'</div>'+
+													'<div class="shopping-review-title">'+
+														item.shoppingVideoTitle+
+													'</div>'+
+													'<div class="shopping-review-channel">'+
+														item.shoppingVideoChannel+
+													'</div>'+
+													'<div class="shopping-review-detail">'+
+														'<span>'+item.shoppingVideoDetail+'</span> '+
+													'</div>'+
+													'<div class="shopping-review token" id="shopping-review-'+item.reviewNo+'">'+
+													
+													'<input type="hidden" value="'+item.shoppingVideoPageToken+'" class="pageToken'+item.shoppingVideoPageTokenNo+'">'+
+													
+													'</div>'+
+													'<div class="scrap-btn">½ºÅ©·¦</div>	'+
+												'</article>'
+												
+										);
+									});
+									refresh();
+								}
+							}
+						});
+					}
+				})
+			});
+			
+		</script>
+	</body>
+	</html>

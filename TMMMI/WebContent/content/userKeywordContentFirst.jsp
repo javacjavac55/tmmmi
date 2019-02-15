@@ -5,6 +5,7 @@
 <html>
 	<head>
 		<meta http-equiv="Content-Type" content="text/html; charset=EUC-KR">
+		<meta name="referrer" content="no-referrer" />
 		<title>userKeyword</title>
 		
 		<!-- Carousel CSS -->
@@ -28,11 +29,14 @@
 		<div class="reel" style="overflow: visible; transform: translate(-1285px, 0px); ">
 			<c:forEach var="contentUserKeyword" items="${userKeywordFirstList}">				
 				<article class="content-userSearch">
-					<div class="">
+					<div class="userSearch">
 						<div>
 							<div class="user-keyword-title">${contentUserKeyword.keywordTitle}</div>
 							<div class="quote-left">"</div>
-							<div><img src="${contentUserKeyword.keywordVideo}"></div>
+							<div>
+								<c:if test="${! empty contentUserKeyword.keywordVideo }"><img src="${contentUserKeyword.keywordVideo}" width="80%" height="40%"></c:if>
+								<c:if test="${empty contentUserKeyword.keywordVideo }"></c:if>
+							</div>
 							<div class="user-keyword-detail">${contentUserKeyword.keywordDescription}</div>
 							<div class="quote-right">"</div>
 						</div>	
@@ -53,11 +57,75 @@
 	<script src="/javascript/scroll/breakpoints.min.js"></script>
 	<script src="/javascript/scroll/util.js"></script>
 	<script src="/javascript/scroll/main.js"></script>
+	<script src="/javascript/scroll/refresh.js"></script>
 	<script>
 		$(function() {
 			$('.content-model-btn').on('click', function() {
 				var content = $(this).data("content");
 				$('#userSearchFirstInput').val(content);
+			})
+			
+			var count = 0;
+			var more = true;
+			$(document).on('click', '.forward', function(){
+				count+=1;
+				
+				if (more) {
+					$.ajax({
+						url : "/contentKeywordRest/getUserKeywordListFirst?index="+count,
+						method : "GET",
+						dataType: "json",
+						headers : {
+							"Accept" : "application/json",
+							"Content-Type" : "application/json"
+						},
+						success : function(JSONData, status) {
+							console.log(JSONData);
+							if (JSONData.length==0) {
+								more = false;
+							} else {
+								JSONData.forEach(function (item, index, array) {
+									alert(item.keywordVideo);
+									if(item.keywordVideo == null){
+										$('.reel').append(
+											'<article class="content-userSearch">'+
+												'<div class="userSearch">'+
+													'<div>'+
+														'<div class="user-keyword-title">'+item.keywordTitle+'</div>'+
+														'<div class="quote-left"></div>'+
+														'<div></div>'+
+														'<div class="user-keyword-detail">'+item.keywordDescription+'</div>'+
+														'<div class="quote-right">"</div>'+
+													'</div>'+
+													'<div>'+
+														'<button class="content-model-btn userKeyword-btn" type="button" data-content="'+item.keywordLink+'">더보기</button>'+
+													'</div>'+
+												'</div>'+	
+											'</article>'
+									}else{
+										$('.reel').append(
+											'<article class="content-userSearch">'+
+												'<div class="userSearch">'+
+													'<div>'+
+														'<div class="user-keyword-title">'+item.keywordTitle+'</div>'+
+														'<div class="quote-left"></div>'+
+														'<div><img src="'+item.keywordVideo+'" width="80%" height="40%"></div>'+
+														'<div class="user-keyword-detail">'+item.keywordDescription+'</div>'+
+														'<div class="quote-right">"</div>'+
+													'</div>'+
+													'<div>'+
+														'<button class="content-model-btn userKeyword-btn" type="button" data-content="'+item.keywordLink+'">더보기</button>'+
+													'</div>'+
+												'</div>'+	
+											'</article>'
+										);	
+									}
+								});
+								refresh();
+							}
+						}
+					});
+				}
 			})
 		})
 	</script>

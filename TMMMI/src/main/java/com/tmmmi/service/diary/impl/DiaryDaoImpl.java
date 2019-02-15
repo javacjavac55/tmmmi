@@ -53,11 +53,11 @@ public class DiaryDaoImpl implements DiaryDao {
 			//
 			
 			String detail = image.getDiaryDetail();
-			System.out.println("다이어리 내용"+image.getDiaryDetail());
+			//System.out.println("다이어리 내용"+image.getDiaryDetail());
 			
 			if(detail.contains("img")==true) {
-				detail = detail.split("alt=\"\"")[1].split("style")[0];
-				detail = "<img"+detail+" style=\"width:100%\">";
+				detail = detail.split("src=")[1].split("style")[0];
+				detail = "<img src="+detail+" style=\"width:100%\">";
 			}
 			else {
 				detail = "<img src=/images/diaryImage/49760081.jpg>";
@@ -65,7 +65,7 @@ public class DiaryDaoImpl implements DiaryDao {
 			}
 			System.out.println("이미지파일"+ detail);
 			
-			System.out.println("이미지파일origin"+ detail);
+			//System.out.println("이미지파일origin"+ detail);
 			
 			image.setDiaryDetail(detail);
 			//

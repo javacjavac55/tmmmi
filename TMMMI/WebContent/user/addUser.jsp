@@ -32,7 +32,8 @@
 		//============= "취소"  Event 연결 =================
 		$(function() {
 			$("a[href='#' ]").on("click" , function() {
-				$("form")[0].reset();
+				/* $("form")[0].reset(); */
+				history.go(-1);
 			});
 		});
 		
@@ -226,7 +227,7 @@
 		            	}
 	            	}else{
 	            		$('#help').remove()
-	            		$($("#joinhelpBlock").last().after('<strong class="text-danger" id="help">아이디는 5~11개 입니다.</strong>'))
+	            		$($("#joinhelpBlock").last().after('<strong class="text-danger" id="help">아이디는 영문, 숫자조합 5~11자 이내로 입력해주세요.</strong>'))
 	            	}
 	            }
 	        });
@@ -275,6 +276,20 @@
 			    changeYear: true,
 			    minDate: '-150y',
 			    yearRange: 'c-100:c+10'
+			});
+		});
+	</script>
+
+	<!-- 비밀번호 위아래 일치 확인 -->
+	<script type="text/javascript">
+		$(function(){
+			$('#password2').keyup(function(){
+				if($(this).val() != $('#password').val().substr(0,$(this).val().length)){
+					$('#help3').remove()
+					$($("#password2").last().after('<strong class="text-danger" id="help3">패스워드가 일치하지 않습니다.</strong>'))
+				}else{
+            		$('#help3').remove();
+				}
 			});
 		});
 	</script>

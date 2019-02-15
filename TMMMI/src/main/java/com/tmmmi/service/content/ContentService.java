@@ -48,7 +48,7 @@ public interface ContentService {
 	
 	public List<ContentShopping> getContentShoppingThirdList(ContentSetting contentSetting, int index) throws Exception;
 	
-	public List<ContentShopping> getContentShoppingReviewList(ContentSetting contentSetting, int index) throws Exception;
+	public List<ContentShopping> getContentShoppingReviewList(ContentSetting contentSetting, int index, String pageToken) throws Exception;
 
 	//keyword
 	public List<ContentUserKeyword> getContentUserKeywordFirstList(ContentSetting contentSetting, int index) throws Exception;
@@ -57,7 +57,7 @@ public interface ContentService {
 	
 	public List<ContentUserKeyword> getContentUserKeywordThirdList(ContentSetting contentSetting, int index) throws Exception;
 	
-	public List<ContentUserKeyword> getContentUserKeywordVideoFirstList(ContentSetting contentSetting, int index) throws Exception;
+	public List<ContentUserKeyword> getContentUserKeywordVideoFirstList(ContentSetting contentSetting, int index, String pageToken) throws Exception;
 	
-	public List<ContentUserKeyword> getContentUserKeywordVideoSecondList(ContentSetting contentSetting, int index) throws Exception;
+	public List<ContentUserKeyword> getContentUserKeywordVideoSecondList(ContentSetting contentSetting, int index, String pageToken) throws Exception;
 }
