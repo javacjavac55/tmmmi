@@ -66,13 +66,14 @@
 		<script src="/javascript/scroll/breakpoints.min.js"></script>
 		<script src="/javascript/scroll/util.js"></script>
 		<script src="/javascript/scroll/main.js"></script>
+		<script src="/javascript/scroll/refresh.js"></script>
 		<script>
 			$(function(){
-				$(".play-btn").on("click", function(){
+				$(document).on("click",'.play-btn', function(){
 					var no = $(this).prev().children().data("no");
 					
 					$.ajax({
-						url : "/contentRest/getContentHighlightVideo",
+						url : "/contentSportRest/getContentHighlightVideo",
 						method : "POST",
 						data: JSON.stringify({
 							sportNo:no,
@@ -96,6 +97,50 @@
 						}
 					});	
 				});
+				
+				var count = 0;
+				var more = true;
+				$(document).on('click', '.forward', function(){
+					count+=1;
+					
+					if (more) {
+						$.ajax({
+							url : "/contentSportRest/getContentHighlightList?index="+count,
+							method : "GET",
+							dataType: "json",
+							headers : {
+								"Accept" : "application/json",
+								"Content-Type" : "application/json"
+							},
+							success : function(JSONData, status) {
+								console.log(JSONData);
+								if (JSONData.length==0) {
+									more = false;
+								} else {
+									JSONData.forEach(function (item, index, array) {
+										$('.reel').append(
+												'<article class="content-sport-highlight" style="padding-top:5px;">'+
+													'<div class="sport">'+
+														'<a href="#">'+
+															'<img class="videoThmb" src="'+item.sportThumbnail+'" data-no="'+item.sportNo+'" data-link="'+item.sportVideo+'"/>'+	
+														'</a>'+
+														'<div class="play-btn"></div>'+
+													'</div>'+
+													'<div class="highlight-title">'+	
+														item.sportTitle+
+													'</div>'+	
+													'<div class="sport-highlight" id="sport-highlight-'+item.sportNo+'">'+													
+													'</div>'+
+													'<div class="scrap-btn">½ºÅ©·¦</div>'+
+												'</article>'
+										);
+									});
+									refresh();
+								}
+							}
+						});
+					}
+				})
 			})
 		</script>
 	</body>
