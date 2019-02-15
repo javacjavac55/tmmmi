@@ -12,10 +12,6 @@
 		<link rel="stylesheet" href="/css/scroll/main_shopping.css">
 		<noscript><link rel="stylesheet" href="/css/scroll/noscript.css" /></noscript>
 		<script type="text/javascript">
-			$(document).ready(function() {	 
-				fncImageCrop();
-			});
-			
 			function fncImageCrop() {
 				var divs = document.querySelectorAll('article > div > a > div');
 				  for (var i = 0; i < divs.length; ++i) {
@@ -53,7 +49,7 @@
 <body>
 	
 	<section class="carousel">
-		<div><span class="section-title">${contentSetting.getShoppingSearch3}</span></div>
+		<div><span class="section-title">${shoppingContentThirdList[0].shoppingKeyword}</span></div>
 		<div class="reel" style="overflow: visible; transform: translate(-1285px, 0px); ">
 			<c:forEach var="contentShopping" items="${shoppingContentThirdList}">				
 				<article class="content-shopping">
@@ -86,11 +82,15 @@
 	<script src="/javascript/scroll/main.js"></script>
 	<script src="/javascript/scroll/refresh.js"></script>
 	<script>
-		$(function() {
-			$('.content-model-btn').on('click', function() {
+		function bind() {
+			$('.content-model-btn').on('click', function(){
 				var content = $(this).data("content");
 				$('#shoppingThirdInput').val(content);
-			})
+			});
+		}
+		$(function() {
+			fncImageCrop();
+			bind();
 			
 			var count = 0;
 			var more = true;
@@ -134,6 +134,8 @@
 								});
 								refresh();
 								fncImageCrop();
+								bind();
+								parent.bind('ShoppingListThird');	
 							}
 						}
 					});

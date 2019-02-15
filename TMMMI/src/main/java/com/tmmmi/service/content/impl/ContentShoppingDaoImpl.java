@@ -83,6 +83,7 @@ public class ContentShoppingDaoImpl extends ContentDaoAdaptor {
 	            	contentShopping.setShoppingLink(link);
 	            	contentShopping.setShoppingPrice(Integer.parseInt(lprice));
 	            	contentShopping.setShoppingThumbnail(image);
+	            	contentShopping.setShoppingKeyword(contentSetting.getShoppingSearch1());
 	            	result.add(contentShopping);
 	            }
 	        } catch (Exception e) {
@@ -148,6 +149,7 @@ public class ContentShoppingDaoImpl extends ContentDaoAdaptor {
             	contentShopping.setShoppingLink(link);
             	contentShopping.setShoppingPrice(Integer.parseInt(lprice));
             	contentShopping.setShoppingThumbnail(image);
+            	contentShopping.setShoppingKeyword(contentSetting.getShoppingSearch2());
             	result.add(contentShopping);
             }
         } catch (Exception e) {
@@ -212,6 +214,7 @@ public class ContentShoppingDaoImpl extends ContentDaoAdaptor {
             	contentShopping.setShoppingLink(link);
             	contentShopping.setShoppingPrice(Integer.parseInt(lprice));
             	contentShopping.setShoppingThumbnail(image);
+            	contentShopping.setShoppingKeyword(contentSetting.getShoppingSearch3());
             	result.add(contentShopping);
             }
         } catch (Exception e) {
@@ -226,19 +229,16 @@ public class ContentShoppingDaoImpl extends ContentDaoAdaptor {
 		String reviewKeyword = contentSetting.getShoppingReview();
 		String q = URLEncoder.encode(reviewKeyword+"하울", "UTF-8"); //검색할 키워드
 		String maxResults = "8"; //가져올 동영상 수
-		String order = "date"; //rating랭킹순으로 
-												//date 최신순으로
-		
-		if(index > 0) {
-			maxResults += "&pageToken="+pageToken;
-		}
+		String nextPage = (pageToken != null && pageToken.length()>0)?("&pageToken="+pageToken):"";
 
 		List<ContentShopping> result =new ArrayList<ContentShopping>();
 	
 		try {
-			String apiURL= "https://www.googleapis.com/youtube/v3/search?key="+apiKey+"&part=snippet&q="+q+
-										"&maxResults="+maxResults+"&order=date";
+			String apiURL= "https://www.googleapis.com/youtube/v3/search?key="+apiKey+"&part=snippet&maxResults="+maxResults
+					+ nextPage
+					+ "&q="+q+"&type=video";
 			
+			System.out.println(apiURL);
 			URL url = new URL(apiURL);
 			HttpURLConnection con = (HttpURLConnection)url.openConnection();
 			con.setRequestMethod("GET");
@@ -251,17 +251,17 @@ public class ContentShoppingDaoImpl extends ContentDaoAdaptor {
 			}
 			br.close();
 			con.disconnect();
-			System.out.println(sb);
 			
 			String json = "";
 	        json = sb.toString();
 	        
+	        System.out.println("json:" +json);
 	        JSONParser parser=new JSONParser();
 	        JSONObject items =(JSONObject)parser.parse(json); //json데이터중 item[ ] 빼오기
 	        JSONArray arr = (JSONArray)items.get("items"); //array 필요
-	        System.out.println(arr);
 	        pageToken = (String)items.get("nextPageToken"); //다음페이지
-	     
+	        System.out.println("pageToken: "+pageToken);
+	        System.out.println(arr.size());
 	        
 	        for(int i =0; i<arr.size() ; i++) {
             	JSONObject tmp = (JSONObject)arr.get(i);
@@ -290,9 +290,8 @@ public class ContentShoppingDaoImpl extends ContentDaoAdaptor {
 	        	contentShopping.setShoppingVideoId("<iframe width=\"600\" height=\"518\" src=\"http://www.youtube.com/embed/"+videoId+"\" frameborder=\"0\" allow=\"accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture\" allowfullscreen></iframe>");
 	        	contentShopping.setReviewNo(videoId);
 	        	contentShopping.setShoppingVideoPageToken(pageToken);
-	        	contentShopping.setShoppingVideoPageTokenNo(index);
+	        	contentShopping.setShoppingKeyword(contentSetting.getShoppingReview());
 	        	result.add(contentShopping);
-	        	System.out.println(contentShopping);
 	        }
 		}catch (Exception e) {
 			System.out.println(e);

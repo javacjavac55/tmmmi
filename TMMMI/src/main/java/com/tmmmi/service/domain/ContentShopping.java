@@ -14,7 +14,7 @@ public class ContentShopping {
 	private String shoppingVideoChannel;
 	private String shoppingVideoId;
 	private String shoppingVideoPageToken;
-	private int shoppingVideoPageTokenNo;
+	private String shoppingKeyword;
 	
 	public ContentShopping() {
 		super();
@@ -116,12 +116,12 @@ public class ContentShopping {
 		this.shoppingVideoPageToken = shoppingVideoPageToken;
 	}
 
-	public int getShoppingVideoPageTokenNo() {
-		return shoppingVideoPageTokenNo;
+	public String getShoppingKeyword() {
+		return shoppingKeyword;
 	}
 
-	public void setShoppingVideoPageTokenNo(int shoppingVideoPageTokenNo) {
-		this.shoppingVideoPageTokenNo = shoppingVideoPageTokenNo;
+	public void setShoppingKeyword(String shoppingKeyword) {
+		this.shoppingKeyword = shoppingKeyword;
 	}
 
 	@Override
@@ -131,9 +131,6 @@ public class ContentShopping {
 				+ shoppingThumbnail + ", shoppingVideoTitle=" + shoppingVideoTitle + ", shoppingVideoDetail="
 				+ shoppingVideoDetail + ", shoppingVideoThumbnail=" + shoppingVideoThumbnail + ", shoppingVideoChannel="
 				+ shoppingVideoChannel + ", shoppingVideoId=" + shoppingVideoId + ", shoppingVideoPageToken="
-				+ shoppingVideoPageToken + ", shoppingVideoPageTokenNo=" + shoppingVideoPageTokenNo + "]";
+				+ shoppingVideoPageToken + ", shoppingKeyword=" + shoppingKeyword + "]";
 	}
-
-	
-	
 }

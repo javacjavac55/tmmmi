@@ -26,7 +26,7 @@
 				anime.remove(this.DOM.bg);
 				anime({
 					targets: this.DOM.bg,
-					duration: this.DOM.bg.dataset.duration || 40+this.pos*20, // increment as more boxes get revealed..
+					duration: this.DOM.bg.dataset.duration || 10+this.pos*5, // increment as more boxes get revealed..
 					easing: this.DOM.bg.dataset.easing || 'easeInOutQuad',
 					opacity: {
 						value: 1,

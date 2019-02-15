@@ -2789,6 +2789,7 @@ body.homepage.is-preload #header:after {
 
 .shopping-videoThmb {
 	width: 560px !important;
+	height: 420px !important;
 	margin-top: -52px;
 }
 

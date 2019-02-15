@@ -108,12 +108,12 @@ public class CalendarController {
 		int userNo = (int)session.getAttribute("userNo");
 		List<UserCategory> userCategoryList = userCategoryService.getUserCategoryList(userNo);
 
-		//카테고리가 없으면
+		/*//카테고리가 없으면
 		if (userCategoryList == null || userCategoryList.size() == 0) {
 			System.out.println("12345");
 			modelAndView.setViewName("/calendar/getUserCategoryList/");
 			return modelAndView;
-		}
+		}*/
 		
 		List<Schedule> scheduleList = scheduleService.getScheduleList(userNo,startDate,endDate);
 		

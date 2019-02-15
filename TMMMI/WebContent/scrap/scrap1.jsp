@@ -26,6 +26,7 @@
 				position: relative;
 				box-shadow: 3px 3px 20px 3px #999;
 			    border-radius: 0.4rem;
+			    transform: translate(68%, 15%);
 			}
 			
 			.content-movie-trailer {

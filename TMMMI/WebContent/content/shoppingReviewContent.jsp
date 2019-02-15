@@ -35,7 +35,7 @@
 	</head>
 <body>
 	<section class="carousel">
-		<div><span class="section-title">ºÓ«Œ ∏Æ∫‰</span></div>
+		<div><span class="section-title">${shoppingContentReviewList[0].shoppingKeyword}</span></div>
 		<div class="reel" style="overflow: visible; transform: translate(-1285px, 0px); ">
 			<c:forEach var="contentReviewShopping" items="${shoppingContentReviewList}">				
 				<article class="content-shopping-review">
@@ -58,12 +58,11 @@
 					</div>
 					<div class="shopping-review" id="shopping-review-${contentReviewShopping.reviewNo}">
 					
-					<input type="hidden" value="${contentReviewShopping.shoppingVideoPageToken}" class="pageToken">
-							
 					</div>
 					<div class="scrap-btn">Ω∫≈©∑¶</div>	
 				</article>
 			</c:forEach>
+			<input type="hidden" value="${shoppingContentReviewList[0].shoppingVideoPageToken}" id="pageToken">
 		</div>
 	</section>		
 	<!-- Carousel JS -->
@@ -77,7 +76,7 @@
 	<script src="/javascript/scroll/refresh.js"></script>
 	<script>
 		$(function(){
-			$(".play-btn").on("click", function(){
+			$(document).on('click', '.play-btn', function(){
 				console.log("clicked",$(this).prev());
 				var no = $(this).prev().children().children().data("no");
 				var link = $(this).prev().children().children().data("link");
@@ -91,24 +90,17 @@
 				
 				$('#shopping-review-'+no).attr('style','display:block;');
 			});
-		});
-			
-		$(function(){				
 				var count = 0;
 				var more = true;
 							
 				$(document).on('click', '.forward', function(){			
 					count+=1;
-					var pageToken = $(".pageToken").val();
+					var pageToken = $("#pageToken").val();
 					console.log(pageToken)
 								
 					if (more) {
-						if(count>1){
-							pageToken = $(".pageToken"+(count-1)).val();
-							console.log(pageToken)
-						}
 						$.ajax({
-							url : "/contentShoppingRest/getContentShoppingReviewList?index="+count+"&pageToken="+pageToken,
+							url : "/contentShoppingRest/getShoppingReviewList?index="+count+"&pageToken="+pageToken,
 							method : "GET",
 							dataType: "json",
 							headers : {
@@ -121,14 +113,12 @@
 									more = false;
 								} else {
 									JSONData.forEach(function (item, index, array) {
-															
 										$('.reel').append(
-												
 												'<article class="content-shopping-review">'+
 													'<div class="shopping">'+
 														'<a href="#">'+
 															'<div class="shopping-videoThmb-wrap">'+
-																'<img class="shopping-videoThmb" src="'+ item.shoppingVideoThumbnail+ '" data-no="'+item.reviewNo+'" data-link='+item.shoppingVideoId+' />'+
+																'<img class="shopping-videoThmb" src="'+ item.shoppingVideoThumbnail+ '" data-no="'+item.reviewNo+'"'+" data-link='"+item.shoppingVideoId+"' />"+
 															'</div>'+
 														'</a>'+
 														'<div class="play-btn"></div>'+
@@ -149,10 +139,11 @@
 													'</div>'+
 													'<div class="scrap-btn">Ω∫≈©∑¶</div>	'+
 												'</article>'
-												
 										);
 									});
 									refresh();
+									parent.bind('ShoppingReviewList');
+									$('#pageToken').val(JSONData[0].shoppingVideoPageToken);
 								}
 							}
 						});

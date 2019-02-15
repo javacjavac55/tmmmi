@@ -88,6 +88,10 @@ var map = {
 				var content = $('#tasty').contents().find('#tastyInput').val();
 				fncOpenModal(3, content, true);
 			});
+			
+			$($('#tasty').contents().find('.scrap-btn')).on('click', function(){
+				fncScrapArticle(3, $(this).siblings('.tasty-tasty-title').text(), $(this).closest('article').get(0).outerHTML)
+			});
 	    },
 
 
@@ -111,6 +115,7 @@ var map = {
 	    },
 		'ShoppingReviewList': function() {
 			$($('#shoppingReview').contents().find('.scrap-btn')).on('click', function(){
+				console.log('7');
 				fncScrapArticle(4, $(this).siblings('.shopping-review-title').text().trim(), $(this).closest('article').get(0).outerHTML)
 			});      
 	    },

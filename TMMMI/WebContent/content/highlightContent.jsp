@@ -136,6 +136,7 @@
 										);
 									});
 									refresh();
+									parent.bind('ContentHighlightList');
 								}
 							}
 						});

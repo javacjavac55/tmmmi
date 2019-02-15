@@ -29,6 +29,7 @@
 			    border-radius: 0.4rem;
 			    vertical-align: middle;
 			    position: relative;
+			    transform: translate(85%, 15%);
 			}
 			
 			/* common */

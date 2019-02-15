@@ -156,6 +156,16 @@
     <script src="/javascript/tui/data/calendars.js"></script>
     <script src="/javascript/tui/data/schedules.js" charset="utf-8"></script>
     <script>
+   		<c:if test="${empty userCategoryList}">
+   			swal({
+				title : "사용자 카테고리가 없습니다." , 
+				text: "사용자 카테고리를 먼저 등록 해주세요. \n 사용자 카테고리 등록 페이지로 이동합니다." , 
+				icon : "info" , 
+			}).then((value) => {
+				window.location.replace("/calendar/getUserCategoryList/");
+			});
+   		</c:if>
+   		
     	var renderRangeStart;
     	var renderRangeEnd;
 		var calendar;

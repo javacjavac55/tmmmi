@@ -29,6 +29,7 @@
 			    border-radius: 0.4rem;
 			    vertical-align: middle;
 			    position: relative;
+			    transform: translate(68%, 15%);
 			}
 			
 			/* Highlight */
@@ -147,7 +148,7 @@
 					var no = $(this).prev().children().data("no");
 					
 					$.ajax({
-						url : "/contentRest/getContentHighlightVideo",
+						url : "/contentSportRest/getContentHighlightVideo",
 						method : "POST",
 						data: JSON.stringify({
 							sportNo:no,

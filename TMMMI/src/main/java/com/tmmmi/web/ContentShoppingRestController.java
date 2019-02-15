@@ -49,8 +49,8 @@ public class ContentShoppingRestController {
 		return shoppingContentService.getContentShoppingFirstList(contentSetting, index);
 	}
 	
-	@RequestMapping(value="getContentShoppingSecondList", method=RequestMethod.GET)
-	public List<ContentShopping> getContentShoppingSecondList(@RequestParam("index") int index, HttpSession session) throws Exception {
+	@RequestMapping(value="getShoppingListSecond", method=RequestMethod.GET)
+	public List<ContentShopping> getShoppingListSecond(@RequestParam("index") int index, HttpSession session) throws Exception {
 		
 		int userNo = (int)session.getAttribute("userNo");
 		ContentSetting contentSetting = contentSettingService.getContentSetting(userNo);
@@ -58,8 +58,8 @@ public class ContentShoppingRestController {
 		return shoppingContentService.getContentShoppingSecondList(contentSetting, index);
 	}
 	
-	@RequestMapping(value="getContentShoppingThirdList", method=RequestMethod.GET)
-	public List<ContentShopping> getContentShoppingThirdList(@RequestParam("index") int index, HttpSession session) throws Exception {
+	@RequestMapping(value="getShoppingListThird", method=RequestMethod.GET)
+	public List<ContentShopping> getShoppingListThird(@RequestParam("index") int index, HttpSession session) throws Exception {
 		
 		int userNo = (int)session.getAttribute("userNo");
 		ContentSetting contentSetting = contentSettingService.getContentSetting(userNo);
@@ -67,12 +67,13 @@ public class ContentShoppingRestController {
 		return shoppingContentService.getContentShoppingThirdList(contentSetting, index);
 	}
 	
-	@RequestMapping(value="getContentShoppingReviewList", method=RequestMethod.GET)
-	public List<ContentShopping> getContentShoppingReviewList(@RequestParam("index") int index, @RequestParam("pageToken") String pageToken, HttpSession session) throws Exception {
+	@RequestMapping(value="getShoppingReviewList", method=RequestMethod.GET)
+	public List<ContentShopping> getShoppingReviewList(@RequestParam("index") int index, @RequestParam("pageToken") String pageToken, HttpSession session) throws Exception {
 		
 		int userNo = (int)session.getAttribute("userNo");
 		ContentSetting contentSetting = contentSettingService.getContentSetting(userNo);
-
+		
+		System.out.println(pageToken);
 		return shoppingContentService.getContentShoppingReviewList(contentSetting, index, pageToken);
 	}
 

@@ -59,11 +59,15 @@
 	<script src="/javascript/scroll/main.js"></script>
 	<script src="/javascript/scroll/refresh.js"></script>
 	<script>
-		$(function() {
-			$('.content-model-btn').on('click', function() {
+		function bind() {
+			$('.content-model-btn').on('click', function(){
 				var content = $(this).data("content");
 				$('#userSearchFirstInput').val(content);
-			})
+			});
+		}
+	
+		$(function() {
+			bind();
 			
 			var count = 0;
 			var more = true;
@@ -122,6 +126,8 @@
 									}
 								});
 								refresh();
+								bind();
+								parent.bind('UserKeywordListFirst');
 							}
 						}
 					});

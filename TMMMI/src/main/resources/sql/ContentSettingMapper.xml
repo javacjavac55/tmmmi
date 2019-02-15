@@ -97,7 +97,7 @@
 							show_user_video_1, show_user_video_2)
 		VALUES(
 			(SELECT sort_section_no FROM content_setting WHERE user_no = #{value}),
-			1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 0, 0, 0, 0, 0, 0, 0, 0, 0
+			1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0
 		)
 	</insert>
 	

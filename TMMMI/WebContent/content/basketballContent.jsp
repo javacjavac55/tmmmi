@@ -52,12 +52,15 @@
 	<script src="/javascript/scroll/main.js"></script>
 	<script src="/javascript/scroll/refresh.js"></script>
 	<script>
-		$(function() {
-			$(document).on('click','.content-model-btn',function() {
+		function bind() {
+			$('.content-model-btn').on('click', function(){
 				var content = $(this).data("content");
 				$('#basketballInput').val(content);
-			})
-			
+			});
+		}
+		
+		$(function() {
+			bind();
 			var count = 0;
 			var more = true;
 			$(document).on('click', '.forward', function(){
@@ -95,6 +98,8 @@
 									);
 								});
 								refresh();
+								bind();
+								parent.bind('ContentBasketballList');
 							}
 						}
 					});

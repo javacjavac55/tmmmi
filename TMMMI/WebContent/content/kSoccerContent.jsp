@@ -75,11 +75,14 @@
 	<script src="/javascript/scroll/main.js"></script>
 	<script src="/javascript/scroll/refresh.js"></script>
 	<script>
-		$(function() {
-			$(document).on('click','.content-model-btn',function() {
+		function bind() {
+			$('.content-model-btn').on('click', function(){
 				var content = $(this).data("content");
 				$('#kSoccerInput').val(content);
-			})
+			});
+		}
+		$(function() {
+			bind();
 			
 			var count = 0;
 			var more = true;
@@ -118,6 +121,8 @@
 									);
 								});
 								refresh();
+								bind();
+								parent.bind('ContentKsoccerList');
 							}
 						}
 					});

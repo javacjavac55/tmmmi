@@ -94,7 +94,7 @@
 					$('#show'+id2).remove();
 				} else {
 					$('#show'+id2).remove();
-					$('li').last().after('<li id=\'show'+id2+'\'class="ui-state-default ui-sortable-handle">'+$(this).val()+'</li>');
+					$('#sortable').append('<li id=\'show'+id2+'\'class="ui-state-default ui-sortable-handle">'+$(this).val()+'</li>');
 				}
 			});
  	 	});
