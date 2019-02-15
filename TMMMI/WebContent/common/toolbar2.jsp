@@ -57,6 +57,13 @@
           </li>
           
           <li class="dropdown nav-item">
+            <a href="#" class="dropdown-toggle nav-link" data-toggle="dropdown">Scrap</a>
+            <div class="dropdown-menu dropdown-with-icons">
+				<a href="/scrap/getScrapList" class="dropdown-item">스크랩 리스트</a>
+            </div>
+          </li>
+          
+          <li class="dropdown nav-item">
             <a href="#" class="dropdown-toggle nav-link" data-toggle="dropdown">To do</a>
             <div class="dropdown-menu dropdown-with-icons">
 				<a href="/todo/getToDoList" class="dropdown-item">할 일 리스트</a>

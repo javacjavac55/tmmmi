@@ -38,6 +38,13 @@ transition: 0.3s;
 border : none;
 box-shadow: 5px 5px 20px purple;
 }
+/* 배너 */
+#floatdiv {
+position: absolute;
+height: 360px;
+right:-20px;
+color: #fff;
+}	
 </style>
 <script>
 	var targetdate;
@@ -300,6 +307,43 @@ box-shadow: 5px 5px 20px purple;
 			        });
 		})
 	});///onready
+	
+	////////////////////////////////배너
+	$(document).ready(function() {	    	 
+			
+   	// 기존 css에서 플로팅 배너 위치(top)값을 가져와 저장한다.
+   	var floatPosition = parseInt($("#floatdiv").css('top'));
+   	// 250px 이런식으로 가져오므로 여기서 숫자만 가져온다. parseInt( 값 );
+    
+   	$(window).scroll(function() {
+   		// 현재 스크롤 위치를 가져온다.
+   		var scrollTop = $(window).scrollTop();
+   		/* var newPosition = scrollTop + floatPosition + "px"; */
+   		var newPosition = scrollTop;
+
+   		$("#floatdiv").stop().animate({
+   			"top" : newPosition
+   		}, 500);
+   	}).scroll();
+    });
+	
+	////////////////////////////////top 버튼
+    $(function() {
+        $(window).scroll(function() {
+            if ($(this).scrollTop() > 300) {
+                $('#arrow').fadeIn();
+            } else {
+                $('#arrow').fadeOut();
+            }
+        });
+        
+        $("#arrow").click(function() {
+            $('html, body').animate({
+                scrollTop : 0
+            }, 400);
+            return false;
+        });
+    });
 </script>
 </head>
 <body>
@@ -321,6 +365,10 @@ box-shadow: 5px 5px 20px purple;
   </div>
   <div class="main main-raised">
     <div class="section section-basic">
+    
+     <!-- 배너 -->
+	<iframe id="floatdiv" src="/widget/getWeather.jsp" style="border-color: rgb(0,0,0,0);"></iframe>
+	
 	<!-- 할 일 리스트 -->
 	<div class="container">
 		<div class="list">
@@ -374,7 +422,7 @@ box-shadow: 5px 5px 20px purple;
 			</div>
 			<div class="row">
 			<!-- 나의 할 일 -->
-				<div class="col-md-6 todolist" style="min-height:700px;">
+				<div class="col-md-6 todolist" style="min-height:600px;">
 					<c:forEach items="${todolist}" var="todo">
 					<c:if test="${todo.toDoCompleteNo  eq 0}">
 						<ul class="list-group list-group-flush tl${todo.toDoNo}">
@@ -430,6 +478,7 @@ box-shadow: 5px 5px 20px purple;
 				</div>
 				</div>
 				</div>
+				<a style="cursor:pointer;" id="arrow">	Back To Top</a>
 			</div>
 		</div>
 	</div>
