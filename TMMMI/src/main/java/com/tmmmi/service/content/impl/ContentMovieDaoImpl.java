@@ -76,7 +76,6 @@ public class ContentMovieDaoImpl extends ContentDaoAdaptor {
 
 			Elements movies = ((Elements) doc.select(".lst_detail_t1 li"));
 			
-			index=3;
 			int start = 0+index*5;
 			int end = 5+index*5;
 			for (int i=start;i<end;i++) {
@@ -158,7 +157,6 @@ public class ContentMovieDaoImpl extends ContentDaoAdaptor {
 
 			Elements movies = ((Elements) doc.select(".lst_detail_t1 li"));
 
-			index = 0;
 			int start = 0 + index * 5;
 			int end = 5 + index * 5;
 			for (int i = start; i < end; i++) {

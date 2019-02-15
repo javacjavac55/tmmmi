@@ -59,6 +59,8 @@ function refresh() {
 	// Carousels.
 	$('.carousel').each(
 		function() {
+			$('.forward').remove();
+			$('.backward').remove();
 
 			var $t = $(this), $forward = $('<span class="forward"></span>'), $backward = $('<span class="backward"></span>'), $reel = $t
 					.children('.reel'), $items = $reel

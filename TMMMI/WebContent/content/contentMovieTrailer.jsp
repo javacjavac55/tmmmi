@@ -69,9 +69,16 @@
 	<script src="/javascript/scroll/breakpoints.min.js"></script>
 	<script src="/javascript/scroll/util.js"></script>
 	<script src="/javascript/scroll/main.js"></script>
+	<script src="/javascript/scroll/refresh.js"></script>
 	<script>
+		function bind() {
+			$('.content-model-btn').on('click', function(){
+				var content = $(this).data("content");
+				$('#movieTrailerInput').val(content);
+			});
+		}
 		$(function(){
-			$(".play-btn").on("click", function(){
+			$(document).on('click', '.play-btn', function(){
 				var no = $(this).prev().children().data("no");
 				var link = $(this).prev().children().data("link");
 				$('#movie-preview-'+no).html(link+'<div class="movie-preview-close-btn" data-no="'+no+'"></div>');
@@ -85,10 +92,56 @@
 				$('#movie-preview-'+no).attr('style','display:block;');
 			});
 			
-			$(".content-model-btn").on("click", function(){
-				var content = $(this).data("content");
-				$('#movieTrailerInput').val(content);
-			});
+			bind();	
+			
+			var count = 0;
+			var more = true;
+			$(document).on('click', '.forward', function(){
+				count+=1;
+				
+				if (more) {
+					$.ajax({
+						url : "/contentMovieRest/getContentMovieTrailer?index="+count,
+						method : "GET",
+						dataType: "json",
+						headers : {
+							"Accept" : "application/json",
+							"Content-Type" : "application/json"
+						},
+						success : function(JSONData, status) {
+							console.log(JSONData);
+							if (JSONData.length==0) {
+								more = false;
+							} else {
+								JSONData.forEach(function (item, index, array) {
+									$('.reel').append(
+										'<article class="content-movie-trailer">'+
+											'<div class="movie">'+
+												'<a href="#">'+
+													'<img class="videoThmb" src="'+item.movieThumbnail+'" data-no="'+item.movieNo+'"'+" data-link='"+item.movieVideo+"'>"+
+												'</a>'+
+												'<div class="play-btn"></div>'+
+												'<button class="content-model-btn trailer-title" type="button" data-content="'+item.movieLink+'">'+item.movieTitle+'</button><br/>'+
+												'<div class="movie-trailer-info">'+
+													'<span class="trailer-field">개봉일</span>  <span>'+item.movieOpenDate+'</span> <span class="trailer-field">장르</span> <span>'+item.movieGenre+'</span><br/>'+	
+													'<span class="trailer-field">감독</span> <span>'+item.movieDirector+'</span><br/>'+
+													'<span class="trailer-field">배우</span> <span>'+item.movieActor+'</span><br/>'+
+												'</div>'+
+											'</div>'+
+											'<div class="movie-trailer-preview" id="movie-preview-'+item.movieNo+'">'+
+											'</div>'+
+											'<div class="scrap-btn">스크랩</div>'+
+										'</article>'
+									);
+								});
+								refresh();
+								bind();
+								parent.bind('ContentMovieTrailer');
+							}
+						}
+					});
+				}
+			})
 		})
 	</script>
 </body>

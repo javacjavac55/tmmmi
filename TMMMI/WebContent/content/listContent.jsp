@@ -62,7 +62,9 @@
 <script async defer src="https://buttons.github.io/buttons.js"></script>
 <script src="/javascript/template/material-kit.js?v=2.0.5" type="text/javascript"></script>
 <script src ="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+<script src="/javascript/scroll/rebind.js" charset="utf-8"></script>
 <script>
+
 function fncOpenModal(section, content, scrapBtnShow) {
 	if (scrapBtnShow) {
 		$('#addScrap').attr('data-section',section);
@@ -74,142 +76,11 @@ function fncOpenModal(section, content, scrapBtnShow) {
 	$('.modal-body').html('<iframe class="content-modal" src="'+content+'" />');
 	$('.content-modal-btn').click();
 }
-$(function(){
-	window.onload = function () {  //call when iframe is fully loaded
-		$($('#movieBoxOffice').contents().find('.content-model-btn')).on('click', function(){
-			var content = $('#movieBoxOffice').contents().find('#movieBoxOfficeInput').val();
-			fncOpenModal(1, content, true);
-		});
-		
-		$($('#movieNew').contents().find('.content-model-btn')).on('click', function(){
-			var content = $('#movieNew').contents().find('#movieNewInput').val();
-			fncOpenModal(1, content, true);
-		});
-		  
-		$($('#movieUpcoming').contents().find('.content-model-btn')).on('click', function(){
-			var content = $('#movieUpcoming').contents().find('#movieUpcomingInput').val();
-			fncOpenModal(1, content, true);
-		});
-		
-		$($('#movieReview').contents().find('.content-model-btn')).on('click', function(){
-			var content = $('#movieReview').contents().find('#movieReviewInput').val();
-			fncOpenModal(1, content, true);
-		});
-		
-		$($('#movieReview').contents().find('.movie-review-link')).on('click', function(){
-			var content = $('#movieReview').contents().find('#movieReviewInput').val();
-			fncOpenModal(1, content, true);
-		});
-		
-		$($('#movieTrailer').contents().find('.content-model-btn')).on('click', function(){
-			var content = $('#movieTrailer').contents().find('#movieTrailerInput').val();
-			fncOpenModal(1, content, true);
-		});
-		
-		$($('#movieTrailer').contents().find('.scrap-btn')).on('click', function(){
-			fncScrapArticle(1, "[¿¹°íÆí] "+$(this).siblings('.movie').find('.trailer-title').text().trim(), $(this).closest('article').get(0).outerHTML)
-		});
-		
-		$($('#kSoccer').contents().find('.content-model-btn')).on('click', function(){
-			var content = $('#kSoccer').contents().find('#kSoccerInput').val();
-			fncOpenModal(2, content, true);
-		});
-		
-		$($('#wSoccer').contents().find('.content-model-btn')).on('click', function(){
-			var content = $('#wSoccer').contents().find('#wSoccerInput').val();
-			fncOpenModal(2, content, true);
-		});
-		
-		$($('#kBaseball').contents().find('.content-model-btn')).on('click', function(){
-			var content = $('#kBaseball').contents().find('#kBaseballInput').val();
-			fncOpenModal(2, content, true);
-		});
-		
-		$($('#wBaseball').contents().find('.content-model-btn')).on('click', function(){
-			var content = $('#wBaseball').contents().find('#wBaseballInput').val();
-			fncOpenModal(2, content, true);
-		});
-		
-		$($('#basketball').contents().find('.content-model-btn')).on('click', function(){
-			var content = $('#basketball').contents().find('#basketballInput').val();
-			fncOpenModal(2, content, true);
-		});
-		
-		$($('#general').contents().find('.content-model-btn')).on('click', function(){
-			var content = $('#general').contents().find('#generalInput').val();
-			fncOpenModal(2, content, true);
-		});
-		
-		$($('#highlight').contents().find('.scrap-btn')).on('click', function(){
-			fncScrapArticle(2, $(this).siblings('.highlight-title').text().trim(), $(this).closest('article').get(0).outerHTML)
-		});
-		
-		$($('#tasty').contents().find('.content-model-btn')).on('click', function(){
-			var content = $('#tasty').contents().find('#tastyInput').val();
-			fncOpenModal(3, content, true);
-		});
-		
-		$($('#tasty').contents().find('.scrap-btn')).on('click', function(){
-			fncScrapArticle(3, $(this).siblings('.tasty-tasty-title').text().trim(), $(this).closest('article').get(0).outerHTML)
-		});
-		
-		$($('#shoppingFirst').contents().find('.content-model-btn')).on('click', function(){
-			var content = $('#shoppingFirst').contents().find('#shoppingFirstInput').val();
-			fncOpenModal(4, content, true);
-		});
-		
-		$($('#shoppingSecond').contents().find('.content-model-btn')).on('click', function(){
-			var content = $('#shoppingSecond').contents().find('#shoppingSecondInput').val();
-			fncOpenModal(4, content, true);
-		});
-		
-		$($('#shoppingThird').contents().find('.content-model-btn')).on('click', function(){
-			var content = $('#shoppingThird').contents().find('#shoppingThirdInput').val();
-			fncOpenModal(4, content, true);
-		});
-		
-		$($('#shoppingReview').contents().find('.scrap-btn')).on('click', function(){
-			fncScrapArticle(4, $(this).siblings('.shopping-review-title').text().trim(), $(this).closest('article').get(0).outerHTML)
-		});
-				
-		$('#content-setting').on('click', function(){
-			fncOpenModal(0, "/contentSetting/getContentSetting", false);
-		});
-	};
-	
-	$('#addScrap').on('click', function() {
-		var sectionNo = $(this).data('section');
-		console.log('start');
-		console.log('link',$('.content-modal').attr('src'));
-		$.ajax({
-			url : "/scrapRest/addScrap",
-			method : "POST",
-			data: JSON.stringify({
-				sectionNo: sectionNo,
-				scrapLink: $('.content-modal').attr('src'),
-				scrapType: 0
-			}),
-			headers : {
-				"Accept" : "application/json",
-				"Content-Type" : "application/json"
-			},
-			success : function(JSONData, status) {
-				console.log('success');
-				swal({
-					title : "½ºÅ©·¦ ¿Ï·á " , 
-					text: "ÄÁÅÙÃ÷¸¦ ¼º°øÀûÀ¸·Î ½ºÅ©·¦ Çß½À´Ï´Ù" , 
-					icon : "success" , 
-				}).then((value) => {
-					$('.btn.btn-secondary').click();
-				});
-			}, 
-			error: function(error) {
-				console.log(error)
-			}
-		});
-		console.log('end');
-	});
-});
+
+function fncCloseModal(){
+	$('.btn.btn-secondary').click();
+	location.reload();
+}
 
 function fncScrapArticle(sectionNo, title, html) {
 	$.ajax({
@@ -241,10 +112,55 @@ function fncScrapArticle(sectionNo, title, html) {
 	});
 }
 
-function fncCloseModal(){
-	$('.btn.btn-secondary').click();
-	location.reload();
+function bind(id){
+	map[id]();
 }
+
+window.onload = function() {
+	$('iframe').each(function(index, item){
+		bind($(item).attr('src').split('/get')[1]);
+	})
+};
+
+$(function(){
+	$('#content-setting').on('click', function(){
+		fncOpenModal(0, "/contentSetting/getContentSetting", false);
+	});
+	
+	$(document).on('click', '#addScrap', function() {
+		var sectionNo = $(this).data('section');
+		console.log('start');
+		console.log('link',$('.content-modal').attr('src'));
+		$.ajax({
+			url : "/scrapRest/addScrap",
+			method : "POST",
+			data: JSON.stringify({
+				sectionNo: sectionNo,
+				scrapLink: $('.content-modal').attr('src'),
+				scrapType: 0
+			}),
+			headers : {
+				"Accept" : "application/json",
+				"Content-Type" : "application/json"
+			},
+			success : function(JSONData, status) {
+				console.log('success');
+				swal({
+					title : "½ºÅ©·¦ ¿Ï·á " , 
+					text: "ÄÁÅÙÃ÷¸¦ ¼º°øÀûÀ¸·Î ½ºÅ©·¦ Çß½À´Ï´Ù" , 
+					icon : "success" , 
+				}).then((value) => {
+					$('.btn.btn-secondary').click();
+				});
+			}, 
+			error: function(error) {
+				console.log(error)
+			}
+		});
+	});	
+});
+
+
 </script>
 	
 </head>
@@ -269,6 +185,6 @@ ${contentHtml}
 	    </div>
 	  </div>
   </div>
-  <jsp:include page="/common/mainMenu.jsp"/>
+<jsp:include page="/common/mainMenu.jsp"/>
 </body>
 </html>

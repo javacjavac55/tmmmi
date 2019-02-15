@@ -59,8 +59,15 @@
 	<script src="/javascript/scroll/main.js"></script>
 	<script src="/javascript/scroll/refresh.js"></script>
 	<script>
-		 $(function(){
-			$(".movie-preview-btn").on("click", function(){
+		function bind() {
+			$('.content-model-btn').on('click', function(){
+				var content = $(this).data("content");
+				$('#movieBoxOfficeInput').val(content);
+			});
+		}
+	
+		$(function(){
+			$(document).on("click", '.movie-preview-btn', function(){
 				var no = $(this).data("no");
 				var link = $(this).data("link");
 				$('#movie-preview-'+no).html(link+'<div class="movie-preview-close-btn" data-no="'+no+'"></div>');
@@ -74,10 +81,7 @@
 				$('#movie-preview-'+no).attr('style','display:block;');
 			});
 			
-			 $('.content-model-btn').on('click', function(){
-				var content = $(this).data("content");
-				$('#movieBoxOfficeInput').val(content);
-			});
+			bind();	
 			
 			var count = 0;
 			var more = true;
@@ -123,6 +127,8 @@
 									);
 								});
 								refresh();
+								bind();
+								parent.bind('ContentMovieBoxOffice');
 							}
 						}
 					});
