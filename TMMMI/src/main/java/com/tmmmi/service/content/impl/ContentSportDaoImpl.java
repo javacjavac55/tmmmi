@@ -28,6 +28,7 @@ import com.tmmmi.service.domain.ContentSport;
 @Repository("contentSportDaoImpl")
 public class ContentSportDaoImpl extends ContentDaoAdaptor {
 	
+	
 	public ContentSportDaoImpl() {
 		// TODO Auto-generated constructor stub
 		System.out.println(this.getClass());
@@ -36,7 +37,7 @@ public class ContentSportDaoImpl extends ContentDaoAdaptor {
 	public List<ContentSport> getContentKsoccerList(int index) throws Exception {
 		String address = "https://sports.news.naver.com/kfootball/index.nhn";
 
-		int start = 0;
+		int start = (index * 5);
 		int end = 5 + (index * 5);
 
 		Document doc = Jsoup.connect(address).header("User-Agent", "Mozilla/5.0").get();
@@ -53,7 +54,7 @@ public class ContentSportDaoImpl extends ContentDaoAdaptor {
 
 		List<ContentSport> sportList = new ArrayList<ContentSport>();
 
-		for (int i = start; i < 5; i++) {
+		for (int i = start; i < end; i++) {
 			Element element = contents.get(i);
 			subAddress = element.attr("href");
 			// subAddress=
@@ -88,7 +89,7 @@ public class ContentSportDaoImpl extends ContentDaoAdaptor {
 	public List<ContentSport> getContentWsoccerList(int index) throws Exception {
 		String address = "https://sports.news.naver.com/wfootball/index.nhn";
 
-		int start = 0;
+		int start = (index * 5);
 		int end = 5 + (index * 5);
 
 		Document doc = Jsoup.connect(address).header("User-Agent", "Mozilla/5.0").get();
@@ -105,7 +106,7 @@ public class ContentSportDaoImpl extends ContentDaoAdaptor {
 
 		List<ContentSport> sportList = new ArrayList<ContentSport>();
 
-		for (int i = start; i < 5; i++) {
+		for (int i = start; i < end; i++) {
 			Element element = contents.get(i);
 			subAddress = element.attr("href");
 			// subAddress=
@@ -138,7 +139,7 @@ public class ContentSportDaoImpl extends ContentDaoAdaptor {
 	public List<ContentSport> getContentKbaseballList(int index) throws Exception {
 		String address = "https://sports.news.naver.com/kbaseball/index.nhn";
 
-		int start = 0;
+		int start = (index * 5);
 		int end = 5 + (index * 5);
 
 		Document doc = Jsoup.connect(address).header("User-Agent", "Mozilla/5.0").get();
@@ -155,7 +156,7 @@ public class ContentSportDaoImpl extends ContentDaoAdaptor {
 
 		List<ContentSport> sportList = new ArrayList<ContentSport>();
 
-		for (int i = start; i < 5; i++) {
+		for (int i = start; i < end; i++) {
 			Element element = contents.get(i);
 			subAddress = element.attr("href");
 			// subAddress=
@@ -188,7 +189,7 @@ public class ContentSportDaoImpl extends ContentDaoAdaptor {
 	public List<ContentSport> getContentWbaseballList(int index) throws Exception {
 		String address = "https://sports.news.naver.com/wbaseball/index.nhn";
 
-		int start = 0;
+		int start = (index * 5);
 		int end = 5 + (index * 5);
 
 		Document doc = Jsoup.connect(address).header("User-Agent", "Mozilla/5.0").get();
@@ -205,7 +206,7 @@ public class ContentSportDaoImpl extends ContentDaoAdaptor {
 
 		List<ContentSport> sportList = new ArrayList<ContentSport>();
 
-		for (int i = start; i < 5; i++) {
+		for (int i = start; i < end; i++) {
 			Element element = contents.get(i);
 			subAddress = element.attr("href");
 			// subAddress=
@@ -238,7 +239,7 @@ public class ContentSportDaoImpl extends ContentDaoAdaptor {
 	public List<ContentSport> getContentBasketballList(int index) throws Exception {
 		String address = "https://sports.news.naver.com/basketball/index.nhn";
 
-		int start = 0;
+		int start = (index * 5);
 		int end = 5 + (index * 5);
 
 		Document doc = Jsoup.connect(address).header("User-Agent", "Mozilla/5.0").get();
@@ -255,7 +256,7 @@ public class ContentSportDaoImpl extends ContentDaoAdaptor {
 
 		List<ContentSport> sportList = new ArrayList<ContentSport>();
 
-		for (int i = start; i < 5; i++) {
+		for (int i = start; i < end; i++) {
 			Element element = contents.get(i);
 			subAddress = element.attr("href");
 			// subAddress=
@@ -288,7 +289,7 @@ public class ContentSportDaoImpl extends ContentDaoAdaptor {
 	public List<ContentSport> getContentGeneralList(int index) throws Exception {
 		String address = "https://sports.news.naver.com/general/index.nhn";
 
-		int start = 0;
+		int start = (index * 5);
 		int end = 5 + (index * 5);
 
 		Document doc = Jsoup.connect(address).header("User-Agent", "Mozilla/5.0").get();
@@ -305,7 +306,7 @@ public class ContentSportDaoImpl extends ContentDaoAdaptor {
 
 		List<ContentSport> sportList = new ArrayList<ContentSport>();
 
-		for (int i = start; i < 5; i++) {
+		for (int i = start; i < end; i++) {
 			Element element = contents.get(i);
 			subAddress = element.attr("href");
 			// subAddress=
@@ -339,7 +340,7 @@ public class ContentSportDaoImpl extends ContentDaoAdaptor {
 	public List<ContentSport> getContentHighlightList(int index) throws Exception {
 		
 		String address = "https://tv.naver.com/spotvmaster/clips";
-		int start = 0;
+		int start = (index * 5);
 		int end = 5 + (index * 5);
 		/*String firstAddress = "https://tv.naver.com";
 		String subAddress = "";
@@ -352,7 +353,7 @@ public class ContentSportDaoImpl extends ContentDaoAdaptor {
 		
 		Elements link = doc.select(".cds._MM_CARD > div > a");
 		
-		for(int i = start; i<5; i++) {
+		for(int i = start; i<end; i++) {
 			Element element = link.get(i);
 			
 			ContentSport contentSport = new ContentSport();
