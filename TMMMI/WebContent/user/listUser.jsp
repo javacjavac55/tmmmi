@@ -209,6 +209,7 @@
 							</div>
 						<!-- PageNavigation ½ÃÀÛ -->
 						<jsp:include page="/common/pageNavigator.jsp"/>
+						<br><br><br>
 					</div>
 				</div>
 			</div>

@@ -24,9 +24,8 @@
 	
 		
 		$(document).ready(function () { 
-			/* getDust(); */
+			getDust(); 
 			getWeather();
-			/* setTimeout(function() { $('.loading').hide() },800);			 */
 		});
 
 		////////////////////////////////도시선택
