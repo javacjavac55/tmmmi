@@ -47,25 +47,7 @@
 											<i class="material-icons">calendar_today</i>
 										</div>
 									</div>
-									<input type="text" class="form-control 2" name="toDoStartDate" id="dd1" placeholder="시작 날짜를 입력해주세요" autocomplete="off">
-									<script>
-								    $("#dd1").datepicker(
-								        {
-								        	 firstDay: 1,
-								             dateFormat: "yy-mm-dd",
-								             defaultDate: targetdate,
-								             monthNames: ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12'],
-								             monthNamesShort: ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12'],
-								             dayNames: ['일', '월', '화', '수', '목', '금', '토'],
-								             dayNamesShort: ['일', '월', '화', '수', '목', '금', '토'],
-								             dayNamesMin: ['일', '월', '화', '수', '목', '금', '토'],
-								             showMonthAfterYear: true,
-								             yearSuffix: '년',
-								             changeYear: true,
-								             changeMonth: true
-								        }
-								    );
-								</script>
+									<input type="text" class="form-control 2" value="" name="toDoStartDate" id="dd1" placeholder="시작 날짜를 입력해주세요" autocomplete="off">
 								</div>
 							</div>
 							<div class="form-group bmd-form-group">
@@ -77,23 +59,6 @@
 									</div>
 									<input type="text" class="form-control 3" name="toDoEndDate" id="dd2" placeholder="종료 날짜를 입력해주세요" autocomplete="off">
 									<script>
-									$("#dd2").datepicker(
-									        {
-									        	 firstDay: 1,
-									             dateFormat: "yy-mm-dd",
-									             defaultDate: targetdate,
-									             monthNames: ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12'],
-									             monthNamesShort: ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12'],
-									             dayNames: ['일', '월', '화', '수', '목', '금', '토'],
-									             dayNamesShort: ['일', '월', '화', '수', '목', '금', '토'],
-									             dayNamesMin: ['일', '월', '화', '수', '목', '금', '토'],
-									             showMonthAfterYear: true,
-									             yearSuffix: '년',
-									             changeYear: true,
-									             changeMonth: true,
-									             minDate:  '${startDate}'
-									        }
-									        );
 									</script>
 								</div>
 							</div>
@@ -176,24 +141,6 @@
 										</div>
 									</div>
 									<input type="text" class="form-control 6" name="toDoEndDate" id="dd4" value="" placeholder="종료 날짜를 입력해주세요" autocomplete="off">
-									<script>
-									$("#dd4").datepicker(
-									        {
-									        	 firstDay: 1,
-									             dateFormat: "yy-mm-dd",
-									             monthNames: ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12'],
-									             monthNamesShort: ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12'],
-									             dayNames: ['일', '월', '화', '수', '목', '금', '토'],
-									             dayNamesShort: ['일', '월', '화', '수', '목', '금', '토'],
-									             dayNamesMin: ['일', '월', '화', '수', '목', '금', '토'],
-									             showMonthAfterYear: true,
-									             yearSuffix: '년',
-									             changeYear: true,
-									             changeMonth: true,
-									             minDate: $('#dd3').val()
-									        }
-									    );
-									</script>
 								</div>
 								<p class="description text-center">용기있는 사람은 모두 약속을 지키는 사람이다
 							-코르네이유-</p>

@@ -34,9 +34,8 @@ public class ContentTastyController {
 	
 	@RequestMapping(value="/getContentTastyList", method=RequestMethod.GET)
 	public ModelAndView getContentTastyList(HttpSession session)throws Exception {
-		
 		int userNo = (int) session.getAttribute("userNo");
-		List<ContentTasty> contentList = contentTastyService.getContentTastyList(contentSettingService.getContentSetting(userNo), 0);
+		List<ContentTasty> contentList = contentTastyService.getContentTastyList(contentSettingService.getContentSetting(userNo), 1);
 		ModelAndView modelAndView = new ModelAndView();
 		modelAndView.addObject("contentTastyList", contentList);
 		modelAndView.addObject("bgColor", (userSettingService.getUserSetting(userNo).getMainColorModeNo()==0)?"#000000":"#FFFFFF");

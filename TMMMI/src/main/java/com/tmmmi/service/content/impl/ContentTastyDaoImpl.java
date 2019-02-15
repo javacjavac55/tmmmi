@@ -28,8 +28,10 @@ public class ContentTastyDaoImpl extends ContentDaoAdaptor {
         String clientSecret = "O4TGEmLBA4";
         List<ContentTasty> tastyList = null;
         try {
+        	System.out.println(index);
         	String text = URLEncoder.encode(contentSetting.getTastyKeyword()+" 맛집", "UTF-8");
-            String apiURL = "https://openapi.naver.com/v1/search/local?query="+ text;
+            String apiURL = "https://openapi.naver.com/v1/search/local?query="+ text+"&start="+index;
+            System.out.println("URL : "+apiURL);
             ObjectMapper objectMapper = new ObjectMapper();
             URL url = new URL(apiURL);
             HttpURLConnection con = (HttpURLConnection)url.openConnection();
