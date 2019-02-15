@@ -99,19 +99,8 @@
 										</div>
 									</a>
 								</article>
+								
 								<article class="style5">
-									<span class="image">
-										<img src="/css/index/images/pic05.jpg" alt="" />
-									</span>
-									<a href="/user/getUser">
-										<h2>My page</h2><br/>
-										<img src="/images/loginIndex/find-my-friend.png" width="20%"/>
-										<div class="content">
-											<p>Check my information</p>
-										</div>
-									</a>
-								</article>
-								<article class="style6">
 									<span class="image">
 										<img src="/css/index/images/pic06.jpg" alt="" />
 									</span>
@@ -123,6 +112,33 @@
 										</div>
 									</a>
 								</article>
+								<!--½ºÅ©·¦  -->
+								<article class="style6">
+									<span class="image">
+										<img src="/css/index/images/pic05.jpg" alt="" />
+									</span>
+									<a href="/scrap/getScrapList">
+										<h2>Scrap</h2><br/>
+										<img src="/images/loginIndex/floppydisk.png" width="20%"/>
+										<div class="content">
+											<p>Check my information</p>
+										</div>
+									</a>
+								</article>
+								<!--½ºÅ©·¦-->
+								<article class="style6">
+									<span class="image">
+										<img src="/css/index/images/pic05.jpg" alt="" />
+									</span>
+									<a href="/user/getUser">
+										<h2>My page</h2><br/>
+										<img src="/images/loginIndex/find-my-friend.png" width="20%"/>
+										<div class="content">
+											<p>Check my information</p>
+										</div>
+									</a>
+								</article>
+								
 								<article class="style2">
 									<span class="image">
 										<img src="/css/index/images/pic07.jpg" alt="" />

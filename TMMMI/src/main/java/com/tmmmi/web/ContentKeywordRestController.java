@@ -62,20 +62,15 @@ public class ContentKeywordRestController {
 	public List<ContentUserKeyword> getUserVideoListFirst(@RequestParam("index") int index, HttpSession session) throws Exception{
 		System.out.println("getUserVideoListFirst : GET");
 		int userNo = (int)session.getAttribute("userNo");	
+		
 		return contentUserKeywordService.getContentUserKeywordVideoFirstList(contentSettingService.getContentSetting(userNo), index, null);
 	}
 	
 	@RequestMapping(value="getUserVideoListSecond", method=RequestMethod.GET)
-	public ModelAndView getUserVideoListSecond(HttpSession session) throws Exception{
+	public List<ContentUserKeyword> getUserVideoListSecond(HttpSession session) throws Exception{
 		System.out.println("getUserVideoListSecond : GET");
 		
-		int userNo = (int)session.getAttribute("userNo");	
-		
-		ModelAndView modelAndView = new ModelAndView();
-		modelAndView.addObject("userVideoSecondList", contentUserKeywordService.getContentUserKeywordVideoSecondList(contentSettingService.getContentSetting(userNo), 0, null));
-		modelAndView.addObject("bgColor", (userSettingService.getUserSetting(userNo).getMainColorModeNo()==0)?"#000000":"#FFFFFF");
-		modelAndView.addObject("fontColor", (userSettingService.getUserSetting(userNo).getMainColorModeNo()==0)?"#FFFFFF":"#000000");
-		modelAndView.setViewName("/content/userVideoContentSecond.jsp");
-		return modelAndView;
+		int userNo = (int)session.getAttribute("userNo");
+		return contentUserKeywordService.getContentUserKeywordVideoSecondList(contentSettingService.getContentSetting(userNo), 0, null);
 	}
 }

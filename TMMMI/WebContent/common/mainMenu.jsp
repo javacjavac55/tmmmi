@@ -88,8 +88,8 @@
 					<div class="grim__item-img grim__item-img--3" style="background-image: url(/images/mainMenu/3.jpg);"></div>
 					<a href="#content-4" class="grim__link grim__item-content">
 						<div class="grim__item-inner">
-							<h3 class="grim__item-title" data-link="/diary/listDiary/">Diary</h3>
-							<span class="grim__item-desc" data-link="/diary/listDiary/">Uncover beauty</span>
+							<h3 class="grim__item-title" data-link="/diary/listDiary">Diary</h3>
+							<span class="grim__item-desc" data-link="/diary/listDiary">Uncover beauty</span>
 						</div>
 					</a>
 					<div class="grim__item-bg grim__item-bg-cover grim__item-bg--8"></div>

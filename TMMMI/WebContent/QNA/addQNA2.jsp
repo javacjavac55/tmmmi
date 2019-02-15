@@ -13,7 +13,6 @@
 	<link href="/css/template/material-kit.css" rel="stylesheet" />
 	<!-- CSS Just for demo purpose, don't include it in your project -->
 	<link href="/css/template/demo.css" rel="stylesheet" />
-	
 	<!-- jQuery -->
 	<script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" ></script>
@@ -24,8 +23,11 @@
 	<!--ckeditor  -->
 	<!-- <script src="/ckeditor/ckeditor.js"></script> -->
 	<script src="//cdn.ckeditor.com/4.7.3/full/ckeditor.js"></script>
-
-  	
+	
+	<!-- CSS Files -->
+	<link href="/javascript/sweet/libgif-js-master/libgif.js" rel="stylesheet" />
+	<!-- CSS Just for demo purpose, don't include it in your project -->
+	<link href="/javascript/sweet/libgif-js-master/rubbable.js"" rel="stylesheet" />
 	<!--  ///////////////////////// CSS ////////////////////////// -->
 	<style>
 		
@@ -97,7 +99,17 @@
 					}, function (dismiss) { });
 			});
 	    });
-		
+
+	    $$('img').each(function (img_tag) {
+			if (/.*\.gif/.test(img_tag.src)) {
+				var rub = new SuperGif({ gif: img_tag } );
+				rub.load(function(){
+					console.log('oh hey, now the gif is loaded');
+				});
+			}
+		});
+	    
+	    
 	</script>
 	
 </head>
@@ -122,6 +134,9 @@
     <div class="section section-basic">
       <div class="container">
       
+      <img src="./example1_preview.gif" rel:animated_src="./example1.gif"
+		width="360" height="360" rel:auto_play="1" rel:rubbable="1" />
+      
 		<div class="col-md-10 ml-auto mr-auto">
 			<div class="form-group row">
 				<div class="col-md-6">
@@ -141,8 +156,9 @@
 		 	</div>
 		 	
 		 	<div>
-				<!-- <img src="/images/QNAImage/tmmmi.gif" rel:animated_src="/images/QNAImage/tmmmi.gif" width="150" height="150" rel:auto_play="1" rel:rubbable="1"  onclick=¡±goX();/>
- -->			</div>
+		 	<input type=text name=¡±aa¡± value=¡±¡±>
+				<img src="/images/QNAImage/tmmmi.gif" rel:animated_src="/images/QNAImage/tmmmi.gif" width="150" height="150" rel:auto_play="1" rel:rubbable="1"  onclick=¡±goX();/>
+			</div>
 			
 		 	<div class="form-group">
 			    <label>±Û Á¦¸ñ</label>

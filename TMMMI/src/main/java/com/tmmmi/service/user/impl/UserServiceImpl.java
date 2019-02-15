@@ -82,12 +82,15 @@ public class UserServiceImpl implements UserService {
 		System.out.println("이메일 전송 시작");
 
 		String host = "smtp.gmail.com";// smtp서버
-		String subject = "인증번호 전송";
+		String subject = "TMMMI 인증번호";
 		String fromName = "관리자";
 		String from = "jaavaa05@gmail.com";// 관리자 메일 주소
 		String to = email;// 인증번호 받을 유저의 이메일
 
-		String content = "인증번호[" + authNum + "]";
+		String content =
+				"<img src=http://192.168.0.36:8080/images/Logo/logo2.png>"+
+				"<br/><br/>환영합니다! TMMMI에서 인증번호를 알려드립니다. <br/> 인증번호:[" + authNum + "]";
+		
 
 		try {
 

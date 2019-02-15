@@ -107,6 +107,18 @@ div#columns:hover figure:not(:hover) {
 img {
 	width: 300px;
 }
+
+#arrow { position: fixed;
+		  font-size: 8pt; 
+		  top:700px; 
+		  width:50px; 
+		  right:50px;  
+		  z-index: 10; 
+		  padding:10px; 
+		  text-align:center;
+		  line-height: 1;
+		  }
+#arrow > span {margin-bottom: 10px; display: block;}
 </style>
 
 <script type="text/javascript">
@@ -267,6 +279,25 @@ img {
 			} */
 			
 		});
+		
+		/* 탑 */
+		$(function() {
+	        $(window).scroll(function() {
+	        	
+	            if ($(this).scrollTop() > 400) {
+	                $('#arrow').fadeIn();
+	            } else {
+	                $('#arrow').fadeOut();
+	            }
+	        });
+	        
+	        $("#arrow").click(function() {
+	            $('html, body').animate({
+	                scrollTop : 0
+	            }, 400);
+	            return false;
+	        });
+	    });
 
 	});
 </script>
@@ -403,7 +434,8 @@ img {
 			</div>
 		</div>
 	</div>
-
+	
+	<a style="cursor:pointer;" id="arrow"><img src="/images/diaryImage/top_btn.png" style="width:50px; height:50px;"></a>
 	<!--  화면구성 div End /////////////////////////////////////-->
 	<!-- PageNavigation Start... -->
 
