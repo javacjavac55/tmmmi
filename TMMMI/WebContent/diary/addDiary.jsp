@@ -95,6 +95,20 @@
 		form_data.append('file', file)
 		
 	} */
+	$(function() {
+		<c:set var="data" value="${userCategory}" />		
+		<c:if test="${empty data}">
+			swal({
+				title : "사용자 카테고리가 없습니다." , 
+				text: "사용자 카테고리를 먼저 등록 해주세요. \n 사용자 카테고리 등록 페이지로 이동합니다." , 
+				icon : "success" , 
+			}).then((value)=>{
+				location.replace('/calendar/getUserCategoryList');
+			});
+		</c:if>		
+	});
+		
+		
 	function fncAddDiary() {
 		var title=$("input[name='diaryTitle']").val();
 		var detail=CKEDITOR.instances.ckeditor.getData();
@@ -196,7 +210,7 @@
 													<option selected="selected" value="없음">선택</option>
 											<c:forEach var="userCategory" items="${userCategory}">
 												<c:set var="i" value="${i+1}" />
-										    		<option value="${userCategory.userCategoryNo}" >${userCategory.userCategoryName}</option>
+										    		<option value="${userCategory.userCategoryNo}" data-ucn="${userCategory.userCategoryName}">${userCategory.userCategoryName}</option>
 										    </c:forEach>
 									    </select>
 								    </div>
@@ -211,7 +225,7 @@
 								
 								<div>
 									<label for="diaryDetail" class="col-sm-offset-1 col-sm-3 control-label text-center"></label>
-									<div class="col-sm-12" align="center">
+									<div class="col-sm-12" align="center"  style="max-width=100%;">
 										<textarea id="ckeditor" name="diaryDetail" style="display: none;"></textarea>
 									</div>
 								</div>

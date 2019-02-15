@@ -21,8 +21,17 @@
 <!-- jQuery -->
 <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
 <script	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-
-
+<style>
+img
+{
+  width: auto;
+  hight: auto;
+  max-width:1050px; 
+  max-height:1050px;
+  margin:auto;
+  display:block;
+}
+</style>
 
 <script type="text/javascript">
 	$(function() {
@@ -88,9 +97,9 @@
                 					</div>
               					</div>
               					
-								<div class="form-group" align="left" style="height:500px;">
+								<div class="form-group" align="left" style="width:100%; height:500px;">
 									<label for="diaryDetail" class="col-sm-offset-1 col-sm-1 control-label text-center"></label>
-									<div class="col-sm-12" >
+									<div class="col-sm-12"  >
 										${diary.diaryDetail}
 									</div>
 								</div>
