@@ -9,6 +9,10 @@
 		<script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
 		<noscript><link rel="stylesheet" href="/css/scroll/noscript.css" /></noscript>
 		<style>
+			body {
+				background-color: #fff;
+			}
+			
 			article {
 				display: inline-block;
 				width: 356px !important;

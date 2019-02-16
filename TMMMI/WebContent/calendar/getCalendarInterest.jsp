@@ -18,10 +18,6 @@
         TMMMI
     </div>
     <div id="lnb">
-        <div class="lnb-new-schedule">
-            <button id="btn-new-schedule" type="button" class="btn btn-default btn-block lnb-new-schedule-btn" data-toggle="modal">
-                	일정 등록</button>
-        </div>
         <div id="lnb-calendars" class="lnb-calendars">
             <div>
                 <div class="lnb-calendars-item">
@@ -185,5 +181,6 @@
     
     <script src="/javascript/tui/theme/dooray.js"></script>
     <script src="/javascript/tui/calendar-interest-setting.js" charset="utf-8"></script>
+    <jsp:include page="/common/mainMenu.jsp"/>
 </body>
 </html>

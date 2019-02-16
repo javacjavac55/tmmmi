@@ -11,6 +11,10 @@
 		<noscript><link rel="stylesheet" href="/css/scroll/noscript.css" /></noscript>
 		
 		<style>
+			body {
+				background-color: #fff;
+			}
+			
 			article {
 				display: inline-block;
 				width: 356px !important;

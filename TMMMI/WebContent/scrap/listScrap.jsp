@@ -142,6 +142,7 @@
 	.modal-body iframe {
 		width: 100%;
 	    height: 43em;
+	    border: none;
 	}
 	
 	.container {
@@ -276,7 +277,7 @@
 		      	<iframe src=""></iframe>
 		      </div>
 		      <div class="modal-footer">
-		        <button type="button" class="btn btn-secondary" data-dismiss="modal">´Ý±â</button>
+		        <button type="button" class="btn btn-info" data-dismiss="modal">´Ý±â</button>
 		      </div>
 		    </div>
 		  </div>

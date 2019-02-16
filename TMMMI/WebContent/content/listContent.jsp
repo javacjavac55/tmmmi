@@ -8,13 +8,16 @@
 <title>∏ﬁ¿Œ ƒ¡≈Ÿ√˜</title>
 <link href="/css/template/material-kit.min.css?v=2.0.5" rel="stylesheet" />
 <style>
-	body {
-		background-color: #eee;
-	}
 	iframe {
 		width: 100%;
 		display: block;
 		border: none;
+		margin-top: -100px;
+  		padding-top: 100px;
+	}
+	
+	.content-container {
+		padding-top: 80px;
 	}
 	
 	#content-setting {
@@ -28,14 +31,15 @@
 	    background-color: white;
 	    border-radius: 2px;
 	    cursor: pointer;
+	    z-index: 100;
 	}
 	
 	.normal-card{
-		height: 664px;
+		height: 764px;
 	}
 	
 	.wide-card {
-		height: 686px;
+		height: 786px;
 	}
 	
 	.modal-dialog.modal-fullsize {
@@ -165,8 +169,10 @@ $(function(){
 	
 </head>
 <body>
-${contentHtml}
-
+<jsp:include page="/common/toolbar.jsp"></jsp:include>
+<div class="content-container">
+	${contentHtml}
+</div>
 <div id="content-setting"></div>
 
 <button class="content-modal-btn" type="button" data-toggle="modal" data-target="#myFullsizeModal" style="display:none"></button>
@@ -175,7 +181,6 @@ ${contentHtml}
     <div class="modal-content modal-fullsize">
 	      <div class="modal-header">
 	        <h5 class="modal-title" id="exampleModalLongTitle"></h5>
-	          <span aria-hidden="true">&times;</span>
 	      </div>
 	      <div class="modal-body"></div>
 	      <div class="modal-footer">

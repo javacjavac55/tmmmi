@@ -8,9 +8,9 @@
 <title>Insert title here</title>
 <!-- style -->
 <style type="text/css">
-	.page-header .title, .page-header>.container { color : ${userSetting.menuFontColor};}
-	.navbar .navbar-brand { color : ${userSetting.menuFontColor}; }
-	.navbar.navbar-transparent{ color : ${userSetting.menuFontColor};}
+	.page-header .title, .page-header>.container { color : ${userSetting.menuFontColor}!important;}
+	.navbar .navbar-brand { color : ${userSetting.menuFontColor} !important; }
+	.navbar.navbar-transparent{ color : ${userSetting.menuFontColor}!important;}
 	
 	/* 추가한 부분 */
 	.logo{ height:160%; margin-top: -9px; }
@@ -80,10 +80,9 @@
           </li>
           
           <li class="dropdown nav-item">
-            <a href="#" class="dropdown-toggle nav-link" data-toggle="dropdown">Setting</a>
+            <a href="#" class="dropdown-toggle nav-link" data-toggle="dropdown">Content</a>
             <div class="dropdown-menu dropdown-with-icons">
-				<a href="/userSetting/getUserSetting" class="dropdown-item">사용자 설정</a>
-				<a href="/contentSetting/getContentSetting" class="dropdown-item">컨텐츠 설정</a>
+				<a href="/content/getContentList" class="dropdown-item">컨텐츠</a>
             </div>
           </li>
           
@@ -91,6 +90,7 @@
             <a href="#" class="dropdown-toggle nav-link" data-toggle="dropdown">My page</a>
             <div class="dropdown-menu dropdown-with-icons">
             	<a href="/user/getUser" class="dropdown-item">내 정보 보기</a>
+            	<a href="/userSetting/getUserSetting" class="dropdown-item">사용자 설정</a>
             	<c:if test="${userNo eq 101 }"><a href="/user/getUserList" class="dropdown-item">회원 리스트</a></c:if>
             </div>
           </li>

@@ -42,7 +42,7 @@ public class ContentSettingController {
 		ContentSetting contentSetting = contentSettingService.getContentSetting(userNo);
 		
 		StringBuilder sb = new StringBuilder();
-		Map<Integer,String> sortSection = contentSettingService.getContentSetting(userNo).getContentSettingMap();
+		Map<Integer,String> sortSection = contentSetting.getContentSettingMap();
 		for (Integer key:sortSection.keySet()) {
 			if (!key.equals(0)) {
 				System.out.println("name:"+sortSection.get(key));

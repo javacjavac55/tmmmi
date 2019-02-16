@@ -21,7 +21,8 @@
 			background-color:#ffffff;
 		}
 		.tiles article.style1 > .image:before, .tiles article.style2 > .image:before, .tiles article.style3 > .image:before, .tiles article.style4 > .image:before,
-		.tiles article.style5 > .image:before, .tiles article.style6 > .image:before {;
+		.tiles article.style5 > .image:before, .tiles article.style6 > .image:before, .tiles article.style7 > .image:before, .tiles article.style8 > .image:before,
+		.tiles article.style9 > .image:before {;
 			background-color:#ffffff;
 		}
 		#header {
@@ -59,11 +60,23 @@
 										<h2>Calendar</h2><br/>
 										<img src="/images/loginIndex/calendar.png" width="20%"/>
 										<div class="content">
-											<p>Schedule Management</p>
+											<p>Manage Your Schedules</p>
 										</div>
 									</a>
 								</article>
 								<article class="style2">
+									<span class="image">
+										<img src="/css/index/images/pic06.jpg" alt="" />
+									</span>
+									<a href="/todo/getToDoList">
+										<h2>To do</h2><br/>
+										<img src="/images/loginIndex/checklist.png" width="20%"/>
+										<div class="content">
+											<p>Take Care Of The Day's Work</p>
+										</div>
+									</a>
+								</article>
+								<article class="style3">
 									<span class="image">
 										<img src="/css/index/images/pic02.jpg" alt="" />
 									</span>
@@ -71,19 +84,7 @@
 										<h2>Content</h2><br/>
 										<img src="/images/loginIndex/sharing-content.png" width="20%"/>
 										<div class="content">
-											<p>Collect Interest</p>
-										</div>
-									</a>
-								</article>
-								<article class="style3">
-									<span class="image">
-										<img src="/css/index/images/pic03.jpg" alt="" />
-									</span>
-									<a href="/diary/listDiary">
-										<h2>Diary</h2><br/>
-										<img src="/images/loginIndex/diary.png" width="20%"/>
-										<div class="content">
-											<p>Leave an appreciation for the day</p>
+											<p>Collect Your Interests</p>
 										</div>
 									</a>
 								</article>
@@ -98,21 +99,19 @@
 											<p>Movie Calendar & Sport Calendar</p>
 										</div>
 									</a>
-								</article>
-								
+								</article>								
 								<article class="style5">
 									<span class="image">
-										<img src="/css/index/images/pic06.jpg" alt="" />
+										<img src="/css/index/images/pic03.jpg" alt="" />
 									</span>
-									<a href="/todo/getToDoList">
-										<h2>To do</h2><br/>
-										<img src="/images/loginIndex/checklist.png" width="20%"/>
+									<a href="/diary/listDiary">
+										<h2>Diary</h2><br/>
+										<img src="/images/loginIndex/diary.png" width="20%"/>
 										<div class="content">
-											<p>Take care of the day's work</p>
+											<p>Leave An Appreciation For The Day</p>
 										</div>
 									</a>
 								</article>
-								<!--½ºÅ©·¦  -->
 								<article class="style6">
 									<span class="image">
 										<img src="/css/index/images/pic05.jpg" alt="" />
@@ -121,12 +120,12 @@
 										<h2>Scrap</h2><br/>
 										<img src="/images/loginIndex/floppydisk.png" width="20%"/>
 										<div class="content">
-											<p>Check my information</p>
+											<p>Store Your Interests</p>
 										</div>
 									</a>
 								</article>
 								<!--½ºÅ©·¦-->
-								<article class="style6">
+								<article class="style7">
 									<span class="image">
 										<img src="/css/index/images/pic05.jpg" alt="" />
 									</span>
@@ -134,12 +133,12 @@
 										<h2>My page</h2><br/>
 										<img src="/images/loginIndex/find-my-friend.png" width="20%"/>
 										<div class="content">
-											<p>Check my information</p>
+											<p>Check My Information</p>
 										</div>
 									</a>
 								</article>
 								
-								<article class="style2">
+								<article class="style8">
 									<span class="image">
 										<img src="/css/index/images/pic07.jpg" alt="" />
 									</span>
@@ -147,11 +146,11 @@
 										<h2>FAQ</h2><br/>
 										<img src="/images/loginIndex/conversation.png" width="20%" />
 										<div class="content">
-											<p>Frequent Asked Question</p>
+											<p>Frequently Asked Questions</p>
 										</div>
 									</a>
 								</article>
-								<article class="style3">
+								<article class="style9">
 									<span class="image">
 										<img src="/css/index/images/pic08.jpg" alt="" />
 									</span>
@@ -159,21 +158,10 @@
 										<h2>QNA</h2><br/>
 										<img src="/images/loginIndex/qa.png" width="20%" />
 										<div class="content">
-											<p>Question and Answer</p>
+											<p>Questions And Answers</p>
 										</div>
 									</a>
 								</article>
-								<!-- <article class="style1">
-									<span class="image">
-										<img src="/css/index/images/pic09.jpg" alt="" />
-									</span>
-									<a href="generic.html">
-										<h2>Nullam</h2>
-										<div class="content">
-											<p>Sed nisl arcu euismod sit amet nisi lorem etiam dolor veroeros et feugiat.</p>
-										</div>
-									</a>
-								</article> -->
 							</section>
 						</div>
 					</div>
@@ -187,3 +175,4 @@
 		<script src="/css/index/assets/js/main.js"></script>
 	</body>
 </html>
+

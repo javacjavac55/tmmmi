@@ -10,6 +10,10 @@
 		<link rel="stylesheet" href="/css/scroll/main_movie.css">
 		<noscript><link rel="stylesheet" href="/css/scroll/noscript.css" /></noscript>
 		<style>
+			body {
+				background-color: #fff;
+			}
+			
 			article {
 				display: inline-block;
 				width: 712px !important;

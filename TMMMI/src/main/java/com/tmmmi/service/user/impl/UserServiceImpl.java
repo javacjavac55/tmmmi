@@ -88,7 +88,7 @@ public class UserServiceImpl implements UserService {
 		String to = email;// 인증번호 받을 유저의 이메일
 
 		String content =
-				"<img src=http://192.168.0.36:8080/images/Logo/logo2.png>"+
+				"<img src=http://192.168.0.33:8080/images/Logo/logo2.png>"+
 				"<br/><br/>환영합니다! TMMMI에서 인증번호를 알려드립니다. <br/> 인증번호:[" + authNum + "]";
 		
 
