@@ -23,7 +23,24 @@ $(function(){
 	});
 });
 </script>
+
+<!-- 추가된 부분 -->
+<style>
+	.form-group{
+		width: 100%; 
+		text-align: center;
+	}
+	.bmd-label-static{
+		width: 100%;
+		text-align:center;
+	}
+	#chgcolor{
+		display: inline-block;
+	}
+</style>
+
 </head>
+
 
 <body class="index-page sidebar-collapse">
 	<jsp:include page="/common/toolbar2.jsp"></jsp:include>
@@ -45,44 +62,47 @@ $(function(){
 					<div class="col-md-6 ml-auto mr-auto">
 						<div class="profile">
 
-							<div class="description text-center">
+							<div class="description text-center"> 
 								<div class="form-group bmd-form-group">
 									<label class="bmd-label-static">Main Color</label>
 									<c:if test="${userSetting.mainColorModeNo eq 0}">
-										<div id="chgcolor" style="background-color:#483949; heihgt:50px; width:300px; border:solid 1px">
+										<div id="chgcolor" style="background-color:#483949; width:300px; border:solid 1px">
 											컨텐츠 배경색 입니다.
 										</div>
-										<div id="chgcolor" style="background-color:#fafafa; heihgt:50px;width:300px;border:solid 1px">
+										<div id="chgcolor" style="background-color:#fafafa; width:300px;border:solid 1px">
 											컨텐츠 폰트색 입니다.
 										</div>
 									</c:if>
 									<c:if test="${userSetting.mainColorModeNo eq 1}">
-										<div id="chgcolor" style="background-color:#fafafa; heihgt:50px;width:300px;border:solid 1px">
+										<div id="chgcolor" style="background-color:#fafafa; width:300px;border:solid 1px">
 											컨텐츠 배경색 입니다.
 										</div>
-										<div id="chgcolor" style="background-color:#483949;heihgt:50px;width:300px;border:solid 1px">
+										<div id="chgcolor" style="background-color:#483949; width:300px;border:solid 1px">
 											컨텐츠 폰트색 입니다.
 										</div>
 									</c:if>
 								</div>
 							</div>
+							<br>
 
 							<div class="description text-center">
-								<div class="form-group bmd-form-group">
-									<label class="bmd-label-static">Menu Font Color</label> 
-									<div id="chgcolor" style="background-color:${userSetting.menuFontColor};heihgt:50px;width:300px;border:solid 1px">
+								<div class="form-group bmd-form-group" >
+									<label class="bmd-label-static" width: 100%;>Menu Font Color</label> 
+									<div id="chgcolor" style="background-color:${userSetting.menuFontColor};width:300px;border:solid 1px;">
 										배경색이 메뉴 폰트 색상입니다.
 									</div>
 								</div>
 							</div>
+							<br>
 							
 							<div class="description text-center">
 								<div class="form-group bmd-form-group">
 									<label class="bmd-label-static">Image</label>
 									<c:if test="${ empty userSetting.image  }"><input type="text" class="form-control" value="이미지가 없습니다. 수정해주세요!" readonly="readonly"></c:if> 
-									<c:if test="${ ! empty userSetting.image }"><img src="/images/userSetting/ ${userSetting.image}"  height="80%" width="40%"></c:if>
+									<c:if test="${ ! empty userSetting.image }"><img src="/images/userSetting/${userSetting.image}"  height="80%" width="55%"></c:if>
 								</div>
 							</div>
+							<br>
 
 							<div class="row">
 								<div class="col-md-12 text-center ">
@@ -92,6 +112,7 @@ $(function(){
 						</div>
 					</div>
 				</div>
+				<br><br>
 			</div>
 		</div>
 	</div>

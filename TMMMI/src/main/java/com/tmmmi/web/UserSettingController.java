@@ -1,6 +1,7 @@
 package com.tmmmi.web;
 
 import java.io.File;
+import java.util.UUID;
 
 import javax.servlet.http.HttpSession;
 
@@ -63,12 +64,17 @@ public class UserSettingController {
 	@RequestMapping(value="updateUserSetting", method=RequestMethod.POST)
 	public ModelAndView updateUserSetting(@ModelAttribute("userSetting") UserSetting userSetting, @RequestParam("file") MultipartFile fileName, HttpSession session) throws Exception{
 		System.out.println("/userSetting/updateUserSetting : POST");
-		
+
 		String file = fileName.getOriginalFilename();
+		
+		if(file == "") {
+			userSetting.setImage(null);
+		}else {
 		String filePath = "C:\\Users\\bit\\git\\tmmmi\\TMMMI\\WebContent\\resources\\images\\userSetting\\";
 		File fileImage = new File(filePath, file);
 		fileName.transferTo(fileImage);
 		userSetting.setImage(file);
+		}
 		userSetting.setUserNo((int)session.getAttribute("userNo"));
 		
 		userSettingService.updateUserSetting(userSetting);

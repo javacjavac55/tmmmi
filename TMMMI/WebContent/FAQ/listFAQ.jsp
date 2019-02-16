@@ -189,9 +189,10 @@
 			.title {
 				cursor:pointer;
 			}
-	
+			
 			/* 배너 */
 		 	#floatdiv {
+		 		z-index:10000;
 				position: absolute;
 			    height: 360px;
 			    right:-20px;
@@ -216,7 +217,10 @@
 			button{
 				color:white !important;
 			}
-		
+			input[type="text"], input[type="password"], input[type="email"], select {
+			    margin-top: 3em;
+			}
+					
 		 	
 	</style>
     
@@ -242,29 +246,26 @@
   <div class="main main-raised">
     <div class="section section-basic">
       <div class="container">
-      
-		 <!-- 배너 -->
-		<iframe id="floatdiv" src="/widget/getWeather.jsp" style="border-color: rgb(0,0,0,0);"></iframe>
-	
+     
 		 	<img src="/images/common/star.png" width="2%"/>
 		 	<span>Home / CustomerCenter</span>
 		 			 	
 		 	<br/><br/><br/><br/>
 		 	
-			<div class="row searchFAQ" style="margin:0 auto; " >
-				<div class="col-md-7" style="margin-left:14%; ">	
-					<label style="margin-left:27%">소중한 문의에 감사드리며, 성심성의껏 답변해드리겠습니다.</label>
-					<div class="input-group" >
-					    <div class="input-group-prepend">
-					      <span class="input-group-text">
-					        <i class="fa fa-group"></i>
-					      </span>
-					    </div>
-					    <input type="text" class="form-control" name="searchKeyword" id="searchKeyword" value="${search.searchKeyword}" onKeyPress="if(event.keyCode=='13'){fncGetSearchList();return false; }">
+			<div class="row searchFAQ" style="margin:0 auto; width:100%;" >
+				<div class="col-md-12" style="text-align: center;" >	
+					<div>
+						<label>소중한 문의에 감사드리며, 성심성의껏 답변해드리겠습니다.</label>
+						<i class="fa fa-group"></i><br>
 					</div>
-				</div>
-				<div class="col-md-1" style="margin-top:1.7%;">
-					<button type="button" class="btn btn-primary" name="searchCondition" value="0"  style="font:white">검색</button>
+					<div>
+						<div style="display: inline-block;">
+				      		<input type="text" name="searchKeyword" id="searchKeyword" value="${search.searchKeyword}" onKeyPress="if(event.keyCode=='13'){fncGetSearchList();return false; }">
+						</div>
+						<div style="display: inline-block;">
+							<button type="button" class="btn btn-primary" name="searchCondition" value="0"  style="font:white">검색</button>
+						</div> 
+					</div>
 				</div>
 			</div>
 			
@@ -355,7 +356,6 @@
     </div>
   </div>
   </form>
-  <jsp:include page="/common/footer.jsp"></jsp:include>
 </body>
-
 </html>
+<jsp:include page="/common/footer.jsp"></jsp:include>

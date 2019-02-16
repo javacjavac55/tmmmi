@@ -236,7 +236,13 @@
 <form>
 		<img src="/images/weather/afterTMMMI.png" class="tmmmi" >
 		<div style="position:absolute; margin-top: -50px; margin-left: 24px;">
-
+			<select class="form-control" name="city" style="width:100px; height: 25px; text-align:center">
+			  <option value="Seoul" > &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;서  울</option>
+			  <option value="Incheon" >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;인  천</option>
+			  <option value="Gwangju" >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;광  주</option>
+			  <option value="Daejeon" >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;대  전</option>
+			  <option value="Busan" >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;부  산</option>
+			</select>
 		</div>
 		<figure>
 				<div class="main" style="position:absolute;">

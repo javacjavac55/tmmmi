@@ -46,7 +46,9 @@
 			menu_font_color = #{menuFontColor},
 			show_scrap_alarm = #{showScrapAlarm},
 			scrap_alarm_time = #{showScrapAlarm:VARCHAR},
-			image = #{image:VARCHAR}
+			<if test="image != null">
+				image = #{image:VARCHAR}
+			</if>
 		</set>
 		WHERE user_no = #{userNo}
 	</update>

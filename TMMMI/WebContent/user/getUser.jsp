@@ -40,20 +40,23 @@
 				  icon: "warning",
 				  buttons: true,
 				  dangerMode: true,
-				})
-				.then((willDelete) => {
+				}).then((willDelete) => {
 				  if (willDelete) {
 				    swal("다시 한 번 생각해주세요! 복구가 불가능합니다.", {
 				      icon: "warning",
 				      dangerMode: true,
 				      buttons: true,
 				    }).then((value)=>{
-				    	fncWithdraw();
+				    	if(value){
+				    		fncWithdraw();
+				    	}else{         
+						    swal("Tmmmi가 정말로 열심히 할게요!");
+						}
 					})
-				  } else {           
+				  }else{           
 				    swal("Tmmmi가 좀 더 열심히 할게요!");
 				  }
-				});
+			  });
 		});
 	})
 </script>

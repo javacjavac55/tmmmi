@@ -63,7 +63,7 @@
 				</tr>
 			</c:forEach>
 	</table>
-			
+			<br>
 			<jsp:include page="../common/pageNavigator.jsp"/>
 </form>
 </html>
