@@ -59,18 +59,18 @@ public class ContentKeywordRestController {
 	}
 	
 	@RequestMapping(value="getUserVideoListFirst", method=RequestMethod.GET)
-	public List<ContentUserKeyword> getUserVideoListFirst(@RequestParam("index") int index, HttpSession session) throws Exception{
+	public List<ContentUserKeyword> getUserVideoListFirst(@RequestParam("index") int index, @RequestParam("pageToken") String pageToken, HttpSession session) throws Exception{
 		System.out.println("getUserVideoListFirst : GET");
 		int userNo = (int)session.getAttribute("userNo");	
 		
-		return contentUserKeywordService.getContentUserKeywordVideoFirstList(contentSettingService.getContentSetting(userNo), index, null);
+		return contentUserKeywordService.getContentUserKeywordVideoFirstList(contentSettingService.getContentSetting(userNo), index, pageToken);
 	}
 	
 	@RequestMapping(value="getUserVideoListSecond", method=RequestMethod.GET)
-	public List<ContentUserKeyword> getUserVideoListSecond(HttpSession session) throws Exception{
+	public List<ContentUserKeyword> getUserVideoListSecond(@RequestParam("index") int index, @RequestParam("pageToken") String pageToken, HttpSession session) throws Exception{
 		System.out.println("getUserVideoListSecond : GET");
 		
 		int userNo = (int)session.getAttribute("userNo");
-		return contentUserKeywordService.getContentUserKeywordVideoSecondList(contentSettingService.getContentSetting(userNo), 0, null);
+		return contentUserKeywordService.getContentUserKeywordVideoSecondList(contentSettingService.getContentSetting(userNo), index, pageToken);
 	}
 }

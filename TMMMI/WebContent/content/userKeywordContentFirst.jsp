@@ -34,7 +34,12 @@
 							<div class="user-keyword-title">${contentUserKeyword.keywordTitle}</div>
 							<div class="quote-left">"</div>
 							<div>
-								<c:if test="${! empty contentUserKeyword.keywordVideo }"><img src="${contentUserKeyword.keywordVideo}" width="80%" height="40%"></c:if>
+								<c:if test="${! empty contentUserKeyword.keywordVideo}">
+									<c:choose>
+										<c:when test="${contentUserKeyword.keywordVideo eq 'http://blogimgs.naver.net/imgs/nblog/spc.gif' }">야호</c:when>
+										<c:otherwise><img src="${contentUserKeyword.keywordVideo}" width="80%" height="40%"></c:otherwise>
+									</c:choose>
+								</c:if>
 								<c:if test="${empty contentUserKeyword.keywordVideo }"></c:if>
 							</div>
 							<div class="user-keyword-detail">${contentUserKeyword.keywordDescription}</div>
@@ -59,15 +64,11 @@
 	<script src="/javascript/scroll/main.js"></script>
 	<script src="/javascript/scroll/refresh.js"></script>
 	<script>
-		function bind() {
-			$('.content-model-btn').on('click', function(){
+		$(function() {
+			$('.content-model-btn').on('click', function() {
 				var content = $(this).data("content");
 				$('#userSearchFirstInput').val(content);
-			});
-		}
-	
-		$(function() {
-			bind();
+			})
 			
 			var count = 0;
 			var more = true;
@@ -89,25 +90,7 @@
 								more = false;
 							} else {
 								JSONData.forEach(function (item, index, array) {
-									alert(item.keywordVideo);
-									if(item.keywordVideo == null){
-										$('.reel').append(
-											'<article class="content-userSearch">'+
-												'<div class="userSearch">'+
-													'<div>'+
-														'<div class="user-keyword-title">'+item.keywordTitle+'</div>'+
-														'<div class="quote-left"></div>'+
-														'<div></div>'+
-														'<div class="user-keyword-detail">'+item.keywordDescription+'</div>'+
-														'<div class="quote-right">"</div>'+
-													'</div>'+
-													'<div>'+
-														'<button class="content-model-btn userKeyword-btn" type="button" data-content="'+item.keywordLink+'">더보기</button>'+
-													'</div>'+
-												'</div>'+	
-											'</article>'
-									}else{
-										$('.reel').append(
+									$('.reel').append(
 											'<article class="content-userSearch">'+
 												'<div class="userSearch">'+
 													'<div>'+
@@ -122,12 +105,9 @@
 													'</div>'+
 												'</div>'+	
 											'</article>'
-										);	
-									}
+									);
 								});
 								refresh();
-								bind();
-								parent.bind('UserKeywordListFirst');
 							}
 						}
 					});

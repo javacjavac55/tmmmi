@@ -34,7 +34,12 @@
 							<div class="user-keyword-title">${contentUserKeyword.keywordTitle}</div>
 							<div class="quote-left">"</div>
 							<div>
-								<c:if test="${! empty contentUserKeyword.keywordVideo }"><img src="${contentUserKeyword.keywordVideo}" width="80%" height="40%"></c:if>
+								<c:if test="${! empty contentUserKeyword.keywordVideo}">
+									<c:choose>
+										<c:when test="${contentUserKeyword.keywordVideo == 'http://blogimgs.naver.net/imgs/nblog/spc.gif' }"></c:when>
+										<c:otherwise><img src="${contentUserKeyword.keywordVideo}" width="80%" height="40%"></c:otherwise>
+									</c:choose>
+								</c:if>
 								<c:if test="${empty contentUserKeyword.keywordVideo }"></c:if>
 							</div>
 							<div class="user-keyword-detail">${contentUserKeyword.keywordDescription}</div>

@@ -2,24 +2,30 @@ package com.tmmmi.service.domain;
 
 public class ContentUserKeyword {
 	
-	private int sectionNo;
+	private String reviewNo;
 	private String keywordTitle;
 	private String keywordLink;
 	private String keywordDescription;
 	private String keywordVideo;
 	private String keywordVideoId;
+	private String keywordThumbnail;
+	private String keywordNextToken;
 
 	public ContentUserKeyword() {
 		// TODO Auto-generated constructor stub
 	}
 
-	public int getSectionNo() {
-		return sectionNo;
+	public String getReviewNo() {
+		return reviewNo;
 	}
 
-	public void setSectionNo(int sectionNo) {
-		this.sectionNo = sectionNo;
+
+
+	public void setReviewNo(String reviewNo) {
+		this.reviewNo = reviewNo;
 	}
+
+
 
 	public String getKeywordTitle() {
 		return keywordTitle;
@@ -61,11 +67,28 @@ public class ContentUserKeyword {
 		this.keywordVideoId = keywordVideoId;
 	}
 
+	public String getKeywordThumbnail() {
+		return keywordThumbnail;
+	}
+
+	public void setKeywordThumbnail(String keywordThumbnail) {
+		this.keywordThumbnail = keywordThumbnail;
+	}
+
+	public String getKeywordNextToken() {
+		return keywordNextToken;
+	}
+
+	public void setKeywordNextToken(String keywordNextToken) {
+		this.keywordNextToken = keywordNextToken;
+	}
+
 	@Override
 	public String toString() {
-		return "ContentUserKeyword [sectionNo=" + sectionNo + ", keywordTitle=" + keywordTitle + ", keywordLink="
+		return "ContentUserKeyword [reviewNo=" + reviewNo + ", keywordTitle=" + keywordTitle + ", keywordLink="
 				+ keywordLink + ", keywordDescription=" + keywordDescription + ", keywordVideo=" + keywordVideo
-				+ ", keywordVideoId=" + keywordVideoId + "]";
+				+ ", keywordVideoId=" + keywordVideoId + ", keywordThumbnail=" + keywordThumbnail
+				+ ", keywordNextToken=" + keywordNextToken + "]";
 	}
 
 }
