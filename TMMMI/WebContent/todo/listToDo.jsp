@@ -366,8 +366,6 @@ color: #fff;
   <div class="main main-raised">
     <div class="section section-basic">
     
-     <!-- 배너 -->
-	<iframe id="floatdiv" src="/widget/getWeather.jsp" style="border-color: rgb(0,0,0,0);"></iframe>
 	
 	<!-- 할 일 리스트 -->
 	<div class="container">
