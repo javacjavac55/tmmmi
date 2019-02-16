@@ -96,14 +96,17 @@ public class ContentKeywordDaoImpl extends ContentDaoAdaptor {
             	
             	if(docFrame.select("#printPost1").select("img").size() == 1) {
             		System.out.println("이미지가 없습니다");
-            		
             	}else {
             		int count = (int)Math.abs(docFrame.select("#printPost1").select("img").size()/2);
-            		/*System.out.println("iframe image : " +docFrame.select("#printPost1").select("img").get(count-1).attr("src"));*/
             		contentUserKeyword.setKeywordVideo(docFrame.select("#printPost1").select("img").get(count-1).attr("src"));
             	}
-            	contentUserKeyword.setKeywordDescription(description);
-            	result.add(contentUserKeyword);
+            	
+            	if(description != null) {
+            		contentUserKeyword.setKeywordDescription(description);
+                	result.add(contentUserKeyword);
+            	}else {
+            		System.out.println("야호");
+            	}
             }
 	        
 	    } catch (Exception e) {
@@ -286,20 +289,21 @@ public class ContentKeywordDaoImpl extends ContentDaoAdaptor {
 		return result;
 	}
 	
-	public List<ContentUserKeyword> getContentUserKeywordVideoFirstList(ContentSetting contentSetting, int index) throws Exception {
+	public List<ContentUserKeyword> getContentUserKeywordVideoFirstList(ContentSetting contentSetting, int index, String pageToken) throws Exception {
 		
 		String apiKey = "AIzaSyBLiKbxA8GhogX362LoIoNnCaVmIvesAFU";
 		String userVideo = contentSetting.getUserVideo1();
-		System.out.println(userVideo);
 		String q = URLEncoder.encode(userVideo, "UTF-8");
 		String maxResults = "8";
-		int page = index+1;
+		System.out.println("pageToken:"+pageToken);
+		String nextPage = (pageToken != null && pageToken.length()>0)?("&pageToken="+pageToken):"";
 		
 		List<ContentUserKeyword> result =new ArrayList<ContentUserKeyword>();
 	
 		try {
-			String apiURL= "https://www.googleapis.com/youtube/v3/search?key="+apiKey+"&part=snippet&q="+q+
-										"&maxResults="+maxResults+"&pageToken=CBAQAA";
+			String apiURL= "https://www.googleapis.com/youtube/v3/search?key="+apiKey+"&part=snippet&maxResults="+maxResults
+					+ nextPage
+					+ "&q="+q+"&type=video";
 			
 			URL url = new URL(apiURL);
 			HttpURLConnection con = (HttpURLConnection)url.openConnection();
@@ -313,42 +317,46 @@ public class ContentKeywordDaoImpl extends ContentDaoAdaptor {
 			}
 			br.close();
 			con.disconnect();
-			System.out.println(sb);
 			
 			String json = "";
 	        json = sb.toString();
 	        
 	        JSONParser parser=new JSONParser();
-	        JSONObject items =(JSONObject)parser.parse(json); //json�������� item[ ] ������
-	        JSONArray arr = (JSONArray)items.get("items"); //array �ʿ�
-	       System.out.println(arr);
+	        JSONObject items =(JSONObject)parser.parse(json); //json데이터중 item[ ] 빼오기
+	        JSONArray arr = (JSONArray)items.get("items"); //array 필요
+	        pageToken = (String)items.get("nextPageToken"); //다음페이지
+	        System.out.println("pageToken: "+pageToken);
+	        System.out.println(arr.size());
 	        
 	        for(int i =0; i<arr.size() ; i++) {
-            	JSONObject tmp = (JSONObject)arr.get(i);
+	        	JSONObject tmp = (JSONObject)arr.get(i);
 	        	
             	JSONObject snippet = (JSONObject)tmp.get("snippet");
-	        	String title = (String)snippet.get("title"); //����
-	        	String description = (String)snippet.get("description"); //����
-	        	String channelTitle = (String)snippet.get("channelTitle"); //ä���̸�
-	        	
-	        	//�̹��� �Ⱦ� (�ù����_��)
-	        	//JSONObject high = (JSONObject) ((JSONObject) (snippet.get("thumbnails"))).get("high");
-	        	//String image = (String)high.get("url"); //�����
+	        	String title = (String)snippet.get("title"); //제목
+	        	String description = (String)snippet.get("description"); //설명
+	        	String channelTitle = (String)snippet.get("channelTitle"); //채널이름
+	         	 	        	
+	        	JSONObject high = (JSONObject) ((JSONObject) (snippet.get("thumbnails"))).get("high");
+	        	String image = (String)high.get("url"); //썸네일
    	
 	        	String videoId = (String) ((JSONObject)tmp.get("id")).get("videoId");
 	        	
 	        	/*System.out.println(title);
 	        	System.out.println(description);
 	        	System.out.println(image);
-	        	System.out.println(channelTitle);*/
-	        	System.out.println(videoId);
+	        	System.out.println(channelTitle);
+	        	System.out.println(videoId);*/
 	        	
 	        	ContentUserKeyword contentUserKeyword = new ContentUserKeyword();
+	        	contentUserKeyword.setReviewNo(videoId);
             	contentUserKeyword.setKeywordTitle(title);
             	contentUserKeyword.setKeywordVideo(channelTitle);
             	contentUserKeyword.setKeywordDescription(description);
-            	contentUserKeyword.setKeywordVideoId("http://www.youtube.com/embed/"+videoId);
-	        	result.add(contentUserKeyword);
+            	contentUserKeyword.setKeywordVideoId("<iframe width=\"600\" height=\"518\" src=\"http://www.youtube.com/embed/"+videoId+"\" frameborder=\"0\" allow=\"accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture\" allowfullscreen></iframe>");
+	        	contentUserKeyword.setKeywordThumbnail(image);
+	        	contentUserKeyword.setKeywordNextToken(pageToken);
+	        	contentUserKeyword.setKeywordLink(contentSetting.getUserVideo1());
+            	result.add(contentUserKeyword);
 	        
 	        }
 		}catch (Exception e) {
@@ -357,20 +365,20 @@ public class ContentKeywordDaoImpl extends ContentDaoAdaptor {
 			return result;
 	}
 	
-	public List<ContentUserKeyword> getContentUserKeywordVideoSecondList(ContentSetting contentSetting, int index) throws Exception {
+	public List<ContentUserKeyword> getContentUserKeywordVideoSecondList(ContentSetting contentSetting, int index, String pageToken) throws Exception {
 		
 		String apiKey = "AIzaSyBLiKbxA8GhogX362LoIoNnCaVmIvesAFU";
 		String userVideo = contentSetting.getUserVideo1();
-		System.out.println(userVideo);
 		String q = URLEncoder.encode(userVideo, "UTF-8");
 		String maxResults = "8";
-		String order = "date";
+		String nextPage = (pageToken != null && pageToken.length()>0)?("&pageToken="+pageToken):"";
 		
 		List<ContentUserKeyword> result =new ArrayList<ContentUserKeyword>();
 	
 		try {
-			String apiURL= "https://www.googleapis.com/youtube/v3/search?key="+apiKey+"&part=snippet&q="+q+
-										"&maxResults="+maxResults;
+			String apiURL= "https://www.googleapis.com/youtube/v3/search?key="+apiKey+"&part=snippet&maxResults="+maxResults
+					+ nextPage
+					+ "&q="+q+"&type=video";
 			
 			URL url = new URL(apiURL);
 			HttpURLConnection con = (HttpURLConnection)url.openConnection();
@@ -384,42 +392,46 @@ public class ContentKeywordDaoImpl extends ContentDaoAdaptor {
 			}
 			br.close();
 			con.disconnect();
-			System.out.println(sb);
 			
 			String json = "";
 	        json = sb.toString();
 	        
 	        JSONParser parser=new JSONParser();
-	        JSONObject items =(JSONObject)parser.parse(json); //json�������� item[ ] ������
-	        JSONArray arr = (JSONArray)items.get("items"); //array �ʿ�
-	       System.out.println(arr);
+	        JSONObject items =(JSONObject)parser.parse(json); //json데이터중 item[ ] 빼오기
+	        JSONArray arr = (JSONArray)items.get("items"); //array 필요
+	        pageToken = (String)items.get("nextPageToken"); //다음페이지
+	        System.out.println("pageToken: "+pageToken);
+	        System.out.println(arr.size());
 	        
 	        for(int i =0; i<arr.size() ; i++) {
-            	JSONObject tmp = (JSONObject)arr.get(i);
+	        	JSONObject tmp = (JSONObject)arr.get(i);
 	        	
             	JSONObject snippet = (JSONObject)tmp.get("snippet");
-	        	String title = (String)snippet.get("title"); //����
-	        	String description = (String)snippet.get("description"); //����
-	        	String channelTitle = (String)snippet.get("channelTitle"); //ä���̸�
-	        	
-	        	//�̹��� �Ⱦ� (�ù����_��)
-	        	//JSONObject high = (JSONObject) ((JSONObject) (snippet.get("thumbnails"))).get("high");
-	        	//String image = (String)high.get("url"); //�����
+	        	String title = (String)snippet.get("title"); //제목
+	        	String description = (String)snippet.get("description"); //설명
+	        	String channelTitle = (String)snippet.get("channelTitle"); //채널이름
+	         	 	        	
+	        	JSONObject high = (JSONObject) ((JSONObject) (snippet.get("thumbnails"))).get("high");
+	        	String image = (String)high.get("url"); //썸네일
    	
 	        	String videoId = (String) ((JSONObject)tmp.get("id")).get("videoId");
 	        	
 	        	/*System.out.println(title);
 	        	System.out.println(description);
 	        	System.out.println(image);
-	        	System.out.println(channelTitle);*/
-	        	System.out.println(videoId);
+	        	System.out.println(channelTitle);
+	        	System.out.println(videoId);*/
 	        	
 	        	ContentUserKeyword contentUserKeyword = new ContentUserKeyword();
+	        	contentUserKeyword.setReviewNo(videoId);
             	contentUserKeyword.setKeywordTitle(title);
             	contentUserKeyword.setKeywordVideo(channelTitle);
             	contentUserKeyword.setKeywordDescription(description);
-            	contentUserKeyword.setKeywordVideoId("http://www.youtube.com/embed/"+videoId);
-	        	result.add(contentUserKeyword);
+            	contentUserKeyword.setKeywordVideoId("<iframe width=\"600\" height=\"518\" src=\"http://www.youtube.com/embed/"+videoId+"\" frameborder=\"0\" allow=\"accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture\" allowfullscreen></iframe>");
+	        	contentUserKeyword.setKeywordThumbnail(image);
+	        	contentUserKeyword.setKeywordNextToken(pageToken);
+	        	contentUserKeyword.setKeywordLink(contentSetting.getUserVideo1());
+            	result.add(contentUserKeyword);
 	        
 	        }
 		}catch (Exception e) {

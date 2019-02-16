@@ -31,8 +31,10 @@
 
 <!-- jQuery -->
 <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
-<script
-	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+<!--sweet alert -->
+<script src ="https://unpkg.com/sweetalert/dist/sweetalert.min.js" ></script >
 
 <!--ÅøÆÁ  -->
 <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
@@ -102,7 +104,20 @@
 			return false;
 		}
 	}
-
+	$(function(){
+		var getDiaryNo= ${diaryNo};
+		/* <c:set var="i" value="${fn:length(list)}" />
+			<c:forEach var="diary" items="${list}">		
+				<c:if test ="getDiaryNo eq {diary.diaryNo}">
+					.attr(style="")
+				</c:if>
+			</c:forEach> */
+		$('tr').each(function(){
+			if ($(this).children('td[data-param2='+getDiaryNo+']').length > 0) {
+				$(this).attr('style', 'background-color:#eee2ff;');
+			}
+		})
+	})
 	$(function() {
 		$("#addDiary").on("click", function() {
 			location.replace('/diary/addDiary');
@@ -110,8 +125,9 @@
 
 		$(".getDetail td:nth-child(3)").on("click", function() {
 			var diaryNo = $(this).data('param2');
+			var currentPage = $(this).data('cp');
 			console.log("¾Æ¾Æ¾Æ");
-			self.location = "/diary/getDiary?diaryNo=" + diaryNo;
+			self.location = "/diary/getDiary?diaryNo=" + diaryNo+"&currentPage="+currentPage;
 		});
 
 		$('#search').on("click", function() {			
@@ -218,7 +234,7 @@
 									value="${diary.diaryNo}" /> --%>
 									</td>
 									<td align="left">${diary.userCategoryName}</td>
-									<td align="left" data-param2="${diary.diaryNo}" style="cursor:pointer">${diary.diaryTitle}</td>
+									<td align="left" data-param2="${diary.diaryNo}" data-cp="${search.currentPage}" style="cursor:pointer">${diary.diaryTitle}</td>
 									<td align="left">${diary.diaryDate}</td>
 								</tr>
 							</c:forEach>
