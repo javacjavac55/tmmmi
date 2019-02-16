@@ -56,14 +56,15 @@ public class DiaryRestController {
 	int pageSize;
 	
 	
-	@RequestMapping(value = "imageList", method = RequestMethod.POST)
-	public Map imageList(@RequestBody(required=false) Search search, HttpSession session)throws Exception {
+	@RequestMapping(value = "imageList")
+	public Map imageList(@RequestBody(required=false) Search search, HttpSession session, @RequestParam("currentPage") int currentPage)throws Exception {
 		System.out.println("서치 :" +search);
 		int userNo = ((int)session.getAttribute("userNo"));
 
 		if(search.getCurrentPage() ==0 ){
 			search.setCurrentPage(1);
 		}
+		search.setCurrentPage(currentPage);
 		search.setPageSize(pageSize);		
 		// Business logic 수행
 		Map<String , Object> map=diaryService.getDiaryList(search, userNo);
