@@ -178,7 +178,7 @@
 							<form name="updateDiary" class="form-horizontal">
 								<%--<input type="hidden" name="prodNo" value="<%= product.getProdNo()%>"/> --%> 
 								<input type="hidden" name="diaryNo" value="${diary.diaryNo}"/>
-								
+								<input type="hidden" name="currentPage" value="${search.currentPage}"/>
 								<div class="form-group" align="left">
 									<label for="userCategoryNo" class="col-sm-offset-1 col-sm-1 control-label text-center"></label>
 									<h3>다이어리 수정</h3>	
@@ -213,7 +213,7 @@
 								<div>
 									<label for="diaryDetail" class="col-sm-offset-1 col-sm-3 control-label text-center"></label>
 									<div class="col-sm-12" align="center">
-										<textarea id="ckeditor" name="diaryDetail" style="display: none;"s>
+										<textarea id="ckeditor" name="diaryDetail" style="display: none;">
 										${diary.diaryDetail }
 										</textarea>
 									</div>
