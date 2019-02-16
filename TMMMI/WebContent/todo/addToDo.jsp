@@ -93,6 +93,8 @@
 				</div>
 				<div class="modal-body">
 					<form class="updateform" method="" action="">
+						<p class="description text-center">용기있는 사람은 모두 약속을 지키는 사람이다
+								-코르네이유-</p>
 						<div class="card-body">
 							<div class="form-group bmd-form-group">
 								<div class="input-group">
@@ -142,8 +144,6 @@
 									</div>
 									<input type="text" class="form-control 6" name="toDoEndDate" id="dd4" value="" placeholder="종료 날짜를 입력해주세요" autocomplete="off">
 								</div>
-								<p class="description text-center">용기있는 사람은 모두 약속을 지키는 사람이다
-							-코르네이유-</p>
 							</div>
 						</div>
 					</form>

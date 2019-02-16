@@ -14,6 +14,14 @@
 	<!-- CSS Just for demo purpose, don't include it in your project -->
 	<link href="/css/template/demo.css" rel="stylesheet" />
 	
+	<!--  Fonts and icons -->
+	<link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Roboto+Slab:400,700|Material+Icons" />
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css">
+		
+	<!-- styleSheet -->
+	<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+	<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+
 	<!-- jQuery -->
 	<script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" ></script>
@@ -86,17 +94,19 @@
 			});
 		});
 	
-		////////////////////////////////취소
+	    ////////////////////////////////취소
 	    $(function() {	
-	    	$( ".btn-default" ).on("click" , function() {
-				 swal("취소하시겠습니까?", {
-					 buttons: true,
-					 value: true,
-					}).then((result)=>{
-						history.go(-1);
-					}, function (dismiss) { });
+	    	$( ".btn-default:contains('취소')" ).on("click" , function() {
+	    			swal("취소 하시겠습니까?", {
+				      buttons: true,
+				    }).then((result)=>{
+				    	if (result === true) {
+				    		history.go(-1);
+				    	}
+				    }, function (dismiss) { });   		
 			});
 	    });
+
 		
 	</script>
 	
@@ -105,13 +115,13 @@
 <form>
 
 <jsp:include page="/common/toolbar2.jsp"></jsp:include>
-  <div class="page-header header-filter clear-filter" style="background-image: url('/images/weather/4016924c4eb809d80e5ac60ad0703088.jpg');">
+  <div class="page-header header-filter clear-filter" style="background-image: url('/images/userSetting/ ${userSetting.image}')">
     <div class="container">
       <div class="row">
         <div class="col-md-8 ml-auto mr-auto">
           <div class="brand">
-          	<h2 class="title">QNA</h2>
-          	<h3 style="margin-top:-3%" >Question and Answer</h3>
+          	<h2 class="title" style="font-family: 맑은 고딕;">1:1 문의하기</h2>
+          	<h3 class="title" style="margin-top:-2%; font-family: 맑은 고딕;">무엇을 도와드릴까요?</h3>
           </div>
         </div>
       </div>

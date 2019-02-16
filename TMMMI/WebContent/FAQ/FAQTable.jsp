@@ -38,16 +38,14 @@
 <table class="table table-hover ">	
 			<colgroup>
                <col style="width:10%;">
-               <col style="width:15%;">
-               <col style="width:50%;">
-               <col style="width:30%;">
+               <col style="width:20%;">
+               <col style="width:70%;">
             </colgroup>
             
             <tr>
 			   <td style="padding:0.7%; text-align: center">No</td>
 			   <td style="padding:0.7%; text-align: center;">분류유형</td>
 			   <td style="padding:0.7%; text-align: center;">제목</td>
-			   <td style="padding:0.7%;"></td>
 		   	</tr>
 			
 		  	<c:set var="i" value="0" />
@@ -67,7 +65,6 @@
 						</c:if>
 					</td>
 					<td style="padding:0.7%;">${faq.FAQTitle}</td>
-					<td style="padding:0.7%;"></td>
 				</tr>
 				
 				<tr class="detail${faq.FAQNo} detail" >
@@ -79,11 +76,11 @@
 							<button type="button"  class="btn btn-primary btn-round btn-sm" style="left: 95%;" data-param2="${faq.FAQNo}">삭제하기</button>
 						</c:if>
 					</td>
-					<td style="padding:0.7%;"></td>
 				</tr>
 				
 			</c:forEach>
 			</table>			
 			</form>
+			<br>
 			<jsp:include page="../common/pageNavigator.jsp"/>
 </html>

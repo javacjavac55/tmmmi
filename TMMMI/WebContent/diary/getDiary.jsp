@@ -31,6 +31,12 @@ img
   margin:auto;
   display:block;
 }
+
+
+#a{
+  max-width: fit-content;
+  display:inline-block;
+}
 </style>
 
 <script type="text/javascript">
@@ -38,7 +44,8 @@ img
 
 		$('#update').on("click", function() {
 			var diaryNo = $(this).data('param1');
-			self.location = "/diary/updateDiary?diaryNo=" + diaryNo;
+			var currentPage = $(this).data('cp');
+			self.location = "/diary/updateDiary?diaryNo="+diaryNo+"&currentPage="+currentPage;
 		});
 
 		$('#back').on("click", function() {
@@ -97,21 +104,24 @@ img
                 					</div>
               					</div>
               					
-								<div class="form-group" align="left" style="width:100%; height:500px;">
-									<label for="diaryDetail" class="col-sm-offset-1 col-sm-1 control-label text-center"></label>
-									<div class="col-sm-12"  >
-										${diary.diaryDetail}
-									</div>
+								<div id="a" align="left">
+									<div>
+										${diary.diaryDetail}				
+									</div>																
 								</div>
 								<hr/>
 								<div class="form-group">
 									<div class="col-sm-offset-4  col-sm-4 text-center">
-										<button type="button" id="update" class="btn btn-primary" style="width:134px;" data-param1="${diary.diaryNo}">수정하기</button>
+										<button type="button" id="update" class="btn btn-primary" style="width:134px;" data-param1="${diary.diaryNo}" data-cp="${search.currentPage}">수정하기</button>
 										<button type="button" id="back" class="btn btn-default" style="width:134px;" >리스트로 가기</button>
 									</div>
 								</div>
 						</div>	
-						<c:import url="/diary/getListDiary" />
+						<c:import url="/diary/getListDiary">
+						   <c:param name="currentPage" value="${search.currentPage }"/>
+						   <c:param name="diaryNo" value="${diary.diaryNo}"/>
+						</c:import>  
+						<%-- <c:import url="/diary/getListDiary?currentPage="+ /> --%>
 					</div>
 				</div>
 			</div>

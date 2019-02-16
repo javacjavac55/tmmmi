@@ -40,7 +40,6 @@
 }
 body {
 	background: url(//subtlepatterns.com/patterns/scribble_light.png);
-  font-family: Calluna, Arial, sans-serif;
   min-height: 1000px;
 }
 #columns {
@@ -50,6 +49,7 @@ body {
 	max-width: 1100px;
 	margin: 50px auto;
 }
+
 
 div#columns figure {
 	background: #fefefe;
@@ -113,7 +113,10 @@ img {
 /*무한스크롤  */
   $(function(){
 	  var currentPage = ${search.currentPage};
-		console.log(currentPage);
+	  var totalCount = ${resultPage.totalCount};
+	  var pageSize = ${resultPage.pageSize};
+		console.log(currentPage, totalCount, pageSize);
+		
 	  $(window).scroll(function(){		
 			if($(window).scrollTop() == $(document).height() - $(window).height()){
 				++currentPage;
@@ -124,7 +127,7 @@ img {
 				 
 				 $.ajax({
 						type: 'POST',
-						url : '/diaryRest/imageList',
+						url : '/diaryRest/imageList?currentPage='+currentPage,
 						contentType: 'application/json',
 						dataType : 'json',
 						data: JSON.stringify(data),			

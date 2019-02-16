@@ -127,12 +127,13 @@ public class DiaryController {
 	}
 	
 	@RequestMapping(value="getDiary", method=RequestMethod.GET)
-	public ModelAndView getDiary(@RequestParam("diaryNo") int diaryNo, HttpSession session)throws Exception {
+	public ModelAndView getDiary(@RequestParam("diaryNo") int diaryNo, HttpSession session, @RequestParam("currentPage") int currentPage)throws Exception {
 		System.out.println("/diary/getDiary: GET");
 		
 		int userNo = ((int)session.getAttribute("userNo"));
 		
-		
+		Search search = new Search();
+		search.setCurrentPage(currentPage);
 		
 		Diary diary = diaryService.getDiary(diaryNo);
 		UserCategory userCategory = userCategoryService.getUserCategoryByNo(diary.getUserCategoryNo());
@@ -140,6 +141,7 @@ public class DiaryController {
 		ModelAndView modelAndView = new ModelAndView();
 		modelAndView.addObject("diary", diary);
 		modelAndView.addObject("userCategory", userCategory);
+		modelAndView.addObject("search", search);
 		modelAndView.setViewName("/diary/getDiary.jsp");
 		
 		return modelAndView;
@@ -195,16 +197,21 @@ public class DiaryController {
 		return modelAndView;
 	}
 	@RequestMapping(value="getListDiary")
-	public ModelAndView getListDiary(@ModelAttribute("search") Search search , HttpSession session)throws Exception{
+	public ModelAndView getListDiary(@ModelAttribute("search") Search search , HttpSession session, @RequestParam("currentPage") int currentPage, @RequestParam("diaryNo") int diaryNo)throws Exception{
 			
 		int userNo = ((int)session.getAttribute("userNo"));
 		
+		Diary diary = new Diary();
+		
+		diary.setDiaryNo(diaryNo);
 		
 		//Diary diary = diaryService.getDiary(diaryNo);
 		//UserCategory userCategory = userCategoryService.getUserCategoryByNo(diary.getUserCategoryNo());
 		
 		if(search.getCurrentPage() ==0 ){
 			search.setCurrentPage(1);
+		}else {
+			search.setCurrentPage(currentPage);
 		}
 		search.setPageSize(pageSize);
 		
@@ -217,6 +224,7 @@ public class DiaryController {
 		modelAndView.addObject("list", map.get("list"));
 		modelAndView.addObject("resultPage", resultPage);
 		modelAndView.addObject("search", search);
+		modelAndView.addObject("diaryNo", diaryNo);
 		modelAndView.setViewName("/diary/getListDiary.jsp");
 		
 		return modelAndView;
@@ -270,7 +278,7 @@ public class DiaryController {
 		return modelAndView;
 	}
 	@RequestMapping(value="updateDiary", method=RequestMethod.GET)
-	public ModelAndView updateDiary(@RequestParam("diaryNo")int diaryNo, HttpSession session)throws Exception {
+	public ModelAndView updateDiary(@RequestParam("diaryNo")int diaryNo, HttpSession session, @RequestParam("currentPage") int currentPage)throws Exception {
 		System.out.println("/diary/updateDiary : GET");
 		
 		int userNo = ((int)session.getAttribute("userNo"));
@@ -279,9 +287,13 @@ public class DiaryController {
 		List<UserCategory> userCategory= userCategoryService.getUserCategoryList(userNo);
 		Diary diary = diaryService.getDiary(diaryNo);
 		
+		Search search = new Search();
+		search.setCurrentPage(currentPage);
+		
 		ModelAndView modelAndView = new ModelAndView();
 		modelAndView.addObject("diary",diary);
 		modelAndView.addObject("userCategory", userCategory);
+		modelAndView.addObject("search", search);
 		modelAndView.setViewName("/diary/updateDiary.jsp");
 		
 		return modelAndView;
@@ -306,14 +318,15 @@ public class DiaryController {
 	}
 	
 	@RequestMapping(value="updateDiary", method=RequestMethod.POST)
-	public ModelAndView updateDiary(@ModelAttribute("diary") Diary diary) throws Exception{
+	public ModelAndView updateDiary(@ModelAttribute("diary") Diary diary, @ModelAttribute("search") Search search) throws Exception{
 		System.out.println("/diary/updateDiary : POST");
 		
 		diaryService.updateDiary(diary);
 		
 		ModelAndView modelAndView = new ModelAndView();
 		modelAndView.addObject("diary", diary);
-		modelAndView.setViewName("redirect:/diary/getDiary?diaryNo="+diary.getDiaryNo());
+		modelAndView.addObject("search", search);
+		modelAndView.setViewName("redirect:/diary/getDiary?diaryNo="+diary.getDiaryNo()+"&currentPage="+search.getCurrentPage());
 		
 		return modelAndView;
 	}
@@ -322,9 +335,14 @@ public class DiaryController {
 		System.out.println("/diary/updateDiary : POST");
 		
 		diaryService.updateDiary(diary);
+		Search search = new Search();
+		
+		search.setCurrentPage(1);
+		int currentPage = search.getCurrentPage();
 		
 		ModelAndView modelAndView = new ModelAndView();
 		modelAndView.addObject("diary", diary);
+		modelAndView.addObject("currentPage", currentPage);
 		modelAndView.setViewName("redirect:/diary/getImageDiary?diaryNo="+diary.getDiaryNo());
 		
 		return modelAndView;

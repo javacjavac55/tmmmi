@@ -22,6 +22,9 @@
 <script type="text/javascript" src="/javascript/colorPicker/farbtastic.js"></script>
 <link rel="stylesheet" href="/css/colorPicker/farbtastic.css" type="text/css" />
 
+<!-- sweetAlert -->
+<script src ="https://unpkg.com/sweetalert/dist/sweetalert.min.js" ></script >
+
 <!-- style -->
 <style type="text/css">
 	.farbtastic{
@@ -49,10 +52,41 @@ $(document).ready(function() {
 <script type="text/javascript">
 $(function(){
 	$("#update").on("click", function(){
-		$("form").attr("method" , "POST").attr("action" , "/userSetting/updateUserSetting").submit();
+		var image=$("input[name='file']").val();
+		if(image == null){
+			swal("이미지는 반드시 첨부하여야 합니다!", "이미지를 추가해주세요");
+			return;	
+		}
+		swal("수정완료 하시겠습니까?", {
+			 buttons: true,
+			 value: true,
+			}).then((result)=>{
+				if (result === true) {
+					$("form").attr("method" , "POST").attr("action" , "/userSetting/updateUserSetting").submit();
+			      }
+			}, function (dismiss) { });
+		
+		
 	});
 });
 </script>
+
+<!-- 추가된 부분 -->
+<style>
+	 .form-group{
+		width: 100%; 
+		text-align: center;
+	}
+	.bmd-label-static{
+		width: 100%;
+		text-align:center;
+		display: inline-block;
+	}
+	#chgcolor{
+		width:300px
+	}
+</style>
+
 </head>
 <body class="index-page sidebar-collapse">
 <!-- top menu -->
@@ -76,50 +110,54 @@ $(function(){
 	<div class="section section-basic">
 	<form enctype="multipart/form-data">
 		<div class="container">
-			<div class="tab-content tab-space" style="margin :0 auto;">
-				<div class="row">
-					<div class="col-md-3 ml-auto" style="margin :0 auto;" >
+			<div class="row">
+				<div class="col-md-6 ml-auto mr-auto">
+					<div class="profile">
+				
 						<div class="description text-center">
 							<div class="form-group bmd-form-group">
 								<label class="bmd-label-static">Main Color</label>
 								<div class="form-check form-check-radio">
 									<label class="form-check-label">
 										<input class="form-check-input" type="radio" name="mainColorModeNo" id="mainColorModeNo0" value="0"  ${ ! empty userSetting.mainColorModeNo && userSetting.mainColorModeNo eq 0 ? "checked" : "" } >
-										<div id="chgcolor" style="background-color:#483949;heihgt:50px;width:280px;border:solid 1px">
+										<div id="chgcolor" style="background-color:#483949; border:solid 1px; padding: 1.5%; font-size:15px;">
 										컨텐츠 배경색 입니다.
 										</div>
-										<div id="chgcolor" style="background-color:#fafafa;heihgt:50px;width:280px;border:solid 1px">
+										<div id="chgcolor" style="background-color:#fafafa; border:solid 1px; padding: 1.2%; font-size:15px;">
 										컨텐츠 폰트색 입니다.
 										</div>
-										<span class="circle">
-											<span class="check"></span>
+										<span class="circle" style="top: 19px;">
+											<span class="check" ></span>
 										</span>
 									</label>
 								</div>
 								<div class="form-check form-check-radio">
 									<label class="form-check-label">
 										<input class="form-check-input" type="radio" name="mainColorModeNo" id="mainColorModeNo1" value="1"  ${ ! empty userSetting.mainColorModeNo && userSetting.mainColorModeNo eq 1 ? "checked" : "" }>
-										<div id="chgcolor" style="background-color:#fafafa;heihgt:50px;width:280px;border:solid 1px">
+										<div id="chgcolor" style="background-color:#fafafa; border:solid 1px; padding: 1.2%; font-size:15px;">
 										컨텐츠 배경색 입니다.
 										</div>
-										<div id="chgcolor" style="background-color:#483949;heihgt:50px;width:280px;border:solid 1px">
+										<div id="chgcolor" style="background-color:#483949; border:solid 1px; padding: 1.5%; font-size:15px;">
 										컨텐츠 폰트색 입니다.
 										</div>
-										<span class="circle">
+										<span class="circle" >
 										<span class="check"></span>
 										</span>
 									</label>
 								</div>
 							</div>
 							<br/>
+							
+							<!-- 이미지업로드 -->
 							<div>
-								<input type="file" name="file" class="inputFileHidden" maxLength="13" /><br/><br/>
+								<input type="file" name="file" class="inputFileHidden" maxLength="13" value="${userSetting.image}"/ style="width: 208px;"><br/><br/>
 							</div>
+							
 							<div class="form-group bmd-form-group">
 								<label class="bmd-label-static">Menu Font Color</label>
-								<div id="picker"></div>
-								<div><label style="width:195px;" for="color1">현재 메뉴 폰트 색상:</label><input type="text" id="color1" name="color1" class="colorwell" value="${userSetting.menuFontColor}" /></div>
-								<div><label style="width:195px;" for="menuFontColor">변경할 메뉴 폰트 색상:</label><input type="text" id="menuFontColor" name="menuFontColor" class="colorwell" value=" " /></div>
+								<div id="picker" ></div> <br>
+								<div><label style="width:195px; height: 30px;" for="color1">현재 메뉴 폰트 색상:</label><input type="text" id="color1" name="color1" class="colorwell" value="${userSetting.menuFontColor}" /></div>
+								<div><label style="width:195px; height: 30px;" for="menuFontColor">변경할 메뉴 폰트 색상:</label><input type="text" id="menuFontColor" name="menuFontColor" class="colorwell" value=" " /></div>
 							</div>
 						</div>
 						<div class="row">
@@ -130,8 +168,8 @@ $(function(){
 						</div>
 					</div>
 				</div>
+				</div>
 			</div>
-		</div>
 	</form>
 	</div>
 </div>
