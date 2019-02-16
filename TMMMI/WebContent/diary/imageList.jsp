@@ -15,7 +15,7 @@
 	href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Roboto+Slab:400,700|Material+Icons" />
 <link rel="stylesheet"
 	href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css">
-
+	
 <!-- CSS Files -->
 <link href="/css/template/material-kit.css" rel="stylesheet" />
 <link rel="stylesheet"
@@ -34,13 +34,17 @@
 <!--sweet alert -->
 <script src ="https://unpkg.com/sweetalert/dist/sweetalert.min.js" ></script >
 
+<!--툴팁  -->
+<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+
 <style>
 	@font-face{font-family:'Calluna';
  src:url('https://s3-us-west-2.amazonaws.com/s.cdpn.io/4273/callunasansregular-webfont.woff') format('woff');
 }
 body {
 	background: url(//subtlepatterns.com/patterns/scribble_light.png);
-  font-family: Calluna, Arial, sans-serif;
   min-height: 1000px;
 }
 #columns {
@@ -125,50 +129,57 @@ img {
 /*무한스크롤  */
   $(function(){
 	  var currentPage = ${search.currentPage};
-		console.log(currentPage);
+	  var totalCount = ${resultPage.totalCount};
+	  var pageSize = ${resultPage.pageSize};
+		console.log(currentPage, totalCount, pageSize);
+		
 	  $(window).scroll(function(){		
 			if($(window).scrollTop() == $(document).height() - $(window).height()){
-				++currentPage;
 				console.log("스크롤 인식");
 				console.log(currentPage);
 
 				 var data = {currentPage:currentPage, searchKeyword:$("#searchKeyword").val()}
-				 
-				 $.ajax({
-						type: 'POST',
-						url : '/diaryRest/imageList',
-						contentType: 'application/json',
-						dataType : 'json',
-						data: JSON.stringify(data),			
-						success: function(data){
-							console.log("success");
-							var list = data['list'];
-							var str = "";
-							if(list != null){
-								$(list).each(function(){
-									console.log(this);									
-									str += "<figure class='card' style='cursor:pointer;' >"	 									
-										+		"<button type='button' id='close' class='close' data-param2='"+this.diaryNo+"' style="+"'opacity:0;'"+">"
-										+			"<span aria-hidden='true'>"
-										+				"<i class='material-icons'>clear</i>"
-										+			"</span>"
-										+		"</button>"
-										+ 		"<div style="+"'width:100%;'"+" class="+"'getDetail'"+" data-param1='"+this.diaryNo+"'>"
-										+			this.diaryDetail
-										+		"</div>"
-										+		"<figcaption>"
-										+			/* "["+this.diaryNo+"]"+ */"["+this.userCategoryName+"]"+this.diaryTitle
-										+		"</figcaption>"
-										+	"</figure>"
-								});
-								$('figure').last().after(str);
+				 if (currentPage < totalCount/pageSize ){
+					 ++currentPage;
+					 $.ajax({
+							type: 'POST',
+							url : '/diaryRest/imageList?currentPage='+currentPage,
+							contentType: 'application/json',
+							dataType : 'json',
+							data: JSON.stringify(data),			
+							success: function(data){
+								console.log("success");
+								var list = data['list'];
+								var str = "";
+								if(list != null || list.length>0){
+									$(list).each(function(){
+										console.log(this);									
+										str += "<figure class='card' style='cursor:pointer;' >"	 									
+											+		"<button type='button' id='close' class='close' data-param2='"+this.diaryNo+"' style="+"'opacity:0;'"+">"
+											+			"<span aria-hidden='true'>"
+											+				"<i class='material-icons'>clear</i>"
+											+			"</span>"
+											+		"</button>"
+											+ 		"<div style="+"'width:100%;'"+" class="+"'getDetail'"+" data-param1='"+this.diaryNo+"'>"
+											+			this.diaryDetail
+											+		"</div>"
+											+		"<figcaption>"
+											+			/* "["+this.diaryNo+"]"+ */"["+this.userCategoryName+"]"+this.diaryTitle
+											+		"</figcaption>"
+											+	"</figure>"
+									});
+									$('figure').last().after(str);
+									var url = '/diary/imageList?currentPage='+currentPage;
+									history.pushState(null, null, url);
+									console.log(location.href);
+								}
+								else{
+									alert("마지막 페이지 입니다.");
+								}
 							}
-							else{
-								alert("마지막 페이지 입니다.");
-							}
-						}
-
-					});
+	
+						});
+				 	}
 				 }						 
 			}) 
 		})

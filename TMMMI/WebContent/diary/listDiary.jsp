@@ -131,8 +131,9 @@
 
       $(".getDetail td:nth-child(3)").on("click", function() {
          var diaryNo = $(this).data('param2');
+         var currentPage = $(this).data('cp');
          console.log("¾Æ¾Æ¾Æ");
-         self.location = "/diary/getDiary?diaryNo=" + diaryNo;
+         self.location = "/diary/getDiary?diaryNo=" + diaryNo+"&currentPage="+currentPage;
       });
 
       $('#search').on("click", function() {         
@@ -248,7 +249,7 @@
                                     value="${diary.diaryNo}" /> --%>
                                     </td>
                                     <td align="left" style="text-align: -webkit-left">${diary.userCategoryName}</td>
-                                    <td align="left" data-param2="${diary.diaryNo}" style="cursor:pointer; text-align: -webkit-left;">${diary.diaryTitle}</td>
+                                    <td align="left" data-param2="${diary.diaryNo}" data-cp="${search.currentPage}" style="cursor:pointer; text-align: -webkit-left;">${diary.diaryTitle}</td>
                                     <td align="left" style="text-align: -webkit-center">${diary.diaryDate}</td>
                                  </tr>
                               </c:forEach>
