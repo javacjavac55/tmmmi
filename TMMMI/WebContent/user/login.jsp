@@ -25,7 +25,7 @@
   		text-align : center;
   	}
   	.card.bg-primary, .card .card-header-primary, .card.card-rotate.bg-primary .back, .card.card-rotate.bg-primary .front {
-    	background: linear-gradient(60deg, #e09e9e, #f56a6a);
+    	background: linear-gradient(60deg, #7027a7, #7027a7);
 	}
 	.btn.btn-primary.btn-link, .btn.btn-primary.btn-link:active, .btn.btn-primary.btn-link:focus, .btn.btn-primary.btn-link:hover {
    		background-color: transparent;
@@ -133,7 +133,7 @@
 </head>
 
 <body class="login-page sidebar-collapse">
-  <div class="page-header header-filter" style="background-image: url('/images/template/bg2.jpg'); background-size: cover; background-position: top center;">
+  <div class="page-header header-filter" style="background-image: url('/images/loginImage/tumblr_inline_or8l50wlMM1ud5xre_500.gif'); background-size: cover; background-position: top center;">
     <div class="container">
       <div class="row">
         <div class="col-lg-4 col-md-6 ml-auto mr-auto">

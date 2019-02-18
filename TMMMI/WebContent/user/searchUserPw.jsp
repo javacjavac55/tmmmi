@@ -95,7 +95,6 @@
 </head>
 
 <body class="index-page sidebar-collapse">
-	<jsp:include page="/common/toolbar.jsp"></jsp:include>
 	<div class="page-header header-filter clear-filter" data-parallax="true" style="background-image: url('/images/userSetting/moon-1527501_960_720.jpg')">
 		<div class="container">
 			<div class="row">
@@ -138,6 +137,7 @@
 			</div>
 		</div>
 	</div>
+	<br><br>
 	<jsp:include page="/common/footer.jsp"></jsp:include>
 </body>
 </html>
