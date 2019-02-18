@@ -12,7 +12,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import org.codehaus.jackson.annotate.JsonProperty;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.factory.annotation.Value;
@@ -28,7 +27,6 @@ import com.tmmmi.common.Page;
 import com.tmmmi.common.Search;
 import com.tmmmi.service.diary.DiaryService;
 import com.tmmmi.service.domain.Diary;
-import com.tmmmi.service.domain.User;
 import com.tmmmi.service.domain.UserCategory;
 import com.tmmmi.service.user.UserService;
 import com.tmmmi.service.usercategory.UserCategoryService;
@@ -129,9 +127,7 @@ public class DiaryController {
 	@RequestMapping(value="getDiary", method=RequestMethod.GET)
 	public ModelAndView getDiary(@RequestParam("diaryNo") int diaryNo, HttpSession session, @RequestParam("currentPage") int currentPage)throws Exception {
 		System.out.println("/diary/getDiary: GET");
-		
-		int userNo = ((int)session.getAttribute("userNo"));
-		
+				
 		Search search = new Search();
 		search.setCurrentPage(currentPage);
 		
@@ -152,11 +148,7 @@ public class DiaryController {
 	@RequestMapping(value="getImageDiary", method=RequestMethod.GET)
 	public ModelAndView getImageDiary(@RequestParam("diaryNo") int diaryNo, HttpSession session)throws Exception {
 		System.out.println("/diary/getDiary: GET");
-		
-		int userNo = ((int)session.getAttribute("userNo"));
-		
-		
-		
+				
 		Diary diary = diaryService.getDiary(diaryNo);
 		UserCategory userCategory = userCategoryService.getUserCategoryByNo(diary.getUserCategoryNo());
 		
@@ -453,7 +445,6 @@ public class DiaryController {
 	        response.setContentType("text/html;charset=utf-8");
 	 
 	        try{
-	        	boolean uploadFinish = false;
 	            String fileName = System.currentTimeMillis() + "." +upload.getOriginalFilename().split("\\.")[1];
 	            byte[] bytes = upload.getBytes();
 	            String uploadPath = "C:\\Users\\Bit\\git\\tmmmi\\TMMMI\\WebContent\\resources\\images\\diaryImage\\" + fileName;//저장경로
@@ -461,9 +452,7 @@ public class DiaryController {
 	            File file = new File(uploadPath);
 	            out = new FileOutputStream(file);
 	            out.write(bytes);
-	            
-	            String callback = request.getParameter("CKEditorFuncNum");
-	 
+	            	 
 	            printWriter = response.getWriter();
 	            String fileUrl = "/images/diaryImage/" + fileName;//url경로	            
 	            

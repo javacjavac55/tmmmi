@@ -366,6 +366,6 @@
 			});
 		})
     </script>
-    <jsp:include page="/common/mainMenu.jsp"/>
+    <jsp:include page="/common/mainMenu_cal.jsp"/>
 </body>
 </html>

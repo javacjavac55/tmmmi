@@ -10,6 +10,7 @@ public class ContentUserKeyword {
 	private String keywordVideoId;
 	private String keywordThumbnail;
 	private String keywordNextToken;
+	private String keyword;
 
 	public ContentUserKeyword() {
 		// TODO Auto-generated constructor stub
@@ -83,12 +84,20 @@ public class ContentUserKeyword {
 		this.keywordNextToken = keywordNextToken;
 	}
 
+	public String getKeyword() {
+		return keyword;
+	}
+
+	public void setKeyword(String keyword) {
+		this.keyword = keyword;
+	}
+
 	@Override
 	public String toString() {
 		return "ContentUserKeyword [reviewNo=" + reviewNo + ", keywordTitle=" + keywordTitle + ", keywordLink="
 				+ keywordLink + ", keywordDescription=" + keywordDescription + ", keywordVideo=" + keywordVideo
 				+ ", keywordVideoId=" + keywordVideoId + ", keywordThumbnail=" + keywordThumbnail
-				+ ", keywordNextToken=" + keywordNextToken + "]";
+				+ ", keywordNextToken=" + keywordNextToken + ", keyword=" + keyword + "]";
 	}
 
 }

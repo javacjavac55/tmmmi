@@ -2714,16 +2714,28 @@ body.homepage.is-preload #header:after {
 
 .user-keyword-title {
 	font-size: larger;
-    width: 95% !important;
+    width: 320px !important;
     font-weight: 550;
-    padding-top: 10px;
-    word-break: keep-all;
-    margin-left: 10px;
+    padding-top: 15px;
+    height: 82px;
+    margin-left: 20px;
 }
 
 .user-keyword-detail {
 	padding: 20px;
 		
+}
+
+.user-keyword-thumbnail {
+	overflow: hidden;
+}
+
+.user-keyword-thumbnail-wrap {
+	width: 320px;
+    height: 332px;
+    overflow: hidden;
+    margin-top: 20px;
+    margin-left: 20px;
 }
 
 /* Review */
@@ -2793,20 +2805,20 @@ body.homepage.is-preload #header:after {
     width: 93%;
 }
 
-.shopping-review-detail {
+.user-keyword-detail {
 	position: absolute;
     top: 0px;
-    width: 560px;
-    height: 315px;
+    width: 320px;
+    height: 415px;
     margin-left: 20px;
     margin-top: 20px;
     color: white;
-    word-break: keep-all;
+    word-break: break-all;
     background-color: rgba(100, 100, 100, 0.5);
     opacity: 0;
 }
 
-.shopping-review-detail:hover {
+.user-keyword-detail:hover {
 	opacity: 1;
 }
 

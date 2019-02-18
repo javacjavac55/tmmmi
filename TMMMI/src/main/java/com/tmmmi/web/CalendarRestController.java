@@ -1,6 +1,5 @@
 package com.tmmmi.web;
 
-import java.sql.Timestamp;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -16,7 +15,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.tmmmi.service.calendarmovie.CalendarMovieService;
 import com.tmmmi.service.calendarsport.CalendarSportService;
-import com.tmmmi.service.dday.DDayService;
 import com.tmmmi.service.domain.Schedule;
 import com.tmmmi.service.domain.UserCategory;
 import com.tmmmi.service.schedule.ScheduleService;

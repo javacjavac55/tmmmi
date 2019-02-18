@@ -10,7 +10,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.tmmmi.service.content.ContentService;
-import com.tmmmi.service.content.impl.ContentKeywordServiceImpl;
 import com.tmmmi.service.contentsetting.ContentSettingService;
 import com.tmmmi.service.usersetting.UserSettingService;
 

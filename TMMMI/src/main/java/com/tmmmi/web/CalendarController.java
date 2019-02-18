@@ -1,6 +1,5 @@
 package com.tmmmi.web;
 
-import java.sql.Date;
 import java.util.Calendar;
 import java.util.List;
 
@@ -16,13 +15,11 @@ import org.springframework.web.servlet.ModelAndView;
 import com.tmmmi.service.calendarmovie.CalendarMovieService;
 import com.tmmmi.service.calendarsetting.CalendarSettingService;
 import com.tmmmi.service.calendarsport.CalendarSportService;
-import com.tmmmi.service.dday.DDayService;
 import com.tmmmi.service.domain.DDay;
 import com.tmmmi.service.domain.Schedule;
 import com.tmmmi.service.domain.UserCategory;
 import com.tmmmi.service.schedule.ScheduleService;
 import com.tmmmi.service.usercategory.UserCategoryService;
-import com.tmmmi.service.usersetting.UserSettingService;
 
 @Controller
 @RequestMapping("/calendar/*")
@@ -30,11 +27,7 @@ public class CalendarController {
 	@Autowired
 	@Qualifier("calendarSettingServiceImpl")
 	private CalendarSettingService calendarSettingService;
-	
-	/*@Autowired
-	@Qualifier("userSettingServiceImpl")*/
-	private UserSettingService userSettingService;
-	
+		
 	@Autowired
 	@Qualifier("userCategoryServiceImpl")
 	private UserCategoryService userCategoryService;
@@ -42,11 +35,7 @@ public class CalendarController {
 	@Autowired
 	@Qualifier("scheduleServiceImpl")
 	private ScheduleService scheduleService;
-	
-	/*@Autowired
-	@Qualifier("dDayServiceImpl")*/
-	private DDayService dDayService;
-	
+		
 	@Autowired
 	@Qualifier("calendarMovieServiceImpl")
 	private CalendarMovieService calendarMovieService;

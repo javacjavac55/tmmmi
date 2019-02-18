@@ -8,7 +8,6 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
 import com.tmmmi.service.content.ContentDao;
-import com.tmmmi.service.domain.ContentSetting;
 import com.tmmmi.service.domain.ContentSport;
 
 @Service("contentSportServiceImpl")

@@ -14,6 +14,7 @@
 		border: none;
 		margin-top: -100px;
   		padding-top: 100px;
+  		position: relative;
 	}
 	
 	.content-container {
@@ -120,9 +121,13 @@ function bind(id){
 	map[id]();
 }
 
+var zIndex;
 window.onload = function() {
+	zIndex = $('iframe').length;
 	$('iframe').each(function(index, item){
 		bind($(item).attr('src').split('/get')[1]);
+		$(this).attr('style','z-index:'+ zIndex +';');
+		zIndex--;
 	})
 };
 
@@ -133,8 +138,6 @@ $(function(){
 	
 	$(document).on('click', '#addScrap', function() {
 		var sectionNo = $(this).data('section');
-		console.log('start');
-		console.log('link',$('.content-modal').attr('src'));
 		$.ajax({
 			url : "/scrapRest/addScrap",
 			method : "POST",
@@ -190,6 +193,6 @@ $(function(){
 	    </div>
 	  </div>
   </div>
-<jsp:include page="/common/mainMenu.jsp"/>
+<jsp:include page="/common/mainMenu_con.jsp"/>
 </body>
 </html>

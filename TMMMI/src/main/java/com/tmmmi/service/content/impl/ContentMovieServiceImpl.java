@@ -9,7 +9,6 @@ import org.springframework.stereotype.Service;
 
 import com.tmmmi.service.content.ContentDao;
 import com.tmmmi.service.domain.ContentMovie;
-import com.tmmmi.service.domain.ContentSetting;
 
 @Service("contentMovieServiceImpl")
 public class ContentMovieServiceImpl extends ContentServiceAdaptor {	

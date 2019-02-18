@@ -2,27 +2,12 @@ package com.tmmmi.service.content.impl;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.concurrent.TimeUnit;
-
-import org.apache.ibatis.session.SqlSession;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
-import org.openqa.selenium.By;
-import org.openqa.selenium.NoSuchElementException;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
-import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.support.ui.FluentWait;
-import org.openqa.selenium.support.ui.Wait;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Repository;
 
-import com.google.common.base.Function;
-import com.tmmmi.service.content.ContentDao;
-import com.tmmmi.service.domain.ContentSetting;
 import com.tmmmi.service.domain.ContentSport;
 
 @Repository("contentSportDaoImpl")
@@ -47,7 +32,6 @@ public class ContentSportDaoImpl extends ContentDaoAdaptor {
 		// String h2= doc.select("h2").eq(1).text();
 		Elements contents = doc.select(".home_news > ul > li > a");
 
-		String text = contents.toString();
 		String firstAddress = "https://sports.news.naver.com";
 		String subAddress = "";
 		String fullAddress = "";
@@ -99,7 +83,6 @@ public class ContentSportDaoImpl extends ContentDaoAdaptor {
 		// String h2= doc.select("h2").eq(1).text();
 		Elements contents = doc.select(".home_news > ul > li > a");
 
-		String text = contents.toString();
 		String firstAddress = "https://sports.news.naver.com";
 		String subAddress = "";
 		String fullAddress = "";
@@ -149,7 +132,6 @@ public class ContentSportDaoImpl extends ContentDaoAdaptor {
 		// String h2= doc.select("h2").eq(1).text();
 		Elements contents = doc.select(".home_news > ul > li > a");
 
-		String text = contents.toString();
 		String firstAddress = "https://sports.news.naver.com";
 		String subAddress = "";
 		String fullAddress = "";
@@ -199,7 +181,6 @@ public class ContentSportDaoImpl extends ContentDaoAdaptor {
 		// String h2= doc.select("h2").eq(1).text();
 		Elements contents = doc.select(".home_news > ul > li > a");
 
-		String text = contents.toString();
 		String firstAddress = "https://sports.news.naver.com";
 		String subAddress = "";
 		String fullAddress = "";
@@ -249,7 +230,6 @@ public class ContentSportDaoImpl extends ContentDaoAdaptor {
 		// String h2= doc.select("h2").eq(1).text();
 		Elements contents = doc.select(".home_news > ul > li > a");
 
-		String text = contents.toString();
 		String firstAddress = "https://sports.news.naver.com";
 		String subAddress = "";
 		String fullAddress = "";
@@ -299,7 +279,6 @@ public class ContentSportDaoImpl extends ContentDaoAdaptor {
 		// String h2= doc.select("h2").eq(1).text();
 		Elements contents = doc.select(".home_news > ul > li > a");
 
-		String text = contents.toString();
 		String firstAddress = "https://sports.news.naver.com";
 		String subAddress = "";
 		String fullAddress = "";

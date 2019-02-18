@@ -42,7 +42,7 @@
           <li class="dropdown nav-item">
             <a href="#" class="dropdown-toggle nav-link" data-toggle="dropdown" >Calendar</a>
             <div class="dropdown-menu dropdown-with-icons">
-            	<a href="/calendar/getCalendarMonth" class="dropdown-item">월 달력</a>
+            	<a href="/calendar/getCalendarMonth" class="dropdown-item">스케줄 달력</a>
 				<a href="/calendar/getCalendarInterest" class="dropdown-item">관심사 달력</a>
 				<a href="/calendar/getUserCategoryList" class="dropdown-item">카테고리</a>
             </div>

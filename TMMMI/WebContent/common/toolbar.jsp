@@ -11,6 +11,7 @@
 		position: fixed;
 		height: 80px;
 		width: 100%;
+		z-index: 23;
     	background-color: ${userSetting.mainColorModeNo==0?"#ffffff":"#000000"};
 	}
 	
@@ -106,7 +107,7 @@ $(function(){
 </head>
 <body>
 	<div class="menu-bar">
-		<span class="logo">TMMMI</span>
+		<span class="logo"><a href="../index.jsp" style="color:${userSetting.mainColorModeNo==0?"#000000":"#ffffff"};">TMMMI</a></span>
 		<div class="section-nav">
 			<ul>
 				${sectionNaviHtml}

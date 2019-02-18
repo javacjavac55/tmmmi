@@ -1,7 +1,5 @@
 package com.tmmmi.service.content.impl;
 
-import java.math.BigDecimal;
-import java.math.RoundingMode;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.regex.Matcher;
@@ -12,11 +10,7 @@ import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 import org.springframework.stereotype.Repository;
-import org.springframework.util.StringUtils;
-import org.springframework.web.bind.annotation.RequestMapping;
-
 import com.tmmmi.service.domain.ContentMovie;
-import com.tmmmi.service.domain.ContentSetting;
 
 @Repository("contentMovieDaoImpl")
 public class ContentMovieDaoImpl extends ContentDaoAdaptor {

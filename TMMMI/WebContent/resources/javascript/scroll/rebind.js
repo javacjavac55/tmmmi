@@ -86,7 +86,7 @@ var map = {
 		'ContentTastyList': function() {
 			$($('#tasty').contents().find('.content-model-btn')).on('click', function(){
 				var content = $('#tasty').contents().find('#tastyInput').val();
-				fncOpenModal(3, content, true);
+				fncOpenModal(3, content, false);
 			});
 			
 			$($('#tasty').contents().find('.scrap-btn')).on('click', function(){
@@ -124,29 +124,29 @@ var map = {
 		'UserKeywordListFirst': function() {
 			$($('#userKeywordFirst').contents().find('.content-model-btn')).on('click', function(){
 				var content = $('#userKeywordFirst').contents().find('#userSearchFirstInput').val();
-				fncOpenModal(5, content, true);
+				fncOpenModal(5, content, false);
 			});
 	    },
 		'UserKeywordListSecond': function() {
 			$($('#userKeywordSecond').contents().find('.content-model-btn')).on('click', function(){
 				var content = $('#userKeywordSecond').contents().find('#userSearchSecondInput').val();
-				fncOpenModal(5, content, true);
+				fncOpenModal(5, content, false);
 			});
 	    },
 		'UserKeywordListThird': function() {
 			$($('#userKeywordThird').contents().find('.content-model-btn')).on('click', function(){
 				var content = $('#userKeywordThird').contents().find('#userSearchThirdInput').val();
-				fncOpenModal(5, content, true);
+				fncOpenModal(5, content, false);
 			});  
 	    },
 		'UserVideoListFirst': function() {
 			$($('#userVideoFirst').contents().find('.scrap-btn')).on('click', function(){
-				fncScrapArticle(5, $(this).siblings('.user-video-title').text().trim(), $(this).closest('article').get(0).outerHTML)
+				fncScrapArticle(5, $(this).siblings('.shopping-review-title').text().trim(), $(this).closest('article').get(0).outerHTML)
 			});
 	    },
 		'UserVideoListSecond': function() {
 			$($('#userVideoSecond').contents().find('.scrap-btn')).on('click', function(){
-				fncScrapArticle(5, $(this).siblings('.user-video-title').text().trim(), $(this).closest('article').get(0).outerHTML)
+				fncScrapArticle(5, $(this).siblings('.shopping-review-title').text().trim(), $(this).closest('article').get(0).outerHTML)
 			});     
 	    }
 	};

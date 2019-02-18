@@ -215,7 +215,6 @@ public class QNAController {
         response.setContentType("text/html;charset=utf-8");
  
         try{
-        	boolean uploadFinish = false;
             String fileName = System.currentTimeMillis() + "." +upload.getOriginalFilename().split("\\.")[1];
             byte[] bytes = upload.getBytes();
             String uploadPath = "C:\\Users\\Bit\\git\\tmmmi\\TMMMI\\WebContent\\resources\\images\\QNAImage\\" + fileName;//저장경로
@@ -223,8 +222,6 @@ public class QNAController {
             File file = new File(uploadPath);
             out = new FileOutputStream(file);
             out.write(bytes);
-            
-            String callback = request.getParameter("CKEditorFuncNum");
  
             printWriter = response.getWriter();
             String fileUrl = "/images/QNAImage/" + fileName;//url경로

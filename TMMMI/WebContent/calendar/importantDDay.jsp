@@ -8,8 +8,7 @@
 </head>
 <body>
 			<span class="important dropdown">
-            	<button id="dropdownMenu-important" type="button" class="btn btn-default btn-sm dropdown-toggle" data-toggle="dropdown"
-                    aria-haspopup="true" aria-expanded="true">
+            	<button id="dropdownMenu-important" type="button" class="btn btn-default btn-sm dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
                     <span id="">오늘의 중요한 일정</span>&nbsp;
                     <i class="calendar-icon tui-full-calendar-dropdown-arrow"></i>
                 </button>

@@ -103,6 +103,7 @@ public class ContentKeywordDaoImpl extends ContentDaoAdaptor {
             	
             	if(description != null) {
             		contentUserKeyword.setKeywordDescription(description);
+            		contentUserKeyword.setKeyword(userKeyword);
                 	result.add(contentUserKeyword);
             	}else {
             		System.out.println("야호");
@@ -192,6 +193,7 @@ public class ContentKeywordDaoImpl extends ContentDaoAdaptor {
             		contentUserKeyword.setKeywordVideo(docFrame.select("#printPost1").select("img").get(count-1).attr("src"));
             	}
             	contentUserKeyword.setKeywordDescription(description);
+            	contentUserKeyword.setKeyword(userKeyword);
             	result.add(contentUserKeyword);
             }
 	        
@@ -279,6 +281,7 @@ public class ContentKeywordDaoImpl extends ContentDaoAdaptor {
             		contentUserKeyword.setKeywordVideo(docFrame.select("#printPost1").select("img").get(count-1).attr("src"));
             	}
             	contentUserKeyword.setKeywordDescription(description);
+            	contentUserKeyword.setKeyword(userKeyword);
             	result.add(contentUserKeyword);
             }
 	        
@@ -356,6 +359,7 @@ public class ContentKeywordDaoImpl extends ContentDaoAdaptor {
 	        	contentUserKeyword.setKeywordThumbnail(image);
 	        	contentUserKeyword.setKeywordNextToken(pageToken);
 	        	contentUserKeyword.setKeywordLink(contentSetting.getUserVideo1());
+	        	contentUserKeyword.setKeyword(userVideo);
             	result.add(contentUserKeyword);
 	        
 	        }
@@ -431,6 +435,7 @@ public class ContentKeywordDaoImpl extends ContentDaoAdaptor {
 	        	contentUserKeyword.setKeywordThumbnail(image);
 	        	contentUserKeyword.setKeywordNextToken(pageToken);
 	        	contentUserKeyword.setKeywordLink(contentSetting.getUserVideo1());
+	        	contentUserKeyword.setKeyword(userVideo);
             	result.add(contentUserKeyword);
 	        
 	        }

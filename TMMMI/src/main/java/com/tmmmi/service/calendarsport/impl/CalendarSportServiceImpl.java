@@ -8,12 +8,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
-import com.tmmmi.common.Search;
-import com.tmmmi.service.calendarmovie.CalendarMovieDao;
 import com.tmmmi.service.calendarsport.CalendarSportDao;
 import com.tmmmi.service.calendarsport.CalendarSportService;
-import com.tmmmi.service.diary.DiaryDao;
-import com.tmmmi.service.domain.CalendarSport;
 import com.tmmmi.service.domain.Schedule;
 
 @Service("calendarSportServiceImpl")

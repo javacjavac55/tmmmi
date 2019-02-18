@@ -148,7 +148,6 @@ public class FAQController {
         response.setContentType("text/html;charset=utf-8");
  
         try{
-        	boolean uploadFinish = false;
             String fileName = System.currentTimeMillis() + "." +upload.getOriginalFilename().split("\\.")[1];
             byte[] bytes = upload.getBytes();
             String uploadPath = "C:\\Users\\Bit\\git\\tmmmi\\TMMMI\\WebContent\\resources\\images\\FAQImage\\" + fileName;//저장경로
@@ -156,9 +155,7 @@ public class FAQController {
             File file = new File(uploadPath);
             out = new FileOutputStream(file);
             out.write(bytes);
-            
-            String callback = request.getParameter("CKEditorFuncNum");
- 
+             
             printWriter = response.getWriter();
             String fileUrl = "/images/FAQImage/" + fileName;//url경로
  
@@ -182,6 +179,4 @@ public class FAQController {
         }
         return;
     }
-	
-	
 }

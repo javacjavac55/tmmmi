@@ -120,7 +120,7 @@ $(function(){
 								<div class="form-check form-check-radio">
 									<label class="form-check-label">
 										<input class="form-check-input" type="radio" name="mainColorModeNo" id="mainColorModeNo0" value="0"  ${ ! empty userSetting.mainColorModeNo && userSetting.mainColorModeNo eq 0 ? "checked" : "" } >
-										<div id="chgcolor" style="background-color:#483949; border:solid 1px; padding: 1.5%; font-size:15px;">
+										<div id="chgcolor" style="background-color:#000000; border:solid 1px; padding: 1.5%; font-size:15px;">
 										컨텐츠 배경색 입니다.
 										</div>
 										<div id="chgcolor" style="background-color:#fafafa; border:solid 1px; padding: 1.2%; font-size:15px;">
@@ -137,7 +137,7 @@ $(function(){
 										<div id="chgcolor" style="background-color:#fafafa; border:solid 1px; padding: 1.2%; font-size:15px;">
 										컨텐츠 배경색 입니다.
 										</div>
-										<div id="chgcolor" style="background-color:#483949; border:solid 1px; padding: 1.5%; font-size:15px;">
+										<div id="chgcolor" style="background-color:#000000; border:solid 1px; padding: 1.5%; font-size:15px;">
 										컨텐츠 폰트색 입니다.
 										</div>
 										<span class="circle" >

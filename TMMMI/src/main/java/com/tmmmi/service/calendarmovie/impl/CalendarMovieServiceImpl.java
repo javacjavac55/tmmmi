@@ -11,7 +11,6 @@ import org.springframework.stereotype.Service;
 import com.tmmmi.service.calendarmovie.CalendarMovieDao;
 import com.tmmmi.service.calendarmovie.CalendarMovieService;
 import com.tmmmi.service.domain.Schedule;
-import com.tmmmi.service.usercategory.UserCategoryDao;
 
 @Service("calendarMovieServiceImpl")
 public class CalendarMovieServiceImpl implements CalendarMovieService {

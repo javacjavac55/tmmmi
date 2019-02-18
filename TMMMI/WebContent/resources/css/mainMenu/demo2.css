@@ -1,7 +1,7 @@
-@import url('https://fonts.googleapis.com/css?family=Josefin+Sans:400,700|Playfair+Display');
+@import url('https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300');
 
 .demo-2 {
-	font-family: 'Josefin Sans', sans-serif;
+	font-family: 'Open Sans Condensed', sans-serif;
 	--color-text: #000;
 	--color-bg: #9c9c9c;
 	--color-link: #8958b1;
@@ -10,7 +10,7 @@
 }
 
 .content__title {
-	font-family: 'Playfair Display', serif;
+	font-family: 'Open Sans Condensed', sans-serif;
 	font-size: 8vw;
 	margin: 0;
 	position: relative;
@@ -237,18 +237,15 @@
 	}
 
 	.grim__item-title {
-		font-weight: normal;
-		margin: 0;
-		font-size: 4vmax;
-		font-family: 'Playfair Display', serif;
+		font-weight: 700;
+	    margin: 0;
+	    font-size: 2vmax;
+	    letter-spacing: 0.2em;
+	    font-family: 'Open Sans Condensed', sans-serif;
 	}
 
 	.grim__item:nth-child(-n+6) .grim__item-title {
 		font-size: 2vmax;
-	}
-
-	.grim__item:nth-child(5) .grim__item-title {
-		color: #fff;
 	}
 
 	.grim__item-desc {
@@ -257,7 +254,6 @@
 	}
 
 	.grim__item-desc::after {
-		content: '\2014';
 		position: relative;
 		display: block;
 		font-size: 1.75rem;

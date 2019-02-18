@@ -13,9 +13,6 @@ import org.json.simple.parser.JSONParser;
 import org.springframework.stereotype.Repository;
 
 import java.util.ArrayList;
-import java.util.List;
-
-import com.tmmmi.service.content.ContentDao;
 import com.tmmmi.service.domain.ContentSetting;
 import com.tmmmi.service.domain.ContentShopping;
 

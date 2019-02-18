@@ -80,15 +80,15 @@
 				console.log("clicked",$(this).prev());
 				var no = $(this).prev().children().children().data("no");
 				var link = $(this).prev().children().children().data("link");
-				$('#shopping-review-'+no).html(link+'<div class="shopping-review-close-btn" data-no="'+no+'"></div>');
+				$('#userKeyword-review-'+no).html(link+'<div class="shopping-review-close-btn" data-no="'+no+'"></div>');
 				
 				$(".shopping-review-close-btn").on("click", function(){
 					var no = $(this).data("no");
-					$('#shopping-review-'+no).html('');
-					$('#shopping-review-'+no).attr('style','display:none;');
+					$('#userKeyword-review-'+no).html('');
+					$('#userKeyword-review-'+no).attr('style','display:none;');
 				});
 				
-				$('#shopping-review-'+no).attr('style','display:block;');
+				$('#userKeyword-review-'+no).attr('style','display:block;');
 			});
 				var count = 0;
 				var more = true;
@@ -142,7 +142,7 @@
 										);
 									});
 									refresh();
-									parent.bind('ShoppingReviewList');
+									parent.bind('UserVideoListFirst');
 									$('#pageToken').val(JSONData[0].keywordNextToken);
 								}
 							}

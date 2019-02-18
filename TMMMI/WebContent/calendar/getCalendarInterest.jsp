@@ -181,6 +181,6 @@
     
     <script src="/javascript/tui/theme/dooray.js"></script>
     <script src="/javascript/tui/calendar-interest-setting.js" charset="utf-8"></script>
-    <jsp:include page="/common/mainMenu.jsp"/>
+    <jsp:include page="/common/mainMenu_cal2.jsp"/>
 </body>
 </html>

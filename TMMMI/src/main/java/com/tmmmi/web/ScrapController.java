@@ -94,7 +94,7 @@ public class ScrapController {
 		}	
 				
 		ModelAndView modelAndView = new ModelAndView();
-		modelAndView.setViewName("/scrap/getScrapList");
+		modelAndView.setViewName("redirect:/scrap/getScrapList");
 		
 		return modelAndView;
 	}
