@@ -170,7 +170,7 @@ img {
 									});
 									$('figure').last().after(str);
 									var url = '/diary/imageList?currentPage='+currentPage;
-									history.pushState(null, null, url);
+									//history.pushState(null, null, url);
 									console.log(location.href);
 								}
 								else{
