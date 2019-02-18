@@ -24,8 +24,8 @@
 	
 		
 		$(document).ready(function () { 
-			/* getDust(); 
-			getWeather(); */
+			getDust(); 
+			getWeather();
 		});
 
 		////////////////////////////////도시선택
@@ -198,24 +198,24 @@
 		}
 		
 		canvas {
-		    margin-top: -180px;
-		    margin-left: -19px;
+		    margin-top: -185px;
+		    left:-25px;
 		    position: absolute;
 		}	
 		
 		.temp {
 		    font-size: 25px;
-		    margin-left: 40px;
-		    margin-top: -165px;
+		    left:30px;
+		    margin-top: -170px;
 		    text-align: center;
 		    width: 50px;
 		    position: absolute;
 		}
 		
 		.temp_m {
-		     font-size: 19px;
-		    margin-top: -120px;
-		    margin-left: -4px;
+		    font-size: 19px;
+		    margin-top: -125px;
+		    left:-10px;
 		    width: 80px;
 		    text-align: center;
 		    position: absolute;
@@ -223,8 +223,8 @@
 		
 		.dust {
 		    font-size: 15px;
-		    margin-top: -93px;
-		    margin-left: -10px;
+		    margin-top: -98px;
+		   	left:30px;
 		    position: absolute;
 		}
 		 
@@ -234,8 +234,15 @@
 
 <body>
 <form>
-		<img src="/images/weather/afterTMMMI.png" class="tmmmi" >
-		<div style="position:absolute; margin-top: -50px; margin-left: 24px;">
+		<img src="/images/weather/aftmmmi3.png" class="tmmmi" >
+		<div style="position:absolute; margin-top: -60px; left: 25px;">
+			<select class="form-control" name="city" style="width:100px; height: 25px; text-align:center">
+			  <option value="Seoul" > &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;서  울</option>
+			  <option value="Incheon" >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;인  천</option>
+			  <option value="Gwangju" >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;광  주</option>
+			  <option value="Daejeon" >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;대  전</option>
+			  <option value="Busan" >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;부  산</option>
+			</select>
 
 		</div>
 		<figure>
