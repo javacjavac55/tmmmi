@@ -63,7 +63,7 @@ public class DiaryDaoImpl implements DiaryDao {
 				detail = "<img src=/images/diaryImage/49760081.jpg>";
 				//<img src= /diary/imageDiary/ 312321.j[g]>
 			}
-			System.out.println("이미지파일"+ detail);
+			//System.out.println("이미지파일"+ detail);
 			
 			//System.out.println("이미지파일origin"+ detail);
 			

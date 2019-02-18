@@ -38,13 +38,24 @@ transition: 0.3s;
 border : none;
 box-shadow: 5px 5px 20px purple;
 }
-/* 배너 */
-#floatdiv {
-position: absolute;
-height: 360px;
-right:-20px;
-color: #fff;
-}	
+
+/* 클릭전 배너 */
+		 	#btmmmi {
+				position: absolute  !important;
+			    height: 220px;
+			    right:90px;
+			    color: #fff;
+			    cursor: pointer;
+			}	
+			/*클릭후 배너 */
+		 	#atmmmi {
+				position: absolute;
+			    height: 360px;
+			    right:-170px;
+			    color: #fff;
+			}		
+
+
 </style>
 <script>
 	var targetdate;
@@ -308,24 +319,50 @@ color: #fff;
 		})
 	});///onready
 	
-	////////////////////////////////배너
-	$(document).ready(function() {	    	 
-			
-   	// 기존 css에서 플로팅 배너 위치(top)값을 가져와 저장한다.
-   	var floatPosition = parseInt($("#floatdiv").css('top'));
-   	// 250px 이런식으로 가져오므로 여기서 숫자만 가져온다. parseInt( 값 );
-    
-   	$(window).scroll(function() {
-   		// 현재 스크롤 위치를 가져온다.
-   		var scrollTop = $(window).scrollTop();
-   		/* var newPosition = scrollTop + floatPosition + "px"; */
-   		var newPosition = scrollTop;
+////////////////////////////////클릭전배너
+	$(document).ready(function() {	    	
+    	// 기존 css에서 플로팅 배너 위치(top)값을 가져와 저장한다.
+    	//var floatPosition = parseInt($("#floatdiv").css('top')); 
+    	// 250px 이런식으로 가져오므로 여기서 숫자만 가져온다. parseInt( 값 );
+    	//원래는 △요렇게 했는데 위치를 옮기면서 top이 너무 짧아져서 뺌
+    	
+    	//기본적으로
+    	$("#atmmmi").hide();
+     
+    	$(window).scroll(function() {
+    		// 현재 스크롤 위치를 가져온다.
+    		var scrollTop = $(window).scrollTop();
+    		var newPosition = scrollTop +/*  floatPosition +*/ 92+"px";
 
-   		$("#floatdiv").stop().animate({
-   			"top" : newPosition
-   		}, 500);
-   	}).scroll();
+    		$('#btmmmi').stop().animate({
+    			"top" : newPosition
+    		}, 500);
+    	}).scroll();    
     });
+
+	////////////////////////////////추가된 배너
+	function fncWeather() {	
+		
+		if($("#atmmmi").is(":visible")){
+			$("#atmmmi").hide();
+		}else{
+			$("#atmmmi").show();
+		}
+		
+    	$(window).scroll(function() {
+    		// 현재 스크롤 위치를 가져온다.
+    		var scrollTop = $(window).scrollTop();
+    		var newPosition = scrollTop +/*  floatPosition +*/ 60+"px";
+
+	    	$("#atmmmi").stop().animate({
+    			"top" : newPosition
+    		}, 500);
+    	}).scroll();
+    }
+
+
+
+
 	
 	////////////////////////////////top 버튼
     $(function() {
@@ -361,6 +398,11 @@ color: #fff;
           </div>
         </div>
       </div>
+      
+      <!-- 날씨 배너 -->
+      <img name="btmmmi" id="btmmmi" src="/images/weather/btmmmi4.png" onclick="fncWeather()" data-toggle="tooltip" data-placement="left" title="오늘의 날씨" ></img>
+      <iframe id="atmmmi" src="/widget/getWeather.jsp" style="border-color: rgb(0,0,0,0);"></iframe>
+   
     </div>
   </div>
   <div class="main main-raised">
@@ -476,7 +518,7 @@ color: #fff;
 				</div>
 				</div>
 				</div>
-				<a style="cursor:pointer;" id="arrow">	Back To Top</a>
+				<img  id="arrow" src="/images/common/topIcon.png" width="2.5%" style="cursor:pointer;"/>
 			</div>
 		</div>
 	</div>

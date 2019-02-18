@@ -119,7 +119,6 @@ public class ToDoController {
 	public ModelAndView getToDoMonthGraph(HttpSession session) throws Exception {
 		System.out.println("/getToDoMonthGraph 접근");
 		int userNo = (int)session.getAttribute("userNo");
-		Random randomWeight = new Random();
 		
 		//현재 날짜 계산
 		int year = Year.now().getValue();
@@ -137,81 +136,10 @@ public class ToDoController {
 		
 		//Business Logic
 		List<ToDo> todoMonth = toDoService.getToDoMonthGraph(todomap);
-		List<ToDo> getWordList = toDoService.getToDoWordCloud(todomap);
-		List<Words> wordList = new ArrayList<Words>();
-		for (int i = 0; i < getWordList.size(); i++) {
-			Words words = new Words();
-			words.setText(getWordList.get(i).getToDoDetail());
-			words.setWeight(randomWeight.nextInt(10));
-			wordList.add(words);
-		}
-		System.out.println(wordList);
 		ModelAndView modelAndView = new ModelAndView();
 		System.out.println("todoMonth"+todoMonth);
 		modelAndView.setViewName("/todo/getToDoMonthGraph.jsp");
 		modelAndView.addObject("todoMonth",todoMonth);
-		modelAndView.addObject("wordList", wordList);
 		return modelAndView;
 	}
-	@RequestMapping(value="/getToDoWordCloud", method=RequestMethod.GET)
-	public ModelAndView getToDoWordCloud(HttpSession session) throws Exception {
-	
-	int userNo = (int)session.getAttribute("userNo");
-	Random randomWeight = new Random();
-	//현재 년도 계산
-	int year = Year.now().getValue();
-	String transYear = Integer.toString(year);
-	String startDate = transYear+"-01-01";
-	String lastDate= transYear+"-12-31";
-	java.sql.Date startDate1 = java.sql.Date.valueOf(startDate);
-	java.sql.Date lastDate1 = java.sql.Date.valueOf(lastDate);
-	
-	Map<String, Object> todomap = new HashMap<String, Object>();
-	todomap.put("userNo", userNo);
-	todomap.put("startDate", startDate1);
-	todomap.put("lastDate", lastDate1);
-	System.out.println("todomap:"+todomap);
-	
-	//Business Logic
-	List<ToDo> getWordList = toDoService.getToDoWordCloud(todomap);
-	List<Words> wordList = new ArrayList<Words>();
-	for (int i = 0; i < getWordList.size(); i++) {
-		Words words = new Words();
-		words.setText(getWordList.get(i).getToDoDetail());
-		words.setWeight(randomWeight.nextInt(10));
-		wordList.add(words);
-	}
-	System.out.println(wordList);
-	ModelAndView modelAndView = new ModelAndView();
-	modelAndView.setViewName("/todo/getToDoWordCloud.jsp");
-	modelAndView.addObject("wordList", wordList);
-	return modelAndView;
-	}
-	
-}
-
-class Words {
-	///Field
-	private String text;
-	private int weight;
-	///Constructor
-	public Words() {
-	}
-	public String getText() {
-		return text;
-	}
-	public void setText(String text) {
-		this.text = text;
-	}
-	public int getWeight() {
-		return weight;
-	}
-	public void setWeight(int weight) {
-		this.weight = weight;
-	}
-	@Override
-	public String toString() {
-		return "{text:'" + text + "', weight:" + weight + "}";
-	}
-	
 }
