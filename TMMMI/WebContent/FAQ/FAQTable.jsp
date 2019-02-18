@@ -35,7 +35,7 @@
 
 </head>
 <form>
-<table class="table table-hover ">	
+<table class="table">	
 			<colgroup>
                <col style="width:10%;">
                <col style="width:20%;">
@@ -51,7 +51,7 @@
 		  	<c:set var="i" value="0" />
 			<c:forEach var="faq" items="${list}">
 			<c:set var="i" value="${i+1}" />
-				<tr class="title${faq.FAQNo} title" data-param1="${faq.FAQNo}" style="font-family: 맑은 고딕; font-weight: 300">
+				<tr class="title${faq.FAQNo} title" data-param1="${faq.FAQNo}" style="font-family: 맑은 고딕; font-weight: 300" onMouseover="this.style.backgroundColor='#ede3fb';" onMouseout="this.style.backgroundColor='rgb(0,0,0,0)';">
 					<td class="text-center" style="padding:0.7%;">${i}</td>
 					<td class="text-center" style="padding:0.7%;">
 						<c:if test="${faq.FAQCategory == 0}">
@@ -70,10 +70,10 @@
 				<tr class="detail${faq.FAQNo} detail" >
 					<td style="padding:0.7%;"></td>
 					<td style="padding:0.7%;"></td>
-					<td style="padding:0.7%;">${faq.FAQDetail} 
+					<td style="padding:0.7%;">${faq.FAQDetail}
 						<c:if test="${role == 0}">
-							<button type="button"  class="btn btn-primary btn-round btn-sm" style="left: 95%;" data-param1="${faq.FAQNo}">수정하기</button>
-							<button type="button"  class="btn btn-primary btn-round btn-sm" style="left: 95%;" data-param2="${faq.FAQNo}">삭제하기</button>
+							<button type="button"  class="btn btn-primary btn-round btn-sm" data-param1="${faq.FAQNo}">수정하기</button>
+							<button type="button"  class="btn btn-primary btn-round btn-sm" data-param2="${faq.FAQNo}">삭제하기</button>
 						</c:if>
 					</td>
 				</tr>

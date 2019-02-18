@@ -139,4 +139,34 @@ public class FAQRestController {
 		return modelAndView;
 	}
 
+	@RequestMapping( value="json/getFAQCategoryList/{searchCondition}")
+	public ModelAndView  getFAQListCategory(@ModelAttribute Search search, 
+																HttpSession session) throws Exception{
+		
+		System.out.println("json/FAQ/getFAQListCategory : GET");
+			
+		if(search.getCurrentPage() ==0 ){
+			search.setCurrentPage(1);
+		}
+		search.setPageSize(pageSize);
+		
+		/*if(search.getSearchKeyword() != null) {
+			search.setSearchCondition("0");
+		}*/
+		
+		Map<String, Object> map = faqService.getFAQList(search);
+		Page resultPage = new Page(search.getCurrentPage(),  ((Integer)map.get("totalCount")).intValue(), pageUnit, pageSize);
+		
+		ModelAndView modelAndView = new ModelAndView();
+		modelAndView.addObject("list", map.get("list"));
+		System.out.println("map.get::::" +map.get("list"));
+		modelAndView.addObject("resultPage", resultPage);
+		modelAndView.addObject("search", search);
+		
+		int userNo = (int)session.getAttribute("userNo");
+		modelAndView.addObject("role", userService.getUser(userNo).getRole());
+		
+		modelAndView.setViewName("/FAQ/FAQTable.jsp");
+		return modelAndView;
+	}
 }

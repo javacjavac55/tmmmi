@@ -15,7 +15,7 @@
 		전체  ${resultPage.totalCount} 건수, 현재 ${resultPage.currentPage} 페이지
 	</div>
 	
-	<table class="table table-hover">	
+	<table class="table">	
 			<colgroup>
                <col style="width:10%;">
                <col style="width:15%;">
@@ -35,7 +35,7 @@
 		  	<c:set var="i" value="0" />
 			<c:forEach var="qna" items="${list}">
 			<c:set var="i" value="${i+1}" />
-				<tr style="font-family: 맑은 고딕; font-weight: 300">
+				<tr style="font-family: 맑은 고딕; font-weight: 300" onMouseover="this.style.backgroundColor='#ede3fb';" onMouseout="this.style.backgroundColor='rgb(0,0,0,0)';">
 					<td class="text-center" style="padding:0.7%;">${i}</td>
 					<td class="text-center" style="padding:0.7%;">
 						<c:if test="${qna.QNACategory == 0}">
@@ -50,7 +50,7 @@
 							기타
 						</c:if>
 					</td>
-					<td style="padding:0.7%;" class="QNAtitle" data-param1="${qna.QNANo}">${qna.QNATitle}</td>
+					<td style="padding:0.7%;" class="QNAtitle" data-param1="${qna.QNANo}" >${qna.QNATitle}</td>
 					<td style="padding:0.7%;">${qna.QNADate}</td>
 					<td style="padding:0.7%;">
 						<c:if test="${qna.QNAAnswerCheck == 0}">
