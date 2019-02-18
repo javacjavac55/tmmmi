@@ -50,13 +50,12 @@
 	    });
 		
 		////////////////////////////////get QNA로 이동
-	    $(function() {	
-	    	$(".QNAtitle" ).on("click" , function() {
+		////AJAX후 클릭이벤트안될때 요러케하세요 됨
+	    $(document).on('click', '.QNAtitle', function(){	
 	    		//alert("get QNA")
 	    		var qnaNo =$(this).data("param1");
 	    		//console.log(qnaNo)
 				self.location = "/qna/getQNA?qnaNo="+qnaNo;
-		    });
 	    });
 		
 		////////////////////////////////페이지 네비게이터
@@ -69,7 +68,7 @@
 						"Content-Type" : "application/json"
 					},
 					success : function(data) {
-					console.log("abc"+data);
+					//console.log("abc"+data);
 					$('#table').html(data);
 					}
 			});
@@ -93,30 +92,52 @@
 	        });
 	    });
 		
-		////////////////////////////////배너
-		$(document).ready(function() {	    	 
-			
+		////////////////////////////////클릭전배너
+		$(document).ready(function() {	    	
 	    	// 기존 css에서 플로팅 배너 위치(top)값을 가져와 저장한다.
-	    	/* var floatPosition = parseInt($("#floatdiv").css('top')); */
+	    	//var floatPosition = parseInt($("#floatdiv").css('top')); 
 	    	// 250px 이런식으로 가져오므로 여기서 숫자만 가져온다. parseInt( 값 );
+	    	//원래는 △요렇게 했는데 위치를 옮기면서 top이 너무 짧아져서 뺌
+	    	
+	    	//기본적으로
+	    	$("#atmmmi").hide();
 	     
 	    	$(window).scroll(function() {
 	    		// 현재 스크롤 위치를 가져온다.
 	    		var scrollTop = $(window).scrollTop();
-	    		var newPosition = scrollTop +/*  floatPosition +*/ 270+"px";
+	    		var newPosition = scrollTop +/*  floatPosition +*/ 85+"px";
 
-	    		$("#floatdiv").stop().animate({
+	    		$('#btmmmi').stop().animate({
+	    			"top" : newPosition
+	    		}, 500);
+	    	}).scroll();    
+	    });
+	
+		////////////////////////////////추가된 배너
+		function fncWeather() {	
+			
+			if($("#atmmmi").is(":visible")){
+				$("#atmmmi").hide();
+			}else{
+				$("#atmmmi").show();
+			}
+			
+	    	$(window).scroll(function() {
+	    		// 현재 스크롤 위치를 가져온다.
+	    		var scrollTop = $(window).scrollTop();
+	    		var newPosition = scrollTop +/*  floatPosition +*/ 56+"px";
+
+		    	$("#atmmmi").stop().animate({
 	    			"top" : newPosition
 	    		}, 500);
 	    	}).scroll();
-	    });
-	
+	    }
 		
-		////////////////////////////////
+		/* ////////////////////////////////
 	    $(function() {	
 	    	$(".users").on("click",function(){	
 	    		//alert("유저 카테고리만 보기")
-				self.location = "/faq/getFAQList?searchCondition=1";
+				self.location = "/faq/getQNAList?searchCondition=1";
 		    });
 	    });
 		
@@ -124,7 +145,7 @@
 	    $(function() {	
 	    	$(".calendar").on("click",function(){	
 	    		//alert("1:1문의로 이동")
-				self.location = "/faq/getFAQList?searchCondition=2";
+				self.location = "/faq/getQNAList?searchCondition=2";
 		    });
 	    });
 	    
@@ -142,7 +163,7 @@
 	    		//alert("1:1문의로 이동")
 				self.location = "/faq/getFAQList?searchCondition=4";
 		    });
-	    });
+	    }); */
 		
 </script>
 
@@ -152,34 +173,35 @@
 			cursor:pointer;
 		}
 		
-		/* 배너
-	 	#floatdiv {
-			position: absolute;
-		    height: 360px;
-		    right:-20px;
+		/* 클릭전 배너 */
+	 	#btmmmi {
+			position: absolute  !important;
+		    height: 220px;
+		    right:90px;
 		    color: #fff;
-		}	 */	
-		
-		/* 배너 */
-	 	#floatdiv {
+		    cursor: pointer;
+		}	
+		/*클릭후 배너 */
+	 	#atmmmi {
 			position: absolute;
 		    height: 360px;
-		    right:300px;
+		    right:-170px;
 		    color: #fff;
 		}	
 		
 		/* 가운데 이미지 */
 		.tiles article > a{
-			color:#3a2a64;
 			background-color:#ffffff;
+
 		}
 		.tiles article > a:hover{
-			color: #f2849e !important;
 			background-color:#ffffff;
+			color:#9c27b0 !important;
 		}
 		.tiles article.style1 > .image:before, .tiles article.style2 > .image:before, .tiles article.style3 > .image:before, .tiles article.style4 > .image:before,
 		.tiles article.style5 > .image:before, .tiles article.style6 > .image:before {;
 			background-color:#ffffff;
+			color:#9c27b0 !important;
 		}
 		
 		button{
@@ -199,24 +221,27 @@
         <div class="col-md-8 ml-auto mr-auto">
           <div class="brand">
           <h2 class="title">QNA</h2>
-          	<h3 style="margin-top:-3%" >Question and Answer</h3>
+          	<h3 style="margin-top:-3%" class="title">Question and Answer</h3>
           </div>
         </div>
       </div>
+      
+      <!-- 날씨 배너 -->
+      <img name="btmmmi" id="btmmmi" src="/images/weather/btmmmi4.png" onclick="fncWeather()" data-toggle="tooltip" data-placement="left" title="오늘의 날씨" ></img>
+      <iframe id="atmmmi" src="/widget/getWeather.jsp" style="border-color: rgb(0,0,0,0);"></iframe>
     </div>
   </div>
-
-	<iframe id="floatdiv" src="/widget/getWeather.jsp" style="border-color: rgb(0,0,0,0);"></iframe>
 	
 	<div class="main main-raised">
     <div class="section section-basic">
       <div class="container">
      
 		 	<img src="/images/common/star.png" width="2%"/>
-		 	<span>Home / CustomerCenter</span>
+		 	<span>&nbsp; Home / CustomerCenter</span>
 			 	
 			 	<br><br>
 			 	
+	
 			 	<section class="tiles" style="cursor:pointer; margin-top: -30px;">
 					<article class="style5 users" style="width:243px;">
 						<span class="image">
@@ -285,16 +310,14 @@
 			 	<div id="table">
 					<jsp:include page="../QNA/QNATable.jsp"/>
 				</div>
-			 	
-			 <div class="row"></div>		 	
-				<button type="button"  class="btn btn-primary btn-round btn-sm" style="left: 90%;">1:1 문의하기</button>
-				<a style="cursor:pointer;" id="arrow" >	Back To Top</a>
-			</div>	
-	      <br/><br/><br/><br/>
+	
+				<img  id="arrow" src="/images/common/topIcon.png" width="2.5%" style="cursor:pointer;"/>
+				<button type="button"  class="btn btn-primary btn-round btn-sm" style="left: 75%; position:absolute; margin-top: -1%;">1:1 문의하기</button>
+
       
+      </div>
       </div>      
     </div>
-  </div>
   </form>
   <jsp:include page="/common/footer.jsp"></jsp:include>
 </body>

@@ -133,7 +133,7 @@
 </head>
 
 <body class="login-page sidebar-collapse">
-  <div class="page-header header-filter" style="background-image: url('/images/template/bg2.jpg'); background-size: cover; background-position: top center;">
+  <div class="page-header header-filter" style="background-image: url('/images/QNAImage/123.jpg'); background-size: cover; background-position: top center;">
     <div class="container">
       <div class="row">
         <div class="col-lg-4 col-md-6 ml-auto mr-auto">
@@ -165,7 +165,7 @@
                   <input type="password" class="form-control" name="password" id="password" placeholder="Password" onKeyPress="if(event.keyCode=='13'){fncLogin()}">
                 </div>
               </div>
-              <div id="yeong" style="margin: 50px 0 50px 0;">
+              <div id="yeong" style="margin: 50px 0 50px 0; cursor:pointer;">
               		<span class="description text-center">아이디/</span>
               		<span class="description text-center">비밀번호</span>
               		<span class="description text-center">찾기</span>

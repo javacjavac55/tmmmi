@@ -27,7 +27,7 @@ span{text-align:center;}
 			<br>
 			<span>Copyright</span>
 			<span><img src="/images/common/copyright.png" style="width:13px; margin: 5px;"></span>
-			<span><a href="/common/5war.jsp" style="color:black">5.war Corp.</a></span>
+			<span><a href="/common/5war.jsp" style="color:#9c27b0">5.war Corp.</a></span>
 			<span>All rights reserved.</span>
 		</div>
 	<br><br>
