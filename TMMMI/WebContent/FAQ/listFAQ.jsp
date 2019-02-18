@@ -104,23 +104,19 @@
 	    });
     
 		//////////////////////////////// 수정
-	    $(function() {	
-	    	$( "button:contains('수정하기')" ).on("click" , function() {
+	   $(document).on('click', 'button:contains("수정하기")', function(){	
 	    		//alert("수정")
 	    		var faqNo =$(this).data("param1");
 				//console.log(faqNo)
 				self.location = "/faq/updateFAQ?faqNo="+faqNo;
-			})
 	    });
 		
 		//////////////////////////////// 삭제
-	    $(function() {	
-	    	$( "button:contains('삭제하기')" ).on("click" , function() {
+	    $(document).on('click', 'button:contains("삭제하기")', function(){	
 	    		//alert("삭제")
 	    		var faqNo =$(this).data("param2");
 				//console.log(faqNo)
 				self.location = "/faq/deleteFAQ?faqNo="+faqNo;
-			})
 	    });
 		
 		//////////////////////////////// 글쓰기
@@ -131,56 +127,134 @@
 			})
 	    });
 	   
-		////////////////////////////////배너
-		$(document).ready(function() {	    	 
-			
+		////////////////////////////////클릭전배너
+		$(document).ready(function() {	    	
 	    	// 기존 css에서 플로팅 배너 위치(top)값을 가져와 저장한다.
-	    	var floatPosition = parseInt($("#floatdiv").css('top'));
+	    	//var floatPosition = parseInt($("#floatdiv").css('top')); 
 	    	// 250px 이런식으로 가져오므로 여기서 숫자만 가져온다. parseInt( 값 );
+	    	//원래는 △요렇게 했는데 위치를 옮기면서 top이 너무 짧아져서 뺌
+	    	
+	    	//기본적으로
+	    	$("#atmmmi").hide();
 	     
 	    	$(window).scroll(function() {
 	    		// 현재 스크롤 위치를 가져온다.
 	    		var scrollTop = $(window).scrollTop();
-	    		/* var newPosition = scrollTop + floatPosition + "px"; */
-	    		var newPosition = scrollTop;
+	    		var newPosition = scrollTop +/*  floatPosition +*/ 85+"px";
 
-	    		$("#floatdiv").stop().animate({
+	    		$('#btmmmi').stop().animate({
+	    			"top" : newPosition
+	    		}, 500);
+	    	}).scroll();    
+	    });
+	
+		////////////////////////////////추가된 배너
+		function fncWeather() {	
+			
+			if($("#atmmmi").is(":visible")){
+				$("#atmmmi").hide();
+			}else{
+				$("#atmmmi").show();
+			}
+			
+	    	$(window).scroll(function() {
+	    		// 현재 스크롤 위치를 가져온다.
+	    		var scrollTop = $(window).scrollTop();
+	    		var newPosition = scrollTop +/*  floatPosition +*/ 56+"px";
+
+		    	$("#atmmmi").stop().animate({
 	    			"top" : newPosition
 	    		}, 500);
 	    	}).scroll();
-	    });
+	    }
 	
 		
 		////////////////////////////////
 	    $(function() {	
 	    	$(".users").on("click",function(){	
-	    		//alert("유저 카테고리만 보기")
-				self.location = "/faq/getFAQList?searchCondition=1";
-		    });
+	    		var searchCondition = 1;
+				$.ajax({
+		    			url:"/faqRest/json/getFAQCategoryList/"+searchCondition,
+		    			method:"POST",
+						headers : {
+							"Accept" : "application/json",
+							"Content-Type" : "application/json"
+						},
+						data: JSON.stringify({
+							searchKeyword : $("#searchKeyword").val()
+						}),
+						success : function(data) {
+							/* console.log(data) */
+							$('#table').html(data);
+						}
+				});
+			});
 	    });
 		
 		////////////////////////////////
 	    $(function() {	
 	    	$(".calendar").on("click",function(){	
-	    		//alert("1:1문의로 이동")
-				self.location = "/faq/getFAQList?searchCondition=2";
-		    });
+	    		var searchCondition = 2;
+				$.ajax({
+		    			url:"/faqRest/json/getFAQCategoryList/"+searchCondition,
+		    			method:"POST",
+						headers : {
+							"Accept" : "application/json",
+							"Content-Type" : "application/json"
+						},
+						data: JSON.stringify({
+							searchKeyword : $("#searchKeyword").val()
+						}),
+						success : function(data) {
+							/* console.log(data) */
+							$('#table').html(data);
+						}
+				});
+			});
 	    });
 	    
 		////////////////////////////////
 	    $(function() {	
 	    	$(".content").on("click",function(){	
-	    		//alert("1:1문의로 이동")
-				self.location = "/faq/getFAQList?searchCondition=3";
-		    });
+	    		var searchCondition = 3;
+				$.ajax({
+		    			url:"/faqRest/json/getFAQCategoryList/"+searchCondition,
+		    			method:"POST",
+						headers : {
+							"Accept" : "application/json",
+							"Content-Type" : "application/json"
+						},
+						data: JSON.stringify({
+							searchKeyword : $("#searchKeyword").val()
+						}),
+						success : function(data) {
+							/* console.log(data) */
+							$('#table').html(data);
+						}
+				});
+			});
 	    });
 	    
 		////////////////////////////////
 	    $(function() {	
 	    	$(".diary").on("click",function(){	
-	    		//alert("1:1문의로 이동")
-				self.location = "/faq/getFAQList?searchCondition=4";
-		    });
+	    		var searchCondition = 4;
+				$.ajax({
+		    			url:"/faqRest/json/getFAQCategoryList/"+searchCondition,
+		    			method:"POST",
+						headers : {
+							"Accept" : "application/json",
+							"Content-Type" : "application/json"
+						},
+						data: JSON.stringify({
+							searchKeyword : $("#searchKeyword").val()
+						}),
+						success : function(data) {
+							/* console.log(data) */
+							$('#table').html(data);
+						}
+				});
+			});
 	    });
 		
 	</script>
@@ -190,27 +264,35 @@
 				cursor:pointer;
 			}
 			
-			/* 배너 */
-		 	#floatdiv {
-		 		z-index:10000;
+			/* 클릭전 배너 */
+		 	#btmmmi {
+				position: absolute  !important;
+			    height: 220px;
+			    right:90px;
+			    color: #fff;
+			    cursor: pointer;
+			}	
+			/*클릭후 배너 */
+		 	#atmmmi {
 				position: absolute;
 			    height: 360px;
-			    right:-20px;
+			    right:-170px;
 			    color: #fff;
 			}		
-			
+				
 			/* 가운데 이미지 */
 			.tiles article > a{
-				color:#3a2a64;
 				background-color:#ffffff;
+
 			}
 			.tiles article > a:hover{
-				color: #f2849e !important;
 				background-color:#ffffff;
+				color:#9c27b0 !important;
 			}
 			.tiles article.style1 > .image:before, .tiles article.style2 > .image:before, .tiles article.style3 > .image:before, .tiles article.style4 > .image:before,
 			.tiles article.style5 > .image:before, .tiles article.style6 > .image:before {;
 				background-color:#ffffff;
+				color:#9c27b0 !important;
 			}
 			
 			/* 버튼 색깔 강제 */
@@ -219,6 +301,7 @@
 			}
 			input[type="text"], input[type="password"], input[type="email"], select {
 			    margin-top: 3em;
+			        width: 500px;
 			}
 					
 		 	
@@ -236,19 +319,24 @@
         <div class="col-md-8 ml-auto mr-auto">
           <div class="brand">
           	<h2 class="title">FAQ</h2>
-          	<h3 style="margin-top:-3%" >Frequent Asked Question</h3>
+          	<h3 class="title" style="margin-top:-3%" >Frequent Asked Question</h3>
           </div>
         </div>
       </div>
+      
+      <!-- 날씨 배너 -->
+      <img name="btmmmi" id="btmmmi" src="/images/weather/btmmmi4.png" onclick="fncWeather()" data-toggle="tooltip" data-placement="left" title="오늘의 날씨" ></img>
+      <iframe id="atmmmi" src="/widget/getWeather.jsp" style="border-color: rgb(0,0,0,0);"></iframe>
     </div>
   </div>
 	  
   <div class="main main-raised">
     <div class="section section-basic">
       <div class="container">
+      
      
 		 	<img src="/images/common/star.png" width="2%"/>
-		 	<span>Home / CustomerCenter</span>
+		 	<span>&nbsp; Home / CustomerCenter</span>
 		 			 	
 		 	<br/><br/><br/><br/>
 		 	
@@ -263,7 +351,7 @@
 				      		<input type="text" name="searchKeyword" id="searchKeyword" value="${search.searchKeyword}" onKeyPress="if(event.keyCode=='13'){fncGetSearchList();return false; }">
 						</div>
 						<div style="display: inline-block;">
-							<button type="button" class="btn btn-primary" name="searchCondition" value="0"  style="font:white">검색</button>
+							<button type="button" class="btn btn-primary" name="searchCondition" value="0"  style="font:white; margin: 1px;">검색</button>
 						</div> 
 					</div>
 				</div>
@@ -348,10 +436,12 @@
 				</c:if>
 			</div>
 			
-			<a style="cursor:pointer;" id="arrow">	Back To Top</a>
-		
+			<!-- <a style="cursor:pointer;" id="arrow">	Back To Top</a> -->
+			<img  id="arrow" src="/images/common/topIcon.png" width="2.5%" style="cursor:pointer;"/>
 		
 			<br/><br/><br/><br/>
+			
+			
       </div>
     </div>
   </div>

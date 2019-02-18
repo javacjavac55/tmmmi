@@ -1,17 +1,11 @@
 package com.tmmmi.web;
 
-import java.util.Map;
-
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
-import org.codehaus.jackson.map.util.JSONPObject;
-import org.json.simple.JSONObject;
-import org.json.simple.parser.JSONParser;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -42,8 +36,6 @@ public class UserRestController {
 	@Autowired
 	@Qualifier("contentSettingServiceImpl")
 	private ContentSettingService contentSettingService;
-	
-	private JSONParser parser;
 	
 	///Constructor
 	public UserRestController() {
