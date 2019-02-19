@@ -197,6 +197,7 @@
 			<div style="float:right; width:100%; margin: 0 auto;" class="col-sm-8">
 				<div class="col-sm-2"><h4>맛집</h4></div>
 				<div class="col-sm-2"><input type="text" name="tastyKeyword" id="tastyKeywordCheck"  value="${contentSetting.tastyKeyword }"><label for="tastyKeywordCheck" align="center">맛집 키워드</label></div>
+				<div class="col-sm-6" style="padding-top: 8px;"><span>* 지역 키워드 혹은 음식 키워드를 입력해주세요. 예) 강남역, 비빔밥</span></div>
 				<hr width="98%" />
 			</div>
 			

@@ -24,38 +24,43 @@
 
 <script src ="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 <script>
+	function validateUserCategory(){
+		if ($("#userCategoryName").val() & /^#[0-9A-F]{6}$/i.test($("#userCategoryColor").val())) {
+			return true;
+		} else {
+			swal({
+				title : "입력 오류 " , 
+				text: "카테고리 이름과 색상을 모두 입력해주세요" , 
+				icon : "error" , 
+			}).then((value) => {
+				return false;
+			});
+		}
+	}
+	
 	function addUserCategory(){
-		$.ajax({
-			url : "/calendarRest/addUserCategory",
-			method : "POST",
-			data: JSON.stringify({
-				userCategoryName:$("#userCategoryName").val(),
-				userCategoryColor:$("#userCategoryColor").val()
-			}),
-			dataType: "json",
-			headers : {
-				"Accept" : "application/json",
-				"Content-Type" : "application/json"
-			},
-			success : function(JSONData, status) {
-				if (JSONData != -1) {
-					swal({
-						title : "등록 완료 " , 
-						text: "카테고리를 성공적으로 등록했습니다" , 
-						icon : "success" , 
-					}).then((value) => {
-						if ($('.user-category-item').length){
-						$('.user-category-item').last().after(
-								'<div class="user-category-item">'+
-								'<button class="btn btn-fab btn-round dot" id="userCategoryInfo'+JSONData+'"'+
-								'data-param1="'+JSONData+
-								'" data-param2="'+$('#userCategoryName').val()+
-								'" data-param3="'+$('#userCategoryColor').val()+
-								'" style="background-color:'+$("#userCategoryColor").val()+'"></button><br/><span>'+
-								$('#userCategoryName').val()+'</span></div>');
-						} else {
-							$('.profile.category-list-area').html('');
-							$('.profile.category-list-area').html(
+		if (validateUserCategory()) {
+			$.ajax({
+				url : "/calendarRest/addUserCategory",
+				method : "POST",
+				data: JSON.stringify({
+					userCategoryName:$("#userCategoryName").val(),
+					userCategoryColor:$("#userCategoryColor").val()
+				}),
+				dataType: "json",
+				headers : {
+					"Accept" : "application/json",
+					"Content-Type" : "application/json"
+				},
+				success : function(JSONData, status) {
+					if (JSONData != -1) {
+						swal({
+							title : "등록 완료 " , 
+							text: "카테고리를 성공적으로 등록했습니다" , 
+							icon : "success" , 
+						}).then((value) => {
+							if ($('.user-category-item').length){
+							$('.user-category-item').last().after(
 									'<div class="user-category-item">'+
 									'<button class="btn btn-fab btn-round dot" id="userCategoryInfo'+JSONData+'"'+
 									'data-param1="'+JSONData+
@@ -63,19 +68,30 @@
 									'" data-param3="'+$('#userCategoryColor').val()+
 									'" style="background-color:'+$("#userCategoryColor").val()+'"></button><br/><span>'+
 									$('#userCategoryName').val()+'</span></div>');
-						}
-						$('#cancelBtn').click();
-					});
-				} else {
-					swal({
-						title : "등록 오류" , 
-						text: "같은 이름과 색상의 카테고리는 등록하실 수 없습니다. 다른 이름과 색상을 선택해주세요" , 
-						icon : "error" , 
-					}).then((value) => {
-					});
+							} else {
+								$('.profile.category-list-area').html('');
+								$('.profile.category-list-area').html(
+										'<div class="user-category-item">'+
+										'<button class="btn btn-fab btn-round dot" id="userCategoryInfo'+JSONData+'"'+
+										'data-param1="'+JSONData+
+										'" data-param2="'+$('#userCategoryName').val()+
+										'" data-param3="'+$('#userCategoryColor').val()+
+										'" style="background-color:'+$("#userCategoryColor").val()+'"></button><br/><span>'+
+										$('#userCategoryName').val()+'</span></div>');
+							}
+							$('#cancelBtn').click();
+						});
+					} else {
+						swal({
+							title : "등록 오류" , 
+							text: "같은 이름과 색상의 카테고리는 등록하실 수 없습니다. 다른 이름과 색상을 선택해주세요" , 
+							icon : "error" , 
+						}).then((value) => {
+						});
+					}
 				}
-			}
-		});	
+			});	
+		}
 	};
 	
 	function updateUserCategory(){		
@@ -323,6 +339,7 @@
 								<button type="button" class="btn btn-warning" id="updateBtn">수정</button>
 								<button type="button" class="btn btn-danger" id="deleteBtn">삭제</button>
 								<button type="button" class="btn btn-default" id="cancelBtn">리셋</button>
+								<br/>
 								<button type="button" class="btn btn-info" id="calendar">일정 달력 보기</button>
 								<button type="button" class="btn btn-info" id="diary">다이어리 쓰기</button>
 							</div>

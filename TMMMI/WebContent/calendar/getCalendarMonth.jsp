@@ -46,11 +46,25 @@
 			border-top-left-radius: 13px;
     		border-top-right-radius: 13px;
 		}
+		
+		.menu-bar {
+			height: 32px !important;
+		}
+		
+		.logo {
+			top: 0px !important;
+    		left: 15px !important;
+		}
+		
+		.nav-link {
+			top: 10px !important;
+    		right: 20px !important;
+		}
 	</style>
 </head>
 <body>
     <div id="top">
-		TMMMI
+		<jsp:include page="/common/toolbar.jsp"/>
     </div>
     <div id="lnb">
         <div class="lnb-new-schedule">

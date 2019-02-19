@@ -12,10 +12,26 @@
     <link rel="stylesheet" type="text/css" href="/css/tui/tui-calendar.css" />
     <link rel="stylesheet" type="text/css" href="/css/tui/default.css"></link>
     <link rel="stylesheet" type="text/css" href="/css/tui/icons.css"></link>
+    
+    <style>
+    	.menu-bar {
+			height: 32px !important;
+		}
+		
+		.logo {
+			top: 0px !important;
+    		left: 15px !important;
+		}
+		
+		.nav-link {
+			top: 10px !important;
+    		right: 20px !important;
+		}
+    </style>
 </head>
 <body>
     <div id="top">
-        TMMMI
+        <jsp:include page="/common/toolbar.jsp"/>
     </div>
     <div id="lnb">
         <div id="lnb-calendars" class="lnb-calendars">
@@ -162,9 +178,7 @@
 			schedule.goingDuration = "${schedule.goingDuration}";
 			schedule.comingDuration = "${schedule.comingDuration}";
 			schedule.isAllday = "${schedule.isScheduleDDay}";
-			schedule.state = "${schedule.markDDay}";
 			schedule.category = "${schedule.isScheduleImportant}";
-			schedule.recurrenceRule = "${schedule.scheduleAlarmTime}";
 			schedule = fncAdjustScheduleValues(schedule);
 			ScheduleList.push(schedule);
 		</c:forEach>
