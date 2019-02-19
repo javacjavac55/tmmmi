@@ -49,7 +49,7 @@ img
 		});
 
 		$('#back').on("click", function() {
-			self.location = "/diary/listDiary";
+			self.location = "/diary/getDiaryList";
 		});
 	});
 </script>
@@ -57,7 +57,7 @@ img
 
 <body class="index-page sidebar-collapse">
 	<%-- <jsp:include page="/common/toolbar2.jsp"></jsp:include> --%>
-	<jsp:include page="/common/toolbar2.jsp"></jsp:include>
+	<jsp:include page="/common/topMenu.jsp"></jsp:include>
 	<div class="page-header header-filter clear-filter" data-parallax="true" style="background-image: url('/images/userSetting/ ${userSetting.image}')">
 		<div class="container">
 			<div class="row">
@@ -117,7 +117,7 @@ img
 									</div>
 								</div>
 						</div>	
-						<c:import url="/diary/getListDiary">
+						<c:import url="/diary/getDiaryBottomList">
 						   <c:param name="currentPage" value="${search.currentPage }"/>
 						   <c:param name="diaryNo" value="${diary.diaryNo}"/>
 						</c:import>  

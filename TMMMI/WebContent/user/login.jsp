@@ -18,6 +18,10 @@
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" ></script>
   <!-- sweetalert -->
   <script src ="https://unpkg.com/sweetalert/dist/sweetalert.min.js" ></script >
+  <!--툴팁  -->
+  <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+  <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+  <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
   <!-- Style -->
   <style type="text/css">
   	#yeong{
@@ -121,6 +125,10 @@
 				self.location = "/userRest/searchUserPw"
 			});
 		});
+		
+		$( function() {
+		     $( '#tt' ).tooltip();
+		});
 	</script>
 
 	
@@ -133,7 +141,7 @@
 </head>
 
 <body class="login-page sidebar-collapse">
-  <div class="page-header header-filter" style="background-image: url('/images/loginImage/tumblr_inline_or8l50wlMM1ud5xre_500.gif'); background-size: cover; background-position: top center;">
+  <div class="page-header header-filter" style="background-image: url('/images/loginImage/ocean-3605547_1920.jpg'); background-size: cover; background-position: top center;">
     <div class="container">
       <div class="row">
         <div class="col-lg-4 col-md-6 ml-auto mr-auto">
@@ -168,10 +176,11 @@
               <div id="yeong" style="margin: 50px 0 50px 0; cursor:pointer;">
               		<span class="description text-center">아이디/</span>
               		<span class="description text-center">비밀번호</span>
-              		<span class="description text-center">찾기</span>
+              		<span class="description text-center">찾기</span><br/>
+              		<span class="description text-center" id="tt" style="margin-top : 10px;"><i class="material-icons" data-placement="bottom" title="탈퇴한 회원은 jaavaa05@gmail.com로 복구 사유를 보내주시면 복구 후 답변 메일을 보내 드립니다.">contact_support</i></span>
               </div>
               <div class="footer text-center">
-                <a href="/user/addUser" class="btn btn-primary btn-link btn-wd btn-lg">Sign in</a>
+                <a href="/user/addUser" class="btn btn-primary btn-link btn-wd btn-lg">Sign up</a>
               	<span class="btn btn-primary btn-link btn-wd btn-lg" id="login">Login</span>
               </div>
             </form>

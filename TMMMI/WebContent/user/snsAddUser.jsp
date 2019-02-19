@@ -232,7 +232,7 @@
 
 <body class="index-page sidebar-collapse">
 <!-- sideMenu.jsp Ãß°¡ -->
-<jsp:include page="/common/toolbar2.jsp"></jsp:include>
+<jsp:include page="/common/topMenu.jsp"></jsp:include>
  	<div class="page-header header-filter clear-filter" data-parallax="true" style="background-image: url('/images/userSetting/201803230806542197_6_20180323080704381.jpg')">
     <div class="container">
       <div class="row">

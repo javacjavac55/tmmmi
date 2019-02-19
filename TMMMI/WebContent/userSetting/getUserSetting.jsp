@@ -43,7 +43,7 @@ $(function(){
 
 
 <body class="index-page sidebar-collapse">
-	<jsp:include page="/common/toolbar2.jsp"></jsp:include>
+	<jsp:include page="/common/topMenu.jsp"></jsp:include>
 	<div class="page-header header-filter clear-filter" data-parallax="true" style="background-image: url('/images/userSetting/${userSetting.image}')">
 		<div class="container">
 			<div class="row">
@@ -66,18 +66,18 @@ $(function(){
 								<div class="form-group bmd-form-group">
 									<label class="bmd-label-static">Main Color</label>
 									<c:if test="${userSetting.mainColorModeNo eq 0}">
-										<div id="chgcolor" style="background-color:#483949; width:300px; border:solid 1px">
+										<div id="chgcolor" style="background-color:#fafafa; width:300px; border:solid 1px">
 											컨텐츠 배경색 입니다.
 										</div>
-										<div id="chgcolor" style="background-color:#fafafa; width:300px;border:solid 1px">
+										<div id="chgcolor" style="background-color:#000000; width:300px;border:solid 1px">
 											컨텐츠 폰트색 입니다.
 										</div>
 									</c:if>
 									<c:if test="${userSetting.mainColorModeNo eq 1}">
-										<div id="chgcolor" style="background-color:#fafafa; width:300px;border:solid 1px">
+										<div id="chgcolor" style="background-color:#000000; width:300px;border:solid 1px">
 											컨텐츠 배경색 입니다.
 										</div>
-										<div id="chgcolor" style="background-color:#483949; width:300px;border:solid 1px">
+										<div id="chgcolor" style="background-color:#fafafa; width:300px;border:solid 1px">
 											컨텐츠 폰트색 입니다.
 										</div>
 									</c:if>
@@ -87,7 +87,7 @@ $(function(){
 
 							<div class="description text-center">
 								<div class="form-group bmd-form-group" >
-									<label class="bmd-label-static" width: 100%;>Menu Font Color</label> 
+									<label class="bmd-label-static">Menu Font Color</label> 
 									<div id="chgcolor" style="background-color:${userSetting.menuFontColor};width:300px;border:solid 1px;">
 										배경색이 메뉴 폰트 색상입니다.
 									</div>

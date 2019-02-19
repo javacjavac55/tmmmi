@@ -71,8 +71,8 @@
 				var name=$("input[name='FAQTitle']").val();
 				var detail = CKEDITOR.instances.ckeditor.getData();
 					
-				if(name == null || name.length<1){
-					swal("제목은 반드시 입력하여야 합니다!", "얼른 입력해주세요");
+				if(name == null || name.length>20){
+					swal("제목은 20자이내여야 합니다!", "얼른 입력해주세요");
 					return;
 				}
 				 if(detail == null || detail.length<10){
@@ -115,7 +115,7 @@
 <body class="index-page sidebar-collapse">
 <form>
 
-<jsp:include page="/common/toolbar2.jsp"></jsp:include>
+<jsp:include page="/common/topMenu.jsp"></jsp:include>
   <div class="page-header header-filter clear-filter" style="background-image: url('/images/userSetting/ ${userSetting.image}')">
     <div class="container">
       <div class="row">

@@ -9,7 +9,7 @@
 <head>
 	<meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0, shrink-to-fit=no' name='viewport' />
 
-	<<!-- CSS Files -->
+	<!-- CSS Files -->
 	<link href="/css/template/material-kit.css" rel="stylesheet" />
 	<!-- CSS Just for demo purpose, don't include it in your project -->
 	<link href="/css/template/demo.css" rel="stylesheet" />
@@ -67,8 +67,8 @@
 			var name=$("input[name='FAQTitle']").val();
 			var detail = CKEDITOR.instances.ckeditor.getData();
 				
-			if(name == null || name.length<1){
-				swal("제목은 반드시 입력하여야 합니다!", "얼른 입력해주세요");
+			if(name == null || name.length>20){
+				swal("제목은 20자 미만이여야 합니다!", "얼른 입력해주세요");
 				return;
 			}
 			if(detail == null || detail.length<10){
@@ -114,7 +114,7 @@
 <body class="index-page sidebar-collapse">
 <form>
 
-<jsp:include page="/common/toolbar2.jsp"></jsp:include>
+<jsp:include page="/common/topMenu.jsp"></jsp:include>
   <div class="page-header header-filter clear-filter" style="background-image: url('/images/userSetting/ ${userSetting.image}')">
     <div class="container">
       <div class="row">

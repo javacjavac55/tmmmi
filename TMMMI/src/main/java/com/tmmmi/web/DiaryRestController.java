@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import com.tmmmi.common.Page;
@@ -34,16 +35,36 @@ public class DiaryRestController {
 	//@Value("#{commonProperties['pageSize'] ?: 2}")
 	int pageSize;
 	
-	
-	@RequestMapping(value = "imageList")
-	public Map imageList(@RequestBody(required=false) Search search, HttpSession session, @RequestParam("currentPage") int currentPage)throws Exception {
+	/*
+	@RequestMapping(value = "listImage")
+	public Map listImage(@RequestBody(required=false) Search search, HttpSession session)throws Exception {
 		System.out.println("서치 :" +search);
 		int userNo = ((int)session.getAttribute("userNo"));
 
 		if(search.getCurrentPage() ==0 ){
 			search.setCurrentPage(1);
 		}
-		search.setCurrentPage(currentPage);
+		//search.setCurrentPage(currentPage);
+		search.setPageSize(pageSize);		
+		// Business logic 수행
+		Map<String , Object> map=diaryService.getDiaryList(search, userNo);
+		Page resultPage = new Page( search.getCurrentPage(), ((Integer)map.get("totalCount")).intValue(), pageUnit, pageSize);
+		
+		System.out.println("결과페이지: "+resultPage);
+		map.put("list", map.get("list"));
+		map.put("resultPage", resultPage);		
+		map.put("search", search);
+		
+		return map;
+	}*/
+	@RequestMapping(value = "imageList", method = RequestMethod.POST)
+	public Map imageList(@RequestBody(required=false) Search search, HttpSession session)throws Exception {
+		System.out.println("서치 :" +search);
+		int userNo = ((int)session.getAttribute("userNo"));
+
+		if(search.getCurrentPage() ==0 ){
+			search.setCurrentPage(1);
+		}
 		search.setPageSize(pageSize);		
 		// Business logic 수행
 		Map<String , Object> map=diaryService.getDiaryList(search, userNo);

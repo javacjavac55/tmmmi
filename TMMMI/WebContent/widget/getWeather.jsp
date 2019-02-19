@@ -106,7 +106,7 @@
   									"<span class='temp'>"+temp+"˚</span>"+
   									"<span class='temp_m'>"+tempMin+"˚/"+tempMax+"˚</span>");
 					    }else if (icon === '09') {
-					    	$(".main").append("<canvas id='sleety' width='60' height='60' ></canvas>"+
+					    	$(".main").append("<canvas id='sleet' width='60' height='60' ></canvas>"+
   									"<span class='temp'>"+temp+"˚</span>"+
   									"<span class='temp_m'>"+tempMin+"˚/"+tempMax+"˚</span>");
 					    }else if (icon === '10') {
@@ -144,7 +144,7 @@
   									"<span class='temp'>"+temp+"˚</span>"+
   									"<span class='temp_m'>"+tempMin+"˚/"+tempMax+"˚</span>");
 					    }else if (icon === '09') {
-					    	$(".main").append("<canvas id='sleety' width='60' height='60' ></canvas>"+
+					    	$(".main").append("<canvas id='sleet' width='60' height='60' ></canvas>"+
   									"<span class='temp'>"+temp+"˚</span>"+
   									"<span class='temp_m'>"+tempMin+"˚/"+tempMax+"˚</span>");
 					    }else if (icon === '10') {

@@ -40,27 +40,15 @@
         <ul class="navbar-nav ml-auto">
           
           <li class="dropdown nav-item">
-            <a href="#" class="dropdown-toggle nav-link" data-toggle="dropdown" >Calendar</a>
-            <div class="dropdown-menu dropdown-with-icons">
-            	<a href="/calendar/getCalendarMonth" class="dropdown-item">스케줄 달력</a>
-				<a href="/calendar/getCalendarInterest" class="dropdown-item">관심사 달력</a>
-				<a href="/calendar/getUserCategoryList" class="dropdown-item">카테고리</a>
-            </div>
+            <a href="/content/getContentList" class="nav-link">Content</a>
           </li>
           
           <li class="dropdown nav-item">
-            <a href="#" class="dropdown-toggle nav-link" data-toggle="dropdown">Diary</a>
-            <div class="dropdown-menu dropdown-with-icons">
-				<a href="/diary/addDiary" class="dropdown-item">다이어리 등록</a>
-				<a href="/diary/listDiary" class="dropdown-item">다이어리 리스트</a>
-            </div>
+            <a href="/scrap/getScrapList" class="nav-link">Scrap</a>
           </li>
           
           <li class="dropdown nav-item">
-            <a href="#" class="dropdown-toggle nav-link" data-toggle="dropdown">Scrap</a>
-            <div class="dropdown-menu dropdown-with-icons">
-				<a href="/scrap/getScrapList" class="dropdown-item">스크랩 리스트</a>
-            </div>
+            <a href="/diary/getDiaryList" class="nav-link" >Diary</a>
           </li>
           
           <li class="dropdown nav-item">
@@ -72,17 +60,19 @@
           </li>
           
           <li class="dropdown nav-item">
-            <a href="#" class="dropdown-toggle nav-link" data-toggle="dropdown">FAQ/QNA</a>
+            <a href="#" class="dropdown-toggle nav-link" data-toggle="dropdown" >Calendar</a>
             <div class="dropdown-menu dropdown-with-icons">
-				<a href="/faq/getFAQList" class="dropdown-item">FAQ 리스트</a>
-				<a href="/qna/getQNAList" class="dropdown-item">QNA 리스트</a>
+            	<a href="/calendar/getCalendarMonth" class="dropdown-item">스케줄 달력</a>
+				<a href="/calendar/getCalendarInterest" class="dropdown-item">관심사 달력</a>
+				<a href="/calendar/getUserCategoryList" class="dropdown-item">사용자 카테고리</a>
             </div>
           </li>
           
           <li class="dropdown nav-item">
-            <a href="#" class="dropdown-toggle nav-link" data-toggle="dropdown">Content</a>
+            <a href="#" class="dropdown-toggle nav-link" data-toggle="dropdown">FAQ/QNA</a>
             <div class="dropdown-menu dropdown-with-icons">
-				<a href="/content/getContentList" class="dropdown-item">컨텐츠</a>
+				<a href="/faq/getFAQList" class="dropdown-item">FAQ</a>
+				<a href="/qna/getQNAList" class="dropdown-item">QNA</a>
             </div>
           </li>
           

@@ -116,7 +116,7 @@
 </head>
 <body class="index-page sidebar-collapse">
 <form>
-	<jsp:include page="/common/toolbar2.jsp"></jsp:include>
+	<jsp:include page="/common/topMenu.jsp"></jsp:include>
 	<div class="page-header header-filter clear-filter" data-parallax="true" style="background-image: url('/images/userSetting/ ${userSetting.image}')">
 		<div class="container">
 			<div class="row">
@@ -187,19 +187,17 @@
 													<c:otherwise>X</c:otherwise>
 												</c:choose>
 											</td>
-											<td align="center" style="padding:25px;">${user.withdrawDate}</td>
 											<!-- Å»Åð ¿©ºÎ -->
-											<td align="center">
-												<span id="helf${user.userNo }"></span>
-												<c:choose>
-													<c:when test="${user.withdrawCheck eq 1 }">
-														<button type="button" class="btn btn-warning btn-round" id="withdrawCancle${user.userNo }" data-withdrawcancle="${user.userNo }">º¹±¸</button>
-													</c:when> 
-													<c:otherwise>
-														<button type="button" class="btn btn-info btn-round" id="withdraw${user.userNo }" data-withdraw="${user.userNo }">Å»Åð</button>
-													</c:otherwise>
-												</c:choose>
-											</td>
+											<c:choose>
+												<c:when test="${user.withdrawCheck eq 1 }">
+													<td align="center" style="padding:25px;">${user.withdrawDate}</td>
+													<td align="center"><button type="button" class="btn btn-warning btn-round" id="withdrawCancle${user.userNo }" data-withdrawcancle="${user.userNo }">º¹±¸</button></td>
+												</c:when> 
+												<c:otherwise>
+													<td align="center" style="padding:25px;"></td>
+													<td align="center"><button type="button" class="btn btn-info btn-round" id="withdraw${user.userNo }" data-withdraw="${user.userNo }">Å»Åð</button></td>
+												</c:otherwise>
+											</c:choose>
 											<td align="center"><button type="button" class="btn btn-primary btn-round" id="update${user.userNo }" data-param="${user.userNo }">¼öÁ¤</button></td>
 										</tr>
 									</c:forEach>
