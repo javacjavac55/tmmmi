@@ -26,6 +26,9 @@
 <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 
+<!-- sweetAlert -->
+<script src ="https://unpkg.com/sweetalert/dist/sweetalert.min.js" ></script >
+
 <!-- loginIndex에서 따온거 -->
 <link rel="stylesheet" href="/css/index/assets/css/main.css" />
 <link href="https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300" rel="stylesheet">
@@ -113,10 +116,17 @@
 		
 		//////////////////////////////// 삭제
 	    $(document).on('click', 'button:contains("삭제하기")', function(){	
-	    		//alert("삭제")
-	    		var faqNo =$(this).data("param2");
-				//console.log(faqNo)
-				self.location = "/faq/deleteFAQ?faqNo="+faqNo;
+    		//alert("삭제")
+    		var faqNo =$(this).data("param2");
+			//console.log(faqNo)
+			 swal("정말로 삭제 하시겠습니까?", {
+			 buttons: true,
+			 value: true,
+			}).then((result)=>{
+				if (result === true) {
+					self.location = "/faq/deleteFAQ?faqNo="+faqNo;
+			      }
+			}, function (dismiss) { });
 	    });
 		
 		//////////////////////////////// 글쓰기
@@ -354,7 +364,7 @@
 				      		<input type="text" name="searchKeyword" id="searchKeyword" value="${search.searchKeyword}" onKeyPress="if(event.keyCode=='13'){fncGetSearchList();return false; }">
 						</div>
 						<div style="display: inline-block;">
-							<button type="button" class="btn btn-primary" name="searchCondition" value="0"  style="font:white; margin: 1px;">검색</button>
+							<button type="button" class="btn btn-primary " name="searchCondition" value="0"  style="font:white; margin: 1px;">검색</button>
 						</div> 
 					</div>
 				</div>

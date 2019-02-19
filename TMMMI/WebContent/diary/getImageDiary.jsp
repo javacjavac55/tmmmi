@@ -33,6 +33,11 @@ img
   display:block;
   object-fit:contain;
 }
+
+#a{
+  max-width: fit-content;
+  display:inline-block;
+}
 </style>
 <script type="text/javascript">
 	$(function() {
@@ -43,7 +48,7 @@ img
 		});
 
 		$('#back').on("click", function() {
-			self.location = "/diary/imageList";
+			self.location = "/diary/getImageDiaryList";
 		});
 	});
 </script>
@@ -98,11 +103,10 @@ img
                 					</div>
               					</div>
               					
-								<div class="form-group" align="left" style="max-height:100%;">
-									<label for="diaryDetail" class="col-sm-offset-1 col-sm-1 control-label text-center"></label>
-									<div style="max-height:100%;">
-										${diary.diaryDetail}
-									</div>
+								<div id="a" align="left">
+									<div>
+										${diary.diaryDetail}				
+									</div>																
 								</div>
 								<hr/>
 								<div class="form-group">
@@ -112,7 +116,7 @@ img
 									</div>
 								</div>
 						</div>	
-						<c:import url="/diary/getImageList" />
+						<c:import url="/diary/getImageDiaryBottomList" />
 					</div>
 				</div>
 			</div>

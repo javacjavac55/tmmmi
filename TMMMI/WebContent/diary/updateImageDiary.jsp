@@ -102,10 +102,10 @@
 			})
 		return;
 	}
-	if(title == null || title ==""){
+	if(title == null || title =="" || title.length >30){
 		swal({
-			  title: "오류",
-			  text: "제목을 입력해주세요.",
+			  title: "제목을  꼭 입력해주세요",
+			  text: "제목은 30자 이상 넘어가면 안됩니다.",
 			  icon: "warning",
 			  dangerMode: true,
 			})

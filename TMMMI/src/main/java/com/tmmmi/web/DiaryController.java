@@ -104,7 +104,7 @@ public class DiaryController {
 		diaryService.addDiary(diary);
 		ModelAndView modelAndView = new ModelAndView();
 		modelAndView.addObject("diary", diary);
-		modelAndView.setViewName("redirect:/diary/listDiary");
+		modelAndView.setViewName("redirect:/diary/getDiaryList");
 		
 		
 		return modelAndView;
@@ -118,7 +118,7 @@ public class DiaryController {
 		diaryService.addDiary(diary);
 		ModelAndView modelAndView = new ModelAndView();
 		modelAndView.addObject("diary", diary);
-		modelAndView.setViewName("redirect:/diary/imageList");
+		modelAndView.setViewName("redirect:/diary/getImageDiaryList");
 		
 		
 		return modelAndView;
@@ -161,7 +161,7 @@ public class DiaryController {
 		
 		
 	}
-	@RequestMapping(value="listDiary")
+	@RequestMapping(value="getDiaryList")
 	public ModelAndView getDiaryList(@ModelAttribute("search") Search search , HttpSession session)throws Exception{
 			
 		int userNo = ((int)session.getAttribute("userNo"));
@@ -188,8 +188,8 @@ public class DiaryController {
 		
 		return modelAndView;
 	}
-	@RequestMapping(value="getListDiary")
-	public ModelAndView getListDiary(@ModelAttribute("search") Search search , HttpSession session, @RequestParam("currentPage") int currentPage, @RequestParam("diaryNo") int diaryNo)throws Exception{
+	@RequestMapping(value="getDiaryBottomList")
+	public ModelAndView getDiaryBottomList(@ModelAttribute("search") Search search , HttpSession session, @RequestParam("currentPage") int currentPage, @RequestParam("diaryNo") int diaryNo)throws Exception{
 			
 		int userNo = ((int)session.getAttribute("userNo"));
 		
@@ -217,13 +217,13 @@ public class DiaryController {
 		modelAndView.addObject("resultPage", resultPage);
 		modelAndView.addObject("search", search);
 		modelAndView.addObject("diaryNo", diaryNo);
-		modelAndView.setViewName("/diary/getListDiary.jsp");
+		modelAndView.setViewName("/diary/getDiaryBottomList.jsp");
 		
 		return modelAndView;
 	}
 	
-	@RequestMapping(value="imageList")
-	public ModelAndView imageList(@ModelAttribute("search") Search search , HttpSession session)throws Exception{
+	@RequestMapping(value="getImageDiaryList")
+	public ModelAndView getImageDiaryList(@ModelAttribute("search") Search search , HttpSession session)throws Exception{
 		
 		int userNo = ((int)session.getAttribute("userNo"));
 		
@@ -241,13 +241,13 @@ public class DiaryController {
 		modelAndView.addObject("list", map.get("list"));
 		modelAndView.addObject("resultPage", resultPage);
 		modelAndView.addObject("search", search);
-		modelAndView.setViewName("/diary/imageList.jsp");
+		modelAndView.setViewName("/diary/listImageDiary.jsp");
 		
 		return modelAndView;
 	}
 	
-	@RequestMapping(value="getImageList")
-	public ModelAndView getImageList(@ModelAttribute("search") Search search , HttpSession session)throws Exception{
+	@RequestMapping(value="getImageDiaryBottomList")
+	public ModelAndView getImageDiaryBottomList(@ModelAttribute("search") Search search , HttpSession session)throws Exception{
 		
 		int userNo = ((int)session.getAttribute("userNo"));
 		
@@ -265,7 +265,7 @@ public class DiaryController {
 		modelAndView.addObject("list", map.get("list"));
 		modelAndView.addObject("resultPage", resultPage);
 		modelAndView.addObject("search", search);
-		modelAndView.setViewName("/diary/getImageList.jsp");
+		modelAndView.setViewName("/diary/getImageDiaryBottomList.jsp");
 		
 		return modelAndView;
 	}
@@ -352,7 +352,7 @@ public class DiaryController {
 		}	
 				
 		ModelAndView modelAndView = new ModelAndView();
-		modelAndView.setViewName("/diary/listDiary");
+		modelAndView.setViewName("/diary/getDiaryList");
 		
 		return modelAndView;
 	}
@@ -367,7 +367,7 @@ public class DiaryController {
 		System.out.println("dkdkdk");
 				
 		ModelAndView modelAndView = new ModelAndView();
-		modelAndView.setViewName("/diary/imageList");
+		modelAndView.setViewName("/diary/getImageDiaryList");
 		
 		return modelAndView;
 	}

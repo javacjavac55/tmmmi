@@ -46,7 +46,7 @@
       $("#currentPage").val(currentPage);
       /* document.detailForm.submit(); */
       $('[name="detailForm"]').attr("method", "POST").attr("action",
-            "/diary/listDiary").submit();
+            "/diary/getDiaryList").submit();
    }
 
    /* 전체 선택 */
@@ -142,7 +142,7 @@
       
       $("#imageList").on("click", function(){
          var currentPage =$(this).data('param1');
-         location.replace('/diary/imageList?currentPage='+currentPage);
+         location.replace('/diary/listImageDiary?currentPage='+currentPage);
       });
 
    });
@@ -186,8 +186,8 @@
                            <div class="col-sm-offset-4  col-sm-4 text-right" style="float: right;">
                      <%-- <button type="button" name="imageList" class="btn btn-primary"
                         id="imageList" data-param1="${search.currentPage}"> --%>                              
-                              <a href='/diary/listDiary'><img src=/images/diaryImage/3213.PNG class="listDiary" style="width:30px; height:24px;" title="리스트 형식으로 보기"/></a>
-                              <a href='/diary/imageList'><img src=/images/diaryImage/321312.PNG class="imageDiary" style="width:30px; height:24px;" title="썸네일 형식으로 보기"/></a>
+                              <a href='/diary/getDiaryList'><img src=/images/diaryImage/3213.PNG class="listDiary" style="width:30px; height:24px;" title="리스트 형식으로 보기"/></a>
+                              <a href='/diary/getImageDiaryList'><img src=/images/diaryImage/321312.PNG class="imageDiary" style="width:30px; height:24px;" title="썸네일 형식으로 보기"/></a>
                            </div>
 
                         </div>

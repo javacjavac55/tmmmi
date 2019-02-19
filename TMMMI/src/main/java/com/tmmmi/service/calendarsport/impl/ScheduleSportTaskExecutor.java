@@ -32,7 +32,7 @@ public class ScheduleSportTaskExecutor {
 	}
 	
 	@Scheduled(cron="0 0 10 * * ?")
-	//@Scheduled(cron="0 */13 * ? * *")
+	//@Scheduled(cron="0 */27 * ? * *")
 	public void executor() throws Exception{
 		kSoccerData();
 		wSoccerData();
@@ -42,10 +42,9 @@ public class ScheduleSportTaskExecutor {
 		wBasketballData();		
 	}
 	public void kSoccerData() throws Exception {
-		for (int month = 3; month < 21; month++) {
+		for (int month = 3; month < 23; month++) {
 			if (month < 13) {
-				String address = "https://sports.news.naver.com/kfootball/schedule/index.nhn?category=kleague&year=2018&month="
-						+ month;
+				String address = "https://sports.news.naver.com/kfootball/schedule/index.nhn?year=2018&month="+month+"&category=kleague";
 
 				System.out.println("2018년" + address);
 
@@ -53,23 +52,23 @@ public class ScheduleSportTaskExecutor {
 
 				ObjectMapper mapper = new ObjectMapper();
 
-				Result result = mapper.readValue(
-						doc.html().split("monthlyScheduleModel: ")[1].split(",\n		seasonList")[0], Result.class);
+				Result2 result2 = mapper.readValue(
+						doc.html().split("scheduleData: ")[1].split(",\"monthList\"")[0]+"}]}", Result2.class);
 
 				
 
-				for (String key : result.getDailyScheduleListMap().keySet()) {
-
-					List<SportListResult> sportList = result.getDailyScheduleListMap().get(key);
+				for (Result1 result1 : result2.getMonthlyScheduleDailyGroup()) {
+					String dateStr = result1.getDate();
+					List<SportListResult> sportList = result1.getScheduleList();
 
 					for (SportListResult element : sportList) {
 						CalendarSport cs = new CalendarSport();
 
 						int hrs = Integer.parseInt(element.getGameStartTime().split(":")[0]);
 						int min = Integer.parseInt(element.getGameStartTime().split(":")[1]);
-						int year = Integer.parseInt(key.substring(0, 4));
-						int mm = Integer.parseInt(key.substring(4, 6));
-						int dd = Integer.parseInt(key.substring(6, 8));
+						int year = Integer.parseInt(dateStr.substring(0, 4));
+						int mm = Integer.parseInt(dateStr.substring(4, 6));
+						int dd = Integer.parseInt(dateStr.substring(6, 8));
 
 						Date date = new Date(year - 1900, mm - 1, dd, hrs, min);
 						long millisecond = date.getTime();
@@ -90,9 +89,8 @@ public class ScheduleSportTaskExecutor {
 
 				}
 			} // if 끝
-			else if (12 < month && month < 21) {
-				String address = "https://sports.news.naver.com/kfootball/schedule/index.nhn?category=kleague&year=2019&month="
-						+ (month - 12);
+			else if (12 < month && month < 23) {
+				String address = "https://sports.news.naver.com/kfootball/schedule/index.nhn?year=2019&month="+(month-12)+"&category=kleague";
 
 				System.out.println("2019년" + address);
 
@@ -100,23 +98,23 @@ public class ScheduleSportTaskExecutor {
 
 				ObjectMapper mapper = new ObjectMapper();
 
-				Result result = mapper.readValue(
-						doc.html().split("monthlyScheduleModel: ")[1].split(",\n		seasonList")[0], Result.class);
+				Result2 result2 = mapper.readValue(
+						doc.html().split("scheduleData: ")[1].split(",\"monthList\"")[0]+"}]}", Result2.class);
 
 				
 
-				for (String key : result.getDailyScheduleListMap().keySet()) {
-
-					List<SportListResult> sportList = result.getDailyScheduleListMap().get(key);
+				for (Result1 result1 : result2.getMonthlyScheduleDailyGroup()) {
+					String dateStr = result1.getDate();
+					List<SportListResult> sportList = result1.getScheduleList();
 
 					for (SportListResult element : sportList) {
 						CalendarSport cs = new CalendarSport();
 
 						int hrs = Integer.parseInt(element.getGameStartTime().split(":")[0]);
 						int min = Integer.parseInt(element.getGameStartTime().split(":")[1]);
-						int year = Integer.parseInt(key.substring(0, 4));
-						int mm = Integer.parseInt(key.substring(4, 6));
-						int dd = Integer.parseInt(key.substring(6, 8));
+						int year = Integer.parseInt(dateStr.substring(0, 4));
+						int mm = Integer.parseInt(dateStr.substring(4, 6));
+						int dd = Integer.parseInt(dateStr.substring(6, 8));
 
 						Date date = new Date(year - 1900, mm - 1, dd, hrs, min);
 						long millisecond = date.getTime();
@@ -146,8 +144,7 @@ public class ScheduleSportTaskExecutor {
 		for (int month = 8; month < 18; month++) {
 
 			if (month < 13) {
-				String address = "https://sports.news.naver.com/wfootball/schedule/index.nhn?category=epl&year=" + 2018
-						+ "&month=" + month;
+				String address = "https://sports.news.naver.com/wfootball/schedule/index.nhn?year=2019&month="+month+"&category=epl";
 
 				System.out.println("2018년" + address);
 
@@ -155,23 +152,24 @@ public class ScheduleSportTaskExecutor {
 
 				ObjectMapper mapper = new ObjectMapper();
 
-				Result result = mapper.readValue(
-						doc.html().split("monthlyScheduleModel: ")[1].split(",\n		seasonList")[0], Result.class);
+				Result2 result2 = mapper.readValue(
+						doc.html().split("scheduleData: ")[1].split(",\"monthList\"")[0]+"}]}", Result2.class);
 
 				
 
-				for (String key : result.getDailyScheduleListMap().keySet()) {
+				for (Result1 result1 : result2.getMonthlyScheduleDailyGroup()) {
 
-					List<SportListResult> sportList = result.getDailyScheduleListMap().get(key);
+					String dateStr = result1.getDate();
+					List<SportListResult> sportList = result1.getScheduleList();
 
 					for (SportListResult element : sportList) {
 						CalendarSport cs = new CalendarSport();
 
 						int hrs = Integer.parseInt(element.getGameStartTime().split(":")[0]);
 						int min = Integer.parseInt(element.getGameStartTime().split(":")[1]);
-						int year = Integer.parseInt(key.substring(0, 4));
-						int mm = Integer.parseInt(key.substring(4, 6));
-						int dd = Integer.parseInt(key.substring(6, 8));
+						int year = Integer.parseInt(dateStr.substring(0, 4));
+						int mm = Integer.parseInt(dateStr.substring(4, 6));
+						int dd = Integer.parseInt(dateStr.substring(6, 8));
 
 						Date date = new Date(year - 1900, mm - 1, dd, hrs, min);
 						long millisecond = date.getTime();
@@ -195,8 +193,7 @@ public class ScheduleSportTaskExecutor {
 
 			} // if 끝
 			else if (12 < month && month < 18) {
-				String address = "https://sports.news.naver.com/wfootball/schedule/index.nhn?category=epl&year=" + 2019
-						+ "&month=" + (month - 12);
+				String address = "https://sports.news.naver.com/wfootball/schedule/index.nhn?year=2019&month="+(month - 12)+"&category=epl";
 
 				System.out.println(address);
 
@@ -204,22 +201,22 @@ public class ScheduleSportTaskExecutor {
 
 				ObjectMapper mapper = new ObjectMapper();
 
-				Result result = mapper.readValue(
-						doc.html().split("monthlyScheduleModel: ")[1].split(",\n		seasonList")[0], Result.class);
+				Result2 result2 = mapper.readValue(
+						doc.html().split("scheduleData: ")[1].split(",\"monthList\"")[0]+"}]}", Result2.class);
 				
 
-				for (String key : result.getDailyScheduleListMap().keySet()) {
-
-					List<SportListResult> sportList = result.getDailyScheduleListMap().get(key);
+				for (Result1 result1 : result2.getMonthlyScheduleDailyGroup()) {
+					String dateStr = result1.getDate();
+					List<SportListResult> sportList = result1.getScheduleList();
 
 					for (SportListResult element : sportList) {
 						CalendarSport cs = new CalendarSport();
 
 						int hrs = Integer.parseInt(element.getGameStartTime().split(":")[0]);
 						int min = Integer.parseInt(element.getGameStartTime().split(":")[1]);
-						int year = Integer.parseInt(key.substring(0, 4));
-						int mm = Integer.parseInt(key.substring(4, 6));
-						int dd = Integer.parseInt(key.substring(6, 8));
+						int year = Integer.parseInt(dateStr.substring(0, 4));
+						int mm = Integer.parseInt(dateStr.substring(4, 6));
+						int dd = Integer.parseInt(dateStr.substring(6, 8));
 
 						Date date = new Date(year - 1900, mm - 1, dd, hrs, min);
 						long millisecond = date.getTime();
@@ -380,30 +377,29 @@ public class ScheduleSportTaskExecutor {
 	public void wBaseballData() throws Exception {
 		for (int month = 3; month < 18; month++) {
 			if (month < 11) {
-				String address = "https://sports.news.naver.com/wbaseball/schedule/index.nhn?category=mlb&year=2018&month="
-						+ month;
+				String address = "https://sports.news.naver.com/wbaseball/schedule/index.nhn?year=2018&month="+month+"&category=mlb";
+						
 				System.out.println("2018년" + address);
 				Document doc = Jsoup.connect(address).header("User-Agent", "Mozilla/5.0").get();
 
 				ObjectMapper mapper = new ObjectMapper();
 
-				Result result = mapper.readValue(
-						doc.html().split("monthlyScheduleModel: ")[1].split(",\r\n" + "		seasonList")[0],
-						Result.class);
+				Result2 result2 = mapper.readValue(
+						doc.html().split("scheduleData: ")[1].split(",\"monthList\"")[0]+"}]}", Result2.class);
 				
 
-				for (String key : result.getDailyScheduleListMap().keySet()) {
-
-					List<SportListResult> sportList = result.getDailyScheduleListMap().get(key);
-
+				for (Result1 result1 : result2.getMonthlyScheduleDailyGroup()) {
+					String dateStr = result1.getDate();
+					List<SportListResult> sportList = result1.getScheduleList();
+					
 					for (SportListResult element : sportList) {
 						CalendarSport cs = new CalendarSport();
 
 						int hrs = Integer.parseInt(element.getGameStartTime().split(":")[0]);
 						int min = Integer.parseInt(element.getGameStartTime().split(":")[1]);
-						int year = Integer.parseInt(key.substring(0, 4));
-						int mm = Integer.parseInt(key.substring(4, 6));
-						int dd = Integer.parseInt(key.substring(6, 8));
+						int year = Integer.parseInt(dateStr.substring(0, 4));
+						int mm = Integer.parseInt(dateStr.substring(4, 6));
+						int dd = Integer.parseInt(dateStr.substring(6, 8));
 
 						Date date = new Date(year - 1900, mm - 1, dd, hrs, min);
 						long millisecond = date.getTime();
@@ -426,31 +422,31 @@ public class ScheduleSportTaskExecutor {
 				}
 			} // if 문
 			else if (10 < month && month < 18) {
-				String address = "https://sports.news.naver.com/wbaseball/schedule/index.nhn?category=mlb&year=2019&month="
-						+ (month - 8);
+				String address = "https://sports.news.naver.com/wbaseball/schedule/index.nhn?year=2018&month="+(month - 8)+"&category=mlb";
+				
 				System.out.println("2019년" + address);
 				Document doc = Jsoup.connect(address).header("User-Agent", "Mozilla/5.0").get();
 
 				ObjectMapper mapper = new ObjectMapper();
 
-				Result result = mapper.readValue(
-						doc.html().split("monthlyScheduleModel: ")[1].split(",\r\n" + "		seasonList")[0],
-						Result.class);
+				Result2 result2 = mapper.readValue(
+						doc.html().split("scheduleData: ")[1].split(",\"monthList\"")[0]+"}]}", Result2.class);
 
 				List<Object> calendarSportList = new ArrayList<Object>();
 
-				for (String key : result.getDailyScheduleListMap().keySet()) {
-
-					List<SportListResult> sportList = result.getDailyScheduleListMap().get(key);
-
+				for (Result1 result1 : result2.getMonthlyScheduleDailyGroup()) {
+					String dateStr = result1.getDate();
+					
+					List<SportListResult> sportList = result1.getScheduleList();
+					
 					for (SportListResult element : sportList) {
 						CalendarSport cs = new CalendarSport();
 
 						int hrs = Integer.parseInt(element.getGameStartTime().split(":")[0]);
 						int min = Integer.parseInt(element.getGameStartTime().split(":")[1]);
-						int year = Integer.parseInt(key.substring(0, 4));
-						int mm = Integer.parseInt(key.substring(4, 6));
-						int dd = Integer.parseInt(key.substring(6, 8));
+						int year = Integer.parseInt(dateStr.substring(0, 4));
+						int mm = Integer.parseInt(dateStr.substring(4, 6));
+						int dd = Integer.parseInt(dateStr.substring(6, 8));
 
 						Date date = new Date(year - 1900, mm - 1, dd, hrs, min);
 						long millisecond = date.getTime();
@@ -739,41 +735,51 @@ public class ScheduleSportTaskExecutor {
 
 }
 
-class Result {
-	private String year;
-	private String month;
-	private Map<String, List<SportListResult>> dailyScheduleListMap;
+@JsonIgnoreProperties(ignoreUnknown = true)
+class Result2 {
+	private List<Result1> monthlyScheduleDailyGroup;
 
-	public Result() {
+	public List<Result1> getMonthlyScheduleDailyGroup() {
+		return monthlyScheduleDailyGroup;
 	}
 
-	public String getYear() {
-		return year;
+	public void setMonthlyScheduleDailyGroup(List<Result1> monthlyScheduleDailyGroup) {
+		this.monthlyScheduleDailyGroup = monthlyScheduleDailyGroup;
+	}
+	
+	
+	
+}
+
+@JsonIgnoreProperties(ignoreUnknown = true)
+class Result1 {
+	private String date;
+	private List<SportListResult> scheduleList;
+	
+	public Result1() {
 	}
 
-	public void setYear(String year) {
-		this.year = year;
+	public String getDate() {
+		return date;
 	}
 
-	public String getMonth() {
-		return month;
+	public void setDate(String date) {
+		this.date = date;
+	}
+	
+
+	public List<SportListResult> getScheduleList() {
+		return scheduleList;
 	}
 
-	public void setMonth(String month) {
-		this.month = month;
+	public void setScheduleList(List<SportListResult> scheduleList) {
+		this.scheduleList = scheduleList;
 	}
 
-	public Map<String, List<SportListResult>> getDailyScheduleListMap() {
-		return dailyScheduleListMap;
-	}
-
-	public void setDailyScheduleListMap(Map<String, List<SportListResult>> dailyScheduleListMap) {
-		this.dailyScheduleListMap = dailyScheduleListMap;
-	}
-
+	
 	@Override
 	public String toString() {
-		return "Result [year=" + year + ", month=" + month + ", dailyScheduleListMap=" + dailyScheduleListMap + "]";
+		return "Result2 [date=" + date + ", scheduleList=" + scheduleList + "]";
 	}
 
 }

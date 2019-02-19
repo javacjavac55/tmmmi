@@ -49,7 +49,7 @@ img
 		});
 
 		$('#back').on("click", function() {
-			self.location = "/diary/listDiary";
+			self.location = "/diary/getDiaryList";
 		});
 	});
 </script>
@@ -117,7 +117,7 @@ img
 									</div>
 								</div>
 						</div>	
-						<c:import url="/diary/getListDiary">
+						<c:import url="/diary/getDiaryBottomList">
 						   <c:param name="currentPage" value="${search.currentPage }"/>
 						   <c:param name="diaryNo" value="${diary.diaryNo}"/>
 						</c:import>  
