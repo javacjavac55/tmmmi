@@ -208,7 +208,6 @@
 				    <label style="color:#9c27b0!important;">답변 내용</label>
 				    <div style="min-height:300px; border:1px solid; color:#d2d2d2">
 				    	<div style="color:black; margin: 2%;">
-				    	<img src="/images/common/234.png" style="position:relative;">
 				    		${qna.QNAAnswerDetail}
 				    	</div>
 				    </div>
