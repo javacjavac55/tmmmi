@@ -127,59 +127,50 @@ img {
 
 <script type="text/javascript">
 /*무한스크롤  */
-  $(function(){
+ $(function(){
 	  var currentPage = ${search.currentPage};
-	  var totalCount = ${resultPage.totalCount};
-	  var pageSize = ${resultPage.pageSize};
-		console.log(currentPage, totalCount, pageSize);
-		
+		console.log(currentPage);
 	  $(window).scroll(function(){		
 			if($(window).scrollTop() == $(document).height() - $(window).height()){
+				++currentPage;
 				console.log("스크롤 인식");
 				console.log(currentPage);
-
 				 var data = {currentPage:currentPage, searchKeyword:$("#searchKeyword").val()}
-				 if (currentPage < totalCount/pageSize ){
-					 ++currentPage;
-					 $.ajax({
-							type: 'POST',
-							url : '/diaryRest/imageList?currentPage='+currentPage,
-							contentType: 'application/json',
-							dataType : 'json',
-							data: JSON.stringify(data),			
-							success: function(data){
-								console.log("success");
-								var list = data['list'];
-								var str = "";
-								if(list != null || list.length>0){
-									$(list).each(function(){
-										console.log(this);									
-										str += "<figure class='card' style='cursor:pointer;' >"	 									
-											+		"<button type='button' id='close' class='close' data-param2='"+this.diaryNo+"' style="+"'opacity:0;'"+">"
-											+			"<span aria-hidden='true'>"
-											+				"<i class='material-icons'>clear</i>"
-											+			"</span>"
-											+		"</button>"
-											+ 		"<div style="+"'width:100%;'"+" class="+"'getDetail'"+" data-param1='"+this.diaryNo+"'>"
-											+			this.diaryDetail
-											+		"</div>"
-											+		"<figcaption>"
-											+			/* "["+this.diaryNo+"]"+ */"["+this.userCategoryName+"]"+this.diaryTitle
-											+		"</figcaption>"
-											+	"</figure>"
-									});
-									$('figure').last().after(str);
-									var url = '/diary/imageList?currentPage='+currentPage;
-									//history.pushState(null, null, url);
-									console.log(location.href);
-								}
-								else{
-									alert("마지막 페이지 입니다.");
-								}
+				 
+				 $.ajax({
+						type: 'POST',
+						url : '/diaryRest/imageList',
+						contentType: 'application/json',
+						dataType : 'json',
+						data: JSON.stringify(data),			
+						success: function(data){
+							console.log("success");
+							var list = data['list'];
+							var str = "";
+							if(list != null){
+								$(list).each(function(){
+									console.log(this);									
+									str += "<figure class='card' style='cursor:pointer;' >"	 									
+										+		"<button type='button' id='close' class='close' data-param2='"+this.diaryNo+"' style="+"'opacity:0;'"+">"
+										+			"<span aria-hidden='true'>"
+										+				"<i class='material-icons'>clear</i>"
+										+			"</span>"
+										+		"</button>"
+										+ 		"<div style="+"'width:100%;'"+" class="+"'getDetail'"+" data-param1='"+this.diaryNo+"'>"
+										+			this.diaryDetail
+										+		"</div>"
+										+		"<figcaption>"
+										+			/* "["+this.diaryNo+"]"+ */"["+this.userCategoryName+"]"+this.diaryTitle
+										+		"</figcaption>"
+										+	"</figure>"
+								});
+								$('figure').last().after(str);
 							}
-	
-						});
-				 	}
+							else{
+								alert("마지막 페이지 입니다.");
+							}
+						}
+					});
 				 }						 
 			}) 
 		})
@@ -212,7 +203,7 @@ img {
 		$("#currentPage").val(currentPage);
 		/* document.detailForm.submit(); */
 		$('[name="detailForm"]').attr("method", "POST").attr("action",
-				"/diary/imageList").submit();
+				"/diary/getImageDiaryList").submit();
 	}
 	/* function deleteOnMouseOver(){		
 		close.style.display="block";
@@ -357,8 +348,8 @@ img {
 							style="float: right;">
 							<%-- <button type="button" name="imageList" class="btn btn-primary"
 								id="imageList" data-param1="${search.currentPage}"> --%>										
-										<a href='/diary/listDiary'><img src=/images/diaryImage/3213.PNG class="listDiary" style="width:30px; height:24px;" title="리스트 형식으로 보기"/></a>
-										<a href='/diary/imageList'><img src=/images/diaryImage/321312.PNG class="imageDiary" style="width:30px; height:24px;" title="썸네일 형식으로 보기"/></a>
+										<a href='/diary/getDiaryList'><img src=/images/diaryImage/3213.PNG class="listDiary" style="width:30px; height:24px;" title="리스트 형식으로 보기"/></a>
+										<a href='/diary/getImageDiaryList'><img src=/images/diaryImage/321312.PNG class="imageDiary" style="width:30px; height:24px;" title="썸네일 형식으로 보기"/></a>
 									</div>
 
 								</div>

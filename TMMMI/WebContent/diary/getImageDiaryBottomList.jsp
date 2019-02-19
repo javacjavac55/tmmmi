@@ -127,7 +127,7 @@ img {
 				 
 				 $.ajax({
 						type: 'POST',
-						url : '/diaryRest/imageList?currentPage='+currentPage,
+						url : '/diaryRest/imageList',
 						contentType: 'application/json',
 						dataType : 'json',
 						data: JSON.stringify(data),			

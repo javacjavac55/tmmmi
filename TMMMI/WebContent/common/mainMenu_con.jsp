@@ -49,8 +49,8 @@
 					<div class="grim__item-bg grim__item-bg--4"></div>
 					<a href="#content-3" class="grim__link grim__item-content">
 						<div class="grim__item-inner">
-							<h3 class="grim__item-title" data-link="/diary/listDiary" style="font-size: x-large;">DIARY</h3>
-							<span class="grim__item-desc" data-link="/diary/listDiary"><img src="/images/loginIndex/diary.png" width="20%"/></span>
+							<h3 class="grim__item-title" data-link="/diary/getDiaryList" style="font-size: x-large;">DIARY</h3>
+							<span class="grim__item-desc" data-link="/diary/getDiaryList"><img src="/images/loginIndex/diary.png" width="20%"/></span>
 						</div>
 					</a>
 				</div>

@@ -123,10 +123,10 @@
 				})
 			return;
 		}
-		if(title == null || title ==""){
+		if(title == null || title =="" || title.length >30){
 			swal({
-				  title: "오류",
-				  text: "제목을 입력해주세요.",
+				  title: "제목을  꼭 입력해주세요",
+				  text: "제목은 30자 이상 넘어가면 안됩니다.",
 				  icon: "warning",
 				  dangerMode: true,
 				})
@@ -153,18 +153,12 @@
 	}
 
 	$(function() {
-		//==> DOM Object GET 3가지 방법 ==> 1. $(tagName) : 2.(#id) : 3.$(.className)
-		//==> 1 과 3 방법 조합 : $("tagName.className:filter함수") 사용함.	
 		$("button.btn.btn-primary").on("click", function() {
-			//Debug..
-			//alert(  $( "td.ct_btn01:contains('확인')" ).html() );
 			fncAddDiary();
 		});
 
 		$("a.btn.btn-primary").on("click", function() {
-			//Debug..
-			//alert(  $( "td.ct_btn01:contains('추가등록')" ).html() );
-			history.go(-1);
+			self.location = "/diary/getDiaryList";
 		});
 	});
 </script>
