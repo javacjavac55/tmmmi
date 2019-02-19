@@ -89,7 +89,6 @@
 	<script>
         $(function () {
         	bind();
-        	
         	var count = 1;
 			var more = true;
 			$(document).on('click', '.forward', function(){
