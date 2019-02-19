@@ -30,7 +30,12 @@
 <link href="https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css?family=Do+Hyeon" rel="stylesheet">
 <noscript><link rel="stylesheet" href="/css/index/assets/css/noscript.css" /></noscript>
-
+<style type="text/css">
+	a:hover {
+    border-bottom-color: transparent;
+    color: #fafafa !important;
+}
+</style>
     <script type="text/javascript">
     
 		////////////////////////////////FAQ∑Œ ¿Ãµø
@@ -214,7 +219,7 @@
 <body class="index-page sidebar-collapse">
 <form>
 
-<jsp:include page="/common/toolbar2.jsp"></jsp:include>
+<jsp:include page="/common/topMenu.jsp"></jsp:include>
   <div class="page-header header-filter clear-filter" style="background-image: url('/images/userSetting/ ${userSetting.image}')">
     <div class="container">
       <div class="row">

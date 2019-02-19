@@ -206,6 +206,7 @@ public class UserController {
 		if(user.getPassword().equals(dbUser.getPassword())) {
 			session.setAttribute("userNo", dbUser.getUserNo());
 			session.setAttribute("userName", dbUser.getUserName());
+			session.setAttribute("role", dbUser.getRole());
 			session.setAttribute("userSetting", userSettingService.getUserSetting(dbUser.getUserNo()));
 			modelAndView.setViewName("redirect:/common/loginIndex.jsp");
 		}else {

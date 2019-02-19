@@ -87,7 +87,7 @@
 </head>
 <body class="index-page sidebar-collapse">
 	<form name ="getQNA" >
-	<jsp:include page="/common/toolbar2.jsp"></jsp:include>
+	<jsp:include page="/common/topMenu.jsp"></jsp:include>
 	  <div class="page-header header-filter clear-filter" style="background-image: url('/images/userSetting/ ${userSetting.image}')">
 	    <div class="container">
 	      <div class="row">

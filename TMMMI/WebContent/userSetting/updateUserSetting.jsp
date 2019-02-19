@@ -90,7 +90,7 @@ $(function(){
 </head>
 <body class="index-page sidebar-collapse">
 <!-- top menu -->
-<jsp:include page="/common/toolbar2.jsp"></jsp:include>
+<jsp:include page="/common/topMenu.jsp"></jsp:include>
 
 <!-- page header -->
 <div class="page-header header-filter clear-filter" data-parallax="true" style="background-image: url('/images/userSetting/ ${userSetting.image}')">
@@ -150,7 +150,7 @@ $(function(){
 							
 							<!-- 이미지업로드 -->
 							<div>
-								<input type="file" name="file" class="inputFileHidden" maxLength="13" value="${userSetting.image}"/ style="width: 208px;"><br/><br/>
+								<input type="file" name="file" class="inputFileHidden" maxLength="13" value="${userSetting.image}" style="width: 208px;"><br/><br/>
 							</div>
 							
 							<div class="form-group bmd-form-group">
