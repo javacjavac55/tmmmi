@@ -517,6 +517,7 @@ box-shadow: 5px 5px 20px purple;
 					</c:forEach>
 				</div>
 				</div>
+				<p style=" font-size: small; font-style: italic;color: gray;text-align: right;">* 상단의 메뉴에서 완료 개수를 통한 그래프를 확인할 수 있습니다.</p>
 				</div>
 				<img  id="arrow" src="/images/common/topIcon.png" width="2.5%" style="cursor:pointer;"/>
 			</div>

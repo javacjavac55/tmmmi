@@ -101,7 +101,7 @@ public class UserController {
 			System.out.println(user);
 			modelAndView.setViewName("/userSetting/updateUserSetting.jsp");
 		}else {
-			modelAndView.setViewName("/user/addSNSUser.jsp");
+			modelAndView.setViewName("/user/snsAddUser.jsp");
 		}
 		
 		return modelAndView;
