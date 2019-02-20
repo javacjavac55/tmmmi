@@ -40,7 +40,7 @@ public class ContentTastyController {
 		modelAndView.addObject("contentTastyList", contentList);
 		modelAndView.addObject("bgColor", (userSettingService.getUserSetting(userNo).getMainColorModeNo()==0)?"#000000":"#FFFFFF");
 		modelAndView.addObject("fontColor", (userSettingService.getUserSetting(userNo).getMainColorModeNo()==0)?"#FFFFFF":"#000000");
-		modelAndView.setViewName("/content/tastyContent.jsp");
+		modelAndView.setViewName("/content/tasty.jsp");
 		System.out.println(contentList);
 		System.out.println(contentList.size());
 		return modelAndView;

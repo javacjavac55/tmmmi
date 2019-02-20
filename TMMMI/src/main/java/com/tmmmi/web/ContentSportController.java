@@ -64,7 +64,7 @@ public class ContentSportController {
 		modelAndView.addObject("contentSport" , sportList);
 		modelAndView.addObject("bgColor", (userSettingService.getUserSetting(userNo).getMainColorModeNo()==0)?"#000000":"#FFFFFF");
 		modelAndView.addObject("fontColor", (userSettingService.getUserSetting(userNo).getMainColorModeNo()==0)?"#FFFFFF":"#000000");
-		modelAndView.setViewName("/content/kSoccerContent.jsp");
+		modelAndView.setViewName("/content/sportKSoccer.jsp");
 		
 		return modelAndView;
 	}
@@ -88,7 +88,7 @@ public class ContentSportController {
 		modelAndView.addObject("contentSport" , sportList);
 		modelAndView.addObject("bgColor", (userSettingService.getUserSetting(userNo).getMainColorModeNo()==0)?"#000000":"#FFFFFF");
 		modelAndView.addObject("fontColor", (userSettingService.getUserSetting(userNo).getMainColorModeNo()==0)?"#FFFFFF":"#000000");
-		modelAndView.setViewName("/content/wSoccerContent.jsp");
+		modelAndView.setViewName("/content/sportWSoccer.jsp");
 		
 		return modelAndView;
 	}
@@ -111,7 +111,7 @@ public class ContentSportController {
 		modelAndView.addObject("contentSport" , sportList);
 		modelAndView.addObject("bgColor", (userSettingService.getUserSetting(userNo).getMainColorModeNo()==0)?"#000000":"#FFFFFF");
 		modelAndView.addObject("fontColor", (userSettingService.getUserSetting(userNo).getMainColorModeNo()==0)?"#FFFFFF":"#000000");
-		modelAndView.setViewName("/content/kBaseballContent.jsp");
+		modelAndView.setViewName("/content/sportKBaseball.jsp");
 		
 		return modelAndView;
 	}
@@ -134,7 +134,7 @@ public class ContentSportController {
 		modelAndView.addObject("contentSport" , sportList);
 		modelAndView.addObject("bgColor", (userSettingService.getUserSetting(userNo).getMainColorModeNo()==0)?"#000000":"#FFFFFF");
 		modelAndView.addObject("fontColor", (userSettingService.getUserSetting(userNo).getMainColorModeNo()==0)?"#FFFFFF":"#000000");
-		modelAndView.setViewName("/content/wBaseballContent.jsp");
+		modelAndView.setViewName("/content/sportWBaseball.jsp");
 		
 		return modelAndView;
 	}
@@ -156,7 +156,7 @@ public class ContentSportController {
 		modelAndView.addObject("contentSport" , sportList);
 		modelAndView.addObject("bgColor", (userSettingService.getUserSetting(userNo).getMainColorModeNo()==0)?"#000000":"#FFFFFF");
 		modelAndView.addObject("fontColor", (userSettingService.getUserSetting(userNo).getMainColorModeNo()==0)?"#FFFFFF":"#000000");
-		modelAndView.setViewName("/content/basketballContent.jsp");
+		modelAndView.setViewName("/content/sportBasketball.jsp");
 		
 		return modelAndView;
 	}
@@ -180,7 +180,7 @@ public class ContentSportController {
 		modelAndView.addObject("contentSport" , sportList);
 		modelAndView.addObject("bgColor", (userSettingService.getUserSetting(userNo).getMainColorModeNo()==0)?"#000000":"#FFFFFF");
 		modelAndView.addObject("fontColor", (userSettingService.getUserSetting(userNo).getMainColorModeNo()==0)?"#FFFFFF":"#000000");
-		modelAndView.setViewName("/content/generalContent.jsp");
+		modelAndView.setViewName("/content/sportGeneral.jsp");
 		
 		return modelAndView;
 	}
@@ -201,7 +201,7 @@ public class ContentSportController {
 		modelAndView.addObject("contentSport", sportList);
 		modelAndView.addObject("bgColor", (userSettingService.getUserSetting(userNo).getMainColorModeNo()==0)?"#000000":"#FFFFFF");
 		modelAndView.addObject("fontColor", (userSettingService.getUserSetting(userNo).getMainColorModeNo()==0)?"#FFFFFF":"#000000");
-		modelAndView.setViewName("/content/highlightContent.jsp");
+		modelAndView.setViewName("/content/sportHighlight.jsp");
 		
 		return modelAndView;
 	}

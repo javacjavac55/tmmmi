@@ -95,7 +95,7 @@
 				count+=10;
 				if (more) {
 	                $.ajax({
-	                    url: "/contentTastyRest/restContentTastyList?index="+count,
+	                    url: "/contentTastyRest/getContentTastyList?index="+count,
 	                    method: 'GET',
 	                    dateType: 'json',
 	                    headers: {
@@ -179,7 +179,7 @@
 				}
         	})
         	$.ajax({
-                    url: "/contentTastyRest/restContentTastyList?index=1",
+                    url: "/contentTastyRest/getContentTastyList?index=1",
                     method: 'GET',
                     dateType: 'json',
                     headers: {

@@ -207,6 +207,7 @@
 				<div class="col-sm-2"><input type="text" name="shoppingSearch2" id="shoppingSearch2Check" value="${contentSetting.shoppingSearch2 }" ><label for="shoppingSearch2" align="center">쇼핑 검색2</label></div>
 				<div class="col-sm-2"><input type="text" name="shoppingSearch3" id="shoppingSearch3Check"  value="${contentSetting.shoppingSearch3 }" ><label for="shoppingSearch3" align="center">쇼핑 검색3</label></div>
 				<div class="col-sm-2"><input type="text" name="shoppingReview" id="shoppingReviewCheck" value="${contentSetting.shoppingReview }"><label for="shoppingReview" align="center">리뷰 키워드</label></div>
+				<span>* 리뷰 키워드 뒤에 자동으로 '하울'이 붙여져 검색됩니다. </span>
 				<hr width="98%" />
 			</div>
 			

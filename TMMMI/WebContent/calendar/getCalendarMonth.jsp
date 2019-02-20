@@ -47,24 +47,28 @@
     		border-top-right-radius: 13px;
 		}
 		
-		.menu-bar {
-			height: 32px !important;
-		}
-		
 		.logo {
-			top: 0px !important;
-    		left: 15px !important;
-		}
-		
-		.nav-link {
-			top: 10px !important;
-    		right: 20px !important;
-		}
+    		font-size: xx-large;
+    		font-weight: 900;
+    		padding: 0 0 0 20px;
+    		font-color: black;
+    		cursor: pointer;
+    	}
+    	
+    	.nav-link {
+    		float: right;
+    		font-size: large;
+    		font-weight: bold;
+    		padding: 10px 20px 0 0;
+    		font-color: black;
+    		cursor: pointer;
+    	}
 	</style>
 </head>
 <body>
-    <div id="top">
-		<jsp:include page="/common/toolbar.jsp"/>
+   	<div id="top">
+        <span class="logo">TMMMI</span>
+        <span class="nav-link">Logout</span>
     </div>
     <div id="lnb">
         <div class="lnb-new-schedule">
@@ -379,6 +383,15 @@
 				})
 			});
 		})
+		
+		
+    	$('.logo').on('click', function(){
+    		$(self).attr('location','../index.jsp');
+    	})
+    	
+    	$('.nav-link').on('click', function(){
+    		$(self).attr('location','/user/logout');
+    	})
     </script>
     <jsp:include page="/common/mainMenu_cal.jsp"/>
 </body>

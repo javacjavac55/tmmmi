@@ -51,7 +51,7 @@ public class CalendarController {
 	public void getCalendarSetting() {}
 	public void getUserSetting() {}
 	
-	@RequestMapping(value="/getUserCategoryList", method=RequestMethod.GET)
+	@RequestMapping(value="getUserCategoryList", method=RequestMethod.GET)
 	public ModelAndView getUserCategoryList(HttpSession session) {
 		System.out.println("/getUserCategoryList : GET");
 		int userNo = (int)session.getAttribute("userNo");

@@ -14,24 +14,28 @@
     <link rel="stylesheet" type="text/css" href="/css/tui/icons.css"></link>
     
     <style>
-    	.menu-bar {
-			height: 32px !important;
-		}
-		
-		.logo {
-			top: 0px !important;
-    		left: 15px !important;
-		}
-		
-		.nav-link {
-			top: 10px !important;
-    		right: 20px !important;
-		}
+    	.logo {
+    		font-size: xx-large;
+    		font-weight: 900;
+    		padding: 0 0 0 20px;
+    		font-color: black;
+    		cursor: pointer;
+    	}
+    	
+    	.nav-link {
+    		float: right;
+    		font-size: large;
+    		font-weight: bold;
+    		padding: 10px 20px 0 0;
+    		font-color: black;
+    		cursor: pointer;
+    	}
     </style>
 </head>
 <body>
     <div id="top">
-        <jsp:include page="/common/toolbar.jsp"/>
+        <span class="logo">TMMMI</span>
+        <span class="nav-link">Logout</span>
     </div>
     <div id="lnb">
         <div id="lnb-calendars" class="lnb-calendars">
@@ -192,7 +196,15 @@
 			ScheduleList.push(schedule);
 		</c:forEach> 
     </script>
-    
+    <script>
+    	$('.logo').on('click', function(){
+    		$(self).attr('location','../index.jsp');
+    	})
+    	
+    	$('.nav-link').on('click', function(){
+    		$(self).attr('location','/user/logout');
+    	})
+    </script>
     <script src="/javascript/tui/theme/dooray.js"></script>
     <script src="/javascript/tui/calendar-interest-setting.js" charset="utf-8"></script>
     <jsp:include page="/common/mainMenu_cal2.jsp"/>

@@ -31,8 +31,8 @@ public class ContentTastyRestController {
 	public ContentTastyRestController() {
 		System.out.println(this.getClass());
 	}
-	@RequestMapping(value="/restContentTastyList", method=RequestMethod.GET)
-	public List<ContentTasty> getContentList(HttpSession session, int index)throws Exception {
+	@RequestMapping(value="getContentTastyList", method=RequestMethod.GET)
+	public List<ContentTasty> getContentTastyList(HttpSession session, int index)throws Exception {
 		int userNo = (int) session.getAttribute("userNo");
 		System.out.println(index);
 		System.out.println("aaa:"+contentTastyService.getContentTastyList(contentSettingService.getContentSetting(userNo), index));

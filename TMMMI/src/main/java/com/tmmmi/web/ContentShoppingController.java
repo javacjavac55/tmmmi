@@ -43,7 +43,7 @@ public class ContentShoppingController {
 		modelAndView.addObject("shoppingContentFirstList", shoppingContentService.getContentShoppingFirstList(contentSettingService.getContentSetting(userNo), 0));
 		modelAndView.addObject("bgColor", (userSettingService.getUserSetting(userNo).getMainColorModeNo()==0)?"#000000":"#FFFFFF");
 		modelAndView.addObject("fontColor", (userSettingService.getUserSetting(userNo).getMainColorModeNo()==0)?"#FFFFFF":"#000000");
-		modelAndView.setViewName("/content/shoppingContentFirst.jsp");
+		modelAndView.setViewName("/content/shoppingFirst.jsp");
 		return modelAndView;
 	}
 	
@@ -57,7 +57,7 @@ public class ContentShoppingController {
 		modelAndView.addObject("shoppingContentSecondList", shoppingContentService.getContentShoppingSecondList(contentSettingService.getContentSetting(userNo), 0));
 		modelAndView.addObject("bgColor", (userSettingService.getUserSetting(userNo).getMainColorModeNo()==0)?"#000000":"#FFFFFF");
 		modelAndView.addObject("fontColor", (userSettingService.getUserSetting(userNo).getMainColorModeNo()==0)?"#FFFFFF":"#000000");
-		modelAndView.setViewName("/content/shoppingContentSecond.jsp");
+		modelAndView.setViewName("/content/shoppingSecond.jsp");
 		return modelAndView;
 	}
 	
@@ -71,7 +71,7 @@ public class ContentShoppingController {
 		modelAndView.addObject("shoppingContentThirdList", shoppingContentService.getContentShoppingThirdList(contentSettingService.getContentSetting(userNo), 0));
 		modelAndView.addObject("bgColor", (userSettingService.getUserSetting(userNo).getMainColorModeNo()==0)?"#000000":"#FFFFFF");
 		modelAndView.addObject("fontColor", (userSettingService.getUserSetting(userNo).getMainColorModeNo()==0)?"#FFFFFF":"#000000");
-		modelAndView.setViewName("/content/shoppingContentThird.jsp");
+		modelAndView.setViewName("/content/shoppingThird.jsp");
 		return modelAndView;
 	}
 	
@@ -85,7 +85,7 @@ public class ContentShoppingController {
 		modelAndView.addObject("shoppingContentReviewList", shoppingContentService.getContentShoppingReviewList(contentSettingService.getContentSetting(userNo), 0, null));
 		modelAndView.addObject("bgColor", (userSettingService.getUserSetting(userNo).getMainColorModeNo()==0)?"#000000":"#FFFFFF");
 		modelAndView.addObject("fontColor", (userSettingService.getUserSetting(userNo).getMainColorModeNo()==0)?"#FFFFFF":"#000000");
-		modelAndView.setViewName("/content/shoppingReviewContent.jsp");
+		modelAndView.setViewName("/content/shoppingReview.jsp");
 		return modelAndView;
 	}
 

@@ -305,8 +305,16 @@ public class ContentMovieDaoImpl extends ContentDaoAdaptor {
 								contentMovie.setMovieRunningTime(val);
 							else if (val.contains("°³ºÀ"))
 								contentMovie.setMovieOpenDate(val.replace("°³ºÀ", ""));
-							else if (!val.contains("Àç»ý"))
-								contentMovie.setMovieGenre(val);
+							else if (!val.contains("Àç»ý")) {
+								String[] genre = val.split(",");
+								if (genre.length > 3) {
+									contentMovie.setMovieGenre(genre[0]+","+genre[1]+","+genre[2]);
+								} else {
+									contentMovie.setMovieGenre(val);
+								}
+								
+							}
+								
 						}
 						break;
 					case "°¨µ¶":
