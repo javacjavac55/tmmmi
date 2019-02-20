@@ -104,7 +104,7 @@
 									<span class="image">
 										<img src="/css/index/images/pic03.jpg" alt="" />
 									</span>
-									<a href="/diary/listDiary">
+									<a href="/diary/getDiaryList">
 										<h2>Diary</h2><br/>
 										<img src="/images/loginIndex/diary.png" width="20%"/>
 										<div class="content">

@@ -118,6 +118,7 @@
 								</div>
 								
 								<div align="center">
+									<a href="../index.jsp" class="btn btn-default">뒤로 가기</a>
 									<button type="button" class="btn btn-primary" >아이디 찾기</button>
 								</div>
 							</form>
