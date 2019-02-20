@@ -11,6 +11,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
@@ -78,7 +79,10 @@ public class UserController {
 		if(user.getAuthNum().equals(((String)session.getAttribute("authNum")))){
 			user.setEmailCheck(1);
 			userService.addUser(user);
-			modelAndView.setViewName("/user/login.jsp");
+			session.setAttribute("userNo", userService.getUserId(user.getUserId()).getUserNo());
+			session.setAttribute("role", 1);
+			session.setAttribute("userSetting", userSettingService.getUserSetting(userService.getUserId(user.getUserId()).getUserNo()));
+			modelAndView.setViewName("/userSetting/updateUserSetting.jsp");
 		}else {
 			modelAndView.setViewName("/user/addUser.jsp");
 		}
@@ -94,7 +98,8 @@ public class UserController {
 		if(user.getAuthNum().equals(((String)session.getAttribute("authNum")))){
 			user.setEmailCheck(1);
 			userService.updateUser(user);
-			modelAndView.setViewName("/user/index.jsp");
+			System.out.println(user);
+			modelAndView.setViewName("/userSetting/updateUserSetting.jsp");
 		}else {
 			modelAndView.setViewName("/user/addSNSUser.jsp");
 		}
@@ -161,7 +166,9 @@ public class UserController {
 		
 		if(sessionId == (user.getUserNo())){
 			session.removeAttribute("userName");
+			session.removeAttribute("userSetting");
 			session.setAttribute("userName", user.getUserName());
+			session.setAttribute("userSetting", userSettingService.getUserSetting(user.getUserNo()));
 		}
 		
 		ModelAndView modelAndView = new ModelAndView();

@@ -148,7 +148,7 @@
 								<div class="container">
 									<form name="detailForm" class="form-inline ml-auto">
 										<div class="form-group bmd-form-group" style="align-content: right;">
-											<input type="text" class="form-control" id="searchKeyword" name="searchKeyword" placeholder="Á¦¸ñ+³»¿ë" value="${! empty search.searchKeyword ? search.searchKeyword : '' }">
+											<input type="text" class="form-control" id="searchKeyword" name="searchKeyword" placeholder="¾ÆÀÌµð" value="${! empty search.searchKeyword ? search.searchKeyword : '' }">
 											<input type="hidden" id="currentPage" name="currentPage"  value="" />
 										</div>
 										<button type="button" class="btn btn-white btn-raised btn-fab btn-round" id="search">
@@ -165,8 +165,8 @@
 										<th style="text-align: -webkit-center;">È¸¿ø ¹øÈ£</th>
 										<th style="text-align: -webkit-center;">È¸¿ø ¾ÆÀÌµð</th>            
 										<th style="text-align: -webkit-center;">SNS</th>
-										<th style="text-align: -webkit-center;">Å»Åð</th>
 										<th style="text-align: -webkit-center;">Å»Åð³¯Â¥</th>
+										<th style="text-align: -webkit-center;">Å»Åð</th>
 										<th style="text-align: -webkit-center;">¼öÁ¤</th>
 									</tr>
 								</thead>
@@ -191,11 +191,11 @@
 											<c:choose>
 												<c:when test="${user.withdrawCheck eq 1 }">
 													<td align="center" style="padding:25px;">${user.withdrawDate}</td>
-													<td align="center"><button type="button" class="btn btn-warning btn-round" id="withdrawCancle${user.userNo }" data-withdrawcancle="${user.userNo }">º¹±¸</button></td>
+													<td align="center"><span id="helf${user.userNo }"></span><button type="button" class="btn btn-warning btn-round" id="withdrawCancle${user.userNo }" data-withdrawcancle="${user.userNo }">º¹±¸</button></td>
 												</c:when> 
 												<c:otherwise>
 													<td align="center" style="padding:25px;"></td>
-													<td align="center"><button type="button" class="btn btn-info btn-round" id="withdraw${user.userNo }" data-withdraw="${user.userNo }">Å»Åð</button></td>
+													<td align="center"><span id="helf${user.userNo }"></span><button type="button" class="btn btn-info btn-round" id="withdraw${user.userNo }" data-withdraw="${user.userNo }">Å»Åð</button></td>
 												</c:otherwise>
 											</c:choose>
 											<td align="center"><button type="button" class="btn btn-primary btn-round" id="update${user.userNo }" data-param="${user.userNo }">¼öÁ¤</button></td>

@@ -130,8 +130,8 @@
 				return;
 			}
 			swal({
-				title : "가입 완료" , 
-				text: "회원가입을 완료하였습니다. Tmmmi를 이용해 보세요!" , 
+				title : "가입 완료!" , 
+				text: "사용자 설정 수정 화면으로 이동합니다." , 
 				icon : "success" , 
 			}).then((value)=>{
 				$("form").attr("method" , "POST").attr("action" , "/user/addUser").submit();

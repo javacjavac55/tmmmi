@@ -6,9 +6,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.ModelAndView;
 
 import com.tmmmi.service.user.GoogleService;
 import com.tmmmi.service.user.NaverService;
@@ -137,29 +139,30 @@ public class SNSLoginController {
 		boolean result;
 		
 		if(userService.getUserId(user.getUserId()) == null) {
-			result = true;
-		}else {
 			result = false;
+		}else {
+			result = true;
 		}
 
-		// System.out.println("받아온정보"+user.getSnsType());
-		if (result == true) {// 이메일정보가 db에 없을경우
-
+		if (result == false) {
+			
 			session.setAttribute("user", user);
 			if(userService.getUserId(user.getUserId()) == null){
-				userService.addUser(user);// snstype으로 회원가입
+				userService.addUser(user);
 				session.setAttribute("userNo", userService.getUserId(user.getUserId()).getUserNo());
 				System.out.println("userNo : "+userService.getUserId(user.getUserId()).getUserNo());
 				System.out.println("카카오 계정으로 회원가입");
 			}
 			
-			return "forward:/user/snsAddUser.jsp";
+			return "forward:/user/snsLogin.jsp";
 			
 		} else{
 			session.setAttribute("userNo", userService.getUserId(user.getUserId()).getUserNo());
 			System.out.println("카카오 계정으로 로그인");
 			
 			if(userService.getUserId(user.getUserId()).getUserName() == null) {
+				session.setAttribute("userNo", userService.getUserId(user.getUserId()).getUserNo());
+				System.out.println("userNo : "+userService.getUserId(user.getUserId()).getUserNo());
 				System.out.println("닉네임 없음");
 				return "forward:/user/snsLogin.jsp";
 			}else {

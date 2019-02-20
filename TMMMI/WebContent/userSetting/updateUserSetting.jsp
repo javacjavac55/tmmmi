@@ -117,7 +117,8 @@ $(function(){
 						<div class="description text-center">
 							<div class="form-group bmd-form-group">
 								<label class="bmd-label-static">Main Color</label>
-								<div class="form-check form-check-radio">
+								<p>* 컨텐츠의 배경색, 폰트색을 바꿀수 있습니다.</p>
+								<div class="form-check form-check-radio" style="margin-top: 30px;">
 									<label class="form-check-label">
 										<input class="form-check-input" type="radio" name="mainColorModeNo" id="mainColorModeNo0" value="0"  ${ ! empty userSetting.mainColorModeNo && userSetting.mainColorModeNo eq 0 ? "checked" : "" } >
 										<div id="chgcolor" style="background-color:#000000; border:solid 1px; padding: 1.5%; font-size:15px;">
@@ -149,12 +150,16 @@ $(function(){
 							<br/>
 							
 							<!-- 이미지업로드 -->
+							
 							<div>
-								<input type="file" name="file" class="inputFileHidden" maxLength="13" value="${userSetting.image}" style="width: 208px;"><br/><br/>
+								<label class="bmd-label-static">Main Image</label>
+								<p>* 배경 이미지를 바꿀수 있습니다.</p>
+								<input type="file" name="file" class="inputFileHidden" maxLength="13" value="${userSetting.image}" style="width: 208px;"><br/><br/><br/>
 							</div>
 							
 							<div class="form-group bmd-form-group">
 								<label class="bmd-label-static">Menu Font Color</label>
+								<p>* 메뉴 폰트 컬러를 바꿀수 있습니다.</p>
 								<div id="picker" ></div> <br>
 								<div><label style="width:195px; height: 30px;" for="color1">현재 메뉴 폰트 색상:</label><input type="text" id="color1" name="color1" class="colorwell" value="${userSetting.menuFontColor}" /></div>
 								<div><label style="width:195px; height: 30px;" for="menuFontColor">변경할 메뉴 폰트 색상:</label><input type="text" id="menuFontColor" name="menuFontColor" class="colorwell" value=" " /></div>

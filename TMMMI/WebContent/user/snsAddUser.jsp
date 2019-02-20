@@ -90,7 +90,11 @@
 					 
 				return;
 			}
-			
+			swal({
+				  text: "사용자 설정 수정 화면으로 이동합니다!",
+				  icon: "success",
+				  dangerMode: true,
+				})
 			$("form").attr("method" , "POST").attr("action" , "/user/addSNSUser").submit();
 		}
 	</script>
@@ -199,6 +203,7 @@
             success : function(JSONData, status){
             	
             	var result = JSONData;
+            	
             	if( ! (inputed != "" && (inputed.indexOf('@') < 1 || inputed.indexOf('.') == -1))){
             		if(result){
 	            		$('#help2').remove()
@@ -233,7 +238,7 @@
 <body class="index-page sidebar-collapse">
 <!-- sideMenu.jsp 추가 -->
 <jsp:include page="/common/topMenu.jsp"></jsp:include>
- 	<div class="page-header header-filter clear-filter" data-parallax="true" style="background-image: url('/images/userSetting/201803230806542197_6_20180323080704381.jpg')">
+ 	<div class="page-header header-filter clear-filter" data-parallax="true" style="background-image: url('/images/userSetting/backgroundImage.jpg')">
     <div class="container">
       <div class="row">
         <div class="col-md-8 ml-auto mr-auto">

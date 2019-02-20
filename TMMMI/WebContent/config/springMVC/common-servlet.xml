@@ -48,6 +48,7 @@
 			<mvc:exclude-mapping path="/images/**"/>
 			<mvc:exclude-mapping path="/javascript/**"/>
 			<mvc:exclude-mapping path="/ckeditor/**"/>
+			<mvc:exclude-mapping path="/user/addSNSUser"/>
 			<bean class="com.tmmmi.common.web.LogonCheckInterceptor" />
    		</mvc:interceptor>
 

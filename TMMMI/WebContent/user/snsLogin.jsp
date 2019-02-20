@@ -12,7 +12,7 @@ if( ${empty userName }){
 	opener.document.location.href="/user/snsAddUser.jsp"
 	self.close();	
 }else{
-	opener.document.location.href="/common/loginIndex.jsp"
+	opener.document.location.href="/common/home.jsp"
 	self.close();
 }
 </script>
