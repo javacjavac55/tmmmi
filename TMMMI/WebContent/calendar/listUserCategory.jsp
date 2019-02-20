@@ -25,7 +25,7 @@
 <script src ="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 <script>
 	function validateUserCategory(){
-		if ($("#userCategoryName").val() & /^#[0-9A-F]{6}$/i.test($("#userCategoryColor").val())) {
+		if ($("#userCategoryName").val() ) {
 			return true;
 		} else {
 			swal({

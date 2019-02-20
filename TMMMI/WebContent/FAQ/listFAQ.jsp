@@ -316,7 +316,7 @@
 
 			a:hover {
 			    border-bottom-color: transparent;
-			    color: #fafafa !important;
+			    color: #9c27b0 !important;
 			}
 	</style>
     
