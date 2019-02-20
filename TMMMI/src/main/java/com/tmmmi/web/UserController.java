@@ -94,9 +94,9 @@ public class UserController {
 		if(user.getAuthNum().equals(((String)session.getAttribute("authNum")))){
 			user.setEmailCheck(1);
 			userService.updateUser(user);
-			modelAndView.setViewName("/user/index.jsp");
+			modelAndView.setViewName("/common/home.jsp");
 		}else {
-			modelAndView.setViewName("/user/addSNSUser.jsp");
+			modelAndView.setViewName("/user/snsAddUser.jsp");
 		}
 		
 		return modelAndView;
