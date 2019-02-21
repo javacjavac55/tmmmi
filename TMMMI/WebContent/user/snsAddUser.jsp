@@ -114,7 +114,7 @@
 	            },
 	            success : function(JSONData, status){
 	            	var result = JSONData;
-	            	if(result){alert("해당 이메일로 코드를 보냈습니다. 코드를 입력해 주세요!");}
+	            	if(result){swal("해당 이메일로 코드를 보냈습니다. 코드를 입력해 주세요!");}
 	            }
 			});
 		}

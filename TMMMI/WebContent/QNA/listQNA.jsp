@@ -212,6 +212,11 @@
 		button{
 			color:white !important;
 		}
+		
+		a:hover {
+			    border-bottom-color: transparent;
+			    color: #9c27b0 !important;
+			}
 </style>
 
 </head>

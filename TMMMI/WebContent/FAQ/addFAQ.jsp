@@ -30,6 +30,7 @@
 	<script src ="https://unpkg.com/sweetalert/dist/sweetalert.min.js" ></script >
 	
 	<!--ckeditor  -->
+	<!-- <script src="/ckeditor/ckeditor.js"></script> -->
 	<script src="//cdn.ckeditor.com/4.7.3/full/ckeditor.js"></script>
 
 	<link href="https://fonts.googleapis.com/css?family=Nanum+Gothic:400,700,800&amp;subset=korean" rel="stylesheet">
@@ -67,8 +68,8 @@
 			var name=$("input[name='FAQTitle']").val();
 			var detail = CKEDITOR.instances.ckeditor.getData();
 				
-			if(name == null || name.length>20){
-				swal("제목은 20자 미만이여야 합니다!", "얼른 입력해주세요");
+			if(name == null || name.length>30){
+				swal("제목은 30자 미만이여야 합니다!", "얼른 입력해주세요");
 				return;
 			}
 			if(detail == null || detail.length<10){
