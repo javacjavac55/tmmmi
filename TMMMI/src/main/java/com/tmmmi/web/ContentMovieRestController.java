@@ -32,26 +32,26 @@ public class ContentMovieRestController {
 	
 	@RequestMapping(value="getContentMovieBoxOffice", method=RequestMethod.GET)
 	public List<ContentMovie> getBoxOfficeList(@RequestParam("index") int index, HttpSession session) throws Exception {
-		return contentMovieService.getBoxOfficeList(index);
+		return contentMovieService.getContentMovieBoxOfficeList(index);
 	}
 	
 	@RequestMapping(value="getContentMovieNew", method=RequestMethod.GET)
 	public List<ContentMovie> getNewMovieList(@RequestParam("index") int index, HttpSession session) throws Exception {
-		return contentMovieService.getNewMovieList(index);
+		return contentMovieService.getContentMovieNewList(index);
 	}
 	
 	@RequestMapping(value="getContentMovieUpcoming", method=RequestMethod.GET)
 	public List<ContentMovie> getUpcomingMovieList(@RequestParam("index") int index, HttpSession session) throws Exception {
-		return contentMovieService.getUpcomingMovieList(index);
+		return contentMovieService.getContentMovieUpcomingList(index);
 	}
 	
 	@RequestMapping(value="getContentMovieReview", method=RequestMethod.GET)
 	public List<ContentMovie> getMovieReviewList(@RequestParam("index") int index, HttpSession session) throws Exception {
-		return contentMovieService.getMovieReviewList(index);
+		return contentMovieService.getContentMovieReviewList(index);
 	}
 	
 	@RequestMapping(value="getContentMovieTrailer", method=RequestMethod.GET)
 	public List<ContentMovie> getMovieTrailerList(@RequestParam("index") int index, HttpSession session) throws Exception {
-		return contentMovieService.getMovieTrailerList(index);
+		return contentMovieService.getContentMovieTrailerList(index);
 	}
 }

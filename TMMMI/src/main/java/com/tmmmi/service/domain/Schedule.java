@@ -1,11 +1,9 @@
 package com.tmmmi.service.domain;
 
-import java.sql.Date;
-
 public class Schedule {
 
-	private int scheduleNo;
 	private int userNo;
+	private int scheduleNo;
 	private int userCategoryNo;
 	private String userCategoryColor;
 	private String scheduleTitle;

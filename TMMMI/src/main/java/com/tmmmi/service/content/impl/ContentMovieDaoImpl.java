@@ -19,7 +19,7 @@ public class ContentMovieDaoImpl extends ContentDaoAdaptor {
 		// TODO Auto-generated constructor stub
 	}
 	
-	public List<ContentMovie> getBoxOfficeList(int index) throws Exception {
+	public List<ContentMovie> getContentMovieBoxOfficeList(int index) throws Exception {
 		List<ContentMovie> result = new ArrayList<ContentMovie>();
 		try {
 			String thumbnailSize = "size=300x421";
@@ -61,7 +61,7 @@ public class ContentMovieDaoImpl extends ContentDaoAdaptor {
 		return result;
 	}
 	
-	public List<ContentMovie> getNewMovieList(int index) throws Exception {
+	public List<ContentMovie> getContentMovieNewList(int index) throws Exception {
 		List<ContentMovie> result = new ArrayList<ContentMovie>();
 		try {
 			String address = "https://movie.naver.com/movie/running/current.nhn";
@@ -142,7 +142,7 @@ public class ContentMovieDaoImpl extends ContentDaoAdaptor {
 		return result;
 	}
 	
-	public List<ContentMovie> getUpcomingMovieList(int index) throws Exception {
+	public List<ContentMovie> getContentMovieUpcomingList(int index) throws Exception {
 		List<ContentMovie> result = new ArrayList<ContentMovie>();
 		try {
 			String address = "https://movie.naver.com/movie/running/premovie.nhn";
@@ -227,7 +227,7 @@ public class ContentMovieDaoImpl extends ContentDaoAdaptor {
 		return result;
 	}
 	
-	public List<ContentMovie> getMovieReviewList(int index) throws Exception {
+	public List<ContentMovie> getContentMovieReviewList(int index) throws Exception {
 		List<ContentMovie> result = new ArrayList<ContentMovie>();
 		try {
 			String address = "https://movie.naver.com/";
@@ -263,7 +263,7 @@ public class ContentMovieDaoImpl extends ContentDaoAdaptor {
 		return result;
 	}
 	
-	public List<ContentMovie> getMovieTrailerList(int index) throws Exception {
+	public List<ContentMovie> getContentMovieTrailerList(int index) throws Exception {
 		List<ContentMovie> result = new ArrayList<ContentMovie>();
 		try {
 			String address = "https://movie.naver.com/movie/running/movieclip.nhn?subcategoryid=TRAILER&searchKeyword=&page="+(index+1);

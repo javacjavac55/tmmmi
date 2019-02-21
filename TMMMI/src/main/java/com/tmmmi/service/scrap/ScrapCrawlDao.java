@@ -12,10 +12,10 @@ public interface ScrapCrawlDao {
 	
 	public Scrap crawlSportScrap(Scrap scrap) throws IOException;
 	
-	public Scrap crawlTastyScrap(Scrap scrap) throws IOException;
+	/*public Scrap crawlTastyScrap(Scrap scrap) throws IOException;*/
 	
 	public Scrap crawlShoppingScrap(Scrap scrap) throws IOException;
 	
-	public Scrap crawlUserKeywordScrap(Scrap scrap) throws IOException;
+	/*public Scrap crawlUserKeywordScrap(Scrap scrap) throws IOException;*/
 
 }

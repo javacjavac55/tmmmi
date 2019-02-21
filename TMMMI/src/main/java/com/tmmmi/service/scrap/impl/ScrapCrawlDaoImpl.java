@@ -23,13 +23,13 @@ public class ScrapCrawlDaoImpl implements ScrapCrawlDao {
 			return crawlMovieScrap(scrap);
 		} else if (scrap.getSectionNo() == 2) {
 			return crawlSportScrap(scrap);
-		} else if (scrap.getSectionNo() == 3) {
+		} /*else if (scrap.getSectionNo() == 3) {
 			return crawlTastyScrap(scrap);
-		} else if (scrap.getSectionNo() == 4) {
+		}*/ else if (scrap.getSectionNo() == 4) {
 			return crawlShoppingScrap(scrap);
-		} else if (scrap.getSectionNo() == 5) {
+		} /*else if (scrap.getSectionNo() == 5) {
 			return crawlUserKeywordScrap(scrap);
-		}
+		}*/
 		return null;
 	}
 
@@ -52,13 +52,13 @@ public class ScrapCrawlDaoImpl implements ScrapCrawlDao {
 		return scrap;
 	}
 	
-	@Override
+	/*@Override
 	public Scrap crawlTastyScrap(Scrap scrap) throws IOException {
 		Document doc = Jsoup.parse(new URL(scrap.getScrapLink()).openStream(), "UTF-8", scrap.getScrapLink());
 		scrap.setScrapTitle(doc.select("title").text());
 		scrap.setScrapDetail(doc.toString());
 		return scrap;
-	}
+	}*/
 	
 	@Override
 	public Scrap crawlShoppingScrap(Scrap scrap) throws IOException {
@@ -69,12 +69,12 @@ public class ScrapCrawlDaoImpl implements ScrapCrawlDao {
 		return scrap;
 	}
 	
-	@Override
+	/*@Override
 	public Scrap crawlUserKeywordScrap(Scrap scrap) throws IOException {
 		Document doc = Jsoup.connect(scrap.getScrapLink()).header("User-Referer", "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/55.0.2883.87 Safari/537.36")
 				.header("Referer", "https://www.naver.com").get();
 		scrap.setScrapTitle(doc.select("title").text());
 		scrap.setScrapDetail(doc.toString());
 		return scrap;
-	}
+	}*/
 }

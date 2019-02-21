@@ -67,10 +67,6 @@ public class ToDoServiceImpl implements ToDoService {
 	public ToDo getToDoOne(ToDo toDo) throws Exception{
 		return toDoDao.getToDoOne(toDo);
 	}
-	@Override
-	public void getToDoDayGraph(Map<String, Object> todomap) throws Exception {
-		
-	}
 
 	@Override
 	public List<ToDo> getToDoMonthGraph(Map<String, Object> todomap) throws Exception {
@@ -80,10 +76,4 @@ public class ToDoServiceImpl implements ToDoService {
 		return todoMonth;
 	}
 
-	@Override
-	public List<ToDo> getToDoWordCloud(Map<String, Object> todomap) throws Exception {
-		System.out.println("getToDoWordCloudDao");
-		List<ToDo>todoWordCloud = toDoDao.getWordCloud(todomap);
-		return todoWordCloud;
-	}
 }

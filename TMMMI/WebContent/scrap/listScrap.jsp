@@ -118,9 +118,8 @@
 			fncGetList(1);
 		});
 		
-		$("#imageList").on("click", function(){
-			var currentPage =$(this).data('param1');
-			location.replace('/scrap/imageList?currentPage='+currentPage);
+		$("#list").on("click", function(){
+			location.replace('/scrap/getScrapList');
 		})
 
 	});
@@ -189,7 +188,7 @@
 								<div class="container">
 									<form name="detailForm" class="form-inline ml-auto">
 										<div class="form-group bmd-form-group" style="align-content: right;">
-											<input type="text" class="form-control" id="searchKeyword" name="searchKeyword" placeholder="力格+郴侩" value="${! empty search.searchKeyword ? search.searchKeyword : '' }">
+											<input type="text" class="form-control" id="searchKeyword" name="searchKeyword" placeholder="力格" value="${! empty search.searchKeyword ? search.searchKeyword : '' }">
 											<input type="hidden" id="currentPage" name="currentPage"  value="" />
 										</div>
 										<button type="button" class="btn btn-white btn-raised btn-fab btn-round" id="search">
@@ -252,6 +251,7 @@
 									style="float: left;">
 									<button type="button" name="delete" class="btn btn-primary"
 										onclick="fncDeleteScrap();">昏力</button>
+									<button type="button" id="list" class="btn btn-default">格废</button>
 								</div>
 								<div class="col-sm-offset-4  col-sm-4 text-right"
 									style="float: right;">

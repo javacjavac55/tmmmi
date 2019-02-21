@@ -80,12 +80,6 @@ public class ToDoDaoImpl implements ToDoDao {
 	public ToDo getToDoOne(ToDo toDo) throws Exception{
 		return sqlSession.selectOne("TodoMapper.getTodoOne", toDo);
 	}
-	
-	@Override
-	public void getDayGraph() {
-		// TODO Auto-generated method stub
-		
-	}
 
 	@Override
 	public List<ToDo> getMonthGraph(Map<String, Object> todomap) throws Exception {
@@ -93,13 +87,5 @@ public class ToDoDaoImpl implements ToDoDao {
 		System.out.println(todomap);
 		System.out.println(sqlSession.selectList("TodoMapper.getMonthList", todomap));
 		return sqlSession.selectList("TodoMapper.getMonthList", todomap);
-	}
-
-	@Override
-	public List<ToDo> getWordCloud(Map<String, Object> todomap) throws Exception {
-		System.out.println("getWordCloudDao");
-		System.out.println(todomap);
-		System.out.println(sqlSession.selectList("TodoMapper.getWordList", todomap));
-		return sqlSession.selectList("TodoMapper.getWordList", todomap);
 	}
 }

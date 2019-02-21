@@ -56,8 +56,12 @@ public class ScrapDaoImpl implements ScrapDao {
 	}
 	
 	@Override
-	public int getTotalCount(int userNo) throws Exception{
-		return sqlSession.selectOne("ScrapMapper.getTotalCount", userNo);
+	public int getTotalCount(Search search, int userNo) throws Exception{
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("search", search);
+		map.put("userNo", userNo);
+		
+		return sqlSession.selectOne("ScrapMapper.getTotalCount", map);
 	}
 
 }

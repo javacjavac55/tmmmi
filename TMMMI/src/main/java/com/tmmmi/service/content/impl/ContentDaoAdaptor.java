@@ -12,79 +12,79 @@ import com.tmmmi.service.domain.ContentUserKeyword;
 
 public abstract class ContentDaoAdaptor implements ContentDao {
 	//movie
-	public List<ContentMovie> getBoxOfficeList(int index) throws Exception {
+	public List<ContentMovie> getContentMovieBoxOfficeList(int index) throws Exception {
 		// TODO Auto-generated method stub
 		return null;
 	}
 	
 	@Override
-	public List<ContentMovie> getNewMovieList(int index) throws Exception {
+	public List<ContentMovie> getContentMovieNewList(int index) throws Exception {
 		// TODO Auto-generated method stub
 		return null;
 	}
 	
 	@Override
-	public List<ContentMovie> getUpcomingMovieList(int index) throws Exception {
+	public List<ContentMovie> getContentMovieUpcomingList(int index) throws Exception {
 		// TODO Auto-generated method stub
 		return null;
 	}
 	
 	@Override
-	public List<ContentMovie> getMovieReviewList(int index) throws Exception {
+	public List<ContentMovie> getContentMovieReviewList(int index) throws Exception {
 		// TODO Auto-generated method stub
 		return null;
 	}
 	
 	@Override
-	public List<ContentMovie> getMovieTrailerList(int index) throws Exception {
+	public List<ContentMovie> getContentMovieTrailerList(int index) throws Exception {
 		// TODO Auto-generated method stub
 		return null;
 	}
 	
 	//sport
 	@Override
-	public List<ContentSport> getContentKsoccerList(int index) throws Exception {
+	public List<ContentSport> getContentSportKsoccerList(int index) throws Exception {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public List<ContentSport> getContentWsoccerList(int index) throws Exception {
+	public List<ContentSport> getContentSportWsoccerList(int index) throws Exception {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public List<ContentSport> getContentKbaseballList(int index) throws Exception {
+	public List<ContentSport> getContentSportKbaseballList(int index) throws Exception {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public List<ContentSport> getContentWbaseballList(int index) throws Exception {
+	public List<ContentSport> getContentSportWbaseballList(int index) throws Exception {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public List<ContentSport> getContentBasketballList(int index) throws Exception {
+	public List<ContentSport> getContentSportBasketballList(int index) throws Exception {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public List<ContentSport> getContentGeneralList(int index) throws Exception {
+	public List<ContentSport> getContentSportGeneralList(int index) throws Exception {
 		// TODO Auto-generated method stub
 		return null;
 	}
 	
 	@Override
-	public List<ContentSport> getContentHighlightList(int index) throws Exception{
+	public List<ContentSport> getContentSportHighlightList(int index) throws Exception{
 		return null;
 	}
 	
 	@Override
-	public ContentSport getContentHighlightVideo(ContentSport contentSport) throws Exception {
+	public ContentSport getContentSportHighlightVideo(ContentSport contentSport) throws Exception {
 		return null;
 	}
 

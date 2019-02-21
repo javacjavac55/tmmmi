@@ -158,7 +158,7 @@
             </span>
             <span id="renderRange" class="render-range"></span>
             <div id="imp_dday" style="display:contents;">
-            	<c:import url="/calendar/getImportantDday"/>
+            	<c:import url="/calendar/getImportantDdayList"/>
             </div>            
         </div>
         <div id="calendar"></div>
@@ -351,7 +351,7 @@
 			$('#imp_dday').html('');
 
 			$.ajax({
-				url : "/calendar/getImportantDday",
+				url : "/calendar/getImportantDdayList",
 				method : "GET",
 				dataType: "text",
 				headers : {

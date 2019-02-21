@@ -53,18 +53,24 @@
 											FROM scrap s, scrap_category c
 											<where>
 												user_no=#{userNo} AND s.scrap_category = c.scrap_category_no AND s.scrap_delete_check = 0
+												<if test="search.searchKeyword !='' and search.searchKeyword!=null">
+													AND scrap_title LIKE '%'||#{search.searchKeyword}||'%'
+												</if>
 											</where>											
 											ORDER BY scrap_no DESC) inner_table
 						WHERE ROWNUM &lt;= #{search.endRowNum} )
 		WHERE row_seq BETWEEN #{search.startRowNum} AND #{search.endRowNum} 
 	 </select>
 	
-	<select  id="getTotalCount"  parameterType="int"	 resultType="int">
+	<select  id="getTotalCount"  parameterType="map"	 resultType="int">
 	  	SELECT COUNT(*)
 	  	FROM(	SELECT scrap_no , scrap_category, scrap_title, scrap_date, scrap_category_name, scrap_type
 											FROM scrap s, scrap_category c
 											<where>
 												user_no=#{userNo} AND s.scrap_category = c.scrap_category_no AND s.scrap_delete_check = 0
+												<if test="search.searchKeyword !='' and search.searchKeyword!=null">
+													AND scrap_title LIKE '%'||#{search.searchKeyword}||'%'
+												</if>
 											</where>
 						) countTable						
 	 </select>

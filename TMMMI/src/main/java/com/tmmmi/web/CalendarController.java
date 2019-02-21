@@ -23,11 +23,7 @@ import com.tmmmi.service.usercategory.UserCategoryService;
 
 @Controller
 @RequestMapping("/calendar/*")
-public class CalendarController {	
-	@Autowired
-	@Qualifier("calendarSettingServiceImpl")
-	private CalendarSettingService calendarSettingService;
-		
+public class CalendarController {
 	@Autowired
 	@Qualifier("userCategoryServiceImpl")
 	private UserCategoryService userCategoryService;
@@ -48,9 +44,6 @@ public class CalendarController {
 		
 	}
 	
-	public void getCalendarSetting() {}
-	public void getUserSetting() {}
-	
 	@RequestMapping(value="getUserCategoryList", method=RequestMethod.GET)
 	public ModelAndView getUserCategoryList(HttpSession session) {
 		System.out.println("/getUserCategoryList : GET");
@@ -64,12 +57,6 @@ public class CalendarController {
 		
 		return modelAndView;
 	}
-	public void getScheduleList() {}
-	public void getFrequentScheduleList() {}
-	public void getImportantScheduleList() {}
-	public void DDayList() {}
-	public void getCalendarMovieList() {}
-	public void getCalendarSportList() {}
 	
 	@RequestMapping(value="getCalendarMonth", method=RequestMethod.GET)
 	public ModelAndView getCalendarMonth(HttpSession session) {
@@ -113,8 +100,8 @@ public class CalendarController {
 		return modelAndView;
 	}
 	
-	@RequestMapping(value="getImportantDday", method=RequestMethod.GET)
-	public ModelAndView getImportantDday(HttpSession session) {
+	@RequestMapping(value="getImportantDdayList", method=RequestMethod.GET)
+	public ModelAndView getImportantDdayList(HttpSession session) {
 		ModelAndView modelAndView = new ModelAndView();
 		
 		Calendar calendar = Calendar.getInstance();
@@ -142,9 +129,6 @@ public class CalendarController {
 		
 		return modelAndView;
 	}
-	
-	public void getCalendarWeek() {}
-	public void getCalendarDay() {}
 	
 	@RequestMapping(value="getCalendarInterest", method=RequestMethod.GET)
 	public ModelAndView getCalendarInterest() throws Exception{

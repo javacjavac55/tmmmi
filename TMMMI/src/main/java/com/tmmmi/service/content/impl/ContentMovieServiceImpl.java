@@ -25,23 +25,23 @@ public class ContentMovieServiceImpl extends ContentServiceAdaptor {
 		System.out.println(this.getClass());
 	}
 	
-	public List<ContentMovie> getBoxOfficeList(int index) throws Exception {
-		return contentMovieDao.getBoxOfficeList(index);
+	public List<ContentMovie> getContentMovieBoxOfficeList(int index) throws Exception {
+		return contentMovieDao.getContentMovieBoxOfficeList(index);
 	}
 	
-	public List<ContentMovie> getNewMovieList(int index) throws Exception {
-		return contentMovieDao.getNewMovieList(index);
+	public List<ContentMovie> getContentMovieNewList(int index) throws Exception {
+		return contentMovieDao.getContentMovieNewList(index);
 	}
 	
-	public List<ContentMovie> getUpcomingMovieList(int index) throws Exception {
-		return contentMovieDao.getUpcomingMovieList(index);
+	public List<ContentMovie> getContentMovieUpcomingList(int index) throws Exception {
+		return contentMovieDao.getContentMovieUpcomingList(index);
 	}
 	
-	public List<ContentMovie> getMovieReviewList(int index) throws Exception {
-		return contentMovieDao.getMovieReviewList(index);
+	public List<ContentMovie> getContentMovieReviewList(int index) throws Exception {
+		return contentMovieDao.getContentMovieReviewList(index);
 	}
 	
-	public List<ContentMovie> getMovieTrailerList(int index) throws Exception {
-		return contentMovieDao.getMovieTrailerList(index);
+	public List<ContentMovie> getContentMovieTrailerList(int index) throws Exception {
+		return contentMovieDao.getContentMovieTrailerList(index);
 	}
 }

@@ -58,7 +58,7 @@ public class ContentSportController {
 		ContentSetting contentSetting = contentSettingService.getContentSetting(userNo);
 		System.out.println("contentSetting"+contentSetting);
 		
-		List<ContentSport> sportList = contentSportService.getContentKsoccerList(0);
+		List<ContentSport> sportList = contentSportService.getContentSportKsoccerList(0);
 				
 		ModelAndView modelAndView = new ModelAndView();
 		modelAndView.addObject("contentSport" , sportList);
@@ -80,7 +80,7 @@ public class ContentSportController {
 		ContentSetting contentSetting = contentSettingService.getContentSetting(userNo);
 		System.out.println("contentSetting"+contentSetting);
 		
-		List<ContentSport> sportList = contentSportService.getContentWsoccerList(0);
+		List<ContentSport> sportList = contentSportService.getContentSportWsoccerList(0);
 		
 		System.out.println("¸®½ºÆ®:: "+sportList);
 		
@@ -104,7 +104,7 @@ public class ContentSportController {
 		ContentSetting contentSetting = contentSettingService.getContentSetting(userNo);
 		System.out.println("contentSetting"+contentSetting);
 		
-		List<ContentSport> sportList = contentSportService.getContentKbaseballList(0);
+		List<ContentSport> sportList = contentSportService.getContentSportKbaseballList(0);
 		
 		
 		ModelAndView modelAndView = new ModelAndView();
@@ -127,7 +127,7 @@ public class ContentSportController {
 		ContentSetting contentSetting = contentSettingService.getContentSetting(userNo);
 		System.out.println("contentSetting"+contentSetting);
 		
-		List<ContentSport> sportList = contentSportService.getContentWbaseballList(0);
+		List<ContentSport> sportList = contentSportService.getContentSportWbaseballList(0);
 		
 		
 		ModelAndView modelAndView = new ModelAndView();
@@ -150,7 +150,7 @@ public class ContentSportController {
 		ContentSetting contentSetting = contentSettingService.getContentSetting(userNo);
 		System.out.println("contentSetting"+contentSetting);
 		
-		List<ContentSport> sportList = contentSportService.getContentBasketballList(0);
+		List<ContentSport> sportList = contentSportService.getContentSportBasketballList(0);
 		
 		ModelAndView modelAndView = new ModelAndView();
 		modelAndView.addObject("contentSport" , sportList);
@@ -172,7 +172,7 @@ public class ContentSportController {
 		ContentSetting contentSetting = contentSettingService.getContentSetting(userNo);
 		System.out.println("contentSetting"+contentSetting);
 		
-		List<ContentSport> sportList = contentSportService.getContentGeneralList(0);
+		List<ContentSport> sportList = contentSportService.getContentSportGeneralList(0);
 		
 		
 		
@@ -195,7 +195,7 @@ public class ContentSportController {
 		ContentSetting contentSetting = contentSettingService.getContentSetting(userNo);
 		System.out.println("contentSetting"+contentSetting);
 		
-		List<ContentSport> sportList = contentSportService.getContentHighlightList(0);
+		List<ContentSport> sportList = contentSportService.getContentSportHighlightList(0);
 		
 		ModelAndView modelAndView = new	 ModelAndView();
 		modelAndView.addObject("contentSport", sportList);

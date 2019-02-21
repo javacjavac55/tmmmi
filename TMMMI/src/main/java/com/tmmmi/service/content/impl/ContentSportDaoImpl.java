@@ -19,7 +19,8 @@ public class ContentSportDaoImpl extends ContentDaoAdaptor {
 		System.out.println(this.getClass());
 	}
 	
-	public List<ContentSport> getContentKsoccerList(int index) throws Exception {
+	@Override
+	public List<ContentSport> getContentSportKsoccerList(int index) throws Exception {
 		String address = "https://sports.news.naver.com/kfootball/index.nhn";
 
 		int start = (index * 5);
@@ -69,8 +70,8 @@ public class ContentSportDaoImpl extends ContentDaoAdaptor {
 		return sportList;
 	}
 	
-
-	public List<ContentSport> getContentWsoccerList(int index) throws Exception {
+	@Override
+	public List<ContentSport> getContentSportWsoccerList(int index) throws Exception {
 		String address = "https://sports.news.naver.com/wfootball/index.nhn";
 
 		int start = (index * 5);
@@ -119,7 +120,8 @@ public class ContentSportDaoImpl extends ContentDaoAdaptor {
 		return sportList;
 	}
 	
-	public List<ContentSport> getContentKbaseballList(int index) throws Exception {
+	@Override
+	public List<ContentSport> getContentSportKbaseballList(int index) throws Exception {
 		String address = "https://sports.news.naver.com/kbaseball/index.nhn";
 
 		int start = (index * 5);
@@ -168,7 +170,8 @@ public class ContentSportDaoImpl extends ContentDaoAdaptor {
 		return sportList;
 	}
 	
-	public List<ContentSport> getContentWbaseballList(int index) throws Exception {
+	@Override
+	public List<ContentSport> getContentSportWbaseballList(int index) throws Exception {
 		String address = "https://sports.news.naver.com/wbaseball/index.nhn";
 
 		int start = (index * 5);
@@ -217,7 +220,8 @@ public class ContentSportDaoImpl extends ContentDaoAdaptor {
 		return sportList;
 	}
 
-	public List<ContentSport> getContentBasketballList(int index) throws Exception {
+	@Override
+	public List<ContentSport> getContentSportBasketballList(int index) throws Exception {
 		String address = "https://sports.news.naver.com/basketball/index.nhn";
 
 		int start = (index * 5);
@@ -266,7 +270,8 @@ public class ContentSportDaoImpl extends ContentDaoAdaptor {
 		return sportList;
 	}
 
-	public List<ContentSport> getContentGeneralList(int index) throws Exception {
+	@Override
+	public List<ContentSport> getContentSportGeneralList(int index) throws Exception {
 		String address = "https://sports.news.naver.com/general/index.nhn";
 
 		int start = (index * 5);
@@ -316,7 +321,7 @@ public class ContentSportDaoImpl extends ContentDaoAdaptor {
 	}
 
 	@Override
-	public List<ContentSport> getContentHighlightList(int index) throws Exception {
+	public List<ContentSport> getContentSportHighlightList(int index) throws Exception {
 		
 		String address = "https://tv.naver.com/spotvmaster/clips";
 		int start = (index * 5);
@@ -357,7 +362,7 @@ public class ContentSportDaoImpl extends ContentDaoAdaptor {
 	}
 	
 	@Override
-	public ContentSport getContentHighlightVideo(ContentSport contentSport) throws Exception {
+	public ContentSport getContentSportHighlightVideo(ContentSport contentSport) throws Exception {
 		Document doc = Jsoup.connect("https://tv.naver.com/v/"+contentSport.getSportNo()).header("User-Agent", "Mozilla/5.0").get();
 		contentSport.setSportVideo("<iframe src='"+doc.getElementsByAttributeValue("property", "og:video:url").attr("content")+"' frameborder='no' scrolling='no' marginwidth='0' marginheight='0' WIDTH='600' HEIGHT='518' allow='autoplay' allowfullscreen></iframe>");
 		

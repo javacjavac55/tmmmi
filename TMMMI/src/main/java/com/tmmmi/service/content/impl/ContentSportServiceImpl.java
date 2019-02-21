@@ -26,44 +26,44 @@ public class ContentSportServiceImpl extends ContentServiceAdaptor {
 	}
 	
 	@Override
-	public List<ContentSport> getContentKsoccerList(int index) throws Exception {
+	public List<ContentSport> getContentSportKsoccerList(int index) throws Exception {
 		// TODO Auto-generated method stub
-		return contentSportDao.getContentKsoccerList(index);
+		return contentSportDao.getContentSportKsoccerList(index);
 	}
 	@Override
-	public List<ContentSport> getContentWsoccerList(int index) throws Exception {
+	public List<ContentSport> getContentSportWsoccerList(int index) throws Exception {
 		// TODO Auto-generated method stub
-		return contentSportDao.getContentWsoccerList(index);	
+		return contentSportDao.getContentSportWsoccerList(index);	
 	}
 	@Override
-	public List<ContentSport> getContentKbaseballList(int index) throws Exception {
+	public List<ContentSport> getContentSportKbaseballList(int index) throws Exception {
 		// TODO Auto-generated method stub
-		return contentSportDao.getContentKbaseballList(index);	
+		return contentSportDao.getContentSportKbaseballList(index);	
 	}
 	@Override
-	public List<ContentSport> getContentWbaseballList(int index) throws Exception {
+	public List<ContentSport> getContentSportWbaseballList(int index) throws Exception {
 		// TODO Auto-generated method stub
-		return contentSportDao.getContentWbaseballList(index);	
+		return contentSportDao.getContentSportWbaseballList(index);	
 	}
 	@Override
-	public List<ContentSport> getContentBasketballList(int index) throws Exception {
+	public List<ContentSport> getContentSportBasketballList(int index) throws Exception {
 		// TODO Auto-generated method stub
-		return contentSportDao.getContentBasketballList(index);	
+		return contentSportDao.getContentSportBasketballList(index);	
 	}
 	@Override
-	public List<ContentSport> getContentGeneralList(int index) throws Exception {
+	public List<ContentSport> getContentSportGeneralList(int index) throws Exception {
 		// TODO Auto-generated method stub
-		return contentSportDao.getContentGeneralList(index);	
+		return contentSportDao.getContentSportGeneralList(index);	
 	}
 	
 	@Override
-	public List<ContentSport> getContentHighlightList(int index)throws Exception{
-		return contentSportDao.getContentHighlightList(index);
+	public List<ContentSport> getContentSportHighlightList(int index) throws Exception{
+		return contentSportDao.getContentSportHighlightList(index);
 	}
 	
 	@Override
-	public ContentSport getContentHighlightVideo(ContentSport contentSport) throws Exception {
-		return contentSportDao.getContentHighlightVideo(contentSport);
+	public ContentSport getContentSportHighlightVideo(ContentSport contentSport) throws Exception {
+		return contentSportDao.getContentSportHighlightVideo(contentSport);
 	}
 	
 	/*//Method

@@ -19,10 +19,10 @@ import com.tmmmi.service.domain.ContentSetting;
 import com.tmmmi.service.domain.ContentUserKeyword;
 
 @Repository("contentKeywordDaoImpl")
-public class ContentKeywordDaoImpl extends ContentDaoAdaptor {
+public class ContentUserKeywordDaoImpl extends ContentDaoAdaptor {
 	
 	///Constructor
-	public ContentKeywordDaoImpl() {
+	public ContentUserKeywordDaoImpl() {
 		System.out.println(this.getClass());
     }
 	

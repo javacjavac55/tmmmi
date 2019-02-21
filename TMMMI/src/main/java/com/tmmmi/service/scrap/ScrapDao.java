@@ -14,6 +14,6 @@ public interface ScrapDao {
 	
 	public void deleteScrap(int scrapNo) throws Exception;
 	
-	public int getTotalCount(int userNo)throws Exception;
+	public int getTotalCount(Search search, int userNo)throws Exception;
 	
 }

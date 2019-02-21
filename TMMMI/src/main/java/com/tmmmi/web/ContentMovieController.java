@@ -18,10 +18,6 @@ import com.tmmmi.service.usersetting.UserSettingService;
 public class ContentMovieController {
 	
 	@Autowired
-	@Qualifier("contentSettingServiceImpl")
-	private ContentSettingService contentSettingService;
-	
-	@Autowired
 	@Qualifier("contentMovieServiceImpl")
 	private ContentService contentMovieService;
 	
@@ -38,7 +34,7 @@ public class ContentMovieController {
 		int userNo = (int)session.getAttribute("userNo");
 		
 		ModelAndView modelAndView = new ModelAndView();
-		modelAndView.addObject("contentMovieBoxOfficeList", contentMovieService.getBoxOfficeList(0));
+		modelAndView.addObject("contentMovieBoxOfficeList", contentMovieService.getContentMovieBoxOfficeList(0));
 		modelAndView.addObject("bgColor", (userSettingService.getUserSetting(userNo).getMainColorModeNo()==0)?"#000000":"#FFFFFF");
 		modelAndView.addObject("fontColor", (userSettingService.getUserSetting(userNo).getMainColorModeNo()==0)?"#FFFFFF":"#000000");
 		modelAndView.setViewName("/content/movieBoxOffice.jsp");
@@ -50,7 +46,7 @@ public class ContentMovieController {
 		int userNo = (int)session.getAttribute("userNo");
 		
 		ModelAndView modelAndView = new ModelAndView();
-		modelAndView.addObject("contentMovieNewMovieList", contentMovieService.getNewMovieList(0));
+		modelAndView.addObject("contentMovieNewMovieList", contentMovieService.getContentMovieNewList(0));
 		modelAndView.addObject("bgColor", (userSettingService.getUserSetting(userNo).getMainColorModeNo()==0)?"#000000":"#FFFFFF");
 		modelAndView.addObject("fontColor", (userSettingService.getUserSetting(userNo).getMainColorModeNo()==0)?"#FFFFFF":"#000000");
 		modelAndView.setViewName("/content/movieNew.jsp");
@@ -62,7 +58,7 @@ public class ContentMovieController {
 		int userNo = (int)session.getAttribute("userNo");
 		
 		ModelAndView modelAndView = new ModelAndView();
-		modelAndView.addObject("contentMovieUpcomingMovieList", contentMovieService.getUpcomingMovieList(0));
+		modelAndView.addObject("contentMovieUpcomingMovieList", contentMovieService.getContentMovieUpcomingList(0));
 		modelAndView.addObject("bgColor", (userSettingService.getUserSetting(userNo).getMainColorModeNo()==0)?"#000000":"#FFFFFF");
 		modelAndView.addObject("fontColor", (userSettingService.getUserSetting(userNo).getMainColorModeNo()==0)?"#FFFFFF":"#000000");
 		modelAndView.setViewName("/content/movieUpcoming.jsp");
@@ -74,7 +70,7 @@ public class ContentMovieController {
 		int userNo = (int)session.getAttribute("userNo");
 		
 		ModelAndView modelAndView = new ModelAndView();
-		modelAndView.addObject("contentMovieReviewList", contentMovieService.getMovieReviewList(0));
+		modelAndView.addObject("contentMovieReviewList", contentMovieService.getContentMovieReviewList(0));
 		modelAndView.addObject("bgColor", (userSettingService.getUserSetting(userNo).getMainColorModeNo()==0)?"#000000":"#FFFFFF");
 		modelAndView.addObject("fontColor", (userSettingService.getUserSetting(userNo).getMainColorModeNo()==0)?"#FFFFFF":"#000000");
 		modelAndView.setViewName("/content/movieReview.jsp");
@@ -86,7 +82,7 @@ public class ContentMovieController {
 		int userNo = (int)session.getAttribute("userNo");
 		
 		ModelAndView modelAndView = new ModelAndView();
-		modelAndView.addObject("contentMovieTrailerList", contentMovieService.getMovieTrailerList(0));
+		modelAndView.addObject("contentMovieTrailerList", contentMovieService.getContentMovieTrailerList(0));
 		modelAndView.addObject("bgColor", (userSettingService.getUserSetting(userNo).getMainColorModeNo()==0)?"#000000":"#FFFFFF");
 		modelAndView.addObject("fontColor", (userSettingService.getUserSetting(userNo).getMainColorModeNo()==0)?"#FFFFFF":"#000000");
 		modelAndView.setViewName("/content/movieTrailer.jsp");

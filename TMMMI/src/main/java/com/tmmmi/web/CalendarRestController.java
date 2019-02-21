@@ -123,9 +123,6 @@ public class CalendarRestController {
 		
 		return result;
 	}
-	public void addDDay() {}
-	public void updateDDay() {}
-	public void deleteDDay() {}
 	
 	@RequestMapping( value="getInterestList", method=RequestMethod.POST )
 	public Map<String,Object> getInterestList(@RequestBody RenderRange renderRange, HttpSession session) throws Exception {

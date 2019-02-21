@@ -11,32 +11,32 @@ import com.tmmmi.service.domain.ContentUserKeyword;
 
 public interface ContentService {
 	//movie
-	public List<ContentMovie> getBoxOfficeList(int index) throws Exception;
+	public List<ContentMovie> getContentMovieBoxOfficeList(int index) throws Exception;
 	
-	public List<ContentMovie> getNewMovieList(int index) throws Exception;
+	public List<ContentMovie> getContentMovieNewList(int index) throws Exception;
 	
-	public List<ContentMovie> getUpcomingMovieList(int index) throws Exception;
+	public List<ContentMovie> getContentMovieUpcomingList(int index) throws Exception;
 	
-	public List<ContentMovie> getMovieReviewList(int index) throws Exception;
+	public List<ContentMovie> getContentMovieReviewList(int index) throws Exception;
 	
-	public List<ContentMovie> getMovieTrailerList(int index) throws Exception;
+	public List<ContentMovie> getContentMovieTrailerList(int index) throws Exception;
 	
 	//sport
-	public List<ContentSport> getContentKsoccerList(int index) throws Exception;
+	public List<ContentSport> getContentSportKsoccerList(int index) throws Exception;
 	
-	public List<ContentSport> getContentWsoccerList(int index) throws Exception;
+	public List<ContentSport> getContentSportWsoccerList(int index) throws Exception;
 	
-	public List<ContentSport> getContentKbaseballList(int index) throws Exception;
+	public List<ContentSport> getContentSportKbaseballList(int index) throws Exception;
 	
-	public List<ContentSport> getContentWbaseballList(int index) throws Exception;
+	public List<ContentSport> getContentSportWbaseballList(int index) throws Exception;
 	
-	public List<ContentSport> getContentBasketballList(int index) throws Exception;
+	public List<ContentSport> getContentSportBasketballList(int index) throws Exception;
 	
-	public List<ContentSport> getContentGeneralList(int index) throws Exception;
+	public List<ContentSport> getContentSportGeneralList(int index) throws Exception;
 	
-	public List<ContentSport> getContentHighlightList(int index) throws Exception;
+	public List<ContentSport> getContentSportHighlightList(int index) throws Exception;
 	
-	public ContentSport getContentHighlightVideo(ContentSport sport) throws Exception;
+	public ContentSport getContentSportHighlightVideo(ContentSport sport) throws Exception;
 	
 	//tasty
 	public List<ContentTasty> getContentTastyList(ContentSetting contentSetting, int index) throws Exception;

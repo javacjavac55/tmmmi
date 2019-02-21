@@ -51,8 +51,7 @@ public class ScrapServiceImpl implements ScrapService {
 	public Map<String, Object> getScrapList(Search search, int userNo)throws Exception {
 		// TODO Auto-generated method stub
 		List<Scrap> list = scrapDao.getScrapList(search, userNo);
-		
-		int totalCount = scrapDao.getTotalCount(userNo);
+		int totalCount = scrapDao.getTotalCount(search, userNo);
 		
 		System.out.println("totalcount:"+totalCount);
 		

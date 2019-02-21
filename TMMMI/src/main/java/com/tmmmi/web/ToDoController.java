@@ -32,9 +32,6 @@ public class ToDoController {
 	@Qualifier("toDoServiceImpl")
 	private ToDoService toDoService;
 	
-	@Qualifier("UserServiceImpl")
-	private UserService userService;
-	
 	///Constructor
 	public ToDoController() {
 	}

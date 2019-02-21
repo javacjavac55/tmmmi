@@ -12,39 +12,39 @@ import com.tmmmi.service.domain.ContentSetting;
 import com.tmmmi.service.domain.ContentUserKeyword;
 
 @Service("contentKeywordServiceImpl")
-public class ContentKeywordServiceImpl extends ContentServiceAdaptor {	
+public class ContentUserKeywordServiceImpl extends ContentServiceAdaptor {	
 	///Field	
 	@Autowired
 	@Qualifier("contentKeywordDaoImpl")
-	private ContentDao contentKeywordDao;
-	public void setContentKeywordDao(ContentDao contentKeywordDao) {
-		this.contentKeywordDao = contentKeywordDao;
+	private ContentDao contentUserKeywordDao;
+	public void setContentUserKeywordDao(ContentDao contentUserKeywordDao) {
+		this.contentUserKeywordDao = contentUserKeywordDao;
 	}
 	
 	//Constructor
-	public ContentKeywordServiceImpl() {
+	public ContentUserKeywordServiceImpl() {
 		System.out.println(this.getClass());
 	}
 	
 	///Method
 	public List<ContentUserKeyword> getContentUserKeywordFirstList(ContentSetting contentSetting, int index) throws Exception{
-		return contentKeywordDao.getContentUserKeywordFirstList(contentSetting, index);
+		return contentUserKeywordDao.getContentUserKeywordFirstList(contentSetting, index);
 	}
 	
 	public List<ContentUserKeyword> getContentUserKeywordSecondList(ContentSetting contentSetting, int index) throws Exception{
-		return contentKeywordDao.getContentUserKeywordSecondList(contentSetting, index);
+		return contentUserKeywordDao.getContentUserKeywordSecondList(contentSetting, index);
 	}
 	
 	public List<ContentUserKeyword> getContentUserKeywordThirdList(ContentSetting contentSetting, int index) throws Exception{
-		return contentKeywordDao.getContentUserKeywordThirdList(contentSetting, index);
+		return contentUserKeywordDao.getContentUserKeywordThirdList(contentSetting, index);
 	}
 	
 	public List<ContentUserKeyword> getContentUserKeywordVideoFirstList(ContentSetting contentSetting, int index, String pageToken) throws Exception{
-		return contentKeywordDao.getContentUserKeywordVideoFirstList(contentSetting, index, pageToken);
+		return contentUserKeywordDao.getContentUserKeywordVideoFirstList(contentSetting, index, pageToken);
 	}
 	
 	public List<ContentUserKeyword> getContentUserKeywordVideoSecondList(ContentSetting contentSetting, int index, String pageToken) throws Exception{
-		return contentKeywordDao.getContentUserKeywordVideoSecondList(contentSetting, index, pageToken);
+		return contentUserKeywordDao.getContentUserKeywordVideoSecondList(contentSetting, index, pageToken);
 	}
 	
 }

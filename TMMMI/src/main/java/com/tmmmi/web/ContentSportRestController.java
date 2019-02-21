@@ -45,14 +45,14 @@ public class ContentSportRestController {
 	@RequestMapping(value="getContentKsoccerList", method=RequestMethod.GET)
 	public List<ContentSport> getContentKsoccerList(@RequestParam("index") int index, HttpSession session)throws Exception  {
 		System.out.println("contentSportRest/getContentKsoccerList : GET");				
-		return contentSportService.getContentKsoccerList(index);
+		return contentSportService.getContentSportKsoccerList(index);
 	}
 	
 	/*해외축구*/
 	@RequestMapping(value="getContentWsoccerList", method=RequestMethod.GET)
 	public List<ContentSport> getContentWsoccerList(@RequestParam("index") int index, HttpSession session)throws Exception  {				
 		System.out.println("contentSportRest/getContentWsoccerList : GET");
-		return contentSportService.getContentWsoccerList(index);
+		return contentSportService.getContentSportWsoccerList(index);
 	}
 	
 	/*국내야구*/
@@ -60,7 +60,7 @@ public class ContentSportRestController {
 	public List<ContentSport> getContentKbaseballList(@RequestParam("index") int index, HttpSession session)throws Exception  {		
 		
 		System.out.println("contentSportRest/getContentKbaseballList : GET");	
-		return contentSportService.getContentKbaseballList(index);
+		return contentSportService.getContentSportKbaseballList(index);
 	}
 	
 	/*해외야구*/
@@ -68,14 +68,14 @@ public class ContentSportRestController {
 	public List<ContentSport> getContentWbaseballList(@RequestParam("index") int index, HttpSession session)throws Exception  {		
 		
 		System.out.println("contentSportRest/getContentWbaseballList : GET");		
-		return contentSportService.getContentWbaseballList(index);
+		return contentSportService.getContentSportWbaseballList(index);
 	}
 	
 	/*농구*/
 	@RequestMapping(value="getContentBasketballList", method=RequestMethod.GET)
 	public List<ContentSport> getContentBasketballList(@RequestParam("index") int index, HttpSession session)throws Exception  {	
 		System.out.println("contentSportRest/getContentBasketballList : GET");		
-		return contentSportService.getContentBasketballList(index);
+		return contentSportService.getContentSportBasketballList(index);
 	}
 	
 	/*일반*/
@@ -83,7 +83,7 @@ public class ContentSportRestController {
 	public List<ContentSport> getContentGeneralList(@RequestParam("index") int index, HttpSession session)throws Exception  {
 		
 		System.out.println("contentSportRest/getContentGeneralList : GET");
-		return contentSportService.getContentGeneralList(index);
+		return contentSportService.getContentSportGeneralList(index);
 	}
 	
 	
@@ -91,13 +91,13 @@ public class ContentSportRestController {
 	@RequestMapping(value="getContentHighlightList", method=RequestMethod.GET)
 	public List<ContentSport> getContentHighlightList(@RequestParam("index") int index, HttpSession session)throws Exception{		
 		System.out.println("contentSportRest/getContentHighlightList : GET");		
-		return contentSportService.getContentHighlightList(index);
+		return contentSportService.getContentSportHighlightList(index);
 	}
 	
 	@RequestMapping(value="getContentHighlightVideo", method=RequestMethod.POST)
 	public ContentSport getContentHighlightVideo(@RequestBody ContentSport sport )throws Exception{
 		System.out.println("contentSport/getContentHighlightVideo : POST");
-		return contentSportService.getContentHighlightVideo(sport);
+		return contentSportService.getContentSportHighlightVideo(sport);
 	}
 	
 }
