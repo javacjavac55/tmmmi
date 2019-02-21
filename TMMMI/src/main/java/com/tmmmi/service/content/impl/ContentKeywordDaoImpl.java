@@ -104,6 +104,7 @@ public class ContentKeywordDaoImpl extends ContentDaoAdaptor {
             	if(description != null) {
             		contentUserKeyword.setKeywordDescription(description);
             		contentUserKeyword.setKeyword(userKeyword);
+            		contentUserKeyword.setKeywordNextToken(contentSetting.getUserSearch1());
                 	result.add(contentUserKeyword);
             	}else {
             		System.out.println("야호");
@@ -194,6 +195,7 @@ public class ContentKeywordDaoImpl extends ContentDaoAdaptor {
             	}
             	contentUserKeyword.setKeywordDescription(description);
             	contentUserKeyword.setKeyword(userKeyword);
+            	contentUserKeyword.setKeywordNextToken(contentSetting.getUserSearch2());
             	result.add(contentUserKeyword);
             }
 	        
@@ -282,6 +284,7 @@ public class ContentKeywordDaoImpl extends ContentDaoAdaptor {
             	}
             	contentUserKeyword.setKeywordDescription(description);
             	contentUserKeyword.setKeyword(userKeyword);
+            	contentUserKeyword.setKeywordNextToken(contentSetting.getUserSearch3());
             	result.add(contentUserKeyword);
             }
 	        
@@ -372,7 +375,7 @@ public class ContentKeywordDaoImpl extends ContentDaoAdaptor {
 	public List<ContentUserKeyword> getContentUserKeywordVideoSecondList(ContentSetting contentSetting, int index, String pageToken) throws Exception {
 		
 		String apiKey = "AIzaSyBLiKbxA8GhogX362LoIoNnCaVmIvesAFU";
-		String userVideo = contentSetting.getUserVideo1();
+		String userVideo = contentSetting.getUserVideo2();
 		String q = URLEncoder.encode(userVideo, "UTF-8");
 		String maxResults = "8";
 		String nextPage = (pageToken != null && pageToken.length()>0)?("&pageToken="+pageToken):"";
@@ -434,7 +437,7 @@ public class ContentKeywordDaoImpl extends ContentDaoAdaptor {
             	contentUserKeyword.setKeywordVideoId("<iframe width=\"600\" height=\"518\" src=\"http://www.youtube.com/embed/"+videoId+"\" frameborder=\"0\" allow=\"accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture\" allowfullscreen></iframe>");
 	        	contentUserKeyword.setKeywordThumbnail(image);
 	        	contentUserKeyword.setKeywordNextToken(pageToken);
-	        	contentUserKeyword.setKeywordLink(contentSetting.getUserVideo1());
+	        	contentUserKeyword.setKeywordLink(contentSetting.getUserVideo2());
 	        	contentUserKeyword.setKeyword(userVideo);
             	result.add(contentUserKeyword);
 	        
