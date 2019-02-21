@@ -71,8 +71,8 @@
 				var name=$("input[name='FAQTitle']").val();
 				var detail = CKEDITOR.instances.ckeditor.getData();
 					
-				if(name == null || name.length>20){
-					swal("제목은 20자이내여야 합니다!", "얼른 입력해주세요");
+				if(name == null || name.length>30){
+					swal("제목은 30자이내여야 합니다!", "얼른 입력해주세요");
 					return;
 				}
 				 if(detail == null || detail.length<10){
