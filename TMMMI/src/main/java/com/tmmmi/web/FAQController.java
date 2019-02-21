@@ -140,7 +140,7 @@ public class FAQController {
 	}
 	
 	@RequestMapping(value = "imageFAQ", method = RequestMethod.POST)
-    public void imageFAQ(HttpServletRequest request, HttpServletResponse response, @RequestParam MultipartFile upload) {
+    public void imageQNA(HttpServletRequest request, HttpServletResponse response, @RequestParam MultipartFile upload) {
 	 	
         OutputStream out = null;
         PrintWriter printWriter = null;
@@ -155,7 +155,7 @@ public class FAQController {
             File file = new File(uploadPath);
             out = new FileOutputStream(file);
             out.write(bytes);
-             
+ 
             printWriter = response.getWriter();
             String fileUrl = "/images/FAQImage/" + fileName;//url°æ·Î
  
@@ -179,4 +179,6 @@ public class FAQController {
         }
         return;
     }
+	
+	
 }

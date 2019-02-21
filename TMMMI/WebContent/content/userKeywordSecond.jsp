@@ -51,7 +51,7 @@
 	</head>
 <body>
 	<section class="carousel">
-		<div><span class="section-title">${userSearch}</span></div>
+		<div><span class="section-title">${userKeywordSecondList[0].keywordNextToken}</span></div>
 		<div class="reel" style="overflow: visible; transform: translate(-1285px, 0px); ">
 			<c:forEach var="contentUserKeyword" items="${userKeywordSecondList}">				
 				<article class="content-userSearch">

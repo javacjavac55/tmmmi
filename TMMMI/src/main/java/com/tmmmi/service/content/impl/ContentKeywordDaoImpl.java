@@ -19,10 +19,10 @@ import com.tmmmi.service.domain.ContentSetting;
 import com.tmmmi.service.domain.ContentUserKeyword;
 
 @Repository("contentKeywordDaoImpl")
-public class ContentUserKeywordDaoImpl extends ContentDaoAdaptor {
+public class ContentKeywordDaoImpl extends ContentDaoAdaptor {
 	
 	///Constructor
-	public ContentUserKeywordDaoImpl() {
+	public ContentKeywordDaoImpl() {
 		System.out.println(this.getClass());
     }
 	
@@ -44,7 +44,7 @@ public class ContentUserKeywordDaoImpl extends ContentDaoAdaptor {
         	System.out.println(start);
 	        /*String text = URLEncoder.encode("\""+contentSetting.getUserSearch1()+"|"+contentSetting.getUserSearch2()+"|"+contentSetting.getUserSearch3()+"\"", "UTF-8");*/
         	String text = URLEncoder.encode(userKeyword, "UTF-8");
-	        String apiURL = "https://openapi.naver.com/v1/search/blog?query="+ text+"&display="+display+"&start="+start+"&sort=date";// json 占쏙옙占�
+	        String apiURL = "https://openapi.naver.com/v1/search/blog?query="+ text+"&display="+display+"&start="+start+"&sort=date";// json ���
 	        URL url = new URL(apiURL);
 	        HttpURLConnection con = (HttpURLConnection)url.openConnection();
 	        con.setRequestMethod("GET");
@@ -52,10 +52,10 @@ public class ContentUserKeywordDaoImpl extends ContentDaoAdaptor {
 	        con.setRequestProperty("X-Naver-Client-Secret", clientSecret);
 	        int responseCode = con.getResponseCode();
 	        BufferedReader br;
-	        if(responseCode==200) { // 占쏙옙占쏙옙 호占쏙옙
+	        if(responseCode==200) { // ���� ȣ��
 	            br = new BufferedReader(new InputStreamReader(con.getInputStream(), "UTF-8"));
 	            //userKeyword.add(br);
-	        } else {  // 占쏙옙占쏙옙 占쌩삼옙
+	        } else {  // ���� �߻�
 	        	br = new BufferedReader(new InputStreamReader(con.getErrorStream(), "UTF-8"));
 	        }
             sb = new StringBuilder();
@@ -71,15 +71,15 @@ public class ContentUserKeywordDaoImpl extends ContentDaoAdaptor {
             json = sb.toString();
             
             JSONParser parser=new JSONParser();
-            JSONObject items =(JSONObject)parser.parse(json); //json占쏙옙占쏙옙占쏙옙占쏙옙 item[ ] 占쏙옙占쏙옙占쏙옙
-            JSONArray arr = (JSONArray)items.get("items"); //array 占십울옙
+            JSONObject items =(JSONObject)parser.parse(json); //json�������� item[ ] ������
+            JSONArray arr = (JSONArray)items.get("items"); //array �ʿ�
             System.out.println(arr);
             for(int i =0; i<arr.size() ; i++) {
             	JSONObject tmp = (JSONObject)arr.get(i);
             	
-            	String title = (String)tmp.get("title"); //占쏙옙占쏙옙
-            	String link = (String)tmp.get("link"); //占쏙옙크
-            	String description = (String)tmp.get("description");//占쏙옙占쏙옙
+            	String title = (String)tmp.get("title"); //����
+            	String link = (String)tmp.get("link"); //��ũ
+            	String description = (String)tmp.get("description");//����
             	
             	ContentUserKeyword contentUserKeyword = new ContentUserKeyword();
             	contentUserKeyword.setKeywordTitle(title);
@@ -89,13 +89,13 @@ public class ContentUserKeywordDaoImpl extends ContentDaoAdaptor {
             															 .header("Referer", "https://www.naver.com").get();
             	
             	/*System.out.println("iframe : "+doc.select("iframe").size());
-            	System.out.println("iframe 留곹겕 :http://blog.naver.com/"+doc.select("iframe").attr("src"));*/
+            	System.out.println("iframe 링크 :http://blog.naver.com/"+doc.select("iframe").attr("src"));*/
             	Document docFrame = Jsoup.connect("http://blog.naver.com/"+doc.select("iframe").attr("src")).header("User-Referer", "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/55.0.2883.87 Safari/537.36")
             																								.header("Referer", "https://www.naver.com").get();
             	/*System.out.println("iframe tbody : " +docFrame.select("#printPost1").size());*/
             	
             	if(docFrame.select("#printPost1").select("img").size() == 1) {
-            		System.out.println("�씠誘몄�媛� �뾾�뒿�땲�떎");
+            		System.out.println("이미지가 없습니다");
             	}else {
             		int count = (int)Math.abs(docFrame.select("#printPost1").select("img").size()/2);
             		contentUserKeyword.setKeywordVideo(docFrame.select("#printPost1").select("img").get(count-1).attr("src"));
@@ -107,7 +107,7 @@ public class ContentUserKeywordDaoImpl extends ContentDaoAdaptor {
             		contentUserKeyword.setKeywordNextToken(contentSetting.getUserSearch1());
                 	result.add(contentUserKeyword);
             	}else {
-            		System.out.println("�빞�샇");
+            		System.out.println("야호");
             	}
             }
 	        
@@ -136,7 +136,7 @@ public class ContentUserKeywordDaoImpl extends ContentDaoAdaptor {
         	System.out.println(start);
 	        /*String text = URLEncoder.encode("\""+contentSetting.getUserSearch1()+"|"+contentSetting.getUserSearch2()+"|"+contentSetting.getUserSearch3()+"\"", "UTF-8");*/
         	String text = URLEncoder.encode(userKeyword, "UTF-8");
-	        String apiURL = "https://openapi.naver.com/v1/search/blog?query="+ text+"&display="+display+"&start="+start+"&sort=date";// json 占쏙옙占�
+	        String apiURL = "https://openapi.naver.com/v1/search/blog?query="+ text+"&display="+display+"&start="+start+"&sort=date";// json ���
 	        URL url = new URL(apiURL);
 	        HttpURLConnection con = (HttpURLConnection)url.openConnection();
 	        con.setRequestMethod("GET");
@@ -144,10 +144,10 @@ public class ContentUserKeywordDaoImpl extends ContentDaoAdaptor {
 	        con.setRequestProperty("X-Naver-Client-Secret", clientSecret);
 	        int responseCode = con.getResponseCode();
 	        BufferedReader br;
-	        if(responseCode==200) { // 占쏙옙占쏙옙 호占쏙옙
+	        if(responseCode==200) { // ���� ȣ��
 	            br = new BufferedReader(new InputStreamReader(con.getInputStream(), "UTF-8"));
 	            //userKeyword.add(br);
-	        } else {  // 占쏙옙占쏙옙 占쌩삼옙
+	        } else {  // ���� �߻�
 	        	br = new BufferedReader(new InputStreamReader(con.getErrorStream(), "UTF-8"));
 	        }
             sb = new StringBuilder();
@@ -163,15 +163,15 @@ public class ContentUserKeywordDaoImpl extends ContentDaoAdaptor {
             json = sb.toString();
             
             JSONParser parser=new JSONParser();
-            JSONObject items =(JSONObject)parser.parse(json); //json占쏙옙占쏙옙占쏙옙占쏙옙 item[ ] 占쏙옙占쏙옙占쏙옙
-            JSONArray arr = (JSONArray)items.get("items"); //array 占십울옙
+            JSONObject items =(JSONObject)parser.parse(json); //json�������� item[ ] ������
+            JSONArray arr = (JSONArray)items.get("items"); //array �ʿ�
             System.out.println(arr);
             for(int i =0; i<arr.size() ; i++) {
             	JSONObject tmp = (JSONObject)arr.get(i);
             	
-            	String title = (String)tmp.get("title"); //占쏙옙占쏙옙
-            	String link = (String)tmp.get("link"); //占쏙옙크
-            	String description = (String)tmp.get("description");//占쏙옙占쏙옙
+            	String title = (String)tmp.get("title"); //����
+            	String link = (String)tmp.get("link"); //��ũ
+            	String description = (String)tmp.get("description");//����
             	
             	ContentUserKeyword contentUserKeyword = new ContentUserKeyword();
             	contentUserKeyword.setKeywordTitle(title);
@@ -181,13 +181,13 @@ public class ContentUserKeywordDaoImpl extends ContentDaoAdaptor {
             															 .header("Referer", "https://www.naver.com").get();
             	
             	/*System.out.println("iframe : "+doc.select("iframe").size());
-            	System.out.println("iframe 留곹겕 :http://blog.naver.com/"+doc.select("iframe").attr("src"));*/
+            	System.out.println("iframe 링크 :http://blog.naver.com/"+doc.select("iframe").attr("src"));*/
             	Document docFrame = Jsoup.connect("http://blog.naver.com/"+doc.select("iframe").attr("src")).header("User-Referer", "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/55.0.2883.87 Safari/537.36")
             																								.header("Referer", "https://www.naver.com").get();
             	/*System.out.println("iframe tbody : " +docFrame.select("#printPost1").size());*/
             	
             	if(docFrame.select("#printPost1").select("img").size() == 1) {
-            		System.out.println("�씠誘몄�媛� �뾾�뒿�땲�떎");
+            		System.out.println("이미지가 없습니다");
             	}else {
             		int count = (int)Math.abs(docFrame.select("#printPost1").select("img").size()/2);
             		/*System.out.println("iframe image : " +docFrame.select("#printPost1").select("img").get(count-1).attr("src"));*/
@@ -224,7 +224,7 @@ public class ContentUserKeywordDaoImpl extends ContentDaoAdaptor {
         	System.out.println(start);
 	        /*String text = URLEncoder.encode("\""+contentSetting.getUserSearch1()+"|"+contentSetting.getUserSearch2()+"|"+contentSetting.getUserSearch3()+"\"", "UTF-8");*/
         	String text = URLEncoder.encode(userKeyword, "UTF-8");
-	        String apiURL = "https://openapi.naver.com/v1/search/blog?query="+ text+"&display="+display+"&start="+start+"&sort=date";// json 占쏙옙占�
+	        String apiURL = "https://openapi.naver.com/v1/search/blog?query="+ text+"&display="+display+"&start="+start+"&sort=date";// json ���
 	        URL url = new URL(apiURL);
 	        HttpURLConnection con = (HttpURLConnection)url.openConnection();
 	        con.setRequestMethod("GET");
@@ -232,10 +232,10 @@ public class ContentUserKeywordDaoImpl extends ContentDaoAdaptor {
 	        con.setRequestProperty("X-Naver-Client-Secret", clientSecret);
 	        int responseCode = con.getResponseCode();
 	        BufferedReader br;
-	        if(responseCode==200) { // 占쏙옙占쏙옙 호占쏙옙
+	        if(responseCode==200) { // ���� ȣ��
 	            br = new BufferedReader(new InputStreamReader(con.getInputStream(), "UTF-8"));
 	            //userKeyword.add(br);
-	        } else {  // 占쏙옙占쏙옙 占쌩삼옙
+	        } else {  // ���� �߻�
 	        	br = new BufferedReader(new InputStreamReader(con.getErrorStream(), "UTF-8"));
 	        }
             sb = new StringBuilder();
@@ -251,15 +251,15 @@ public class ContentUserKeywordDaoImpl extends ContentDaoAdaptor {
             json = sb.toString();
             
             JSONParser parser=new JSONParser();
-            JSONObject items =(JSONObject)parser.parse(json); //json占쏙옙占쏙옙占쏙옙占쏙옙 item[ ] 占쏙옙占쏙옙占쏙옙
-            JSONArray arr = (JSONArray)items.get("items"); //array 占십울옙
+            JSONObject items =(JSONObject)parser.parse(json); //json�������� item[ ] ������
+            JSONArray arr = (JSONArray)items.get("items"); //array �ʿ�
             System.out.println(arr);
             for(int i =0; i<arr.size() ; i++) {
             	JSONObject tmp = (JSONObject)arr.get(i);
             	
-            	String title = (String)tmp.get("title"); //占쏙옙占쏙옙
-            	String link = (String)tmp.get("link"); //占쏙옙크
-            	String description = (String)tmp.get("description");//占쏙옙占쏙옙
+            	String title = (String)tmp.get("title"); //����
+            	String link = (String)tmp.get("link"); //��ũ
+            	String description = (String)tmp.get("description");//����
             	
             	ContentUserKeyword contentUserKeyword = new ContentUserKeyword();
             	contentUserKeyword.setKeywordTitle(title);
@@ -269,13 +269,13 @@ public class ContentUserKeywordDaoImpl extends ContentDaoAdaptor {
             															 .header("Referer", "https://www.naver.com").get();
             	
             	/*System.out.println("iframe : "+doc.select("iframe").size());
-            	System.out.println("iframe 留곹겕 :http://blog.naver.com/"+doc.select("iframe").attr("src"));*/
+            	System.out.println("iframe 링크 :http://blog.naver.com/"+doc.select("iframe").attr("src"));*/
             	Document docFrame = Jsoup.connect("http://blog.naver.com/"+doc.select("iframe").attr("src")).header("User-Referer", "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/55.0.2883.87 Safari/537.36")
             																								.header("Referer", "https://www.naver.com").get();
             	/*System.out.println("iframe tbody : " +docFrame.select("#printPost1").size());*/
             	
             	if(docFrame.select("#printPost1").select("img").size() == 1) {
-            		System.out.println("�씠誘몄�媛� �뾾�뒿�땲�떎");
+            		System.out.println("이미지가 없습니다");
             		
             	}else {
             		int count = (int)Math.abs(docFrame.select("#printPost1").select("img").size()/2);
@@ -328,9 +328,9 @@ public class ContentUserKeywordDaoImpl extends ContentDaoAdaptor {
 	        json = sb.toString();
 	        
 	        JSONParser parser=new JSONParser();
-	        JSONObject items =(JSONObject)parser.parse(json); //json�뜲�씠�꽣以� item[ ] 鍮쇱삤湲�
-	        JSONArray arr = (JSONArray)items.get("items"); //array �븘�슂
-	        pageToken = (String)items.get("nextPageToken"); //�떎�쓬�럹�씠吏�
+	        JSONObject items =(JSONObject)parser.parse(json); //json데이터중 item[ ] 빼오기
+	        JSONArray arr = (JSONArray)items.get("items"); //array 필요
+	        pageToken = (String)items.get("nextPageToken"); //다음페이지
 	        System.out.println("pageToken: "+pageToken);
 	        System.out.println(arr.size());
 	        
@@ -338,12 +338,12 @@ public class ContentUserKeywordDaoImpl extends ContentDaoAdaptor {
 	        	JSONObject tmp = (JSONObject)arr.get(i);
 	        	
             	JSONObject snippet = (JSONObject)tmp.get("snippet");
-	        	String title = (String)snippet.get("title"); //�젣紐�
-	        	String description = (String)snippet.get("description"); //�꽕紐�
-	        	String channelTitle = (String)snippet.get("channelTitle"); //梨꾨꼸�씠由�
+	        	String title = (String)snippet.get("title"); //제목
+	        	String description = (String)snippet.get("description"); //설명
+	        	String channelTitle = (String)snippet.get("channelTitle"); //채널이름
 	         	 	        	
 	        	JSONObject high = (JSONObject) ((JSONObject) (snippet.get("thumbnails"))).get("high");
-	        	String image = (String)high.get("url"); //�뜽�꽕�씪
+	        	String image = (String)high.get("url"); //썸네일
    	
 	        	String videoId = (String) ((JSONObject)tmp.get("id")).get("videoId");
 	        	
@@ -404,9 +404,9 @@ public class ContentUserKeywordDaoImpl extends ContentDaoAdaptor {
 	        json = sb.toString();
 	        
 	        JSONParser parser=new JSONParser();
-	        JSONObject items =(JSONObject)parser.parse(json); //json�뜲�씠�꽣以� item[ ] 鍮쇱삤湲�
-	        JSONArray arr = (JSONArray)items.get("items"); //array �븘�슂
-	        pageToken = (String)items.get("nextPageToken"); //�떎�쓬�럹�씠吏�
+	        JSONObject items =(JSONObject)parser.parse(json); //json데이터중 item[ ] 빼오기
+	        JSONArray arr = (JSONArray)items.get("items"); //array 필요
+	        pageToken = (String)items.get("nextPageToken"); //다음페이지
 	        System.out.println("pageToken: "+pageToken);
 	        System.out.println(arr.size());
 	        
@@ -414,12 +414,12 @@ public class ContentUserKeywordDaoImpl extends ContentDaoAdaptor {
 	        	JSONObject tmp = (JSONObject)arr.get(i);
 	        	
             	JSONObject snippet = (JSONObject)tmp.get("snippet");
-	        	String title = (String)snippet.get("title"); //�젣紐�
-	        	String description = (String)snippet.get("description"); //�꽕紐�
-	        	String channelTitle = (String)snippet.get("channelTitle"); //梨꾨꼸�씠由�
+	        	String title = (String)snippet.get("title"); //제목
+	        	String description = (String)snippet.get("description"); //설명
+	        	String channelTitle = (String)snippet.get("channelTitle"); //채널이름
 	         	 	        	
 	        	JSONObject high = (JSONObject) ((JSONObject) (snippet.get("thumbnails"))).get("high");
-	        	String image = (String)high.get("url"); //�뜽�꽕�씪
+	        	String image = (String)high.get("url"); //썸네일
    	
 	        	String videoId = (String) ((JSONObject)tmp.get("id")).get("videoId");
 	        	
